@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02 22:07",
+  "generatedAt": "2026-08-02 22:49",
   "kpi": {
     "skills": 53,
     "automations": 1,
@@ -543,7 +543,7 @@
       },
       "D": {
         "total": 544,
-        "free": 398
+        "free": 397
       }
     },
     "runtime": "3.13 / 22.22"
@@ -552,8 +552,8 @@
     "recent": [
       {
         "title": "提取图片内容并存入长期记忆",
-        "status": "working",
-        "updated": "08-02 22:07",
+        "status": "completed",
+        "updated": "08-02 22:48",
         "group": "今天"
       },
       {
