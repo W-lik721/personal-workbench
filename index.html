@@ -15,7 +15,10 @@
     <h1>🛠️ 个人工作台</h1>
     <div class="sub">WorkBuddy 双端面板 · 自动同步本机真实数据</div>
   </div>
-  <div class="snap" id="snap">📸 快照 · 加载中…</div>
+  <div class="snap-wrap">
+    <div class="snap" id="snap">📸 快照 · 加载中…</div>
+    <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">🔄 立即刷新</button>
+  </div>
 </header>
 <main class="container">
   <section class="kpis" id="kpis"></section>

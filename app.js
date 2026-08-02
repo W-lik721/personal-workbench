@@ -244,12 +244,26 @@
   }
 
   // ---------- 启动 ----------
-  fetch("data.json", { cache: "no-store" })
-    .then(function (r) { return r.json(); })
-    .then(function (d) { render(d); })
-    .catch(function (e) {
-      document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
-    });
+  function loadData() {
+    return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { render(d); return d; });
+  }
+  function refreshData() {
+    var btn = document.getElementById("refreshBtn");
+    var old = btn ? btn.textContent : "";
+    if (btn) { btn.disabled = true; btn.textContent = "⏳ 刷新中…"; }
+    loadData()
+      .then(function () { if (btn) { btn.disabled = false; btn.textContent = old; } })
+      .catch(function (e) {
+        if (btn) { btn.disabled = false; btn.textContent = old; }
+        document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
+      });
+  }
+  window.refreshData = refreshData;
+  loadData().catch(function (e) {
+    document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
+  });
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
