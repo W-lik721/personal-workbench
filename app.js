@@ -96,8 +96,51 @@
     document.getElementById("heat-detail").style.display = "flex";
   }
   function closeHeat() { document.getElementById("heat-detail").style.display = "none"; }
+
+  // ---------- 我的速记（localStorage，纯前端） ----------
+  function notesLoad() {
+    try { return JSON.parse(localStorage.getItem("wb_notes") || "[]"); } catch (e) { return []; }
+  }
+  function notesSave(list) { try { localStorage.setItem("wb_notes", JSON.stringify(list)); } catch (e) {} }
+  function renderNotes() {
+    var ul = document.getElementById("notesList");
+    if (!ul) return;
+    var list = notesLoad();
+    if (!list.length) { ul.innerHTML = '<li class="empty">还没有速记，记一笔吧～</li>'; return; }
+    ul.innerHTML = list.map(function (n, i) {
+      return '<li class="note"><span class="nt">' + esc(n.text) + '</span><button class="nd" onclick="delNote(' + i + ')" title="删除">✕</button></li>';
+    }).join("");
+  }
+  function addNote() {
+    var ta = document.getElementById("noteInput");
+    var t = (ta.value || "").trim();
+    var h = document.getElementById("notesHint");
+    if (!t) { if (h) h.textContent = "先写点内容"; return; }
+    var list = notesLoad();
+    list.unshift({ text: t, at: Date.now() });
+    notesSave(list); ta.value = ""; if (h) h.textContent = "✓ 已添加";
+    renderNotes();
+  }
+  function delNote(i) { var list = notesLoad(); list.splice(i, 1); notesSave(list); renderNotes(); }
+
+  // ---------- 主题切换 ----------
+  function applyTheme() {
+    var light = localStorage.getItem("wb_theme") === "light";
+    document.body.classList.toggle("light", light);
+    var b = document.getElementById("themeBtn");
+    if (b) b.textContent = light ? "☀️" : "🌙";
+  }
+  function toggleTheme() {
+    var light = !document.body.classList.contains("light");
+    document.body.classList.toggle("light", light);
+    localStorage.setItem("wb_theme", light ? "light" : "dark");
+    var b = document.getElementById("themeBtn");
+    if (b) b.textContent = light ? "☀️" : "🌙";
+  }
+
   window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab;
   window.openHeat = openHeat; window.closeHeat = closeHeat;
+  window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
 
   // ---------- 渲染 ----------
   function renderKPI(d) {
@@ -124,11 +167,13 @@
     skills.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
     var html = "";
     Object.keys(byCat).forEach(function (cat) {
+      var list = byCat[cat].slice().sort(function (a, b) { return (b.usage || 0) - (a.usage || 0); });
       html += '<div class="cat open"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(cat) +
-        '<span class="cc">' + byCat[cat].length + '</span><span class="car">▶</span></div><div class="cat-b">';
-      byCat[cat].forEach(function (s) {
+        '<span class="cc">' + list.length + '</span><span class="car">▶</span></div><div class="cat-b">';
+      list.forEach(function (s) {
+        var fire = (s.usage > 0) ? '<span class="fire">🔥' + s.usage + "</span>" : "";
         html += '<span class="skill" onclick="cmd(this)" data-cmd="' + escAttr(s.cmd) + '" title="' + escAttr(s.desc) + '">' +
-          '<span class="sn">' + esc(s.name) + '</span><span class="sd">' + esc(s.desc) + "</span></span>";
+          '<span class="sn">' + esc(s.name) + fire + '</span><span class="sd">' + esc(s.desc) + "</span></span>";
       });
       html += "</div></div>";
     });
@@ -261,6 +306,10 @@
       });
   }
   window.refreshData = refreshData;
+  applyTheme();
+  renderNotes();
+  var ni = document.getElementById("noteInput");
+  if (ni) ni.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addNote(); } });
   loadData().catch(function (e) {
     document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
   });

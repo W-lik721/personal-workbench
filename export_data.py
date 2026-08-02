@@ -223,6 +223,28 @@ def main():
     mem = memory_count()
     now = datetime.now()
 
+    # 技能使用统计：从会话标题反推每个 skill 的提及次数与最近使用日期
+    titled = []
+    for h in heat:
+        for t in h.get("titles", []):
+            titled.append((h["date"], t))
+    today_iso = date.today().isoformat()
+    for s in recent:
+        titled.append((today_iso, s.get("title", "")))
+    for s in sk:
+        key = s["name"].lower()
+        if key:
+            s["usage"] = sum(1 for _, t in titled if key in t.lower())
+            last = ""
+            for d, t in sorted(titled, key=lambda x: x[0], reverse=True):
+                if key in t.lower():
+                    last = d
+                    break
+            s["lastUsed"] = last
+        else:
+            s["usage"] = 0
+            s["lastUsed"] = ""
+
     guide = []
     if autos:
         a = autos[0]

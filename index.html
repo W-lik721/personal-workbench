@@ -7,7 +7,7 @@
 <title>个人工作台</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <header class="header">
@@ -18,6 +18,7 @@
   <div class="snap-wrap">
     <div class="snap" id="snap">📸 快照 · 加载中…</div>
     <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">🔄 立即刷新</button>
+    <button class="refresh-btn" id="themeBtn" onclick="toggleTheme()" title="切换深色 / 浅色">🌙</button>
   </div>
 </header>
 <main class="container">
@@ -26,9 +27,18 @@
   <span class="si">🔍</span>
   <input id="q" placeholder="搜 skill 名称 / 描述，快速定位…" oninput="filt()">
 </div>
-<section class="quickbar">
+  <section class="quickbar">
     <div class="qb-title">⚡ 快捷启动台 · 高频动作一键直达</div>
     <div class="qb-grid" id="quickbar"></div>
+  </section>
+  <section class="card notes-card">
+    <h2><span class="ic">📝</span>我的速记 · 仅存本机</h2>
+    <textarea id="noteInput" rows="2" placeholder="记一笔待办 / 想法，回车或点“添加”（只存在你浏览器，不上传）"></textarea>
+    <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+      <button class="btn-sm" onclick="addNote()">➕ 添加</button>
+      <span id="notesHint" class="empty"></span>
+    </div>
+    <ul class="notes" id="notesList"></ul>
   </section>
   <nav class="tabs">
     <button class="tab active" data-tab="cap" onclick="switchTab('cap')">🚀 能力速达</button>
@@ -48,6 +58,6 @@
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
