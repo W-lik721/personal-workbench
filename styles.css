@@ -148,3 +148,22 @@ body.light .heat{color:var(--sub)}
 .note .nd{background:transparent;border:none;color:var(--sub);cursor:pointer;font-size:13px;padding:0 2px;line-height:1}
 .note .nd:hover{color:#ff9a9a}
 .skill .fire{font-size:10px;margin-left:6px;background:rgba(255,140,0,.18);color:#ffb259;border-radius:8px;padding:1px 6px;font-weight:600;vertical-align:middle;white-space:nowrap}
+/* ---------- AI 日报 ---------- */
+.tab-dot{display:none;width:6px;height:6px;border-radius:50%;background:#ff6b6b;margin-left:6px;vertical-align:middle;box-shadow:0 0 0 3px rgba(255,107,107,.18)}
+.news-head h2{align-items:center}
+.news-n{font-size:11px;font-weight:600;margin-left:8px;background:rgba(78,161,255,.16);color:var(--accent);border-radius:8px;padding:2px 8px;vertical-align:middle}
+.news-meta{color:var(--sub);font-size:12px;margin-top:2px}
+.news-meta a{color:var(--accent);text-decoration:none}
+.news-meta a:hover{text-decoration:underline}
+.nw{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:12px 14px;margin-top:10px;animation:fadeIn .3s ease both}
+.nw:hover{border-color:rgba(78,161,255,.4)}
+.nw-t{font-size:14px;font-weight:600;line-height:1.5;color:var(--txt)}
+.nw-d{font-size:12.5px;line-height:1.7;color:var(--sub);margin-top:6px;word-break:break-word}
+.nw-f{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px}
+.nw-s{font-size:11px;color:var(--sub);opacity:.85}
+.nw-a{font-size:11.5px;color:var(--accent);text-decoration:none}
+.nw-a:hover{text-decoration:underline}
+.nw-ask{margin-left:auto;font-size:11.5px;background:transparent;border:1px solid var(--line);color:var(--sub);border-radius:8px;padding:3px 9px;cursor:pointer;transition:.15s}
+.nw-ask:hover{border-color:var(--accent);color:var(--accent);background:rgba(78,161,255,.08)}
+body.light .nw{box-shadow:0 1px 0 rgba(255,255,255,.6) inset}
+body.light .nw-s{color:#8a909c}

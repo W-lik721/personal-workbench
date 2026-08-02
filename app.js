@@ -231,9 +231,58 @@
         '<div style="margin-top:6px"><button class="btn-sm" onclick="copyInspire()">📋 复制指令</button><span id="inshint"></span></div></div></div></div>' +
       '<div class="card"><h2><span class="ic">💬</span>⑥ 近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>" +
       '<div class="card"><h2><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h2>' +
+        (d.aiDaily && d.aiDaily.count
+          ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
+          : '<div class="empty" style="margin:2px 0 4px">今日尚无日报数据</div>') +
         '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
-        '<button class="btn" onclick="cmdtext(' + "'生成今日 AI 日报（中文）：最新模型 / 工具 / 趋势'" + ')">🗞️ 今日 AI 日报</button>' +
+        '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
         '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>';
+  }
+
+  // ---------- AI 日报 ----------
+  function renderNews(d) {
+    var a = d.aiDaily || {};
+    var secs = a.sections || [];
+    var dot = document.getElementById("newsDot");
+    var box = document.getElementById("col-news");
+    if (!box) return;
+    if (dot) dot.style.display = (a.count > 0) ? "inline-block" : "none";
+
+    if (!secs.length) {
+      box.innerHTML = '<div class="card"><h2><span class="ic">🗞️</span>今日 AI 日报</h2>' +
+        '<div class="empty">还没有抓到日报数据。本机每天 08:30 自动抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_ai_daily.py</code>。</div>' +
+        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_ai_daily.py 抓今天的 AI 日报，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
+      return;
+    }
+
+    var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(a.date || "") + ' AI 日报' +
+      '<span class="news-n">' + (a.count || 0) + ' 条</span></h2>' +
+      '<div class="news-meta">数据源 ' + esc(a.source || "AI HOT") + ' · 抓取于 ' + esc(a.fetchedAt || "—") +
+      (a.canonical ? ' · <a href="' + escAttr(a.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>";
+
+    secs.forEach(function (s) {
+      html += '<div class="card"><h2><span class="ic">📌</span>' + esc(s.label) +
+        '<span class="news-n">' + (s.items || []).length + "</span></h2>";
+      (s.items || []).forEach(function (it) {
+        var link = it.url
+          ? '<a class="nw-a" href="' + escAttr(it.url) + '" target="_blank" rel="noopener">原文 ↗</a>' : "";
+        var src = it.source ? '<span class="nw-s">' + esc(it.source) + "</span>" : "";
+        html += '<div class="nw"><div class="nw-t">' + esc(it.title) + "</div>" +
+          (it.summary ? '<div class="nw-d">' + esc(it.summary) + "</div>" : "") +
+          '<div class="nw-f">' + src + link +
+          '<button class="nw-ask" onclick="cmdtext(' + "'展开讲讲这条 AI 新闻，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">💬 让 AI 讲讲</button>' +
+          "</div></div>";
+      });
+      html += "</div>";
+    });
+
+    html += '<div class="card"><h2><span class="ic">🧪</span>基于日报做点什么</h2>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
+      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      "</div></div>";
+
+    box.innerHTML = html;
   }
 
   function renderOv(d) {
@@ -285,6 +334,7 @@
     renderKPI(d);
     renderQuick(d);
     renderCap(d);
+    renderNews(d);
     renderOv(d);
   }
 

@@ -7,7 +7,7 @@
 <title>个人工作台</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 <header class="header">
@@ -42,10 +42,14 @@
   </section>
   <nav class="tabs">
     <button class="tab active" data-tab="cap" onclick="switchTab('cap')">🚀 能力速达</button>
+    <button class="tab" data-tab="news" onclick="switchTab('news')">🗞️ AI 日报<span class="tab-dot" id="newsDot"></span></button>
     <button class="tab" data-tab="ov" onclick="switchTab('ov')">📊 总览状态</button>
   </nav>
   <section class="tabpane active" id="pane-cap">
     <div class="wrap"><div class="col" id="col-cap"></div></div>
+  </section>
+  <section class="tabpane" id="pane-news">
+    <div class="wrap"><div class="col" id="col-news"></div></div>
   </section>
   <section class="tabpane" id="pane-ov">
     <div class="wrap"><div class="col" id="col-ov"></div></div>
@@ -58,6 +62,6 @@
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

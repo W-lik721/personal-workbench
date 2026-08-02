@@ -211,6 +211,16 @@ def get_mcp():
         return []
 
 
+def get_ai_daily():
+    """读取 fetch_ai_daily.py 抓好的 ai_daily.json；没有就返回空壳（前端显示占位）。"""
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ai_daily.json")
+    try:
+        return json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return {"date": "", "fetchedAt": "", "count": 0, "sections": [],
+                "canonical": "https://aihot.virxact.com/daily"}
+
+
 def main():
     sk = get_skills()
     autos = get_automations()
@@ -221,6 +231,7 @@ def main():
     mc = get_mcp()
     lm = get_local_models()
     mem = memory_count()
+    aid = get_ai_daily()
     now = datetime.now()
 
     # 技能使用统计：从会话标题反推每个 skill 的提及次数与最近使用日期
@@ -246,6 +257,14 @@ def main():
             s["lastUsed"] = ""
 
     guide = []
+    if aid.get("count"):
+        top = ""
+        for s in aid.get("sections") or []:
+            if s.get("items"):
+                top = s["items"][0].get("title", "")
+                break
+        if top:
+            guide.append("🗞️ 今日 AI 日报已更新（%d 条）：%s" % (aid["count"], top))
     if autos:
         a = autos[0]
         if a["next"]:
@@ -287,6 +306,7 @@ def main():
         },
         "sessions": {"recent": recent, "heatmap": heat},
         "knowledge": kb,
+        "aiDaily": aid,
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -299,6 +319,7 @@ def main():
     print("   会话   : 近期 %d / 热力图 %d 天" % (len(recent), len(heat)))
     print("   磁盘   : C %s / D %s" % (dsk.get("C"), dsk.get("D")))
     print("   MCP    : %s" % mc)
+    print("   AI日报 : %s · %d 条" % (aid.get("date") or "无", aid.get("count") or 0))
     print("   输出   : %s" % OUT)
 
 

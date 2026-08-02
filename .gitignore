@@ -1,6 +1,7 @@
 # 本机自动同步脚本（含本机路径，不进公开仓库）
 sync.cmd
 sync.ps1
+daily_ai.cmd
 
 # 敏感/临时文件
 .env
