@@ -1,193 +1,283 @@
 # -*- coding: utf-8 -*-
-"""
-个人工作台 —— 真实数据导出脚本
-把本机 WorkBuddy 的 skills / 自动化 / 模型 / 记忆 抓出来，写成 data.json 喂给前端。
-运行：python export_data.py  （或用 refresh.cmd 双击）
+"""从本机 WorkBuddy 真实数据源抓取，生成 data.json（双端工作台用）。
+
+数据源：
+- skills : 扫描 ~/.workbuddy/skills/*/SKILL.md
+- 自动化 : workbuddy.db -> automations
+- 模型   : ~/.workbuddy/models.json
+- 记忆   : 工作区 .workbuddy/memory/ 文件数
+- 会话   : workbuddy.db -> sessions（近期 + 近17周热力图）
+- 知识库 : 工作区 knowledge-base/ + vault/
+- 磁盘   : ctypes GetDiskFreeSpaceExW
+- MCP    : ~/.workbuddy/mcp.json
 """
 import os
 import json
 import sqlite3
-from datetime import datetime, timezone, timedelta
+import ctypes
+from datetime import datetime, date, timedelta
 
-# ---- 路径（按本机实际情况）----
-SKILLS_DIR = r"C:\Users\13115\.workbuddy\skills"
-DB_PATH = r"C:\Users\13115\.workbuddy\workbuddy.db"
-MODELS_JSON = r"C:\Users\13115\.workbuddy\models.json"
-MEMORY_DIR = r"D:\Users\qingdeng-ws\.workbuddy\memory"
+WB = r"C:\Users\13115\.workbuddy"
+WS = r"D:\Users\qingdeng-ws"
+SKILLS_DIR = os.path.join(WB, "skills")
+DB = os.path.join(WB, "workbuddy.db")
+MODELS = os.path.join(WB, "models.json")
+MCP = os.path.join(WB, "mcp.json")
+MEM_DIR = os.path.join(WS, ".workbuddy", "memory")
+KB_DIRS = [os.path.join(WS, "knowledge-base"), os.path.join(WS, "vault")]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
 
-def fmt_ts(ms):
-    """毫秒时间戳 -> 本地可读字符串"""
-    if not ms:
-        return None
+def fm(path):
     try:
-        dt = datetime.fromtimestamp(ms / 1000)
-        return dt.strftime("%Y-%m-%d %H:%M")
-    except Exception:
-        return None
-
-
-def fmt_day(ts):
-    if not ts:
-        return "-"
-    return datetime.fromtimestamp(ts).strftime("%Y-%m-%d")
-
-
-def parse_frontmatter(path):
-    try:
-        with open(path, encoding="utf-8-sig") as f:
-            text = f.read()
+        t = open(path, encoding="utf-8").read()
     except Exception:
         return {}
-    if text.startswith("---"):
-        end = text.find("\n---", 3)
-        if end != -1:
-            fm = text[3:end]
-            data = {}
-            for line in fm.splitlines():
-                if ":" in line:
-                    k, v = line.split(":", 1)
-                    data[k.strip()] = v.strip()
-            return data
-    return {}
+    if not t.startswith("---"):
+        return {}
+    end = t.find("\n---", 3)
+    if end < 0:
+        return {}
+    m = {}
+    for ln in t[3:end].splitlines():
+        if ":" in ln:
+            k, v = ln.split(":", 1)
+            m[k.strip()] = v.strip()
+    return m
 
 
-def load_skills():
-    skills = []
-    if not os.path.isdir(SKILLS_DIR):
-        return skills
-    latest = 0
-    for name in sorted(os.listdir(SKILLS_DIR)):
-        d = os.path.join(SKILLS_DIR, name)
-        if not os.path.isdir(d):
-            continue
-        skill_md = os.path.join(d, "SKILL.md")
-        fm = parse_frontmatter(skill_md) if os.path.exists(skill_md) else {}
-        title = fm.get("name") or name
-        desc = fm.get("description") or "（暂无描述）"
-        skills.append({"name": title, "desc": desc, "cmd": name})
-        # 取最近修改时间
-        try:
-            m = os.path.getmtime(skill_md) if os.path.exists(skill_md) else os.path.getmtime(d)
-            latest = max(latest, m)
-        except Exception:
-            pass
-    return skills, latest
+def get_skills():
+    out = []
+    if os.path.isdir(SKILLS_DIR):
+        for n in sorted(os.listdir(SKILLS_DIR)):
+            sp = os.path.join(SKILLS_DIR, n)
+            if not os.path.isdir(sp):
+                continue
+            sk = os.path.join(sp, "SKILL.md")
+            if not os.path.isfile(sk):
+                continue
+            d = fm(sk)
+            out.append({
+                "name": d.get("name", n),
+                "desc": d.get("description", ""),
+                "category": d.get("category", "通用能力"),
+                "cmd": "打开工作台后调用 skill：%s" % n,
+            })
+    return out
 
 
-def load_models():
-    models = []
-    if not os.path.exists(MODELS_JSON):
-        return models
+def get_automations():
+    out = []
     try:
-        with open(MODELS_JSON, encoding="utf-8") as f:
-            arr = json.load(f)
-    except Exception:
-        return models
-    for m in arr:
-        mid = m.get("id") or m.get("name") or "未知模型"
-        url = (m.get("url") or "").lower()
-        mtype = "本机" if ("local" in mid.lower() or "localhost" in url) else "云端"
-        models.append({"name": mid, "type": mtype})
-    return models
-
-
-def load_automations():
-    autos = []
-    if not os.path.exists(DB_PATH):
-        return autos
-    try:
-        con = sqlite3.connect(DB_PATH)
+        con = sqlite3.connect(DB)
         cur = con.cursor()
-        cur.execute(
-            "SELECT id, name, status, schedule_type, next_run_at, last_run_at "
-            "FROM automations WHERE deleted_at IS NULL"
-        )
+        cur.execute("PRAGMA table_info(automations)")
+        cols = [c[1] for c in cur.fetchall()]
+        cur.execute("SELECT * FROM automations WHERE deleted_at IS NULL")
+        for row in cur.fetchall():
+            d = dict(zip(cols, row))
+            name = d.get("name", "")
+            nxt = d.get("next_run_at") or d.get("next_run") or d.get("scheduled_at")
+            cron = d.get("cron") or d.get("rrule") or ""
+            status = d.get("status", "")
+            nxt_text = ""
+            if nxt:
+                try:
+                    iv = int(nxt)
+                    if iv > 1e12:  # 毫秒
+                        iv = iv / 1000
+                    dt = datetime.fromtimestamp(iv)
+                    nxt_text = dt.strftime("%m-%d %H:%M")
+                except Exception:
+                    nxt_text = str(nxt)
+            out.append({"name": name, "status": status, "next": nxt_text, "cron": cron})
+        con.close()
+    except Exception as e:
+        print("automations err", e)
+    return out
+
+
+def get_models():
+    out = []
+    try:
+        d = json.load(open(MODELS, encoding="utf-8"))
+        models_list = d if isinstance(d, list) else d.get("models", [])
+        for m in models_list:
+            if not isinstance(m, dict):
+                continue
+            url = m.get("url", "") or ""
+            mid = m.get("id", "") or ""
+            typ = "本机" if ("localhost" in url or "local" in mid.lower()) else "云端"
+            out.append({"name": m.get("name", mid), "type": typ})
+    except Exception as e:
+        print("models err", e)
+    return out
+
+
+def get_local_models():
+    return [m["name"] for m in get_models() if m["type"] == "本机"]
+
+
+def memory_count():
+    try:
+        return len([f for f in os.listdir(MEM_DIR) if os.path.isfile(os.path.join(MEM_DIR, f))])
+    except Exception:
+        return 0
+
+
+def get_sessions():
+    recent = []
+    heat = {}
+    try:
+        con = sqlite3.connect(DB)
+        cur = con.cursor()
+        cur.execute("SELECT title, status, updated_at, created_at FROM sessions "
+                    "WHERE deleted_at IS NULL AND cwd LIKE ? ORDER BY updated_at DESC",
+                    ("%%%s%%" % WS,))
         rows = cur.fetchall()
-        # 运行时状态
-        running = {}
+        today = date.today()
+        start = today - timedelta(days=17 * 7 - 1)
+        days = {}
+        for i in range(17 * 7):
+            days[(start + timedelta(days=i)).isoformat()] = 0
+        for title, status, ua, ca in rows:
+            if len(recent) < 15 and title:
+                try:
+                    dt = datetime.fromtimestamp(int(ua) / 1000)
+                except Exception:
+                    dt = None
+                grp = "更早"
+                if dt:
+                    d0 = dt.date()
+                    if d0 == today:
+                        grp = "今天"
+                    elif d0 == today - timedelta(days=1):
+                        grp = "昨天"
+                recent.append({
+                    "title": title, "status": status,
+                    "updated": dt.strftime("%m-%d %H:%M") if dt else "",
+                    "group": grp,
+                })
+            # 热力图按 created_at 周聚合
+            try:
+                d2 = datetime.fromtimestamp(int(ca) / 1000).date().isoformat()
+                if d2 in days:
+                    days[d2] += 1
+            except Exception:
+                pass
+        heat = [{"date": k, "count": v} for k, v in days.items()]
+        con.close()
+    except Exception as e:
+        print("sessions err", e)
+        heat = []
+    return recent, heat
+
+
+def get_knowledge():
+    files = []
+    types = {}
+    total = 0
+    for kb in KB_DIRS:
+        if not os.path.isdir(kb):
+            continue
+        for f in os.listdir(kb):
+            fp = os.path.join(kb, f)
+            if os.path.isfile(fp):
+                total += 1
+                e = os.path.splitext(f)[1].lower() or "(无扩展名)"
+                types[e] = types.get(e, 0) + 1
+                files.append({"name": f, "mtime": datetime.fromtimestamp(os.path.getmtime(fp)).strftime("%m-%d %H:%M")})
+    files.sort(key=lambda x: x["mtime"], reverse=True)
+    return {"total": total, "types": types, "files": files[:8]}
+
+
+def get_disk():
+    out = {}
+    for drive in ("C:\\", "D:\\"):
         try:
-            cur.execute("SELECT automation_id, running FROM automation_runtime_state")
-            for aid, r in cur.fetchall():
-                running[aid] = bool(r)
+            free = ctypes.c_ulonglong(0)
+            total = ctypes.c_ulonglong(0)
+            if ctypes.windll.kernel32.GetDiskFreeSpaceExW(drive, None, ctypes.byref(total), ctypes.byref(free)):
+                out[drive[0]] = {"total": total.value // (1024 ** 3), "free": free.value // (1024 ** 3)}
         except Exception:
             pass
-        con.close()
+    return out
+
+
+def get_mcp():
+    try:
+        return list(json.load(open(MCP, encoding="utf-8")).get("mcpServers", {}).keys())
     except Exception:
-        return autos
-
-    for aid, name, status, stype, nxt, lst in rows:
-        item = {"name": name}
-        if running.get(aid):
-            item["status"] = "运行中"
-        elif status != "ACTIVE":
-            item["status"] = "已暂停"
-        else:
-            nxt_s = fmt_ts(nxt)
-            item["next"] = ("下次：" + nxt_s) if nxt_s else "待运行"
-        autos.append(item)
-    return autos
-
-
-def load_memory():
-    count = 0
-    latest = 0
-    if os.path.isdir(MEMORY_DIR):
-        for fn in os.listdir(MEMORY_DIR):
-            fp = os.path.join(MEMORY_DIR, fn)
-            if os.path.isfile(fp):
-                count += 1
-                try:
-                    latest = max(latest, os.path.getmtime(fp))
-                except Exception:
-                    pass
-    return count, latest
-
-
-def build_guide(autos):
-    guide = []
-    if autos:
-        a0 = autos[0]
-        when = a0.get("next") or a0.get("status") or ""
-        guide.append(f"查看「{a0['name']}」{when}")
-    guide.append("用 prompt-forge 把今天的一个想法固化成可复用提示词")
-    guide.append("挑一个「能力速达」里的 skill 今天实际用一次")
-    return guide[:4]
+        return []
 
 
 def main():
-    skills, skills_mtime = load_skills()
-    models = load_models()
-    autos = load_automations()
-    mem_count, mem_mtime = load_memory()
+    sk = get_skills()
+    autos = get_automations()
+    mds = get_models()
+    recent, heat = get_sessions()
+    kb = get_knowledge()
+    dsk = get_disk()
+    mc = get_mcp()
+    lm = get_local_models()
+    mem = memory_count()
+    now = datetime.now()
+
+    guide = []
+    if autos:
+        a = autos[0]
+        if a["next"]:
+            guide.append("⏰ 定时任务「%s」将于 %s 运行" % (a["name"], a["next"]))
+        else:
+            guide.append("定时任务「%s」已就绪" % a["name"])
+    guide.append("用 prompt-forge 把今天的一个想法固化成可复用提示词")
+    guide.append("挑一个「能力速达」里的 skill 今天实际用一次")
+
+    quick = [
+        {"icon": "🔄", "label": "刷新工作台", "cmd": "打开工作台（刷新面板）"},
+        {"icon": "🎬", "label": "蒸馏视频", "cmd": "用 video-cangjie-distill 把以下视频转成 skill："},
+        {"icon": "🗞️", "label": "AI 日报", "cmd": "生成今日 AI 日报（中文）：最新模型 / 工具 / 趋势"},
+        {"icon": "📝", "label": "记待办", "cmd": "记一笔待办："},
+        {"icon": "🔍", "label": "搜知识库", "cmd": "在 knowledge-base/ 搜索："},
+        {"icon": "💡", "label": "给我灵感", "cmd": "根据我的工作台现状生成今日灵感：列出今日待办、知识库概况、已装 skill，给我 1-2 个今天可动手的小任务 + 一条 AI agent 学习路径 + 一个值得关注的 AI 趋势"},
+        {"icon": "🧹", "label": "整理工作区", "cmd": "整理并精简工作区的 skill 与笔记"},
+        {"icon": "📊", "label": "看状态", "cmd": "查看本机当前状态：已装模型 / 磁盘 / 定时任务"},
+    ]
 
     data = {
+        "generatedAt": now.strftime("%Y-%m-%d %H:%M"),
         "kpi": {
-            "skills": len(skills),
-            "automations": len(autos),
-            "models": len(models),
-            "memory": mem_count,
+            "skills": len(sk), "automations": len(autos), "models": len(mds),
+            "memory": mem, "knowledge": kb["total"], "sessions": len(recent),
         },
-        "skills": skills,
-        "guide": build_guide(autos),
+        "skills": sk,
+        "quickActions": quick,
+        "guide": guide,
         "status": {
-            "skillsLastUpdate": fmt_day(skills_mtime) if skills_mtime else "-",
+            "skillsLastUpdate": now.strftime("%Y-%m-%d"),
             "automations": autos,
-            "models": models,
-            "memoryLastUpdate": fmt_day(mem_mtime) if mem_mtime else "-",
+            "models": mds,
+            "localModels": lm,
+            "mcp": mc,
+            "memoryLastUpdate": now.strftime("%Y-%m-%d"),
+            "disk": dsk,
+            "runtime": "3.13 / 22.22",
         },
+        "sessions": {"recent": recent, "heatmap": heat},
+        "knowledge": kb,
     }
-
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-
     print("✅ 已生成 data.json")
-    print(f"   Skills : {len(skills)}")
-    print(f"   自动化 : {len(autos)}")
-    print(f"   模型   : {len(models)}")
-    print(f"   记忆   : {mem_count} 个文件")
-    print(f"   输出   : {OUT}")
+    print("   Skills : %d" % len(sk))
+    print("   自动化 : %d" % len(autos))
+    print("   模型   : %d (本机 %d)" % (len(mds), len(lm)))
+    print("   记忆   : %d 个文件" % mem)
+    print("   知识库 : %d 文件" % kb["total"])
+    print("   会话   : 近期 %d / 热力图 %d 天" % (len(recent), len(heat)))
+    print("   磁盘   : C %s / D %s" % (dsk.get("C"), dsk.get("D")))
+    print("   MCP    : %s" % mc)
+    print("   输出   : %s" % OUT)
 
 
 if __name__ == "__main__":

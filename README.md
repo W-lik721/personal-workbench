@@ -65,17 +65,18 @@ python export_data.py
 
 跑完刷新浏览器，工作台即显示最新真实数据。
 
-## 部署（免费静态托管，双端可用）
+## 部署（GitHub Pages，固定地址 + 自动同步）
 
-任选其一，推送整个文件夹即可：
+- **线上地址（固定，推荐）**：https://w-lik721.github.io/personal-workbench/
+- 仓库（公开）：https://github.com/W-lik721/personal-workbench
+- 手机 / 电脑浏览器直接开；手机浏览器菜单「添加到主屏幕」即变成 App，离线也能开。
+- **自动同步（核心）**：本机计划任务 `WorkbenchAutoSync` 每小时运行 `sync.cmd` → 重抓本机真实数据 → 自动 `git push` → 线上自动变最新。你本机装了新 skill / 加了新自动化，最多 1 小时后线上就更新，无需手动。
+- 原理：`data.json` 已改为「永远走网络、不缓存」（见 sw.js）；`sync.cmd` 用本机 git 凭据自动推送。
+- 想立刻更新：双击 `sync.cmd`，或命令行 `python export_data.py && git push`。
 
-- **CloudStudio（已部署）**：用 WorkBuddy 的 cloudstudio-deploy 一键上传整个文件夹，自动出 HTTPS 地址，手机电脑浏览器直接开。
-  - 分享链接形如 `https://<id>.sh4.agentos-app.net`
-  - ⚠️ 部署的是**静态快照**：`data.json` 是部署那一刻抓的真实数据。本地数据变了想更新线上 → 先双击 `refresh.cmd` 重新生成 `data.json`，再重新部署一次。
-  - 管理/删除已发布应用：WorkBuddy「设置 - 数据管理 - 我发布的应用」
-- **GitHub Pages**：仓库 Settings → Pages → 选分支根目录
-- **Vercel / Netlify**：拖文件夹或连仓库，自动出 HTTPS 地址
-- 部署后手机、电脑浏览器都能开；在手机浏览器菜单选「添加到主屏幕」即变成 App
+### （备选）CloudStudio 静态快照
+- 之前用 `cloudstudio-deploy` 部署过（链接形如 `https://<id>.sh4.agentos-app.net`）。**它是静态快照，需手动重部署才更新**，已主用 GitHub Pages，此方案仅作备份。
+- 管理/删除已发布应用：WorkBuddy「设置 - 数据管理 - 我发布的应用」
 
 ## 文件结构
 
@@ -90,5 +91,7 @@ personal-workbench/
 ├── icon.svg        # 图标
 ├── export_data.py  # 从本机 WorkBuddy 抓取真实数据 → data.json
 ├── refresh.cmd     # 小白双击刷新（调用 export_data.py）
+├── sync.cmd        # 自动同步（重抓数据 → git push，由计划任务每小时触发；含本机路径，已被 .gitignore 排除，不进公开仓库）
+├── .gitignore      # 排除 sync.cmd / .env 等本机文件
 └── README.md
 ```

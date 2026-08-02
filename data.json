@@ -1,279 +1,377 @@
 {
+  "generatedAt": "2026-08-02 21:01",
   "kpi": {
     "skills": 53,
     "automations": 1,
     "models": 8,
-    "memory": 19
+    "memory": 19,
+    "knowledge": 7,
+    "sessions": 12
   },
   "skills": [
     {
       "name": "agency-kit",
       "desc": "AI 专家角色（AI专家角色/agent角色）总入口，覆盖后端架构/前端/产品规划/安全等场景。整合 200+ 即插即用 agent",
-      "cmd": "agency-agents__github"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agency-agents__github"
     },
     {
       "name": "agent-chat",
       "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task 协调。提供 join / send / fyi / history / members / catchup / leave 子命令，基于共享 JSONL 日志 + .NET 文件锁，零网络、零 daemon。适合多 agent 并行开发时彼此通知接口变更、汇报阻塞、共享状态。",
-      "cmd": "agent-chat"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agent-chat"
     },
     {
       "name": "karpathy-kit",
       "desc": "Karpathy 风格 AI 方法论总入口，覆盖 15 个场景：① agentic engineering（代理工程 / agent",
-      "cmd": "andrej-karpathy-skills__github"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：andrej-karpathy-skills__github"
     },
     {
       "name": "browser",
       "desc": "\"Simple headless Puppeteer browser for rendering JavaScript-heavy pages and extracting clean text content. Use when a user needs to read a web page that requires JS rendering (SPAs, lazy-loaded, client-rendered). Command: node <skill_dir>/index.js read <url>. Requires: node + puppeteer (npm install puppeteer).\"",
-      "cmd": "browser"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：browser"
     },
     {
       "name": "cangjie-skill",
       "desc": "Distill a book, long-video transcript, podcast, course, or",
-      "cmd": "cangjie-skill"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：cangjie-skill"
     },
     {
       "name": "citation-management",
       "desc": "Manage BibTeX citations for LaTeX papers. Harvest missing citations from a draft using Semantic Scholar, validate cite keys against .bib files, deduplicate entries, and format bibliography. Use when working with references, BibTeX, or citations.",
-      "cmd": "citation-management"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：citation-management"
     },
     {
       "name": "claude-mem",
       "desc": "\"跨会话持久记忆系统（thedotmack/claude-mem）。当用户问\"我们之前是不是讨论过 X / 上次那个决定是什么 / 之前试过什么\"，或你要在长周期项目里积累、检索、复用历史上下文时触发。触发词：claude-mem、记忆、回忆、之前、上次、did we、recall。本包内置 18 个记忆相关子能力文档（见 techniques/），覆盖记忆检索、学习代码库、做计划、知识库、时间线报告等。\"",
-      "cmd": "claude-mem"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：claude-mem"
     },
     {
       "name": "douyin-downloader",
       "desc": "|",
-      "cmd": "douyin-downloader-skill__skillhub"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：douyin-downloader-skill__skillhub"
     },
     {
       "name": "douyin-to-kb",
       "desc": "|",
-      "cmd": "douyin-to-kb"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：douyin-to-kb"
     },
     {
       "name": "douyin-transcribe-lz",
-      "desc": "（暂无描述）",
-      "cmd": "douyin-transcribe-lz__skillhub"
+      "desc": "",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：douyin-transcribe-lz__skillhub"
     },
     {
       "name": "en-to-zh-translator",
       "desc": "\"Translate English text files (.txt, .md) to Chinese for language learning and translation practice. Use when the user asks to translate a text file to Chinese, create a Chinese version of an English document, or generate bilingual materials for translation training. The translation preserves sentence structure and combines broken sentences into complete lines.\"",
-      "cmd": "en-to-zh-translator"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：en-to-zh-translator"
     },
     {
       "name": "full-output-enforcement",
       "desc": "Overrides default LLM truncation behavior. Enforces complete code",
-      "cmd": "full-output-enforcement"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：full-output-enforcement"
     },
     {
       "name": "gh-skill-install",
       "desc": "从 GitHub 安装 / 移植 skill 到 WorkBuddy（user-level skills 目录）。触发：用户说\"把这个 skill 装上\"、\"从 GitHub 装个 skill\"、\"把这个仓库的 skill 装到 WorkBuddy\"、\"`npx skills add` 失败\"、\"raw.githubusercontent.com 超时\"、\"把这个 Claude Code skill 适配到 WorkBuddy\"。覆盖两条下载通道：① jsDelivr CDN 自动下载（install.py，含限流 + 路径重写）② gh-proxy 中转 git clone（大文件）；以及 Claude Code → WorkBuddy 适配（剥离专属配置、路径改绝对、bundle 摊平、轻量测试）。",
-      "cmd": "gh-skill-install"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：gh-skill-install"
     },
     {
       "name": "github",
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
-      "cmd": "github"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：github"
     },
     {
       "name": "github-pages-auto-deploy",
       "desc": "\"Configure automatic website deployment to GitHub Pages with GitHub Actions and custom domain support. Use when a static site should deploy automatically after code is pushed.\"",
-      "cmd": "github-pages-auto-deploy"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：github-pages-auto-deploy"
     },
     {
       "name": "grill-me",
       "desc": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\".",
-      "cmd": "grill-me__skillhub"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：grill-me__skillhub"
     },
     {
       "name": "idea-landing-3prompt",
       "desc": ">-",
-      "cmd": "idea-landing-3prompt"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：idea-landing-3prompt"
     },
     {
       "name": "job-hunting-hub",
       "desc": "统一求职全流程 skill（由 job-hunting-hub 与 ai-job-search 合并）。当用户需要找工作、准备简历、匹配JD、写求职信、评估职位适配度、准备面试、查薪资基准、发现职位、做技能差距分析、查询公司信息、管理投递进度时使用。覆盖：简历知识库、JD评估(6维)、ATS优化、CV/求职信生成(drafter-reviewer校验)、公司查询、投递跟踪、面试准备(STAR)、薪资基准、职位发现、技能差距与学习规划、记忆同步。触发词：找工作、准备简历、分析JD、写求职信、评估这个职位、面试准备、薪资、职位发现、技能差距、查公司、投递进度、帮我应聘。",
-      "cmd": "job-hunting-hub__skillhub"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：job-hunting-hub__skillhub"
     },
     {
       "name": "last30days",
       "desc": "\"Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources.\"",
-      "cmd": "last30days"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：last30days"
     },
     {
       "name": "latex-paper-en",
       "desc": "English LaTeX assistant for existing .tex journal or conference papers. Use for compile repair, venue formatting, bibliography/citation checks, section writing, logic, related work, tables, pseudocode, de-AI polish, translation, adaptation, and submission readiness; use latex-thesis-zh for Chinese theses and paper-audit for critique.",
-      "cmd": "latex-paper-en"
+      "category": "academic-writing",
+      "cmd": "打开工作台后调用 skill：latex-paper-en"
     },
     {
       "name": "latex-thesis-zh",
       "desc": "中文 LaTeX 学位论文助手，面向已有 .tex 硕博论文工程：编译诊断、GB/T 7714、模板识别、结构/格式/公式断行、术语一致性、逻辑与文献综述、标题优化、去 AI 味、盲审隐匿、对照学校规范逐项终检。触发词：学位论文/毕业论文/硕士/博士论文。英文论文用 latex-paper-en，审稿总评用 paper-audit。",
-      "cmd": "latex-thesis-zh"
+      "category": "academic-writing",
+      "cmd": "打开工作台后调用 skill：latex-thesis-zh"
     },
     {
       "name": "literature-review",
       "desc": "Conduct comprehensive literature reviews using multi-perspective dialogue simulation. Generate diverse expert personas, conduct grounded Q&A conversations, and synthesize findings into structured knowledge. Use when starting a new research project or writing a survey section.",
-      "cmd": "literature-review"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：literature-review"
     },
     {
       "name": "llm-onboard-diagnose",
       "desc": "把第三方大模型接入 WorkBuddy（models.json）时的四步诊断法 + 踩坑清单。当用户要接入/调试一个新 LLM（OpenAI 兼容或各厂商 API）、遇到 400/403/404、模型看不懂图、回答跑偏、显示名重复，或问\"某厂商有没有免费/真免费模型\"时使用。This skill should be used when onboarding or troubleshooting a third-party LLM in WorkBuddy's models.json.",
-      "cmd": "llm-onboard-diagnose"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：llm-onboard-diagnose"
     },
     {
       "name": "multi-search-engine",
       "desc": "Multi search engine integration with 16 engines (7 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required.",
-      "cmd": "multi-search-engine"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：multi-search-engine"
     },
     {
       "name": "my-workbench",
       "desc": "你的个人工作台面板。一句话唤起即扫描本机 skills / 定时任务 / 模型配置 / 记忆 / 知识库，渲染交互式 HTML 面板（顶部 KPI 指标条 + 双栏：主栏放能力速达/今日引导，侧栏放状态看板/自动化/内容），帮你快速触达能力、看清状态、知道今天该干啥。触发词：我的工作台 / 打开工作台 / 刷新工作台 / 今日该干啥 / 工作面板 / 个人面板。",
-      "cmd": "my-workbench"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：my-workbench"
     },
     {
       "name": "obsidian",
       "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + MyObsidian 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
-      "cmd": "obsidian"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：obsidian"
     },
     {
       "name": "ollama-local-multimodal",
       "desc": "在 Windows 本机用 Ollama 部署本地多模态（视觉）大模型并接入 WorkBuddy 的完整流程。当用户要\"本地跑大模型/部署视觉模型/离线看图/不想用云端配额\"，或已装 Ollama 但遇到拉模型限速、客户端 400、响应慢时使用。覆盖便携安装、魔搭直拉绕限速、models.json 接入、上下文与显存调优。",
-      "cmd": "ollama-local-multimodal"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：ollama-local-multimodal"
     },
     {
       "name": "paper-checker",
       "desc": "论文查重与AI率检测工具，支持中文英文论文查重、AI率检测、降重和降AI率处理。用于：(1)上传论文文件进行查重和AI率检测",
-      "cmd": "paper-checker__skillhub"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：paper-checker__skillhub"
     },
     {
       "name": "pdf",
       "desc": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.",
-      "cmd": "pdf"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：pdf"
     },
     {
       "name": "pink-crystal-workbuddy-skin",
       "desc": "\"WorkBuddy 桌面端（Electron）主题定制服务。通过 asar 内联 CSS 注入，提供「毛玻璃套装」皮肤，支持动态（animated WebP 背景）与静态（单帧 JPEG 背景）两种构建产物，覆盖 macOS / Windows 双平台一键安装与回滚。必须使用 WorkBuddy 原生 --cb-* 变量体系（非 VSCode 的 --vscode-*），否则面板灰蒙蒙。本 skill 为通用个性化换装服务，不绑定任何特定图片/视频，企业或个人可基于自身素材替换默认示例背景并重新着色。\"",
-      "cmd": "pink-crystal-workbuddy-skin"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：pink-crystal-workbuddy-skin"
     },
     {
       "name": "planning-with-files",
       "desc": "\"Manus-style persistent file-based planning for AI coding agents: keeps task_plan.md, findings.md, and progress.md on disk so work survives context loss and /clear. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. Supports automatic session recovery after /clear.\"",
-      "cmd": "planning-with-files"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：planning-with-files"
     },
     {
       "name": "ponytail",
       "desc": "\"反过度工程的极简编码方法论（Lazy senior dev mode）。覆盖：① 写码/重构/修bug/审代码时套 YAGNI+stdlib优先+最简解；② 审计整个仓库的过度工程（audit）；③ 审查某个 diff 的过度工程（review）；④ 收集代码里的 ponytail: 快捷注释成技术债账本（debt）；⑤ 展示 ponytail 实测收益记分牌（gain）；⑥ 速查各模式与命令（help）。触发词：ponytail、极简、反过度工程、YAGNI、审计代码、审查diff、技术债、删代码、最懒实现、简化。Not for：通用工程流程/完整代码评审·调试(superpowers)、依赖供应链审计(karpathy-kit §11)、极简主义大方法论(karpathy-kit §4)、非写码请求。\"",
-      "cmd": "ponytail"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：ponytail"
     },
     {
       "name": "product-manager-suite",
       "desc": "'完整产品经理技能包。用于从想法、截图/图片、用户反馈、老板指令、竞品功能、数据现象、PRD 草稿或一句模糊问题出发，完成需求澄清、用户与场景分析、需求合理性判断、需求评审、头脑风暴、产品方案设计、MVP 拆分、PRD 撰写、优先级排序、路线图规划、指标与实验设计、风险评审、干系人沟通、上线复盘和 HTML 原型设计。只要用户在讨论产品/业务/用户体验/功能取舍，并询问”这个需求合理吗””要不要做””怎么设计””怎么评审””有没有问题””怎么拆 MVP””怎么写 PRD””帮我画个原型””做个 demo”等，即使问题看起来很简单、只有一句话或配了一张截图，也应优先使用本技能；它专门处理需求判断背后的用户、场景、价值、成本、风险和验证方式。用户提到需求、PRD、产品方案、功能设计、需求评审、截图里的需求、头脑风暴、用户痛点、用户反馈、竞品分析、MVP、路线图、验收标准、埋点、指标、A/B 实验、产品经理工作流、原型、线框图、wireframe、demo、交互设计时，应触发本技能。'",
-      "cmd": "product-manager-suite"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：product-manager-suite"
     },
     {
       "name": "prompt-forge",
       "desc": "\"Turn a vague user request into a high-quality, reusable AI prompt. Trigger when the user says things like 帮我写个提示词, 怎么问 AI 才能答好, 生成 prompt 模板, 让 AI 自己想清楚再答, or hands over a fuzzy topic and wants a better way to ask any model. Implements the three-sentence method: assign a role, reverse-analyze missing info, then generate and self-optimize a professional prompt.\"",
-      "cmd": "prompt-forge"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：prompt-forge"
     },
     {
       "name": "pua",
       "desc": "\"让你的 AI 不敢摆烂。用大厂 PUA 话术穷尽一切方案。触发条件：(1) 任务失败 2+ 次或反复微调同一思路; (2) 即将说'我无法解决'、建议用户手动操作、未验证就归因环境; (3) 被动等待——不搜索、不读源码、只等指示; (4) 用户不满：'try harder'、'stop giving up'、'换个方法'、'为什么还不行'、'你再试试'、'你怎么又失败了'。适用于所有任务类型。首次失败或已知修复正在执行时不触发。\"",
-      "cmd": "pua"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：pua"
     },
     {
       "name": "superpowers",
       "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。\"",
-      "cmd": "superpowers"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：superpowers"
     },
     {
       "name": "tencent-video-capture",
       "desc": "Download videos from Tencent share links (微信视频号 weixin.qq.com/sph, channels.weixin.qq.com, or QQ频道 pd.qq.com) whose real video URL is hidden behind a JS app and not in the page source. Use when curl/WebFetch can't find a direct mp4. (视频号/WeChat Channels/QQ频道 视频下载)",
-      "cmd": "tencent-video-capture"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：tencent-video-capture"
     },
     {
       "name": "url-redirect-detect",
       "desc": ">-",
-      "cmd": "url-redirect-detect"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：url-redirect-detect"
     },
     {
       "name": "url-redirect-src-rules",
       "desc": ">-",
-      "cmd": "url-redirect-src-rules"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：url-redirect-src-rules"
     },
     {
       "name": "url-redirect-vuln",
       "desc": ">-",
-      "cmd": "url-redirect-vuln"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：url-redirect-vuln"
     },
     {
       "name": "video-cangjie-distill",
       "desc": "\"端到端流水线——把任意视频内容（本地视频文件 / 抖音链接 / 微信视频号 / YouTube）转成原始文字稿，再喂给 cangjie-skill 蒸馏成一组可执行 skills。来源：① 本地视频文件（ffmpeg 抽字幕轨 / faster-whisper 语音转写，沙箱可直跑，首选）；② 抖音链接（douyin-to-kb 取稿）；③ 微信视频号（tencent-video-capture 下载后转本地模式）；④ YouTube 链接（需能访问 YouTube 的环境，本机不可用）。当用户想把某个视频/课程/讲座/播客的方法论做成可复用 skill 时调用。曾用名 yt-cangjie-distill（2026-07-29 改名）。\"",
-      "cmd": "video-cangjie-distill"
+      "category": "content",
+      "cmd": "打开工作台后调用 skill：video-cangjie-distill"
     },
     {
       "name": "video-summarizer",
       "desc": "\"对任意来源的视频（本地文件/抖音链接/微信视频号/YouTube/现成文字稿）生成详尽的 STAR+R-I-S-E 结构化总结文档。先按来源路由取稿（本地转写链路已全部打通），再套总结框架输出。当用户想要'总结这个视频/不想看完整视频但要留资料'时调用。曾用名 youtube-summarizer（2026-07-29 改造扩源）。\"",
-      "cmd": "video-summarizer"
+      "category": "content",
+      "cmd": "打开工作台后调用 skill：video-summarizer"
     },
     {
       "name": "wb-ai-radar",
       "desc": ">",
-      "cmd": "wb-ai-radar"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-ai-radar"
     },
     {
       "name": "wb-design-kit",
       "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。",
-      "cmd": "wb-design-kit"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-design-kit"
     },
     {
       "name": "wb-doc-kit",
       "desc": "\"文档生成总入口：①视觉 PDF 生成（minimax-pdf）：生成PDF、视觉PDF、报告PDF、设计感PDF、排版美化、提案、简历、封面、画册 ②Office 文档 docx/xlsx/pptx 创建/检查/修改（officecli）：创建 Word/Excel/PPT/Office 文档、检查格式、查问题、加图表、修改文档、填充表单、转换\"",
-      "cmd": "wb-doc-kit"
+      "category": "document-generation",
+      "cmd": "打开工作台后调用 skill：wb-doc-kit"
     },
     {
       "name": "wb-legal-policy",
       "desc": "法律与政策检索总入口：①合法合规类案/法条查询 ②时政政策内容检索",
-      "cmd": "wb-legal-policy"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-legal-policy"
     },
     {
       "name": "wb-self-iter",
       "desc": "自我迭代总入口：①模型自我检查与纠错（用户反对/指出错误时重新分析原始意图） ②每日复盘/自我复盘（深度洞察与方法论提炼，每天22:00定时运行） ③lobster 自我迭代优化（规则/代码/闭环自动迭代与评分）。",
-      "cmd": "wb-self-iter"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-self-iter"
     },
     {
       "name": "wb-skill-ops",
       "desc": "\"WorkBuddy skill 运维总入口：①海外/开源 skill 平台适配（五维诊断+六原则+本地 Chromium 桥接）②skill 改进优化 ③skill 安全审查。触发词：适配/优化/修一下某 skill、Claude Code skill、海外 skill、openclaw、GitHub/Cursor/OpenClaw 引入、Chrome/Chromium/Puppeteer/Playwright/headless/截图/网页渲染/JS 页面/网页抓取/浏览器自动化/装 Chrome + 改进 skill/优化 skill/skill 升级/skill 调试/自动优化/BUG 自修复 + 审查 skill/skill 安全/安装前检查/技能风险/vetter。\"",
-      "cmd": "wb-skill-ops"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-skill-ops"
     },
     {
       "name": "wb-text-tuner",
       "desc": "文本优化总入口：①token智能省流压缩（自动压缩用户输入/代码/对话，节省20%-70% token）②去AI味/润色（让文字更像人话，修AI高频词、过度结构化、公式化结尾）。触发场景：压缩/降token/省流/上下文过长 + 去AI味/降AI味/像人话/润色/改写自然/AI写作痕迹 等（含英文：compress/token save/humanize/remove AI flavor）。",
-      "cmd": "wb-text-tuner"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wb-text-tuner"
     },
     {
       "name": "web-access",
-      "desc": "（暂无描述）",
-      "cmd": "web-access"
+      "desc": "",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：web-access"
     },
     {
       "name": "wechat-miniprogram",
       "desc": "\"WeChat Mini Program (微信小程序) development framework. Use when building WeChat mini apps with WXML templates, WXSS styles, WXS scripting, component development, WeChat API integration, cloud development (云开发), and Mini Program lifecycle/performance optimization.\"",
-      "cmd": "wechat-miniprogram"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：wechat-miniprogram"
     },
     {
       "name": "workbuddy-mcp-connect",
       "desc": "把外部 Python MCP 服务接进 WorkBuddy 并排错。触发：想\"把某项目作为 MCP 工具接进 WorkBuddy\"、\"MCP 启动失败/Connection closed\"、装好但 WorkBuddy 连不上。覆盖 MCP vs proxy 选型、隔离 venv 安装、绕开 Rust 编译、补 [mcp] 漏装依赖、写 mcp.json 绝对路径、MCP 握手验证、OpenAI 兼容模型 key 验证。以 headroom 为完整示例。",
-      "cmd": "workbuddy-mcp-connect"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：workbuddy-mcp-connect"
     },
     {
       "name": "workbuddy-workspace-recover",
       "desc": "WorkBuddy 工作空间文件夹被重命名或移动后，之前在该工作空间下的旧对话/项目在左侧打不开、提示\"工作目录可能已被重命名或删除\"时的恢复指南。通过把旧会话数据从 projects/<旧ws-key> 迁移到 projects/<新ws-key>、并把 workbuddy.db 里 sessions.cwd 改为新路径、删除失效的 workspaces 行来恢复。适用于用户改名工作空间后会话失联的故障。",
-      "cmd": "workbuddy-workspace-recover"
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：workbuddy-workspace-recover"
+    }
+  ],
+  "quickActions": [
+    {
+      "icon": "🔄",
+      "label": "刷新工作台",
+      "cmd": "打开工作台（刷新面板）"
+    },
+    {
+      "icon": "🎬",
+      "label": "蒸馏视频",
+      "cmd": "用 video-cangjie-distill 把以下视频转成 skill："
+    },
+    {
+      "icon": "🗞️",
+      "label": "AI 日报",
+      "cmd": "生成今日 AI 日报（中文）：最新模型 / 工具 / 趋势"
+    },
+    {
+      "icon": "📝",
+      "label": "记待办",
+      "cmd": "记一笔待办："
+    },
+    {
+      "icon": "🔍",
+      "label": "搜知识库",
+      "cmd": "在 knowledge-base/ 搜索："
+    },
+    {
+      "icon": "💡",
+      "label": "给我灵感",
+      "cmd": "根据我的工作台现状生成今日灵感：列出今日待办、知识库概况、已装 skill，给我 1-2 个今天可动手的小任务 + 一条 AI agent 学习路径 + 一个值得关注的 AI 趋势"
+    },
+    {
+      "icon": "🧹",
+      "label": "整理工作区",
+      "cmd": "整理并精简工作区的 skill 与笔记"
+    },
+    {
+      "icon": "📊",
+      "label": "看状态",
+      "cmd": "查看本机当前状态：已装模型 / 磁盘 / 定时任务"
     }
   ],
   "guide": [
-    "查看「工作空间每周安全清理巡检」下次：2026-08-03 09:50",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-03 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
@@ -282,7 +380,9 @@
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
-        "next": "下次：2026-08-03 09:50"
+        "status": "ACTIVE",
+        "next": "08-03 09:50",
+        "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       }
     ],
     "models": [
@@ -319,6 +419,617 @@
         "type": "云端"
       }
     ],
-    "memoryLastUpdate": "2026-08-02"
+    "localModels": [
+      "qwen2.5-vl-local",
+      "qwen2.5-text-local"
+    ],
+    "mcp": [
+      "officecli",
+      "headroom",
+      "jcodemunch"
+    ],
+    "memoryLastUpdate": "2026-08-02",
+    "disk": {
+      "C": {
+        "total": 380,
+        "free": 240
+      },
+      "D": {
+        "total": 544,
+        "free": 399
+      }
+    },
+    "runtime": "3.13 / 22.22"
+  },
+  "sessions": {
+    "recent": [
+      {
+        "title": "提取图片内容并存入长期记忆",
+        "status": "working",
+        "updated": "08-02 21:01",
+        "group": "今天"
+      },
+      {
+        "title": "基于工作台生成今日灵感建议",
+        "status": "completed",
+        "updated": "08-02 20:54",
+        "group": "今天"
+      },
+      {
+        "title": "合并工作日志并查找对话记录",
+        "status": "completed",
+        "updated": "08-02 16:43",
+        "group": "今天"
+      },
+      {
+        "title": "继续之前的会话",
+        "status": "completed",
+        "updated": "08-01 22:26",
+        "group": "昨天"
+      },
+      {
+        "title": "搭建个人知识库并查找资料",
+        "status": "completed",
+        "updated": "08-01 15:00",
+        "group": "昨天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "completed",
+        "updated": "08-01 11:46",
+        "group": "昨天"
+      },
+      {
+        "title": "在GitHub上查找cangjie-skill项目",
+        "status": "completed",
+        "updated": "08-01 10:15",
+        "group": "昨天"
+      },
+      {
+        "title": "整理并精简重复的 skill",
+        "status": "completed",
+        "updated": "07-31 22:52",
+        "group": "更早"
+      },
+      {
+        "title": "询问 Skill自我优化 的使用方法",
+        "status": "completed",
+        "updated": "07-28 19:58",
+        "group": "更早"
+      },
+      {
+        "title": "电脑项目跑完通知我",
+        "status": "completed",
+        "updated": "07-21 23:29",
+        "group": "更早"
+      },
+      {
+        "title": "重命名工作文件夹后项目无法打开",
+        "status": "archived",
+        "updated": "07-19 09:36",
+        "group": "更早"
+      },
+      {
+        "title": "列出 work buddy 已安装的 skill",
+        "status": "archived",
+        "updated": "07-19 09:36",
+        "group": "更早"
+      }
+    ],
+    "heatmap": [
+      {
+        "date": "2026-04-06",
+        "count": 0
+      },
+      {
+        "date": "2026-04-07",
+        "count": 0
+      },
+      {
+        "date": "2026-04-08",
+        "count": 0
+      },
+      {
+        "date": "2026-04-09",
+        "count": 0
+      },
+      {
+        "date": "2026-04-10",
+        "count": 0
+      },
+      {
+        "date": "2026-04-11",
+        "count": 0
+      },
+      {
+        "date": "2026-04-12",
+        "count": 0
+      },
+      {
+        "date": "2026-04-13",
+        "count": 0
+      },
+      {
+        "date": "2026-04-14",
+        "count": 0
+      },
+      {
+        "date": "2026-04-15",
+        "count": 0
+      },
+      {
+        "date": "2026-04-16",
+        "count": 0
+      },
+      {
+        "date": "2026-04-17",
+        "count": 0
+      },
+      {
+        "date": "2026-04-18",
+        "count": 0
+      },
+      {
+        "date": "2026-04-19",
+        "count": 0
+      },
+      {
+        "date": "2026-04-20",
+        "count": 0
+      },
+      {
+        "date": "2026-04-21",
+        "count": 0
+      },
+      {
+        "date": "2026-04-22",
+        "count": 0
+      },
+      {
+        "date": "2026-04-23",
+        "count": 0
+      },
+      {
+        "date": "2026-04-24",
+        "count": 0
+      },
+      {
+        "date": "2026-04-25",
+        "count": 0
+      },
+      {
+        "date": "2026-04-26",
+        "count": 0
+      },
+      {
+        "date": "2026-04-27",
+        "count": 0
+      },
+      {
+        "date": "2026-04-28",
+        "count": 0
+      },
+      {
+        "date": "2026-04-29",
+        "count": 0
+      },
+      {
+        "date": "2026-04-30",
+        "count": 0
+      },
+      {
+        "date": "2026-05-01",
+        "count": 0
+      },
+      {
+        "date": "2026-05-02",
+        "count": 0
+      },
+      {
+        "date": "2026-05-03",
+        "count": 0
+      },
+      {
+        "date": "2026-05-04",
+        "count": 0
+      },
+      {
+        "date": "2026-05-05",
+        "count": 0
+      },
+      {
+        "date": "2026-05-06",
+        "count": 0
+      },
+      {
+        "date": "2026-05-07",
+        "count": 0
+      },
+      {
+        "date": "2026-05-08",
+        "count": 0
+      },
+      {
+        "date": "2026-05-09",
+        "count": 0
+      },
+      {
+        "date": "2026-05-10",
+        "count": 0
+      },
+      {
+        "date": "2026-05-11",
+        "count": 0
+      },
+      {
+        "date": "2026-05-12",
+        "count": 0
+      },
+      {
+        "date": "2026-05-13",
+        "count": 0
+      },
+      {
+        "date": "2026-05-14",
+        "count": 0
+      },
+      {
+        "date": "2026-05-15",
+        "count": 0
+      },
+      {
+        "date": "2026-05-16",
+        "count": 0
+      },
+      {
+        "date": "2026-05-17",
+        "count": 0
+      },
+      {
+        "date": "2026-05-18",
+        "count": 0
+      },
+      {
+        "date": "2026-05-19",
+        "count": 0
+      },
+      {
+        "date": "2026-05-20",
+        "count": 0
+      },
+      {
+        "date": "2026-05-21",
+        "count": 0
+      },
+      {
+        "date": "2026-05-22",
+        "count": 0
+      },
+      {
+        "date": "2026-05-23",
+        "count": 0
+      },
+      {
+        "date": "2026-05-24",
+        "count": 0
+      },
+      {
+        "date": "2026-05-25",
+        "count": 0
+      },
+      {
+        "date": "2026-05-26",
+        "count": 0
+      },
+      {
+        "date": "2026-05-27",
+        "count": 0
+      },
+      {
+        "date": "2026-05-28",
+        "count": 0
+      },
+      {
+        "date": "2026-05-29",
+        "count": 0
+      },
+      {
+        "date": "2026-05-30",
+        "count": 0
+      },
+      {
+        "date": "2026-05-31",
+        "count": 0
+      },
+      {
+        "date": "2026-06-01",
+        "count": 0
+      },
+      {
+        "date": "2026-06-02",
+        "count": 0
+      },
+      {
+        "date": "2026-06-03",
+        "count": 0
+      },
+      {
+        "date": "2026-06-04",
+        "count": 0
+      },
+      {
+        "date": "2026-06-05",
+        "count": 0
+      },
+      {
+        "date": "2026-06-06",
+        "count": 0
+      },
+      {
+        "date": "2026-06-07",
+        "count": 0
+      },
+      {
+        "date": "2026-06-08",
+        "count": 0
+      },
+      {
+        "date": "2026-06-09",
+        "count": 0
+      },
+      {
+        "date": "2026-06-10",
+        "count": 0
+      },
+      {
+        "date": "2026-06-11",
+        "count": 0
+      },
+      {
+        "date": "2026-06-12",
+        "count": 0
+      },
+      {
+        "date": "2026-06-13",
+        "count": 0
+      },
+      {
+        "date": "2026-06-14",
+        "count": 0
+      },
+      {
+        "date": "2026-06-15",
+        "count": 0
+      },
+      {
+        "date": "2026-06-16",
+        "count": 0
+      },
+      {
+        "date": "2026-06-17",
+        "count": 0
+      },
+      {
+        "date": "2026-06-18",
+        "count": 0
+      },
+      {
+        "date": "2026-06-19",
+        "count": 0
+      },
+      {
+        "date": "2026-06-20",
+        "count": 0
+      },
+      {
+        "date": "2026-06-21",
+        "count": 0
+      },
+      {
+        "date": "2026-06-22",
+        "count": 0
+      },
+      {
+        "date": "2026-06-23",
+        "count": 0
+      },
+      {
+        "date": "2026-06-24",
+        "count": 0
+      },
+      {
+        "date": "2026-06-25",
+        "count": 0
+      },
+      {
+        "date": "2026-06-26",
+        "count": 0
+      },
+      {
+        "date": "2026-06-27",
+        "count": 0
+      },
+      {
+        "date": "2026-06-28",
+        "count": 0
+      },
+      {
+        "date": "2026-06-29",
+        "count": 0
+      },
+      {
+        "date": "2026-06-30",
+        "count": 0
+      },
+      {
+        "date": "2026-07-01",
+        "count": 0
+      },
+      {
+        "date": "2026-07-02",
+        "count": 0
+      },
+      {
+        "date": "2026-07-03",
+        "count": 0
+      },
+      {
+        "date": "2026-07-04",
+        "count": 0
+      },
+      {
+        "date": "2026-07-05",
+        "count": 0
+      },
+      {
+        "date": "2026-07-06",
+        "count": 0
+      },
+      {
+        "date": "2026-07-07",
+        "count": 0
+      },
+      {
+        "date": "2026-07-08",
+        "count": 0
+      },
+      {
+        "date": "2026-07-09",
+        "count": 0
+      },
+      {
+        "date": "2026-07-10",
+        "count": 0
+      },
+      {
+        "date": "2026-07-11",
+        "count": 0
+      },
+      {
+        "date": "2026-07-12",
+        "count": 0
+      },
+      {
+        "date": "2026-07-13",
+        "count": 0
+      },
+      {
+        "date": "2026-07-14",
+        "count": 0
+      },
+      {
+        "date": "2026-07-15",
+        "count": 0
+      },
+      {
+        "date": "2026-07-16",
+        "count": 2
+      },
+      {
+        "date": "2026-07-17",
+        "count": 0
+      },
+      {
+        "date": "2026-07-18",
+        "count": 2
+      },
+      {
+        "date": "2026-07-19",
+        "count": 1
+      },
+      {
+        "date": "2026-07-20",
+        "count": 0
+      },
+      {
+        "date": "2026-07-21",
+        "count": 1
+      },
+      {
+        "date": "2026-07-22",
+        "count": 0
+      },
+      {
+        "date": "2026-07-23",
+        "count": 0
+      },
+      {
+        "date": "2026-07-24",
+        "count": 0
+      },
+      {
+        "date": "2026-07-25",
+        "count": 0
+      },
+      {
+        "date": "2026-07-26",
+        "count": 0
+      },
+      {
+        "date": "2026-07-27",
+        "count": 0
+      },
+      {
+        "date": "2026-07-28",
+        "count": 0
+      },
+      {
+        "date": "2026-07-29",
+        "count": 2
+      },
+      {
+        "date": "2026-07-30",
+        "count": 0
+      },
+      {
+        "date": "2026-07-31",
+        "count": 2
+      },
+      {
+        "date": "2026-08-01",
+        "count": 1
+      },
+      {
+        "date": "2026-08-02",
+        "count": 1
+      }
+    ]
+  },
+  "knowledge": {
+    "total": 7,
+    "types": {
+      ".md": 6,
+      "(无扩展名)": 1
+    },
+    "files": [
+      {
+        "name": ".gitignore",
+        "mtime": "08-01 14:48"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-01 14:48"
+      },
+      {
+        "name": "Home.md",
+        "mtime": "08-01 14:29"
+      },
+      {
+        "name": "分类指南.md",
+        "mtime": "08-01 14:09"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "07-31 20:27"
+      },
+      {
+        "name": "Index.md",
+        "mtime": "07-29 21:56"
+      },
+      {
+        "name": "README.md",
+        "mtime": "07-21 19:19"
+      }
+    ]
   }
 }
