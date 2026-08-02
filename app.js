@@ -55,6 +55,7 @@
   // ---------- 交互 ----------
   function filt() {
     var q = document.getElementById("q").value.toLowerCase();
+    if (q !== "") switchTab("cap");
     var any = false;
     document.querySelectorAll("#skills .cat").forEach(function (cat) {
       var n = 0;
@@ -81,7 +82,22 @@
       p.classList.toggle("active", p.id === "pane-" + id);
     });
   }
+  function openHeat(span) {
+    var date = span.getAttribute("data-date");
+    var count = span.getAttribute("data-count");
+    var titles = (span.getAttribute("data-titles") || "").split("\n").filter(Boolean);
+    document.getElementById("heat-detail-date").textContent = date + " · " + count + " 个会话";
+    var body = document.getElementById("heat-detail-body");
+    body.innerHTML = titles.length
+      ? titles.map(function (t) {
+          return '<div class="hdi" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(t) + "'" + ')">' + esc(t) + '<span class="hd-arrow">›</span></div>';
+        }).join("")
+      : '<div class="empty">这天没有会话记录</div>';
+    document.getElementById("heat-detail").style.display = "flex";
+  }
+  function closeHeat() { document.getElementById("heat-detail").style.display = "none"; }
   window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab;
+  window.openHeat = openHeat; window.closeHeat = closeHeat;
 
   // ---------- 渲染 ----------
   function renderKPI(d) {
@@ -139,10 +155,11 @@
 
   function renderHeat(heat) {
     var total = heat.reduce(function (a, b) { return a + b.count; }, 0);
-    var html = '<div class="heat"><div class="heat-t">📈 近 17 周会话活跃 · 合计 ' + total + ' 条记录</div><div class="heat-g">';
+    var html = '<div class="heat"><div class="heat-t">📈 近 17 周会话活跃 · 合计 ' + total + ' 条记录 · 点格子看当天聊了啥</div><div class="heat-g">';
     heat.forEach(function (h) {
       var lvl = h.count === 0 ? "l0" : (h.count <= 2 ? "l1" : (h.count <= 5 ? "l2" : "l3"));
-      html += '<span class="hc ' + lvl + '" title="' + h.date + " : " + h.count + ' 个会话"></span>';
+      var titles = (h.titles || []).map(function (t) { return esc(t); }).join("\n");
+      html += '<span class="hc ' + lvl + '" data-date="' + h.date + '" data-count="' + h.count + '" data-titles="' + escAttr(titles) + '" onclick="openHeat(this)" title="' + h.date + " : " + h.count + ' 个会话"></span>';
     });
     html += '</div><div class="heat-lg"><span class="hc l1"></span>少 <span class="hc l2"></span>中 <span class="hc l3"></span>多</div></div>';
     return html;
@@ -159,7 +176,6 @@
       " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
     document.getElementById("col-cap").innerHTML =
       '<div class="card"><h2><span class="ic">🚀</span>① 能力速达（点击复制调用指令）</h2>' +
-        '<input id="q" placeholder="搜索 skill 名称或描述…" oninput="filt()">' +
         '<textarea id="cmdbox" rows="2" placeholder="点击上方 skill，指令会出现在这里（也可直接编辑/粘贴）"></textarea>' +
         '<div id="hint"></div><div id="sempty" class="empty" style="display:none">没有匹配的 skill</div>' +
         '<div id="skills">' + skillsHtml + "</div></div>" +

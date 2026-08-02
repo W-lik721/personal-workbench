@@ -139,7 +139,7 @@ def get_sessions():
         start = today - timedelta(days=17 * 7 - 1)
         days = {}
         for i in range(17 * 7):
-            days[(start + timedelta(days=i)).isoformat()] = 0
+            days[(start + timedelta(days=i)).isoformat()] = []
         for title, status, ua, ca in rows:
             if len(recent) < 15 and title:
                 try:
@@ -158,14 +158,14 @@ def get_sessions():
                     "updated": dt.strftime("%m-%d %H:%M") if dt else "",
                     "group": grp,
                 })
-            # 热力图按 created_at 周聚合
+            # 热力图按活跃日归集会话标题（点击可看当天聊了啥）
             try:
-                d2 = datetime.fromtimestamp(int(ca) / 1000).date().isoformat()
-                if d2 in days:
-                    days[d2] += 1
+                d2 = datetime.fromtimestamp(int(ua) / 1000).date().isoformat()
+                if d2 in days and title and title not in days[d2]:
+                    days[d2].append(title)
             except Exception:
                 pass
-        heat = [{"date": k, "count": v} for k, v in days.items()]
+        heat = [{"date": k, "count": len(v), "titles": v[:8]} for k, v in sorted(days.items())]
         con.close()
     except Exception as e:
         print("sessions err", e)

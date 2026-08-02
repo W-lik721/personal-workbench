@@ -19,7 +19,11 @@
 </header>
 <main class="container">
   <section class="kpis" id="kpis"></section>
-  <section class="quickbar">
+  <div class="searchbar">
+  <span class="si">🔍</span>
+  <input id="q" placeholder="搜 skill 名称 / 描述，快速定位…" oninput="filt()">
+</div>
+<section class="quickbar">
     <div class="qb-title">⚡ 快捷启动台 · 高频动作一键直达</div>
     <div class="qb-grid" id="quickbar"></div>
   </section>
@@ -35,6 +39,12 @@
   </section>
 </main>
 <div class="foot">本面板数据每小时自动同步 · 用本机真实数据动态生成</div>
+<div class="heat-modal" id="heat-detail" onclick="if(event.target===this)closeHeat()">
+  <div class="heat-card">
+    <div class="heat-card-h"><span id="heat-detail-date"></span><button class="heat-x" onclick="closeHeat()">✕</button></div>
+    <div class="heat-card-b" id="heat-detail-body"></div>
+  </div>
+</div>
 <script src="app.js"></script>
 </body>
 </html>
