@@ -1,9 +1,9 @@
 // 个人工作台 Service Worker —— 离线可开、可安装到主屏幕
-const CACHE = "workbench-v2";
+const CACHE = "workbench-v3";
 const FILES = [
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=5",
+  "./app.js?v=5",
   "./manifest.json",
   "./icon.svg"
 ];
@@ -36,17 +36,20 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(fetch(e.request));
     return;
   }
+  // 其余资源：网络优先（保证每次拿到最新），离线 fallback 缓存
   e.respondWith(
-    caches.match(e.request).then(
-      (cached) =>
-        cached ||
-        fetch(e.request)
-          .then((resp) => {
-            const copy = resp.clone();
-            caches.open(CACHE).then((c) => c.put(e.request, copy));
-            return resp;
-          })
-          .catch(() => caches.match("./index.html"))
-    )
+    fetch(e.request)
+      .then((resp) => {
+        if (resp.ok) {
+          const copy = resp.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, copy));
+        }
+        return resp;
+      })
+      .catch(() =>
+        caches.match(e.request).then((cached) =>
+          cached || (e.request.mode === "navigate" ? caches.match("./index.html") : null)
+        )
+      )
   );
 });
