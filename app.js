@@ -2,6 +2,15 @@
 (function () {
   "use strict";
 
+  // 分类中英文映射（上游英文 kebab-case，未命中回退原值）
+  var CAT_ZH = {
+    "academic-writing": "学术写作",
+    "content": "内容创作",
+    "document-generation": "文档生成",
+    "通用能力": "通用能力"
+  };
+  function catLabel(c) { return CAT_ZH[c] || c; }
+
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -168,7 +177,7 @@
     var html = "";
     Object.keys(byCat).forEach(function (cat) {
       var list = byCat[cat].slice().sort(function (a, b) { return (b.usage || 0) - (a.usage || 0); });
-      html += '<div class="cat open"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(cat) +
+      html += '<div class="cat open"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(catLabel(cat)) +
         '<span class="cc">' + list.length + '</span><span class="car">▶</span></div><div class="cat-b">';
       list.forEach(function (s) {
         var fire = (s.usage > 0) ? '<span class="fire">🔥' + s.usage + "</span>" : "";
