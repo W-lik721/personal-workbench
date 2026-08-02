@@ -170,3 +170,26 @@ body.light .heat{color:var(--sub)}
 .nw-ask:hover{border-color:var(--accent);color:var(--accent);background:rgba(78,161,255,.08)}
 body.light .nw{box-shadow:0 1px 0 rgba(255,255,255,.6) inset}
 body.light .nw-s{color:#8a909c}
+
+/* ---------- 课程表 ---------- */
+.sched-imp{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.sched-file{background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:12px;font-weight:600;transition:border-color .18s,background .18s,transform .15s;position:relative;overflow:hidden}
+.sched-file:hover{border-color:var(--accent);background:rgba(78,161,255,.10);transform:translateY(-1px)}
+.sched-file input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.sched-paste{width:100%;background:#14151a;border:1px solid rgba(255,255,255,.14);border-radius:10px;color:var(--txt);padding:10px 12px;font-size:13px;line-height:1.5;resize:vertical;font-family:inherit;transition:border-color .2s,box-shadow .2s,background .2s}
+.sched-paste::placeholder{color:#7a8290}
+.sched-paste:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(78,161,255,.18);background:#14151a}
+.sched-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.sf{width:100%;background:#14151a;border:1px solid rgba(255,255,255,.14);border-radius:10px;color:var(--txt);padding:9px 11px;font-size:13px;font-family:inherit;transition:border-color .2s,box-shadow .2s}
+.sf::placeholder{color:#7a8290}
+.sf:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(78,161,255,.18);background:#14151a}
+.sched-day{margin-top:14px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel2)}
+.sched-day-h{padding:10px 14px;font-weight:700;font-size:14px;color:var(--accent2);background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.sched-row{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.sched-row:last-child{border-bottom:none}
+.sr-time{flex:0 0 92px;color:var(--accent);font-size:13px;font-weight:600;padding-top:1px}
+.sr-main{flex:1;display:flex;flex-direction:column;gap:3px;line-height:1.5}
+.sr-main b{font-size:14px}
+.sr-loc,.sr-teach,.sr-note{font-size:12px;color:var(--sub);margin-right:10px}
+body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
+body.light .sched-day{background:var(--panel2)}
