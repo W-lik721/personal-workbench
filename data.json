@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-03 09:06",
+  "generatedAt": "2026-08-03 09:49",
   "kpi": {
     "skills": 53,
     "automations": 1,
     "models": 8,
-    "memory": 19,
+    "memory": 20,
     "knowledge": 7,
     "sessions": 11
   },
@@ -539,11 +539,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 240
+        "free": 239
       },
       "D": {
         "total": 544,
-        "free": 399
+        "free": 398
       }
     },
     "runtime": "3.13 / 22.22"
@@ -552,8 +552,8 @@
     "recent": [
       {
         "title": "基于工作台生成今日灵感建议",
-        "status": "working",
-        "updated": "08-03 09:06",
+        "status": "completed",
+        "updated": "08-03 09:17",
         "group": "今天"
       },
       {
