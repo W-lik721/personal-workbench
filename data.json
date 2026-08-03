@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03 12:49",
+  "generatedAt": "2026-08-03 13:49",
   "kpi": {
     "skills": 53,
     "automations": 1,
@@ -539,11 +539,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 241
+        "free": 240
       },
       "D": {
         "total": 544,
-        "free": 399
+        "free": 398
       }
     },
     "runtime": "3.13 / 22.22"
@@ -551,15 +551,21 @@
   "sessions": {
     "recent": [
       {
-        "title": "基于工作台生成今日灵感建议",
+        "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-03 12:02",
+        "updated": "08-03 13:05",
         "group": "今天"
       },
       {
         "title": "合并工作日志并查找对话记录",
         "status": "completed",
-        "updated": "08-03 11:57",
+        "updated": "08-03 12:59",
+        "group": "今天"
+      },
+      {
+        "title": "基于工作台生成今日灵感建议",
+        "status": "completed",
+        "updated": "08-03 12:02",
         "group": "今天"
       },
       {
@@ -572,12 +578,6 @@
         "title": "搭建个人知识库并查找资料",
         "status": "completed",
         "updated": "08-01 15:00",
-        "group": "更早"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-01 11:46",
         "group": "更早"
       },
       {
@@ -1209,10 +1209,9 @@
       },
       {
         "date": "2026-08-01",
-        "count": 3,
+        "count": 2,
         "titles": [
           "搭建个人知识库并查找资料",
-          "查找 videosays 这个 skill",
           "在GitHub上查找cangjie-skill项目"
         ]
       },
@@ -1225,10 +1224,11 @@
       },
       {
         "date": "2026-08-03",
-        "count": 2,
+        "count": 3,
         "titles": [
-          "基于工作台生成今日灵感建议",
-          "合并工作日志并查找对话记录"
+          "查找 videosays 这个 skill",
+          "合并工作日志并查找对话记录",
+          "基于工作台生成今日灵感建议"
         ]
       }
     ]
