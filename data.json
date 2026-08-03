@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-03 20:49",
+  "generatedAt": "2026-08-03 21:49",
   "kpi": {
-    "skills": 53,
+    "skills": 50,
     "automations": 1,
-    "models": 8,
+    "models": 9,
     "memory": 20,
     "knowledge": 7,
-    "sessions": 11
+    "sessions": 9
   },
   "skills": [
     {
@@ -35,7 +35,7 @@
     },
     {
       "name": "browser",
-      "desc": "\"Simple headless Puppeteer browser for rendering JavaScript-heavy pages and extracting clean text content. Use when a user needs to read a web page that requires JS rendering (SPAs, lazy-loaded, client-rendered). Command: node <skill_dir>/index.js read <url>. Requires: node + puppeteer (npm install puppeteer).\"",
+      "desc": "\"Bundled Chromium + puppeteer runtime provider for the douyin-to-kb skill (DO NOT DELETE — removing this breaks 抖音转写). Also renders JS-heavy pages / extracts text via node <skill_dir>/index.js read <url>. For general user-facing browser automation/rendering, prefer the web-access skill (CDP, login state, social media — richer). Requires: node + puppeteer.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：browser",
       "usage": 0,
@@ -78,14 +78,6 @@
       "desc": "|",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：douyin-to-kb",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "douyin-transcribe-lz",
-      "desc": "",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：douyin-transcribe-lz__skillhub",
       "usage": 0,
       "lastUsed": ""
     },
@@ -155,7 +147,7 @@
     },
     {
       "name": "last30days",
-      "desc": "\"Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources.\"",
+      "desc": "\"Research what people actually say about ANY topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources. Boundary: for AI-SPECIFIC news / daily AI digest / GitHub AI repo trends, prefer wb-ai-radar (dedicated AI entry); last30days = general cross-topic discourse research (any subject, multi-platform engagement), not AI-only.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：last30days",
       "usage": 0,
@@ -235,7 +227,7 @@
     },
     {
       "name": "pdf",
-      "desc": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.",
+      "desc": "Use this skill whenever the user wants to OPERATE ON an existing PDF file — read/extract text-tables, merge/split/rotate, watermark, fill forms, encrypt/decrypt, extract images, OCR scanned PDFs. For GENERATING a brand-new visual/designed PDF (report, proposal, resume, 画册, 封面) from content, use the wb-doc-kit skill (minimax-pdf) instead. If the user mentions a .pdf file or asks to manipulate one, use this skill.",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：pdf",
       "usage": 0,
@@ -306,22 +298,6 @@
       "lastUsed": ""
     },
     {
-      "name": "url-redirect-detect",
-      "desc": ">-",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：url-redirect-detect",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "url-redirect-src-rules",
-      "desc": ">-",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：url-redirect-src-rules",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "url-redirect-vuln",
       "desc": ">-",
       "category": "通用能力",
@@ -363,7 +339,7 @@
     },
     {
       "name": "wb-doc-kit",
-      "desc": "\"文档生成总入口：①视觉 PDF 生成（minimax-pdf）：生成PDF、视觉PDF、报告PDF、设计感PDF、排版美化、提案、简历、封面、画册 ②Office 文档 docx/xlsx/pptx 创建/检查/修改（officecli）：创建 Word/Excel/PPT/Office 文档、检查格式、查问题、加图表、修改文档、填充表单、转换\"",
+      "desc": "\"文档生成总入口：①视觉 PDF 生成（minimax-pdf）：从内容【从零生成】视觉PDF/报告PDF/设计感PDF/排版美化/提案/简历/封面/画册（注意：是生成设计稿，不是编辑已有 PDF——编辑/合并/拆分/提取/OCR 已有 PDF 请用 pdf skill）②Office 文档 docx/xlsx/pptx 创建/检查/修改（officecli）：创建 Word/Excel/PPT/Office 文档、检查格式、查问题、加图表、修改文档、填充表单、转换\"",
       "category": "document-generation",
       "cmd": "打开工作台后调用 skill：wb-doc-kit",
       "usage": 0,
@@ -524,11 +500,16 @@
       {
         "name": "qwen3-vl-flash",
         "type": "云端"
+      },
+      {
+        "name": "OmniRoute-auto",
+        "type": "本机"
       }
     ],
     "localModels": [
       "qwen2.5-vl-local",
-      "qwen2.5-text-local"
+      "qwen2.5-text-local",
+      "OmniRoute-auto"
     ],
     "mcp": [
       "officecli",
@@ -539,11 +520,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 236
       },
       "D": {
         "total": 544,
-        "free": 398
+        "free": 395
       }
     },
     "runtime": "3.13 / 22.22"
@@ -551,9 +532,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "查找 videosays 这个 skill",
+        "title": "整理并精简重复的 skill",
         "status": "completed",
-        "updated": "08-03 20:44",
+        "updated": "08-03 21:48",
+        "group": "今天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-03 21:47",
         "group": "今天"
       },
       {
@@ -569,12 +556,6 @@
         "group": "今天"
       },
       {
-        "title": "提取图片内容并存入长期记忆",
-        "status": "completed",
-        "updated": "08-02 22:53",
-        "group": "昨天"
-      },
-      {
         "title": "搭建个人知识库并查找资料",
         "status": "completed",
         "updated": "08-01 15:00",
@@ -584,18 +565,6 @@
         "title": "在GitHub上查找cangjie-skill项目",
         "status": "completed",
         "updated": "08-01 10:15",
-        "group": "更早"
-      },
-      {
-        "title": "整理并精简重复的 skill",
-        "status": "completed",
-        "updated": "07-31 22:52",
-        "group": "更早"
-      },
-      {
-        "title": "询问 Skill自我优化 的使用方法",
-        "status": "completed",
-        "updated": "07-28 19:58",
         "group": "更早"
       },
       {
@@ -1185,10 +1154,8 @@
       },
       {
         "date": "2026-07-28",
-        "count": 1,
-        "titles": [
-          "询问 Skill自我优化 的使用方法"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-07-29",
@@ -1202,10 +1169,8 @@
       },
       {
         "date": "2026-07-31",
-        "count": 1,
-        "titles": [
-          "整理并精简重复的 skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-01",
@@ -1217,15 +1182,14 @@
       },
       {
         "date": "2026-08-02",
-        "count": 1,
-        "titles": [
-          "提取图片内容并存入长期记忆"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-03",
-        "count": 3,
+        "count": 4,
         "titles": [
+          "整理并精简重复的 skill",
           "查找 videosays 这个 skill",
           "合并工作日志并查找对话记录",
           "基于工作台生成今日灵感建议"
