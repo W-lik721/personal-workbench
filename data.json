@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03 09:49",
+  "generatedAt": "2026-08-03 10:49",
   "kpi": {
     "skills": 53,
     "automations": 1,
@@ -478,7 +478,7 @@
   ],
   "guide": [
     "🗞️ 今日 AI 日报已更新（5 条）：Cloudflare 开启 Agents Week：探讨面向智能体的 Agent Cloud 形态",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-03 09:50 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
@@ -488,7 +488,7 @@
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-03 09:50",
+        "next": "08-10 09:50",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       }
     ],
