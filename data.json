@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-04 09:49",
+  "generatedAt": "2026-08-04 10:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
     "models": 9,
     "memory": 21,
     "knowledge": 7,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -502,14 +502,14 @@
         "type": "云端"
       },
       {
-        "name": "OmniRoute-auto (Gemma)",
+        "name": "OmniRoute",
         "type": "本机"
       }
     ],
     "localModels": [
       "qwen2.5-vl-local",
       "qwen2.5-text-local",
-      "OmniRoute-auto (Gemma)"
+      "OmniRoute"
     ],
     "mcp": [
       "officecli",
@@ -534,19 +534,25 @@
       {
         "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-04 09:48",
+        "updated": "08-04 10:48",
+        "group": "今天"
+      },
+      {
+        "title": "合并工作日志并查找对话记录",
+        "status": "completed",
+        "updated": "08-04 10:45",
+        "group": "今天"
+      },
+      {
+        "title": "你好",
+        "status": "completed",
+        "updated": "08-04 10:43",
         "group": "今天"
       },
       {
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-03 21:49",
-        "group": "昨天"
-      },
-      {
-        "title": "合并工作日志并查找对话记录",
-        "status": "completed",
-        "updated": "08-03 12:59",
         "group": "昨天"
       },
       {
@@ -1182,18 +1188,19 @@
       },
       {
         "date": "2026-08-03",
-        "count": 3,
+        "count": 2,
         "titles": [
           "整理并精简重复的 skill",
-          "合并工作日志并查找对话记录",
           "基于工作台生成今日灵感建议"
         ]
       },
       {
         "date": "2026-08-04",
-        "count": 1,
+        "count": 3,
         "titles": [
-          "查找 videosays 这个 skill"
+          "查找 videosays 这个 skill",
+          "合并工作日志并查找对话记录",
+          "你好"
         ]
       }
     ]
