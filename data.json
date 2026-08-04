@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04 22:49",
+  "generatedAt": "2026-08-04 23:49",
   "kpi": {
     "skills": 51,
     "automations": 1,
@@ -190,8 +190,8 @@
       "desc": "WorkBuddy 原生记忆系统初始化与体检工具（用户级）。当用户要\"配置记忆/初始化记忆/记忆体检/整理记忆/记忆清理/查看记忆状态/给 WorkBuddy 配一套记忆系统\"，或想管理 WorkBuddy 自带的三层记忆时触发。覆盖三层记忆（云记忆/用户级 MEMORY.md/工作区 memory 目录）的骨架初始化、合规体检、规模统计、清理建议，贴合现有「踩坑标注手册三件套」规范，不另起炉灶。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：memory-setup",
-      "usage": 2,
-      "lastUsed": "2026-08-04"
+      "usage": 0,
+      "lastUsed": ""
     },
     {
       "name": "multi-search-engine",
@@ -512,7 +512,9 @@
       "headroom",
       "jcodemunch",
       "markitdown",
-      "gitnexus"
+      "gitnexus",
+      "image-extractor",
+      "yby6-video-mcp"
     ],
     "memoryLastUpdate": "2026-08-04",
     "disk": {
@@ -522,7 +524,7 @@
       },
       "D": {
         "total": 544,
-        "free": 391
+        "free": 392
       }
     },
     "runtime": "3.13 / 22.22"
@@ -530,15 +532,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "查找 videosays 这个 skill",
+        "title": "安装腾讯云 MCP server 11396",
         "status": "working",
-        "updated": "08-04 22:48",
+        "updated": "08-04 23:48",
         "group": "今天"
       },
       {
-        "title": "查询是否安装 memory-setup skill",
-        "status": "working",
-        "updated": "08-04 22:48",
+        "title": "查找 videosays 这个 skill",
+        "status": "completed",
+        "updated": "08-04 23:45",
         "group": "今天"
       },
       {
@@ -1195,8 +1197,8 @@
         "date": "2026-08-04",
         "count": 4,
         "titles": [
+          "安装腾讯云 MCP server 11396",
           "查找 videosays 这个 skill",
-          "查询是否安装 memory-setup skill",
           "基于工作台生成今日灵感建议",
           "合并工作日志并查找对话记录"
         ]
