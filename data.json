@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04 09:12",
+  "generatedAt": "2026-08-04 09:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
@@ -520,7 +520,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 237
       },
       "D": {
         "total": 544,
@@ -533,8 +533,8 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "planning",
-        "updated": "08-04 09:12",
+        "status": "working",
+        "updated": "08-04 09:48",
         "group": "今天"
       },
       {
