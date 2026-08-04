@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-04 20:49",
+  "generatedAt": "2026-08-04 21:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
     "models": 6,
     "memory": 21,
-    "knowledge": 8,
+    "knowledge": 7,
     "sessions": 9
   },
   "skills": [
@@ -503,7 +503,8 @@
       "officecli",
       "headroom",
       "jcodemunch",
-      "markitdown"
+      "markitdown",
+      "gitnexus"
     ],
     "memoryLastUpdate": "2026-08-04",
     "disk": {
@@ -513,7 +514,7 @@
       },
       "D": {
         "total": 544,
-        "free": 393
+        "free": 392
       }
     },
     "runtime": "3.13 / 22.22"
@@ -522,8 +523,8 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-04 20:45",
+        "status": "pending",
+        "updated": "08-04 21:43",
         "group": "今天"
       },
       {
@@ -1188,17 +1189,12 @@
     ]
   },
   "knowledge": {
-    "total": 8,
+    "total": 7,
     "types": {
       ".md": 6,
-      "(无扩展名)": 1,
-      ".json": 1
+      "(无扩展名)": 1
     },
     "files": [
-      {
-        "name": ".mcp.json",
-        "mtime": "08-04 20:46"
-      },
       {
         "name": ".gitignore",
         "mtime": "08-01 14:48"
