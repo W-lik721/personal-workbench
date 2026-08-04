@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04 14:49",
+  "generatedAt": "2026-08-04 15:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
@@ -522,7 +522,7 @@
       {
         "title": "基于工作台生成今日灵感建议",
         "status": "working",
-        "updated": "08-04 14:48",
+        "updated": "08-04 15:48",
         "group": "今天"
       },
       {
