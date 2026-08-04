@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-04 10:49",
+  "generatedAt": "2026-08-04 11:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
-    "models": 9,
+    "models": 6,
     "memory": 21,
     "knowledge": 7,
-    "sessions": 10
+    "sessions": 9
   },
   "skills": [
     {
@@ -474,19 +474,11 @@
         "type": "云端"
       },
       {
-        "name": "agnes-2.0-flash",
+        "name": "agnes-2.5-flash",
         "type": "云端"
       },
       {
         "name": "Kimi-K2.6",
-        "type": "云端"
-      },
-      {
-        "name": "qwen3.7-plus",
-        "type": "云端"
-      },
-      {
-        "name": "qwen3-vl-plus",
         "type": "云端"
       },
       {
@@ -496,10 +488,6 @@
       {
         "name": "qwen2.5-text-local",
         "type": "本机"
-      },
-      {
-        "name": "qwen3-vl-flash",
-        "type": "云端"
       },
       {
         "name": "OmniRoute",
@@ -520,7 +508,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -533,20 +521,14 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-04 10:48",
+        "status": "completed",
+        "updated": "08-04 11:44",
         "group": "今天"
       },
       {
         "title": "合并工作日志并查找对话记录",
         "status": "completed",
         "updated": "08-04 10:45",
-        "group": "今天"
-      },
-      {
-        "title": "你好",
-        "status": "completed",
-        "updated": "08-04 10:43",
         "group": "今天"
       },
       {
@@ -1196,11 +1178,10 @@
       },
       {
         "date": "2026-08-04",
-        "count": 3,
+        "count": 2,
         "titles": [
           "查找 videosays 这个 skill",
-          "合并工作日志并查找对话记录",
-          "你好"
+          "合并工作日志并查找对话记录"
         ]
       }
     ]
