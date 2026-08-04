@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04 17:49",
+  "generatedAt": "2026-08-04 18:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
@@ -522,19 +522,19 @@
       {
         "title": "基于工作台生成今日灵感建议",
         "status": "completed",
-        "updated": "08-04 16:54",
+        "updated": "08-04 18:24",
+        "group": "今天"
+      },
+      {
+        "title": "合并工作日志并查找对话记录",
+        "status": "completed",
+        "updated": "08-04 18:23",
         "group": "今天"
       },
       {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
         "updated": "08-04 11:44",
-        "group": "今天"
-      },
-      {
-        "title": "合并工作日志并查找对话记录",
-        "status": "completed",
-        "updated": "08-04 10:45",
         "group": "今天"
       },
       {
@@ -1180,8 +1180,8 @@
         "count": 3,
         "titles": [
           "基于工作台生成今日灵感建议",
-          "查找 videosays 这个 skill",
-          "合并工作日志并查找对话记录"
+          "合并工作日志并查找对话记录",
+          "查找 videosays 这个 skill"
         ]
       }
     ]
