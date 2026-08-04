@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04 18:49",
+  "generatedAt": "2026-08-04 19:49",
   "kpi": {
     "skills": 50,
     "automations": 1,
@@ -502,7 +502,8 @@
     "mcp": [
       "officecli",
       "headroom",
-      "jcodemunch"
+      "jcodemunch",
+      "markitdown"
     ],
     "memoryLastUpdate": "2026-08-04",
     "disk": {
@@ -512,13 +513,19 @@
       },
       "D": {
         "total": 544,
-        "free": 395
+        "free": 394
       }
     },
     "runtime": "3.13 / 22.22"
   },
   "sessions": {
     "recent": [
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-04 19:49",
+        "group": "今天"
+      },
       {
         "title": "基于工作台生成今日灵感建议",
         "status": "completed",
@@ -529,12 +536,6 @@
         "title": "合并工作日志并查找对话记录",
         "status": "completed",
         "updated": "08-04 18:23",
-        "group": "今天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-04 11:44",
         "group": "今天"
       },
       {
@@ -1179,9 +1180,9 @@
         "date": "2026-08-04",
         "count": 3,
         "titles": [
+          "查找 videosays 这个 skill",
           "基于工作台生成今日灵感建议",
-          "合并工作日志并查找对话记录",
-          "查找 videosays 这个 skill"
+          "合并工作日志并查找对话记录"
         ]
       }
     ]
