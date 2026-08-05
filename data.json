@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-05 14:49",
+  "generatedAt": "2026-08-05 15:49",
   "kpi": {
-    "skills": 51,
+    "skills": 52,
     "automations": 1,
     "models": 5,
     "memory": 22,
     "knowledge": 8,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -182,6 +182,14 @@
       "desc": "把第三方大模型接入 WorkBuddy（models.json）时的四步诊断法 + 踩坑清单。当用户要接入/调试一个新 LLM（OpenAI 兼容或各厂商 API）、遇到 400/403/404、模型看不懂图、回答跑偏、显示名重复，或问\"某厂商有没有免费/真免费模型\"时使用。This skill should be used when onboarding or troubleshooting a third-party LLM in WorkBuddy's models.json.",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：llm-onboard-diagnose",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "mcp-stdio-bridge",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：mcp-stdio-bridge",
       "usage": 0,
       "lastUsed": ""
     },
@@ -516,7 +524,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 239
       },
       "D": {
         "total": 544,
@@ -528,9 +536,15 @@
   "sessions": {
     "recent": [
       {
+        "title": "https://v.douyin.com/OO4ctZMwJfc/ :2pm usE:/ 10/07...",
+        "status": "planning",
+        "updated": "08-05 15:49",
+        "group": "今天"
+      },
+      {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-05 14:37",
+        "updated": "08-05 15:40",
         "group": "今天"
       },
       {
@@ -1181,8 +1195,9 @@
       },
       {
         "date": "2026-08-05",
-        "count": 1,
+        "count": 2,
         "titles": [
+          "https://v.douyin.com/OO4ctZMwJfc/ :2pm usE:/ 10/07...",
           "查找 videosays 这个 skill"
         ]
       }
