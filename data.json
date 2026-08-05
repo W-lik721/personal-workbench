@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-05 15:49",
+  "generatedAt": "2026-08-05 16:49",
   "kpi": {
     "skills": 52,
     "automations": 1,
     "models": 5,
     "memory": 22,
-    "knowledge": 8,
+    "knowledge": 9,
     "sessions": 9
   },
   "skills": [
@@ -536,15 +536,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "https://v.douyin.com/OO4ctZMwJfc/ :2pm usE:/ 10/07...",
-        "status": "planning",
-        "updated": "08-05 15:49",
+        "title": "查看抖音分享链接视频",
+        "status": "completed",
+        "updated": "08-05 16:48",
         "group": "今天"
       },
       {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-05 15:40",
+        "updated": "08-05 16:04",
         "group": "今天"
       },
       {
@@ -1197,30 +1197,34 @@
         "date": "2026-08-05",
         "count": 2,
         "titles": [
-          "https://v.douyin.com/OO4ctZMwJfc/ :2pm usE:/ 10/07...",
+          "查看抖音分享链接视频",
           "查找 videosays 这个 skill"
         ]
       }
     ]
   },
   "knowledge": {
-    "total": 8,
+    "total": 9,
     "types": {
-      ".md": 6,
+      ".md": 7,
       "(无扩展名)": 1,
       ".bat": 1
     },
     "files": [
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-05 16:47"
+      },
+      {
+        "name": "00-路由表.md",
+        "mtime": "08-05 16:46"
+      },
       {
         "name": "gitnexus-mcp.bat",
         "mtime": "08-05 13:43"
       },
       {
         "name": ".gitignore",
-        "mtime": "08-01 14:48"
-      },
-      {
-        "name": "AGENTS.md",
         "mtime": "08-01 14:48"
       },
       {
@@ -1238,10 +1242,6 @@
       {
         "name": "Index.md",
         "mtime": "07-29 21:56"
-      },
-      {
-        "name": "README.md",
-        "mtime": "07-21 19:19"
       }
     ]
   },
