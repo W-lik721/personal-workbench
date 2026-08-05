@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-05 21:49",
+  "generatedAt": "2026-08-05 22:49",
   "kpi": {
     "skills": 53,
     "automations": 1,
     "models": 5,
     "memory": 22,
-    "knowledge": 11,
+    "knowledge": 7,
     "sessions": 10
   },
   "skills": [
@@ -227,7 +227,7 @@
     },
     {
       "name": "obsidian",
-      "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + MyObsidian 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
+      "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + vault 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：obsidian",
       "usage": 0,
@@ -545,9 +545,15 @@
   "sessions": {
     "recent": [
       {
+        "title": "搭建个人知识库并查找资料",
+        "status": "planning",
+        "updated": "08-05 22:48",
+        "group": "今天"
+      },
+      {
         "title": "生成今日灵感与AI学习路径建议",
-        "status": "working",
-        "updated": "08-05 21:48",
+        "status": "completed",
+        "updated": "08-05 22:46",
         "group": "今天"
       },
       {
@@ -572,12 +578,6 @@
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-03 21:49",
-        "group": "更早"
-      },
-      {
-        "title": "搭建个人知识库并查找资料",
-        "status": "completed",
-        "updated": "08-01 15:00",
         "group": "更早"
       },
       {
@@ -1183,9 +1183,8 @@
       },
       {
         "date": "2026-08-01",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "搭建个人知识库并查找资料",
           "在GitHub上查找cangjie-skill项目"
         ]
       },
@@ -1210,8 +1209,9 @@
       },
       {
         "date": "2026-08-05",
-        "count": 3,
+        "count": 4,
         "titles": [
+          "搭建个人知识库并查找资料",
           "生成今日灵感与AI学习路径建议",
           "提取内容中的有用信息",
           "查找 videosays 这个 skill"
@@ -1220,24 +1220,20 @@
     ]
   },
   "knowledge": {
-    "total": 11,
+    "total": 7,
     "types": {
-      ".md": 9,
+      ".md": 5,
       "(无扩展名)": 1,
       ".bat": 1
     },
     "files": [
       {
-        "name": "决策摘要_daily-insight.md",
-        "mtime": "08-05 21:09"
-      },
-      {
-        "name": "需求总结_每日灵感生成器.md",
-        "mtime": "08-05 21:03"
-      },
-      {
         "name": "AGENTS.md",
-        "mtime": "08-05 16:47"
+        "mtime": "08-05 22:29"
+      },
+      {
+        "name": "Home.md",
+        "mtime": "08-05 22:26"
       },
       {
         "name": "00-路由表.md",
@@ -1252,12 +1248,12 @@
         "mtime": "08-01 14:48"
       },
       {
-        "name": "Home.md",
-        "mtime": "08-01 14:29"
-      },
-      {
         "name": "分类指南.md",
         "mtime": "08-01 14:09"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "07-31 20:27"
       }
     ]
   },
