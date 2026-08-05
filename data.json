@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-05 20:49",
+  "generatedAt": "2026-08-05 21:49",
   "kpi": {
-    "skills": 52,
+    "skills": 53,
     "automations": 1,
     "models": 5,
     "memory": 22,
-    "knowledge": 9,
+    "knowledge": 11,
     "sessions": 10
   },
   "skills": [
@@ -62,6 +62,14 @@
       "desc": "\"跨会话持久记忆系统（thedotmack/claude-mem）。当用户问\"我们之前是不是讨论过 X / 上次那个决定是什么 / 之前试过什么\"，或你要在长周期项目里积累、检索、复用历史上下文时触发。触发词：claude-mem、记忆、回忆、之前、上次、did we、recall。本包内置 18 个记忆相关子能力文档（见 techniques/），覆盖记忆检索、学习代码库、做计划、知识库、时间线报告等。\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：claude-mem",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "daily-insight",
+      "desc": "基于工作台真实家底（已装 skill 数 / 知识库文件数 / 模型数·本机数）生成「今日灵感」三件套——① 1-2 个今天可动手的小任务 ② 一条结合已装 skill 的 agent 学习路径 ③ 一个值得关注的 AI 趋势。当用户说\"生成今日灵感\"\"给我今日灵感\"\"今日灵感\"时触发。绝不编造数字，读数失败即报错。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：daily-insight",
       "usage": 0,
       "lastUsed": ""
     },
@@ -538,8 +546,8 @@
     "recent": [
       {
         "title": "生成今日灵感与AI学习路径建议",
-        "status": "completed",
-        "updated": "08-05 20:45",
+        "status": "working",
+        "updated": "08-05 21:48",
         "group": "今天"
       },
       {
@@ -1212,13 +1220,21 @@
     ]
   },
   "knowledge": {
-    "total": 9,
+    "total": 11,
     "types": {
-      ".md": 7,
+      ".md": 9,
       "(无扩展名)": 1,
       ".bat": 1
     },
     "files": [
+      {
+        "name": "决策摘要_daily-insight.md",
+        "mtime": "08-05 21:09"
+      },
+      {
+        "name": "需求总结_每日灵感生成器.md",
+        "mtime": "08-05 21:03"
+      },
       {
         "name": "AGENTS.md",
         "mtime": "08-05 16:47"
@@ -1242,14 +1258,6 @@
       {
         "name": "分类指南.md",
         "mtime": "08-01 14:09"
-      },
-      {
-        "name": "AGENTS.md",
-        "mtime": "07-31 20:27"
-      },
-      {
-        "name": "Index.md",
-        "mtime": "07-29 21:56"
       }
     ]
   },
