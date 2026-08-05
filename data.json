@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-05 19:49",
+  "generatedAt": "2026-08-05 20:49",
   "kpi": {
     "skills": 52,
     "automations": 1,
     "models": 5,
     "memory": 22,
     "knowledge": 9,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -537,9 +537,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "查看抖音分享链接视频",
+        "title": "生成今日灵感与AI学习路径建议",
         "status": "completed",
-        "updated": "08-05 19:28",
+        "updated": "08-05 20:45",
+        "group": "今天"
+      },
+      {
+        "title": "提取内容中的有用信息",
+        "status": "completed",
+        "updated": "08-05 20:03",
         "group": "今天"
       },
       {
@@ -1196,9 +1202,10 @@
       },
       {
         "date": "2026-08-05",
-        "count": 2,
+        "count": 3,
         "titles": [
-          "查看抖音分享链接视频",
+          "生成今日灵感与AI学习路径建议",
+          "提取内容中的有用信息",
           "查找 videosays 这个 skill"
         ]
       }
