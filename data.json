@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-05 10:49",
+  "generatedAt": "2026-08-05 11:49",
   "kpi": {
     "skills": 51,
     "automations": 1,
     "models": 5,
     "memory": 22,
-    "knowledge": 7,
-    "sessions": 9
+    "knowledge": 8,
+    "sessions": 8
   },
   "skills": [
     {
@@ -510,7 +510,8 @@
       "gitnexus",
       "image-extractor",
       "yby6-video-mcp",
-      "context7"
+      "context7",
+      "serena"
     ],
     "memoryLastUpdate": "2026-08-05",
     "disk": {
@@ -528,15 +529,9 @@
   "sessions": {
     "recent": [
       {
-        "title": "开始新会话",
-        "status": "completed",
-        "updated": "08-05 10:47",
-        "group": "今天"
-      },
-      {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-05 10:30",
+        "updated": "08-05 11:33",
         "group": "今天"
       },
       {
@@ -1187,21 +1182,25 @@
       },
       {
         "date": "2026-08-05",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "开始新会话",
           "查找 videosays 这个 skill"
         ]
       }
     ]
   },
   "knowledge": {
-    "total": 7,
+    "total": 8,
     "types": {
       ".md": 6,
-      "(无扩展名)": 1
+      "(无扩展名)": 1,
+      ".cmd": 1
     },
     "files": [
+      {
+        "name": "gitnexus-mcp.cmd",
+        "mtime": "08-05 11:44"
+      },
       {
         "name": ".gitignore",
         "mtime": "08-01 14:48"
