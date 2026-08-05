@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-05 08:49",
+  "generatedAt": "2026-08-05 09:49",
   "kpi": {
     "skills": 51,
     "automations": 1,
-    "models": 6,
+    "models": 5,
     "memory": 22,
     "knowledge": 7,
-    "sessions": 11
+    "sessions": 9
   },
   "skills": [
     {
@@ -496,16 +496,11 @@
       {
         "name": "qwen2.5-text-local",
         "type": "本机"
-      },
-      {
-        "name": "OmniRoute",
-        "type": "本机"
       }
     ],
     "localModels": [
       "qwen2.5-vl-local",
-      "qwen2.5-text-local",
-      "OmniRoute"
+      "qwen2.5-text-local"
     ],
     "mcp": [
       "officecli",
@@ -514,7 +509,8 @@
       "markitdown",
       "gitnexus",
       "image-extractor",
-      "yby6-video-mcp"
+      "yby6-video-mcp",
+      "context7"
     ],
     "memoryLastUpdate": "2026-08-05",
     "disk": {
@@ -524,7 +520,7 @@
       },
       "D": {
         "total": 544,
-        "free": 391
+        "free": 390
       }
     },
     "runtime": "3.13 / 22.22"
@@ -532,28 +528,16 @@
   "sessions": {
     "recent": [
       {
-        "title": "查看已安装的 PowerShell 版本",
-        "status": "completed",
-        "updated": "08-05 00:16",
-        "group": "今天"
-      },
-      {
-        "title": "安装腾讯云 MCP server 11396",
-        "status": "completed",
-        "updated": "08-05 00:04",
-        "group": "今天"
-      },
-      {
         "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-05 00:03",
+        "status": "working",
+        "updated": "08-05 09:48",
         "group": "今天"
       },
       {
         "title": "基于工作台生成今日灵感建议",
         "status": "completed",
-        "updated": "08-04 18:24",
-        "group": "昨天"
+        "updated": "08-05 09:35",
+        "group": "今天"
       },
       {
         "title": "合并工作日志并查找对话记录",
@@ -1196,19 +1180,17 @@
       },
       {
         "date": "2026-08-04",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "基于工作台生成今日灵感建议",
           "合并工作日志并查找对话记录"
         ]
       },
       {
         "date": "2026-08-05",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "查看已安装的 PowerShell 版本",
-          "安装腾讯云 MCP server 11396",
-          "查找 videosays 这个 skill"
+          "查找 videosays 这个 skill",
+          "基于工作台生成今日灵感建议"
         ]
       }
     ]
