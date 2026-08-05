@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05 13:49",
+  "generatedAt": "2026-08-05 14:49",
   "kpi": {
     "skills": 51,
     "automations": 1,
@@ -510,8 +510,7 @@
       "gitnexus",
       "image-extractor",
       "yby6-video-mcp",
-      "context7",
-      "serena"
+      "context7"
     ],
     "memoryLastUpdate": "2026-08-05",
     "disk": {
@@ -530,8 +529,8 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-05 13:48",
+        "status": "completed",
+        "updated": "08-05 14:37",
         "group": "今天"
       },
       {
