@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05 17:49",
+  "generatedAt": "2026-08-05 18:49",
   "kpi": {
     "skills": 52,
     "automations": 1,
@@ -518,13 +518,14 @@
       "gitnexus",
       "image-extractor",
       "yby6-video-mcp",
-      "context7"
+      "context7",
+      "scrapling"
     ],
     "memoryLastUpdate": "2026-08-05",
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 240
       },
       "D": {
         "total": 544,
@@ -538,7 +539,7 @@
       {
         "title": "查看抖音分享链接视频",
         "status": "working",
-        "updated": "08-05 17:48",
+        "updated": "08-05 18:48",
         "group": "今天"
       },
       {
