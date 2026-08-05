@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05 12:49",
+  "generatedAt": "2026-08-05 13:49",
   "kpi": {
     "skills": 51,
     "automations": 1,
@@ -531,7 +531,7 @@
       {
         "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-05 12:45",
+        "updated": "08-05 13:48",
         "group": "今天"
       },
       {
@@ -1194,12 +1194,12 @@
     "types": {
       ".md": 6,
       "(无扩展名)": 1,
-      ".cmd": 1
+      ".bat": 1
     },
     "files": [
       {
-        "name": "gitnexus-mcp.cmd",
-        "mtime": "08-05 12:37"
+        "name": "gitnexus-mcp.bat",
+        "mtime": "08-05 13:43"
       },
       {
         "name": ".gitignore",
