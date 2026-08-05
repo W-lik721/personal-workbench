@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05 16:49",
+  "generatedAt": "2026-08-05 17:49",
   "kpi": {
     "skills": 52,
     "automations": 1,
@@ -537,8 +537,8 @@
     "recent": [
       {
         "title": "查看抖音分享链接视频",
-        "status": "completed",
-        "updated": "08-05 16:48",
+        "status": "working",
+        "updated": "08-05 17:48",
         "group": "今天"
       },
       {
