@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-07 02:24",
+  "generatedAt": "2026-08-07 02:46",
   "kpi": {
     "skills": 54,
     "automations": 2,
     "models": 5,
-    "memory": 23,
-    "knowledge": 7,
-    "sessions": 10
+    "memory": 24,
+    "knowledge": 9,
+    "sessions": 9
   },
   "skills": [
     {
@@ -551,7 +551,7 @@
       },
       "D": {
         "total": 544,
-        "free": 397
+        "free": 396
       }
     },
     "runtime": "3.13 / 22.22"
@@ -559,16 +559,10 @@
   "sessions": {
     "recent": [
       {
-        "title": "怎么不更新了 ？",
+        "title": "排查截图显示内容不更新问题",
         "status": "working",
-        "updated": "08-07 02:24",
+        "updated": "08-07 02:45",
         "group": "今天"
-      },
-      {
-        "title": "查看截图显示的失败情况",
-        "status": "completed",
-        "updated": "08-06 23:28",
-        "group": "昨天"
       },
       {
         "title": "查找 videosays 这个 skill",
@@ -1217,9 +1211,8 @@
       },
       {
         "date": "2026-08-06",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "查看截图显示的失败情况",
           "查找 videosays 这个 skill",
           "整理并精简重复的 skill"
         ]
@@ -1228,19 +1221,28 @@
         "date": "2026-08-07",
         "count": 1,
         "titles": [
-          "怎么不更新了 ？"
+          "排查截图显示内容不更新问题"
         ]
       }
     ]
   },
   "knowledge": {
-    "total": 7,
+    "total": 9,
     "types": {
       ".md": 5,
       "(无扩展名)": 1,
-      ".bat": 1
+      ".bat": 1,
+      ".html": 2
     },
     "files": [
+      {
+        "name": "workbench-mobile.html",
+        "mtime": "08-07 02:44"
+      },
+      {
+        "name": "workbench-desktop.html",
+        "mtime": "08-07 02:43"
+      },
       {
         "name": "Home.md",
         "mtime": "08-06 14:52"
@@ -1264,10 +1266,6 @@
       {
         "name": ".gitignore",
         "mtime": "08-01 14:48"
-      },
-      {
-        "name": "分类指南.md",
-        "mtime": "08-01 14:09"
       }
     ]
   },
