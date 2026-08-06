@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-06 21:55",
+  "generatedAt": "2026-08-06 22:55",
   "kpi": {
     "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 23,
     "knowledge": 7,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -118,7 +118,7 @@
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
-      "usage": 2,
+      "usage": 4,
       "lastUsed": "2026-08-06"
     },
     {
@@ -567,9 +567,15 @@
   "sessions": {
     "recent": [
       {
+        "title": "排查GitHub工作台部署失败问题",
+        "status": "completed",
+        "updated": "08-06 22:54",
+        "group": "今天"
+      },
+      {
         "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-06 21:48",
+        "updated": "08-06 22:54",
         "group": "今天"
       },
       {
@@ -1218,8 +1224,9 @@
       },
       {
         "date": "2026-08-06",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "排查GitHub工作台部署失败问题",
           "查找 videosays 这个 skill",
           "整理并精简重复的 skill"
         ]
