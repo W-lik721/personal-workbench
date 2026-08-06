@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-06 14:55",
+  "generatedAt": "2026-08-06 15:55",
   "kpi": {
-    "skills": 55,
+    "skills": 56,
     "automations": 2,
     "models": 5,
     "memory": 23,
@@ -434,6 +434,14 @@
       "lastUsed": ""
     },
     {
+      "name": "workbuddy-bluebook",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：workbuddy-bluebook",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "workbuddy-mcp-connect",
       "desc": "把外部 Python MCP 服务接进 WorkBuddy 并排错。触发：想\"把某项目作为 MCP 工具接进 WorkBuddy\"、\"MCP 启动失败/Connection closed\"、装好但 WorkBuddy 连不上。覆盖 MCP vs proxy 选型、隔离 venv 安装、绕开 Rust 编译、补 [mcp] 漏装依赖、写 mcp.json 绝对路径、MCP 握手验证、OpenAI 兼容模型 key 验证。以 headroom 为完整示例。",
       "category": "通用能力",
@@ -555,7 +563,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -568,8 +576,8 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-06 14:50",
+        "status": "working",
+        "updated": "08-06 15:50",
         "group": "今天"
       },
       {
