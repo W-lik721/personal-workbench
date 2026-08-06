@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-06 19:55",
+  "generatedAt": "2026-08-06 20:55",
   "kpi": {
-    "skills": 56,
+    "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 23,
@@ -202,6 +202,14 @@
       "lastUsed": ""
     },
     {
+      "name": "markitdown-skill",
+      "desc": "\"Convert documents to Markdown using Microsoft's MarkItDown CLI (`markitdown`). Supports PDF, Word, PowerPoint, Excel, images (OCR), audio (transcription), HTML, YouTube, and URLs. Use when a user wants to convert a file or URL to Markdown, extract text from PDFs/images, transcribe audio/video, or batch-convert documents.\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：markitdown-skill",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "mcp-stdio-bridge",
       "desc": "|",
       "category": "通用能力",
@@ -350,6 +358,14 @@
       "desc": "\"端到端流水线——把任意视频内容（本地视频文件 / 抖音链接 / 全网短视频 / 微信视频号 / YouTube）转成原始文字稿，再喂给 cangjie-skill 蒸馏成一组可执行 skills。来源：① 本地视频文件（ffmpeg 抽字幕轨 / faster-whisper 语音转写，沙箱可直跑，首选）；② 抖音链接（douyin-to-kb 取稿）；③ 全网短视频（快手/小红书/微博/西瓜等 20+ 平台，用 yby6-video-mcp 取无水印直链 + 本地 faster-whisper 转写，无需云端 ASR Key）；④ 微信视频号（tencent-video-capture 下载后转本地模式）；⑤ YouTube 链接（需能访问 YouTube 的环境，本机不可用）。当用户想把某个视频/课程/讲座/播客的方法论做成可复用 skill 时调用。曾用名 yt-cangjie-distill（2026-07-29 改名）。\"",
       "category": "content",
       "cmd": "打开工作台后调用 skill：video-cangjie-distill",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "video-downloader",
+      "desc": "短视频下载器 — 支持抖音、小红书、快手、视频号、B站、YouTube、Instagram 等主流平台无水印视频下载，开箱即用。",
+      "category": "media",
+      "cmd": "打开工作台后调用 skill：video-downloader",
       "usage": 0,
       "lastUsed": ""
     },
@@ -567,7 +583,7 @@
       },
       "D": {
         "total": 544,
-        "free": 399
+        "free": 396
       }
     },
     "runtime": "3.13 / 22.22"
@@ -575,15 +591,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-06 19:53",
+        "title": "检查 MarkItDown skill 是否重复",
+        "status": "completed",
+        "updated": "08-06 20:54",
         "group": "今天"
       },
       {
-        "title": "实现可隐藏的弹窗组件",
+        "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-06 14:21",
+        "updated": "08-06 20:53",
         "group": "今天"
       },
       {
@@ -1236,8 +1252,8 @@
         "date": "2026-08-06",
         "count": 2,
         "titles": [
-          "查找 videosays 这个 skill",
-          "实现可隐藏的弹窗组件"
+          "检查 MarkItDown skill 是否重复",
+          "查找 videosays 这个 skill"
         ]
       }
     ]
