@@ -147,9 +147,17 @@
     if (b) b.textContent = light ? "☀️" : "🌙";
   }
 
+  function toggleNews(btn) {
+    var d = btn.previousElementSibling;
+    if (!d || !d.classList.contains("nw-d")) return;
+    var open = d.classList.toggle("open");
+    btn.textContent = open ? "收起 ▴" : "展开 ▾";
+  }
+
   window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab;
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
+  window.toggleNews = toggleNews;
 
   // ---------- 渲染 ----------
   function renderKPI(d) {
@@ -276,8 +284,14 @@
         var link = it.url
           ? '<a class="nw-a" href="' + escAttr(it.url) + '" target="_blank" rel="noopener">原文 ↗</a>' : "";
         var src = it.source ? '<span class="nw-s">' + esc(it.source) + "</span>" : "";
+        var dHtml = "";
+        if (it.summary) {
+          var long = it.summary.length > 90;
+          dHtml = '<div class="nw-d' + (long ? " clamp" : "") + '">' + esc(it.summary) + "</div>" +
+            (long ? '<button class="nw-toggle" onclick="toggleNews(this)">展开 ▾</button>' : "");
+        }
         html += '<div class="nw"><div class="nw-t">' + esc(it.title) + "</div>" +
-          (it.summary ? '<div class="nw-d">' + esc(it.summary) + "</div>" : "") +
+          dHtml +
           '<div class="nw-f">' + src + link +
           '<button class="nw-ask" onclick="cmdtext(' + "'展开讲讲这条 AI 新闻，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">💬 让 AI 讲讲</button>' +
           "</div></div>";

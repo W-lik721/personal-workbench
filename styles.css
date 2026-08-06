@@ -162,6 +162,11 @@ body.light .heat{color:var(--sub)}
 .nw:hover{border-color:rgba(78,161,255,.4)}
 .nw-t{font-size:14px;font-weight:600;line-height:1.5;color:var(--txt)}
 .nw-d{font-size:12.5px;line-height:1.7;color:var(--sub);margin-top:6px;word-break:break-word}
+.nw-d.clamp{max-height:4.6em;overflow:hidden;position:relative}
+.nw-d.clamp.open{max-height:none;overflow:visible}
+.nw-d.clamp:not(.open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.8em;background:linear-gradient(transparent, var(--panel2))}
+.nw-toggle{display:block;margin-top:5px;font-size:11.5px;background:transparent;border:none;color:var(--accent);cursor:pointer;padding:2px 0;font-family:inherit}
+.nw-toggle:hover{text-decoration:underline}
 .nw-f{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:9px}
 .nw-s{font-size:11px;color:var(--sub);opacity:.85}
 .nw-a{font-size:11.5px;color:var(--accent);text-decoration:none}
