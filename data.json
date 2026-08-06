@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-06 14:15",
+  "generatedAt": "2026-08-06 14:55",
   "kpi": {
     "skills": 55,
-    "automations": 1,
+    "automations": 2,
     "models": 5,
     "memory": 23,
     "knowledge": 7,
-    "sessions": 10
+    "sessions": 9
   },
   "skills": [
     {
@@ -46,8 +46,8 @@
       "desc": "\"Bundled Chromium + puppeteer runtime provider for the douyin-to-kb skill (DO NOT DELETE — removing this breaks 抖音转写). Also renders JS-heavy pages / extracts text via node <skill_dir>/index.js read <url>. For general user-facing browser automation/rendering, prefer the web-access skill (CDP, login state, social media — richer). Requires: node + puppeteer.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：browser",
-      "usage": 2,
-      "lastUsed": "2026-08-06"
+      "usage": 0,
+      "lastUsed": ""
     },
     {
       "name": "cangjie-skill",
@@ -506,6 +506,12 @@
         "status": "ACTIVE",
         "next": "08-10 09:50",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
+      },
+      {
+        "name": "归档文件半年清理检查（WB实用Skills源文件）",
+        "status": "ACTIVE",
+        "next": "02-06 09:00",
+        "cron": ""
       }
     ],
     "models": [
@@ -549,7 +555,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 239
       },
       "D": {
         "total": 544,
@@ -561,21 +567,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "实现可隐藏的弹窗组件",
-        "status": "working",
-        "updated": "08-06 14:15",
-        "group": "今天"
-      },
-      {
-        "title": "了解 /AgentBrowser 的用途",
-        "status": "pending",
-        "updated": "08-06 14:15",
-        "group": "今天"
-      },
-      {
         "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-06 14:14",
+        "status": "completed",
+        "updated": "08-06 14:50",
+        "group": "今天"
+      },
+      {
+        "title": "实现可隐藏的弹窗组件",
+        "status": "completed",
+        "updated": "08-06 14:21",
         "group": "今天"
       },
       {
@@ -1226,11 +1226,10 @@
       },
       {
         "date": "2026-08-06",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "实现可隐藏的弹窗组件",
-          "了解 /AgentBrowser 的用途",
-          "查找 videosays 这个 skill"
+          "查找 videosays 这个 skill",
+          "实现可隐藏的弹窗组件"
         ]
       }
     ]
@@ -1244,16 +1243,16 @@
     },
     "files": [
       {
+        "name": "Home.md",
+        "mtime": "08-06 14:52"
+      },
+      {
         "name": "AGENTS.md",
         "mtime": "08-05 23:06"
       },
       {
         "name": "AGENTS.md",
         "mtime": "08-05 22:29"
-      },
-      {
-        "name": "Home.md",
-        "mtime": "08-05 22:26"
       },
       {
         "name": "00-路由表.md",
