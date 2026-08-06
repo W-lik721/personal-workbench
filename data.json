@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-06 13:12",
+  "generatedAt": "2026-08-06 13:53",
   "kpi": {
-    "skills": 53,
+    "skills": 54,
     "automations": 1,
     "models": 5,
     "memory": 23,
@@ -22,6 +22,14 @@
       "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task 协调。提供 join / send / fyi / history / members / catchup / leave 子命令，基于共享 JSONL 日志 + .NET 文件锁，零网络、零 daemon。适合多 agent 并行开发时彼此通知接口变更、汇报阻塞、共享状态。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-chat",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "Agent Browser",
+      "desc": "A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agentbrowser__skillhub",
       "usage": 0,
       "lastUsed": ""
     },
@@ -533,7 +541,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -545,22 +553,22 @@
   "sessions": {
     "recent": [
       {
-        "title": "提取内容中的有用信息",
-        "status": "pending",
-        "updated": "08-06 13:11",
+        "title": "识别截图中的软件名称",
+        "status": "working",
+        "updated": "08-06 13:53",
         "group": "今天"
       },
       {
         "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-06 10:24",
+        "status": "working",
+        "updated": "08-06 13:53",
         "group": "今天"
       },
       {
         "title": "实现可隐藏的弹窗组件",
         "status": "completed",
-        "updated": "08-05 23:37",
-        "group": "昨天"
+        "updated": "08-06 13:52",
+        "group": "今天"
       },
       {
         "title": "搭建个人知识库并查找资料",
@@ -1210,19 +1218,19 @@
       },
       {
         "date": "2026-08-05",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "实现可隐藏的弹窗组件",
           "搭建个人知识库并查找资料",
           "生成今日灵感与AI学习路径建议"
         ]
       },
       {
         "date": "2026-08-06",
-        "count": 2,
+        "count": 3,
         "titles": [
-          "提取内容中的有用信息",
-          "查找 videosays 这个 skill"
+          "识别截图中的软件名称",
+          "查找 videosays 这个 skill",
+          "实现可隐藏的弹窗组件"
         ]
       }
     ]
