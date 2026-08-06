@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 02:55",
+  "generatedAt": "2026-08-07 03:55",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -547,11 +547,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 236
       },
       "D": {
         "total": 544,
-        "free": 396
+        "free": 394
       }
     },
     "runtime": "3.13 / 22.22"
@@ -561,7 +561,7 @@
       {
         "title": "排查截图显示内容不更新问题",
         "status": "completed",
-        "updated": "08-07 02:54",
+        "updated": "08-07 03:03",
         "group": "今天"
       },
       {
@@ -1237,11 +1237,11 @@
     "files": [
       {
         "name": "workbench-mobile.html",
-        "mtime": "08-07 02:49"
+        "mtime": "08-07 03:46"
       },
       {
         "name": "workbench-desktop.html",
-        "mtime": "08-07 02:48"
+        "mtime": "08-07 03:45"
       },
       {
         "name": "Home.md",
