@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06 14:14",
+  "generatedAt": "2026-08-06 14:15",
   "kpi": {
     "skills": 55,
     "automations": 1,
@@ -549,7 +549,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -563,19 +563,19 @@
       {
         "title": "实现可隐藏的弹窗组件",
         "status": "working",
-        "updated": "08-06 14:13",
-        "group": "今天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "planning",
-        "updated": "08-06 14:13",
+        "updated": "08-06 14:15",
         "group": "今天"
       },
       {
         "title": "了解 /AgentBrowser 的用途",
-        "status": "completed",
-        "updated": "08-06 14:12",
+        "status": "pending",
+        "updated": "08-06 14:15",
+        "group": "今天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-06 14:14",
         "group": "今天"
       },
       {
@@ -1229,8 +1229,8 @@
         "count": 3,
         "titles": [
           "实现可隐藏的弹窗组件",
-          "查找 videosays 这个 skill",
-          "了解 /AgentBrowser 的用途"
+          "了解 /AgentBrowser 的用途",
+          "查找 videosays 这个 skill"
         ]
       }
     ]
