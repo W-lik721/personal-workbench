@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06 13:53",
+  "generatedAt": "2026-08-06 13:58",
   "kpi": {
     "skills": 54,
     "automations": 1,
@@ -553,15 +553,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "识别截图中的软件名称",
+        "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-06 13:53",
+        "updated": "08-06 13:58",
         "group": "今天"
       },
       {
-        "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-06 13:53",
+        "title": "识别截图中的软件名称",
+        "status": "completed",
+        "updated": "08-06 13:54",
         "group": "今天"
       },
       {
@@ -1228,8 +1228,8 @@
         "date": "2026-08-06",
         "count": 3,
         "titles": [
-          "识别截图中的软件名称",
           "查找 videosays 这个 skill",
+          "识别截图中的软件名称",
           "实现可隐藏的弹窗组件"
         ]
       }
