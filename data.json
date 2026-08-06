@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06 15:55",
+  "generatedAt": "2026-08-06 16:55",
   "kpi": {
     "skills": 56,
     "automations": 2,
@@ -576,8 +576,8 @@
     "recent": [
       {
         "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-06 15:50",
+        "status": "completed",
+        "updated": "08-06 16:53",
         "group": "今天"
       },
       {
