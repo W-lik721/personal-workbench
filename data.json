@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-06 20:55",
+  "generatedAt": "2026-08-06 21:55",
   "kpi": {
-    "skills": 58,
+    "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 23,
     "knowledge": 7,
-    "sessions": 9
+    "sessions": 8
   },
   "skills": [
     {
@@ -22,14 +22,6 @@
       "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task 协调。提供 join / send / fyi / history / members / catchup / leave 子命令，基于共享 JSONL 日志 + .NET 文件锁，零网络、零 daemon。适合多 agent 并行开发时彼此通知接口变更、汇报阻塞、共享状态。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-chat",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "Agent Browser",
-      "desc": "A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：agentbrowser__skillhub",
       "usage": 0,
       "lastUsed": ""
     },
@@ -202,14 +194,6 @@
       "lastUsed": ""
     },
     {
-      "name": "markitdown-skill",
-      "desc": "\"Convert documents to Markdown using Microsoft's MarkItDown CLI (`markitdown`). Supports PDF, Word, PowerPoint, Excel, images (OCR), audio (transcription), HTML, YouTube, and URLs. Use when a user wants to convert a file or URL to Markdown, extract text from PDFs/images, transcribe audio/video, or batch-convert documents.\"",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：markitdown-skill",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "mcp-stdio-bridge",
       "desc": "|",
       "category": "通用能力",
@@ -358,14 +342,6 @@
       "desc": "\"端到端流水线——把任意视频内容（本地视频文件 / 抖音链接 / 全网短视频 / 微信视频号 / YouTube）转成原始文字稿，再喂给 cangjie-skill 蒸馏成一组可执行 skills。来源：① 本地视频文件（ffmpeg 抽字幕轨 / faster-whisper 语音转写，沙箱可直跑，首选）；② 抖音链接（douyin-to-kb 取稿）；③ 全网短视频（快手/小红书/微博/西瓜等 20+ 平台，用 yby6-video-mcp 取无水印直链 + 本地 faster-whisper 转写，无需云端 ASR Key）；④ 微信视频号（tencent-video-capture 下载后转本地模式）；⑤ YouTube 链接（需能访问 YouTube 的环境，本机不可用）。当用户想把某个视频/课程/讲座/播客的方法论做成可复用 skill 时调用。曾用名 yt-cangjie-distill（2026-07-29 改名）。\"",
       "category": "content",
       "cmd": "打开工作台后调用 skill：video-cangjie-distill",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "video-downloader",
-      "desc": "短视频下载器 — 支持抖音、小红书、快手、视频号、B站、YouTube、Instagram 等主流平台无水印视频下载，开箱即用。",
-      "category": "media",
-      "cmd": "打开工作台后调用 skill：video-downloader",
       "usage": 0,
       "lastUsed": ""
     },
@@ -579,7 +555,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 237
       },
       "D": {
         "total": 544,
@@ -591,15 +567,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "检查 MarkItDown skill 是否重复",
-        "status": "completed",
-        "updated": "08-06 20:54",
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-06 21:48",
         "group": "今天"
       },
       {
-        "title": "查找 videosays 这个 skill",
+        "title": "整理并精简重复的 skill",
         "status": "completed",
-        "updated": "08-06 20:53",
+        "updated": "08-06 21:44",
         "group": "今天"
       },
       {
@@ -613,12 +589,6 @@
         "status": "completed",
         "updated": "08-05 23:01",
         "group": "昨天"
-      },
-      {
-        "title": "整理并精简重复的 skill",
-        "status": "completed",
-        "updated": "08-03 21:49",
-        "group": "更早"
       },
       {
         "title": "在GitHub上查找cangjie-skill项目",
@@ -1230,10 +1200,8 @@
       },
       {
         "date": "2026-08-03",
-        "count": 1,
-        "titles": [
-          "整理并精简重复的 skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-04",
@@ -1252,8 +1220,8 @@
         "date": "2026-08-06",
         "count": 2,
         "titles": [
-          "检查 MarkItDown skill 是否重复",
-          "查找 videosays 这个 skill"
+          "查找 videosays 这个 skill",
+          "整理并精简重复的 skill"
         ]
       }
     ]
