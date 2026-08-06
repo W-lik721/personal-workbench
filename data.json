@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-06 13:58",
+  "generatedAt": "2026-08-06 14:06",
   "kpi": {
     "skills": 54,
     "automations": 1,
     "models": 5,
     "memory": 23,
     "knowledge": 7,
-    "sessions": 11
+    "sessions": 10
   },
   "skills": [
     {
@@ -46,8 +46,8 @@
       "desc": "\"Bundled Chromium + puppeteer runtime provider for the douyin-to-kb skill (DO NOT DELETE — removing this breaks 抖音转写). Also renders JS-heavy pages / extracts text via node <skill_dir>/index.js read <url>. For general user-facing browser automation/rendering, prefer the web-access skill (CDP, login state, social media — richer). Requires: node + puppeteer.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：browser",
-      "usage": 0,
-      "lastUsed": ""
+      "usage": 2,
+      "lastUsed": "2026-08-06"
     },
     {
       "name": "cangjie-skill",
@@ -541,11 +541,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 239
       },
       "D": {
         "total": 544,
-        "free": 391
+        "free": 399
       }
     },
     "runtime": "3.13 / 22.22"
@@ -555,19 +555,19 @@
       {
         "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-06 13:58",
+        "updated": "08-06 14:06",
         "group": "今天"
       },
       {
-        "title": "识别截图中的软件名称",
-        "status": "completed",
-        "updated": "08-06 13:54",
+        "title": "了解 /AgentBrowser 的用途",
+        "status": "working",
+        "updated": "08-06 14:06",
         "group": "今天"
       },
       {
         "title": "实现可隐藏的弹窗组件",
-        "status": "completed",
-        "updated": "08-06 13:52",
+        "status": "working",
+        "updated": "08-06 14:06",
         "group": "今天"
       },
       {
@@ -581,12 +581,6 @@
         "status": "completed",
         "updated": "08-05 23:01",
         "group": "昨天"
-      },
-      {
-        "title": "合并工作日志并查找对话记录",
-        "status": "completed",
-        "updated": "08-04 18:23",
-        "group": "更早"
       },
       {
         "title": "整理并精简重复的 skill",
@@ -1211,10 +1205,8 @@
       },
       {
         "date": "2026-08-04",
-        "count": 1,
-        "titles": [
-          "合并工作日志并查找对话记录"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-05",
@@ -1229,7 +1221,7 @@
         "count": 3,
         "titles": [
           "查找 videosays 这个 skill",
-          "识别截图中的软件名称",
+          "了解 /AgentBrowser 的用途",
           "实现可隐藏的弹窗组件"
         ]
       }
