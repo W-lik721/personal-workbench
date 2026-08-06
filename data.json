@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-06 14:06",
+  "generatedAt": "2026-08-06 14:10",
   "kpi": {
-    "skills": 54,
+    "skills": 55,
     "automations": 1,
     "models": 5,
     "memory": 23,
@@ -238,6 +238,14 @@
       "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + vault 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：obsidian",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "obsidian-cli",
+      "desc": "通过 Obsidian 官方命令行（obsidian 命令，1.12+ 已启用）安全操作用户的 Obsidian vault——建笔记、归档、读搜、每日笔记、反向链接、标签、移动。当用户提到 Obsidian、vault、笔记、归档、知识库整理、每日笔记、backlinks 时使用。vault 路径 D:\\Users\\qingdeng-ws\\vault（PARA 结构）。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：obsidian-cli",
       "usage": 0,
       "lastUsed": ""
     },
@@ -553,21 +561,21 @@
   "sessions": {
     "recent": [
       {
-        "title": "查找 videosays 这个 skill",
+        "title": "实现可隐藏的弹窗组件",
         "status": "working",
-        "updated": "08-06 14:06",
+        "updated": "08-06 14:10",
         "group": "今天"
       },
       {
         "title": "了解 /AgentBrowser 的用途",
         "status": "working",
-        "updated": "08-06 14:06",
+        "updated": "08-06 14:10",
         "group": "今天"
       },
       {
-        "title": "实现可隐藏的弹窗组件",
+        "title": "查找 videosays 这个 skill",
         "status": "working",
-        "updated": "08-06 14:06",
+        "updated": "08-06 14:10",
         "group": "今天"
       },
       {
@@ -1220,9 +1228,9 @@
         "date": "2026-08-06",
         "count": 3,
         "titles": [
-          "查找 videosays 这个 skill",
+          "实现可隐藏的弹窗组件",
           "了解 /AgentBrowser 的用途",
-          "实现可隐藏的弹窗组件"
+          "查找 videosays 这个 skill"
         ]
       }
     ]
