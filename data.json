@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 02:46",
+  "generatedAt": "2026-08-07 02:47",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -561,7 +561,7 @@
       {
         "title": "排查截图显示内容不更新问题",
         "status": "working",
-        "updated": "08-07 02:45",
+        "updated": "08-07 02:47",
         "group": "今天"
       },
       {
