@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-07 21:04",
+  "generatedAt": "2026-08-07 21:23",
   "kpi": {
     "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 24,
     "knowledge": 9,
-    "sessions": 11
+    "sessions": 10
   },
   "skills": [
     {
@@ -603,21 +603,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "安装并授权夸克网盘技能",
+        "title": "整理工作区",
         "status": "working",
-        "updated": "08-07 21:04",
+        "updated": "08-07 21:23",
         "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-07 21:03",
-        "group": "今天"
-      },
-      {
-        "title": "整理工作区",
-        "status": "completed",
-        "updated": "08-07 20:22",
+        "updated": "08-07 21:21",
         "group": "今天"
       },
       {
@@ -1274,11 +1268,10 @@
       },
       {
         "date": "2026-08-07",
-        "count": 4,
+        "count": 3,
         "titles": [
-          "安装并授权夸克网盘技能",
-          "排查大量部署失败的原因",
           "整理工作区",
+          "排查大量部署失败的原因",
           "生成今日灵感与AI学习路径建议"
         ]
       }
@@ -1511,12 +1504,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T21:04:45",
-    "status": "ok",
-    "nextRun": "2026-08-07T22:04:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
