@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 01:21",
+  "generatedAt": "2026-08-08 01:39",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -604,8 +604,8 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-08 01:20",
+        "status": "working",
+        "updated": "08-08 01:38",
         "group": "今天"
       },
       {
@@ -1507,9 +1507,9 @@
     "warnings": []
   },
   "sync": {
-    "lastRun": "2026-08-08T01:21:46",
+    "lastRun": "2026-08-08T01:39:04",
     "status": "ok",
-    "nextRun": "2026-08-08T02:21:46",
+    "nextRun": "2026-08-08T02:39:04",
     "intervalHours": 1,
     "staleHours": 2
   }
