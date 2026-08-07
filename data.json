@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 22:22",
+  "generatedAt": "2026-08-08 00:15",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -39,7 +39,7 @@
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：cangjie-skill",
       "usage": 2,
-      "lastUsed": "2026-08-07"
+      "lastUsed": "2026-08-08"
     },
     {
       "name": "citation-management",
@@ -111,7 +111,7 @@
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
       "usage": 2,
-      "lastUsed": "2026-08-07"
+      "lastUsed": "2026-08-08"
     },
     {
       "name": "github-pages-auto-deploy",
@@ -499,7 +499,7 @@
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-07",
+    "skillsLastUpdate": "2026-08-08",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -587,7 +587,7 @@
         "online": false
       }
     ],
-    "memoryLastUpdate": "2026-08-07",
+    "memoryLastUpdate": "2026-08-08",
     "disk": {
       "C": {
         "total": 380,
@@ -603,34 +603,34 @@
   "sessions": {
     "recent": [
       {
-        "title": "整理工作区",
-        "status": "completed",
-        "updated": "08-07 22:22",
+        "title": "排查大量部署失败的原因",
+        "status": "working",
+        "updated": "08-08 00:15",
         "group": "今天"
       },
       {
-        "title": "排查大量部署失败的原因",
+        "title": "整理工作区",
         "status": "completed",
-        "updated": "08-07 22:19",
-        "group": "今天"
+        "updated": "08-07 23:05",
+        "group": "昨天"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
         "status": "completed",
         "updated": "08-07 14:28",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
         "updated": "08-06 23:20",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-06 21:44",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "搭建个人知识库并查找资料",
@@ -664,11 +664,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-11",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-12",
         "count": 0,
@@ -1268,11 +1263,17 @@
       },
       {
         "date": "2026-08-07",
-        "count": 3,
+        "count": 2,
         "titles": [
           "整理工作区",
-          "排查大量部署失败的原因",
           "生成今日灵感与AI学习路径建议"
+        ]
+      },
+      {
+        "date": "2026-08-08",
+        "count": 1,
+        "titles": [
+          "排查大量部署失败的原因"
         ]
       }
     ]
@@ -1504,12 +1505,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T22:22:51",
-    "status": "ok",
-    "nextRun": "2026-08-07T23:22:51",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
