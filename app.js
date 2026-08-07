@@ -313,7 +313,11 @@
     var modelsHtml = (st.models || []).map(function (m) {
       return '<div class="model">🔧 ' + esc(m.name) + ' <span style="color:var(--sub);font-size:11px">(' + m.type + ")</span></div>";
     }).join("");
-    var mcpHtml = (st.mcp || []).map(function (m) { return esc(m); }).join(" · ");
+    var mcpHtml = (st.mcp || []).map(function (m) {
+      var off = (m.online === false);
+      return '<span class="mcp' + (off ? " off" : "") + '">' + esc(m.name) +
+        (off ? ' <span class="mcp-badge">离线</span>' : "") + "</span>";
+    }).join(" · ");
     var disk = st.disk || {};
     var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">🧠 ' + esc(m) + "</div>"; }).join("");
     var autoHtml = (st.automations || []).map(function (a) {
@@ -624,6 +628,17 @@
       var next = s.nextRun ? new Date(s.nextRun.replace(" ", "T")) : null;
       var nextStr = next ? (" · 下次约 " + ("0" + next.getHours()).slice(-2) + ":" + ("0" + next.getMinutes()).slice(-2)) : "";
       el.textContent = "✅ 同步正常（上次 " + hhmm + nextStr + "）";
+    }
+
+    // 刷新按钮旁标注「下次自动同步」时间（④）
+    var ns = document.getElementById("nextSync");
+    if (ns) {
+      if (s && s.nextRun) {
+        var n = new Date(s.nextRun.replace(" ", "T"));
+        ns.textContent = "下次自动同步 · " + ("0" + n.getHours()).slice(-2) + ":" + ("0" + n.getMinutes()).slice(-2);
+      } else {
+        ns.textContent = "下次自动同步 · —";
+      }
     }
   }
 

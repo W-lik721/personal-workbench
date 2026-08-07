@@ -204,11 +204,43 @@ def get_disk():
     return out
 
 
-def get_mcp():
+def _probe_mcp_url(url, timeout=0.6):
+    """探测 HTTP/streamableHttp 类 MCP 的本地端口是否可达，返回 True/False。"""
+    import socket
     try:
-        return list(json.load(open(MCP, encoding="utf-8")).get("mcpServers", {}).keys())
+        from urllib.parse import urlparse
+        p = urlparse(url)
+        host = p.hostname or "127.0.0.1"
+        port = p.port or (443 if p.scheme == "https" else 80)
+        s = socket.create_connection((host, port), timeout=timeout)
+        s.close()
+        return True
+    except Exception:
+        return False
+
+
+def get_mcp():
+    """返回 [{name, type, online}]；online 仅对 HTTP 类做端口探测，stdio 默认在线。
+
+    disabled 的项直接跳过（不计入列表）。
+    """
+    try:
+        servers = json.load(open(MCP, encoding="utf-8")).get("mcpServers", {})
     except Exception:
         return []
+    out = []
+    for name, cfg in servers.items():
+        if not isinstance(cfg, dict):
+            out.append({"name": name, "type": "stdio", "online": True})
+            continue
+        if cfg.get("disabled"):
+            continue
+        t = cfg.get("type", "stdio")
+        if t in ("streamableHttp", "sse", "http") and cfg.get("url"):
+            out.append({"name": name, "type": t, "online": _probe_mcp_url(cfg["url"])})
+        else:
+            out.append({"name": name, "type": t, "online": True})
+    return out
 
 
 def get_ai_daily():
