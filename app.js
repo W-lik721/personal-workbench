@@ -356,7 +356,63 @@
         '<button class="btn-sm" onclick="cmdtext(' + "'在 knowledge-base/ 搜索：'" + ')">🔍 搜知识库</button></div></div>';
   }
 
-  // ---------- 课程表（localStorage 纯前端，支持外部导入） ----------
+  // ---------- 课程表（localStorage 草稿 + GitHub 云端同步） ----------
+  var GH_REPO = "W-lik721/personal-workbench";
+  var GH_API = "https://api.github.com/repos/" + GH_REPO + "/contents/schedule.json";
+  var GH_RAW = "https://raw.githubusercontent.com/" + GH_REPO + "/main/schedule.json";
+  var GH_TOKEN_KEY = "wb_gh_token";
+  function ghToken() { return localStorage.getItem(GH_TOKEN_KEY) || ""; }
+  function setGhToken() {
+    var t = window.prompt("粘贴你的 GitHub Personal Access Token（只需 repo 权限）。\n仅存于本浏览器 localStorage，不会上传。留空可清除。", ghToken());
+    if (t === null) return;
+    if (t.trim()) localStorage.setItem(GH_TOKEN_KEY, t.trim());
+    else localStorage.removeItem(GH_TOKEN_KEY);
+    var h = document.getElementById("schedHint");
+    if (h) h.textContent = t.trim() ? "✓ Token 已保存（仅本浏览器）" : "已清除 Token";
+  }
+  function b64encodeUtf8(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  // 把本地课程表推到 GitHub（schedule.json）
+  function schedulePushCloud() {
+    var token = ghToken();
+    var hint = document.getElementById("schedHint");
+    if (!token) { if (hint) hint.textContent = "请先点 ⚙️ 设置 GitHub Token"; return; }
+    var list = scheduleLoad();
+    var body = b64encodeUtf8(JSON.stringify(list, null, 2));
+    var put = function (sha) {
+      return fetch(GH_API, {
+        method: "PUT",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "chore: update schedule from workbench", content: body, sha: sha })
+      });
+    };
+    fetch(GH_API, { headers: { "Authorization": "Bearer " + token } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (meta) { return put(meta && meta.sha ? meta.sha : undefined); })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function () { if (hint) hint.textContent = "✓ 已备份到云端（" + list.length + " 条）"; })
+      .catch(function (err) { if (hint) hint.textContent = "备份失败：" + err.message; });
+  }
+  // 从 GitHub 拉取课程表覆盖本地
+  function schedulePullCloud(silent) {
+    var hint = document.getElementById("schedHint");
+    fetch(GH_RAW, { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (list) {
+        if (list && list.length) {
+          scheduleSave(list); renderSchedule();
+          if (hint && !silent) hint.textContent = "✓ 已从云端拉取 " + list.length + " 条";
+        } else if (!silent && hint) {
+          hint.textContent = "云端暂无课程表";
+        }
+      })
+      .catch(function (err) { if (!silent && hint) hint.textContent = "拉取失败：" + err.message; });
+  }
+  window.schedulePushCloud = schedulePushCloud;
+  window.schedulePullCloud = schedulePullCloud;
+  window.setGhToken = setGhToken;
+
   var WEEKDAYS = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
   var SCHED_KEY = "wb_schedule";
   function scheduleLoad() {
@@ -549,7 +605,13 @@
       '<textarea id="schedPaste" rows="3" class="sched-paste" placeholder="把 Excel/表格里的几行复制粘贴到这里（首行写表头：星期/时间/课程/地点/老师/备注，用制表符或逗号分开），再点“解析粘贴内容”。"></textarea>' +
       '<div style="margin-top:8px;display:flex;gap:8px;align-items:center">' +
       '<button class="btn" onclick="importSchedulePaste()">🔄 解析粘贴内容</button>' +
-      '<span id="schedHint" class="empty"></span></div></div>';
+      '<span id="schedHint" class="empty"></span></div>' +
+      '<div style="margin-top:9px;display:flex;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:9px">' +
+      '<span class="empty" style="margin:0">☁️ 云端同步：</span>' +
+      '<button class="btn-sm" onclick="schedulePushCloud()">⬆️ 备份到云端</button>' +
+      '<button class="btn-sm" onclick="schedulePullCloud(false)">⬇️ 从云端拉取</button>' +
+      '<button class="btn-sm" onclick="setGhToken()">⚙️ Token</button>' +
+      '</div></div>';
     var addCard =
       '<div class="card"><h2><span class="ic">➕</span>手动加一行</h2>' +
       '<div class="sched-form">' +
@@ -663,6 +725,8 @@
   applyTheme();
   renderNotes();
   renderSchedule();
+  // 本地无课程表时，自动从云端拉取一次（换设备也能看到）
+  if (!scheduleLoad().length) schedulePullCloud(true);
   var ni = document.getElementById("noteInput");
   if (ni) ni.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addNote(); } });
   loadData().catch(function (e) {
