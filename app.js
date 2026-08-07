@@ -363,7 +363,7 @@
   var GH_TOKEN_KEY = "wb_gh_token";
   function ghToken() { return localStorage.getItem(GH_TOKEN_KEY) || ""; }
   function setGhToken() {
-    var t = window.prompt("粘贴你的 GitHub Personal Access Token（只需 repo 权限）。\n仅存于本浏览器 localStorage，不会上传。留空可清除。", ghToken());
+    var t = window.prompt("粘贴你的 GitHub Personal Access Token（需要 repo + workflow 权限）。\n仅存于本浏览器 localStorage，不会上传。留空可清除。", ghToken());
     if (t === null) return;
     if (t.trim()) localStorage.setItem(GH_TOKEN_KEY, t.trim());
     else localStorage.removeItem(GH_TOKEN_KEY);
@@ -710,16 +710,82 @@
       .then(function (r) { return r.json(); })
       .then(function (d) { render(d); return d; });
   }
+  // ---------- 立即刷新：触发 GitHub Actions 同步（等同手动 Run workflow） ----------
   function refreshData() {
     var btn = document.getElementById("refreshBtn");
-    var old = btn ? btn.textContent : "";
-    if (btn) { btn.disabled = true; btn.textContent = "⏳ 刷新中…"; }
-    loadData()
-      .then(function () { if (btn) { btn.disabled = false; btn.textContent = old; } })
-      .catch(function (e) {
-        if (btn) { btn.disabled = false; btn.textContent = old; }
-        document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
+    var token = ghToken();
+    if (!token) {
+      window.alert("首次使用需要先填 GitHub Token（只存你浏览器）。\n点「确定」后在弹窗粘贴 Token（需要 repo + workflow 权限），填好再来点刷新。");
+      setGhToken();
+      return;
+    }
+    var old = btn ? btn.textContent : "🔄 立即刷新";
+    if (btn) { btn.disabled = true; btn.textContent = "⏳ 触发同步…"; }
+
+    var api = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/dispatches";
+    fetch(api, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "X-GitHub-Api-Version": "2022-11-28"
+      },
+      body: JSON.stringify({ ref: "main" })
+    }).then(function (r) {
+      if (r.ok) return;
+      if (r.status === 401 || r.status === 403) throw new Error("Token 无效或权限不足（需要 repo + workflow 权限，HTTP " + r.status + "）");
+      if (r.status === 404) throw new Error("找不到同步工作流（404），请确认仓库/分支名");
+      throw new Error("触发失败：HTTP " + r.status);
+    }).then(function () {
+      if (btn) btn.textContent = "🔄 本机 Runner 执行中…";
+      pollUntilSynced(btn, old, 0, Date.now());
+    }).catch(function (err) {
+      if (btn) { btn.disabled = false; btn.textContent = old; }
+      window.alert("立即刷新失败：" + err.message);
+    });
+  }
+
+  // 轮询本次触发的运行，完成后等 Pages 重新部署再刷新页面
+  function pollUntilSynced(btn, old, tries, afterTs) {
+    var MAX = 18; // 18 × 10s ≈ 3 分钟
+    if (tries >= MAX) {
+      if (btn) { btn.disabled = false; btn.textContent = old; }
+      window.alert("同步任务已提交，但本机 Runner 似乎没在运行（任务一直排队）。\n请确认本机 Runner 进程已启动，稍后页面会自动更新。");
+      loadData().catch(function () {});
+      return;
+    }
+    var runsApi = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/runs?per_page=5";
+    fetch(runsApi, {
+      headers: {
+        "Authorization": "Bearer " + ghToken(),
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+      }
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      var run = null;
+      (j.workflow_runs || []).forEach(function (x) {
+        if (new Date(x.created_at).getTime() >= afterTs) run = x;
       });
+      if (run && run.status === "completed") {
+        if (btn) btn.textContent = "✅ 同步完成，刷新中…";
+        setTimeout(function () {
+          loadData().then(function () {
+            if (btn) { btn.disabled = false; btn.textContent = old; }
+          }).catch(function () {
+            if (btn) { btn.disabled = false; btn.textContent = old; }
+          });
+        }, 25000); // 等 Pages 重新部署再拉最新数据
+      } else if (run && run.status === "failure") {
+        if (btn) { btn.disabled = false; btn.textContent = old; }
+        window.alert("本次同步运行失败，请到 GitHub Actions 看日志。");
+        loadData().catch(function () {});
+      } else {
+        setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
+      }
+    }).catch(function () {
+      setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
+    });
   }
   window.refreshData = refreshData;
   applyTheme();
