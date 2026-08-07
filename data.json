@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 22:01",
+  "generatedAt": "2026-08-07 22:18",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -603,15 +603,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "整理工作区",
-        "status": "completed",
-        "updated": "08-07 22:00",
+        "title": "排查大量部署失败的原因",
+        "status": "working",
+        "updated": "08-07 22:18",
         "group": "今天"
       },
       {
-        "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-07 21:58",
+        "title": "整理工作区",
+        "status": "working",
+        "updated": "08-07 22:18",
         "group": "今天"
       },
       {
@@ -1270,8 +1270,8 @@
         "date": "2026-08-07",
         "count": 3,
         "titles": [
-          "整理工作区",
           "排查大量部署失败的原因",
+          "整理工作区",
           "生成今日灵感与AI学习路径建议"
         ]
       }
@@ -1504,12 +1504,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T22:01:11",
-    "status": "ok",
-    "nextRun": "2026-08-07T23:01:11",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
