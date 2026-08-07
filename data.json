@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 14:23",
+  "generatedAt": "2026-08-07 15:00",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -597,13 +597,13 @@
       {
         "title": "工作台未更新问题排查",
         "status": "working",
-        "updated": "08-07 14:23",
+        "updated": "08-07 14:59",
         "group": "今天"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
-        "status": "working",
-        "updated": "08-07 14:21",
+        "status": "completed",
+        "updated": "08-07 14:28",
         "group": "今天"
       },
       {
@@ -1489,12 +1489,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T14:23:42",
-    "status": "ok",
-    "nextRun": "2026-08-07T15:23:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
