@@ -1,12 +1,20 @@
 {
+<<<<<<< Updated upstream
   "generatedAt": "2026-08-07 19:05",
+=======
+  "generatedAt": "2026-08-07 20:37",
+>>>>>>> Stashed changes
   "kpi": {
-    "skills": 54,
+    "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 24,
     "knowledge": 9,
+<<<<<<< Updated upstream
     "sessions": 10
+=======
+    "sessions": 11
+>>>>>>> Stashed changes
   },
   "skills": [
     {
@@ -306,6 +314,14 @@
       "lastUsed": ""
     },
     {
+      "name": "quarkclouddrive",
+      "desc": "夸克网盘官方(Quark Drive)Skill，用于文件上传/下载（支持断点续传）、文件分享与转存、网盘文件搜索、相册整理、AI助手（文件总结与知识问答，支持万级文件）。当用户需要操作夸克网盘文件或进行身份验证时使用。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：quarkclouddrive",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "superpowers",
       "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。\"",
       "category": "通用能力",
@@ -583,7 +599,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -595,6 +611,7 @@
   "sessions": {
     "recent": [
       {
+<<<<<<< Updated upstream
         "title": "整理工作区",
         "status": "completed",
         "updated": "08-07 18:39",
@@ -604,6 +621,23 @@
         "title": "工作台未更新问题排查",
         "status": "completed",
         "updated": "08-07 18:39",
+=======
+        "title": "排查大量部署失败的原因",
+        "status": "completed",
+        "updated": "08-07 20:35",
+        "group": "今天"
+      },
+      {
+        "title": "安装并授权夸克网盘技能",
+        "status": "completed",
+        "updated": "08-07 20:30",
+        "group": "今天"
+      },
+      {
+        "title": "整理工作区",
+        "status": "completed",
+        "updated": "08-07 20:22",
+>>>>>>> Stashed changes
         "group": "今天"
       },
       {
@@ -1260,10 +1294,18 @@
       },
       {
         "date": "2026-08-07",
+<<<<<<< Updated upstream
         "count": 3,
         "titles": [
           "整理工作区",
           "工作台未更新问题排查",
+=======
+        "count": 4,
+        "titles": [
+          "排查大量部署失败的原因",
+          "安装并授权夸克网盘技能",
+          "整理工作区",
+>>>>>>> Stashed changes
           "生成今日灵感与AI学习路径建议"
         ]
       }
@@ -1496,6 +1538,7 @@
       }
     ],
     "warnings": []
+<<<<<<< Updated upstream
   },
   "sync": {
     "lastRun": "2026-08-07T19:05:56",
@@ -1503,5 +1546,7 @@
     "nextRun": "2026-08-07T20:05:56",
     "intervalHours": 1,
     "staleHours": 2
+=======
+>>>>>>> Stashed changes
   }
 }
