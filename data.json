@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 14:12",
+  "generatedAt": "2026-08-07 14:23",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -533,15 +533,51 @@
       "qwen2.5-text-local"
     ],
     "mcp": [
-      "officecli",
-      "headroom",
-      "jcodemunch",
-      "markitdown",
-      "gitnexus",
-      "image-extractor",
-      "yby6-video-mcp",
-      "context7",
-      "scrapling"
+      {
+        "name": "officecli",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "headroom",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "jcodemunch",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "markitdown",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "gitnexus",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "image-extractor",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "yby6-video-mcp",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "context7",
+        "type": "stdio",
+        "online": true
+      },
+      {
+        "name": "scrapling",
+        "type": "streamableHttp",
+        "online": false
+      }
     ],
     "memoryLastUpdate": "2026-08-07",
     "disk": {
@@ -561,13 +597,13 @@
       {
         "title": "工作台未更新问题排查",
         "status": "working",
-        "updated": "08-07 14:12",
+        "updated": "08-07 14:23",
         "group": "今天"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
         "status": "working",
-        "updated": "08-07 14:12",
+        "updated": "08-07 14:21",
         "group": "今天"
       },
       {
@@ -1453,12 +1489,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T14:12:47",
-    "status": "ok",
-    "nextRun": "2026-08-07T15:12:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
