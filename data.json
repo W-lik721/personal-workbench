@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 21:23",
+  "generatedAt": "2026-08-07 22:01",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -604,14 +604,14 @@
     "recent": [
       {
         "title": "整理工作区",
-        "status": "working",
-        "updated": "08-07 21:23",
+        "status": "completed",
+        "updated": "08-07 22:00",
         "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-07 21:21",
+        "updated": "08-07 21:58",
         "group": "今天"
       },
       {
@@ -1504,12 +1504,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T21:23:37",
-    "status": "ok",
-    "nextRun": "2026-08-07T22:23:37",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
