@@ -1453,5 +1453,12 @@
       }
     ],
     "warnings": []
+  },
+  "sync": {
+    "lastRun": "2026-08-07T14:12:47",
+    "status": "ok",
+    "nextRun": "2026-08-07T15:12:47",
+    "intervalHours": 1,
+    "staleHours": 2
   }
 }
