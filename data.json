@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 03:55",
+  "generatedAt": "2026-08-07 13:28",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -551,7 +551,7 @@
       },
       "D": {
         "total": 544,
-        "free": 394
+        "free": 395
       }
     },
     "runtime": "3.13 / 22.22"
@@ -559,9 +559,9 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查截图显示内容不更新问题",
-        "status": "completed",
-        "updated": "08-07 03:03",
+        "title": "工作台怎么没更新？",
+        "status": "working",
+        "updated": "08-07 13:28",
         "group": "今天"
       },
       {
@@ -1221,7 +1221,7 @@
         "date": "2026-08-07",
         "count": 1,
         "titles": [
-          "排查截图显示内容不更新问题"
+          "工作台怎么没更新？"
         ]
       }
     ]
