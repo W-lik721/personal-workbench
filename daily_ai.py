@@ -47,6 +47,7 @@ def main():
     lines.append("[git add] rc=%s %s" % (rc, out))
 
     # 有改动才 commit（diff --cached --quiet 返回 1 表示暂存区有差异）
+    push_ok = True
     rc, _ = run(["git", "diff", "--cached", "--quiet"], allow_fail=True)
     if rc != 0:
         rc2, out2 = run(["git", "commit", "-q", "-m",
@@ -57,8 +58,20 @@ def main():
         lines.append("[git pull --rebase] rc=%s %s" % (rc3, out3))
         rc4, out4 = run(["git", "push", "-q"], allow_fail=True)
         lines.append("[git push] rc=%s %s" % (rc4, out4))
+        push_ok = (rc4 == 0)
     else:
         lines.append("[git] 无改动，跳过 commit/push")
+
+    # 把同步健康度写进 data.json，再推一次（让面板能显示失败/陈旧告警）
+    from sync_status import write_sync_status
+    data_path = os.path.join(HERE, "data.json")
+    sync = write_sync_status(data_path, ok=push_ok)
+    lines.append("[sync status] %s" % sync)
+    run(["git", "add", "data.json"], allow_fail=True)
+    rc5, _ = run(["git", "diff", "--cached", "--quiet"], allow_fail=True)
+    if rc5 != 0:
+        run(["git", "commit", "-q", "-m", "chore: update sync health status"], allow_fail=True)
+        run(["git", "push", "-q"], allow_fail=True)
 
     lines.append("==== done %s ====" % datetime.now().strftime("%H:%M:%S"))
     text = "\n".join(lines)

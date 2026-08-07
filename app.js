@@ -590,11 +590,41 @@
 
   function render(d) {
     document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "—");
+    renderSync(d);
     renderKPI(d);
     renderQuick(d);
     renderCap(d);
     renderNews(d);
     renderOv(d);
+  }
+
+  // ---------- 同步健康度（数据新鲜度 + 失败/陈旧告警） ----------
+  function renderSync(d) {
+    var el = document.getElementById("syncStatus");
+    if (!el) return;
+    var s = d.sync;
+    if (!s || !s.lastRun) {
+      el.className = "sync-status warn";
+      el.textContent = "⚠️ 暂无同步记录，定时任务可能未运行";
+      return;
+    }
+    var last = new Date(s.lastRun.replace(" ", "T"));
+    var stale = (s.staleHours != null) ? s.staleHours : 2;
+    var diffMs = Date.now() - last.getTime();
+    var diffH = diffMs / 3600000;
+    var hhmm = (last.getMonth() + 1) + "-" + last.getDate() + " " +
+      ("0" + last.getHours()).slice(-2) + ":" + ("0" + last.getMinutes()).slice(-2);
+
+    if (s.status === "fail" || diffH > stale) {
+      el.className = "sync-status warn";
+      var overdue = diffH > 0 ? "，已超时约 " + (diffH >= 1 ? diffH.toFixed(1) + " 小时" : Math.round(diffMs / 60000) + " 分钟") : "";
+      el.textContent = "⚠️ 同步可能已停止（上次 " + hhmm + overdue + "）· 定时任务或网络异常";
+    } else {
+      el.className = "sync-status ok";
+      var next = s.nextRun ? new Date(s.nextRun.replace(" ", "T")) : null;
+      var nextStr = next ? (" · 下次约 " + ("0" + next.getHours()).slice(-2) + ":" + ("0" + next.getMinutes()).slice(-2)) : "";
+      el.textContent = "✅ 同步正常（上次 " + hhmm + nextStr + "）";
+    }
   }
 
   // ---------- 启动 ----------
