@@ -806,7 +806,7 @@
       setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
     });
   }
-  // 同步完成后紧轮询：每 8s 看一次数据，直到 generatedAt 变化（新数据已上线）再复位按钮
+  // 同步完成后紧轮询：每 10s 看一次数据，直到 generatedAt 变化（新数据已上线）再复位按钮
   function tightReload(btn, old, tries) {
     if (tries >= 30) { // 30 × 10s ≈ 5 分钟，给 GitHub Pages 部署留足时间
       if (btn) { btn.disabled = false; btn.textContent = old; }
