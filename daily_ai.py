@@ -77,7 +77,11 @@ def main():
     text = "\n".join(lines)
     with open(LOG, "w", encoding="utf-8") as f:
         f.write(text + "\n")
-    print(text)
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        fallback = text.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+        print(fallback)
     return 0
 
 

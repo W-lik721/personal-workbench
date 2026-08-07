@@ -63,7 +63,12 @@ def write_log(lines):
     text = "\n".join(lines)
     with open(os.path.join(HERE, "sync.log"), "w", encoding="utf-8") as f:
         f.write(text + "\n")
-    print(text)
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Windows 控制台（GBK）打印不了 emoji 时降级，避免 sync.py 整体退出
+        fallback = text.encode(sys.stdout.encoding or "utf-8", errors="replace").decode(sys.stdout.encoding or "utf-8")
+        print(fallback)
 
 
 if __name__ == "__main__":

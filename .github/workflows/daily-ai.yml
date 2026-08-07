@@ -20,6 +20,8 @@ jobs:
           fetch-depth: 0
 
       - name: Run daily AI update
+        env:
+          PYTHONIOENCODING: utf-8
         run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe daily_ai.py
         shell: cmd
         working-directory: ${{ github.workspace }}
