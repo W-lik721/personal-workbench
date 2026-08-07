@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 13:42",
+  "generatedAt": "2026-08-07 14:00",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -559,15 +559,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "工作台怎么没更新？",
-        "status": "working",
-        "updated": "08-07 13:42",
+        "title": "工作台未更新问题排查",
+        "status": "planning",
+        "updated": "08-07 14:00",
         "group": "今天"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
-        "status": "working",
-        "updated": "08-07 13:42",
+        "status": "completed",
+        "updated": "08-07 13:58",
         "group": "今天"
       },
       {
@@ -1220,7 +1220,7 @@
         "date": "2026-08-07",
         "count": 2,
         "titles": [
-          "工作台怎么没更新？",
+          "工作台未更新问题排查",
           "生成今日灵感与AI学习路径建议"
         ]
       }
