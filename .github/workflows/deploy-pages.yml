@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync Workbench Data (self-hosted)", "Fetch AI Daily (self-hosted)"]
+    types: [completed]
 
 permissions:
   contents: read
