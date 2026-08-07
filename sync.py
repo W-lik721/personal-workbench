@@ -21,8 +21,21 @@ def run(cmd, allow_fail=False, timeout=180):
     return p.returncode, out.strip()
 
 
+def ensure_git_config():
+    """GitHub Actions 的 schedule 事件不会自动配置 user.name/email，手动补上。"""
+    run(["git", "config", "user.email"], allow_fail=True)
+    rc, _ = run(["git", "config", "user.email"], allow_fail=True)
+    if rc != 0:
+        run(["git", "config", "user.email", "workbuddy@local"])
+    rc, _ = run(["git", "config", "user.name"], allow_fail=True)
+    if rc != 0:
+        run(["git", "config", "user.name", "WorkBuddy"])
+
+
 def main():
     from sync_status import write_sync_status
+    ensure_git_config()
+
     lines = [f"==== sync {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===="]
     data_path = os.path.join(HERE, "data.json")
 
@@ -30,7 +43,8 @@ def main():
     lines.append(f"[export_data.py] rc={rc}\n{out}")
     export_ok = (rc == 0)
 
-    run(["git", "pull", "--rebase", "--autostash", "-q"], allow_fail=True)
+    rc_pull, out_pull = run(["git", "pull", "--rebase", "--autostash", "-q"], allow_fail=True)
+    lines.append(f"[git pull] rc={rc_pull} {out_pull}")
     run(["git", "add", "data.json"], allow_fail=True)
 
     push_ok = True
@@ -51,8 +65,13 @@ def main():
     run(["git", "add", "data.json"], allow_fail=True)
     rc4, _ = run(["git", "diff", "--cached", "--quiet"], allow_fail=True)
     if rc4 != 0:
-        run(["git", "commit", "-q", "-m", "chore: update sync health status"], allow_fail=True)
-        run(["git", "push", "-q"], allow_fail=True)
+        rc5, out5 = run(["git", "commit", "-q", "-m", "chore: update sync health status"], allow_fail=True)
+        lines.append(f"[sync status commit] rc={rc5} {out5}")
+        # 同步状态必须推上去，否则面板会误判陈旧；这里不允许静默失败
+        rc6, out6 = run(["git", "push", "-q"], allow_fail=False)
+        lines.append(f"[sync status push] rc={rc6} {out6}")
+    else:
+        lines.append("[git] sync status 无改动，跳过推送")
 
     lines.append(f"==== done {datetime.now().strftime('%H:%M:%S')} ====")
     write_log(lines)

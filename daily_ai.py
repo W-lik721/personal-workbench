@@ -34,7 +34,18 @@ def run(cmd, allow_fail=False, timeout=180):
         raise
 
 
+def ensure_git_config():
+    """GitHub Actions 的 schedule 事件不会自动配置 user.name/email，手动补上。"""
+    rc, _ = run(["git", "config", "user.email"], allow_fail=True)
+    if rc != 0:
+        run(["git", "config", "user.email", "workbuddy@local"])
+    rc, _ = run(["git", "config", "user.name"], allow_fail=True)
+    if rc != 0:
+        run(["git", "config", "user.name", "WorkBuddy"])
+
+
 def main():
+    ensure_git_config()
     lines = ["==== run %s ====" % datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
 
     for script in ("fetch_ai_daily.py", "export_data.py"):
@@ -70,8 +81,11 @@ def main():
     run(["git", "add", "data.json"], allow_fail=True)
     rc5, _ = run(["git", "diff", "--cached", "--quiet"], allow_fail=True)
     if rc5 != 0:
-        run(["git", "commit", "-q", "-m", "chore: update sync health status"], allow_fail=True)
-        run(["git", "push", "-q"], allow_fail=True)
+        rc6, out6 = run(["git", "commit", "-q", "-m", "chore: update sync health status"], allow_fail=True)
+        lines.append("[sync status commit] rc=%s %s" % (rc6, out6))
+        # 同步状态必须推上去，否则面板会误判陈旧；这里不允许静默失败
+        rc7, out7 = run(["git", "push", "-q"], allow_fail=False)
+        lines.append("[sync status push] rc=%s %s" % (rc7, out7))
 
     lines.append("==== done %s ====" % datetime.now().strftime("%H:%M:%S"))
     text = "\n".join(lines)
