@@ -6,7 +6,7 @@
   "not in a git directory"）。推送走 GitHub Contents API + GITHUB_TOKEN。
 - deploy-pages.yml 在 push 到 main（或本工作流 completed）时自动重新部署 Pages，
   所以线上面板会拿到最新 data.json。
-- 诊断日志写到仓库外的 D:\Users\qingdeng-ws\sync_diag.log，避免被 checkout 的
+- 诊断日志写到仓库外的工作区目录（sync_diag.log），避免被 checkout 的
   git clean 清掉，方便失败时本地排查。
 """
 import os
