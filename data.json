@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-08 01:05",
+  "generatedAt": "2026-08-08 01:11",
   "kpi": {
     "skills": 55,
     "automations": 2,
     "models": 5,
-    "memory": 24,
+    "memory": 25,
     "knowledge": 9,
     "sessions": 10
   },
@@ -604,8 +604,8 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "working",
-        "updated": "08-08 01:04",
+        "status": "completed",
+        "updated": "08-08 01:07",
         "group": "今天"
       },
       {
@@ -1505,12 +1505,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T01:05:06",
-    "status": "ok",
-    "nextRun": "2026-08-08T02:05:06",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
