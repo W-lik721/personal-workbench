@@ -1,0 +1,17 @@
+==== sync 2026-08-07 14:12:32 ====
+[export_data.py] rc=0
+✅ 已生成 data.json
+   Skills : 54
+   自动化 : 2
+   模型   : 5 (本机 2)
+   记忆   : 24 个文件
+   知识库 : 9 文件
+   会话   : 近期 9 / 热力图 119 天
+   磁盘   : C {'total': 380, 'free': 236} / D {'total': 544, 'free': 395}
+   MCP    : ['officecli', 'headroom', 'jcodemunch', 'markitdown', 'gitnexus', 'image-extractor', 'yby6-video-mcp', 'context7', 'scrapling']
+   AI日报 : 2026-08-07 · 25 条
+   输出   : D:\Users\qingdeng-ws\personal-workbench\data.json
+[git commit] rc=0 
+[git push] rc=0 
+[sync status] {'lastRun': '2026-08-07T14:12:47', 'status': 'ok', 'nextRun': '2026-08-07T15:12:47', 'intervalHours': 1, 'staleHours': 2}
+==== done 14:12:55 ====
