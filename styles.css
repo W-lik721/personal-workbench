@@ -206,3 +206,9 @@ body.light .nw-s{color:#8a909c}
 .sr-loc,.sr-teach,.sr-note{font-size:12px;color:var(--sub);margin-right:10px}
 body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
 body.light .sched-day{background:var(--panel2)}
+
+/* 功能自检结果条 */
+.selfcheck{display:none;margin:8px 14px 0;padding:9px 14px;border-radius:10px;font-size:13px;line-height:1.5;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--txt)}
+.selfcheck.ok{border-color:rgba(80,220,140,.5);background:rgba(60,200,120,.12);color:#7ef0a8}
+.selfcheck.warn{border-color:rgba(255,190,90,.5);background:rgba(255,170,60,.12);color:#ffce85}
+.selfcheck.run{border-color:rgba(120,180,255,.5);background:rgba(90,150,255,.10);color:#a8c8ff}

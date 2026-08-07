@@ -820,6 +820,104 @@
     });
   }
   window.refreshData = refreshData;
+
+  // ---------- 功能自检：一键验证「触发 → 同步 → 自动刷新」全链路 ----------
+  function setSelfCheck(cls, msg) {
+    var box = document.getElementById("selfCheckResult");
+    if (!box) return;
+    box.className = "selfcheck" + (cls ? " " + cls : "");
+    box.style.display = "block";
+    box.textContent = msg;
+  }
+  function selfCheck() {
+    var btn = document.getElementById("selfCheckBtn");
+    var token = ghToken();
+    if (!token) {
+      setSelfCheck("warn", "⚠️ 需先填 GitHub Token（点「🌙」旁的 ⚙️ 或首次点「立即刷新」会提示）");
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.textContent = "🔍 自检中…"; }
+    setSelfCheck("run", "步骤 1/4 · 正在触发同步…");
+
+    var api = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/dispatches";
+    var afterTs = Date.now() - 3000;
+    fetch(api, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "X-GitHub-Api-Version": "2022-11-28"
+      },
+      body: JSON.stringify({ ref: "main" })
+    }).then(function (r) {
+      if (r.ok) return;
+      if (r.status === 401 || r.status === 403) throw new Error("Token 无效或权限不足（HTTP " + r.status + "）");
+      if (r.status === 404) throw new Error("找不到同步工作流（404）");
+      throw new Error("触发失败：HTTP " + r.status);
+    }).then(function () {
+      pollSelfCheck(btn, afterTs, 0);
+    }).catch(function (err) {
+      if (btn) { btn.disabled = false; btn.textContent = "🔍 功能自检"; }
+      setSelfCheck("warn", "❌ 自检中断：" + err.message);
+    });
+  }
+  function pollSelfCheck(btn, afterTs, tries) {
+    var MAX = 24;
+    if (tries >= MAX) {
+      if (btn) { btn.disabled = false; btn.textContent = "🔍 功能自检"; }
+      setSelfCheck("warn", "❌ 超时：本机 Runner 一直没响应，请确认 Runner 服务在运行");
+      return;
+    }
+    var runsApi = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/runs?per_page=10";
+    fetch(runsApi, {
+      headers: {
+        "Authorization": "Bearer " + ghToken(),
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+      }
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      var runs = (j.workflow_runs || []).filter(function (x) {
+        return new Date(x.created_at).getTime() >= afterTs;
+      }).sort(function (a, b) {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
+      var run = runs[0] || null;
+      if (run && run.status === "completed") {
+        if (run.conclusion === "success") {
+          setSelfCheck("run", "步骤 3/4 · 同步成功 (run " + run.id + ")，等待数据上线…");
+          tightReloadSelfCheck(btn, 0);
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = "🔍 功能自检"; }
+          setSelfCheck("warn", "❌ 同步运行失败（" + (run.conclusion || "unknown") + "），请到 GitHub Actions 看日志");
+        }
+      } else if (run && (run.status === "in_progress" || run.status === "queued" || run.status === "waiting")) {
+        setSelfCheck("run", "步骤 2/4 · Runner 执行中（" + run.status + "）…");
+        setTimeout(function () { pollSelfCheck(btn, afterTs, tries + 1); }, 10000);
+      } else {
+        setSelfCheck("run", "步骤 2/4 · 等待 Runner 接收任务…");
+        setTimeout(function () { pollSelfCheck(btn, afterTs, tries + 1); }, 10000);
+      }
+    }).catch(function () {
+      setTimeout(function () { pollSelfCheck(btn, afterTs, tries + 1); }, 10000);
+    });
+  }
+  function tightReloadSelfCheck(btn, tries) {
+    if (tries >= 30) {
+      if (btn) { btn.disabled = false; btn.textContent = "🔍 功能自检"; }
+      setSelfCheck("warn", "⚠️ 同步已完成，但数据上线略有延迟，页面会在后台自动刷新");
+      return;
+    }
+    maybeReload().then(function (reloaded) {
+      if (reloaded) {
+        if (btn) { btn.disabled = false; btn.textContent = "🔍 功能自检"; }
+        setSelfCheck("ok", "✅ 自检通过：触发 → 同步 → 自动刷新 全链路正常");
+      } else {
+        setTimeout(function () { tightReloadSelfCheck(btn, tries + 1); }, 10000);
+      }
+    });
+  }
+  window.selfCheck = selfCheck;
   applyTheme();
   renderNotes();
   renderSchedule();
