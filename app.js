@@ -737,6 +737,8 @@
     if (btn) { btn.disabled = true; btn.textContent = "⏳ 触发同步…"; }
 
     var api = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/dispatches";
+    // 在发起请求前记录时间戳，并预留 3 秒缓冲，避免 run 创建时间早于 POST 响应导致漏检
+    var afterTs = Date.now() - 3000;
     fetch(api, {
       method: "POST",
       headers: {
@@ -753,7 +755,7 @@
       throw new Error("触发失败：HTTP " + r.status);
     }).then(function () {
       if (btn) btn.textContent = "🔄 本机 Runner 执行中…";
-      pollUntilSynced(btn, old, 0, Date.now());
+      pollUntilSynced(btn, old, 0, afterTs);
     }).catch(function (err) {
       if (btn) { btn.disabled = false; btn.textContent = old; }
       window.alert("立即刷新失败：" + err.message);
@@ -762,14 +764,14 @@
 
   // 轮询本次触发的运行，完成后等 Pages 重新部署再刷新页面
   function pollUntilSynced(btn, old, tries, afterTs) {
-    var MAX = 18; // 18 × 10s ≈ 3 分钟
+    var MAX = 24; // 24 × 10s ≈ 4 分钟
     if (tries >= MAX) {
       if (btn) { btn.disabled = false; btn.textContent = old; }
-      window.alert("同步任务已提交，但本机 Runner 似乎没在运行（任务一直排队）。\n请确认本机 Runner 进程已启动，稍后页面会自动更新。");
+      window.alert("同步任务已提交，但本机 Runner 似乎没在运行（任务一直排队）。\n请确认本机 Runner 进程已启动，或稍后手动刷新浏览器。");
       loadData().catch(function () {});
       return;
     }
-    var runsApi = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/runs?per_page=5";
+    var runsApi = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/runs?per_page=10";
     fetch(runsApi, {
       headers: {
         "Authorization": "Bearer " + ghToken(),
@@ -777,18 +779,27 @@
         "X-GitHub-Api-Version": "2022-11-28"
       }
     }).then(function (r) { return r.json(); }).then(function (j) {
-      var run = null;
-      (j.workflow_runs || []).forEach(function (x) {
-        if (new Date(x.created_at).getTime() >= afterTs) run = x;
+      // 取 created_at >= afterTs 的最新一次运行
+      var runs = (j.workflow_runs || []).filter(function (x) {
+        return new Date(x.created_at).getTime() >= afterTs;
+      }).sort(function (a, b) {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       });
+      var run = runs[0] || null;
       if (run && run.status === "completed") {
-        if (btn) btn.textContent = "✅ 同步完成，刷新中…";
-        tightReload(btn, old, 0);
-      } else if (run && run.status === "failure") {
-        if (btn) { btn.disabled = false; btn.textContent = old; }
-        window.alert("本次同步运行失败，请到 GitHub Actions 看日志。");
-        loadData().catch(function () {});
+        if (run.conclusion === "success") {
+          if (btn) btn.textContent = "✅ 同步完成，刷新中…";
+          tightReload(btn, old, 0);
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = old; }
+          window.alert("本次同步运行失败（" + (run.conclusion || "unknown") + "），请到 GitHub Actions 看日志。");
+          loadData().catch(function () {});
+        }
+      } else if (run && (run.status === "in_progress" || run.status === "queued" || run.status === "waiting")) {
+        if (btn) btn.textContent = "🔄 本机 Runner 执行中… (" + (tries + 1) + "/" + MAX + ")";
+        setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
       } else {
+        // 列表里还没出现本次触发，继续等
         setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
       }
     }).catch(function () {
@@ -797,10 +808,15 @@
   }
   // 同步完成后紧轮询：每 8s 看一次数据，直到 generatedAt 变化（新数据已上线）再复位按钮
   function tightReload(btn, old, tries) {
-    if (tries >= 22) { if (btn) { btn.disabled = false; btn.textContent = old; } return; }
+    if (tries >= 30) { // 30 × 10s ≈ 5 分钟，给 GitHub Pages 部署留足时间
+      if (btn) { btn.disabled = false; btn.textContent = old; }
+      window.alert("本机同步已完成，但 GitHub Pages 上线略有延迟。\n页面会在后台继续检测，30 秒内若数据上线会自动刷新；也可稍后手动刷新浏览器。");
+      return;
+    }
+    if (btn) btn.textContent = "✅ 同步完成，刷新中… (" + (tries + 1) + "/30)";
     maybeReload().then(function (reloaded) {
       if (reloaded) { if (btn) { btn.disabled = false; btn.textContent = old; } }
-      else setTimeout(function () { tightReload(btn, old, tries + 1); }, 8000);
+      else setTimeout(function () { tightReload(btn, old, tries + 1); }, 10000);
     });
   }
   window.refreshData = refreshData;
