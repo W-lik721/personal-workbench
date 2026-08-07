@@ -705,10 +705,24 @@
   }
 
   // ---------- 启动 ----------
+  var __lastGen = "";
   function loadData() {
     return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
       .then(function (r) { return r.json(); })
-      .then(function (d) { render(d); return d; });
+      .then(function (d) { render(d); __lastGen = d.generatedAt || ""; return d; });
+  }
+  // 数据变化时自动重渲染（覆盖自动/手动同步），免去手动刷新浏览器
+  function maybeReload() {
+    return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if ((d.generatedAt || "") !== __lastGen) {
+          render(d); __lastGen = d.generatedAt || "";
+          return true;
+        }
+        return false;
+      })
+      .catch(function () { return false; });
   }
   // ---------- 立即刷新：触发 GitHub Actions 同步（等同手动 Run workflow） ----------
   function refreshData() {
@@ -769,13 +783,7 @@
       });
       if (run && run.status === "completed") {
         if (btn) btn.textContent = "✅ 同步完成，刷新中…";
-        setTimeout(function () {
-          loadData().then(function () {
-            if (btn) { btn.disabled = false; btn.textContent = old; }
-          }).catch(function () {
-            if (btn) { btn.disabled = false; btn.textContent = old; }
-          });
-        }, 25000); // 等 Pages 重新部署再拉最新数据
+        tightReload(btn, old, 0);
       } else if (run && run.status === "failure") {
         if (btn) { btn.disabled = false; btn.textContent = old; }
         window.alert("本次同步运行失败，请到 GitHub Actions 看日志。");
@@ -785,6 +793,14 @@
       }
     }).catch(function () {
       setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
+    });
+  }
+  // 同步完成后紧轮询：每 8s 看一次数据，直到 generatedAt 变化（新数据已上线）再复位按钮
+  function tightReload(btn, old, tries) {
+    if (tries >= 22) { if (btn) { btn.disabled = false; btn.textContent = old; } return; }
+    maybeReload().then(function (reloaded) {
+      if (reloaded) { if (btn) { btn.disabled = false; btn.textContent = old; } }
+      else setTimeout(function () { tightReload(btn, old, tries + 1); }, 8000);
     });
   }
   window.refreshData = refreshData;
@@ -798,6 +814,9 @@
   loadData().catch(function (e) {
     document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
   });
+
+  // 后台自动刷新：每 30s 检测数据是否更新，有变化就自动重渲染（覆盖每小时自动同步）
+  setInterval(maybeReload, 30000);
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
