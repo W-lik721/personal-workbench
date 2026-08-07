@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-07 16:00",
+  "generatedAt": "2026-08-07 19:05",
   "kpi": {
     "skills": 54,
     "automations": 2,
     "models": 5,
     "memory": 24,
     "knowledge": 9,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -595,9 +595,15 @@
   "sessions": {
     "recent": [
       {
+        "title": "整理工作区",
+        "status": "completed",
+        "updated": "08-07 18:39",
+        "group": "今天"
+      },
+      {
         "title": "工作台未更新问题排查",
-        "status": "working",
-        "updated": "08-07 15:59",
+        "status": "completed",
+        "updated": "08-07 18:39",
         "group": "今天"
       },
       {
@@ -1254,8 +1260,9 @@
       },
       {
         "date": "2026-08-07",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "整理工作区",
           "工作台未更新问题排查",
           "生成今日灵感与AI学习路径建议"
         ]
@@ -1489,12 +1496,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T16:00:07",
-    "status": "ok",
-    "nextRun": "2026-08-07T17:00:07",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
