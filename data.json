@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07 15:00",
+  "generatedAt": "2026-08-07 16:00",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -597,7 +597,7 @@
       {
         "title": "工作台未更新问题排查",
         "status": "working",
-        "updated": "08-07 14:59",
+        "updated": "08-07 15:59",
         "group": "今天"
       },
       {
@@ -1489,12 +1489,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-07T15:00:15",
-    "status": "ok",
-    "nextRun": "2026-08-07T16:00:15",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
