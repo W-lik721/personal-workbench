@@ -22,4 +22,4 @@ jobs:
       - name: Run daily AI update
         run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe daily_ai.py
         shell: cmd
-        working-directory: ${{ github.workspace }}/personal-workbench
+        working-directory: ${{ github.workspace }}

@@ -22,4 +22,4 @@ jobs:
       - name: Run sync (生成 data.json 并推送)
         run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe sync.py
         shell: cmd
-        working-directory: ${{ github.workspace }}/personal-workbench
+        working-directory: ${{ github.workspace }}
