@@ -1,0 +1,25 @@
+name: Sync Workbench Data (self-hosted)
+
+on:
+  schedule:
+    # 每小时第 13 分（UTC）。由本机 self-hosted runner 实际执行。
+    - cron: "13 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Run sync (生成 data.json 并推送)
+        run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe sync.py
+        shell: cmd
+        working-directory: ${{ github.workspace }}/personal-workbench

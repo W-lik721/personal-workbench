@@ -1,0 +1,25 @@
+name: Fetch AI Daily (self-hosted)
+
+on:
+  schedule:
+    # 每天 UTC 00:30 ≈ 北京 08:30
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Run daily AI update
+        run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe daily_ai.py
+        shell: cmd
+        working-directory: ${{ github.workspace }}/personal-workbench
