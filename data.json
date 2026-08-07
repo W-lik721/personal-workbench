@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "generatedAt": "2026-08-07 20:48",
+=======
+  "generatedAt": "2026-08-07 21:00",
+>>>>>>> Stashed changes
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -605,13 +609,21 @@
       {
         "title": "安装并授权夸克网盘技能",
         "status": "working",
+<<<<<<< Updated upstream
         "updated": "08-07 20:47",
+=======
+        "updated": "08-07 20:59",
+>>>>>>> Stashed changes
         "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
+<<<<<<< Updated upstream
         "updated": "08-07 20:46",
+=======
+        "updated": "08-07 20:59",
+>>>>>>> Stashed changes
         "group": "今天"
       },
       {
@@ -1511,6 +1523,7 @@
       }
     ],
     "warnings": []
+<<<<<<< Updated upstream
   },
   "sync": {
     "lastRun": "2026-08-07T20:48:20",
@@ -1518,5 +1531,7 @@
     "nextRun": "2026-08-07T21:48:20",
     "intervalHours": 1,
     "staleHours": 2
+=======
+>>>>>>> Stashed changes
   }
 }
