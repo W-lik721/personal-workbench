@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 16:13",
+  "generatedAt": "2026-08-08 16:19",
   "kpi": {
     "skills": 59,
     "automations": 2,
@@ -635,15 +635,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查大量部署失败的原因",
+        "title": "搭建个人知识库并查找资料",
         "status": "working",
-        "updated": "08-08 16:12",
+        "updated": "08-08 16:18",
         "group": "今天"
       },
       {
-        "title": "搭建个人知识库并查找资料",
-        "status": "working",
-        "updated": "08-08 16:11",
+        "title": "排查大量部署失败的原因",
+        "status": "completed",
+        "updated": "08-08 16:14",
         "group": "今天"
       },
       {
@@ -1294,8 +1294,8 @@
         "date": "2026-08-08",
         "count": 3,
         "titles": [
-          "排查大量部署失败的原因",
           "搭建个人知识库并查找资料",
+          "排查大量部署失败的原因",
           "查找 videosays 这个 skill"
         ]
       }
@@ -1346,7 +1346,7 @@
   },
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 16:13",
+    "fetchedAt": "2026-08-08 16:19",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1507,7 +1507,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 16:13",
+        "fetchedAt": "2026-08-08 16:19",
         "count": 21,
         "sections": [
           {
@@ -1665,12 +1665,5 @@
         "canonical": "https://aihot.virxact.com/daily/2026-08-08"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-08T16:13:09",
-    "status": "ok",
-    "nextRun": "2026-08-08T17:13:09",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
