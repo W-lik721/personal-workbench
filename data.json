@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 21:41",
+  "generatedAt": "2026-08-08 22:15",
   "kpi": {
     "skills": 59,
     "automations": 2,
@@ -596,7 +596,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "8 days ago",
+          "modified": "9 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -678,7 +678,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "working",
-        "updated": "08-08 21:41",
+        "updated": "08-08 22:13",
         "group": "今天"
       },
       {
@@ -1392,6 +1392,186 @@
       }
     ]
   },
+  "weekly": [
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1786176392.4492292,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "deeptutor-tutor",
+      "when": 1786174024.534987,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1786173649.8171833,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cs-learning",
+      "when": 1786173619.9027934,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "quarkclouddrive",
+      "when": 1786104700.013316,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "workbench-mobile.html",
+      "when": 1786045575.9287202
+    },
+    {
+      "kind": "kb",
+      "name": "workbench-desktop.html",
+      "when": 1786045519.091767
+    },
+    {
+      "kind": "skill",
+      "name": "last30days",
+      "when": 1786023752.3110254,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786023263.1346338,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-bluebook",
+      "when": 1786001662.3176703,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "Home.md",
+      "when": 1785999151.8258364
+    },
+    {
+      "kind": "automation",
+      "name": "归档文件半年清理检查（WB实用Skills源文件）",
+      "when": 1785998902.549
+    },
+    {
+      "kind": "skill",
+      "name": "obsidian-cli",
+      "when": 1785996419.3050437,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1785942364.2573428
+    },
+    {
+      "kind": "skill",
+      "name": "daily-insight",
+      "when": 1785941977.961051,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1785940181.3500104
+    },
+    {
+      "kind": "skill",
+      "name": "obsidian",
+      "when": 1785939994.966442,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin-to-kb",
+      "when": 1785922874.8530178,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1785919608.3931186
+    },
+    {
+      "kind": "skill",
+      "name": "mcp-stdio-bridge",
+      "when": 1785914960.8384593,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "gitnexus-mcp.bat",
+      "when": 1785908583.6330864
+    },
+    {
+      "kind": "skill",
+      "name": "video-cangjie-distill",
+      "when": 1785859077.3366349,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "memory-setup",
+      "when": 1785853988.2525766,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "en-to-zh-translator",
+      "when": 1785845357.4193387,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cangjie-skill",
+      "when": 1785844135.4059873,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "url-redirect-vuln",
+      "when": 1785820325.9695032,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "idea-landing-3prompt",
+      "when": 1785820325.9572208,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-ai-radar",
+      "when": 1785763049.0694335,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-doc-kit",
+      "when": 1785763034.1569216,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pdf",
+      "when": 1785763027.2655303,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "prompt-forge",
+      "when": 1785660685.1572323,
+      "scope": "本机"
+    }
+  ],
   "aiDaily": {
     "date": "2026-08-07",
     "fetchedAt": "2026-08-07 13:42",
