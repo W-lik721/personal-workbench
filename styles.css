@@ -110,7 +110,7 @@ a:hover{text-decoration:underline}
 .card h2 .ic{font-size:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:9px;padding:5px 6px;display:inline-flex;line-height:1;color:var(--accent2)}
 
 /* ===== 布局重排 v7.1：三小卡 + 时间线整行 ===== */
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;margin-bottom:18px}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;margin-bottom:18px}
 .bento>.card{margin:0;min-width:0}
 .bento>.wk-card{grid-column:1/-1}
 @media(max-width:1000px){.bento{grid-template-columns:1fr 1fr}}
