@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-09 00:50",
+  "generatedAt": "2026-08-09 01:43",
   "kpi": {
     "skills": 60,
     "automations": 2,
     "models": 5,
-    "memory": 26,
+    "memory": 28,
     "knowledge": 9,
     "sessions": 10
   },
@@ -676,15 +676,15 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-09 00:49",
+        "title": "查找 videosays 这个 skill",
+        "status": "planning",
+        "updated": "08-09 01:43",
         "group": "今天"
       },
       {
-        "title": "查找 videosays 这个 skill",
+        "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-09 00:07",
+        "updated": "08-09 01:30",
         "group": "今天"
       },
       {
@@ -1344,8 +1344,8 @@
         "date": "2026-08-09",
         "count": 2,
         "titles": [
-          "排查大量部署失败的原因",
-          "查找 videosays 这个 skill"
+          "查找 videosays 这个 skill",
+          "排查大量部署失败的原因"
         ]
       }
     ]
@@ -1396,32 +1396,116 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "obsidian-cli",
+      "when": 1786210725.3262732,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ollama-local-multimodal",
+      "when": 1786210725.3042676,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "url-redirect-vuln",
+      "when": 1786210725.2862692,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786210725.2677498,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pink-crystal-workbuddy-skin",
+      "when": 1786210725.2457464,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "llm-onboard-diagnose",
+      "when": 1786210725.225744,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "mcp-stdio-bridge",
+      "when": 1786210725.2067435,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "daily-insight",
+      "when": 1786210725.1887443,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cs-learning",
+      "when": 1786210725.1692317,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-bluebook",
+      "when": 1786210725.1512253,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin-to-kb",
+      "when": 1786210725.1312263,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "idea-landing-3prompt",
+      "when": 1786210725.1112275,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-mcp-connect",
+      "when": 1786210725.0922258,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "tencent-video-capture",
+      "when": 1786210725.0741868,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "prompt-forge",
+      "when": 1786210725.0571768,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "impeccable",
-      "when": 1786205217.9279864,
+      "when": 1786210287.5057023,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "design-taste-frontend",
-      "when": 1786176392.4492292,
+      "when": 1786210279.8094156,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "deeptutor-tutor",
-      "when": 1786174024.534987,
+      "when": 1786210064.000151,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "agent-design-kit",
       "when": 1786173649.8171833,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "cs-learning",
-      "when": 1786173619.9027934,
       "scope": "本机"
     },
     {
@@ -1447,18 +1531,6 @@
       "scope": "本机"
     },
     {
-      "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786023263.1346338,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "workbuddy-bluebook",
-      "when": 1786001662.3176703,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "Home.md",
       "when": 1785999151.8258364
@@ -1469,21 +1541,9 @@
       "when": 1785998902.549
     },
     {
-      "kind": "skill",
-      "name": "obsidian-cli",
-      "when": 1785996419.3050437,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "AGENTS.md",
       "when": 1785942364.2573428
-    },
-    {
-      "kind": "skill",
-      "name": "daily-insight",
-      "when": 1785941977.961051,
-      "scope": "本机"
     },
     {
       "kind": "kb",
@@ -1497,21 +1557,9 @@
       "scope": "本机"
     },
     {
-      "kind": "skill",
-      "name": "douyin-to-kb",
-      "when": 1785922874.8530178,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "00-路由表.md",
       "when": 1785919608.3931186
-    },
-    {
-      "kind": "skill",
-      "name": "mcp-stdio-bridge",
-      "when": 1785914960.8384593,
-      "scope": "本机"
     },
     {
       "kind": "kb",
@@ -1544,18 +1592,6 @@
     },
     {
       "kind": "skill",
-      "name": "url-redirect-vuln",
-      "when": 1785820325.9695032,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "idea-landing-3prompt",
-      "when": 1785820325.9572208,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "wb-ai-radar",
       "when": 1785763049.0694335,
       "scope": "本机"
@@ -1571,17 +1607,11 @@
       "name": "pdf",
       "when": 1785763027.2655303,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "prompt-forge",
-      "when": 1785660685.1572323,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-09 00:50",
+    "fetchedAt": "2026-08-09 01:43",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1742,7 +1772,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-09 00:50",
+        "fetchedAt": "2026-08-09 01:43",
         "count": 21,
         "sections": [
           {
@@ -2086,7 +2116,7 @@
   },
   "dailyNews": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-09 00:50",
+    "fetchedAt": "2026-08-09 01:43",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2188,7 +2218,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-09 00:50",
+        "fetchedAt": "2026-08-09 01:43",
         "count": 15,
         "items": [
           {
@@ -2287,12 +2317,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T00:50:18",
-    "status": "ok",
-    "nextRun": "2026-08-09T01:50:18",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
