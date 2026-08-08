@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 10:36",
+  "generatedAt": "2026-08-08 10:37",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -605,7 +605,7 @@
       {
         "title": "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
         "status": "working",
-        "updated": "08-08 10:35",
+        "updated": "08-08 10:36",
         "group": "今天"
       },
       {
@@ -1512,12 +1512,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T10:36:25",
-    "status": "ok",
-    "nextRun": "2026-08-08T11:36:25",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
