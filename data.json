@@ -6,7 +6,7 @@
     "models": 5,
     "memory": 25,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 11
   },
   "skills": [
     {
@@ -38,7 +38,7 @@
       "desc": "Distill a book, long-video transcript, podcast, course, or",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：cangjie-skill",
-      "usage": 2,
+      "usage": 4,
       "lastUsed": "2026-08-08"
     },
     {
@@ -110,7 +110,7 @@
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
-      "usage": 2,
+      "usage": 4,
       "lastUsed": "2026-08-08"
     },
     {
@@ -602,6 +602,12 @@
   },
   "sessions": {
     "recent": [
+      {
+        "title": "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
+        "status": "working",
+        "updated": "08-08 10:35",
+        "group": "今天"
+      },
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
@@ -1271,8 +1277,9 @@
       },
       {
         "date": "2026-08-08",
-        "count": 1,
+        "count": 2,
         "titles": [
+          "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
           "排查大量部署失败的原因"
         ]
       }
@@ -1505,12 +1512,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T10:35:14",
-    "status": "ok",
-    "nextRun": "2026-08-08T11:35:14",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
