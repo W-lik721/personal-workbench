@@ -378,7 +378,7 @@
         html += '<div class="nw"><div class="nw-t">' + esc(it.title) + "</div>" +
           dHtml +
           '<div class="nw-f">' + src + link +
-          '<button class="nw-ask" onclick="cmdtext(' + "'展开讲讲这条 AI 新闻，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">💬 让 AI 讲讲</button>' +
+          '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
           "</div></div>";
       });
       html += "</div>";
@@ -441,7 +441,7 @@
 
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
     items.forEach(function (it, i) {
-      var ask = '<button class="nw-ask" onclick="cmdtext(' + "'展开讲讲这条新闻，并说说对我有什么影响：" + escAttr(it.title) + "'" + ')">💬 让 AI 讲讲</button>';
+      var ask = '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条新闻的背景，并说说对我有什么影响：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>';
       html += '<div class="nw"><div class="nw-t"><span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + '.</span>' + esc(it.title) + "</div>" +
         '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + ask + "</div></div>";
     });

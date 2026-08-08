@@ -292,8 +292,8 @@ ul.guide li.warn{color:var(--red);background:rgba(255,107,107,.10);border-radius
 .nw-s{font-size:10.5px;color:var(--sub);opacity:.85}
 .nw-a{font-size:11px;color:var(--accent)}
 .nw-a:hover{text-decoration:underline}
-.nw-ask{margin-left:auto;font-size:11px;background:transparent;border:1px solid var(--line);color:var(--sub);border-radius:8px;padding:2px 7px;cursor:pointer;transition:.15s}
-.nw-ask:hover{border-color:var(--accent);color:var(--accent);background:var(--tint)}
+.nw-ask{margin-left:auto;font-size:11.5px;font-weight:600;background:var(--tint);border:1px solid rgba(43,184,198,.4);color:var(--accent);border-radius:999px;padding:3px 11px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:4px}
+.nw-ask:hover{background:rgba(43,184,198,.18);border-color:var(--accent);color:var(--accent)}
 
 /* ---------- 课程表 ---------- */
 .sched-imp{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
