@@ -481,7 +481,7 @@
 
     document.getElementById("col-ov").innerHTML =
       '<div class="card"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
-        '<div class="ov-sub">已接入模型（' + (st.models || []).length + '）</div>' + modelsHtml +
+        '<div class="ov-sub">已接入模型（' + (st.models || []).length + '）</div><div class="ov-models">' + modelsHtml + "</div>" +
         '<div class="ov-sub">集成与资源</div>' +
         '<div class="ov-res">' +
         '<div class="ov-mcp"><div class="ov-mcp-h"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span></div><div class="ov-mcp-chips">' + mcpHtml + "</div></div>" +

@@ -236,6 +236,10 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .ov-metric .rk{font-size:10px;color:var(--sub);letter-spacing:.05em;font-weight:600}
 .ov-metric .rv{font-size:20px;font-weight:700;color:var(--txt-strong);font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1}
 .ov-metric .rn{font-size:11px;color:var(--sub)}
+.ov-models{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 8px;margin-top:2px}
+.ov-models .model{padding:4px 6px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm)}
+.ov-models .model .mm{margin-left:auto}
+@media(max-width:760px){.ov-models{grid-template-columns:1fr}}
 .empty{color:#6a6a72;font-size:13px;padding:4px 0}
 ul.guide{margin:0;padding-left:18px}
 ul.guide li{margin:7px 0;line-height:1.5}
