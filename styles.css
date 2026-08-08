@@ -109,10 +109,12 @@ a:hover{text-decoration:underline}
 .card h2{margin:0 0 14px;font-size:15px;color:var(--accent2);display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.01em}
 .card h2 .ic{font-size:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:9px;padding:5px 6px;display:inline-flex;line-height:1;color:var(--accent2)}
 
-/* ===== 布局重排（v7）：个人操作区 bento 网格 ===== */
-.bento{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start;margin-bottom:18px}
+/* ===== 布局重排 v7.1：三小卡 + 时间线整行 ===== */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;margin-bottom:18px}
 .bento>.card{margin:0;min-width:0}
-@media(max-width:780px){.bento{grid-template-columns:1fr}}
+.bento>.wk-card{grid-column:1/-1}
+@media(max-width:1000px){.bento{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.bento{grid-template-columns:1fr}.bento>.wk-card{grid-column:auto}}
 
 /* ---------- 输入框 / 按钮 ---------- */
 #cmdbox{width:100%;background:#14161c;border:1px solid var(--accent);color:var(--txt);border-radius:var(--radius-sm);padding:10px;font-size:13px;resize:vertical;transition:box-shadow .2s;margin-top:10px}
