@@ -158,6 +158,56 @@
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
   window.toggleNews = toggleNews;
+
+  // ---------- 待办清单（可勾选，localStorage 纯前端） ----------
+  var TODO_KEY = "wb_todos";
+  function todosLoad() {
+    try { return JSON.parse(localStorage.getItem(TODO_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function todosSave(list) { try { localStorage.setItem(TODO_KEY, JSON.stringify(list)); } catch (e) {} }
+  function renderTodos() {
+    var ul = document.getElementById("todosList");
+    if (!ul) return;
+    var list = todosLoad();
+    var done = list.filter(function (t) { return t.done; }).length;
+    var prog = document.getElementById("todoProg");
+    if (prog) prog.textContent = list.length ? ("已完成 " + done + " / 共 " + list.length) : "";
+    if (!list.length) { ul.innerHTML = '<li class="empty">还没有待办，写一条吧～</li>'; return; }
+    ul.innerHTML = list.map(function (t, i) {
+      return '<li class="todo' + (t.done ? " done" : "") + '">' +
+        '<input type="checkbox" class="tc" ' + (t.done ? "checked" : "") + ' onchange="toggleTodo(' + i + ')">' +
+        '<span class="tt">' + esc(t.text) + '</span>' +
+        '<button class="nd" onclick="delTodo(' + i + ')" title="删除">✕</button></li>';
+    }).join("");
+  }
+  function addTodo() {
+    var ta = document.getElementById("todoInput");
+    var t = (ta.value || "").trim();
+    var h = document.getElementById("todosHint");
+    if (!t) { if (h) h.textContent = "先写点内容"; return; }
+    var list = todosLoad();
+    list.unshift({ text: t, done: false, at: Date.now() });
+    todosSave(list); ta.value = ""; if (h) h.textContent = "✓ 已添加";
+    renderTodos();
+  }
+  function toggleTodo(i) {
+    var list = todosLoad();
+    if (i < 0 || i >= list.length) return;
+    list[i].done = !list[i].done;
+    todosSave(list); renderTodos();
+  }
+  function delTodo(i) {
+    var list = todosLoad();
+    if (i < 0 || i >= list.length) return;
+    list.splice(i, 1); todosSave(list); renderTodos();
+  }
+  function clearDone() {
+    var list = todosLoad().filter(function (t) { return !t.done; });
+    todosSave(list); renderTodos();
+    var h = document.getElementById("todosHint");
+    if (h) h.textContent = "✓ 已清除已完成";
+  }
+  window.addTodo = addTodo; window.toggleTodo = toggleTodo; window.delTodo = delTodo; window.clearDone = clearDone;
   window.dnewsDateChanged = dnewsDateChanged;
 
   // ---------- 渲染 ----------
@@ -1081,10 +1131,13 @@
   renderNotes();
   renderSchedule();
   renderLinks();
+  renderTodos();
   // 本地无课程表时，自动从云端拉取一次（换设备也能看到）
   if (!scheduleLoad().length) schedulePullCloud(true);
   var ni = document.getElementById("noteInput");
   if (ni) ni.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addNote(); } });
+  var ti = document.getElementById("todoInput");
+  if (ti) ti.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addTodo(); } });
   loadData().catch(function (e) {
     document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
   });

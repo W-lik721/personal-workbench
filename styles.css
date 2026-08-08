@@ -374,3 +374,74 @@ body.light .card h2 .ic{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08)}
   background: var(--accent);
   box-shadow: 0 0 0 3px var(--tint);
 }
+
+/* ===== 新增板块样式（v5）：可勾选待办清单 ===== */
+.todos-card .todo-prog {
+  font-size: 12px;
+  color: var(--sub);
+  margin-bottom: 8px;
+}
+.todos {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.todo {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 9px 11px;
+  font-size: 13px;
+  animation: fadeIn .3s ease both;
+}
+.todo .tc {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.todo .tt {
+  flex: 1;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.todo.done .tt {
+  text-decoration: line-through;
+  color: var(--sub);
+}
+.todo .nd {
+  background: transparent;
+  border: none;
+  color: var(--sub);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 2px;
+  line-height: 1;
+  flex: none;
+}
+.todo .nd:hover { color: var(--red); }
+#todoInput {
+  width: 100%;
+  background: #14161c;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--radius-sm);
+  color: var(--txt);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  resize: vertical;
+  font-family: inherit;
+  margin-top: 10px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+#todoInput::placeholder { color: #79818f; }
+#todoInput:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--tint); background: #14161c; }
+body.light #todoInput { background: #f0f2f5; color: #1a1c20; }

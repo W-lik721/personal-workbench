@@ -12,7 +12,7 @@
 <meta property="og:locale" content="zh_CN">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=15">
+<link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
 <a class="skip" href="#main">跳到主内容</a>
@@ -47,6 +47,17 @@
     <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <button class="btn-sm" onclick="addLink()">➕ 加一个</button>
       <span id="linksHint" class="empty"></span>
+    </div>
+  </section>
+  <section class="card todos-card">
+    <h2><span class="ic">✅</span>待办清单 · 可勾选</h2>
+    <div class="todo-prog" id="todoProg"></div>
+    <ul class="todos" id="todosList"></ul>
+    <textarea id="todoInput" rows="2" placeholder="写一条待办，回车或点“添加”（仅存本机，勾上即完成）"></textarea>
+    <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+      <button class="btn-sm" onclick="addTodo()">➕ 添加</button>
+      <button class="btn-sm" onclick="clearDone()">🧹 清除已完成</button>
+      <span id="todosHint" class="empty"></span>
     </div>
   </section>
   <section class="card notes-card">
@@ -88,6 +99,6 @@
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
 </body>
 </html>
