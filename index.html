@@ -47,6 +47,7 @@
   <nav class="tabs">
     <button class="tab active" data-tab="cap" onclick="switchTab('cap')">🚀 能力速达</button>
     <button class="tab" data-tab="news" onclick="switchTab('news')">🗞️ AI 日报<span class="tab-dot" id="newsDot"></span></button>
+    <button class="tab" data-tab="dnews" onclick="switchTab('dnews')">📰 每日新闻<span class="tab-dot" id="dnewsDot"></span></button>
     <button class="tab" data-tab="ov" onclick="switchTab('ov')">📊 总览状态</button>
     <button class="tab" data-tab="schedule" onclick="switchTab('schedule')">📅 课程表</button>
   </nav>
@@ -56,6 +57,9 @@
   <section class="tabpane" id="pane-news">
     <div class="wrap"><div class="col" id="col-news"></div></div>
   </section>
+  <section class="tabpane" id="pane-dnews">
+    <div class="wrap"><div class="col" id="col-dnews"></div></div>
+  </section>
   <section class="tabpane" id="pane-ov">
     <div class="wrap"><div class="col" id="col-ov"></div></div>
   </section>
@@ -63,13 +67,13 @@
     <div class="wrap"><div class="col" id="col-schedule"></div></div>
   </section>
 </main>
-<div class="foot">本机数据每小时自动同步 · AI 日报每天 08:30 自动抓取 · 全部用真实数据动态生成</div>
+<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成</div>
 <div class="heat-modal" id="heat-detail" onclick="if(event.target===this)closeHeat()">
   <div class="heat-card">
     <div class="heat-card-h"><span id="heat-detail-date"></span><button class="heat-x" onclick="closeHeat()">✕</button></div>
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=16"></script>
+<script src="app.js?v=17"></script>
 </body>
 </html>

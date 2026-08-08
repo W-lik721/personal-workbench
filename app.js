@@ -158,6 +158,7 @@
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
   window.toggleNews = toggleNews;
+  window.dnewsDateChanged = dnewsDateChanged;
 
   // ---------- 渲染 ----------
   function renderKPI(d) {
@@ -328,6 +329,70 @@
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
       '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
       '<button class="btn-sm" onclick="cmdtext(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      "</div></div>";
+
+    box.innerHTML = html;
+  }
+
+  // ---------- 每日新闻（国内/中文，支持历史日期切换） ----------
+  var DNEWS_DATA = null;
+  function renderDailyNews(d) {
+    DNEWS_DATA = d;
+    var a = d.dailyNews || {};
+    var box = document.getElementById("col-dnews");
+    if (!box) return;
+    var dot = document.getElementById("dnewsDot");
+    if (dot) dot.style.display = ((a.count || 0) > 0) ? "inline-block" : "none";
+
+    var hist = a.history || [];
+    var curDate = a.date || "";
+    var selHtml = "";
+    if (hist.length > 1) {
+      selHtml = '<div class="card"><div class="news-sel">📅 历史新闻：' +
+        '<select id="dnewsSel" onchange="dnewsDateChanged()">' +
+        hist.map(function (h) {
+          return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
+            esc(h.date) + ' (' + (h.count || 0) + ' 条)</option>';
+        }).join("") + '</select></div></div>';
+    }
+    box.innerHTML = selHtml + '<div id="dnewsBody"></div>';
+    renderDNewsBody(curDate);
+  }
+  function dnewsDateChanged() {
+    var sel = document.getElementById("dnewsSel");
+    if (sel) renderDNewsBody(sel.value);
+  }
+  function renderDNewsBody(date) {
+    var box = document.getElementById("dnewsBody");
+    if (!box || !DNEWS_DATA) return;
+    var a = DNEWS_DATA.dailyNews || {};
+    var day = (a.history || []).filter(function (h) { return h.date === date; })[0] || a;
+    var items = day.items || [];
+    var tip = day.tip || "";
+    if (!items.length) {
+      box.innerHTML = '<div class="card"><h2><span class="ic">📰</span>每日新闻</h2>' +
+        '<div class="empty">这一天还没有抓到新闻数据。可以点「立即刷新」让本机重新抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_daily_news.py</code>。</div>' +
+        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_daily_news.py 抓今天的国内新闻，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
+      return;
+    }
+    var html = '<div class="card news-head"><h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
+      '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
+      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "—") +
+      (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看来源 ↗</a>' : "") + "</div>" +
+      (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>";
+
+    html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
+    items.forEach(function (it, i) {
+      var ask = '<button class="nw-ask" onclick="cmdtext(' + "'展开讲讲这条新闻，并说说对我有什么影响：" + escAttr(it.title) + "'" + ')">💬 让 AI 讲讲</button>';
+      html += '<div class="nw"><div class="nw-t"><span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + '.</span>' + esc(it.title) + "</div>" +
+        '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + ask + "</div></div>";
+    });
+    html += "</div>";
+
+    html += '<div class="card"><h2><span class="ic">🧪</span>基于新闻做点什么</h2>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
+      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
       "</div></div>";
 
     box.innerHTML = html;
@@ -696,6 +761,7 @@
     renderQuick(d);
     renderCap(d);
     renderNews(d);
+    renderDailyNews(d);
     renderOv(d);
   }
 
