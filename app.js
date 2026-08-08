@@ -490,15 +490,26 @@
         '<div class="ov-metric"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
-        '<div style="margin:6px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div>' + olHtml +
-        '<div class="res" style="margin-top:10px">' +
-        '<div class="res-i"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
-        '<div class="res-i"><span class="rk">运行时</span><span class="rv" style="font-size:13px">' + esc(st.runtime || "-") + '</span><span class="rn">Python / Node</span></div>' +
-        "</div></div>" +
-      '<div class="card"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' + autoHtml +
+        '<div class="ov-res">' +
+        '<div class="ov-metric"><span class="rk">本地模型</span><span class="rv">' + olModels.length + '</span><span class="rn">' + (ol.available === false ? "Ollama 未装" : (olRunning.length ? olRunning.length + " 运行中" : "已就绪")) + "</span></div>" +
+        '<div class="ov-metric"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
+        '<div class="ov-metric"><span class="rk">运行时</span><span class="rv" style="font-size:14px">' + esc(st.runtime || "-") + '</span><span class="rn">Python / Node</span></div>' +
+        "</div>" +
+        (olModels.length ? '<div style="margin:8px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div><div class="ov-ol">' + olHtml + "</div>" : "") +
+      "</div>" +
+      '<div class="card"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' +
+        '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
+        '<div class="ov-metric"><span class="rk">自动化任务</span><span class="rv">' + (st.automations || []).length + '</span><span class="rn">WorkBuddy 内置</span></div>' +
+        '<div class="ov-metric"><span class="rk">活跃中</span><span class="rv">' + (st.automations || []).filter(function (a) { return a.status === "ACTIVE" || a.status === "active"; }).length + '</span><span class="rn">ACTIVE 状态</span></div>' +
+        "</div>" +
+        '<div class="ov-auto-panel">' + autoHtml + "</div>" +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'新建定时任务：频率（如每周一10点）+ 工作区 + 任务描述'" + ')">➕ 新建定时任务</button></div></div>' +
       '<div class="card"><h2><span class="ic">📚</span>④ 内容与知识生产</h2>' +
-        '<div style="margin-bottom:6px;color:var(--accent2);font-size:13px">知识库类型：' + esc(kbTypes) + "</div>" + kbHtml +
+        '<div class="ov-res" style="grid-template-columns:repeat(2,1fr)">' +
+        '<div class="ov-metric"><span class="rk">知识库文件</span><span class="rv">' + kb.files.length + '</span><span class="rn">篇笔记 / 资料</span></div>' +
+        '<div class="ov-metric"><span class="rk">知识库类型</span><span class="rv" style="font-size:14px">' + Object.keys(kb.types || {}).length + '</span><span class="rn">' + esc(kbTypes || "未分类") + "</span></div>" +
+        "</div>" +
+        (kb.files.length ? '<div class="ov-kb" style="margin-top:8px">' + kbHtml + "</div>" : '<div class="empty" style="margin-top:8px">暂无知识库文件，点下方新建</div>') +
         '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
         '<button class="btn" onclick="cmdtext(' + "'在 knowledge-base/ 新建一篇笔记，主题：'" + ')">➕ 新建笔记</button>' +
         '<button class="btn" onclick="cmdtext(' + "'用 video-cangjie-distill 把以下视频转成 skill：'" + ')">🎬 蒸馏视频</button>' +

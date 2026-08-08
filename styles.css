@@ -240,6 +240,17 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .ov-models .model{padding:4px 6px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm)}
 .ov-models .model .mm{margin-left:auto}
 @media(max-width:760px){.ov-models{grid-template-columns:1fr}}
+/* ⑦ 环境体检台：Ollama 模型 2 列紧凑网格 */
+.ov-ol{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 8px;margin-top:2px}
+.ov-ol .model{padding:4px 6px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm)}
+/* ④ 内容与知识生产：知识库文件 2 列紧凑网格 */
+.ov-kb{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 8px;margin-top:2px}
+.ov-kb .auto{padding:4px 6px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm)}
+.ov-kb .auto:last-child{border-bottom:1px solid var(--line)}
+/* ② 自动化：列表面板化 */
+.ov-auto-panel{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:4px 8px;margin-bottom:2px}
+.ov-auto-panel .auto:last-child{border-bottom:none}
+@media(max-width:760px){.ov-ol,.ov-kb{grid-template-columns:1fr}}
 .empty{color:#6a6a72;font-size:13px;padding:4px 0}
 ul.guide{margin:0;padding-left:18px}
 ul.guide li{margin:7px 0;line-height:1.5}
@@ -337,6 +348,7 @@ body.light .model .mm{background:#e4e7eb;border-color:rgba(0,0,0,.10);color:#6b7
 body.light .badge.on{color:#1a7f37}
 body.light .badge.off{color:#c0392b}
 body.light .foot,body.light .empty,body.light .auto .meta,body.light .kpi .kl,body.light .res-i .rn{color:#8a909c}
+body.light .ov-ol .model,body.light .ov-kb .auto,body.light .ov-auto-panel{box-shadow:var(--shadow-sm)}
 body.light #cmdbox,body.light #noteInput,body.light #q,body.light #inspiretext,body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
 body.light textarea:focus{outline-color:var(--accent-strong);background:#fff}
 body.light .hc{background:rgba(0,0,0,.08)}
