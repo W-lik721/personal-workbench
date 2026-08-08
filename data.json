@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 16:52",
+  "generatedAt": "2026-08-08 16:56",
   "kpi": {
     "skills": 59,
     "automations": 2,
@@ -637,8 +637,8 @@
     "recent": [
       {
         "title": "搭建个人知识库并查找资料",
-        "status": "working",
-        "updated": "08-08 16:51",
+        "status": "completed",
+        "updated": "08-08 16:56",
         "group": "今天"
       },
       {
@@ -1347,7 +1347,7 @@
   },
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 16:51",
+    "fetchedAt": "2026-08-08 16:56",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1508,7 +1508,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 16:51",
+        "fetchedAt": "2026-08-08 16:56",
         "count": 21,
         "sections": [
           {
@@ -1669,7 +1669,7 @@
   },
   "dailyNews": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 16:52",
+    "fetchedAt": "2026-08-08 16:56",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -1771,7 +1771,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 16:52",
+        "fetchedAt": "2026-08-08 16:56",
         "count": 15,
         "items": [
           {
@@ -1870,12 +1870,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-08T16:52:07",
-    "status": "ok",
-    "nextRun": "2026-08-08T17:52:07",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
