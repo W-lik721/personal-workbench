@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 18:48",
+  "generatedAt": "2026-08-08 19:39",
   "kpi": {
     "skills": 59,
     "automations": 2,
@@ -624,11 +624,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 236
       },
       "D": {
         "total": 544,
-        "free": 394
+        "free": 389
       }
     },
     "runtime": "3.13 / 22.22"
@@ -636,21 +636,21 @@
   "sessions": {
     "recent": [
       {
+        "title": "排查大量部署失败的原因",
+        "status": "working",
+        "updated": "08-08 19:39",
+        "group": "今天"
+      },
+      {
         "title": "学习计算机科学与技术",
         "status": "completed",
-        "updated": "08-08 18:48",
+        "updated": "08-08 19:24",
         "group": "今天"
       },
       {
         "title": "将 Obsidian 安装到 D 盘",
         "status": "completed",
         "updated": "08-08 17:36",
-        "group": "今天"
-      },
-      {
-        "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-08 17:33",
         "group": "今天"
       },
       {
@@ -1301,9 +1301,9 @@
         "date": "2026-08-08",
         "count": 4,
         "titles": [
+          "排查大量部署失败的原因",
           "学习计算机科学与技术",
           "将 Obsidian 安装到 D 盘",
-          "排查大量部署失败的原因",
           "查找 videosays 这个 skill"
         ]
       }
@@ -1354,7 +1354,7 @@
   },
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 18:48",
+    "fetchedAt": "2026-08-08 19:39",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1515,7 +1515,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 18:48",
+        "fetchedAt": "2026-08-08 19:39",
         "count": 21,
         "sections": [
           {
@@ -1676,7 +1676,7 @@
   },
   "dailyNews": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 18:48",
+    "fetchedAt": "2026-08-08 19:39",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -1778,7 +1778,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 18:48",
+        "fetchedAt": "2026-08-08 19:39",
         "count": 15,
         "items": [
           {
@@ -1877,12 +1877,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-08T18:48:51",
-    "status": "ok",
-    "nextRun": "2026-08-08T19:48:51",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
