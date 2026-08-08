@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 13:54",
+  "generatedAt": "2026-08-08 15:11",
   "kpi": {
     "skills": 56,
     "automations": 2,
@@ -612,8 +612,14 @@
     "recent": [
       {
         "title": "用cangjie-skill蒸馏开源项目补充知识库",
+        "status": "working",
+        "updated": "08-08 15:09",
+        "group": "今天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-08 13:20",
+        "updated": "08-08 15:04",
         "group": "今天"
       },
       {
@@ -633,12 +639,6 @@
         "status": "completed",
         "updated": "08-07 14:28",
         "group": "昨天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-06 23:20",
-        "group": "更早"
       },
       {
         "title": "整理并精简重复的 skill",
@@ -1269,9 +1269,8 @@
       },
       {
         "date": "2026-08-06",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "查找 videosays 这个 skill",
           "整理并精简重复的 skill"
         ]
       },
@@ -1285,9 +1284,10 @@
       },
       {
         "date": "2026-08-08",
-        "count": 2,
+        "count": 3,
         "titles": [
           "用cangjie-skill蒸馏开源项目补充知识库",
+          "查找 videosays 这个 skill",
           "排查大量部署失败的原因"
         ]
       }
@@ -1520,12 +1520,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T13:54:13",
-    "status": "ok",
-    "nextRun": "2026-08-08T14:54:13",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
