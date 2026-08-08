@@ -122,7 +122,7 @@ def get_local_models():
 def get_ollama_models():
     """读取本机 Ollama 真实已装模型（ollama list）与运行中状态（ollama ps）。
 
-    返回 {available, models:[{name,size,modified}], running:[{name,size,processor}]}。
+    返回 {available, models:[{id,size,modified,tags:[name,...]}], running:[{name,size,processor}]}。
     与 status.localModels（WorkBuddy 接入配置）不同，这里取的是 Ollama 真正拉到本机的模型。
     """
     exe = r"C:\Users\13115\ollama\ollama.exe"
@@ -132,6 +132,7 @@ def get_ollama_models():
     out["available"] = True
     try:
         r = subprocess.run([exe, "list"], capture_output=True, text=True, timeout=25)
+        by_id = {}
         for ln in r.stdout.splitlines():
             s = ln.strip()
             if not s or s.startswith("NAME") or set(s) <= set("- "):
@@ -140,11 +141,18 @@ def get_ollama_models():
             if len(parts) < 3:
                 continue
             # 模型名不含空格（用 / : - _ .），故可安全 split
-            out["models"].append({
-                "name": parts[0],
-                "size": (parts[2] + " " + parts[3]) if len(parts) > 3 else parts[2],
-                "modified": " ".join(parts[4:]) if len(parts) > 4 else "",
-            })
+            # 同一 GGUF 文件在 Ollama 里可能有多个 tag（如短名 + 魔搭原生长名），
+            # 第二列 ID 相同即同一模型，按 ID 去重并合并 tags，避免重复展示
+            name = parts[0]
+            mid = parts[1]
+            size = (parts[2] + " " + parts[3]) if len(parts) > 3 else parts[2]
+            modified = " ".join(parts[4:]) if len(parts) > 4 else ""
+            if mid in by_id:
+                if name not in by_id[mid]["tags"]:
+                    by_id[mid]["tags"].append(name)
+            else:
+                by_id[mid] = {"id": mid, "size": size, "modified": modified, "tags": [name]}
+        out["models"] = sorted(by_id.values(), key=lambda m: m["tags"][0])
     except Exception as e:
         print("ollama list err", e)
     try:

@@ -415,9 +415,11 @@
     var olRunning = ol.running || [];
     var olHtml = ol.available === false ? '<div class="empty">Ollama 未安装</div>' :
       (olModels.length ? olModels.map(function (m) {
-        var run = olRunning.some(function (r) { return r.name === m.name; });
-        return '<div class="model ol-model"><span class="ol-dot ' + (run ? "on" : "") + '"></span><b>' + esc(m.name) + '</b>' +
-          '<span class="meta">' + esc(m.size || "") + (run ? " · 运行中" : "") + "</span></div>";
+        var tags = m.tags || [m.name];
+        var run = olRunning.some(function (r) { return tags.indexOf(r.name) >= 0; });
+        var alias = tags.length > 1 ? " · 等 " + tags.length + " 个标签" : "";
+        return '<div class="model ol-model"><span class="ol-dot ' + (run ? "on" : "") + '"></span><b>' + esc(tags[0]) + '</b>' +
+          '<span class="meta">' + esc(m.size || "") + alias + (run ? " · 运行中" : "") + "</span></div>";
       }).join("") : '<div class="empty">Ollama 未运行 · 暂无本地模型</div>');
     var autoHtml = (st.automations || []).map(function (a) {
       var badge = a.status === "ACTIVE" || a.status === "active" ? '<span class="badge on">ACTIVE</span>' : '<span class="badge off">' + esc(a.status) + "</span>";
