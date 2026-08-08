@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 22:15",
+  "generatedAt": "2026-08-08 22:37",
   "kpi": {
     "skills": 59,
     "automations": 2,
@@ -601,14 +601,6 @@
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
           ]
-        },
-        {
-          "id": "41783961c26d",
-          "size": "408 MB",
-          "modified": "7 days ago",
-          "tags": [
-            "shaw/dmeta-embedding-zh:latest"
-          ]
         }
       ],
       "running": []
@@ -678,7 +670,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "working",
-        "updated": "08-08 22:13",
+        "updated": "08-08 22:37",
         "group": "今天"
       },
       {
