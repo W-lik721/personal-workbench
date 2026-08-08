@@ -1665,5 +1665,12 @@
         "canonical": "https://aihot.virxact.com/daily/2026-08-08"
       }
     ]
+  },
+  "sync": {
+    "lastRun": "2026-08-08T16:13:09",
+    "status": "ok",
+    "nextRun": "2026-08-08T17:13:09",
+    "intervalHours": 1,
+    "staleHours": 2
   }
 }
