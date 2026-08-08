@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-08 16:19",
+  "generatedAt": "2026-08-08 16:52",
   "kpi": {
     "skills": 59,
     "automations": 2,
     "models": 5,
     "memory": 25,
-    "knowledge": 10,
+    "knowledge": 9,
     "sessions": 9
   },
   "skills": [
@@ -86,6 +86,14 @@
       "desc": ">-",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：deeptutor-tutor",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "design-taste-frontend",
+      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：design-taste-frontend",
       "usage": 0,
       "lastUsed": ""
     },
@@ -346,14 +354,6 @@
       "lastUsed": ""
     },
     {
-      "name": "design-taste-frontend",
-      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）\"",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：taste-skill",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "tencent-video-capture",
       "desc": "Download videos from Tencent share links (微信视频号 weixin.qq.com/sph, channels.weixin.qq.com, or QQ频道 pd.qq.com) whose real video URL is hidden behind a JS app and not in the page source. Use when curl/WebFetch can't find a direct mp4. (视频号/WeChat Channels/QQ频道 视频下载)",
       "category": "通用能力",
@@ -526,6 +526,7 @@
   ],
   "guide": [
     "🗞️ 今日 AI 日报已更新（21 条）：OpenAI 披露 ChatGPT 全球 10 亿用户画像：35 岁及以上用户用量上升",
+    "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
@@ -627,7 +628,7 @@
       },
       "D": {
         "total": 544,
-        "free": 395
+        "free": 394
       }
     },
     "runtime": "3.13 / 22.22"
@@ -637,19 +638,19 @@
       {
         "title": "搭建个人知识库并查找资料",
         "status": "working",
-        "updated": "08-08 16:18",
+        "updated": "08-08 16:51",
         "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-08 16:14",
+        "status": "working",
+        "updated": "08-08 16:51",
         "group": "今天"
       },
       {
         "title": "查找 videosays 这个 skill",
         "status": "completed",
-        "updated": "08-08 16:11",
+        "updated": "08-08 16:32",
         "group": "今天"
       },
       {
@@ -1302,18 +1303,14 @@
     ]
   },
   "knowledge": {
-    "total": 10,
+    "total": 9,
     "types": {
-      ".md": 6,
+      ".md": 5,
       "(无扩展名)": 1,
       ".bat": 1,
       ".html": 2
     },
     "files": [
-      {
-        "name": "Penpot 官网.md",
-        "mtime": "08-08 16:09"
-      },
       {
         "name": "workbench-mobile.html",
         "mtime": "08-07 03:46"
@@ -1341,12 +1338,16 @@
       {
         "name": "gitnexus-mcp.bat",
         "mtime": "08-05 13:43"
+      },
+      {
+        "name": ".gitignore",
+        "mtime": "08-01 14:48"
       }
     ]
   },
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 16:19",
+    "fetchedAt": "2026-08-08 16:51",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1507,7 +1508,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 16:19",
+        "fetchedAt": "2026-08-08 16:51",
         "count": 21,
         "sections": [
           {
@@ -1666,11 +1667,208 @@
       }
     ]
   },
-  "sync": {
-    "lastRun": "2026-08-08T16:19:43",
-    "status": "ok",
-    "nextRun": "2026-08-08T17:19:43",
-    "intervalHours": 1,
-    "staleHours": 2
+  "dailyNews": {
+    "date": "2026-08-08",
+    "fetchedAt": "2026-08-08 16:52",
+    "source": "每日60秒 (vikiboss/60s)",
+    "canonical": "https://github.com/vikiboss/60s",
+    "count": 15,
+    "items": [
+      {
+        "title": "上半年国内居民出游人次 34.63 亿，同比增长 5.4%；出游总花费 3.21 万亿元，同比增长 2.0%",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "今年前 7 月我国货物贸易进出口总值超 30 万亿元，同比增长 17.3%，延续良好的增长态势",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "东航发布新规：8 月 6 日（含）以后销售的国内客票，提前 14 天可免费退改签",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "北京楼市新政：非京籍家庭购房社保个税缴纳年限下调为一年，公积金贷款额度最高 340 万元",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "中疾控：新冠阳性率上升趋缓，总体处于中流行水平，南方显著高于北方",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "受台风 “白海豚” 影响，长三角铁路部分线路列车临时停运",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "河南省 2026 年 “三支一扶” 笔试成绩作废，将重新组织笔试",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "WTT 横滨冠军赛：国乒女单 3 人跻身八强，国乒男单全军覆没无缘八强",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "央行连续 21 个月增持黄金，7 月外汇储备增加 25 亿美元",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "我国高端钢材迎来密集突破：比 A4 纸还要薄，同时拥有高强度、高延展性",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "美国斯坦福科学家首次用 AI 设计出 16 种全新病毒，用于感染细菌，不会对人类构成威胁",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "特朗普颁令禁止生育旅游，特定人群所生子女将无法获得公民权",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "美将对多晶硅衍生品加征 15% 关税，并引入最低进口价机制",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "沙特、土耳其和巴基斯坦签署共同防务协议：对三国中任何一国动武，将被视为对所有三国的攻击",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      },
+      {
+        "title": "乌方公布对俄作战外籍军人规模：来自 72 个外方近 1.6 万人，其中约 40% 来自拉丁美洲国家",
+        "summary": "",
+        "url": "",
+        "source": "每日60秒"
+      }
+    ],
+    "tip": "心态对了，世界就对了。你眼里的刺，往往是心里的刺。",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U9mABtjIOiaZkq80KOXJO05IEXm8pibUibdgslHGTR1rs2BQxRGvuGhcsRJbZXhYLoWszI1bibcU69mMH8uf1O5T7RYBpDkgjBornU/640?wx_fmt=jpeg&from=appmsg",
+    "warnings": [],
+    "history": [
+      {
+        "date": "2026-08-08",
+        "fetchedAt": "2026-08-08 16:52",
+        "count": 15,
+        "items": [
+          {
+            "title": "上半年国内居民出游人次 34.63 亿，同比增长 5.4%；出游总花费 3.21 万亿元，同比增长 2.0%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "今年前 7 月我国货物贸易进出口总值超 30 万亿元，同比增长 17.3%，延续良好的增长态势",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "东航发布新规：8 月 6 日（含）以后销售的国内客票，提前 14 天可免费退改签",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "北京楼市新政：非京籍家庭购房社保个税缴纳年限下调为一年，公积金贷款额度最高 340 万元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中疾控：新冠阳性率上升趋缓，总体处于中流行水平，南方显著高于北方",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "受台风 “白海豚” 影响，长三角铁路部分线路列车临时停运",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "河南省 2026 年 “三支一扶” 笔试成绩作废，将重新组织笔试",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "WTT 横滨冠军赛：国乒女单 3 人跻身八强，国乒男单全军覆没无缘八强",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "央行连续 21 个月增持黄金，7 月外汇储备增加 25 亿美元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国高端钢材迎来密集突破：比 A4 纸还要薄，同时拥有高强度、高延展性",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国斯坦福科学家首次用 AI 设计出 16 种全新病毒，用于感染细菌，不会对人类构成威胁",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "特朗普颁令禁止生育旅游，特定人群所生子女将无法获得公民权",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美将对多晶硅衍生品加征 15% 关税，并引入最低进口价机制",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "沙特、土耳其和巴基斯坦签署共同防务协议：对三国中任何一国动武，将被视为对所有三国的攻击",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "乌方公布对俄作战外籍军人规模：来自 72 个外方近 1.6 万人，其中约 40% 来自拉丁美洲国家",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "心态对了，世界就对了。你眼里的刺，往往是心里的刺。",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      }
+    ]
   }
 }
