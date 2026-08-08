@@ -205,24 +205,24 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .heat-lg .hc{width:10px;height:10px;display:inline-block}
 
 /* ---------- 自动化 / 模型 / 总览 ---------- */
-.auto{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.auto{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .auto:last-child{border-bottom:none}
 .auto .badge{font-size:11px;padding:2px 9px;border-radius:10px}
 .badge.on{background:rgba(63,185,80,.15);color:var(--green)}
 .badge.off{background:rgba(255,107,107,.15);color:var(--red)}
 .auto .meta{color:var(--sub);font-size:12px}
 .auto b{font-weight:600}
-.model{padding:7px 0;color:#e0c089;font-size:13px}
-.empty{color:#6a6a72;font-size:13px;padding:8px 0}
+.model{padding:4px 0;color:#e0c089;font-size:13px}
+.empty{color:#6a6a72;font-size:13px;padding:6px 0}
 ul.guide{margin:0;padding-left:18px}
 ul.guide li{margin:9px 0;line-height:1.55}
 ul.guide li.warn{color:var(--red);background:rgba(255,107,107,.10);border-radius:8px;padding:5px 9px;margin-left:-9px;list-style:none}
 .res{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
-.res-i{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
-.res-i .rk{display:block;font-size:11px;color:var(--sub)}
-.res-i .rv{font-size:17px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.res-i{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:7px 9px}
+.res-i .rk{display:block;font-size:10px;color:var(--sub)}
+.res-i .rv{font-size:15px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 .res-i .rv.warn-red{color:var(--red)}
-.res-i .rn{display:block;font-size:11px;color:var(--sub);margin-top:3px;word-break:break-all}
+.res-i .rn{display:block;font-size:10px;color:var(--sub);margin-top:2px;word-break:break-all}
 .stat{display:flex;gap:22px;margin-bottom:14px;color:var(--sub);font-size:12px;flex-wrap:wrap}
 .stat b{color:var(--txt);font-size:17px;font-weight:600;margin-right:5px;font-variant-numeric:tabular-nums}
 
@@ -460,8 +460,8 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 360px;
+  gap: 6px;
+  max-height: 260px;
   overflow-y: auto;
   scrollbar-width: thin;
 }
@@ -470,25 +470,25 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .wk {
   display: flex;
   align-items: flex-start;
-  gap: 11px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 6px 8px;
   background: var(--panel2);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   animation: fadeIn .3s ease both;
 }
 .wk-ic {
-  font-size: 15px;
+  font-size: 13px;
   flex: none;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--tint);
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 7px;
 }
-.wk-b { display: flex; flex-direction: column; gap: 2px; line-height: 1.4; }
-.wk-name { font-size: 13.5px; font-weight: 600; color: var(--txt); word-break: break-word; }
-.wk-meta { font-size: 11.5px; color: var(--sub); }
+.wk-b { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
+.wk-name { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
+.wk-meta { font-size: 11px; color: var(--sub); }

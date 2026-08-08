@@ -483,16 +483,16 @@
 
     document.getElementById("col-ov").innerHTML =
       '<div class="card"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
-        '<div style="margin:2px 0 8px;color:var(--accent2);font-size:13px">已接入模型（' + (st.models || []).length + "）</div>" + modelsHtml +
-        '<div style="margin:14px 0 6px;color:var(--accent2);font-size:13px">集成与资源</div>' +
+        '<div style="margin:2px 0 4px;color:var(--accent2);font-size:13px">已接入模型（' + (st.models || []).length + "）</div>" + modelsHtml +
+        '<div style="margin:10px 0 4px;color:var(--accent2);font-size:13px">集成与资源</div>' +
         '<div class="res">' +
-        '<div class="res-i"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span><span class="rn">' + esc(mcpHtml) + "</span></div>" +
+        '<div class="res-i"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span><span class="rn">' + mcpHtml + "</span></div>" +
         '<div class="res-i"><span class="rk">记忆库</span><span class="rv">' + d.kpi.memory + '</span><span class="rn">个文件</span></div>' +
         '<div class="res-i"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
         '<div class="res-i"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">磁盘可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
-        '<div style="margin:8px 0 4px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div>' + olHtml +
+        '<div style="margin:6px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div>' + olHtml +
         '<div class="res" style="margin-top:10px">' +
         '<div class="res-i"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
         '<div class="res-i"><span class="rk">运行时</span><span class="rv" style="font-size:13px">' + esc(st.runtime || "-") + '</span><span class="rn">Python / Node</span></div>' +
