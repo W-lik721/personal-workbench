@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-08 23:43",
+  "generatedAt": "2026-08-09 00:50",
   "kpi": {
-    "skills": 59,
+    "skills": 60,
     "automations": 2,
     "models": 5,
-    "memory": 25,
+    "memory": 26,
     "knowledge": 9,
     "sessions": 10
   },
@@ -170,6 +170,14 @@
       "lastUsed": ""
     },
     {
+      "name": "impeccable",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：impeccable",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "job-hunting-hub",
       "desc": "统一求职全流程 skill（由 job-hunting-hub 与 ai-job-search 合并）。当用户需要找工作、准备简历、匹配JD、写求职信、评估职位适配度、准备面试、查薪资基准、发现职位、做技能差距分析、查询公司信息、管理投递进度时使用。覆盖：简历知识库、JD评估(6维)、ATS优化、CV/求职信生成(drafter-reviewer校验)、公司查询、投递跟踪、面试准备(STAR)、薪资基准、职位发现、技能差距与学习规划、记忆同步。触发词：找工作、准备简历、分析JD、写求职信、评估这个职位、面试准备、薪资、职位发现、技能差距、查公司、投递进度、帮我应聘。",
       "category": "通用能力",
@@ -255,7 +263,7 @@
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：obsidian",
       "usage": 2,
-      "lastUsed": "2026-08-08"
+      "lastUsed": "2026-08-09"
     },
     {
       "name": "obsidian-cli",
@@ -532,7 +540,7 @@
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-08",
+    "skillsLastUpdate": "2026-08-09",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -652,7 +660,7 @@
         "online": false
       }
     ],
-    "memoryLastUpdate": "2026-08-08",
+    "memoryLastUpdate": "2026-08-09",
     "disk": {
       "C": {
         "total": 380,
@@ -669,39 +677,39 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "planning",
-        "updated": "08-08 23:43",
+        "status": "completed",
+        "updated": "08-09 00:49",
+        "group": "今天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "completed",
+        "updated": "08-09 00:07",
         "group": "今天"
       },
       {
         "title": "学习计算机科学与技术",
         "status": "completed",
         "updated": "08-08 21:12",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "将 Obsidian 安装到 D 盘",
         "status": "completed",
         "updated": "08-08 20:02",
-        "group": "今天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-08 16:32",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理工作区",
         "status": "completed",
         "updated": "08-07 23:05",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
         "status": "completed",
         "updated": "08-07 14:28",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "整理并精简重复的 skill",
@@ -729,11 +737,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-12",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-13",
         "count": 0,
@@ -1331,11 +1334,17 @@
       },
       {
         "date": "2026-08-08",
-        "count": 4,
+        "count": 2,
+        "titles": [
+          "学习计算机科学与技术",
+          "将 Obsidian 安装到 D 盘"
+        ]
+      },
+      {
+        "date": "2026-08-09",
+        "count": 2,
         "titles": [
           "排查大量部署失败的原因",
-          "学习计算机科学与技术",
-          "将 Obsidian 安装到 D 盘",
           "查找 videosays 这个 skill"
         ]
       }
@@ -1385,6 +1394,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "when": 1786205217.9279864,
+      "scope": "本机"
+    },
     {
       "kind": "skill",
       "name": "design-taste-frontend",
@@ -1566,7 +1581,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 23:43",
+    "fetchedAt": "2026-08-09 00:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1727,7 +1742,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 23:43",
+        "fetchedAt": "2026-08-09 00:50",
         "count": 21,
         "sections": [
           {
@@ -2071,7 +2086,7 @@
   },
   "dailyNews": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 23:43",
+    "fetchedAt": "2026-08-09 00:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2173,7 +2188,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 23:43",
+        "fetchedAt": "2026-08-09 00:50",
         "count": 15,
         "items": [
           {
@@ -2272,12 +2287,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-08T23:43:43",
-    "status": "ok",
-    "nextRun": "2026-08-09T00:43:43",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
