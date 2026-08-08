@@ -507,6 +507,30 @@
         '<button class="btn-sm" onclick="cmdtext(' + "'在 knowledge-base/ 搜索：'" + ')">🔍 搜知识库</button></div></div>';
   }
 
+  function renderWeekly(d) {
+    var box = document.getElementById("wkList");
+    if (!box) return;
+    var items = d.weekly || [];
+    var h2 = document.querySelector(".wk-card h2");
+    if (h2) h2.innerHTML = '<span class="ic">📅</span>本周动态 · 近期变化（' + items.length + '）';
+    if (!items.length) {
+      box.innerHTML = '<li class="empty">本周暂无新增变化 · 工作台平稳运行中</li>';
+      return;
+    }
+    var icon = { skill: "📦", automation: "⚙️", kb: "📄", model: "🧠" };
+    var label = { skill: "新增/更新 skill", automation: "新建自动化任务", kb: "新增知识库文件", model: "拉取本地模型" };
+    var shown = items.slice(0, 12);
+    box.innerHTML = shown.map(function (it) {
+      var dt = new Date((it.when || 0) * 1000);
+      var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
+        ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
+      var scope = it.scope ? "（" + it.scope + "）" : "";
+      return '<li class="wk"><span class="wk-ic">' + (icon[it.kind] || "•") + '</span>' +
+        '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span>' +
+        '<span class="wk-meta">' + (label[it.kind] || it.kind) + scope + " · " + ds + '</span></div></li>';
+    }).join("") + (items.length > shown.length ? '<li class="empty" style="padding-top:4px">本周共 ' + items.length + ' 条变化，显示最近 12 条</li>' : "");
+  }
+
   // ---------- 课程表（localStorage 草稿 + GitHub 云端同步） ----------
   var GH_REPO = "W-lik721/personal-workbench";
   var GH_API = "https://api.github.com/repos/" + GH_REPO + "/contents/schedule.json";
@@ -824,6 +848,7 @@
     renderNews(d);
     renderDailyNews(d);
     renderOv(d);
+    renderWeekly(d);
   }
 
   // ---------- 同步健康度（数据新鲜度 + 失败/陈旧告警） ----------

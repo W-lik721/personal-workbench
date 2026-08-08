@@ -16,6 +16,7 @@ import json
 import sqlite3
 import ctypes
 import subprocess
+import time
 from datetime import datetime, date, timedelta
 
 WB = r"C:\Users\13115\.workbuddy"
@@ -25,6 +26,7 @@ DB = os.path.join(WB, "workbuddy.db")
 MODELS = os.path.join(WB, "models.json")
 MCP = os.path.join(WB, "mcp.json")
 MEM_DIR = os.path.join(WS, ".workbuddy", "memory")
+WS_SKILLS = os.path.join(WS, ".workbuddy", "skills")
 KB_DIRS = [os.path.join(WS, "knowledge-base"), os.path.join(WS, "vault")]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
 
@@ -260,6 +262,69 @@ def get_disk():
     return out
 
 
+def get_weekly_changes():
+    """聚合本周（近 7 天）本机发生的新增/变化，做成时间线。
+
+    来源：
+    - skills：扫描 user-level 与 workspace 的 skills/*/SKILL.md（mtime 本周内）
+    - automations：workbuddy.db -> automations（created_at 本周内新建）
+    - kb：knowledge-base/ + vault/ 新增文件（mtime 本周内）
+    返回 [{kind, name, when(秒), scope?}]，按时间倒序；when 统一为秒级时间戳。
+    """
+    out = []
+    now = time.time()
+    window = 7 * 24 * 3600
+    # 1) skills（user-level + 工作区）
+    for base in (SKILLS_DIR, WS_SKILLS):
+        if not os.path.isdir(base):
+            continue
+        for n in sorted(os.listdir(base)):
+            sp = os.path.join(base, n)
+            sk = os.path.join(sp, "SKILL.md")
+            if not os.path.isfile(sk):
+                continue
+            mt = os.path.getmtime(sk)
+            if now - mt <= window:
+                scope = "本机" if base == SKILLS_DIR else "工作区"
+                out.append({"kind": "skill", "name": n, "when": mt, "scope": scope})
+    # 2) 自动化（本周新建）
+    try:
+        con = sqlite3.connect(DB)
+        cur = con.cursor()
+        cur.execute("PRAGMA table_info(automations)")
+        cols = [c[1] for c in cur.fetchall()]
+        ca = "created_at" if "created_at" in cols else None
+        if ca:
+            cur.execute("SELECT name, created_at FROM automations WHERE deleted_at IS NULL")
+            for name, ts in cur.fetchall():
+                if ts is None:
+                    continue
+                try:
+                    mt = float(ts)
+                except Exception:
+                    continue
+                if mt > 1e12:  # 毫秒
+                    mt = mt / 1000
+                if now - mt <= window:
+                    out.append({"kind": "automation", "name": name or "(未命名)", "when": mt})
+        con.close()
+    except Exception as e:
+        print("weekly automations err", e)
+    # 3) 知识库新增文件
+    for kb in KB_DIRS:
+        if not os.path.isdir(kb):
+            continue
+        for f in sorted(os.listdir(kb)):
+            fp = os.path.join(kb, f)
+            if not os.path.isfile(fp):
+                continue
+            mt = os.path.getmtime(fp)
+            if now - mt <= window:
+                out.append({"kind": "kb", "name": f, "when": mt})
+    out.sort(key=lambda x: x["when"], reverse=True)
+    return out
+
+
 def _probe_mcp_url(url, timeout=0.6):
     """探测 HTTP/streamableHttp 类 MCP 的本地端口是否可达，返回 True/False。"""
     import socket
@@ -374,6 +439,7 @@ def main():
     lm = get_local_models()
     ol = get_ollama_models()
     mem = memory_count()
+    wk = get_weekly_changes()
     aid = get_ai_daily()
     dn = get_daily_news()
     now = datetime.now()
@@ -453,6 +519,7 @@ def main():
         },
         "sessions": {"recent": recent, "heatmap": heat},
         "knowledge": kb,
+        "weekly": wk,
         "aiDaily": aid,
         "dailyNews": dn,
     }
@@ -465,6 +532,7 @@ def main():
     print("   记忆   : %d 个文件" % mem)
     print("   知识库 : %d 文件" % kb["total"])
     print("   会话   : 近期 %d / 热力图 %d 天" % (len(recent), len(heat)))
+    print("   本周动态: %d 条" % len(wk))
     print("   磁盘   : C %s / D %s" % (dsk.get("C"), dsk.get("D")))
     print("   MCP    : %s" % mc)
     print("   AI日报 : %s · %d 条" % (aid.get("date") or "无", aid.get("count") or 0))
