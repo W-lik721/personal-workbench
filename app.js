@@ -351,7 +351,12 @@
     var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(day.date || "") + ' AI 日报' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "AI HOT") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
-      (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>";
+      (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>" +
+      '<div class="card"><h2><span class="ic">🧪</span>基于日报做点什么</h2>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
+      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      "</div></div>";
 
     secs.forEach(function (s) {
       html += '<div class="card"><h2><span class="ic">📌</span>' + esc(s.label) +
@@ -374,12 +379,6 @@
       });
       html += "</div>";
     });
-
-    html += '<div class="card"><h2><span class="ic">🧪</span>基于日报做点什么</h2>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
-      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
-      "</div></div>";
 
     box.innerHTML = html;
   }
