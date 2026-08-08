@@ -166,7 +166,7 @@
     var items = [
       { c: "kpi-blue", i: "📚", v: k.knowledge, l: "知识库文件" },
       { c: "kpi-green", i: "⚙️", v: k.automations, l: "定时任务" },
-      { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "—"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "—") },
+      { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-") },
       { c: "kpi-amber", i: "🚀", v: k.skills, l: "已装 Skills" },
     ];
     document.getElementById("kpis").innerHTML = items.map(function (x) {
@@ -300,7 +300,7 @@
     }
     var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(day.date || "") + ' AI 日报' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
-      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "AI HOT") + ' · 抓取于 ' + esc(day.fetchedAt || "—") +
+      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "AI HOT") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>";
 
     secs.forEach(function (s) {
@@ -377,7 +377,7 @@
     }
     var html = '<div class="card news-head"><h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
-      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "—") +
+      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看来源 ↗</a>' : "") + "</div>" +
       (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>";
 
@@ -412,7 +412,7 @@
     var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">🧠 ' + esc(m) + "</div>"; }).join("");
     var autoHtml = (st.automations || []).map(function (a) {
       var badge = a.status === "ACTIVE" || a.status === "active" ? '<span class="badge on">ACTIVE</span>' : '<span class="badge off">' + esc(a.status) + "</span>";
-      return '<div class="auto">' + badge + "<b>" + esc(a.name) + '</b><span class="meta">recurring · 下次 ' + esc(a.next || "—") + "</span></div>";
+      return '<div class="auto">' + badge + "<b>" + esc(a.name) + '</b><span class="meta">recurring · 下次 ' + esc(a.next || "-") + "</span></div>";
     }).join("") || '<div class="empty">暂无自动化任务</div>';
     var kb = d.knowledge || { total: 0, types: {}, files: [] };
     var kbTypes = Object.keys(kb.types || {}).map(function (t) { return t + " " + kb.types[t]; }).join(" · ");
@@ -427,14 +427,14 @@
         '<div class="res">' +
         '<div class="res-i"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span><span class="rn">' + esc(mcpHtml) + "</span></div>" +
         '<div class="res-i"><span class="rk">记忆库</span><span class="rv">' + d.kpi.memory + '</span><span class="rn">个文件</span></div>' +
-        '<div class="res-i"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "—") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "—") + "</span></div>" +
-        '<div class="res-i"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "—") + '</span><span class="rn">磁盘可用 · 共 ' + (disk.D ? disk.D.total + "G" : "—") + "</span></div>" +
+        '<div class="res-i"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
+        '<div class="res-i"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">磁盘可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
         (localHtml ? '<div style="margin:8px 0 4px;color:var(--accent2);font-size:13px">本地模型（' + (st.localModels || []).length + "）</div>" + localHtml : '<div class="empty">无本地模型</div>') +
         '<div class="res" style="margin-top:10px">' +
-        '<div class="res-i"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "—") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "—") + "</span></div>" +
-        '<div class="res-i"><span class="rk">运行时</span><span class="rv" style="font-size:13px">' + esc(st.runtime || "—") + '</span><span class="rn">Python / Node</span></div>' +
+        '<div class="res-i"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
+        '<div class="res-i"><span class="rk">运行时</span><span class="rv" style="font-size:13px">' + esc(st.runtime || "-") + '</span><span class="rn">Python / Node</span></div>' +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' + autoHtml +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'新建定时任务：频率（如每周一10点）+ 工作区 + 任务描述'" + ')">➕ 新建定时任务</button></div></div>' +
@@ -733,7 +733,7 @@
         body += '<div class="sched-day"><div class="sched-day-h">' + esc(d) + ' <span class="cc">' + arr.length + '</span></div>';
         arr.forEach(function (c) {
           body += '<div class="sched-row">' +
-            '<div class="sr-time">' + esc(c.time || "—") + '</div>' +
+            '<div class="sr-time">' + esc(c.time || "-") + '</div>' +
             '<div class="sr-main"><b>' + esc(c.name || "未命名") + '</b>' +
             (c.location ? '<span class="sr-loc">📍 ' + esc(c.location) + '</span>' : '') +
             (c.teacher ? '<span class="sr-teach">👤 ' + esc(c.teacher) + '</span>' : '') +
@@ -755,7 +755,7 @@
   window.exportSchedule = exportSchedule;
 
   function render(d) {
-    document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "—");
+    document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "-");
     renderSync(d);
     renderKPI(d);
     renderQuick(d);
@@ -800,7 +800,7 @@
         var n = new Date(s.nextRun.replace(" ", "T"));
         ns.textContent = "下次自动同步 · " + ("0" + n.getHours()).slice(-2) + ":" + ("0" + n.getMinutes()).slice(-2);
       } else {
-        ns.textContent = "下次自动同步 · —";
+        ns.textContent = "下次自动同步 · -";
       }
     }
   }
