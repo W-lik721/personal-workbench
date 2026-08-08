@@ -250,7 +250,11 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 /* ② 自动化：列表面板化 */
 .ov-auto-panel{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:4px 8px;margin-bottom:2px}
 .ov-auto-panel .auto:last-child{border-bottom:none}
-@media(max-width:760px){.ov-ol,.ov-kb{grid-template-columns:1fr}}
+/* ⑤ 今日引导：列表 2 列卡片化，避免 bullet 右侧大片空白 */
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 8px}
+.guide-item{padding:6px 8px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);font-size:13px;line-height:1.45}
+.guide-item.warn{color:var(--red);background:rgba(255,107,107,.10);border-color:rgba(255,107,107,.25)}
+@media(max-width:760px){.ov-ol,.ov-kb,.guide-grid{grid-template-columns:1fr}}
 .empty{color:#6a6a72;font-size:13px;padding:4px 0}
 ul.guide{margin:0;padding-left:18px}
 ul.guide li{margin:7px 0;line-height:1.5}
@@ -348,7 +352,7 @@ body.light .model .mm{background:#e4e7eb;border-color:rgba(0,0,0,.10);color:#6b7
 body.light .badge.on{color:#1a7f37}
 body.light .badge.off{color:#c0392b}
 body.light .foot,body.light .empty,body.light .auto .meta,body.light .kpi .kl,body.light .res-i .rn{color:#8a909c}
-body.light .ov-ol .model,body.light .ov-kb .auto,body.light .ov-auto-panel{box-shadow:var(--shadow-sm)}
+body.light .ov-ol .model,body.light .ov-kb .auto,body.light .ov-auto-panel,body.light .guide-item{box-shadow:var(--shadow-sm)}
 body.light #cmdbox,body.light #noteInput,body.light #q,body.light #inspiretext,body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
 body.light textarea:focus{outline-color:var(--accent-strong);background:#fff}
 body.light .hc{background:rgba(0,0,0,.08)}

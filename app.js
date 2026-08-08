@@ -283,13 +283,17 @@
     var sessHtml = renderSessions(d.sessions.recent);
     var heatHtml = renderHeat(d.sessions.heatmap);
     var guideHtml = (d.guide || []).map(function (g) {
-      return '<li' + (g.indexOf("⚠") >= 0 ? ' class="warn"' : "") + ">" + esc(g) + "</li>";
+      return '<div class="guide-item' + (g.indexOf("⚠") >= 0 ? " warn" : "") + '">' + esc(g) + "</div>";
     }).join("");
     var inspireCmd = "根据我的工作台现状生成今日灵感：已装 " + d.kpi.skills + " 个 skill，知识库 " + d.kpi.knowledge +
       " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
     document.getElementById("col-cap").innerHTML =
       '<div class="card"><h2><span class="ic">🧭</span>⑤ 今日引导 / 灵感 / 学 Agent</h2>' +
-        '<ul class="guide">' + guideHtml + "</ul>" +
+        '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
+        '<div class="ov-metric"><span class="rk">今日引导</span><span class="rv">' + (d.guide || []).length + '</span><span class="rn">条待办 / 提醒</span></div>' +
+        '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
+        "</div>" +
+        '<div class="guide-grid">' + guideHtml + "</div>" +
         '<div style="margin-top:12px"><button class="btn" onclick="inspire(' + "'" + escAttr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button>' +
         '<div id="insbox"><textarea id="inspiretext" rows="5" placeholder="点击上方按钮，AI 灵感指令会出现在这里；可编辑，复制后到对话框 Ctrl+V 粘贴并发送"></textarea>' +
         '<div style="margin-top:6px"><button class="btn-sm" onclick="copyInspire()">📋 复制指令</button><span id="inshint"></span></div></div></div></div>' +
