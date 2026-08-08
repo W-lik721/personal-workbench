@@ -20,6 +20,14 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
+      - name: Fetch AI daily (更新 ai_daily.json)
+        continue-on-error: true
+        env:
+          PYTHONIOENCODING: utf-8
+        run: C:\Users\13115\.workbuddy\binaries\python\versions\3.13.12\python.exe fetch_ai_daily.py
+        shell: cmd
+        working-directory: ${{ github.workspace }}
+
       - name: Run sync (生成 data.json 并推送)
         env:
           PYTHONIOENCODING: utf-8

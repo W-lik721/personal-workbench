@@ -256,26 +256,51 @@
         '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>';
   }
 
-  // ---------- AI 日报 ----------
+  // ---------- AI 日报（支持历史日期切换） ----------
+  var NEWS_DATA = null;
   function renderNews(d) {
+    NEWS_DATA = d;
     var a = d.aiDaily || {};
-    var secs = a.sections || [];
-    var dot = document.getElementById("newsDot");
     var box = document.getElementById("col-news");
     if (!box) return;
-    if (dot) dot.style.display = (a.count > 0) ? "inline-block" : "none";
+    var dot = document.getElementById("newsDot");
+    if (dot) dot.style.display = ((a.count || 0) > 0) ? "inline-block" : "none";
 
+    // 历史日期下拉（>1 天时显示）
+    var hist = a.history || [];
+    var curDate = a.date || "";
+    var selHtml = "";
+    if (hist.length > 1) {
+      selHtml = '<div class="card"><div class="news-sel">📅 历史日报：' +
+        '<select id="newsSel" onchange="newsDateChanged()">' +
+        hist.map(function (h) {
+          return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
+            esc(h.date) + ' (' + (h.count || 0) + ' 条)</option>';
+        }).join("") + '</select></div></div>';
+    }
+    box.innerHTML = selHtml + '<div id="newsBody"></div>';
+    renderNewsBody(curDate);
+  }
+  function newsDateChanged() {
+    var sel = document.getElementById("newsSel");
+    if (sel) renderNewsBody(sel.value);
+  }
+  function renderNewsBody(date) {
+    var box = document.getElementById("newsBody");
+    if (!box || !NEWS_DATA) return;
+    var a = NEWS_DATA.aiDaily || {};
+    var day = (a.history || []).filter(function (h) { return h.date === date; })[0] || a;
+    var secs = day.sections || [];
     if (!secs.length) {
-      box.innerHTML = '<div class="card"><h2><span class="ic">🗞️</span>今日 AI 日报</h2>' +
-        '<div class="empty">还没有抓到日报数据。本机每天 08:30 自动抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_ai_daily.py</code>。</div>' +
+      box.innerHTML = '<div class="card"><h2><span class="ic">🗞️</span>AI 日报</h2>' +
+        '<div class="empty">这一天还没有抓到日报数据。可以点「立即刷新」让本机重新抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_ai_daily.py</code>。</div>' +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_ai_daily.py 抓今天的 AI 日报，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
       return;
     }
-
-    var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(a.date || "") + ' AI 日报' +
-      '<span class="news-n">' + (a.count || 0) + ' 条</span></h2>' +
-      '<div class="news-meta">数据源 ' + esc(a.source || "AI HOT") + ' · 抓取于 ' + esc(a.fetchedAt || "—") +
-      (a.canonical ? ' · <a href="' + escAttr(a.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>";
+    var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(day.date || "") + ' AI 日报' +
+      '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
+      '<div class="news-meta">数据源 ' + esc(day.source || a.source || "AI HOT") + ' · 抓取于 ' + esc(day.fetchedAt || "—") +
+      (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>";
 
     secs.forEach(function (s) {
       html += '<div class="card"><h2><span class="ic">📌</span>' + esc(s.label) +
@@ -486,6 +511,16 @@
     var dataRows = hasHeader ? rows.slice(1) : rows;
     return dataRows.map(function (r) { return rowToCourse(r, headers); }).filter(Boolean);
   }
+  function ensureXLSX() {
+    return new Promise(function (resolve, reject) {
+      if (typeof XLSX !== "undefined") { resolve(); return; }
+      var s = document.createElement("script");
+      s.src = "xlsx.full.min.js";
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error("xlsx 解析库加载失败（请检查网络后重试）")); };
+      document.head.appendChild(s);
+    });
+  }
   function parseXLSX(file) {
     return new Promise(function (resolve, reject) {
       if (typeof XLSX === "undefined") { reject(new Error("xlsx 解析库未加载（需联网后重试）")); return; }
@@ -528,7 +563,7 @@
     };
     var fail = function (err) { if (hint) hint.textContent = "导入失败：" + (err && err.message ? err.message : err); };
     if (lower.endsWith(".xlsx") || lower.endsWith(".xls")) {
-      parseXLSX(f).then(done).catch(fail);
+      ensureXLSX().then(function () { parseXLSX(f).then(done).catch(fail); }).catch(fail);
     } else {
       var reader = new FileReader();
       reader.onload = function (e) { try { done(parseDelimited(String(e.target.result))); } catch (err) { fail(err); } };

@@ -244,13 +244,34 @@ def get_mcp():
 
 
 def get_ai_daily():
-    """读取 fetch_ai_daily.py 抓好的 ai_daily.json；没有就返回空壳（前端显示占位）。"""
-    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ai_daily.json")
+    """读取 fetch_ai_daily.py 抓好的 ai_daily.json；并把历史日报累积进 history。
+
+    历史随 data.json 一起经 sync.py 用 GitHub API 推送，天然持久化（无需额外文件/本地 git）。
+    每次 export 时从「上一次生成的 data.json」恢复 history，upsert 当天，保留最近 14 天。
+    """
+    HERE = os.path.dirname(os.path.abspath(__file__))
+    p = os.path.join(HERE, "ai_daily.json")
     try:
-        return json.load(open(p, encoding="utf-8"))
+        d = json.load(open(p, encoding="utf-8"))
     except Exception:
-        return {"date": "", "fetchedAt": "", "count": 0, "sections": [],
-                "canonical": "https://aihot.virxact.com/daily"}
+        d = {"date": "", "fetchedAt": "", "count": 0, "sections": [],
+             "canonical": "https://aihot.virxact.com/daily"}
+    hist = []
+    old = os.path.join(HERE, "data.json")
+    if os.path.isfile(old):
+        try:
+            hist = (json.load(open(old, encoding="utf-8")).get("aiDaily") or {}).get("history", [])
+        except Exception:
+            hist = []
+    if d.get("date"):
+        hist = [h for h in hist if h.get("date") != d["date"]]
+        hist.append({"date": d.get("date"), "fetchedAt": d.get("fetchedAt"),
+                     "count": d.get("count"), "sections": d.get("sections"),
+                     "canonical": d.get("canonical", "")})
+        hist.sort(key=lambda x: x.get("date", ""), reverse=True)
+        hist = hist[:14]
+    d["history"] = hist
+    return d
 
 
 def main():
