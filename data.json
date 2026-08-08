@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-08 10:39",
+  "generatedAt": "2026-08-08 12:19",
   "kpi": {
-    "skills": 55,
+    "skills": 56,
     "automations": 2,
     "models": 5,
     "memory": 25,
@@ -22,6 +22,14 @@
       "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task 协调。提供 join / send / fyi / history / members / catchup / leave 子命令，基于共享 JSONL 日志 + .NET 文件锁，零网络、零 daemon。适合多 agent 并行开发时彼此通知接口变更、汇报阻塞、共享状态。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-chat",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "agent-design-kit",
+      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、使用 LangGraph / AutoGen 时调用。提供 6 大 agent 模式选型卡、提示词工程黄金法则、LangGraph/AutoGen 设计方法论与决策树。覆盖\"该用哪种结构、何时收手、怎么写好提示词\"。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agent-design-kit",
       "usage": 0,
       "lastUsed": ""
     },
@@ -110,7 +118,7 @@
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
-      "usage": 4,
+      "usage": 2,
       "lastUsed": "2026-08-08"
     },
     {
@@ -603,9 +611,9 @@
   "sessions": {
     "recent": [
       {
-        "title": "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
+        "title": "用cangjie-skill蒸馏开源项目补充知识库",
         "status": "pending",
-        "updated": "08-08 10:37",
+        "updated": "08-08 11:59",
         "group": "今天"
       },
       {
@@ -1279,7 +1287,7 @@
         "date": "2026-08-08",
         "count": 2,
         "titles": [
-          "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
+          "用cangjie-skill蒸馏开源项目补充知识库",
           "排查大量部署失败的原因"
         ]
       }
@@ -1512,12 +1520,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T10:39:52",
-    "status": "ok",
-    "nextRun": "2026-08-08T11:39:52",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
