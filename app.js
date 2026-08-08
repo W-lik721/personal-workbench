@@ -428,7 +428,12 @@
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看来源 ↗</a>' : "") + "</div>" +
-      (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>";
+      (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>" +
+      '<div class="card"><h2><span class="ic">🧪</span>基于新闻做点什么</h2>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
+      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      "</div></div>";
 
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
     items.forEach(function (it, i) {
@@ -437,12 +442,6 @@
         '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + ask + "</div></div>";
     });
     html += "</div>";
-
-    html += '<div class="card"><h2><span class="ic">🧪</span>基于新闻做点什么</h2>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
-      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
-      "</div></div>";
 
     box.innerHTML = html;
   }
