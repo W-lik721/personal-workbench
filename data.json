@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-08 01:39",
+  "generatedAt": "2026-08-08 15:58",
   "kpi": {
-    "skills": 55,
+    "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 25,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 9
   },
   "skills": [
     {
@@ -26,6 +26,14 @@
       "lastUsed": ""
     },
     {
+      "name": "agent-design-kit",
+      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen / CrewAI 构建多智能体、做 RAG 实战、用 DeepEval 评估、用 instructor 做结构化输出时调用。从 9 个开源项目蒸馏：6 大 agent 模式选型卡 + 提示词黄金法则 + 三大框架设计方法论 + RAG 实战 + 评估 + 结构化输出。覆盖\"该用哪种结构、何时收手、怎么写好提示词、哪个框架\"。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agent-design-kit",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "karpathy-kit",
       "desc": "Karpathy 风格 AI 方法论总入口，覆盖 15 个场景：① agentic engineering（代理工程 / agent",
       "category": "通用能力",
@@ -38,8 +46,8 @@
       "desc": "Distill a book, long-video transcript, podcast, course, or",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：cangjie-skill",
-      "usage": 2,
-      "lastUsed": "2026-08-08"
+      "usage": 0,
+      "lastUsed": ""
     },
     {
       "name": "citation-management",
@@ -58,10 +66,26 @@
       "lastUsed": ""
     },
     {
+      "name": "cs-learning",
+      "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" / 想补核心课（算法·操作系统·网络·数据库·系统设计）优质开源资料 / 想做编程练手项目 / 零基础入门编程（尤其想用 AI 辅助）时触发。基于 4 篇已蒸馏笔记给出按阶段的学习地图与资源路由，不凭空编资源。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：cs-learning",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "daily-insight",
       "desc": "基于工作台真实家底（已装 skill 数 / 知识库文件数 / 模型数·本机数）生成「今日灵感」三件套——① 1-2 个今天可动手的小任务 ② 一条结合已装 skill 的 agent 学习路径 ③ 一个值得关注的 AI 趋势。当用户说\"生成今日灵感\"\"给我今日灵感\"\"今日灵感\"时触发。绝不编造数字，读数失败即报错。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：daily-insight",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "deeptutor-tutor",
+      "desc": ">-",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：deeptutor-tutor",
       "usage": 0,
       "lastUsed": ""
     },
@@ -110,8 +134,8 @@
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
-      "usage": 2,
-      "lastUsed": "2026-08-08"
+      "usage": 0,
+      "lastUsed": ""
     },
     {
       "name": "github-pages-auto-deploy",
@@ -591,7 +615,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 237
       },
       "D": {
         "total": 544,
@@ -603,9 +627,21 @@
   "sessions": {
     "recent": [
       {
+        "title": "搭建个人知识库并查找资料",
+        "status": "planning",
+        "updated": "08-08 15:58",
+        "group": "今天"
+      },
+      {
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-08 15:58",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "status": "working",
-        "updated": "08-08 01:38",
+        "updated": "08-08 15:58",
         "group": "今天"
       },
       {
@@ -621,27 +657,9 @@
         "group": "昨天"
       },
       {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-06 23:20",
-        "group": "更早"
-      },
-      {
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-06 21:44",
-        "group": "更早"
-      },
-      {
-        "title": "搭建个人知识库并查找资料",
-        "status": "completed",
-        "updated": "08-05 23:09",
-        "group": "更早"
-      },
-      {
-        "title": "在GitHub上查找cangjie-skill项目",
-        "status": "completed",
-        "updated": "08-01 10:15",
         "group": "更早"
       },
       {
@@ -1226,10 +1244,8 @@
       },
       {
         "date": "2026-08-01",
-        "count": 1,
-        "titles": [
-          "在GitHub上查找cangjie-skill项目"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-02",
@@ -1248,16 +1264,13 @@
       },
       {
         "date": "2026-08-05",
-        "count": 1,
-        "titles": [
-          "搭建个人知识库并查找资料"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-06",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "查找 videosays 这个 skill",
           "整理并精简重复的 skill"
         ]
       },
@@ -1271,8 +1284,10 @@
       },
       {
         "date": "2026-08-08",
-        "count": 1,
+        "count": 3,
         "titles": [
+          "搭建个人知识库并查找资料",
+          "查找 videosays 这个 skill",
           "排查大量部署失败的原因"
         ]
       }
@@ -1507,9 +1522,9 @@
     "warnings": []
   },
   "sync": {
-    "lastRun": "2026-08-08T01:39:04",
+    "lastRun": "2026-08-08T15:58:32",
     "status": "ok",
-    "nextRun": "2026-08-08T02:39:04",
+    "nextRun": "2026-08-08T16:58:32",
     "intervalHours": 1,
     "staleHours": 2
   }
