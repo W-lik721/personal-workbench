@@ -451,13 +451,13 @@
   function renderOv(d) {
     var st = d.status;
     var modelsHtml = (st.models || []).map(function (m) {
-      return '<div class="model">🔧 ' + esc(m.name) + ' <span style="color:var(--sub);font-size:11px">(' + m.type + ")</span></div>";
+      return '<div class="model"><span class="mn">' + esc(m.name) + '</span><span class="mm">' + esc(m.type) + "</span></div>";
     }).join("");
     var mcpHtml = (st.mcp || []).map(function (m) {
       var off = (m.online === false);
       return '<span class="mcp' + (off ? " off" : "") + '">' + esc(m.name) +
         (off ? ' <span class="mcp-badge">离线</span>' : "") + "</span>";
-    }).join(" · ");
+    }).join("");
     var disk = st.disk || {};
     var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">🧠 ' + esc(m) + "</div>"; }).join("");
     var ol = st.ollama || {};
@@ -483,13 +483,13 @@
 
     document.getElementById("col-ov").innerHTML =
       '<div class="card"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
-        '<div style="margin:2px 0 4px;color:var(--accent2);font-size:13px">已接入模型（' + (st.models || []).length + "）</div>" + modelsHtml +
-        '<div style="margin:10px 0 4px;color:var(--accent2);font-size:13px">集成与资源</div>' +
-        '<div class="res">' +
-        '<div class="res-i"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span><span class="rn">' + mcpHtml + "</span></div>" +
-        '<div class="res-i"><span class="rk">记忆库</span><span class="rv">' + d.kpi.memory + '</span><span class="rn">个文件</span></div>' +
-        '<div class="res-i"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
-        '<div class="res-i"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">磁盘可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
+        '<div class="ov-sub">已接入模型（' + (st.models || []).length + '）</div>' + modelsHtml +
+        '<div class="ov-sub">集成与资源</div>' +
+        '<div class="ov-res">' +
+        '<div class="ov-mcp"><div class="ov-mcp-h"><span class="rk">MCP 集成</span><span class="rv">' + (st.mcp || []).length + '</span></div><div class="ov-mcp-chips">' + mcpHtml + "</div></div>" +
+        '<div class="ov-metric"><span class="rk">记忆库</span><span class="rv">' + d.kpi.memory + '</span><span class="rn">个文件</span></div>' +
+        '<div class="ov-metric"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
+        '<div class="ov-metric"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
         '<div style="margin:6px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div>' + olHtml +
