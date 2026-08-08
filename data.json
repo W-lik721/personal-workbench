@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 10:38",
+  "generatedAt": "2026-08-08 10:39",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -1512,12 +1512,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T10:38:35",
-    "status": "ok",
-    "nextRun": "2026-08-08T11:38:35",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
