@@ -604,8 +604,8 @@
     "recent": [
       {
         "title": "去GitHub上找些开源项目 用cangjie-skill蒸馏了来补充进知识库",
-        "status": "working",
-        "updated": "08-08 10:36",
+        "status": "pending",
+        "updated": "08-08 10:37",
         "group": "今天"
       },
       {
@@ -1512,12 +1512,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T10:37:07",
-    "status": "ok",
-    "nextRun": "2026-08-08T11:37:07",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
