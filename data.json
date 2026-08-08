@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08 12:19",
+  "generatedAt": "2026-08-08 13:54",
   "kpi": {
     "skills": 56,
     "automations": 2,
@@ -612,8 +612,8 @@
     "recent": [
       {
         "title": "用cangjie-skill蒸馏开源项目补充知识库",
-        "status": "pending",
-        "updated": "08-08 11:59",
+        "status": "completed",
+        "updated": "08-08 13:20",
         "group": "今天"
       },
       {
@@ -1520,12 +1520,5 @@
       }
     ],
     "warnings": []
-  },
-  "sync": {
-    "lastRun": "2026-08-08T12:19:07",
-    "status": "ok",
-    "nextRun": "2026-08-08T13:19:07",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
