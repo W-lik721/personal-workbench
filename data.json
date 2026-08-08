@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-08 17:51",
+  "generatedAt": "2026-08-08 18:48",
   "kpi": {
     "skills": 59,
     "automations": 2,
     "models": 5,
     "memory": 25,
     "knowledge": 9,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -635,6 +635,12 @@
   },
   "sessions": {
     "recent": [
+      {
+        "title": "学习计算机科学与技术",
+        "status": "completed",
+        "updated": "08-08 18:48",
+        "group": "今天"
+      },
       {
         "title": "将 Obsidian 安装到 D 盘",
         "status": "completed",
@@ -1293,8 +1299,9 @@
       },
       {
         "date": "2026-08-08",
-        "count": 3,
+        "count": 4,
         "titles": [
+          "学习计算机科学与技术",
           "将 Obsidian 安装到 D 盘",
           "排查大量部署失败的原因",
           "查找 videosays 这个 skill"
@@ -1347,7 +1354,7 @@
   },
   "aiDaily": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 17:51",
+    "fetchedAt": "2026-08-08 18:48",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-08",
     "count": 21,
@@ -1508,7 +1515,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 17:51",
+        "fetchedAt": "2026-08-08 18:48",
         "count": 21,
         "sections": [
           {
@@ -1669,7 +1676,7 @@
   },
   "dailyNews": {
     "date": "2026-08-08",
-    "fetchedAt": "2026-08-08 17:51",
+    "fetchedAt": "2026-08-08 18:48",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -1771,7 +1778,7 @@
     "history": [
       {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-08 17:51",
+        "fetchedAt": "2026-08-08 18:48",
         "count": 15,
         "items": [
           {
@@ -1870,12 +1877,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-08T17:51:39",
-    "status": "ok",
-    "nextRun": "2026-08-08T18:51:39",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
