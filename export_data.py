@@ -15,6 +15,7 @@ import os
 import json
 import sqlite3
 import ctypes
+import subprocess
 from datetime import datetime, date, timedelta
 
 WB = r"C:\Users\13115\.workbuddy"
@@ -116,6 +117,53 @@ def get_models():
 
 def get_local_models():
     return [m["name"] for m in get_models() if m["type"] == "本机"]
+
+
+def get_ollama_models():
+    """读取本机 Ollama 真实已装模型（ollama list）与运行中状态（ollama ps）。
+
+    返回 {available, models:[{name,size,modified}], running:[{name,size,processor}]}。
+    与 status.localModels（WorkBuddy 接入配置）不同，这里取的是 Ollama 真正拉到本机的模型。
+    """
+    exe = r"C:\Users\13115\ollama\ollama.exe"
+    out = {"available": False, "models": [], "running": []}
+    if not os.path.isfile(exe):
+        return out
+    out["available"] = True
+    try:
+        r = subprocess.run([exe, "list"], capture_output=True, text=True, timeout=25)
+        for ln in r.stdout.splitlines():
+            s = ln.strip()
+            if not s or s.startswith("NAME") or set(s) <= set("- "):
+                continue
+            parts = s.split()
+            if len(parts) < 3:
+                continue
+            # 模型名不含空格（用 / : - _ .），故可安全 split
+            out["models"].append({
+                "name": parts[0],
+                "size": (parts[2] + " " + parts[3]) if len(parts) > 3 else parts[2],
+                "modified": " ".join(parts[4:]) if len(parts) > 4 else "",
+            })
+    except Exception as e:
+        print("ollama list err", e)
+    try:
+        r2 = subprocess.run([exe, "ps"], capture_output=True, text=True, timeout=25)
+        for ln in r2.stdout.splitlines():
+            s = ln.strip()
+            if not s or s.startswith("NAME") or set(s) <= set("- "):
+                continue
+            parts = s.split()
+            if not parts:
+                continue
+            out["running"].append({
+                "name": parts[0],
+                "size": (parts[2] + " " + parts[3]) if len(parts) > 3 else parts[2],
+                "processor": parts[4] if len(parts) > 4 else "",
+            })
+    except Exception as e:
+        print("ollama ps err", e)
+    return out
 
 
 def memory_count():
@@ -316,6 +364,7 @@ def main():
     dsk = get_disk()
     mc = get_mcp()
     lm = get_local_models()
+    ol = get_ollama_models()
     mem = memory_count()
     aid = get_ai_daily()
     dn = get_daily_news()
@@ -388,6 +437,7 @@ def main():
             "automations": autos,
             "models": mds,
             "localModels": lm,
+            "ollama": ol,
             "mcp": mc,
             "memoryLastUpdate": now.strftime("%Y-%m-%d"),
             "disk": dsk,

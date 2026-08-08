@@ -316,3 +316,61 @@ body.light .card h2 .ic{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08)}
   .sync-status.warn{animation:none}
   .card:hover,.kpi:hover,.skill:hover,.qb:hover,.hdi:hover{transform:none}
 }
+
+
+/* ===== 新增板块样式（v4）：常用入口 + 本地模型状态点 ===== */
+.links-card .links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--txt);
+  text-decoration: none;
+  transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+  position: relative;
+}
+.link-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--tint);
+}
+.li-ic { font-size: 15px; flex: none; }
+.li-label {
+  flex: 1;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.li-del {
+  font-size: 11px;
+  color: var(--sub);
+  opacity: .5;
+  cursor: pointer;
+  padding: 0 2px;
+  flex: none;
+}
+.li-del:hover { opacity: 1; color: #e5484d; }
+
+/* 本地 Ollama 模型状态点 */
+.ol-model { display: flex; align-items: center; gap: 8px; }
+.ol-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--sub);
+  flex: none;
+}
+.ol-dot.on {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--tint);
+}

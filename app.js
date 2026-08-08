@@ -410,6 +410,15 @@
     }).join(" · ");
     var disk = st.disk || {};
     var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">🧠 ' + esc(m) + "</div>"; }).join("");
+    var ol = st.ollama || {};
+    var olModels = ol.models || [];
+    var olRunning = ol.running || [];
+    var olHtml = ol.available === false ? '<div class="empty">Ollama 未安装</div>' :
+      (olModels.length ? olModels.map(function (m) {
+        var run = olRunning.some(function (r) { return r.name === m.name; });
+        return '<div class="model ol-model"><span class="ol-dot ' + (run ? "on" : "") + '"></span><b>' + esc(m.name) + '</b>' +
+          '<span class="meta">' + esc(m.size || "") + (run ? " · 运行中" : "") + "</span></div>";
+      }).join("") : '<div class="empty">Ollama 未运行 · 暂无本地模型</div>');
     var autoHtml = (st.automations || []).map(function (a) {
       var badge = a.status === "ACTIVE" || a.status === "active" ? '<span class="badge on">ACTIVE</span>' : '<span class="badge off">' + esc(a.status) + "</span>";
       return '<div class="auto">' + badge + "<b>" + esc(a.name) + '</b><span class="meta">recurring · 下次 ' + esc(a.next || "-") + "</span></div>";
@@ -431,7 +440,7 @@
         '<div class="res-i"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">磁盘可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
       '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
-        (localHtml ? '<div style="margin:8px 0 4px;color:var(--accent2);font-size:13px">本地模型（' + (st.localModels || []).length + "）</div>" + localHtml : '<div class="empty">无本地模型</div>') +
+        '<div style="margin:8px 0 4px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div>' + olHtml +
         '<div class="res" style="margin-top:10px">' +
         '<div class="res-i"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
         '<div class="res-i"><span class="rk">运行时</span><span class="rv" style="font-size:13px">' + esc(st.runtime || "-") + '</span><span class="rn">Python / Node</span></div>' +
@@ -1018,10 +1027,58 @@
       }
     });
   }
+  // ---------- 常用入口（纯前端，本机 localStorage 存，不依赖 data.json） ----------
+  var LINKS_KEY = "wb_links";
+  var DEFAULT_LINKS = [
+    {"label": "抖音", "url": "https://www.douyin.com"},
+    {"label": "WorkBuddy 文档", "url": "https://www.workbuddy.cn/docs/"},
+    {"label": "本仓库源码", "url": "https://github.com/W-lik721/personal-workbench"},
+    {"label": "AI 日报源", "url": "https://aihot.virxact.com/daily"},
+    {"label": "每日新闻源", "url": "https://github.com/vikiboss/60s"},
+    {"label": "本地 Ollama", "url": "http://localhost:11434"}
+  ];
+  function getLinks() {
+    try { var v = localStorage.getItem(LINKS_KEY); if (v) return JSON.parse(v); } catch (e) {}
+    return DEFAULT_LINKS.slice();
+  }
+  function saveLinks(a) { try { localStorage.setItem(LINKS_KEY, JSON.stringify(a)); } catch (e) {} }
+  function renderLinks() {
+    var g = document.getElementById("linksGrid");
+    if (!g) return;
+    var links = getLinks();
+    if (!links.length) { g.innerHTML = '<div class="empty">还没有入口，点“加一个”添加常用链接</div>'; return; }
+    g.innerHTML = links.map(function (l, i) {
+      return '<a class="link-item" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+        '<span class="li-ic">🔗</span><span class="li-label">' + esc(l.label) + '</span>' +
+        '<span class="li-del" data-i="' + i + '" title="删除">✕</span></a>';
+    }).join("");
+    Array.prototype.forEach.call(g.querySelectorAll(".li-del"), function (b) {
+      b.addEventListener("click", function (e) {
+        e.preventDefault(); e.stopPropagation();
+        delLink(parseInt(b.getAttribute("data-i"), 10));
+      });
+    });
+  }
+  function addLink() {
+    var label = window.prompt("入口名称（如 抖音）：");
+    if (!label) return;
+    var url = window.prompt("链接地址（以 http 开头，可留空自动补 https://）：", "https://");
+    if (url === null) return;
+    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+    var links = getLinks(); links.push({ label: label, url: url }); saveLinks(links); renderLinks();
+    var h = document.getElementById("linksHint"); if (h) h.textContent = "✓ 已添加（仅存本浏览器）";
+  }
+  function delLink(i) {
+    var links = getLinks(); if (i < 0 || i >= links.length) return;
+    links.splice(i, 1); saveLinks(links); renderLinks();
+  }
+  window.addLink = addLink; window.delLink = delLink; window.renderLinks = renderLinks;
+
   window.selfCheck = selfCheck;
   applyTheme();
   renderNotes();
   renderSchedule();
+  renderLinks();
   // 本地无课程表时，自动从云端拉取一次（换设备也能看到）
   if (!scheduleLoad().length) schedulePullCloud(true);
   var ni = document.getElementById("noteInput");

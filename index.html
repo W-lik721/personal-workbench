@@ -12,7 +12,7 @@
 <meta property="og:locale" content="zh_CN">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=14">
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 <a class="skip" href="#main">跳到主内容</a>
@@ -40,6 +40,14 @@
   <section class="quickbar">
     <div class="qb-title">⚡ 快捷启动台 · 高频动作一键直达</div>
     <div class="qb-grid" id="quickbar"></div>
+  </section>
+  <section class="card links-card">
+    <h2><span class="ic">🔗</span>常用入口 · 一键直达</h2>
+    <div class="links-grid" id="linksGrid"></div>
+    <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button class="btn-sm" onclick="addLink()">➕ 加一个</button>
+      <span id="linksHint" class="empty"></span>
+    </div>
   </section>
   <section class="card notes-card">
     <h2><span class="ic">📝</span>我的速记 · 仅存本机</h2>
@@ -80,6 +88,6 @@
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=17"></script>
+<script src="app.js?v=18"></script>
 </body>
 </html>
