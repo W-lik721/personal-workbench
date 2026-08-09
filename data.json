@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-09 19:41",
+  "generatedAt": "2026-08-09 21:12",
   "kpi": {
     "skills": 61,
     "automations": 2,
     "models": 5,
     "memory": 28,
     "knowledge": 9,
-    "sessions": 11
+    "sessions": 9
   },
   "skills": [
     {
@@ -66,6 +66,14 @@
       "lastUsed": ""
     },
     {
+      "name": "crawl4ai-to-vault",
+      "desc": "将任意网页抓取为干净 Markdown 并存入用户 vault（99-采集 目录）的技能。当用户说「抓这个网页」「把这个链接存进知识库」「爬取这个页面」「web to vault」或给出网址希望保存为笔记时使用。底层用 Crawl4AI（装在隔离 venv）复用系统已装 Edge，不下载浏览器。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：crawl4ai-to-vault",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "cs-learning",
       "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" / 想补核心课（算法·操作系统·网络·数据库·系统设计）优质开源资料 / 想做编程练手项目 / 零基础入门编程（尤其想用 AI 辅助）时触发。基于 4 篇已蒸馏笔记给出按阶段的学习地图与资源路由，不凭空编资源。",
       "category": "通用能力",
@@ -91,7 +99,7 @@
     },
     {
       "name": "design-taste-frontend",
-      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）\"",
+      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）。【路由】专注落地页/作品集/网页改版；产品 UI/后台面板/组件评审走 impeccable，图像生成/图生代码总入口走 wb-design-kit。\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：design-taste-frontend",
       "usage": 0,
@@ -266,14 +274,6 @@
       "lastUsed": ""
     },
     {
-      "name": "obsidian",
-      "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + vault 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：obsidian",
-      "usage": 2,
-      "lastUsed": "2026-08-09"
-    },
-    {
       "name": "obsidian-cli",
       "desc": "通过 Obsidian 官方命令行（obsidian 命令，1.12+ 已启用）安全操作用户的 Obsidian vault——建笔记、归档、读搜、每日笔记、反向链接、标签、移动。当用户提到 Obsidian、vault、笔记、归档、知识库整理、每日笔记、backlinks 时使用。vault 路径 D:\\Users\\qingdeng-ws\\vault（PARA 结构）。",
       "category": "通用能力",
@@ -411,7 +411,7 @@
     },
     {
       "name": "wb-design-kit",
-      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。",
+      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。【路由】本 skill 是设计/前端视觉总入口；落地页/作品集/网页改版专项请用 design-taste-frontend，产品 UI/组件/海报+设计评审+动效请用 impeccable。三者互补不冲突。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：wb-design-kit",
       "usage": 0,
@@ -667,7 +667,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 240
       },
       "D": {
         "total": 544,
@@ -679,15 +679,9 @@
   "sessions": {
     "recent": [
       {
-        "title": "查找 videosays 这个 skill",
-        "status": "working",
-        "updated": "08-09 19:41",
-        "group": "今天"
-      },
-      {
-        "title": "询问会话上下文过长是否自动压缩",
+        "title": "整理并精简重复的 skill",
         "status": "completed",
-        "updated": "08-09 19:29",
+        "updated": "08-09 21:01",
         "group": "今天"
       },
       {
@@ -718,12 +712,6 @@
         "title": "生成今日灵感与AI学习路径建议",
         "status": "completed",
         "updated": "08-07 14:28",
-        "group": "更早"
-      },
-      {
-        "title": "整理并精简重复的 skill",
-        "status": "completed",
-        "updated": "08-06 21:44",
         "group": "更早"
       },
       {
@@ -1328,10 +1316,8 @@
       },
       {
         "date": "2026-08-06",
-        "count": 1,
-        "titles": [
-          "整理并精简重复的 skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-07",
@@ -1348,10 +1334,9 @@
       },
       {
         "date": "2026-08-09",
-        "count": 5,
+        "count": 4,
         "titles": [
-          "查找 videosays 这个 skill",
-          "询问会话上下文过长是否自动压缩",
+          "整理并精简重复的 skill",
           "学习计算机科学与技术",
           "将 Obsidian 安装到 D 盘",
           "排查大量部署失败的原因"
@@ -1405,14 +1390,44 @@
   "weekly": [
     {
       "kind": "skill",
-      "name": "memory-maintain",
-      "when": 1786273837.7591393,
+      "name": "claude-mem",
+      "when": 1786280448.2268574,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1786280175.546499,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "when": 1786280088.2773352,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1786280057.206777,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "obsidian-cli",
-      "when": 1786210725.3262732,
+      "when": 1786279957.1611066,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "crawl4ai-to-vault",
+      "when": 1786277437.963398,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "memory-maintain",
+      "when": 1786273837.7591393,
       "scope": "本机"
     },
     {
@@ -1501,18 +1516,6 @@
     },
     {
       "kind": "skill",
-      "name": "impeccable",
-      "when": 1786210287.5057023,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "design-taste-frontend",
-      "when": 1786210279.8094156,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "deeptutor-tutor",
       "when": 1786210064.000151,
       "scope": "本机"
@@ -1564,12 +1567,6 @@
       "kind": "kb",
       "name": "AGENTS.md",
       "when": 1785940181.3500104
-    },
-    {
-      "kind": "skill",
-      "name": "obsidian",
-      "when": 1785939994.966442,
-      "scope": "本机"
     },
     {
       "kind": "kb",
@@ -1626,7 +1623,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 19:41",
+    "fetchedAt": "2026-08-09 21:12",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-09",
     "count": 10,
@@ -1711,7 +1708,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 19:41",
+        "fetchedAt": "2026-08-09 21:12",
         "count": 10,
         "sections": [
           {
@@ -2138,7 +2135,7 @@
   },
   "dailyNews": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 19:41",
+    "fetchedAt": "2026-08-09 21:12",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2240,7 +2237,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 19:41",
+        "fetchedAt": "2026-08-09 21:12",
         "count": 15,
         "items": [
           {
@@ -2439,12 +2436,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T19:42:09",
-    "status": "ok",
-    "nextRun": "2026-08-09T20:42:09",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
