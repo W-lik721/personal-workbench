@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-09 17:53",
+  "generatedAt": "2026-08-09 18:50",
   "kpi": {
     "skills": 60,
     "automations": 2,
     "models": 5,
     "memory": 28,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 11
   },
   "skills": [
     {
@@ -533,7 +533,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（10 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
+    "🗞️ 今日 AI 日报已更新（11 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -653,11 +653,6 @@
         "name": "context7",
         "type": "stdio",
         "online": true
-      },
-      {
-        "name": "scrapling",
-        "type": "streamableHttp",
-        "online": false
       }
     ],
     "memoryLastUpdate": "2026-08-09",
@@ -676,6 +671,18 @@
   "sessions": {
     "recent": [
       {
+        "title": "查找 videosays 这个 skill",
+        "status": "working",
+        "updated": "08-09 18:46",
+        "group": "今天"
+      },
+      {
+        "title": "解决 MEMORY.md 文件过大的问题",
+        "status": "completed",
+        "updated": "08-09 18:43",
+        "group": "今天"
+      },
+      {
         "title": "学习计算机科学与技术",
         "status": "completed",
         "updated": "08-09 14:24",
@@ -685,12 +692,6 @@
         "title": "将 Obsidian 安装到 D 盘",
         "status": "completed",
         "updated": "08-09 11:56",
-        "group": "今天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-09 02:42",
         "group": "今天"
       },
       {
@@ -1339,11 +1340,12 @@
       },
       {
         "date": "2026-08-09",
-        "count": 4,
+        "count": 5,
         "titles": [
+          "查找 videosays 这个 skill",
+          "解决 MEMORY.md 文件过大的问题",
           "学习计算机科学与技术",
           "将 Obsidian 安装到 D 盘",
-          "查找 videosays 这个 skill",
           "排查大量部署失败的原因"
         ]
       }
@@ -1610,10 +1612,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 17:53",
+    "fetchedAt": "2026-08-09 18:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-09",
-    "count": 10,
+    "count": 11,
     "sections": [
       {
         "label": "行业动态",
@@ -1663,6 +1665,12 @@
             "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
             "url": "https://aihot.virxact.com/items/cmslhy76p03hdroo0l8dsaskb",
             "source": ""
+          },
+          {
+            "title": "Seedance 2.5 上线一周新增六种创意玩法",
+            "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别\"AI 油腻感\"，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+            "url": "https://aihot.virxact.com/items/cmslmv6kx03muroqyxyo4fbtl",
+            "source": ""
           }
         ]
       },
@@ -1700,8 +1708,8 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 17:53",
-        "count": 10,
+        "fetchedAt": "2026-08-09 18:50",
+        "count": 11,
         "sections": [
           {
             "label": "行业动态",
@@ -1750,6 +1758,12 @@
                 "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
                 "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
                 "url": "https://aihot.virxact.com/items/cmslhy76p03hdroo0l8dsaskb",
+                "source": ""
+              },
+              {
+                "title": "Seedance 2.5 上线一周新增六种创意玩法",
+                "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别\"AI 油腻感\"，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+                "url": "https://aihot.virxact.com/items/cmslmv6kx03muroqyxyo4fbtl",
                 "source": ""
               }
             ]
@@ -2132,7 +2146,7 @@
   },
   "dailyNews": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 17:53",
+    "fetchedAt": "2026-08-09 18:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2234,7 +2248,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 17:53",
+        "fetchedAt": "2026-08-09 18:50",
         "count": 15,
         "items": [
           {
@@ -2433,12 +2447,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T17:53:47",
-    "status": "ok",
-    "nextRun": "2026-08-09T18:53:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
