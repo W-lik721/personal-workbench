@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09 16:18",
+  "generatedAt": "2026-08-09 16:58",
   "kpi": {
     "skills": 60,
     "automations": 2,
@@ -533,7 +533,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（11 条）：苹果 Mac 简体中文支持文档更新，\"Apple 智能\"阿里千问扩展现身",
+    "🗞️ 今日 AI 日报已更新（10 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -664,7 +664,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 240
       },
       "D": {
         "total": 544,
@@ -1610,22 +1610,11 @@
   ],
   "aiDaily": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 16:18",
+    "fetchedAt": "2026-08-09 16:58",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-09",
-    "count": 11,
+    "count": 10,
     "sections": [
-      {
-        "label": "产品发布",
-        "items": [
-          {
-            "title": "苹果 Mac 简体中文支持文档更新，\"Apple 智能\"阿里千问扩展现身",
-            "summary": "苹果官网 Mac 简体中文使用手册新增《在 Mac 上配合 Apple 智能使用千问》支持文档，明确 Apple 智能可配合阿里巴巴千问模型工作。千问扩展适用于 macOS 26.6 或更高版本，需中国大陆 Apple 账户及机型，支持写作工具与 Siri，用户需登录千问账户使用。",
-            "url": "https://aihot.virxact.com/items/cmsk5m3kq0ahqro4bn4nh1r6r",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "行业动态",
         "items": [
@@ -1711,20 +1700,9 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 16:18",
-        "count": 11,
+        "fetchedAt": "2026-08-09 16:58",
+        "count": 10,
         "sections": [
-          {
-            "label": "产品发布",
-            "items": [
-              {
-                "title": "苹果 Mac 简体中文支持文档更新，\"Apple 智能\"阿里千问扩展现身",
-                "summary": "苹果官网 Mac 简体中文使用手册新增《在 Mac 上配合 Apple 智能使用千问》支持文档，明确 Apple 智能可配合阿里巴巴千问模型工作。千问扩展适用于 macOS 26.6 或更高版本，需中国大陆 Apple 账户及机型，支持写作工具与 Siri，用户需登录千问账户使用。",
-                "url": "https://aihot.virxact.com/items/cmsk5m3kq0ahqro4bn4nh1r6r",
-                "source": ""
-              }
-            ]
-          },
           {
             "label": "行业动态",
             "items": [
@@ -2154,7 +2132,7 @@
   },
   "dailyNews": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 16:18",
+    "fetchedAt": "2026-08-09 16:58",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2256,7 +2234,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 16:18",
+        "fetchedAt": "2026-08-09 16:58",
         "count": 15,
         "items": [
           {
@@ -2455,12 +2433,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T16:18:27",
-    "status": "ok",
-    "nextRun": "2026-08-09T17:18:27",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
