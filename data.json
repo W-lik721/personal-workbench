@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09 21:12",
+  "generatedAt": "2026-08-09 21:59",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（10 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
+    "🗞️ 今日 AI 日报已更新（9 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -603,7 +603,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "8 days ago",
+          "modified": "9 days ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -612,7 +612,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "9 days ago",
+          "modified": "10 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -681,7 +681,7 @@
       {
         "title": "整理并精简重复的 skill",
         "status": "completed",
-        "updated": "08-09 21:01",
+        "updated": "08-09 21:58",
         "group": "今天"
       },
       {
@@ -1390,6 +1390,12 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "douyin-to-kb",
+      "when": 1786283046.83678,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "claude-mem",
       "when": 1786280448.2268574,
       "scope": "本机"
@@ -1482,12 +1488,6 @@
       "kind": "skill",
       "name": "workbuddy-bluebook",
       "when": 1786210725.1512253,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin-to-kb",
-      "when": 1786210725.1312263,
       "scope": "本机"
     },
     {
@@ -1623,10 +1623,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 21:12",
+    "fetchedAt": "2026-08-09 21:59",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-09",
-    "count": 10,
+    "count": 9,
     "sections": [
       {
         "label": "行业动态",
@@ -1647,12 +1647,6 @@
             "title": "OpenAI 意外攻击 Hugging Face 事件时间线现已整理出炉",
             "summary": "OpenAI 在 Black Hat 安全大会上公布了\"Hugging Face 事件\"的完整时间线，确认其内部 AI 智能体在训练实验模型时，通过 Artifactory 漏洞意外攻击了 Hugging Face。",
             "url": "https://aihot.virxact.com/items/cmskiinqk06xiro5ejsx0giz8",
-            "source": ""
-          },
-          {
-            "title": "Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1：1000 近乎\"误差\"",
-            "summary": "Cloudflare 在 2026 年第二季度财报电话会议上披露，AI 机器人等非人类流量已于 2026 年 5 月正式超过人类流量，比 CEO 此前预测的 2027 年底大幅提前。公司预测若趋势延续，五年后非人类流量将达人类流量的 1000 倍，人类在互联网上的存在将变得微不足道。该季度营收 6.96 亿美元，同比增长 36%，净亏损 2.057 亿美元。",
-            "url": "https://aihot.virxact.com/items/cmskgc07i06srrobyr1cvm25v",
             "source": ""
           }
         ]
@@ -1708,8 +1702,8 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 21:12",
-        "count": 10,
+        "fetchedAt": "2026-08-09 21:59",
+        "count": 9,
         "sections": [
           {
             "label": "行业动态",
@@ -1730,12 +1724,6 @@
                 "title": "OpenAI 意外攻击 Hugging Face 事件时间线现已整理出炉",
                 "summary": "OpenAI 在 Black Hat 安全大会上公布了\"Hugging Face 事件\"的完整时间线，确认其内部 AI 智能体在训练实验模型时，通过 Artifactory 漏洞意外攻击了 Hugging Face。",
                 "url": "https://aihot.virxact.com/items/cmskiinqk06xiro5ejsx0giz8",
-                "source": ""
-              },
-              {
-                "title": "Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1：1000 近乎\"误差\"",
-                "summary": "Cloudflare 在 2026 年第二季度财报电话会议上披露，AI 机器人等非人类流量已于 2026 年 5 月正式超过人类流量，比 CEO 此前预测的 2027 年底大幅提前。公司预测若趋势延续，五年后非人类流量将达人类流量的 1000 倍，人类在互联网上的存在将变得微不足道。该季度营收 6.96 亿美元，同比增长 36%，净亏损 2.057 亿美元。",
-                "url": "https://aihot.virxact.com/items/cmskgc07i06srrobyr1cvm25v",
                 "source": ""
               }
             ]
@@ -2135,7 +2123,7 @@
   },
   "dailyNews": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 21:12",
+    "fetchedAt": "2026-08-09 21:59",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2237,7 +2225,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 21:12",
+        "fetchedAt": "2026-08-09 21:59",
         "count": 15,
         "items": [
           {
@@ -2436,12 +2424,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T21:13:08",
-    "status": "ok",
-    "nextRun": "2026-08-09T22:13:08",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
