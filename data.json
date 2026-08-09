@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09 12:34",
+  "generatedAt": "2026-08-09 13:56",
   "kpi": {
     "skills": 60,
     "automations": 2,
@@ -587,7 +587,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "7 days ago",
+          "modified": "8 days ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -668,7 +668,7 @@
       },
       "D": {
         "total": 544,
-        "free": 389
+        "free": 384
       }
     },
     "runtime": "3.13 / 22.22"
@@ -677,8 +677,8 @@
     "recent": [
       {
         "title": "学习计算机科学与技术",
-        "status": "completed",
-        "updated": "08-09 11:57",
+        "status": "working",
+        "updated": "08-09 13:55",
         "group": "今天"
       },
       {
@@ -1610,7 +1610,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 12:34",
+    "fetchedAt": "2026-08-09 13:56",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-09",
     "count": 10,
@@ -1700,7 +1700,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 12:34",
+        "fetchedAt": "2026-08-09 13:56",
         "count": 10,
         "sections": [
           {
@@ -2132,7 +2132,7 @@
   },
   "dailyNews": {
     "date": "2026-08-09",
-    "fetchedAt": "2026-08-09 12:34",
+    "fetchedAt": "2026-08-09 13:56",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2234,7 +2234,7 @@
     "history": [
       {
         "date": "2026-08-09",
-        "fetchedAt": "2026-08-09 12:34",
+        "fetchedAt": "2026-08-09 13:56",
         "count": 15,
         "items": [
           {
@@ -2433,12 +2433,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-09T12:34:07",
-    "status": "ok",
-    "nextRun": "2026-08-09T13:34:07",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
