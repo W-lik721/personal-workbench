@@ -48,9 +48,8 @@ jobs:
 
       - name: Build APK
         run: |
-          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
-          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
-          echo "n" | bubblewrap build --manifest=./twa-manifest.json
+          # 管道喂 3 个回答：① regenerate? → n  ② keystore 密码  ③ key 密码
+          printf "n\nworkbench-pass\nworkbench-pass\n" | bubblewrap build --manifest=./twa-manifest.json
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
