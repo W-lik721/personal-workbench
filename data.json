@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 01:44",
+  "generatedAt": "2026-08-10 10:45",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（10 条）：Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
+    "🗞️ 今日 AI 日报已更新（10 条）：NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1636,26 +1636,54 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-09",
-    "fetchedAt": "2026-08-10 01:44",
+    "date": "2026-08-10",
+    "fetchedAt": "2026-08-10 10:45",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-09",
+    "canonical": "https://aihot.virxact.com/daily/2026-08-10",
     "count": 10,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+            "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
+            "url": "https://aihot.virxact.com/items/cmsmhbu4w0338ronxh92vej2u",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
+            "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
+            "url": "https://aihot.virxact.com/items/cmsmlho8005dmrohfoz27j6em",
+            "source": ""
+          },
+          {
+            "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
+            "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
+            "url": "https://aihot.virxact.com/items/cmsmizpgb02yerohf3bh8jesi",
+            "source": ""
+          },
+          {
+            "title": "OpenChamber：一个基于代理的开发环境",
+            "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
+            "url": "https://aihot.virxact.com/items/cmsmjglqx034prohfslczvkpb",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
           {
-            "title": "Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
-            "summary": "Cloudflare 在 2026 年第二季度财报电话会议上披露，AI 机器人等非人类流量已于 2026 年 5 月正式超过人类流量，比 CEO 此前预测的 2027 年底大幅提前。公司预测若趋势延续，五年后非人类流量将达人类流量的 1000 倍，人类在互联网上的存在将变得微不足道。该季度营收 6.96 亿美元，同比增长 36%，净亏损 2.057 亿美元。",
-            "url": "https://www.ithome.com/0/987/438.htm",
-            "source": "IT之家（RSS）"
-          },
-          {
-            "title": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂",
-            "summary": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂，由 NVIDIA 加速计算和 Dell Technologies 基础设施驱动，亚美尼亚总理等官员出席开幕式。",
-            "url": "https://blogs.nvidia.com/blog/firebird-ai-factory-armenia-blackwell-rubin-dsx",
-            "source": "NVIDIA Blog（RSS）"
+            "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
+            "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
+            "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+            "source": ""
           },
           {
             "title": "AI安全测试正成为安全风险",
@@ -1669,57 +1697,122 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
-            "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
-            "url": "https://aihot.virxact.com/items/cmslxhx3t05n3ro0w2lcmvjol",
-            "source": ""
+            "title": "Seedance 2.5 上线一周新增六种创意玩法",
+            "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别“AI 油腻感”，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+            "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247509275&idx=1&sn=48cc15b0f9b22173ce93350da61f15dc",
+            "source": "公众号：卡尔的AI沃茨"
+          },
+          {
+            "title": "Anthropic 称已基本解决提示注入攻击",
+            "summary": "Anthropic 的 Boris Cherny 表示，通过模型训练已基本解决 Claude 模型在实际使用中的提示注入威胁。独立研究者的基准测试显示，叠加模型训练、输入探测和意图分类器等多层防御后，未见过的间接提示注入攻击成功率可降至约 0。Claude Code 的 auto 模式将于下周默认开启。",
+            "url": "https://x.com/bcherny/status/2086520950259118464",
+            "source": "X：Boris Cherny (@bcherny)"
           },
           {
             "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
             "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
-            "url": "https://aihot.virxact.com/items/cmslhy76p03hdroo0l8dsaskb",
-            "source": ""
+            "url": "https://www.marktechpost.com/2026/08/09/imdb-sentiment-analysis-with-distilbert-lora-tf-idf-baselines-calibration-interpretability-robustness-testing-and-semi-supervised-learning",
+            "source": "MarkTechPost（RSS）"
           },
           {
-            "title": "Seedance 2.5 上线一周新增六种创意玩法",
-            "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别\"AI 油腻感\"，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
-            "url": "https://aihot.virxact.com/items/cmslmv6kx03muroqyxyo4fbtl",
-            "source": ""
-          }
-        ]
-      },
-      {
-        "label": "产品发布/更新",
-        "items": [
-          {
-            "title": "苹果 Mac 简体中文支持文档更新，“Apple 智能”阿里千问扩展现身",
-            "summary": "苹果官网 Mac 简体中文使用手册新增《在 Mac 上配合 Apple 智能使用千问》支持文档，明确 Apple 智能可配合阿里巴巴千问模型工作。千问扩展适用于 macOS 26.6 或更高版本，需中国大陆 Apple 账户及机型，支持写作工具与 Siri，用户需登录千问账户使用。",
-            "url": "https://www.ithome.com/0/987/366.htm",
-            "source": "IT之家（RSS）"
-          },
-          {
-            "title": "OpenAI 桌面端 ChatGPT 上线语音交互功能，可语音操控电脑执行多步骤任务",
-            "summary": "OpenAI 更新 ChatGPT 桌面应用，新增对 ChatGPT Voice 的支持，用户可直接通过语音对话控制 AI 智能体并让其在电脑上执行任务。该功能基于全新语音模型系列 ChatGPT-Live，支持 ChatGPT Work 和 Codex，在 macOS 上还可借助 Appshots 访问屏幕内容。",
-            "url": "https://www.ithome.com/0/987/452.htm",
-            "source": "IT之家（RSS）"
-          },
-          {
-            "title": "Grok Imagine 图像编辑迎来重大升级",
-            "summary": "Grok Imagine 图像编辑功能重大升级 [引用 @XFreeze]：你可以直接悬停在 Grok Imagine 中的任意特定区域，并即时进行编辑",
-            "url": "https://x.com/elonmusk/status/2086127247077843282",
-            "source": "X：Elon Musk (@elonmusk, xAI)"
-          },
-          {
-            "title": "Claude Code v2.1.225 发布：新增网关支出限额支持与工作区信任提示",
-            "summary": "Claude Code v2.1.225 为用量警告新增网关支出限额支持，达到限额时提示将显示上限、重置时间及操作者消息。该版本还为不受信任目录中的 claude agents 增加工作区信任提示，并修复了 MCP OAuth 服务器在 macOS 上的间歇性 401 错误、跨会话消息滞留及 Remote Control 会话恢复后对话历史损坏等问题。",
-            "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.225",
-            "source": "Claude Code：GitHub Releases（RSS）"
+            "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
+            "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
+            "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
+            "source": "Nathan Lambert：Interconnects（RSS）"
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-10",
+        "fetchedAt": "2026-08-10 10:45",
+        "count": 10,
+        "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+                "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
+                "url": "https://aihot.virxact.com/items/cmsmhbu4w0338ronxh92vej2u",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
+                "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
+                "url": "https://aihot.virxact.com/items/cmsmlho8005dmrohfoz27j6em",
+                "source": ""
+              },
+              {
+                "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
+                "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
+                "url": "https://aihot.virxact.com/items/cmsmizpgb02yerohf3bh8jesi",
+                "source": ""
+              },
+              {
+                "title": "OpenChamber：一个基于代理的开发环境",
+                "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
+                "url": "https://aihot.virxact.com/items/cmsmjglqx034prohfslczvkpb",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
+                "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
+                "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+                "source": ""
+              },
+              {
+                "title": "AI安全测试正成为安全风险",
+                "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
+                "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "Seedance 2.5 上线一周新增六种创意玩法",
+                "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别“AI 油腻感”，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+                "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247509275&idx=1&sn=48cc15b0f9b22173ce93350da61f15dc",
+                "source": "公众号：卡尔的AI沃茨"
+              },
+              {
+                "title": "Anthropic 称已基本解决提示注入攻击",
+                "summary": "Anthropic 的 Boris Cherny 表示，通过模型训练已基本解决 Claude 模型在实际使用中的提示注入威胁。独立研究者的基准测试显示，叠加模型训练、输入探测和意图分类器等多层防御后，未见过的间接提示注入攻击成功率可降至约 0。Claude Code 的 auto 模式将于下周默认开启。",
+                "url": "https://x.com/bcherny/status/2086520950259118464",
+                "source": "X：Boris Cherny (@bcherny)"
+              },
+              {
+                "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
+                "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
+                "url": "https://www.marktechpost.com/2026/08/09/imdb-sentiment-analysis-with-distilbert-lora-tf-idf-baselines-calibration-interpretability-robustness-testing-and-semi-supervised-learning",
+                "source": "MarkTechPost（RSS）"
+              },
+              {
+                "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
+                "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
+                "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
+                "source": "Nathan Lambert：Interconnects（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-10"
+      },
       {
         "date": "2026-08-09",
         "fetchedAt": "2026-08-10 01:44",
@@ -2148,107 +2241,207 @@
     ]
   },
   "dailyNews": {
-    "date": "2026-08-09",
-    "fetchedAt": "2026-08-10 01:44",
+    "date": "2026-08-10",
+    "fetchedAt": "2026-08-10 10:45",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "台风 “白海豚” 预计 9 日晚至 10 日早晨在浙闽沿海登陆，未来三天浙江、上海、福建北部、江苏大部等地有强降雨",
+        "title": "2026 暑期档票房破 85 亿，单日票房连续 30 天破亿元，观影人次、放映场次双创新高",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "新疆调整 4A 及以上景区自驾服务费，统一按 “车” 收费",
+        "title": "7 月份我国居民消费价格同比上涨 0.5%，总体保持温和上涨态势",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "2026 年本科未录满专业 TOP50 公布：会计学 410 次居首，财务管理 398 次、英语 379 次紧随其后",
+        "title": "广州：推进人行道安步计划，启用智眼系统查处电动自行车违法行为",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "北京市教委：扰乱课堂秩序、吸烟饮酒等七类情形，可实施教育惩戒",
+        "title": "上海足协：明日之星冠军杯决赛因台风取消，U17 国足和阿森纳并列冠军",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "28 款热销睫毛胶中超八成样品检出致癌物，部分成分接近 502 胶",
+        "title": "我国渤海首个千亿方大气田投产：日产油气当量超 5200 吨，开发效果超过预期",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "陕西商洛暴雨一棺材厂被冲毁，老板称 14 副成品棺材冲走，损失超 40 万元",
+        "title": "国产磁悬浮 5.3 秒飙到时速 800 公里，半年内 3 破世界纪录",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "香港正式立法允许 “拒绝抢救”：病人可通过预先订立指示，拒绝心肺复苏、人工呼吸器等侵入性维持生命治疗",
+        "title": "“开学三件套” 全线暴涨，有老板称一台电脑涨出一部手机的钱",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "黄金创今年来最大单周涨幅，国内金饰克价一夜涨回 1300 元",
+        "title": "知情人士：苹果测试长鑫科技存储芯片，用于 iPhone 和 MacBook",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "多家 A 股公司公告：收到美国关税退税，最高近亿元",
+        "title": "WTT 横滨赛落幕：张本兄妹包揽男单、女单冠军，国乒女单陈幸同收获亚军",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "我国科学家重大发现：银河系不是扁平圆盘，其外盘存在整体翘曲并叠加大范围波纹状褶皱结构",
+        "title": "泰国国家旅游局：高度重视中国游客旅游体验，将完善产品和服务",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国防部第五批 UFO 档案：光球飞掠中东居民区，阿富汗 152 米三角形遮蔽星光",
+        "title": "法学者：禁止对华出口光刻机，美、欧反将成最大输家",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "苹果加码印度制造：今年预计生产全球 26% 的 iPhone，而四年前这一比例仅为 6%",
+        "title": "美国能源公司起诉数据中心开发商：将电费成本转嫁民众",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日本发布排名：中国研发总投入超过美国位居世界第一，美日德韩英法居后",
+        "title": "俄罗斯失业率 2.2%，为 G20 国家中最低，劳动力短缺或成俄经济严峻考验",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "马斯克豪掷 168 亿美元打造 “地球最大芯片工厂”，规模相当于 50 个五角大楼",
+        "title": "一家与美国总统关联的美石油公司拟在格陵兰岛钻探，格陵兰岛警告称尚未批准任何设备上岛",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普宣布将向关键矿产投资 30 亿美元，重塑美国作为世界矿产超级大国的应有地位",
+        "title": "伊朗外长重申伊朗目前未与美国谈判；特朗普称美国正与伊朗开展 “半谈判”",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "你不需要被所有人理解，也不需要向所有人解释。走自己的路，风会替你说话。",
-    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0U8HnDgSvz0Okiac3jBSVfnFBiaxSDX71m4wYAsD2ZN24XULGNJc5aVLErFF2qF42XzQGfA5Etibr3z2734dhUWu38QKdvnk9BeV0o/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "别把一时的情绪当永久判决，坏心情会走，好天气会来，你只需等",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U96l86kzcemU0WmIgV4EnYxl0GcVWGjUdWt1j7kNRiaY9yMaPFFhm2ibdLeEREiaDtaoRBT7q5kMticA2l0zpQoxqZe0icw7oI6UtxI/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-10",
+        "fetchedAt": "2026-08-10 10:45",
+        "count": 15,
+        "items": [
+          {
+            "title": "2026 暑期档票房破 85 亿，单日票房连续 30 天破亿元，观影人次、放映场次双创新高",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "7 月份我国居民消费价格同比上涨 0.5%，总体保持温和上涨态势",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "广州：推进人行道安步计划，启用智眼系统查处电动自行车违法行为",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "上海足协：明日之星冠军杯决赛因台风取消，U17 国足和阿森纳并列冠军",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国渤海首个千亿方大气田投产：日产油气当量超 5200 吨，开发效果超过预期",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国产磁悬浮 5.3 秒飙到时速 800 公里，半年内 3 破世界纪录",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "“开学三件套” 全线暴涨，有老板称一台电脑涨出一部手机的钱",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "知情人士：苹果测试长鑫科技存储芯片，用于 iPhone 和 MacBook",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "WTT 横滨赛落幕：张本兄妹包揽男单、女单冠军，国乒女单陈幸同收获亚军",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "泰国国家旅游局：高度重视中国游客旅游体验，将完善产品和服务",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "法学者：禁止对华出口光刻机，美、欧反将成最大输家",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国能源公司起诉数据中心开发商：将电费成本转嫁民众",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "俄罗斯失业率 2.2%，为 G20 国家中最低，劳动力短缺或成俄经济严峻考验",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "一家与美国总统关联的美石油公司拟在格陵兰岛钻探，格陵兰岛警告称尚未批准任何设备上岛",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "伊朗外长重申伊朗目前未与美国谈判；特朗普称美国正与伊朗开展 “半谈判”",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "别把一时的情绪当永久判决，坏心情会走，好天气会来，你只需等",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-09",
         "fetchedAt": "2026-08-10 01:44",
@@ -2450,12 +2643,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T01:44:38",
-    "status": "ok",
-    "nextRun": "2026-08-10T02:44:38",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
