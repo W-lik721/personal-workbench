@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 12:50",
+  "generatedAt": "2026-08-10 14:21",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -595,7 +595,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "8 days ago",
+          "modified": "9 days ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -679,6 +679,12 @@
   "sessions": {
     "recent": [
       {
+        "title": "排查大量部署失败的原因",
+        "status": "completed",
+        "updated": "08-10 14:20",
+        "group": "今天"
+      },
+      {
         "title": "学习计算机科学与技术",
         "status": "completed",
         "updated": "08-10 11:52",
@@ -700,12 +706,6 @@
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-09 22:00",
-        "group": "昨天"
-      },
-      {
-        "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-09 01:30",
         "group": "昨天"
       },
       {
@@ -1335,17 +1335,17 @@
       },
       {
         "date": "2026-08-09",
-        "count": 3,
+        "count": 2,
         "titles": [
           "将 Obsidian 安装到 D 盘",
-          "整理并精简重复的 skill",
-          "排查大量部署失败的原因"
+          "整理并精简重复的 skill"
         ]
       },
       {
         "date": "2026-08-10",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "排查大量部署失败的原因",
           "学习计算机科学与技术",
           "寻找无需apikey的抖音视频下载skill"
         ]
@@ -1667,7 +1667,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 12:50",
+    "fetchedAt": "2026-08-10 14:21",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
     "count": 11,
@@ -1763,7 +1763,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 12:50",
+        "fetchedAt": "2026-08-10 14:21",
         "count": 11,
         "sections": [
           {
@@ -2284,7 +2284,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 12:50",
+    "fetchedAt": "2026-08-10 14:21",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2386,7 +2386,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 12:50",
+        "fetchedAt": "2026-08-10 14:21",
         "count": 15,
         "items": [
           {
@@ -2687,9 +2687,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-10T12:50:23",
+    "lastRun": "2026-08-10T14:21:20",
     "status": "ok",
-    "nextRun": "2026-08-10T13:50:23",
+    "nextRun": "2026-08-10T15:21:20",
     "intervalHours": 1,
     "staleHours": 2
   }
