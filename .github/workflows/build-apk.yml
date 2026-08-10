@@ -46,11 +46,15 @@ jobs:
           EOF
           cat "$HOME/.bubblewrap/config.json"
 
-      - name: Generate manifest checksum (skip regenerate prompt)
+      - name: Init TWA project (generates gradle wrapper + checksum)
         run: |
-          sha1sum twa-manifest.json | cut -d' ' -f1 | tr -d '\n' > manifest-checksum.txt
-          cat manifest-checksum.txt
-          echo ""
+          rm -rf twa-manifest.json manifest-checksum.txt android
+          # init 会从线上 manifest 生成完整 Android 工程；环境变量喂密码跳过交互
+          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
+          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
+          bubblewrap init --manifest="https://w-lik721.github.io/personal-workbench/manifest.json" --directory="$GITHUB_WORKSPACE"
+          ls twa-manifest.json manifest-checksum.txt 2>&1
+          ls gradlew 2>&1
 
       - name: Build APK
         run: |
