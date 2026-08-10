@@ -73,6 +73,7 @@
     robustCopy(box.value, "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
   }
   window.cmd = cmd; window.cmdtext = cmdtext; window.inspire = inspire; window.copyInspire = copyInspire;
+  window.robustCopy = robustCopy; window.flashCopied = flashCopied;
 
   // ---------- 交互 ----------
   function filt() {
