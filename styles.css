@@ -291,6 +291,8 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .nw-a:hover{text-decoration:underline}
 .nw-ask{margin-left:auto;font-size:11.5px;font-weight:600;background:var(--tint);border:1px solid rgba(43,184,198,.4);color:var(--accent);border-radius:999px;padding:3px 11px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:4px}
 .nw-ask:hover{background:rgba(43,184,198,.18);border-color:var(--accent);color:var(--accent)}
+.nw-ask.flashed{border-color:rgba(63,185,80,.6);background:rgba(63,185,80,.18);color:var(--green)}
+.nw-ask.flashed-fail{border-color:rgba(240,168,90,.6);background:rgba(240,168,90,.18);color:var(--amber)}
 /* 收藏（稍后读）按钮：☆/★ 幽灵小按钮 */
 .fav-btn{margin-left:auto;font-size:12px;background:transparent;border:1px solid var(--line);color:var(--sub);border-radius:8px;padding:2px 7px;cursor:pointer;transition:.15s;line-height:1.3}
 .fav-btn:hover{border-color:rgba(240,168,90,.55);color:#e0a954}

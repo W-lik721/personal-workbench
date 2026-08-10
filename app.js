@@ -19,11 +19,24 @@
     return esc(s).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
   }
 
-  // ---------- 复制指令（降级） ----------
-  function robustCopy(t, hintId, okMsg, failMsg) {
+  // ---------- 复制指令（降级 + 按钮即时反馈） ----------
+  function flashCopied(btn, ok) {
+    if (!btn) return;
+    if (!btn.dataset.origText) btn.dataset.origText = btn.textContent;
+    btn.textContent = ok ? "✓ 已复制" : "❗ 请手动复制";
+    btn.classList.toggle("flashed", ok);
+    btn.classList.toggle("flashed-fail", !ok);
+    clearTimeout(btn._flashT);
+    btn._flashT = setTimeout(function () {
+      btn.textContent = btn.dataset.origText;
+      btn.classList.remove("flashed", "flashed-fail");
+    }, 1800);
+  }
+  function robustCopy(t, hintId, okMsg, failMsg, btn) {
     var set = function (ok) {
       var h = document.getElementById(hintId);
       if (h) h.textContent = ok ? ("✓ " + okMsg) : ("⚠ " + failMsg);
+      flashCopied(btn, ok);
     };
     var fb = function () {
       try {
@@ -41,7 +54,7 @@
     var c = el.getAttribute("data-cmd");
     var box = document.getElementById("cmdbox");
     box.value = c; box.focus(); box.select();
-    robustCopy(c, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C");
+    robustCopy(c, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C", el);
   }
   function cmdtext(t) {
     var box = document.getElementById("cmdbox");
@@ -91,6 +104,7 @@
       p.classList.toggle("active", p.id === "pane-" + id);
     });
     try { localStorage.setItem("wb_tab", id); } catch (e) {}
+    if (__data) renderActiveTab(__data);
   }
   function goKPI(tab, cardId) {
     switchTab(tab);
@@ -250,7 +264,7 @@
     return '<div class="nw"><div class="nw-t">' + prefix + esc(it.title) + "</div>" +
       dHtml +
       '<div class="nw-f">' + src + link + fav +
-      '<button class="nw-ask" onclick="cmdtext(' + "'" + escAttr(askText) + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
+      '<button class="nw-ask" onclick="robustCopy(' + "'" + escAttr(askText) + escAttr(it.title) + "',null,'已复制','复制被拦截',this" + ')">☁️ 让 AI 讲讲</button>' +
       "</div></div>";
   }
 
@@ -1113,18 +1127,30 @@
   window.delCourse = delCourse;
   window.exportSchedule = exportSchedule;
 
-  function render(d) {
+  // 头部条（KPI/同步/快捷启动/本周动态）+ tab 内容拆分渲染：省 CPU、按需
+  function renderHeaderStrip(d) {
     document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "-");
     renderSync(d);
     renderKPI(d);
     renderQuick(d);
-    renderCap(d);
-    renderNews(d);
-    renderDailyNews(d);
-    renderOv(d);
-    renderStats(d);
-    renderSessArchive(d);
     renderWeekly(d);
+  }
+  function renderActiveTab(d) {
+    if (!d) return;
+    var a = document.querySelector(".tab.active");
+    var id = a ? a.getAttribute("data-tab") : "cap";
+    if (id === "cap") renderCap(d);
+    else if (id === "news") renderNews(d);
+    else if (id === "dnews") renderDailyNews(d);
+    else if (id === "ov") renderOv(d);
+    else if (id === "stats") renderStats(d);
+    else if (id === "sess") renderSessArchive(d);
+    // schedule 是纯 localStorage，启动时已渲染，无需数据
+  }
+  function render(d) {
+    __data = d;
+    renderHeaderStrip(d);
+    renderActiveTab(d);
   }
 
   // ---------- 同步健康度（数据新鲜度 + 失败/陈旧告警） ----------
@@ -1158,21 +1184,31 @@
 
   // ---------- 启动 ----------
   var __lastGen = "";
+  var __lastMod = "";
+  var __data = null;
   function loadData() {
     return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
-      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r.ok) __lastMod = r.headers.get("Last-Modified") || ""; return r.json(); })
       .then(function (d) { render(d); __lastGen = d.generatedAt || ""; return d; });
   }
   // 数据变化时自动重渲染（覆盖自动/手动同步），免去手动刷新浏览器
+  // HEAD 优先：先取文件头对比 Last-Modified，没变就跳过正文下载，省 99% 流量
   function maybeReload() {
-    return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if ((d.generatedAt || "") !== __lastGen) {
-          render(d); __lastGen = d.generatedAt || "";
-          return true;
-        }
-        return false;
+    return fetch("data.json", { method: "HEAD", cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) return false;
+        var lm = r.headers.get("Last-Modified") || "";
+        if (lm && lm === __lastMod) return false;
+        return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
+          .then(function (rr) { return rr.json(); })
+          .then(function (d) {
+            __data = d;
+            renderHeaderStrip(d);
+            renderActiveTab(d);
+            __lastGen = d.generatedAt || "";
+            __lastMod = lm;
+            return true;
+          });
       })
       .catch(function () { return false; });
   }
