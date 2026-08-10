@@ -398,7 +398,7 @@
     } catch (e) {}
   }
   window.pomoToggle = pomoToggle; window.pomoReset = pomoReset;
-  window.sessFilter = sessFilter; window.sessStatus = sessStatus;
+  window.sessFilter = sessFilter; window.sessStatus = sessStatus; window.weekSet = weekSet;
   window.addTodo = addTodo; window.toggleTodo = toggleTodo; window.delTodo = delTodo; window.clearDone = clearDone;
   window.dnewsDateChanged = dnewsDateChanged;
 
@@ -648,6 +648,29 @@
     box.innerHTML = html;
   }
 
+  // 把 RRULE 风格 cron（FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0）解析成中文
+  function cronZh(cron) {
+    if (!cron) return "";
+    var p = {};
+    String(cron).split(";").forEach(function (kv) {
+      var i = kv.indexOf("=");
+      if (i > 0) p[kv.slice(0, i).toUpperCase()] = kv.slice(i + 1);
+    });
+    var freq = p.FREQ || "";
+    var days = { MO: "一", TU: "二", WE: "三", TH: "四", FR: "五", SA: "六", SU: "日" };
+    var when = [];
+    if (p.BYHOUR) { when.push((p.BYHOUR.length === 1 ? "0" + p.BYHOUR : p.BYHOUR) + ":" + (p.BYMINUTE ? (p.BYMINUTE.length === 1 ? "0" + p.BYMINUTE : p.BYMINUTE) : "00")); }
+    var hm = when.length ? " " + when[0] : "";
+    if (freq.indexOf("WEEKLY") >= 0) {
+      var ds = (p.BYDAY || "").split(",").filter(Boolean).map(function (d) { return days[d] || ""; }).join("、");
+      return (ds ? "每周" + ds : "每周") + hm;
+    }
+    if (freq.indexOf("DAILY") >= 0) return "每天" + hm;
+    if (freq.indexOf("HOURLY") >= 0) return "每小时";
+    if (freq.indexOf("MONTHLY") >= 0) return "每月" + hm;
+    return String(cron).slice(0, 30);
+  }
+
   function renderOv(d) {
     var st = d.status;
     var modelsHtml = (st.models || []).map(function (m) {
@@ -673,7 +696,8 @@
       }).join("") : '<div class="empty">Ollama 未运行 · 暂无本地模型</div>');
     var autoHtml = (st.automations || []).map(function (a) {
       var badge = a.status === "ACTIVE" || a.status === "active" ? '<span class="badge on">ACTIVE</span>' : '<span class="badge off">' + esc(a.status) + "</span>";
-      return '<div class="auto">' + badge + "<b>" + esc(a.name) + '</b><span class="meta">recurring · 下次 ' + esc(a.next || "-") + "</span></div>";
+      var freq = cronZh(a.cron);
+      return '<div class="auto">' + badge + "<b>" + esc(a.name) + '</b><span class="meta">' + (freq ? esc(freq) + " · " : "") + "下次 " + esc(a.next || "-") + "</span></div>";
     }).join("") || '<div class="empty">暂无自动化任务</div>';
     var kb = d.knowledge || { total: 0, types: {}, files: [] };
     var kbTypes = Object.keys(kb.types || {}).map(function (t) { return t + " " + kb.types[t]; }).join(" · ");
@@ -810,6 +834,35 @@
     box.innerHTML = html;
   }
 
+  // 本周动态：bento 首页卡（最近 12 条）+ 独立 tab（全部 + 类型筛选）共用渲染
+  var WK_ICON = { skill: "📦", automation: "⚙️", kb: "📄", model: "🧠" };
+  var WK_LABEL = { skill: "新增/更新 skill", automation: "新建自动化任务", kb: "新增知识库文件", model: "拉取本地模型" };
+  function wkItemHtml(it) {
+    var dt = new Date((it.when || 0) * 1000);
+    var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
+      ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
+    var scope = (it.scope || "").replace(/^[（(]|[）)]$/g, "").trim();
+    return '<li class="wk"><span class="wk-ic">' + (WK_ICON[it.kind] || "•") + '</span>' +
+      '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span></div>' +
+      (scope ? '<span class="wk-scope">' + esc(scope) + '</span>' : '') +
+      '<span class="wk-meta">' + ds + '</span></li>';
+  }
+  function wkGroupHtml(items) {
+    var order = ["skill", "kb", "automation", "model"];
+    var html = "";
+    order.forEach(function (k) {
+      var list = items.filter(function (it) { return it.kind === k; });
+      if (!list.length) return;
+      html += '<li class="wk-grp">' + (WK_ICON[k] || "•") + " " + esc(WK_LABEL[k] || k) +
+        '<span class="cc">' + list.length + "</span></li>" + list.map(wkItemHtml).join("");
+    });
+    var rest = items.filter(function (it) { return order.indexOf(it.kind) < 0; });
+    if (rest.length) {
+      html += '<li class="wk-grp">• 其他<span class="cc">' + rest.length + "</span></li>" + rest.map(wkItemHtml).join("");
+    }
+    return html;
+  }
+
   function renderWeekly(d) {
     var box = document.getElementById("wkList");
     if (!box) return;
@@ -820,32 +873,33 @@
       box.innerHTML = '<li class="empty">本周暂无新增变化 · 工作台平稳运行中</li>';
       return;
     }
-    var icon = { skill: "📦", automation: "⚙️", kb: "📄", model: "🧠" };
-    var label = { skill: "新增/更新 skill", automation: "新建自动化任务", kb: "新增知识库文件", model: "拉取本地模型" };
     var shown = items.slice(0, 12);
-    function wkItem(it) {
-      var dt = new Date((it.when || 0) * 1000);
-      var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
-        ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
-      var scope = (it.scope || "").replace(/^[（(]|[）)]$/g, "").trim();
-      return '<li class="wk"><span class="wk-ic">' + (icon[it.kind] || "•") + '</span>' +
-        '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span></div>' +
-        (scope ? '<span class="wk-scope">' + esc(scope) + '</span>' : '') +
-        '<span class="wk-meta">' + ds + '</span></li>';
-    }
-    var order = ["skill", "kb", "automation", "model"];
-    var html = "";
-    order.forEach(function (k) {
-      var list = shown.filter(function (it) { return it.kind === k; });
-      if (!list.length) return;
-      html += '<li class="wk-grp">' + (icon[k] || "•") + " " + esc(label[k] || k) +
-        '<span class="cc">' + list.length + "</span></li>" + list.map(wkItem).join("");
-    });
-    var rest = shown.filter(function (it) { return order.indexOf(it.kind) < 0; });
-    if (rest.length) {
-      html += '<li class="wk-grp">• 其他<span class="cc">' + rest.length + "</span></li>" + rest.map(wkItem).join("");
-    }
-    box.innerHTML = html + (items.length > shown.length ? '<li class="empty" style="grid-column:1/-1;padding-top:4px">本周共 ' + items.length + ' 条变化，显示最近 12 条</li>' : "");
+    box.innerHTML = wkGroupHtml(shown) + (items.length > shown.length ? '<li class="empty" style="grid-column:1/-1;padding-top:4px">本周共 ' + items.length + ' 条变化，显示最近 12 条</li>' : "");
+  }
+
+  // 本周动态全部 tab：全量 + 按类型筛选
+  var weekFilter = "all";
+  function weekSet(k) {
+    weekFilter = k;
+    var data = __data;
+    if (data) renderWeekAll(data);
+  }
+  function renderWeekAll(d) {
+    var box = document.getElementById("col-week");
+    if (!box) return;
+    var items = d.weekly || [];
+    var kinds = ["all", "skill", "kb", "automation", "model"];
+    var labels = { all: "全部", skill: "skill", kb: "知识库", automation: "自动化", model: "模型" };
+    var chips = kinds.map(function (k) {
+      var n = k === "all" ? items.length : items.filter(function (it) { return it.kind === k; }).length;
+      return '<button class="week-chip' + (weekFilter === k ? " on" : "") + '" onclick="weekSet(' + "'" + k + "'" + ')">' + labels[k] + ' <span class="cc">' + n + "</span></button>";
+    }).join("");
+    var list = weekFilter === "all" ? items : items.filter(function (it) { return it.kind === weekFilter; });
+    var body = list.length
+      ? '<ul class="wk-list week-full">' + wkGroupHtml(list) + "</ul>"
+      : '<div class="empty">该类型暂无变化</div>';
+    box.innerHTML = '<div class="card"><h2><span class="ic">📅</span>本周动态 · 全部（' + items.length + ' 条）</h2>' +
+      '<div class="week-chips">' + chips + '</div>' + body + "</div>";
   }
 
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
@@ -855,6 +909,7 @@
   function renderHeaderStrip(d) {
     document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "-");
     renderSync(d);
+    renderFreshness(d);
     renderKPI(d);
     renderQuick(d);
     renderWeekly(d);
@@ -869,6 +924,7 @@
     else if (id === "ov") renderOv(d);
     else if (id === "stats") renderStats(d);
     else if (id === "sess") renderSessArchive(d);
+    else if (id === "week") renderWeekAll(d);
     // schedule 是纯 localStorage，启动时已渲染，无需数据
   }
   function render(d) {
@@ -878,6 +934,23 @@
   }
 
   // ---------- 同步健康度（数据新鲜度 + 失败/陈旧告警） ----------
+  function renderFreshness(d) {
+    var el = document.getElementById("freshness");
+    if (!el) return;
+    var st = (d && d.status) || {};
+    var parts = [];
+    var since = function (ds) {
+      if (!ds) return "未知";
+      var t = new Date(String(ds).slice(0, 10) + "T00:00:00").getTime();
+      var days = Math.max(0, Math.round((Date.now() - t) / 86400000));
+      if (days === 0) return "今天";
+      if (days === 1) return "昨天";
+      return days + " 天前";
+    };
+    if (st.skillsLastUpdate) parts.push("skills 数据 " + since(st.skillsLastUpdate));
+    if (st.memoryLastUpdate) parts.push("记忆库 " + since(st.memoryLastUpdate));
+    el.textContent = parts.length ? parts.join(" · ") + " · " : "";
+  }
   function renderSync(d) {
     var el = document.getElementById("syncStatus");
     if (!el) return;
@@ -1188,6 +1261,32 @@
   }
 
   // ---------- 一键导出（速记/待办/收藏/入口 → Markdown） ----------
+  // ---------- 复制今日概览（KPI + 头条 + 引导 → 一段文字给 AI） ----------
+  function copyToday() {
+    var d = __data;
+    if (!d) { robustCopy("今日数据还没加载完，请稍等几秒再点。", null, "已复制", "复制失败"); return; }
+    var lines = [];
+    var k = d.kpi || {};
+    lines.push("今天是 " + (d.generatedAt ? String(d.generatedAt).slice(0, 10) : "") + "，我的工作台现状：");
+    lines.push("- 已装 " + (k.skills || 0) + " 个 skills，知识库 " + (k.knowledge || 0) + " 个文件，定时任务 " + (k.automations || 0) + " 个，记忆库 " + (k.memory || 0) + " 个文件");
+    var disk = (d.status && d.status.disk) || {};
+    if (disk.D) lines.push("- D 盘可用 " + disk.D.free + "G（共 " + disk.D.total + "G）");
+    var news = (d.dailyNews && d.dailyNews.items) || [];
+    if (news.length) {
+      lines.push("- 今日新闻 Top3：");
+      news.slice(0, 3).forEach(function (n, i) { lines.push((i + 1) + ". " + n.title); });
+    }
+    var ai = (d.aiDaily && d.aiDaily.count) || 0;
+    if (ai) lines.push("- AI 日报已抓取 " + ai + " 条");
+    var guide = d.guide || [];
+    if (guide.length) {
+      lines.push("- 今日引导：" + guide.slice(0, 2).join("；"));
+    }
+    lines.push("");
+    lines.push("请基于以上信息，给我今天最值得做的 3 件事（结合我的 skill 和知识库）。");
+    var btn = document.activeElement && document.activeElement.tagName === "BUTTON" ? document.activeElement : null;
+    robustCopy(lines.join("\n"), "hint", "今日概览已复制，去对话框粘贴发给 AI", "复制被拦截，请手动复制", btn);
+  }
   function exportAll() {
     var now = new Date();
     var p2 = function (n) { return ("0" + n).slice(-2); };
@@ -1234,7 +1333,7 @@
     var p2 = function (n) { return ("0" + n).slice(-2); };
     el.textContent = "🕐 " + (now.getMonth() + 1) + "-" + p2(now.getDate()) + " 周" + wd + " " + p2(now.getHours()) + ":" + p2(now.getMinutes()) + ":" + p2(now.getSeconds());
   }
-  window.exportAll = exportAll; window.updateClock = updateClock;
+  window.exportAll = exportAll; window.updateClock = updateClock; window.copyToday = copyToday;
   window.favToggle = favToggle; window.delFav = delFav; window.clearFavs = clearFavs; window.renderFavs = renderFavs;
   window.addLink = addLink; window.delLink = delLink; window.renderLinks = renderLinks;
 

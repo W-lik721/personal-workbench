@@ -561,6 +561,14 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .wk-grp:first-child { margin-top: 0; }
 .wk-grp .cc { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--sub); opacity: .75; }
 
+/* ===== 本周动态全部 tab ===== */
+.week-chips{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 10px}
+.week-chip{background:var(--panel2);border:1px solid var(--line);color:var(--sub);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.week-chip:hover{border-color:var(--accent);color:var(--accent)}
+.week-chip.on{background:var(--accent-strong);color:#fff;border-color:transparent}
+.week-chip .cc{font-size:10px;opacity:.75;margin-left:2px}
+.week-full{max-height:none}
+
 /* ===== 我的收藏（稍后读）卡片 ===== */
 .fav-card{grid-column:1/-1}
 .fav-card .fav-list{

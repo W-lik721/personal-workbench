@@ -13,7 +13,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=46">
+<link rel="stylesheet" href="styles.css?v=47">
 </head>
 <body>
 <a class="skip" href="#main">跳到主内容</a>
@@ -24,6 +24,7 @@
   </div>
   <div class="snap-wrap">
     <span class="clock" id="clock">🕐 --:--:--</span>
+    <button class="refresh-btn" id="todayBtn" onclick="copyToday()" title="把今天的 KPI / 头条 / 引导整理成一段文字复制，发给 AI 要今日建议">📋 今日概览</button>
     <div class="snap" id="snap">📸 快照 · 加载中…</div>
     <div class="sync-status" id="syncStatus">🔄 同步状态 · 加载中…</div>
     <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">🔄 立即刷新</button>
@@ -101,6 +102,7 @@
     <button class="tab" data-tab="ov" onclick="switchTab('ov')">📊 总览状态</button>
     <button class="tab" data-tab="stats" onclick="switchTab('stats')">📈 Skill 统计</button>
     <button class="tab" data-tab="sess" onclick="switchTab('sess')">💬 会话档案</button>
+    <button class="tab" data-tab="week" onclick="switchTab('week')">📅 本周动态</button>
     <button class="tab" data-tab="schedule" onclick="switchTab('schedule')">📅 课程表</button>
   </nav>
   <section class="tabpane active" id="pane-cap">
@@ -121,11 +123,14 @@
   <section class="tabpane" id="pane-sess">
     <div class="wrap"><div class="col" id="col-sess"></div></div>
   </section>
+  <section class="tabpane" id="pane-week">
+    <div class="wrap"><div class="col" id="col-week"></div></div>
+  </section>
   <section class="tabpane" id="pane-schedule">
     <div class="wrap"><div class="col" id="col-schedule"></div></div>
   </section>
 </main>
-<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成 · <button class="btn-sm" onclick="exportAll()" title="把速记/待办/收藏/入口导出为 Markdown">📤 导出数据</button></div>
+<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成 · <span id="freshness"></span><button class="btn-sm" onclick="exportAll()" title="把速记/待办/收藏/入口导出为 Markdown">📤 导出数据</button></div>
 <div class="heat-modal" id="heat-detail" onclick="if(event.target===this)closeHeat()">
   <div class="heat-card">
     <div class="heat-card-h"><span id="heat-detail-date"></span><button class="heat-x" onclick="closeHeat()">✕</button></div>
@@ -133,6 +138,6 @@
   </div>
 </div>
 <script src="schedule.js?v=1"></script>
-<script src="app.js?v=51"></script>
+<script src="app.js?v=52"></script>
 </body>
 </html>
