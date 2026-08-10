@@ -517,19 +517,18 @@ body.light .card h2 .ic{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.08)}
 body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 
 /* ===== 新增板块样式（v6）：本周动态时间线 ===== */
-.wk-card .wk-list {
+.wk-list {
   list-style: none;
   margin: 4px 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 6px;
-  max-height: 500px;
-  overflow-y: auto;
   scrollbar-width: thin;
 }
-.wk-card .wk-list::-webkit-scrollbar{width:8px}
-.wk-card .wk-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px}
+.wk-card .wk-list { max-height: 500px; overflow-y: auto; }
+.wk-list::-webkit-scrollbar{width:8px}
+.wk-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px}
 .wk {
   display: flex;
   align-items: center;
@@ -567,7 +566,6 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .week-chip:hover{border-color:var(--accent);color:var(--accent)}
 .week-chip.on{background:var(--accent-strong);color:#fff;border-color:transparent}
 .week-chip .cc{font-size:10px;opacity:.75;margin-left:2px}
-.week-full{max-height:none}
 
 /* ===== 我的收藏（稍后读）卡片 ===== */
 .fav-card{grid-column:1/-1}
