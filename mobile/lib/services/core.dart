@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 
 // 新闻页"让 AI 讲讲"跳转 AI tab 的全局桥（由 main.dart 注入）
 void Function(String text)? aiAskGlobal;
+// 设置页"清空对话历史"通知 AI 页同步清空的全局回调（由 AiPage 注册）
+void Function()? aiClearGlobal;
 
 // ---------- 模型 ----------
 class Todo {
@@ -102,6 +104,23 @@ class Store {
   static String aiKey(String prov) => _p?.getString('wb_ai_key_$prov') ?? '';
   static void setAiKey(String prov, String k) => _p?.setString('wb_ai_key_$prov', k);
 
+  // ---------- AI 记忆 ----------
+  // 对话历史（role+content），自动保存/恢复
+  static List<Map<String, String>> aiHistory() => _load('wb_ai_history').map((j) {
+        final m = j as Map;
+        return {'role': m['role']?.toString() ?? 'user', 'content': m['content']?.toString() ?? ''};
+      }).toList();
+  static void saveAiHistory(List<Map<String, String>> l) => _save('wb_ai_history', l);
+  // 长期记忆（用户点"记住"或手动添加的关键信息）
+  static List<String> aiMemory() => _load('wb_ai_memory').map((j) => j.toString()).toList();
+  static void saveAiMemory(List<String> l) => _save('wb_ai_memory', l);
+  // 记忆开关：关掉后不再保存新历史、发消息也不带记忆
+  static bool get aiMemoryOn => _p?.getBool('wb_ai_memory_on') ?? true;
+  static set aiMemoryOn(bool v) => _p?.setBool('wb_ai_memory_on', v);
+  // 发送时携带的历史条数上限（消息条数，默认 20 = 最近 10 轮对话）
+  static int get aiMemoryMax => _p?.getInt('wb_ai_memory_max') ?? 20;
+  static set aiMemoryMax(int v) => _p?.setInt('wb_ai_memory_max', v);
+
   static List<dynamic> _load(String k) {
     try {
       final s = _p?.getString(k);
@@ -168,10 +187,14 @@ class Api {
     'agnes': {'label': 'Agnes 2.5 Flash', 'url': 'https://apihub.agnes-ai.cn/v1/chat/completions', 'model': 'agnes-2.5-flash'},
     'glm': {'label': '智谱 GLM Flash', 'url': 'https://open.bigmodel.cn/api/paas/v4/chat/completions', 'model': 'glm-4-flash'},
   };
-  static Future<String> chat(String prov, String key, List<Map<String, String>> history, String question) async {
+  static Future<String> chat(String prov, String key, List<Map<String, String>> history, String question,
+      {List<String> memory = const []}) async {
     final p = aiProviders[prov]!;
+    final memBlock = memory.isEmpty
+        ? ''
+        : '\n\n【关于用户的长期记忆，对话时请自然运用这些信息】\n- ${memory.join('\n- ')}';
     final msgs = [
-      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。'},
+      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$memBlock'},
       ...history,
       {'role': 'user', 'content': question},
     ];

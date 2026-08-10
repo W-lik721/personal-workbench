@@ -20,6 +20,16 @@ class _AiPageState extends State<AiPage> {
   void initState() {
     super.initState();
     _prov = Store.aiProv;
+    // 恢复上次对话历史（记忆功能）
+    for (final m in Store.aiHistory()) {
+      _msgs.add(_Msg(m['content'] ?? '', m['role'] == 'user'));
+    }
+    // 设置页"清空对话历史"时同步清空本页内存
+    aiClearGlobal = () {
+      if (!mounted) return;
+      setState(() => _msgs.clear());
+      Store.saveAiHistory([]);
+    };
   }
 
   void _saveKey() {
@@ -69,14 +79,29 @@ class _AiPageState extends State<AiPage> {
     });
     _scrollToBottom();
     try {
-      final history = _msgs.where((m) => !m.thinking).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList()..removeLast();
-      final ans = await Api.chat(_prov, key, history.cast<Map<String, String>>(), q);
+      // 取除"思考中"占位外的历史消息（去掉最后一条=刚发的用户问题）
+      final all = _msgs.where((m) => !m.thinking && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
+      final history = all.sublist(0, all.length - 1);
+      // 记忆功能：带长期记忆 + 按上限截断历史
+      final memory = Store.aiMemoryOn ? Store.aiMemory() : <String>[];
+      final maxMsgs = Store.aiMemoryMax;
+      final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
+      final ans = await Api.chat(_prov, key, ctx.cast<Map<String, String>>(), q, memory: memory);
       if (!mounted) return;
       setState(() {
         _msgs.removeLast();
         _msgs.add(_Msg(ans, false));
         _busy = false;
       });
+      // 记忆开关开着才保存历史（截断到上限，防止无限增长）
+      if (Store.aiMemoryOn) {
+        final hist = _msgs.where((m) => !m.thinking && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
+        if (hist.length > maxMsgs) {
+          Store.saveAiHistory(hist.sublist(hist.length - maxMsgs));
+        } else {
+          Store.saveAiHistory(hist);
+        }
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -94,13 +119,9 @@ class _AiPageState extends State<AiPage> {
     });
   }
 
-  void _ask(String text) {
-    _input.text = text;
-    _send();
-  }
-
   @override
   void dispose() {
+    aiClearGlobal = null;
     _input.dispose();
     _scroll.dispose();
     super.dispose();
@@ -144,7 +165,7 @@ class _AiPageState extends State<AiPage> {
             ? Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: Text('输入你的问题，AI 会用大白话回答。\n\n可问它：总结今天的日报 / 帮我挑值得看的新闻 / 待办怎么安排…',
+                  child: Text('输入你的问题，AI 会用大白话回答。\n\nAI 有记忆：聊天会自动记住，下次打开还能接着聊；AI 回答下点「记住」可存为长期记忆。\n\n可问它：总结今天的日报 / 帮我挑值得看的新闻 / 待办怎么安排…',
                       textAlign: TextAlign.center, style: TextStyle(color: c.outline)),
                 ),
               )
@@ -196,17 +217,49 @@ class _AiPageState extends State<AiPage> {
             bottomRight: Radius.circular(m.user ? 4 : 12),
           ),
         ),
-        child: Text(
-          m.text,
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.5,
-            color: m.user ? c.onPrimary : (m.isError ? c.error : c.onSurface),
-            fontStyle: m.thinking ? FontStyle.italic : null,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              m.text,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.5,
+                color: m.user ? c.onPrimary : (m.isError ? c.error : c.onSurface),
+                fontStyle: m.thinking ? FontStyle.italic : null,
+              ),
+            ),
+            // AI 回复可"记住"（存长期记忆）
+            if (!m.user && !m.thinking && !m.isError)
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(4),
+                  onTap: () => _remember(m.text),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Icon(Icons.bookmark_add_outlined, size: 13, color: c.primary),
+                    const SizedBox(width: 3),
+                    Text('记住', style: TextStyle(fontSize: 11, color: c.primary)),
+                  ]),
+                ),
+              ),
+          ],
         ),
       ),
     );
+  }
+
+  void _remember(String text) {
+    if (text.trim().isEmpty) return;
+    final mem = Store.aiMemory();
+    if (!mem.contains(text)) {
+      mem.add(text);
+      Store.saveAiMemory(mem);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📌 已记住这条，可在"设置 → AI 记忆"里查看/删除')));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经记住了')));
+    }
   }
 }
 

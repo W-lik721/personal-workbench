@@ -6,6 +6,7 @@ import 'pages/home_page.dart';
 import 'pages/news_page.dart';
 import 'pages/ai_page.dart';
 import 'pages/schedule_page.dart';
+import 'pages/settings_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +53,13 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> {
   int _index = 0;
-  final _pages = [const HomePage(), const NewsPage(), const AiPage(), const SchedulePage()];
+  final _pages = [
+    const HomePage(),
+    const NewsPage(),
+    const AiPage(),
+    const SchedulePage(),
+    const SettingsPage(),
+  ];
 
   @override
   void initState() {
@@ -93,6 +100,7 @@ class _MainShellState extends State<MainShell> {
           NavigationDestination(icon: Icon(Icons.newspaper_outlined), selectedIcon: Icon(Icons.newspaper), label: '日报'),
           NavigationDestination(icon: Icon(Icons.smart_toy_outlined), selectedIcon: Icon(Icons.smart_toy), label: 'AI 助手'),
           NavigationDestination(icon: Icon(Icons.calendar_month_outlined), selectedIcon: Icon(Icons.calendar_month), label: '课程表'),
+          NavigationDestination(icon: Icon(Icons.settings_outlined), selectedIcon: Icon(Icons.settings), label: '设置'),
         ],
       ),
     );
