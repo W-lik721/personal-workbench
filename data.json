@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11 02:00",
+  "generatedAt": "2026-08-11 03:12",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
+    "🗞️ 今日 AI 日报已更新（19 条）：SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -671,7 +671,7 @@
       },
       "D": {
         "total": 544,
-        "free": 379
+        "free": 376
       }
     },
     "runtime": "3.13 / 22.22"
@@ -681,7 +681,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "working",
-        "updated": "08-11 02:00",
+        "updated": "08-11 03:12",
         "group": "今天"
       },
       {
@@ -1649,10 +1649,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-11 02:00",
+    "fetchedAt": "2026-08-11 03:12",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
-    "count": 18,
+    "count": 19,
     "sections": [
       {
         "label": "模型发布",
@@ -1673,6 +1673,12 @@
             "title": "Scale AI 开源 Muse 系列模型",
             "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
             "url": "https://aihot.virxact.com/items/cmsn3w3ln012wror1xk5nrmcw",
+            "source": ""
+          },
+          {
+            "title": "OpenAI 推出 GPT-5.6-Cyber，面向授权漏洞研究的网络安全专用模型",
+            "summary": "OpenAI 发布网络安全专用模型 GPT-5.6-Cyber，可通过 Daybreak Red 获取，用于授权的漏洞研究、漏洞验证和安全测试。该模型旨在应对网络防御窗口不断收窄的挑战，为安全研究人员提供专门工具。",
+            "url": "https://aihot.virxact.com/items/cmsnkpjin0c2nrohfczauf2t2",
             "source": ""
           },
           {
@@ -1787,8 +1793,8 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-11 02:00",
-        "count": 18,
+        "fetchedAt": "2026-08-11 03:12",
+        "count": 19,
         "sections": [
           {
             "label": "模型发布",
@@ -1809,6 +1815,12 @@
                 "title": "Scale AI 开源 Muse 系列模型",
                 "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
                 "url": "https://aihot.virxact.com/items/cmsn3w3ln012wror1xk5nrmcw",
+                "source": ""
+              },
+              {
+                "title": "OpenAI 推出 GPT-5.6-Cyber，面向授权漏洞研究的网络安全专用模型",
+                "summary": "OpenAI 发布网络安全专用模型 GPT-5.6-Cyber，可通过 Daybreak Red 获取，用于授权的漏洞研究、漏洞验证和安全测试。该模型旨在应对网络防御窗口不断收窄的挑战，为安全研究人员提供专门工具。",
+                "url": "https://aihot.virxact.com/items/cmsnkpjin0c2nrohfczauf2t2",
                 "source": ""
               },
               {
@@ -2350,7 +2362,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-11 02:00",
+    "fetchedAt": "2026-08-11 03:12",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2452,7 +2464,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-11 02:00",
+        "fetchedAt": "2026-08-11 03:12",
         "count": 15,
         "items": [
           {
@@ -2751,12 +2763,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T02:00:32",
-    "status": "ok",
-    "nextRun": "2026-08-11T03:00:32",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
