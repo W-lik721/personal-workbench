@@ -92,6 +92,13 @@
     });
     try { localStorage.setItem("wb_tab", id); } catch (e) {}
   }
+  function goKPI(tab, cardId) {
+    switchTab(tab);
+    setTimeout(function () {
+      var el = document.getElementById(cardId);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
   function openHeat(span) {
     var date = span.getAttribute("data-date");
     var count = span.getAttribute("data-count");
@@ -154,6 +161,16 @@
     syncThemeColor(light);
   }
 
+  function toggleNS(h) {
+    var b = h.nextElementSibling;
+    if (!b) return;
+    var open = b.style.display !== "none";
+    b.style.display = open ? "none" : "";
+    h.classList.toggle("closed", open);
+    var car = h.querySelector(".ns-car");
+    if (car) car.textContent = open ? "▸" : "▾";
+  }
+
   function toggleNews(btn) {
     var d = btn.previousElementSibling;
     if (!d || !d.classList.contains("nw-d")) return;
@@ -161,7 +178,7 @@
     btn.textContent = open ? "收起 ▴" : "展开 ▾";
   }
 
-  window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab;
+  window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab; window.goKPI = goKPI;
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
   window.toggleNews = toggleNews;
@@ -221,15 +238,15 @@
   function renderKPI(d) {
     var k = d.kpi, disk = (d.status && d.status.disk) || {};
     var items = [
-      { c: "kpi-blue", i: "📚", v: k.knowledge, l: "知识库文件" },
-      { c: "kpi-green", i: "⚙️", v: k.automations, l: "定时任务" },
-      { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-") },
-      { c: "kpi-amber", i: "🚀", v: k.skills, l: "已装 Skills" },
-      { c: "kpi-blue", i: "💬", v: k.sessions, l: "近期会话" },
-      { c: "kpi-purple", i: "🧠", v: k.memory, l: "记忆库文件" },
+      { c: "kpi-blue", i: "📚", v: k.knowledge, l: "知识库文件", tab: "ov", card: "card-kb" },
+      { c: "kpi-green", i: "⚙️", v: k.automations, l: "定时任务", tab: "ov", card: "card-auto" },
+      { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-"), tab: "ov", card: "card-ov" },
+      { c: "kpi-amber", i: "🚀", v: k.skills, l: "已装 Skills", tab: "cap", card: "card-skills" },
+      { c: "kpi-blue", i: "💬", v: k.sessions, l: "近期会话", tab: "cap", card: "card-sess" },
+      { c: "kpi-purple", i: "🧠", v: k.memory, l: "记忆库文件", tab: "ov", card: "card-ov" },
     ];
     document.getElementById("kpis").innerHTML = items.map(function (x) {
-      return '<div class="kpi ' + x.c + '"><div class="ki">' + x.i + '</div><div><div class="kv">' + x.v + '</div><div class="kl">' + x.l + "</div></div></div>";
+      return '<div class="kpi ' + x.c + '" onclick="goKPI(' + "'" + x.tab + "','" + x.card + "'" + ')" title="跳转到 ' + esc(x.l) + '"><div class="ki">' + x.i + '</div><div><div class="kv">' + x.v + '</div><div class="kl">' + x.l + "</div></div></div>";
     }).join("");
   }
 
@@ -324,11 +341,11 @@
         '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
         '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
         '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>' +
-      '<div class="card"><h2><span class="ic">🚀</span>① 能力速达（点击复制调用指令）</h2>' +
+      '<div class="card" id="card-skills"><h2><span class="ic">🚀</span>① 能力速达（点击复制调用指令）</h2>' +
         '<textarea id="cmdbox" rows="2" placeholder="点击上方 skill，指令会出现在这里（也可直接编辑/粘贴）"></textarea>' +
         '<div id="hint"></div><div id="sempty" class="empty" style="display:none">没有匹配的 skill</div>' +
         '<div id="skills">' + skillsHtml + "</div></div>" +
-      '<div class="card"><h2><span class="ic">💬</span>⑥ 近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>";
+      '<div class="card" id="card-sess"><h2><span class="ic">💬</span>⑥ 近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>";
   }
 
   // ---------- AI 日报（支持历史日期切换） ----------
@@ -383,8 +400,9 @@
       "</div></div>";
 
     secs.forEach(function (s) {
-      html += '<div class="card"><h2><span class="ic">📌</span>' + esc(s.label) +
-        '<span class="news-n">' + (s.items || []).length + "</span></h2>";
+      html += '<div class="card news-sec"><div class="ns-h" onclick="toggleNS(this)">' +
+        '<span class="ic">📌</span>' + esc(s.label) +
+        '<span class="news-n">' + (s.items || []).length + '</span><span class="ns-car">▾</span></div><div class="ns-b">';
       (s.items || []).forEach(function (it) {
         var link = it.url
           ? '<a class="nw-a" href="' + escAttr(it.url) + '" target="_blank" rel="noopener">原文 ↗</a>' : "";
@@ -401,7 +419,7 @@
           '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
           "</div></div>";
       });
-      html += "</div>";
+      html += "</div></div>";
     });
 
     box.innerHTML = html;
@@ -507,7 +525,7 @@
     }).join("");
 
     document.getElementById("col-ov").innerHTML =
-      '<div class="card"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
+      '<div class="card" id="card-ov"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
         '<div class="ov-sub">已接入模型（' + (st.models || []).length + '）</div><div class="ov-models">' + modelsHtml + "</div>" +
         '<div class="ov-sub">集成与资源</div>' +
         '<div class="ov-res">' +
@@ -524,14 +542,14 @@
         "</div>" +
         (olModels.length ? '<div style="margin:8px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div><div class="ov-ol">' + olHtml + "</div>" : "") +
       "</div>" +
-      '<div class="card"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' +
+      '<div class="card" id="card-auto"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' +
         '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
         '<div class="ov-metric"><span class="rk">自动化任务</span><span class="rv">' + (st.automations || []).length + '</span><span class="rn">WorkBuddy 内置</span></div>' +
         '<div class="ov-metric"><span class="rk">活跃中</span><span class="rv">' + (st.automations || []).filter(function (a) { return a.status === "ACTIVE" || a.status === "active"; }).length + '</span><span class="rn">ACTIVE 状态</span></div>' +
         "</div>" +
         '<div class="ov-auto-panel">' + autoHtml + "</div>" +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'新建定时任务：频率（如每周一10点）+ 工作区 + 任务描述'" + ')">➕ 新建定时任务</button></div></div>' +
-      '<div class="card"><h2><span class="ic">📚</span>④ 内容与知识生产</h2>' +
+      '<div class="card" id="card-kb"><h2><span class="ic">📚</span>④ 内容与知识生产</h2>' +
         '<div class="ov-res" style="grid-template-columns:repeat(2,1fr)">' +
         '<div class="ov-metric"><span class="rk">知识库文件</span><span class="rv">' + kb.files.length + '</span><span class="rn">篇笔记 / 资料</span></div>' +
         '<div class="ov-metric"><span class="rk">知识库类型</span><span class="rv" style="font-size:14px">' + Object.keys(kb.types || {}).length + '</span><span class="rn">' + esc(kbTypes || "未分类") + "</span></div>" +
@@ -556,7 +574,7 @@
     var icon = { skill: "📦", automation: "⚙️", kb: "📄", model: "🧠" };
     var label = { skill: "新增/更新 skill", automation: "新建自动化任务", kb: "新增知识库文件", model: "拉取本地模型" };
     var shown = items.slice(0, 12);
-    box.innerHTML = shown.map(function (it) {
+    function wkItem(it) {
       var dt = new Date((it.when || 0) * 1000);
       var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
         ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
@@ -564,7 +582,20 @@
       return '<li class="wk"><span class="wk-ic">' + (icon[it.kind] || "•") + '</span>' +
         '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span>' +
         '<span class="wk-meta">' + (label[it.kind] || it.kind) + scope + " · " + ds + '</span></div></li>';
-    }).join("") + (items.length > shown.length ? '<li class="empty" style="padding-top:4px">本周共 ' + items.length + ' 条变化，显示最近 12 条</li>' : "");
+    }
+    var order = ["skill", "kb", "automation", "model"];
+    var html = "";
+    order.forEach(function (k) {
+      var list = shown.filter(function (it) { return it.kind === k; });
+      if (!list.length) return;
+      html += '<li class="wk-grp">' + (icon[k] || "•") + " " + esc(label[k] || k) +
+        '<span class="cc">' + list.length + "</span></li>" + list.map(wkItem).join("");
+    });
+    var rest = shown.filter(function (it) { return order.indexOf(it.kind) < 0; });
+    if (rest.length) {
+      html += '<li class="wk-grp">• 其他<span class="cc">' + rest.length + "</span></li>" + rest.map(wkItem).join("");
+    }
+    box.innerHTML = html + (items.length > shown.length ? '<li class="empty" style="grid-column:1/-1;padding-top:4px">本周共 ' + items.length + ' 条变化，显示最近 12 条</li>' : "");
   }
 
   // ---------- 课程表（localStorage 草稿 + GitHub 云端同步） ----------
@@ -1208,7 +1239,16 @@
   if (lastTab && lastTab !== "cap") switchTab(lastTab);
 
   // 后台自动刷新：每 30s 检测数据是否更新，有变化就自动重渲染（覆盖每小时自动同步）
-  setInterval(maybeReload, 30000);
+  // 页面不可见（切后台标签页）时暂停轮询省流量/电量，回到前台立即补查一次
+  var pollTimer = setInterval(maybeReload, 30000);
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+    } else {
+      if (!pollTimer) pollTimer = setInterval(maybeReload, 30000);
+      maybeReload();
+    }
+  });
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {

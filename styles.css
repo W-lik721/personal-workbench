@@ -92,7 +92,8 @@ a:hover{text-decoration:underline}
 .container{max-width:1180px;margin:0 auto;padding:16px 18px}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
 @media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}}
-.kpi{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;overflow:hidden;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.04);transition:transform .25s var(--ease),border-color .2s,box-shadow .25s;animation:fadeIn .5s ease both}
+.kpi{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;overflow:hidden;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.04);transition:transform .25s var(--ease),border-color .2s,box-shadow .25s;animation:fadeIn .5s ease both;cursor:pointer}
+.kpi:hover{border-color:rgba(43,184,198,.45);transform:translateY(-1px)}
 .kpi:hover{border-color:rgba(43,184,198,.42);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
 .kpi-blue::before,.kpi-purple::before{background:var(--accent)}
@@ -107,7 +108,7 @@ a:hover{text-decoration:underline}
 .col{display:flex;flex-direction:column;gap:14px}
 @media(max-width:880px){.wrap{grid-template-columns:1fr}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.03);transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;animation:fadeIn .5s ease both}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.03);transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;animation:fadeIn .5s ease both;scroll-margin-top:76px}
 .card:hover{transform:translateY(-2px);border-color:rgba(43,184,198,.38);box-shadow:var(--shadow-md)}
 .card h2{margin:0 0 9px;font-size:13px;color:var(--txt);display:flex;align-items:center;gap:8px;font-weight:650;letter-spacing:.02em}
 .card h2 .ic{font-size:13px;background:var(--tint);border:1px solid rgba(43,184,198,.25);border-radius:8px;padding:4px 5px;display:inline-flex;line-height:1;color:var(--accent)}
@@ -298,6 +299,14 @@ ul.guide li.warn{color:var(--red);background:rgba(255,107,107,.10);border-radius
 /* 每日新闻封面图（通栏在 news-head 卡片顶部） */
 .dnews-cover{margin:-14px -16px 12px;border-radius:var(--radius) var(--radius) 0 0;max-height:200px;overflow:hidden;background:var(--panel2)}
 .dnews-cover img{width:100%;height:auto;display:block;object-fit:cover}
+/* AI 日报分区折叠 */
+.news-sec{padding:12px 16px}
+.ns-h{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:2px 0 9px;font-size:13px;font-weight:650;color:var(--txt);letter-spacing:.02em}
+.ns-h:hover{color:var(--accent)}
+.ns-h .news-n{margin-left:0}
+.ns-car{margin-left:auto;color:var(--sub);font-size:10px;transition:transform .18s}
+.ns-h.closed .ns-car{transform:rotate(-90deg)}
+.ns-b{padding-bottom:2px}
 
 /* ---------- 课程表 ---------- */
 .sched-imp{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
@@ -547,6 +556,9 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .wk-b { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
 .wk-name { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
 .wk-meta { font-size: 11px; color: var(--sub); }
+.wk-grp { grid-column: 1/-1; display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--sub); letter-spacing: .03em; margin-top: 9px; padding-bottom: 3px; border-bottom: 1px dashed var(--line); }
+.wk-grp:first-child { margin-top: 0; }
+.wk-grp .cc { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--sub); opacity: .75; }
 
 /* ---------- 移动端适配（≤680px：顶栏精简 + 标签页横向滑动） ---------- */
 @media(max-width:680px){
