@@ -18,6 +18,11 @@
   function escAttr(s) {
     return esc(s).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
   }
+  // 内联 JS 字符串安全转义：HTML 实体转义会在 onclick 里被浏览器解码成 ' 反而炸掉 JS 串，
+  // 这里转成 \u0027（JS 里不冲突、不会被实体解码）
+  function jsStr(s) {
+    return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/'/g, "\\u0027");
+  }
 
   // ---------- 复制指令（降级 + 按钮即时反馈） ----------
   function flashCopied(btn, ok) {
@@ -122,7 +127,7 @@
     var body = document.getElementById("heat-detail-body");
     body.innerHTML = titles.length
       ? titles.map(function (t) {
-          return '<div class="hdi" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(t) + "'" + ')">' + esc(t) + '<span class="hd-arrow">›</span></div>';
+          return '<div class="hdi" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')">' + esc(t) + '<span class="hd-arrow">›</span></div>';
         }).join("")
       : '<div class="empty">这天没有会话记录</div>';
     document.getElementById("heat-detail").style.display = "flex";
@@ -261,11 +266,11 @@
         (long ? '<button class="nw-toggle" onclick="toggleNews(this)">展开 ▾</button>' : "");
     }
     var on = isFav(it.url);
-    var fav = '<button class="fav-btn' + (on ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (on ? "★" : "☆") + '</button>';
+    var fav = '<button class="fav-btn' + (on ? " on" : "") + '" onclick="favToggle(this,' + "'" + jsStr(it.title) + "','" + jsStr(it.url) + "','" + jsStr(it.source || "") + "'" + ')">' + (on ? "★" : "☆") + '</button>';
     return '<div class="nw"><div class="nw-t">' + prefix + esc(it.title) + "</div>" +
       dHtml +
       '<div class="nw-f">' + src + link + fav +
-      '<button class="nw-ask" onclick="robustCopy(' + "'" + escAttr(askText) + escAttr(it.title) + "',null,'已复制','复制被拦截',this" + ')">☁️ 让 AI 讲讲</button>' +
+      '<button class="nw-ask" onclick="robustCopy(' + "'" + jsStr(askText + it.title) + "',null,'已复制','复制被拦截',this" + ')">☁️ 让 AI 讲讲</button>' +
       "</div></div>";
   }
 
@@ -273,6 +278,7 @@
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
   window.toggleNews = toggleNews;
+  window.toggleNS = toggleNS; window.newsDateChanged = newsDateChanged;
 
   // ---------- 待办清单（可勾选，localStorage 纯前端） ----------
   var TODO_KEY = "wb_todos";
@@ -425,7 +431,7 @@
         '<span class="cc">' + groups[g].length + '</span><span class="car">▶</span></div><div class="grp-b">';
       groups[g].forEach(function (s) {
         var badge = s.status === "working" ? '<span class="badge on">进行中</span>' : "";
-        html += '<div class="auto sess" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(s.title) + "'" + ')"><b>' +
+        html += '<div class="auto sess" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' +
           esc(s.title) + '</b><span class="meta">' + s.updated + " " + badge + "</span></div>";
       });
       html += "</div></div>";
@@ -762,7 +768,7 @@
       if (!list.length) return;
       archiveHtml += '<div class="sess-day">' + esc(dt) + ' <span class="cc">' + list.length + "</span></div>";
       list.forEach(function (t) {
-        archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
+        archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
       });
     });
     var recentHtml = '<div class="card"><h2><span class="ic">💬</span>近期会话（最近 ' + recent.length + ' 条）</h2>' +
@@ -771,7 +777,7 @@
       '<button class="schip" data-v="working" onclick="sessStatus(\'working\')">进行中</button></div>' +
       '<div id="sessRecentList">' + (recent.length ? recent.map(function (s) {
         var st = s.status || "";
-        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
+        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
       }).join("") : '<div class="empty">暂无近期会话</div>') + "</div></div>";
     var html = '<div class="card"><h2><span class="ic">🔍</span>搜索会话</h2>' +
       '<input id="sessQ" class="sf" placeholder="按标题搜索全部会话…" oninput="sessFilter()">' +
@@ -1188,20 +1194,32 @@
   var __lastGen = "";
   var __lastMod = "";
   var __data = null;
+  // 带超时的 fetch：防止网络挂起导致页面一直"加载中"像冻住
+  function fetchT(url, opts, ms) {
+    ms = ms || 15000;
+    var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
+    var o = opts || {};
+    if (ctrl) o.signal = ctrl.signal;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, ms);
+    return fetch(url, o).then(
+      function (r) { clearTimeout(timer); return r; },
+      function (e) { clearTimeout(timer); throw e; }
+    );
+  }
   function loadData() {
-    return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
+    return fetchT("data.json?t=" + Date.now(), { cache: "no-store" })
       .then(function (r) { if (r.ok) __lastMod = r.headers.get("Last-Modified") || ""; return r.json(); })
       .then(function (d) { render(d); __lastGen = d.generatedAt || ""; return d; });
   }
   // 数据变化时自动重渲染（覆盖自动/手动同步），免去手动刷新浏览器
   // HEAD 优先：先取文件头对比 Last-Modified，没变就跳过正文下载，省 99% 流量
   function maybeReload() {
-    return fetch("data.json", { method: "HEAD", cache: "no-store" })
+    return fetchT("data.json", { method: "HEAD", cache: "no-store" })
       .then(function (r) {
         if (!r.ok) return false;
         var lm = r.headers.get("Last-Modified") || "";
         if (lm && lm === __lastMod) return false;
-        return fetch("data.json?t=" + Date.now(), { cache: "no-store" })
+        return fetchT("data.json?t=" + Date.now(), { cache: "no-store" })
           .then(function (rr) { return rr.json(); })
           .then(function (d) {
             __data = d;
@@ -1521,7 +1539,9 @@
   var ti = document.getElementById("todoInput");
   if (ti) ti.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); addTodo(); } });
   loadData().catch(function (e) {
-    document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
+    document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。10 秒后自动重试。</div></div>";
+    // 网络抖动恢复：10 秒后自动重试一次
+    setTimeout(function () { loadData().catch(function () {}); }, 10000);
   });
   // 恢复上次停留的标签页
   var lastTab = "";
