@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 21:40",
+  "generatedAt": "2026-08-10 23:14",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（15 条）：SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
+    "🗞️ 今日 AI 日报已更新（16 条）：SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -612,7 +612,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "10 days ago",
+          "modified": "11 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -667,11 +667,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 233
+        "free": 235
       },
       "D": {
         "total": 544,
-        "free": 381
+        "free": 384
       }
     },
     "runtime": "3.13 / 22.22"
@@ -680,8 +680,8 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-10 21:37",
+        "status": "working",
+        "updated": "08-10 23:09",
         "group": "今天"
       },
       {
@@ -1649,10 +1649,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 21:40",
+    "fetchedAt": "2026-08-10 23:14",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
-    "count": 15,
+    "count": 16,
     "sections": [
       {
         "label": "模型发布",
@@ -1720,12 +1720,6 @@
             "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
             "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
             "source": ""
-          },
-          {
-            "title": "AI安全测试正成为安全风险",
-            "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
-            "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
-            "source": ""
           }
         ]
       },
@@ -1757,6 +1751,18 @@
             "source": "Nathan Lambert：Interconnects（RSS）"
           },
           {
+            "title": "tl；dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话",
+            "summary": "AI会议记录平台tl；dv的Firestore数据库因缺乏租户隔离，任何已认证用户可查询全部18.1万段会议记录，涉及84，312名用户、35，003个域名，含23国政府及多所高校会议。处于录制状态的约1，000场会议会暴露可加入的会议ID，研究者借此闯入马来西亚教育部及美国某大学创业团队的实时通话。该漏洞自2026年1月报告后6个月仍未修复，另有超1，000段会议内容为公开状态。",
+            "url": "https://aihot.virxact.com/items/cmsnbc14r0aezron58wsytu43",
+            "source": ""
+          },
+          {
+            "title": "智能体真的会用电脑吗？a16z 用数据给出答案",
+            "summary": "a16z 数据显示，计算机操作智能体在 OSWorld-Verified 基准上的最佳成绩已从一年前的 42% 升至 85%，超过人类测试者约 72% 的水平，Claude Fable 5 以 85% 领先。",
+            "url": "https://aihot.virxact.com/items/cmsnbzkyr01qjrohfmjqlmjk5",
+            "source": ""
+          },
+          {
             "title": "扎克伯格：超级智能应人人可用",
             "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
             "url": "https://aihot.virxact.com/items/cmsn32xab06ehro8ou4tskajr",
@@ -1769,8 +1775,8 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 21:40",
-        "count": 15,
+        "fetchedAt": "2026-08-10 23:14",
+        "count": 16,
         "sections": [
           {
             "label": "模型发布",
@@ -1838,12 +1844,6 @@
                 "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
                 "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
                 "source": ""
-              },
-              {
-                "title": "AI安全测试正成为安全风险",
-                "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
-                "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
-                "source": ""
               }
             ]
           },
@@ -1873,6 +1873,18 @@
                 "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
                 "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
                 "source": "Nathan Lambert：Interconnects（RSS）"
+              },
+              {
+                "title": "tl；dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话",
+                "summary": "AI会议记录平台tl；dv的Firestore数据库因缺乏租户隔离，任何已认证用户可查询全部18.1万段会议记录，涉及84，312名用户、35，003个域名，含23国政府及多所高校会议。处于录制状态的约1，000场会议会暴露可加入的会议ID，研究者借此闯入马来西亚教育部及美国某大学创业团队的实时通话。该漏洞自2026年1月报告后6个月仍未修复，另有超1，000段会议内容为公开状态。",
+                "url": "https://aihot.virxact.com/items/cmsnbc14r0aezron58wsytu43",
+                "source": ""
+              },
+              {
+                "title": "智能体真的会用电脑吗？a16z 用数据给出答案",
+                "summary": "a16z 数据显示，计算机操作智能体在 OSWorld-Verified 基准上的最佳成绩已从一年前的 42% 升至 85%，超过人类测试者约 72% 的水平，Claude Fable 5 以 85% 领先。",
+                "url": "https://aihot.virxact.com/items/cmsnbzkyr01qjrohfmjqlmjk5",
+                "source": ""
               },
               {
                 "title": "扎克伯格：超级智能应人人可用",
@@ -2314,7 +2326,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 21:40",
+    "fetchedAt": "2026-08-10 23:14",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2416,7 +2428,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 21:40",
+        "fetchedAt": "2026-08-10 23:14",
         "count": 15,
         "items": [
           {
@@ -2715,12 +2727,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T21:40:31",
-    "status": "ok",
-    "nextRun": "2026-08-10T22:40:31",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
