@@ -238,11 +238,11 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .ov-metric .rk{font-size:10px;color:var(--sub);letter-spacing:.05em;font-weight:600}
 .ov-metric .rv{font-size:20px;font-weight:700;color:var(--txt-strong);font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1}
 .ov-metric .rn{font-size:11px;color:var(--sub)}
-.ov-models{display:flex;flex-direction:column;gap:6px;margin-top:2px}
-.ov-models .model{padding:8px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);justify-content:space-between;gap:10px}
-.ov-models .model .mn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
-.ov-models .model .mm{flex:none;white-space:nowrap;margin-left:0}
-@media(max-width:760px){.ov-models{flex-direction:column}}
+.ov-models{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.ov-models .model{padding:6px 11px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-pill);font-size:12px;display:inline-flex;align-items:center;gap:6px;transition:border-color .18s,background .18s;white-space:nowrap}
+.ov-models .model:hover{border-color:var(--accent);background:var(--tint)}
+.ov-models .model .mn{font-weight:600;color:var(--txt);flex:none}
+.ov-models .model .mm{font-size:10.5px;color:var(--sub);background:rgba(255,255,255,.06);padding:1px 7px;border-radius:99px;flex:none}
 /* ⑦ 环境体检台：Ollama 模型 2 列紧凑网格 */
 .ov-ol{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 8px;margin-top:2px}
 .ov-ol .model{padding:4px 6px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm)}
@@ -559,6 +559,7 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .wk-b { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; flex: 1; min-width: 0; }
 .wk-name { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .wk-meta { font-size: 11px; color: var(--sub); flex: none; white-space: nowrap; }
+.wk-scope { flex: none; padding: 2px 9px; border-radius: 99px; font-size: 10.5px; background: var(--tint); color: var(--accent); border: 1px solid rgba(43,184,198,.25); white-space: nowrap; font-weight: 600; }
 .wk-grp { grid-column: 1/-1; display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--sub); letter-spacing: .03em; margin-top: 9px; padding-bottom: 3px; border-bottom: 1px dashed var(--line); }
 .wk-grp:first-child { margin-top: 0; }
 .wk-grp .cc { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--sub); opacity: .75; }

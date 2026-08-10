@@ -800,10 +800,11 @@
       var dt = new Date((it.when || 0) * 1000);
       var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
         ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
-      var scope = it.scope ? "（" + it.scope + "）" : "";
+      var scope = (it.scope || "").replace(/^[（(]|[）)]$/g, "").trim();
       return '<li class="wk"><span class="wk-ic">' + (icon[it.kind] || "•") + '</span>' +
-        '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span>' +
-        '<span class="wk-meta">' + (label[it.kind] || it.kind) + scope + " · " + ds + '</span></div></li>';
+        '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span></div>' +
+        (scope ? '<span class="wk-scope">' + esc(scope) + '</span>' : '') +
+        '<span class="wk-meta">' + ds + '</span></li>';
     }
     var order = ["skill", "kb", "automation", "model"];
     var html = "";
