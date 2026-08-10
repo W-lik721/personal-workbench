@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 10:50",
+  "generatedAt": "2026-08-10 12:50",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -27,7 +27,7 @@
     },
     {
       "name": "agent-design-kit",
-      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen / CrewAI 构建多智能体、做 RAG 实战、用 DeepEval 评估、用 instructor 做结构化输出时调用。从 9 个开源项目蒸馏：6 大 agent 模式选型卡 + 提示词黄金法则 + 三大框架设计方法论 + RAG 实战 + 评估 + 结构化输出。覆盖\"该用哪种结构、何时收手、怎么写好提示词、哪个框架\"。",
+      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-design-kit",
       "usage": 0,
@@ -75,7 +75,7 @@
     },
     {
       "name": "cs-learning",
-      "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" / 想补核心课（算法·操作系统·网络·数据库·系统设计）优质开源资料 / 想做编程练手项目 / 零基础入门编程（尤其想用 AI 辅助）时触发。基于 4 篇已蒸馏笔记给出按阶段的学习地图与资源路由，不凭空编资源。",
+      "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" /",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：cs-learning",
       "usage": 0,
@@ -91,7 +91,7 @@
     },
     {
       "name": "deeptutor-tutor",
-      "desc": ">-",
+      "desc": "AI 私教 / 个性化辅导 skill。当用户说「私教」「教我」「带我学」「出题考我」「考考我」",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：deeptutor-tutor",
       "usage": 0,
@@ -99,7 +99,7 @@
     },
     {
       "name": "design-taste-frontend",
-      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）。【路由】专注落地页/作品集/网页改版；产品 UI/后台面板/组件评审走 impeccable，图像生成/图生代码总入口走 wb-design-kit。\"",
+      "desc": "Anti-slop frontend skill for landing pages, portfolios, and",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：design-taste-frontend",
       "usage": 0,
@@ -323,7 +323,7 @@
     },
     {
       "name": "ponytail",
-      "desc": "\"反过度工程的极简编码方法论（Lazy senior dev mode）。覆盖：① 写码/重构/修bug/审代码时套 YAGNI+stdlib优先+最简解；② 审计整个仓库的过度工程（audit）；③ 审查某个 diff 的过度工程（review）；④ 收集代码里的 ponytail: 快捷注释成技术债账本（debt）；⑤ 展示 ponytail 实测收益记分牌（gain）；⑥ 速查各模式与命令（help）。触发词：ponytail、极简、反过度工程、YAGNI、审计代码、审查diff、技术债、删代码、最懒实现、简化。Not for：通用工程流程/完整代码评审·调试(superpowers)、依赖供应链审计(karpathy-kit §11)、极简主义大方法论(karpathy-kit §4)、非写码请求。\"",
+      "desc": "\"反过度工程的极简编码方法论（Lazy senior dev mode）。覆盖：① 写码/重构/修bug/审代码时套",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：ponytail",
       "usage": 0,
@@ -541,9 +541,9 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（10 条）：NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+    "🗞️ 今日 AI 日报已更新（11 条）：NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
@@ -553,7 +553,7 @@
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-10 09:50",
+        "next": "08-17 09:50",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       },
       {
@@ -667,7 +667,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 240
+        "free": 239
       },
       "D": {
         "total": 544,
@@ -680,8 +680,8 @@
     "recent": [
       {
         "title": "学习计算机科学与技术",
-        "status": "working",
-        "updated": "08-10 10:50",
+        "status": "completed",
+        "updated": "08-10 11:52",
         "group": "今天"
       },
       {
@@ -1398,6 +1398,66 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "ponytail",
+      "when": 1786337349.9429066,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-checker__skillhub",
+      "when": 1786337349.9299057,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "full-output-enforcement",
+      "when": 1786337349.8173928,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1786337349.6628819,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "deeptutor-tutor",
+      "when": 1786337349.5763736,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cs-learning",
+      "when": 1786337349.4888604,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cangjie-skill",
+      "when": 1786337349.3368387,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "andrej-karpathy-skills__github",
+      "when": 1786337349.2357626,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1786337349.0754702,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agency-agents__github",
+      "when": 1786337348.90568,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "douyin-to-kb",
       "when": 1786288248.4537446,
       "scope": "本机"
@@ -1418,12 +1478,6 @@
       "kind": "skill",
       "name": "claude-mem",
       "when": 1786280448.2268574,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "design-taste-frontend",
-      "when": 1786280175.546499,
       "scope": "本机"
     },
     {
@@ -1494,12 +1548,6 @@
     },
     {
       "kind": "skill",
-      "name": "cs-learning",
-      "when": 1786210725.1692317,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "workbuddy-bluebook",
       "when": 1786210725.1512253,
       "scope": "本机"
@@ -1526,18 +1574,6 @@
       "kind": "skill",
       "name": "prompt-forge",
       "when": 1786210725.0571768,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "deeptutor-tutor",
-      "when": 1786210064.000151,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-design-kit",
-      "when": 1786173649.8171833,
       "scope": "本机"
     },
     {
@@ -1612,12 +1648,6 @@
     },
     {
       "kind": "skill",
-      "name": "cangjie-skill",
-      "when": 1785844135.4059873,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "wb-ai-radar",
       "when": 1785763049.0694335,
       "scope": "本机"
@@ -1637,10 +1667,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 10:50",
+    "fetchedAt": "2026-08-10 12:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
-    "count": 10,
+    "count": 11,
     "sections": [
       {
         "label": "模型发布",
@@ -1656,6 +1686,12 @@
       {
         "label": "产品发布",
         "items": [
+          {
+            "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
+            "summary": "👀 看见只是开始。\n\n借助 Qwen-MM-Plugins，让你的智能体原生支持多模态--读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。\n\n从多模态模型 → 多模态智能体。🚀\n\n观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
+            "url": "https://aihot.virxact.com/items/cmsmpwjyh0b0drohfw1hpbbzh",
+            "source": ""
+          },
           {
             "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
             "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
@@ -1727,8 +1763,8 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 10:50",
-        "count": 10,
+        "fetchedAt": "2026-08-10 12:50",
+        "count": 11,
         "sections": [
           {
             "label": "模型发布",
@@ -1744,6 +1780,12 @@
           {
             "label": "产品发布",
             "items": [
+              {
+                "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
+                "summary": "👀 看见只是开始。\n\n借助 Qwen-MM-Plugins，让你的智能体原生支持多模态--读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。\n\n从多模态模型 → 多模态智能体。🚀\n\n观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
+                "url": "https://aihot.virxact.com/items/cmsmpwjyh0b0drohfw1hpbbzh",
+                "source": ""
+              },
               {
                 "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
                 "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
@@ -2242,7 +2284,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 10:50",
+    "fetchedAt": "2026-08-10 12:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2344,7 +2386,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 10:50",
+        "fetchedAt": "2026-08-10 12:50",
         "count": 15,
         "items": [
           {
@@ -2643,12 +2685,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T10:50:46",
-    "status": "ok",
-    "nextRun": "2026-08-10T11:50:46",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
