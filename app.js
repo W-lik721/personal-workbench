@@ -902,19 +902,35 @@
       '<div class="week-chips">' + chips + '</div>' + body + "</div>";
   }
 
-  // ---------- 🤖 AI 助手（接智谱 GLM 免费模型，浏览器直连，Key 存本机） ----------
-  var AI_KEY = "wb_ai_key";
+  // ---------- 🤖 AI 助手（Agnes / 智谱 GLM 双可选，浏览器直连，Key 存本机） ----------
+  var AI_PROVIDERS = {
+    agnes: { label: "Agnes 2.5 Flash", url: "https://apihub.agnes-ai.cn/v1/chat/completions", model: "agnes-2.5-flash", keyKey: "wb_ai_key_agnes" },
+    glm: { label: "智谱 GLM Flash", url: "https://open.bigmodel.cn/api/paas/v4/chat/completions", model: "glm-4-flash", keyKey: "wb_ai_key_glm" }
+  };
+  var aiProv = localStorage.getItem("wb_ai_prov") === "glm" ? "glm" : "agnes";
   var aiMsgs = [];   // 会话内消息历史
   var aiBusy = false;
-  function aiKeyLoad() { try { return localStorage.getItem(AI_KEY) || ""; } catch (e) { return ""; } }
-  function aiKeySave(k) { try { localStorage.setItem(AI_KEY, k); } catch (e) {} }
+  function aiKeyLoad() { try { return localStorage.getItem(AI_PROVIDERS[aiProv].keyKey) || ""; } catch (e) { return ""; } }
+  function aiKeySave(k) { try { localStorage.setItem(AI_PROVIDERS[aiProv].keyKey, k); } catch (e) {} }
+  function aiSetProv(p) {
+    aiProv = AI_PROVIDERS[p] ? p : "agnes";
+    try { localStorage.setItem("wb_ai_prov", aiProv); } catch (e) {}
+    if (__data) renderAI(__data);
+  }
   function renderAI(d) {
     var box = document.getElementById("col-ai");
     if (!box) return;
     var hasKey = !!aiKeyLoad();
-    box.innerHTML = '<div class="card"><h2><span class="ic">🤖</span>AI 助手 · 智谱 GLM 免费版</h2>' +
+    var provSel = Object.keys(AI_PROVIDERS).map(function (k) {
+      return '<option value="' + k + '"' + (aiProv === k ? " selected" : "") + '>' + AI_PROVIDERS[k].label + "</option>";
+    }).join("");
+    var hint = aiProv === "agnes"
+      ? "粘贴你的 Agnes API Key（apihub.agnes-ai.cn 申请，仅存本机浏览器）"
+      : "粘贴智谱 API Key（bigmodel.cn 注册免费领，仅存本机浏览器）";
+    box.innerHTML = '<div class="card"><h2><span class="ic">🤖</span>AI 助手</h2>' +
       '<div class="ai-set">' +
-      '<input id="aiKey" class="sf" type="password" placeholder="粘贴智谱 API Key（bigmodel.cn 注册免费领，仅存本机浏览器）" value="' + escAttr(aiKeyLoad()) + '">' +
+      '<select id="aiProvSel" class="sf ai-sel" onchange="aiSetProv(this.value)">' + provSel + "</select>" +
+      '<input id="aiKey" class="sf" type="password" placeholder="' + escAttr(hint) + '" value="' + escAttr(aiKeyLoad()) + '">' +
       '<button class="btn-sm" onclick="aiSaveKey()">💾 保存 Key</button>' +
       '<span id="aiKeyHint" class="empty">' + (hasKey ? "已保存" : "未设置") + '</span></div>' +
       '<div class="ai-chat" id="aiChat">' +
@@ -948,7 +964,8 @@
     if (aiBusy) return;
     var box = document.getElementById("aiBox");
     var key = aiKeyLoad();
-    if (!key) { alert("请先在上方粘贴智谱 API Key 并保存（bigmodel.cn 注册免费领）。"); return; }
+    var prov = AI_PROVIDERS[aiProv];
+    if (!key) { alert(aiProv === "agnes" ? "请先在上方粘贴 Agnes API Key 并保存。" : "请先在上方粘贴智谱 API Key 并保存（bigmodel.cn 注册免费领）。"); return; }
     var q = (box ? box.value : "").trim();
     if (!q) return;
     if (box) box.value = "";
@@ -956,25 +973,27 @@
     aiMsgs.push({ role: "user", content: q });
     aiBusy = true;
     aiAppend("bot", "…思考中");
-    fetchT("https://open.bigmodel.cn/api/paas/v4/chat/completions", {
+    fetchT(prov.url, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": "Bearer " + key },
       body: JSON.stringify({
-        model: "glm-4-flash",
+        model: prov.model,
         messages: [{ role: "system", content: "你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。" }].concat(aiMsgs.slice(-10)),
-        max_tokens: 800
+        max_tokens: aiProv === "agnes" ? 4000 : 800
       })
-    }, 30000)
+    }, 60000)
       .then(function (r) {
         if (!r.ok) {
           if (r.status === 401) throw new Error("Key 无效或已过期，请重新保存");
-          if (r.status === 429) throw new Error("请求太频繁（免费额度限流），稍等再试");
+          if (r.status === 429) throw new Error("请求太频繁（限流），稍等再试");
           throw new Error("HTTP " + r.status);
         }
         return r.json();
       })
       .then(function (j) {
-        var ans = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || "（空回复）";
+        var msg = j.choices && j.choices[0] && j.choices[0].message;
+        // 推理模型可能把 token 都花在思考上：正文空时回退展示思考片段
+        var ans = (msg && msg.content && msg.content.trim()) || (msg && msg.reasoning_content ? "（思考中：）\n" + msg.reasoning_content : "（空回复）");
         aiMsgs.push({ role: "assistant", content: ans });
         var chat = document.getElementById("aiChat");
         if (chat && chat.lastChild) chat.removeChild(chat.lastChild);
@@ -987,7 +1006,7 @@
       })
       .then(function () { aiBusy = false; });
   }
-  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend;
+  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv;
 
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
   // 对外接口：window.renderSchedule / ghToken / scheduleLoad / schedulePullCloud / setGhToken / GH_REPO
