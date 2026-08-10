@@ -42,7 +42,9 @@ jobs:
 
       - name: Sign APK
         run: |
-          $ANDROID_HOME/build-tools/*/apksigner sign \
+          APKSIGNER=$(ls $ANDROID_HOME/build-tools/*/apksigner | tail -1)
+          echo "using apksigner: $APKSIGNER"
+          "$APKSIGNER" sign \
             --ks workbench.keystore \
             --ks-key-alias workbench \
             --ks-pass pass:workbench-pass \
