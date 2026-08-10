@@ -57,25 +57,43 @@
   }
   function cmd(el) {
     var c = el.getAttribute("data-cmd");
-    var box = document.getElementById("cmdbox");
-    box.value = c; box.focus(); box.select();
+    safeFillCmdbox(c);
     robustCopy(c, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C", el);
   }
+  // 安全填入 cmdbox 并聚焦；textarea 隐藏时 focus() 会抛错，用 try/catch 兜底
+  function safeFillCmdbox(t) {
+    try {
+      var box = document.getElementById("cmdbox");
+      if (!box) return;
+      box.value = t || "";
+      try { box.focus(); box.select(); } catch (e) {}
+    } catch (e) { /* 静默，复制是主功能 */ }
+  }
   function cmdtext(t) {
-    var box = document.getElementById("cmdbox");
-    box.value = t; box.focus(); box.select();
-    robustCopy(t, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C");
+    safeFillCmdbox(t);
+    // 反推调用源按钮：内联 onclick 会先把按钮 focus，所以 document.activeElement 就是按钮
+    var btn = document.activeElement;
+    if (!btn || btn.tagName !== "BUTTON") btn = null;
+    robustCopy(t, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C", btn);
   }
   function inspire(t) {
-    var box = document.getElementById("inspiretext");
-    document.getElementById("insbox").style.display = "block";
-    box.value = t; box.focus(); box.select();
+    try {
+      var box = document.getElementById("inspiretext");
+      var wrap = document.getElementById("insbox");
+      if (wrap) wrap.style.display = "block";
+      if (box) {
+        box.value = t || "";
+        try { box.focus(); box.select(); } catch (e) {}
+      }
+    } catch (e) {}
     robustCopy(t, "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
   }
   function copyInspire() {
-    var box = document.getElementById("inspiretext");
-    box.focus(); box.select();
-    robustCopy(box.value, "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
+    try {
+      var box = document.getElementById("inspiretext");
+      if (box) { try { box.focus(); box.select(); } catch (e) {} }
+      robustCopy((box && box.value) || "", "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
+    } catch (e) {}
   }
   window.cmd = cmd; window.cmdtext = cmdtext; window.inspire = inspire; window.copyInspire = copyInspire;
   window.robustCopy = robustCopy; window.flashCopied = flashCopied;
