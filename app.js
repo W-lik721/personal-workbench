@@ -608,7 +608,7 @@
       '<button class="btn-sm" onclick="cmdtext(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
       "</div></div>";
 
-    html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
+    html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2><div class="nw-grid">';
     items.forEach(function (it, i) {
       html += renderNewsItem(it, {
         prefix: '<span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + ".</span>",
@@ -616,7 +616,7 @@
         ask: "用大白话展开讲讲这条新闻的背景，并说说对我有什么影响："
       });
     });
-    html += "</div>";
+    html += "</div></div>";
 
     box.innerHTML = html;
   }

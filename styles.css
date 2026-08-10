@@ -609,8 +609,8 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .schip:hover{border-color:var(--accent);color:var(--accent)}
 .schip.active{background:rgba(43,184,198,.16);border-color:rgba(43,184,198,.45);color:var(--accent)}
 
-.sess-arch{max-height:56vh;overflow-y:auto;margin-top:4px}
-.sess-day{font-size:11px;font-weight:700;color:var(--sub);margin:10px 0 2px;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.sess-arch{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 10px;max-height:56vh;overflow-y:auto;margin-top:4px}
+.sess-day{font-size:11px;font-weight:700;color:var(--sub);margin:10px 0 2px;letter-spacing:.04em;display:flex;align-items:center;gap:6px;grid-column:1/-1}
 .sess-day:first-child{margin-top:0}
 .sess-day .cc{margin-left:auto;font-size:10px;opacity:.7}
 .sess-arch .sess{padding:5px 8px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--panel2);margin-top:4px}
@@ -622,3 +622,12 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .pomo-t{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--txt-strong);font-variant-numeric:tabular-nums;min-width:64px}
 .pomo-bar-wrap{flex:1;min-width:70px;height:6px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
 .pomo-bar{height:100%;width:100%;background:var(--accent);transition:width 1s linear}
+
+/* ===== tab 内容两列化（整页 1144 全宽后，能用两列的都两列） ===== */
+.nw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.news-sec .ns-b{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.trend-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 10px;margin-top:8px}
+.grp-b{display:none;grid-template-columns:repeat(2,1fr);gap:6px;padding:4px 12px 10px}
+.grp.open .grp-b{display:grid}
+.grp-b .sess{border-bottom:none;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:6px 8px;margin:0}
+.stat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px}
