@@ -182,8 +182,6 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .grp-h .cc{margin-left:auto;font-size:11px;color:var(--sub);background:rgba(255,255,255,.07);border-radius:var(--radius-pill);padding:1px 9px;font-variant-numeric:tabular-nums}
 .grp-h .car{font-size:10px;color:var(--sub);transition:transform .2s;margin-left:2px}
 .grp.open .grp-h .car{transform:rotate(90deg)}
-.grp-b{display:none;flex-direction:column;padding:4px 12px 10px}
-.grp.open .grp-b{display:flex}
 
 /* ---------- 技能卡片 ---------- */
 .skill{display:flex;flex-direction:column;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer;transition:transform .18s var(--ease),border-color .18s,background .18s,box-shadow .18s;font-size:12px}
