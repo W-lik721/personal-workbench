@@ -4,12 +4,71 @@
   "name": "个人工作台",
   "launcherName": "工作台",
   "display": "standalone",
-  "themeColor": "#0d1117",
-  "navigationColor": "#0d1117",
-  "backgroundColor": "#0d1117",
+  "themeColor": {
+    "model": "rgb",
+    "color": [
+      13,
+      17,
+      23
+    ],
+    "valpha": 1
+  },
+  "themeColorDark": {
+    "model": "rgb",
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "valpha": 1
+  },
+  "navigationColor": {
+    "model": "rgb",
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "valpha": 1
+  },
+  "navigationColorDark": {
+    "model": "rgb",
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "valpha": 1
+  },
+  "navigationDividerColor": {
+    "model": "rgb",
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "valpha": 0
+  },
+  "navigationDividerColorDark": {
+    "model": "rgb",
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "valpha": 0
+  },
+  "backgroundColor": {
+    "model": "rgb",
+    "color": [
+      13,
+      17,
+      23
+    ],
+    "valpha": 1
+  },
+  "enableNotifications": false,
   "startUrl": "/personal-workbench/index.html",
-  "appVersionName": "1.0.0",
-  "appVersionCode": 1,
   "iconUrl": "https://w-lik721.github.io/personal-workbench/icon-512.png",
   "maskableIconUrl": "https://w-lik721.github.io/personal-workbench/icon-maskable-512.png",
   "splashScreenFadeOutDuration": 300,
@@ -19,10 +78,29 @@
     "keyPassword": "workbench-pass",
     "password": "workbench-pass"
   },
-  "fallbackType": "webview",
-  "enableNotifications": false,
-  "enableSiteSettingsShortcut": false,
-  "enableGeolocation": false,
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://w-lik721.github.io/personal-workbench/manifest.json",
+  "fallbackType": "webview",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://w-lik721.github.io/personal-workbench/",
+  "minSdkVersion": 21,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "enableGeolocation": false,
   "enableShareTarget": false
 }

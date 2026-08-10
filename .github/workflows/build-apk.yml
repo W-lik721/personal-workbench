@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - '.github/workflows/build-apk.yml'
+      - 'app/**'
+      - 'gradle/**'
+      - 'build.gradle'
+      - 'settings.gradle'
+      - 'gradle.properties'
       - 'twa-manifest.json'
-      - 'manifest.json'
-      - 'icon-512.png'
-      - 'icon-maskable-512.png'
 
 jobs:
   build-apk:
@@ -25,9 +27,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
-
       - name: Generate signing keystore
         run: |
           keytool -genkeypair -v -keystore workbench.keystore -alias workbench \
@@ -35,38 +34,28 @@ jobs:
             -storepass workbench-pass -keypass workbench-pass \
             -dname "CN=Qingdeng, OU=Personal, O=Personal, L=Fuzhou, ST=Fujian, C=CN"
 
-      - name: Configure Bubblewrap (non-interactive)
+      - name: Build release APK
         run: |
-          mkdir -p "$HOME/.bubblewrap"
-          cat > "$HOME/.bubblewrap/config.json" <<EOF
-          {
-            "jdkPath": "$JAVA_HOME",
-            "androidSdkPath": "$ANDROID_HOME"
-          }
-          EOF
-          cat "$HOME/.bubblewrap/config.json"
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon --stacktrace
+          ls -la app/build/outputs/apk/release/
 
-      - name: Init TWA project (generates gradle wrapper + checksum)
+      - name: Sign APK
         run: |
-          rm -rf twa-manifest.json manifest-checksum.txt android
-          # init 会从线上 manifest 生成完整 Android 工程；环境变量喂密码跳过交互
-          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
-          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
-          bubblewrap init --manifest="https://w-lik721.github.io/personal-workbench/manifest.json" --directory="$GITHUB_WORKSPACE"
-          ls twa-manifest.json manifest-checksum.txt 2>&1
-          ls gradlew 2>&1
-
-      - name: Build APK
-        run: |
-          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
-          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
-          bubblewrap build --manifest=./twa-manifest.json
+          $ANDROID_HOME/build-tools/*/apksigner sign \
+            --ks workbench.keystore \
+            --ks-key-alias workbench \
+            --ks-pass pass:workbench-pass \
+            --key-pass pass:workbench-pass \
+            --out workbench-signed.apk \
+            app/build/outputs/apk/release/app-release-unsigned.apk
+          ls -la workbench-signed.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: workbench-apk
-          path: app-release-signed.apk
+          path: workbench-signed.apk
           retention-days: 30
 
       - name: Create GitHub Release
@@ -75,5 +64,5 @@ jobs:
         with:
           tag_name: apk-${{ github.run_number }}
           name: 工作台 APK v${{ github.run_number }}
-          files: app-release-signed.apk
+          files: workbench-signed.apk
           generate_release_notes: false
