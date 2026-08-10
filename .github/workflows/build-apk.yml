@@ -48,8 +48,9 @@ jobs:
 
       - name: Build APK
         run: |
-          # 管道喂 3 个回答：① regenerate? → n  ② keystore 密码  ③ key 密码
-          printf "n\nworkbench-pass\nworkbench-pass\n" | bubblewrap build --manifest=./twa-manifest.json
+          # script 伪造伪终端：inquirer 管道输入不可靠，无 TTY 会 SIGINT
+          # 喂 3 个回答：① regenerate? → n  ② keystore 密码  ③ key 密码
+          printf "n\nworkbench-pass\nworkbench-pass\n" | script -qec "bubblewrap build --manifest=./twa-manifest.json" /dev/null
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
