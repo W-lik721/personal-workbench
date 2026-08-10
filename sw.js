@@ -1,12 +1,15 @@
 // 个人工作台 Service Worker - 离线可开、可安装到主屏幕
-const CACHE = "workbench-v61";
+const CACHE = "workbench-v62";
 const FILES = [
   "./index.html",
   "./styles.css?v=49",
   "./schedule.js?v=1",
   "./app.js?v=52",
   "./manifest.json",
-  "./icon.svg"
+  "./icon.svg",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-maskable-512.png"
 ];
 
 self.addEventListener("install", (e) => {
