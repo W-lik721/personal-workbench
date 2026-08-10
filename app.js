@@ -229,6 +229,31 @@
     btn.textContent = open ? "收起 ▴" : "展开 ▾";
   }
 
+  // 单条新闻卡片渲染（AI 日报 / 每日新闻共用，避免两份重复 HTML）
+  function renderNewsItem(it, opt) {
+    opt = opt || {};
+    var prefix = opt.prefix || "";
+    var askText = opt.ask || "用大白话展开讲讲这条新闻的背景和影响，并说说对我有什么用：";
+    var link = it.url
+      ? '<a class="nw-a" href="' + escAttr(it.url) + '" target="_blank" rel="noopener">原文 ↗</a>' : "";
+    var src = it.source
+      ? '<span class="nw-s">' + esc(it.source) + "</span>"
+      : (opt.defaultSrc ? '<span class="nw-s">' + esc(opt.defaultSrc) + "</span>" : "");
+    var dHtml = "";
+    if (opt.showSummary && it.summary) {
+      var long = it.summary.length > 90;
+      dHtml = '<div class="nw-d' + (long ? " clamp" : "") + '">' + esc(it.summary) + "</div>" +
+        (long ? '<button class="nw-toggle" onclick="toggleNews(this)">展开 ▾</button>' : "");
+    }
+    var on = isFav(it.url);
+    var fav = '<button class="fav-btn' + (on ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (on ? "★" : "☆") + '</button>';
+    return '<div class="nw"><div class="nw-t">' + prefix + esc(it.title) + "</div>" +
+      dHtml +
+      '<div class="nw-f">' + src + link + fav +
+      '<button class="nw-ask" onclick="cmdtext(' + "'" + escAttr(askText) + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
+      "</div></div>";
+  }
+
   window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab; window.goKPI = goKPI;
   window.openHeat = openHeat; window.closeHeat = closeHeat;
   window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
@@ -505,21 +530,7 @@
         '<span class="ic">📌</span>' + esc(s.label) +
         '<span class="news-n">' + (s.items || []).length + '</span><span class="ns-car">▾</span></div><div class="ns-b">';
       (s.items || []).forEach(function (it) {
-        var link = it.url
-          ? '<a class="nw-a" href="' + escAttr(it.url) + '" target="_blank" rel="noopener">原文 ↗</a>' : "";
-        var src = it.source ? '<span class="nw-s">' + esc(it.source) + "</span>" : "";
-        var dHtml = "";
-        if (it.summary) {
-          var long = it.summary.length > 90;
-          dHtml = '<div class="nw-d' + (long ? " clamp" : "") + '">' + esc(it.summary) + "</div>" +
-            (long ? '<button class="nw-toggle" onclick="toggleNews(this)">展开 ▾</button>' : "");
-        }
-        html += '<div class="nw"><div class="nw-t">' + esc(it.title) + "</div>" +
-          dHtml +
-          '<div class="nw-f">' + src + link +
-          '<button class="fav-btn' + (isFav(it.url) ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (isFav(it.url) ? "★" : "☆") + '</button>' +
-          '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
-          "</div></div>";
+        html += renderNewsItem(it, { showSummary: true, ask: "用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" });
       });
       html += "</div></div>";
     });
@@ -584,10 +595,11 @@
 
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
     items.forEach(function (it, i) {
-      var ask = '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条新闻的背景，并说说对我有什么影响：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>';
-      var favb = '<button class="fav-btn' + (isFav(it.url) ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (isFav(it.url) ? "★" : "☆") + '</button>';
-      html += '<div class="nw"><div class="nw-t"><span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + '.</span>' + esc(it.title) + "</div>" +
-        '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + favb + ask + "</div></div>";
+      html += renderNewsItem(it, {
+        prefix: '<span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + ".</span>",
+        defaultSrc: "每日60秒",
+        ask: "用大白话展开讲讲这条新闻的背景，并说说对我有什么影响："
+      });
     });
     html += "</div>";
 
