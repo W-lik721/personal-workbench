@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 16:49",
+  "generatedAt": "2026-08-10 18:46",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（11 条）：NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+    "🗞️ 今日 AI 日报已更新（13 条）：Scale AI 开源 Muse 系列模型",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -681,7 +681,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-10 16:48",
+        "updated": "08-10 18:46",
         "group": "今天"
       },
       {
@@ -1667,14 +1667,20 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 16:49",
+    "fetchedAt": "2026-08-10 18:46",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
-    "count": 11,
+    "count": 13,
     "sections": [
       {
         "label": "模型发布",
         "items": [
+          {
+            "title": "Scale AI 开源 Muse 系列模型",
+            "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
+            "url": "https://aihot.virxact.com/items/cmsn3w3ln012wror1xk5nrmcw",
+            "source": ""
+          },
           {
             "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
             "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
@@ -1755,6 +1761,12 @@
             "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
             "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
             "source": "Nathan Lambert：Interconnects（RSS）"
+          },
+          {
+            "title": "扎克伯格：超级智能应人人可用",
+            "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
+            "url": "https://aihot.virxact.com/items/cmsn32xab06ehro8ou4tskajr",
+            "source": ""
           }
         ]
       }
@@ -1763,12 +1775,18 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 16:49",
-        "count": 11,
+        "fetchedAt": "2026-08-10 18:46",
+        "count": 13,
         "sections": [
           {
             "label": "模型发布",
             "items": [
+              {
+                "title": "Scale AI 开源 Muse 系列模型",
+                "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
+                "url": "https://aihot.virxact.com/items/cmsn3w3ln012wror1xk5nrmcw",
+                "source": ""
+              },
               {
                 "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
                 "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
@@ -1849,6 +1867,12 @@
                 "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
                 "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
                 "source": "Nathan Lambert：Interconnects（RSS）"
+              },
+              {
+                "title": "扎克伯格：超级智能应人人可用",
+                "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
+                "url": "https://aihot.virxact.com/items/cmsn32xab06ehro8ou4tskajr",
+                "source": ""
               }
             ]
           }
@@ -2284,7 +2308,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 16:49",
+    "fetchedAt": "2026-08-10 18:46",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2386,7 +2410,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 16:49",
+        "fetchedAt": "2026-08-10 18:46",
         "count": 15,
         "items": [
           {
@@ -2687,9 +2711,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-10T16:49:39",
+    "lastRun": "2026-08-10T18:46:45",
     "status": "ok",
-    "nextRun": "2026-08-10T17:49:39",
+    "nextRun": "2026-08-10T19:46:45",
     "intervalHours": 1,
     "staleHours": 2
   }
