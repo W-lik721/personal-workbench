@@ -35,8 +35,22 @@ jobs:
             -storepass workbench-pass -keypass workbench-pass \
             -dname "CN=Qingdeng, OU=Personal, O=Personal, L=Fuzhou, ST=Fujian, C=CN"
 
+      - name: Configure Bubblewrap (non-interactive)
+        run: |
+          mkdir -p "$HOME/.bubblewrap"
+          cat > "$HOME/.bubblewrap/config.json" <<EOF
+          {
+            "jdkPath": "$JAVA_HOME",
+            "androidSdkPath": "$ANDROID_HOME"
+          }
+          EOF
+          cat "$HOME/.bubblewrap/config.json"
+
       - name: Build APK
-        run: bubblewrap build
+        run: |
+          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
+          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
+          bubblewrap build --manifest=.
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
