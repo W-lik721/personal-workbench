@@ -140,6 +140,57 @@
   }
   function delNote(i) { var list = notesLoad(); list.splice(i, 1); notesSave(list); renderNotes(); }
 
+  // ---------- 我的收藏 / 稍后读（localStorage 纯前端） ----------
+  var FAV_KEY = "wb_favs";
+  function favsLoad() { try { return JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); } catch (e) { return []; } }
+  function favsSave(list) { try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch (e) {} }
+  function isFav(url) { return favsLoad().some(function (f) { return f.url === url; }); }
+  function favToggle(btn, title, url, source) {
+    var list = favsLoad();
+    var idx = -1;
+    list.forEach(function (f, i) { if (f.url === url) idx = i; });
+    var added = idx < 0;
+    if (added) {
+      list.unshift({ title: title, url: url || "", source: source || "", at: Date.now() });
+    } else {
+      list.splice(idx, 1);
+    }
+    favsSave(list);
+    if (btn) { btn.textContent = added ? "★" : "☆"; btn.classList.toggle("on", added); }
+    renderFavs();
+    var h = document.getElementById("favsHint");
+    if (h) h.textContent = added ? "⭐ 已收藏" : "已取消收藏";
+  }
+  function fmtFavDate(ts) {
+    var d = new Date(ts);
+    return (d.getMonth() + 1) + "-" + d.getDate();
+  }
+  function renderFavs() {
+    var box = document.getElementById("favList");
+    if (!box) return;
+    var list = favsLoad();
+    var h2 = document.querySelector(".fav-card h2");
+    if (h2) h2.innerHTML = '<span class="ic">⭐</span>我的收藏 · 稍后读（' + list.length + '）';
+    if (!list.length) { box.innerHTML = '<li class="empty" style="grid-column:1/-1">还没有收藏，去 AI 日报 / 每日新闻点 ☆ 收藏</li>'; return; }
+    box.innerHTML = list.map(function (f, i) {
+      var meta = [f.source, f.at ? fmtFavDate(f.at) : ""].filter(Boolean).join(" · ");
+      return '<li class="wk"><span class="wk-ic">⭐</span>' +
+        '<div class="wk-b">' +
+        (f.url ? '<a class="wk-name fav-a" href="' + escAttr(f.url) + '" target="_blank" rel="noopener">' + esc(f.title) + "</a>" : '<span class="wk-name">' + esc(f.title) + "</span>") +
+        '<span class="wk-meta">' + esc(meta) + '</span></div>' +
+        '<button class="nd" onclick="delFav(' + i + ')" title="移除">✕</button></li>';
+    }).join("");
+  }
+  function delFav(i) {
+    var list = favsLoad(); if (i < 0 || i >= list.length) return;
+    list.splice(i, 1); favsSave(list); renderFavs();
+  }
+  function clearFavs() {
+    if (!favsLoad().length) return;
+    favsSave([]); renderFavs();
+    var h = document.getElementById("favsHint"); if (h) h.textContent = "✓ 已清空";
+  }
+
   // ---------- 主题切换 ----------
   function syncThemeColor(light) {
     var m = document.querySelector('meta[name="theme-color"]');
@@ -416,6 +467,7 @@
         html += '<div class="nw"><div class="nw-t">' + esc(it.title) + "</div>" +
           dHtml +
           '<div class="nw-f">' + src + link +
+          '<button class="fav-btn' + (isFav(it.url) ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (isFav(it.url) ? "★" : "☆") + '</button>' +
           '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
           "</div></div>";
       });
@@ -483,8 +535,9 @@
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2>';
     items.forEach(function (it, i) {
       var ask = '<button class="nw-ask" onclick="cmdtext(' + "'用大白话展开讲讲这条新闻的背景，并说说对我有什么影响：" + escAttr(it.title) + "'" + ')">☁️ 让 AI 讲讲</button>';
+      var favb = '<button class="fav-btn' + (isFav(it.url) ? " on" : "") + '" onclick="favToggle(this,' + "'" + escAttr(it.title) + "','" + escAttr(it.url) + "','" + escAttr(it.source || "") + "'" + ')">' + (isFav(it.url) ? "★" : "☆") + '</button>';
       html += '<div class="nw"><div class="nw-t"><span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + '.</span>' + esc(it.title) + "</div>" +
-        '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + ask + "</div></div>";
+        '<div class="nw-f"><span class="nw-s">' + esc(it.source || "每日60秒") + "</span>" + favb + ask + "</div></div>";
     });
     html += "</div>";
 
@@ -1216,6 +1269,56 @@
     var links = getLinks(); if (i < 0 || i >= links.length) return;
     links.splice(i, 1); saveLinks(links); renderLinks();
   }
+
+  // ---------- 一键导出（速记/待办/收藏/入口 → Markdown） ----------
+  function exportAll() {
+    var now = new Date();
+    var p2 = function (n) { return ("0" + n).slice(-2); };
+    var ds = now.getFullYear() + "-" + p2(now.getMonth() + 1) + "-" + p2(now.getDate());
+    var lines = ["# 个人工作台导出 · " + ds, ""];
+    var todos = todosLoad();
+    if (todos.length) {
+      lines.push("## 待办清单（" + todos.filter(function (t) { return t.done; }).length + "/" + todos.length + "）");
+      todos.forEach(function (t) { lines.push("- [" + (t.done ? "x" : " ") + "] " + t.text); });
+      lines.push("");
+    }
+    var notes = notesLoad();
+    if (notes.length) {
+      lines.push("## 我的速记");
+      notes.forEach(function (n) { lines.push("- " + n.text); });
+      lines.push("");
+    }
+    var favs = favsLoad();
+    if (favs.length) {
+      lines.push("## 我的收藏（稍后读）");
+      favs.forEach(function (f) { lines.push("- [" + f.title + "](" + (f.url || "") + ")" + (f.source ? " · " + f.source : "")); });
+      lines.push("");
+    }
+    var links = getLinks();
+    if (links.length) {
+      lines.push("## 常用入口");
+      links.forEach(function (l) { lines.push("- [" + l.label + "](" + l.url + ")"); });
+      lines.push("");
+    }
+    var blob = new Blob([lines.join("\n")], { type: "text/markdown;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "工作台导出_" + ds + ".md";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+
+  // ---------- 头部实时时钟 ----------
+  function updateClock() {
+    var el = document.getElementById("clock");
+    if (!el) return;
+    var now = new Date();
+    var wd = ["日", "一", "二", "三", "四", "五", "六"][now.getDay()];
+    var p2 = function (n) { return ("0" + n).slice(-2); };
+    el.textContent = "🕐 " + (now.getMonth() + 1) + "-" + p2(now.getDate()) + " 周" + wd + " " + p2(now.getHours()) + ":" + p2(now.getMinutes()) + ":" + p2(now.getSeconds());
+  }
+  window.exportAll = exportAll; window.updateClock = updateClock;
+  window.favToggle = favToggle; window.delFav = delFav; window.clearFavs = clearFavs; window.renderFavs = renderFavs;
   window.addLink = addLink; window.delLink = delLink; window.renderLinks = renderLinks;
 
   window.selfCheck = selfCheck;
@@ -1224,6 +1327,9 @@
   renderSchedule();
   renderLinks();
   renderTodos();
+  renderFavs();
+  updateClock();
+  setInterval(updateClock, 1000);
   // 本地无课程表时，自动从云端拉取一次（换设备也能看到）
   if (!scheduleLoad().length) schedulePullCloud(true);
   var ni = document.getElementById("noteInput");

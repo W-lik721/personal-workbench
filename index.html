@@ -13,7 +13,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="stylesheet" href="styles.css?v=32">
+<link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
 <a class="skip" href="#main">跳到主内容</a>
@@ -23,6 +23,7 @@
     <div class="sub">WorkBuddy 双端面板 · 自动同步本机真实数据</div>
   </div>
   <div class="snap-wrap">
+    <span class="clock" id="clock">🕐 --:--:--</span>
     <div class="snap" id="snap">📸 快照 · 加载中…</div>
     <div class="sync-status" id="syncStatus">🔄 同步状态 · 加载中…</div>
     <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">🔄 立即刷新</button>
@@ -71,6 +72,14 @@
     </div>
     <ul class="notes" id="notesList"></ul>
   </section>
+  <section class="card fav-card">
+    <h2><span class="ic">⭐</span>我的收藏 · 稍后读</h2>
+    <ul class="fav-list" id="favList"></ul>
+    <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+      <button class="btn-sm" onclick="clearFavs()">🗑 清空收藏</button>
+      <span id="favsHint" class="empty"></span>
+    </div>
+  </section>
   <section class="card wk-card">
     <h2><span class="ic">📅</span>本周动态 · 近期变化</h2>
     <ul class="wk-list" id="wkList"></ul>
@@ -99,13 +108,13 @@
     <div class="wrap"><div class="col" id="col-schedule"></div></div>
   </section>
 </main>
-<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成</div>
+<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成 · <button class="btn-sm" onclick="exportAll()" title="把速记/待办/收藏/入口导出为 Markdown">📤 导出数据</button></div>
 <div class="heat-modal" id="heat-detail" onclick="if(event.target===this)closeHeat()">
   <div class="heat-card">
     <div class="heat-card-h"><span id="heat-detail-date"></span><button class="heat-x" onclick="closeHeat()">✕</button></div>
     <div class="heat-card-b" id="heat-detail-body"></div>
   </div>
 </div>
-<script src="app.js?v=37"></script>
+<script src="app.js?v=38"></script>
 </body>
 </html>
