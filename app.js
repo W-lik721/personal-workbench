@@ -90,6 +90,7 @@
     document.querySelectorAll(".tabpane").forEach(function (p) {
       p.classList.toggle("active", p.id === "pane-" + id);
     });
+    try { localStorage.setItem("wb_tab", id); } catch (e) {}
   }
   function openHeat(span) {
     var date = span.getAttribute("data-date");
@@ -133,11 +134,16 @@
   function delNote(i) { var list = notesLoad(); list.splice(i, 1); notesSave(list); renderNotes(); }
 
   // ---------- 主题切换 ----------
+  function syncThemeColor(light) {
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", light ? "#f2f4f8" : "#0e0f13");
+  }
   function applyTheme() {
     var light = localStorage.getItem("wb_theme") === "light";
     document.body.classList.toggle("light", light);
     var b = document.getElementById("themeBtn");
     if (b) b.textContent = light ? "☀️" : "🌙";
+    syncThemeColor(light);
   }
   function toggleTheme() {
     var light = !document.body.classList.contains("light");
@@ -145,6 +151,7 @@
     localStorage.setItem("wb_theme", light ? "light" : "dark");
     var b = document.getElementById("themeBtn");
     if (b) b.textContent = light ? "☀️" : "🌙";
+    syncThemeColor(light);
   }
 
   function toggleNews(btn) {
@@ -218,6 +225,8 @@
       { c: "kpi-green", i: "⚙️", v: k.automations, l: "定时任务" },
       { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-") },
       { c: "kpi-amber", i: "🚀", v: k.skills, l: "已装 Skills" },
+      { c: "kpi-blue", i: "💬", v: k.sessions, l: "近期会话" },
+      { c: "kpi-purple", i: "🧠", v: k.memory, l: "记忆库文件" },
     ];
     document.getElementById("kpis").innerHTML = items.map(function (x) {
       return '<div class="kpi ' + x.c + '"><div class="ki">' + x.i + '</div><div><div class="kv">' + x.v + '</div><div class="kl">' + x.l + "</div></div></div>";
@@ -285,6 +294,16 @@
     var guideHtml = (d.guide || []).map(function (g) {
       return '<div class="guide-item' + (g.indexOf("⚠") >= 0 ? " warn" : "") + '">' + esc(g) + "</div>";
     }).join("");
+    var trendItems = [];
+    ((d.aiDaily && d.aiDaily.sections) || []).forEach(function (sec) {
+      (sec.items || []).forEach(function (it) {
+        if (trendItems.length < 3) trendItems.push(it);
+      });
+    });
+    var trendHtml = trendItems.length ? '<div class="trend-list">' + trendItems.map(function (it) {
+      return '<a class="trend" href="' + escAttr(it.url || "#") + '" target="_blank" rel="noopener">' + esc(it.title) +
+        (it.source ? '<span class="ts">' + esc(it.source) + "</span>" : "") + "</a>";
+    }).join("") + "</div>" : "";
     var inspireCmd = "根据我的工作台现状生成今日灵感：已装 " + d.kpi.skills + " 个 skill，知识库 " + d.kpi.knowledge +
       " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
     document.getElementById("col-cap").innerHTML =
@@ -301,6 +320,7 @@
         (d.aiDaily && d.aiDaily.count
           ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
           : '<div class="empty" style="margin:2px 0 4px">今日尚无日报数据</div>') +
+        trendHtml +
         '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
         '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
         '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>' +
@@ -422,13 +442,16 @@
     var day = (a.history || []).filter(function (h) { return h.date === date; })[0] || a;
     var items = day.items || [];
     var tip = day.tip || "";
+    var cover = day.cover || a.cover || "";
     if (!items.length) {
       box.innerHTML = '<div class="card"><h2><span class="ic">📰</span>每日新闻</h2>' +
         '<div class="empty">这一天还没有抓到新闻数据。可以点「立即刷新」让本机重新抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_daily_news.py</code>。</div>' +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_daily_news.py 抓今天的国内新闻，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
       return;
     }
-    var html = '<div class="card news-head"><h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
+    var html = '<div class="card news-head">' +
+      (cover ? '<div class="dnews-cover"><img src="' + escAttr(cover) + '" alt="每日新闻封面" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>' : "") +
+      '<h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看来源 ↗</a>' : "") + "</div>" +
@@ -1179,6 +1202,10 @@
   loadData().catch(function (e) {
     document.getElementById("col-cap").innerHTML = '<div class="card"><h2>⚠️ 数据加载失败</h2><div class="empty">无法读取 data.json：' + esc(e) + "。请确认已运行 export_data.py 生成数据。</div></div>";
   });
+  // 恢复上次停留的标签页
+  var lastTab = "";
+  try { lastTab = localStorage.getItem("wb_tab") || ""; } catch (e) {}
+  if (lastTab && lastTab !== "cap") switchTab(lastTab);
 
   // 后台自动刷新：每 30s 检测数据是否更新，有变化就自动重渲染（覆盖每小时自动同步）
   setInterval(maybeReload, 30000);

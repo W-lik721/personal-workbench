@@ -87,10 +87,6 @@ a:hover{text-decoration:underline}
 .mcp.off{opacity:.45;text-decoration:line-through;color:var(--sub)}
 .mcp-badge{font-size:10px;color:var(--amber);border:1px solid rgba(240,168,90,.5);border-radius:6px;padding:0 5px;margin-left:4px;text-decoration:none;vertical-align:middle}
 .next-sync{font-size:11px;color:var(--sub);white-space:nowrap}
-.snap-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.refresh-btn{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:var(--radius-sm);padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s,background .18s,color .18s,transform .15s}
-.refresh-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--tint)}
-.refresh-btn:active{transform:scale(.97)}
 
 /* ---------- 容器 / KPI ---------- */
 .container{max-width:1180px;margin:0 auto;padding:16px 18px}
@@ -254,6 +250,11 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 8px}
 .guide-item{padding:6px 8px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);font-size:13px;line-height:1.45}
 .guide-item.warn{color:var(--red);background:rgba(255,107,107,.10);border-color:rgba(255,107,107,.25)}
+/* ⑧ AI 趋势卡：头条列表 */
+.trend-list{display:grid;gap:6px;margin-top:8px}
+.trend{display:block;padding:6px 9px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);font-size:12.5px;line-height:1.45;color:var(--txt);text-decoration:none;transition:border-color .18s,background .18s}
+.trend:hover{border-color:var(--accent);background:var(--tint)}
+.trend .ts{display:block;font-size:10.5px;color:var(--sub);margin-top:1px}
 @media(max-width:760px){.ov-ol,.ov-kb,.guide-grid{grid-template-columns:1fr}}
 .empty{color:#6a6a72;font-size:13px;padding:4px 0}
 ul.guide{margin:0;padding-left:18px}
@@ -294,6 +295,9 @@ ul.guide li.warn{color:var(--red);background:rgba(255,107,107,.10);border-radius
 .nw-a:hover{text-decoration:underline}
 .nw-ask{margin-left:auto;font-size:11.5px;font-weight:600;background:var(--tint);border:1px solid rgba(43,184,198,.4);color:var(--accent);border-radius:999px;padding:3px 11px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:4px}
 .nw-ask:hover{background:rgba(43,184,198,.18);border-color:var(--accent);color:var(--accent)}
+/* 每日新闻封面图（通栏在 news-head 卡片顶部） */
+.dnews-cover{margin:-14px -16px 12px;border-radius:var(--radius) var(--radius) 0 0;max-height:200px;overflow:hidden;background:var(--panel2)}
+.dnews-cover img{width:100%;height:auto;display:block;object-fit:cover}
 
 /* ---------- 课程表 ---------- */
 .sched-imp{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
@@ -543,3 +547,17 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .wk-b { display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
 .wk-name { font-size: 13px; font-weight: 600; color: var(--txt); word-break: break-word; }
 .wk-meta { font-size: 11px; color: var(--sub); }
+
+/* ---------- 移动端适配（≤680px：顶栏精简 + 标签页横向滑动） ---------- */
+@media(max-width:680px){
+  .header{padding:10px 12px;gap:8px}
+  .header .sub{display:none}
+  .snap-wrap .snap,.snap-wrap .next-sync{display:none}
+  .snap-wrap{gap:6px}
+  .sync-status{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .refresh-btn{padding:6px 10px;font-size:11.5px}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding:4px;margin-bottom:10px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:6px 11px;white-space:nowrap;flex:0 0 auto}
+  .container{padding:12px 10px}
+}

@@ -1,9 +1,9 @@
 // 个人工作台 Service Worker - 离线可开、可安装到主屏幕
-const CACHE = "workbench-v36";
+const CACHE = "workbench-v37";
 const FILES = [
   "./index.html",
-  "./styles.css?v=30",
-  "./app.js?v=34",
+  "./styles.css?v=31",
+  "./app.js?v=35",
   "./manifest.json",
   "./icon.svg"
 ];
@@ -31,9 +31,19 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
   const url = new URL(e.request.url);
-  // data.json 永远走网络、不缓存，保证自动同步即时生效
+  // data.json：网络优先，离线时回退最近一次成功缓存（断网也能看上次数据）
   if (url.pathname.endsWith("data.json")) {
-    e.respondWith(fetch(e.request));
+    e.respondWith(
+      fetch(e.request)
+        .then(function (resp) {
+          if (resp && resp.ok) {
+            var copy = resp.clone();
+            caches.open(CACHE).then(function (c) { c.put("data.json", copy); });
+          }
+          return resp;
+        })
+        .catch(function () { return caches.match("data.json"); })
+    );
     return;
   }
   // 其余资源：网络优先（保证每次拿到最新），离线 fallback 缓存
