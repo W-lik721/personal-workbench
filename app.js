@@ -450,7 +450,7 @@
       return;
     }
     var html = '<div class="card news-head">' +
-      (cover ? '<div class="dnews-cover"><img src="' + escAttr(cover) + '" alt="每日新闻封面" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>' : "") +
+      (cover ? '<div class="dnews-cover" style="display:none"><img src="' + escAttr(cover) + '" alt="每日新闻封面" loading="lazy" referrerpolicy="no-referrer" onload="if(this.naturalWidth)this.parentNode.style.display=\'block\'" onerror="this.parentNode.style.display=\'none\'"></div>' : "") +
       '<h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
