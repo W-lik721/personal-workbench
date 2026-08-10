@@ -902,6 +902,93 @@
       '<div class="week-chips">' + chips + '</div>' + body + "</div>";
   }
 
+  // ---------- 🤖 AI 助手（接智谱 GLM 免费模型，浏览器直连，Key 存本机） ----------
+  var AI_KEY = "wb_ai_key";
+  var aiMsgs = [];   // 会话内消息历史
+  var aiBusy = false;
+  function aiKeyLoad() { try { return localStorage.getItem(AI_KEY) || ""; } catch (e) { return ""; } }
+  function aiKeySave(k) { try { localStorage.setItem(AI_KEY, k); } catch (e) {} }
+  function renderAI(d) {
+    var box = document.getElementById("col-ai");
+    if (!box) return;
+    var hasKey = !!aiKeyLoad();
+    box.innerHTML = '<div class="card"><h2><span class="ic">🤖</span>AI 助手 · 智谱 GLM 免费版</h2>' +
+      '<div class="ai-set">' +
+      '<input id="aiKey" class="sf" type="password" placeholder="粘贴智谱 API Key（bigmodel.cn 注册免费领，仅存本机浏览器）" value="' + escAttr(aiKeyLoad()) + '">' +
+      '<button class="btn-sm" onclick="aiSaveKey()">💾 保存 Key</button>' +
+      '<span id="aiKeyHint" class="empty">' + (hasKey ? "已保存" : "未设置") + '</span></div>' +
+      '<div class="ai-chat" id="aiChat">' +
+      '<div class="empty">输入你的问题，AI 会用大白话回答。可问它：总结今天日报 / 帮我挑值得看的新闻 / 待办怎么安排…</div>' +
+      "</div>" +
+      '<div class="ai-input">' +
+      '<textarea id="aiBox" rows="2" placeholder="问 AI 点什么…（Enter 发送，Shift+Enter 换行）"></textarea>' +
+      '<button class="btn" onclick="aiSend()">➤ 发送</button></div>' +
+      "</div>";
+    var ta = document.getElementById("aiBox");
+    if (ta) ta.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); aiSend(); }
+    });
+  }
+  function aiSaveKey() {
+    var k = document.getElementById("aiKey");
+    aiKeySave(k ? k.value.trim() : "");
+    var h = document.getElementById("aiKeyHint");
+    if (h) h.textContent = aiKeyLoad() ? "✓ 已保存（仅本机浏览器）" : "已清除";
+  }
+  function aiAppend(role, text) {
+    var chat = document.getElementById("aiChat");
+    if (!chat) return;
+    var div = document.createElement("div");
+    div.className = "ai-msg " + role;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+  function aiSend() {
+    if (aiBusy) return;
+    var box = document.getElementById("aiBox");
+    var key = aiKeyLoad();
+    if (!key) { alert("请先在上方粘贴智谱 API Key 并保存（bigmodel.cn 注册免费领）。"); return; }
+    var q = (box ? box.value : "").trim();
+    if (!q) return;
+    if (box) box.value = "";
+    aiAppend("user", q);
+    aiMsgs.push({ role: "user", content: q });
+    aiBusy = true;
+    aiAppend("bot", "…思考中");
+    fetchT("https://open.bigmodel.cn/api/paas/v4/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + key },
+      body: JSON.stringify({
+        model: "glm-4-flash",
+        messages: [{ role: "system", content: "你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。" }].concat(aiMsgs.slice(-10)),
+        max_tokens: 800
+      })
+    }, 30000)
+      .then(function (r) {
+        if (!r.ok) {
+          if (r.status === 401) throw new Error("Key 无效或已过期，请重新保存");
+          if (r.status === 429) throw new Error("请求太频繁（免费额度限流），稍等再试");
+          throw new Error("HTTP " + r.status);
+        }
+        return r.json();
+      })
+      .then(function (j) {
+        var ans = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || "（空回复）";
+        aiMsgs.push({ role: "assistant", content: ans });
+        var chat = document.getElementById("aiChat");
+        if (chat && chat.lastChild) chat.removeChild(chat.lastChild);
+        aiAppend("bot", ans);
+      })
+      .catch(function (err) {
+        var chat = document.getElementById("aiChat");
+        if (chat && chat.lastChild) chat.removeChild(chat.lastChild);
+        aiAppend("bot", "⚠️ " + err.message);
+      })
+      .then(function () { aiBusy = false; });
+  }
+  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend;
+
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
   // 对外接口：window.renderSchedule / ghToken / scheduleLoad / schedulePullCloud / setGhToken / GH_REPO
 
@@ -919,6 +1006,7 @@
     var a = document.querySelector(".tab.active");
     var id = a ? a.getAttribute("data-tab") : "cap";
     if (id === "cap") renderCap(d);
+    else if (id === "ai") renderAI(d);
     else if (id === "news") renderNews(d);
     else if (id === "dnews") renderDailyNews(d);
     else if (id === "ov") renderOv(d);
