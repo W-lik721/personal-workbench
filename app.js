@@ -79,26 +79,7 @@
     if (!btn || btn.tagName !== "BUTTON") btn = null;
     robustCopy(t, "hint", "已复制，到对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上方框 Ctrl+C", btn);
   }
-  function inspire(t) {
-    try {
-      var box = document.getElementById("inspiretext");
-      var wrap = document.getElementById("insbox");
-      if (wrap) wrap.style.display = "block";
-      if (box) {
-        box.value = t || "";
-        try { box.focus(); box.select(); } catch (e) {}
-      }
-    } catch (e) {}
-    robustCopy(t, "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
-  }
-  function copyInspire() {
-    try {
-      var box = document.getElementById("inspiretext");
-      if (box) { try { box.focus(); box.select(); } catch (e) {} }
-      robustCopy((box && box.value) || "", "inshint", "已复制，到下方对话框 Ctrl+V 粘贴并发送", "复制被拦截，请手动选中上面文字 Ctrl+C 再粘贴发送");
-    } catch (e) {}
-  }
-  window.cmd = cmd; window.cmdtext = cmdtext; window.inspire = inspire; window.copyInspire = copyInspire;
+  window.cmd = cmd; window.cmdtext = cmdtext;
   window.robustCopy = robustCopy;
 
   // ---------- 交互 ----------
@@ -148,7 +129,7 @@
     var body = document.getElementById("heat-detail-body");
     body.innerHTML = titles.length
       ? titles.map(function (t) {
-          return '<div class="hdi" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')">' + esc(t) + '<span class="hd-arrow">›</span></div>';
+          return '<div class="hdi" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')">' + esc(t) + '<span class="hd-arrow">›</span></div>';
         }).join("")
       : '<div class="empty">这天没有会话记录</div>';
     document.getElementById("heat-detail").style.display = "flex";
@@ -291,7 +272,7 @@
     return '<div class="nw"><div class="nw-t">' + prefix + esc(it.title) + "</div>" +
       dHtml +
       '<div class="nw-f">' + src + link + fav +
-      '<button class="nw-ask" onclick="robustCopy(' + "'" + jsStr(askText + it.title) + "',null,'已复制','复制被拦截',this" + ')">☁️ 让 AI 讲讲</button>' +
+      '<button class="nw-ask" onclick="aiAsk(' + "'" + jsStr(askText + it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
       "</div></div>";
   }
 
@@ -452,7 +433,7 @@
         '<span class="cc">' + groups[g].length + '</span><span class="car">▶</span></div><div class="grp-b">';
       groups[g].forEach(function (s) {
         var badge = s.status === "working" ? '<span class="badge on">进行中</span>' : "";
-        html += '<div class="auto sess" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' +
+        html += '<div class="auto sess" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' +
           esc(s.title) + '</b><span class="meta">' + s.updated + " " + badge + "</span></div>";
       });
       html += "</div></div>";
@@ -498,9 +479,7 @@
         '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
         "</div>" +
         '<div class="guide-grid">' + guideHtml + "</div>" +
-        '<div style="margin-top:12px"><button class="btn" onclick="inspire(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button>' +
-        '<div id="insbox"><textarea id="inspiretext" rows="5" placeholder="点击上方按钮，AI 灵感指令会出现在这里；可编辑，复制后到对话框 Ctrl+V 粘贴并发送"></textarea>' +
-        '<div style="margin-top:6px"><button class="btn-sm" onclick="copyInspire()">📋 复制指令</button><span id="inshint"></span></div></div></div></div>' +
+        '<div style="margin-top:12px"><button class="btn" onclick="aiAsk(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button></div></div>' +
       '<div class="card"><h2><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h2>' +
         (d.aiDaily && d.aiDaily.count
           ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
@@ -563,8 +542,8 @@
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>" +
       '<div class="card"><h2><span class="ic">🧪</span>基于日报做点什么</h2>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
-      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
+      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
       "</div></div>";
 
     secs.forEach(function (s) {
@@ -631,8 +610,8 @@
       (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>" +
       '<div class="card"><h2><span class="ic">🧪</span>基于新闻做点什么</h2>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="cmdtext(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
-      '<button class="btn-sm" onclick="cmdtext(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
+      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
       "</div></div>";
 
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2><div class="nw-grid">';
@@ -813,7 +792,7 @@
       if (!list.length) return;
       archiveHtml += '<div class="sess-day">' + esc(dt) + ' <span class="cc">' + list.length + "</span></div>";
       list.forEach(function (t) {
-        archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
+        archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
       });
     });
     var recentHtml = '<div class="card"><h2><span class="ic">💬</span>近期会话（最近 ' + recent.length + ' 条）</h2>' +
@@ -822,7 +801,7 @@
       '<button class="schip" data-v="working" onclick="sessStatus(\'working\')">进行中</button></div>' +
       '<div id="sessRecentList">' + (recent.length ? recent.map(function (s) {
         var st = s.status || "";
-        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
+        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
       }).join("") : '<div class="empty">暂无近期会话</div>') + "</div></div>";
     var html = '<div class="card"><h2><span class="ic">🔍</span>搜索会话</h2>' +
       '<input id="sessQ" class="sf" placeholder="按标题搜索全部会话…" oninput="sessFilter()">' +
@@ -951,6 +930,18 @@
     var h = document.getElementById("aiKeyHint");
     if (h) h.textContent = aiKeyLoad() ? "✓ 已保存（仅本机浏览器）" : "已清除";
   }
+  // 从其他卡片一键跳转 AI 助手：切 tab → 内容填入输入框（可选自动发送）
+  function aiAsk(text, autoSend) {
+    switchTab("ai");
+    var box = document.getElementById("aiBox");
+    if (box) {
+      box.value = text || "";
+      try { box.focus(); } catch (e) {}
+    }
+    if (autoSend) {
+      setTimeout(function () { aiSend(); }, 80);
+    }
+  }
   function aiAppend(role, text) {
     var chat = document.getElementById("aiChat");
     if (!chat) return;
@@ -1006,7 +997,7 @@
       })
       .then(function () { aiBusy = false; });
   }
-  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv;
+  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk;
 
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
   // 对外接口：window.renderSchedule / ghToken / scheduleLoad / schedulePullCloud / setGhToken / GH_REPO
@@ -1368,10 +1359,10 @@
   }
 
   // ---------- 一键导出（速记/待办/收藏/入口 → Markdown） ----------
-  // ---------- 复制今日概览（KPI + 头条 + 引导 → 一段文字给 AI） ----------
+  // ---------- 今日概览（KPI + 头条 + 引导 → 一键发给 AI 助手） ----------
   function copyToday() {
     var d = __data;
-    if (!d) { robustCopy("今日数据还没加载完，请稍等几秒再点。", null, "已复制", "复制失败"); return; }
+    if (!d) { aiAsk("今日数据还没加载完，请稍等几秒再点。"); return; }
     var lines = [];
     var k = d.kpi || {};
     lines.push("今天是 " + (d.generatedAt ? String(d.generatedAt).slice(0, 10) : "") + "，我的工作台现状：");
@@ -1391,8 +1382,7 @@
     }
     lines.push("");
     lines.push("请基于以上信息，给我今天最值得做的 3 件事（结合我的 skill 和知识库）。");
-    var btn = document.activeElement && document.activeElement.tagName === "BUTTON" ? document.activeElement : null;
-    robustCopy(lines.join("\n"), "hint", "今日概览已复制，去对话框粘贴发给 AI", "复制被拦截，请手动复制", btn);
+    aiAsk(lines.join("\n"));
   }
   function exportAll() {
     var now = new Date();

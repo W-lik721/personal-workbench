@@ -137,9 +137,6 @@ a:hover{text-decoration:underline}
 .btn-sm{background:var(--panel2);color:var(--txt);border:1px solid var(--line);padding:6px 13px;border-radius:var(--radius-sm);cursor:pointer;font-size:12px;transition:transform .15s,background .15s,border-color .15s}
 .btn-sm:hover{background:rgba(255,255,255,.06);border-color:var(--accent);transform:translateY(-1px)}
 .btn-sm:active{transform:scale(.97)}
-#insbox{margin-top:12px;display:none}
-#inspiretext{width:100%;background:#14161c;border:1px solid var(--accent);color:var(--txt);border-radius:var(--radius-sm);padding:10px;font-size:13px;resize:vertical;line-height:1.55}
-#inshint{color:var(--green);font-size:12px;margin-left:8px}
 #noteInput{width:100%;background:#14161c;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);color:var(--txt);padding:10px 12px;font-size:13px;line-height:1.55;resize:vertical;font-family:inherit;transition:border-color .2s,box-shadow .2s,background .2s}
 #noteInput::placeholder{color:#79818f}
 #noteInput:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--tint);background:#14161c}
@@ -366,7 +363,7 @@ body.light .badge.on{color:#1a7f37}
 body.light .badge.off{color:#c0392b}
 body.light .foot,body.light .empty,body.light .auto .meta,body.light .kpi .kl{color:#8a909c}
 body.light .ov-ol .model,body.light .ov-kb .auto,body.light .ov-auto-panel,body.light .guide-item{box-shadow:var(--shadow-sm)}
-body.light #cmdbox,body.light #noteInput,body.light #q,body.light #inspiretext,body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
+body.light #cmdbox,body.light #noteInput,body.light #q,body.light .sched-paste,body.light .sf{background:#f0f2f5;color:#1a1c20}
 body.light textarea:focus{outline-color:var(--accent-strong);background:#fff}
 body.light .hc{background:rgba(0,0,0,.08)}
 body.light .hc.l1{background:rgba(10,118,130,.35)}
