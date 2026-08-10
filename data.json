@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 10:48",
+  "generatedAt": "2026-08-10 10:49",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -671,13 +671,19 @@
       },
       "D": {
         "total": 544,
-        "free": 391
+        "free": 392
       }
     },
     "runtime": "3.13 / 22.22"
   },
   "sessions": {
     "recent": [
+      {
+        "title": "学习计算机科学与技术",
+        "status": "working",
+        "updated": "08-10 10:49",
+        "group": "今天"
+      },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
         "status": "completed",
@@ -694,12 +700,6 @@
         "title": "整理并精简重复的 skill",
         "status": "completed",
         "updated": "08-09 22:00",
-        "group": "昨天"
-      },
-      {
-        "title": "学习计算机科学与技术",
-        "status": "completed",
-        "updated": "08-09 14:24",
         "group": "昨天"
       },
       {
@@ -1335,18 +1335,18 @@
       },
       {
         "date": "2026-08-09",
-        "count": 4,
+        "count": 3,
         "titles": [
           "将 Obsidian 安装到 D 盘",
           "整理并精简重复的 skill",
-          "学习计算机科学与技术",
           "排查大量部署失败的原因"
         ]
       },
       {
         "date": "2026-08-10",
-        "count": 1,
+        "count": 2,
         "titles": [
+          "学习计算机科学与技术",
           "寻找无需apikey的抖音视频下载skill"
         ]
       }
@@ -1637,7 +1637,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 10:48",
+    "fetchedAt": "2026-08-10 10:49",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
     "count": 10,
@@ -1727,7 +1727,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 10:48",
+        "fetchedAt": "2026-08-10 10:49",
         "count": 10,
         "sections": [
           {
@@ -2242,7 +2242,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 10:48",
+    "fetchedAt": "2026-08-10 10:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2344,7 +2344,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 10:48",
+        "fetchedAt": "2026-08-10 10:49",
         "count": 15,
         "items": [
           {
@@ -2643,12 +2643,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T10:48:19",
-    "status": "ok",
-    "nextRun": "2026-08-10T11:48:19",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
