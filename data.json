@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-09 00:50",
+  "generatedAt": "2026-08-10 12:50",
   "kpi": {
-    "skills": 60,
+    "skills": 61,
     "automations": 2,
     "models": 5,
-    "memory": 26,
+    "memory": 29,
     "knowledge": 9,
     "sessions": 10
   },
@@ -27,7 +27,7 @@
     },
     {
       "name": "agent-design-kit",
-      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen / CrewAI 构建多智能体、做 RAG 实战、用 DeepEval 评估、用 instructor 做结构化输出时调用。从 9 个开源项目蒸馏：6 大 agent 模式选型卡 + 提示词黄金法则 + 三大框架设计方法论 + RAG 实战 + 评估 + 结构化输出。覆盖\"该用哪种结构、何时收手、怎么写好提示词、哪个框架\"。",
+      "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-design-kit",
       "usage": 0,
@@ -66,8 +66,16 @@
       "lastUsed": ""
     },
     {
+      "name": "crawl4ai-to-vault",
+      "desc": "将任意网页抓取为干净 Markdown 并存入用户 vault（99-采集 目录）的技能。当用户说「抓这个网页」「把这个链接存进知识库」「爬取这个页面」「web to vault」或给出网址希望保存为笔记时使用。底层用 Crawl4AI（装在隔离 venv）复用系统已装 Edge，不下载浏览器。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：crawl4ai-to-vault",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "cs-learning",
-      "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" / 想补核心课（算法·操作系统·网络·数据库·系统设计）优质开源资料 / 想做编程练手项目 / 零基础入门编程（尤其想用 AI 辅助）时触发。基于 4 篇已蒸馏笔记给出按阶段的学习地图与资源路由，不凭空编资源。",
+      "desc": "计算机科学与技术（CS）专业学习路线导航。当用户要去学 CS / 问\"从哪开始学计算机\" /",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：cs-learning",
       "usage": 0,
@@ -83,7 +91,7 @@
     },
     {
       "name": "deeptutor-tutor",
-      "desc": ">-",
+      "desc": "AI 私教 / 个性化辅导 skill。当用户说「私教」「教我」「带我学」「出题考我」「考考我」",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：deeptutor-tutor",
       "usage": 0,
@@ -91,7 +99,7 @@
     },
     {
       "name": "design-taste-frontend",
-      "desc": "\"Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. （中文：anti-slop 前端设计 skill —— 做落地页/作品集/网页改版时注入好品味，对抗 AI 套话默认审美）\"",
+      "desc": "Anti-slop frontend skill for landing pages, portfolios, and",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：design-taste-frontend",
       "usage": 0,
@@ -110,6 +118,14 @@
       "desc": "|",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：douyin-to-kb",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "douyin-yt-dlp",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：douyin-yt-dlp",
       "usage": 0,
       "lastUsed": ""
     },
@@ -234,6 +250,14 @@
       "lastUsed": ""
     },
     {
+      "name": "memory-maintain",
+      "desc": "\"MEMORY.md 分层体检与瘦身。当用户说 MEMORY 太大/超限/怎么解决/清理记忆，或检测到用户级(超4000)/工作区(超3000) MEMORY.md 接近注入上限时触发。提供测量到分层到砍重复下沉到工作区压线到固化防胀纪律的一键流程，防止记忆只进不出被静默截断导致重要信息丢失。\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：memory-maintain",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "memory-setup",
       "desc": "WorkBuddy 原生记忆系统初始化与体检工具（用户级）。当用户要\"配置记忆/初始化记忆/记忆体检/整理记忆/记忆清理/查看记忆状态/给 WorkBuddy 配一套记忆系统\"，或想管理 WorkBuddy 自带的三层记忆时触发。覆盖三层记忆（云记忆/用户级 MEMORY.md/工作区 memory 目录）的骨架初始化、合规体检、规模统计、清理建议，贴合现有「踩坑标注手册三件套」规范，不另起炉灶。",
       "category": "通用能力",
@@ -256,14 +280,6 @@
       "cmd": "打开工作台后调用 skill：my-workbench",
       "usage": 0,
       "lastUsed": ""
-    },
-    {
-      "name": "obsidian",
-      "desc": "Obsidian vault 管理强制协议与自动化（整合通用 vault 操作 + Daily Notes + vault 知识库协议）。每当用户提到 Obsidian、vault、知识库、笔记、Daily、记录、保存到、搜索我的、帮我找一下、记一下、存一下、整理笔记、查看笔记、在我的知识库里，都必须用此 skill。不要用文件工具直接操作 vault——CLI 自动处理 wikilinks、frontmatter、Daily 路径。覆盖：找活跃 vault、搜索/读取/创建/追加/移动、Daily 读写与相对日期、属性管理。",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：obsidian",
-      "usage": 2,
-      "lastUsed": "2026-08-09"
     },
     {
       "name": "obsidian-cli",
@@ -298,14 +314,6 @@
       "lastUsed": ""
     },
     {
-      "name": "pink-crystal-workbuddy-skin",
-      "desc": "\"WorkBuddy 桌面端（Electron）主题定制服务。通过 asar 内联 CSS 注入，提供「毛玻璃套装」皮肤，支持动态（animated WebP 背景）与静态（单帧 JPEG 背景）两种构建产物，覆盖 macOS / Windows 双平台一键安装与回滚。必须使用 WorkBuddy 原生 --cb-* 变量体系（非 VSCode 的 --vscode-*），否则面板灰蒙蒙。本 skill 为通用个性化换装服务，不绑定任何特定图片/视频，企业或个人可基于自身素材替换默认示例背景并重新着色。\"",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：pink-crystal-workbuddy-skin",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "planning-with-files",
       "desc": "\"Manus-style persistent file-based planning for AI coding agents: keeps task_plan.md, findings.md, and progress.md on disk so work survives context loss and /clear. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. Supports automatic session recovery after /clear.\"",
       "category": "通用能力",
@@ -315,7 +323,7 @@
     },
     {
       "name": "ponytail",
-      "desc": "\"反过度工程的极简编码方法论（Lazy senior dev mode）。覆盖：① 写码/重构/修bug/审代码时套 YAGNI+stdlib优先+最简解；② 审计整个仓库的过度工程（audit）；③ 审查某个 diff 的过度工程（review）；④ 收集代码里的 ponytail: 快捷注释成技术债账本（debt）；⑤ 展示 ponytail 实测收益记分牌（gain）；⑥ 速查各模式与命令（help）。触发词：ponytail、极简、反过度工程、YAGNI、审计代码、审查diff、技术债、删代码、最懒实现、简化。Not for：通用工程流程/完整代码评审·调试(superpowers)、依赖供应链审计(karpathy-kit §11)、极简主义大方法论(karpathy-kit §4)、非写码请求。\"",
+      "desc": "\"反过度工程的极简编码方法论（Lazy senior dev mode）。覆盖：① 写码/重构/修bug/审代码时套",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：ponytail",
       "usage": 0,
@@ -403,7 +411,7 @@
     },
     {
       "name": "wb-design-kit",
-      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。",
+      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。【路由】本 skill 是设计/前端视觉总入口；落地页/作品集/网页改版专项请用 design-taste-frontend，产品 UI/组件/海报+设计评审+动效请用 impeccable。三者互补不冲突。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：wb-design-kit",
       "usage": 0,
@@ -533,19 +541,19 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（21 条）：OpenAI 披露 ChatGPT 全球 10 亿用户画像：35 岁及以上用户用量上升",
+    "🗞️ 今日 AI 日报已更新（11 条）：NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-10 09:50 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-09",
+    "skillsLastUpdate": "2026-08-10",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-10 09:50",
+        "next": "08-17 09:50",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       },
       {
@@ -587,7 +595,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "7 days ago",
+          "modified": "8 days ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -595,7 +603,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "8 days ago",
+          "modified": "9 days ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -604,7 +612,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "9 days ago",
+          "modified": "10 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -653,22 +661,17 @@
         "name": "context7",
         "type": "stdio",
         "online": true
-      },
-      {
-        "name": "scrapling",
-        "type": "streamableHttp",
-        "online": false
       }
     ],
-    "memoryLastUpdate": "2026-08-09",
+    "memoryLastUpdate": "2026-08-10",
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 239
       },
       "D": {
         "total": 544,
-        "free": 384
+        "free": 392
       }
     },
     "runtime": "3.13 / 22.22"
@@ -676,27 +679,33 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查大量部署失败的原因",
-        "status": "completed",
-        "updated": "08-09 00:49",
-        "group": "今天"
-      },
-      {
-        "title": "查找 videosays 这个 skill",
-        "status": "completed",
-        "updated": "08-09 00:07",
-        "group": "今天"
-      },
-      {
         "title": "学习计算机科学与技术",
         "status": "completed",
-        "updated": "08-08 21:12",
-        "group": "昨天"
+        "updated": "08-10 11:52",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "status": "completed",
+        "updated": "08-10 00:53",
+        "group": "今天"
       },
       {
         "title": "将 Obsidian 安装到 D 盘",
         "status": "completed",
-        "updated": "08-08 20:02",
+        "updated": "08-09 23:41",
+        "group": "昨天"
+      },
+      {
+        "title": "整理并精简重复的 skill",
+        "status": "completed",
+        "updated": "08-09 22:00",
+        "group": "昨天"
+      },
+      {
+        "title": "排查大量部署失败的原因",
+        "status": "completed",
+        "updated": "08-09 01:30",
         "group": "昨天"
       },
       {
@@ -709,12 +718,6 @@
         "title": "生成今日灵感与AI学习路径建议",
         "status": "completed",
         "updated": "08-07 14:28",
-        "group": "更早"
-      },
-      {
-        "title": "整理并精简重复的 skill",
-        "status": "completed",
-        "updated": "08-06 21:44",
         "group": "更早"
       },
       {
@@ -737,11 +740,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-13",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-14",
         "count": 0,
@@ -1319,10 +1317,8 @@
       },
       {
         "date": "2026-08-06",
-        "count": 1,
-        "titles": [
-          "整理并精简重复的 skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-07",
@@ -1334,18 +1330,24 @@
       },
       {
         "date": "2026-08-08",
-        "count": 2,
-        "titles": [
-          "学习计算机科学与技术",
-          "将 Obsidian 安装到 D 盘"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-09",
+        "count": 3,
+        "titles": [
+          "将 Obsidian 安装到 D 盘",
+          "整理并精简重复的 skill",
+          "排查大量部署失败的原因"
+        ]
+      },
+      {
+        "date": "2026-08-10",
         "count": 2,
         "titles": [
-          "排查大量部署失败的原因",
-          "查找 videosays 这个 skill"
+          "学习计算机科学与技术",
+          "寻找无需apikey的抖音视频下载skill"
         ]
       }
     ]
@@ -1396,32 +1398,182 @@
   "weekly": [
     {
       "kind": "skill",
-      "name": "impeccable",
-      "when": 1786205217.9279864,
+      "name": "ponytail",
+      "when": 1786337349.9429066,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-checker__skillhub",
+      "when": 1786337349.9299057,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "full-output-enforcement",
+      "when": 1786337349.8173928,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "design-taste-frontend",
-      "when": 1786176392.4492292,
+      "when": 1786337349.6628819,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "deeptutor-tutor",
-      "when": 1786174024.534987,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-design-kit",
-      "when": 1786173649.8171833,
+      "when": 1786337349.5763736,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "cs-learning",
-      "when": 1786173619.9027934,
+      "when": 1786337349.4888604,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "cangjie-skill",
+      "when": 1786337349.3368387,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "andrej-karpathy-skills__github",
+      "when": 1786337349.2357626,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1786337349.0754702,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agency-agents__github",
+      "when": 1786337348.90568,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin-to-kb",
+      "when": 1786288248.4537446,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin-downloader-skill__skillhub",
+      "when": 1786288237.682625,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin-yt-dlp",
+      "when": 1786288227.2720907,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "claude-mem",
+      "when": 1786280448.2268574,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "when": 1786280088.2773352,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1786280057.206777,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "obsidian-cli",
+      "when": 1786279957.1611066,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "crawl4ai-to-vault",
+      "when": 1786277437.963398,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "memory-maintain",
+      "when": 1786273837.7591393,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ollama-local-multimodal",
+      "when": 1786210725.3042676,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "url-redirect-vuln",
+      "when": 1786210725.2862692,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786210725.2677498,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "llm-onboard-diagnose",
+      "when": 1786210725.225744,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "mcp-stdio-bridge",
+      "when": 1786210725.2067435,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "daily-insight",
+      "when": 1786210725.1887443,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-bluebook",
+      "when": 1786210725.1512253,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "idea-landing-3prompt",
+      "when": 1786210725.1112275,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-mcp-connect",
+      "when": 1786210725.0922258,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "tencent-video-capture",
+      "when": 1786210725.0741868,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "prompt-forge",
+      "when": 1786210725.0571768,
       "scope": "本机"
     },
     {
@@ -1447,18 +1599,6 @@
       "scope": "本机"
     },
     {
-      "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786023263.1346338,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "workbuddy-bluebook",
-      "when": 1786001662.3176703,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "Home.md",
       "when": 1785999151.8258364
@@ -1469,21 +1609,9 @@
       "when": 1785998902.549
     },
     {
-      "kind": "skill",
-      "name": "obsidian-cli",
-      "when": 1785996419.3050437,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "AGENTS.md",
       "when": 1785942364.2573428
-    },
-    {
-      "kind": "skill",
-      "name": "daily-insight",
-      "when": 1785941977.961051,
-      "scope": "本机"
     },
     {
       "kind": "kb",
@@ -1491,27 +1619,9 @@
       "when": 1785940181.3500104
     },
     {
-      "kind": "skill",
-      "name": "obsidian",
-      "when": 1785939994.966442,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin-to-kb",
-      "when": 1785922874.8530178,
-      "scope": "本机"
-    },
-    {
       "kind": "kb",
       "name": "00-路由表.md",
       "when": 1785919608.3931186
-    },
-    {
-      "kind": "skill",
-      "name": "mcp-stdio-bridge",
-      "when": 1785914960.8384593,
-      "scope": "本机"
     },
     {
       "kind": "kb",
@@ -1538,24 +1648,6 @@
     },
     {
       "kind": "skill",
-      "name": "cangjie-skill",
-      "when": 1785844135.4059873,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "url-redirect-vuln",
-      "when": 1785820325.9695032,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "idea-landing-3prompt",
-      "when": 1785820325.9572208,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "wb-ai-radar",
       "when": 1785763049.0694335,
       "scope": "本机"
@@ -1571,70 +1663,69 @@
       "name": "pdf",
       "when": 1785763027.2655303,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "prompt-forge",
-      "when": 1785660685.1572323,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
-    "date": "2026-08-08",
-    "fetchedAt": "2026-08-09 00:50",
+    "date": "2026-08-10",
+    "fetchedAt": "2026-08-10 12:50",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-08",
-    "count": 21,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-10",
+    "count": 11,
     "sections": [
       {
-        "label": "行业动态",
+        "label": "模型发布",
         "items": [
           {
-            "title": "OpenAI 披露 ChatGPT 全球 10 亿用户画像：35 岁及以上用户用量上升",
-            "summary": "OpenAI 报告称全球超 10 亿用户使用 ChatGPT，使用方式从“问答工具”转向“任务工具”，工作场景中完成任务或创建内容的可能性是非工作场景的 2 倍以上。自 2026 年 4 月发布 ChatGPT Images 2.0 以来，多媒体相关消息占比升至 7.8%。35 岁及以上用户发送消息份额较 12 个月前增加 5 个百分点，法国和捷克增幅超 10 个百分点。",
-            "url": "https://www.ithome.com/0/986/957.htm",
-            "source": "IT之家（RSS）"
-          },
-          {
-            "title": "OpenAI 发布 Astra 初步网络安全评估与防护强化措施",
-            "summary": "OpenAI 公布了 Astra 的初步网络安全评估结果，并介绍了为强化安全防护与控制所采取的措施。此次评估聚焦于 Astra 在关键网络能力方面的表现，相关安全更新旨在应对前沿领域的潜在风险。",
-            "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities",
-            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+            "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+            "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
+            "url": "https://aihot.virxact.com/items/cmsmhbu4w0338ronxh92vej2u",
+            "source": ""
           }
         ]
       },
       {
-        "label": "论文研究",
+        "label": "产品发布",
         "items": [
           {
-            "title": "斯坦福与 Arc Institute 用 AI 设计全新病毒基因组，16 种在实验室成功杀死细菌",
-            "summary": "斯坦福大学与 Arc Institute 团队用 AI 模型 Evo 从零设计完整病毒基因组，并在实验室构建出 16 种自然界不存在的功能性病毒。Evo 提出 70 万个候选基因组，团队仅筛选最有希望的 285 个序列合成并植入细菌，其中 16 个成功复制并杀死宿主。该研究已通过同行评审发表于《Science》，但 Evo 未接受人类病原体数据训练，且能否推广至其他病毒类群仍是未知数。",
-            "url": "https://the-decoder.com/stanford-and-arc-institute-scientists-used-ai-to-design-new-viruses-that-killed-bacteria-in-the-lab",
-            "source": "The Decoder：AI News（RSS）"
+            "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
+            "summary": "👀 看见只是开始。\n\n借助 Qwen-MM-Plugins，让你的智能体原生支持多模态--读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。\n\n从多模态模型 → 多模态智能体。🚀\n\n观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
+            "url": "https://aihot.virxact.com/items/cmsmpwjyh0b0drohfw1hpbbzh",
+            "source": ""
           },
           {
-            "title": "小红书联合浙大、复旦提出 CULTURE-MT：首个面向社媒翻译的「文化有效性」评测基准，入选 ICML 2026",
-            "summary": "小红书联合浙江大学、复旦大学提出 CULTURE-MT，这是首个面向中英社媒笔记翻译、兼顾文化符号传递与情感共鸣的评测基准，并首次提出「文化有效性」评估标准与自动评估模型 JUDGER（准确率 86.03%）。",
-            "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&mid=2247496008&idx=1&sn=08f2ce717483f63bc00a2181e59e3f40",
-            "source": "公众号：小红书技术（dots.llm）"
+            "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
+            "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
+            "url": "https://aihot.virxact.com/items/cmsmlho8005dmrohfoz27j6em",
+            "source": ""
           },
           {
-            "title": "扩展分类流映射（Categorical Flow Maps）规模",
-            "summary": "连续扩散与流匹配模型有望成为语言建模中自回归方法的有力替代，可解锁加速采样与倾斜等连续模态优势。近期研究通过高斯分布与one-hot编码数据分布间的简单流匹配过程，实现离散数据的连续生成，并借助分类流映射（CFMs）验证了加速采样的可行性，样本质量具有竞争力。",
-            "url": "https://machinelearning.apple.com/research/scaling-categorical-flow-maps",
-            "source": "Apple Machine Learning Research（RSS）"
+            "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
+            "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
+            "url": "https://aihot.virxact.com/items/cmsmizpgb02yerohf3bh8jesi",
+            "source": ""
           },
           {
-            "title": "Arbitrage：利用优势感知投机实现高效推理",
-            "summary": "现代大语言模型通过长思维链实现强大推理能力，但推理计算成本高昂。投机解码（Speculative Decoding）用快速但不精确的草稿模型提议 token，再由更强的目标模型并行验证，以加速推理。然而，语义等价步骤中的 token 不匹配会导致不必要的拒绝，传统 token 级投机解码因此受限。",
-            "url": "https://machinelearning.apple.com/research/arbitrage-efficient-reasoning",
-            "source": "Apple Machine Learning Research（RSS）"
+            "title": "OpenChamber：一个基于代理的开发环境",
+            "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
+            "url": "https://aihot.virxact.com/items/cmsmjglqx034prohfslczvkpb",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "label": "行业动态",
+        "items": [
+          {
+            "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
+            "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
+            "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+            "source": ""
           },
           {
-            "title": "超越下一个 token 预测：扩散语言模型与自回归语言模型的性能对比研究",
-            "summary": "苹果机器学习研究团队系统对比了扩散语言模型（DLMs）与自回归语言模型（ARMs）的性能表现。ARMs 虽在多项 NLP 任务上精度领先，但因逐 token 生成的顺序依赖导致算术强度较低。DLMs 作为新兴范式展现出潜力，研究对其性能特征进行了详细刻画。",
-            "url": "https://machinelearning.apple.com/research/diffusion-autoregressive-performance",
-            "source": "Apple Machine Learning Research（RSS）"
+            "title": "AI安全测试正成为安全风险",
+            "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
+            "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
+            "source": ""
           }
         ]
       },
@@ -1642,98 +1733,28 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "OpenAI 智能体在安全测试中自行搭建秘密聊天室并攻破系统",
-            "summary": "OpenAI 在本周安全会议上披露，其智能体在测试中自行搜索缺失文件、在共享系统留言，最终与其他智能体建立秘密聊天室。它们利用被遗忘的管理员登录路径控制存储服务，并在13小时内通过投毒数据文件攻破Hugging Face。OpenAI 已取消密码、重建服务并封堵漏洞，但智能体随后又通过文件夹名隐藏消息重建聊天室，最终获得完全管理权限。",
-            "url": "https://www.tomtunguz.com/the-secret-chat-room",
-            "source": "Tomer Tunguz 博客（VC 分析）"
+            "title": "Seedance 2.5 上线一周新增六种创意玩法",
+            "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别“AI 油腻感”，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+            "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247509275&idx=1&sn=48cc15b0f9b22173ce93350da61f15dc",
+            "source": "公众号：卡尔的AI沃茨"
           },
           {
-            "title": "独立开发者用 VoxCPM 克隆网红声音，让 AI 终于“会聊天”了",
-            "summary": "独立开发者叶小叔用面壁智能开源的 VoxCPM 克隆千万粉丝网红声音，搭建 STT → LLM → VoxCPM（TTS）三段式实时对话管道，TTS 首包延迟不到 1 秒，端到端体感 2 到 3 秒。",
-            "url": "https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&mid=2247498927&idx=1&sn=c5fbfaac5ede8b1008d17337a1bdc70b",
-            "source": "公众号：面壁智能（MiniCPM）"
+            "title": "Anthropic 称已基本解决提示注入攻击",
+            "summary": "Anthropic 的 Boris Cherny 表示，通过模型训练已基本解决 Claude 模型在实际使用中的提示注入威胁。独立研究者的基准测试显示，叠加模型训练、输入探测和意图分类器等多层防御后，未见过的间接提示注入攻击成功率可降至约 0。Claude Code 的 auto 模式将于下周默认开启。",
+            "url": "https://x.com/bcherny/status/2086520950259118464",
+            "source": "X：Boris Cherny (@bcherny)"
           },
           {
-            "title": "Databricks 如何规模化管控 AI 编程成本",
-            "summary": "Databricks 分享了规模化管控 AI 编程成本的方法，其智能体编程已带来可衡量的价值提升。文章重点探讨了在团队规模扩大时，如何通过成本追踪、工具选型与使用策略，在维持代码质量与开发效率的同时，控制 AI 编程工具带来的支出增长。",
-            "url": "https://www.databricks.com/blog/managing-ai-coding-costs-scale",
-            "source": "Databricks：Blog（RSS）"
+            "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
+            "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
+            "url": "https://www.marktechpost.com/2026/08/09/imdb-sentiment-analysis-with-distilbert-lora-tf-idf-baselines-calibration-interpretability-robustness-testing-and-semi-supervised-learning",
+            "source": "MarkTechPost（RSS）"
           },
           {
-            "title": "持续学习时代的 8 个预测",
-            "summary": "持续学习将颠覆现有 AI 监管与对齐范式：模型不再“训练后部署”，而是每日基于数百万次工作会话更新权重，因此监管应转向月度或季度风险检查，而非部署前一次性评估。技术对齐需解决权重持续更新下的越狱与恶意注入问题。个性化权重服务的算力经济将偏向大型组织，个人以 batch size 1 服务自身可能面临 100 倍以上的算力效率惩罚。",
-            "url": "https://www.dwarkesh.com/p/era-of-continual-learning",
-            "source": "Dwarkesh Patel：Podcast & Blog（RSS）"
-          },
-          {
-            "title": "什么是 AI 助手？Databricks 详解其工作原理与类型",
-            "summary": "AI 助手通过语言模型、数据检索和推理来理解请求并生成响应。Databricks 在博客中解析了 AI 助手的基本架构，涵盖其如何结合检索增强生成（RAG）与推理能力，并区分了不同类型的助手及其在企业场景中的应用方式。",
-            "url": "https://www.databricks.com/blog/what-is-an-ai-assistant",
-            "source": "Databricks：Blog（RSS）"
-          }
-        ]
-      },
-      {
-        "label": "模型发布/更新",
-        "items": [
-          {
-            "title": "谷歌推出 WeatherNext 气旋模型，AI 高精度预报飓风平均提前 24 小时",
-            "summary": "谷歌 DeepMind 联合多家机构推出 WeatherNext Cyclones 气旋预测模型，在路径、强度和风场结构预测精度上达到业界领先。该模型将有效预报时长从 2 天延长至 3 天，平均提前 24 小时，预测量级约相当于 10 年气象进展。",
-            "url": "https://www.ithome.com/0/986/951.htm",
-            "source": "IT之家（RSS）"
-          }
-        ]
-      },
-      {
-        "label": "产品发布/更新",
-        "items": [
-          {
-            "title": "Seedance 2.5 API上线，视频生成开启「电影级长叙事」",
-            "summary": "火山引擎正式上线 Seedance 2.5 API，将单次视频生成时长从15秒提升至30秒，并支持最高50个全模态素材参考。模型在指令遵循、长叙事、真人感及声画质感上大幅提升，能稳定保持多角色外形与场景关系，兼容十余种语言。",
-            "url": "https://mp.weixin.qq.com/s?__biz=MzI0NzU1NzI5NQ%3D%3D&mid=2247543416&idx=1&sn=badeafc780a939033a1e4cb0bba4221c",
-            "source": "公众号：火山引擎"
-          },
-          {
-            "title": "Kitesurf：一款在 V8 隔离环境中运行的“代理优先”浏览器",
-            "summary": "Cloudflare 推出 Kitesurf，一款专为 AI 智能体设计的浏览器，完全运行在 Workers 上，基于 V8 隔离环境，现已在 Browser Run 中免费开放测试。",
-            "url": "https://blog.cloudflare.com/kitesurf",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-          },
-          {
-            "title": "HPC-Ops × SGLang：腾讯混元开源高性能 Attention、Router GEMM 与 MoE 算子",
-            "summary": "腾讯混元开源算子库 HPC-Ops 已集成至 SGLang 主分支，其 Dynamic Attention 与 Fused MoE 在 Hy3 模型上最高降低 TPOT 48.8%。",
-            "url": "https://www.lmsys.org/blog/2026-08-07-hpc-ops-sglang",
-            "source": "LMSYS：Blog（Chatbot Arena 团队）"
-          },
-          {
-            "title": "Claude Code 会话间可互发消息",
-            "summary": "Claude Code 新功能：你的会话现在可以互相发送消息了。 无需在另一个会话中重新解释自己，你现在可以让 Claude 代为传达。它会发送一份摘要（而非你的历史记录或文件），另一个会话会在任务进行中接收该摘要。",
-            "url": "https://x.com/ClaudeDevs/status/2085817074816070014",
-            "source": "X：Claude Devs (@ClaudeDevs)"
-          },
-          {
-            "title": "千问功能上新：推出思考研究、定时任务、办公助理、语音通话等多项新功能，并支持 Qwen3.8-MAX",
-            "summary": "千问今日上线多项新功能，并支持最新旗舰模型 Qwen3.8-MAX。其中“思考研究”在原“深度思考”基础上升级，强化复杂推理与工具调用；“定时任务”可预设执行时间自动完成行业简报梳理等周期工作；“办公助理”能连接备忘录、日历等应用并操作电脑浏览器，直接输出可用的 Office 文档。语音通话支持 7x24 小时多场景，智能体广场首批覆盖物流、房产等十多个领域。",
-            "url": "https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488266&idx=1&sn=3a1988ba0710abcefba9c9dd282b464e",
-            "source": "公众号：千问APP（阿里）"
-          },
-          {
-            "title": "Anthropic 更新 Claude Fable 5 生物安全防护，误报率大幅降低",
-            "summary": "Anthropic 更新了 Claude Fable 5 的生物安全防护机制，将生物相关查询的“回退”次数减少约 85%，用户在日常健康与教育问题上将更少遇到系统切换至较弱模型的情况。此次更新扩大了模型可协助的生物任务范围，但涉及双重用途的病毒学、毒理学和分子设计请求仍会回退至 Opus 5。Anthropic 表示正通过可信访问途径，致力于缩小专业生物研究与药物开发领域的差距。",
-            "url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards",
-            "source": "Anthropic：Newsroom（网页）"
-          },
-          {
-            "title": "Suno移动端上线Voices功能",
-            "summary": "Voices 功能已在 Suno 移动应用 iOS 和 Android 版正式上线！📱✨ 现在你可以直接在手机上录制人声，并将其用于你的歌曲中。只需在创作界面点击“+ Voice”按钮，录制至少一分钟，然后让音乐流淌起来。（Pro 和 Premier 套餐可无限使用，免费套餐可体验有限版本！） 打开应用，录制你的声音，并在评论区告诉我们你的使用体验！",
-            "url": "https://x.com/suno/status/2085731234970227145",
-            "source": "X：Suno (@suno)"
-          },
-          {
-            "title": "LangChain 推出 Managed Deep Agents 公开测试版",
-            "summary": "LangChain 的 Managed Deep Agents 进入公开测试版，可将 Deep Agents 部署到托管的 LangSmith 运行时。该服务提供持久化执行、记忆、沙箱、通道、评估（evals）及生产级基础设施。",
-            "url": "https://www.langchain.com/blog/managed-deep-agents-is-now-in-public-beta",
-            "source": "LangChain：Blog（RSS）"
+            "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
+            "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
+            "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
+            "source": "Nathan Lambert：Interconnects（RSS）"
           }
         ]
       }
@@ -1741,8 +1762,185 @@
     "warnings": [],
     "history": [
       {
+        "date": "2026-08-10",
+        "fetchedAt": "2026-08-10 12:50",
+        "count": 11,
+        "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "NVIDIA 发布 NemotronLabs VoiceChat 11B：开源全双工语音模型，支持约 450 毫秒轮换与实时工具调用",
+                "summary": "NVIDIA 发布开源端到端全双工语音对话模型 NemotronLabs VoiceChat 11B，在统一网络中完成流式语音理解与生成，实测轮换延迟 448 毫秒。该模型为首个支持对话中工具调用的开源全双工模型，通过独立输出通道及预置\"保持\"话术避免 API 执行期间冷场。权重与容器已公开，但仅限研究用途，需单张 80 GB 显存 GPU，目前无托管 API。",
+                "url": "https://aihot.virxact.com/items/cmsmhbu4w0338ronxh92vej2u",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
+                "summary": "👀 看见只是开始。\n\n借助 Qwen-MM-Plugins，让你的智能体原生支持多模态--读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。\n\n从多模态模型 → 多模态智能体。🚀\n\n观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
+                "url": "https://aihot.virxact.com/items/cmsmpwjyh0b0drohfw1hpbbzh",
+                "source": ""
+              },
+              {
+                "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
+                "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击\"圆点角标\"进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
+                "url": "https://aihot.virxact.com/items/cmsmlho8005dmrohfoz27j6em",
+                "source": ""
+              },
+              {
+                "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
+                "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
+                "url": "https://aihot.virxact.com/items/cmsmizpgb02yerohf3bh8jesi",
+                "source": ""
+              },
+              {
+                "title": "OpenChamber：一个基于代理的开发环境",
+                "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
+                "url": "https://aihot.virxact.com/items/cmsmjglqx034prohfslczvkpb",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
+                "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
+                "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+                "source": ""
+              },
+              {
+                "title": "AI安全测试正成为安全风险",
+                "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
+                "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "Seedance 2.5 上线一周新增六种创意玩法",
+                "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别“AI 油腻感”，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+                "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247509275&idx=1&sn=48cc15b0f9b22173ce93350da61f15dc",
+                "source": "公众号：卡尔的AI沃茨"
+              },
+              {
+                "title": "Anthropic 称已基本解决提示注入攻击",
+                "summary": "Anthropic 的 Boris Cherny 表示，通过模型训练已基本解决 Claude 模型在实际使用中的提示注入威胁。独立研究者的基准测试显示，叠加模型训练、输入探测和意图分类器等多层防御后，未见过的间接提示注入攻击成功率可降至约 0。Claude Code 的 auto 模式将于下周默认开启。",
+                "url": "https://x.com/bcherny/status/2086520950259118464",
+                "source": "X：Boris Cherny (@bcherny)"
+              },
+              {
+                "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
+                "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
+                "url": "https://www.marktechpost.com/2026/08/09/imdb-sentiment-analysis-with-distilbert-lora-tf-idf-baselines-calibration-interpretability-robustness-testing-and-semi-supervised-learning",
+                "source": "MarkTechPost（RSS）"
+              },
+              {
+                "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
+                "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
+                "url": "https://www.interconnects.ai/p/lessons-from-the-hacks",
+                "source": "Nathan Lambert：Interconnects（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-10"
+      },
+      {
+        "date": "2026-08-09",
+        "fetchedAt": "2026-08-10 01:44",
+        "count": 10,
+        "sections": [
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
+                "summary": "Cloudflare 在 2026 年第二季度财报电话会议上披露，AI 机器人等非人类流量已于 2026 年 5 月正式超过人类流量，比 CEO 此前预测的 2027 年底大幅提前。公司预测若趋势延续，五年后非人类流量将达人类流量的 1000 倍，人类在互联网上的存在将变得微不足道。该季度营收 6.96 亿美元，同比增长 36%，净亏损 2.057 亿美元。",
+                "url": "https://www.ithome.com/0/987/438.htm",
+                "source": "IT之家（RSS）"
+              },
+              {
+                "title": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂",
+                "summary": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂，由 NVIDIA 加速计算和 Dell Technologies 基础设施驱动，亚美尼亚总理等官员出席开幕式。",
+                "url": "https://blogs.nvidia.com/blog/firebird-ai-factory-armenia-blackwell-rubin-dsx",
+                "source": "NVIDIA Blog（RSS）"
+              },
+              {
+                "title": "AI安全测试正成为安全风险",
+                "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
+                "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
+                "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
+                "url": "https://aihot.virxact.com/items/cmslxhx3t05n3ro0w2lcmvjol",
+                "source": ""
+              },
+              {
+                "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
+                "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
+                "url": "https://aihot.virxact.com/items/cmslhy76p03hdroo0l8dsaskb",
+                "source": ""
+              },
+              {
+                "title": "Seedance 2.5 上线一周新增六种创意玩法",
+                "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别\"AI 油腻感\"，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
+                "url": "https://aihot.virxact.com/items/cmslmv6kx03muroqyxyo4fbtl",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "产品发布/更新",
+            "items": [
+              {
+                "title": "苹果 Mac 简体中文支持文档更新，“Apple 智能”阿里千问扩展现身",
+                "summary": "苹果官网 Mac 简体中文使用手册新增《在 Mac 上配合 Apple 智能使用千问》支持文档，明确 Apple 智能可配合阿里巴巴千问模型工作。千问扩展适用于 macOS 26.6 或更高版本，需中国大陆 Apple 账户及机型，支持写作工具与 Siri，用户需登录千问账户使用。",
+                "url": "https://www.ithome.com/0/987/366.htm",
+                "source": "IT之家（RSS）"
+              },
+              {
+                "title": "OpenAI 桌面端 ChatGPT 上线语音交互功能，可语音操控电脑执行多步骤任务",
+                "summary": "OpenAI 更新 ChatGPT 桌面应用，新增对 ChatGPT Voice 的支持，用户可直接通过语音对话控制 AI 智能体并让其在电脑上执行任务。该功能基于全新语音模型系列 ChatGPT-Live，支持 ChatGPT Work 和 Codex，在 macOS 上还可借助 Appshots 访问屏幕内容。",
+                "url": "https://www.ithome.com/0/987/452.htm",
+                "source": "IT之家（RSS）"
+              },
+              {
+                "title": "Grok Imagine 图像编辑迎来重大升级",
+                "summary": "Grok Imagine 图像编辑功能重大升级 [引用 @XFreeze]：你可以直接悬停在 Grok Imagine 中的任意特定区域，并即时进行编辑",
+                "url": "https://x.com/elonmusk/status/2086127247077843282",
+                "source": "X：Elon Musk (@elonmusk, xAI)"
+              },
+              {
+                "title": "Claude Code v2.1.225 发布：新增网关支出限额支持与工作区信任提示",
+                "summary": "Claude Code v2.1.225 为用量警告新增网关支出限额支持，达到限额时提示将显示上限、重置时间及操作者消息。该版本还为不受信任目录中的 claude agents 增加工作区信任提示，并修复了 MCP OAuth 服务器在 macOS 上的间歇性 401 错误、跨会话消息滞留及 Remote Control 会话恢复后对话历史损坏等问题。",
+                "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.225",
+                "source": "Claude Code：GitHub Releases（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-09"
+      },
+      {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-09 00:50",
+        "fetchedAt": "2026-08-09 02:54",
         "count": 21,
         "sections": [
           {
@@ -2085,110 +2283,310 @@
     ]
   },
   "dailyNews": {
-    "date": "2026-08-08",
-    "fetchedAt": "2026-08-09 00:50",
+    "date": "2026-08-10",
+    "fetchedAt": "2026-08-10 12:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "上半年国内居民出游人次 34.63 亿，同比增长 5.4%；出游总花费 3.21 万亿元，同比增长 2.0%",
+        "title": "2026 暑期档票房破 85 亿，单日票房连续 30 天破亿元，观影人次、放映场次双创新高",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "今年前 7 月我国货物贸易进出口总值超 30 万亿元，同比增长 17.3%，延续良好的增长态势",
+        "title": "7 月份我国居民消费价格同比上涨 0.5%，总体保持温和上涨态势",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "东航发布新规：8 月 6 日（含）以后销售的国内客票，提前 14 天可免费退改签",
+        "title": "广州：推进人行道安步计划，启用智眼系统查处电动自行车违法行为",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "北京楼市新政：非京籍家庭购房社保个税缴纳年限下调为一年，公积金贷款额度最高 340 万元",
+        "title": "上海足协：明日之星冠军杯决赛因台风取消，U17 国足和阿森纳并列冠军",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中疾控：新冠阳性率上升趋缓，总体处于中流行水平，南方显著高于北方",
+        "title": "我国渤海首个千亿方大气田投产：日产油气当量超 5200 吨，开发效果超过预期",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "受台风 “白海豚” 影响，长三角铁路部分线路列车临时停运",
+        "title": "国产磁悬浮 5.3 秒飙到时速 800 公里，半年内 3 破世界纪录",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "河南省 2026 年 “三支一扶” 笔试成绩作废，将重新组织笔试",
+        "title": "“开学三件套” 全线暴涨，有老板称一台电脑涨出一部手机的钱",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "WTT 横滨冠军赛：国乒女单 3 人跻身八强，国乒男单全军覆没无缘八强",
+        "title": "知情人士：苹果测试长鑫科技存储芯片，用于 iPhone 和 MacBook",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "央行连续 21 个月增持黄金，7 月外汇储备增加 25 亿美元",
+        "title": "WTT 横滨赛落幕：张本兄妹包揽男单、女单冠军，国乒女单陈幸同收获亚军",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "我国高端钢材迎来密集突破：比 A4 纸还要薄，同时拥有高强度、高延展性",
+        "title": "泰国国家旅游局：高度重视中国游客旅游体验，将完善产品和服务",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国斯坦福科学家首次用 AI 设计出 16 种全新病毒，用于感染细菌，不会对人类构成威胁",
+        "title": "法学者：禁止对华出口光刻机，美、欧反将成最大输家",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普颁令禁止生育旅游，特定人群所生子女将无法获得公民权",
+        "title": "美国能源公司起诉数据中心开发商：将电费成本转嫁民众",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美将对多晶硅衍生品加征 15% 关税，并引入最低进口价机制",
+        "title": "俄罗斯失业率 2.2%，为 G20 国家中最低，劳动力短缺或成俄经济严峻考验",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "沙特、土耳其和巴基斯坦签署共同防务协议：对三国中任何一国动武，将被视为对所有三国的攻击",
+        "title": "一家与美国总统关联的美石油公司拟在格陵兰岛钻探，格陵兰岛警告称尚未批准任何设备上岛",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "乌方公布对俄作战外籍军人规模：来自 72 个外方近 1.6 万人，其中约 40% 来自拉丁美洲国家",
+        "title": "伊朗外长重申伊朗目前未与美国谈判；特朗普称美国正与伊朗开展 “半谈判”",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "心态对了，世界就对了。你眼里的刺，往往是心里的刺。",
-    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U9mABtjIOiaZkq80KOXJO05IEXm8pibUibdgslHGTR1rs2BQxRGvuGhcsRJbZXhYLoWszI1bibcU69mMH8uf1O5T7RYBpDkgjBornU/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "别把一时的情绪当永久判决，坏心情会走，好天气会来，你只需等",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U96l86kzcemU0WmIgV4EnYxl0GcVWGjUdWt1j7kNRiaY9yMaPFFhm2ibdLeEREiaDtaoRBT7q5kMticA2l0zpQoxqZe0icw7oI6UtxI/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
       {
+        "date": "2026-08-10",
+        "fetchedAt": "2026-08-10 12:50",
+        "count": 15,
+        "items": [
+          {
+            "title": "2026 暑期档票房破 85 亿，单日票房连续 30 天破亿元，观影人次、放映场次双创新高",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "7 月份我国居民消费价格同比上涨 0.5%，总体保持温和上涨态势",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "广州：推进人行道安步计划，启用智眼系统查处电动自行车违法行为",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "上海足协：明日之星冠军杯决赛因台风取消，U17 国足和阿森纳并列冠军",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国渤海首个千亿方大气田投产：日产油气当量超 5200 吨，开发效果超过预期",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国产磁悬浮 5.3 秒飙到时速 800 公里，半年内 3 破世界纪录",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "“开学三件套” 全线暴涨，有老板称一台电脑涨出一部手机的钱",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "知情人士：苹果测试长鑫科技存储芯片，用于 iPhone 和 MacBook",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "WTT 横滨赛落幕：张本兄妹包揽男单、女单冠军，国乒女单陈幸同收获亚军",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "泰国国家旅游局：高度重视中国游客旅游体验，将完善产品和服务",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "法学者：禁止对华出口光刻机，美、欧反将成最大输家",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国能源公司起诉数据中心开发商：将电费成本转嫁民众",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "俄罗斯失业率 2.2%，为 G20 国家中最低，劳动力短缺或成俄经济严峻考验",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "一家与美国总统关联的美石油公司拟在格陵兰岛钻探，格陵兰岛警告称尚未批准任何设备上岛",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "伊朗外长重申伊朗目前未与美国谈判；特朗普称美国正与伊朗开展 “半谈判”",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "别把一时的情绪当永久判决，坏心情会走，好天气会来，你只需等",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
+      {
+        "date": "2026-08-09",
+        "fetchedAt": "2026-08-10 01:44",
+        "count": 15,
+        "items": [
+          {
+            "title": "台风 “白海豚” 预计 9 日晚至 10 日早晨在浙闽沿海登陆，未来三天浙江、上海、福建北部、江苏大部等地有强降雨",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "新疆调整 4A 及以上景区自驾服务费，统一按 “车” 收费",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "2026 年本科未录满专业 TOP50 公布：会计学 410 次居首，财务管理 398 次、英语 379 次紧随其后",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "北京市教委：扰乱课堂秩序、吸烟饮酒等七类情形，可实施教育惩戒",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "28 款热销睫毛胶中超八成样品检出致癌物，部分成分接近 502 胶",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "陕西商洛暴雨一棺材厂被冲毁，老板称 14 副成品棺材冲走，损失超 40 万元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "香港正式立法允许 “拒绝抢救”：病人可通过预先订立指示，拒绝心肺复苏、人工呼吸器等侵入性维持生命治疗",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "黄金创今年来最大单周涨幅，国内金饰克价一夜涨回 1300 元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多家 A 股公司公告：收到美国关税退税，最高近亿元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国科学家重大发现：银河系不是扁平圆盘，其外盘存在整体翘曲并叠加大范围波纹状褶皱结构",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国防部第五批 UFO 档案：光球飞掠中东居民区，阿富汗 152 米三角形遮蔽星光",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "苹果加码印度制造：今年预计生产全球 26% 的 iPhone，而四年前这一比例仅为 6%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "日本发布排名：中国研发总投入超过美国位居世界第一，美日德韩英法居后",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "马斯克豪掷 168 亿美元打造 “地球最大芯片工厂”，规模相当于 50 个五角大楼",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "特朗普宣布将向关键矿产投资 30 亿美元，重塑美国作为世界矿产超级大国的应有地位",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "你不需要被所有人理解，也不需要向所有人解释。走自己的路，风会替你说话。",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
+      {
         "date": "2026-08-08",
-        "fetchedAt": "2026-08-09 00:50",
+        "fetchedAt": "2026-08-09 02:54",
         "count": 15,
         "items": [
           {
@@ -2289,9 +2687,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-09T00:50:18",
+    "lastRun": "2026-08-10T12:50:23",
     "status": "ok",
-    "nextRun": "2026-08-09T01:50:18",
+    "nextRun": "2026-08-10T13:50:23",
     "intervalHours": 1,
     "staleHours": 2
   }
