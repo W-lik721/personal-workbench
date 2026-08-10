@@ -403,7 +403,7 @@
     var html = "";
     Object.keys(byCat).forEach(function (cat) {
       var list = byCat[cat].slice().sort(function (a, b) { return (b.usage || 0) - (a.usage || 0); });
-      html += '<div class="cat open"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(catLabel(cat)) +
+      html += '<div class="cat"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(catLabel(cat)) +
         '<span class="cc">' + list.length + '</span><span class="car">▶</span></div><div class="cat-b">';
       list.forEach(function (s) {
         var fire = (s.usage > 0) ? '<span class="fire">🔥' + s.usage + "</span>" : "";
@@ -421,7 +421,7 @@
     var html = "";
     ["今天", "昨天", "更早"].forEach(function (g) {
       if (!groups[g].length) return;
-      html += '<div class="grp open"><div class="grp-h" onclick="toggleCat(this)"><span class="ci">🟢</span>' + g +
+      html += '<div class="grp"><div class="grp-h" onclick="toggleCat(this)"><span class="ci">🟢</span>' + g +
         '<span class="cc">' + groups[g].length + '</span><span class="car">▶</span></div><div class="grp-b">';
       groups[g].forEach(function (s) {
         var badge = s.status === "working" ? '<span class="badge on">进行中</span>' : "";
