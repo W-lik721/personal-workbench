@@ -524,13 +524,12 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
   margin: 4px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 6px;
   max-height: 500px;
   overflow-y: auto;
   scrollbar-width: thin;
 }
-@media(max-width:760px){.wk-card .wk-list{grid-template-columns:1fr}}
 .wk-card .wk-list::-webkit-scrollbar{width:8px}
 .wk-card .wk-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px}
 .wk {
