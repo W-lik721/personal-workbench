@@ -596,3 +596,30 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
   .tab{padding:6px 11px;white-space:nowrap;flex:0 0 auto}
   .container{padding:12px 10px}
 }
+
+/* ===== 新增模块样式：统计 / 会话档案 / 番茄钟 ===== */
+.stat-list{display:grid;gap:7px}
+.stat{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.st-name{flex:0 0 150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--txt);font-weight:600}
+.st-bar{flex:1;height:8px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.st-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(43,184,198,.55),var(--accent));border-radius:99px;transition:width .5s}
+.st-num{flex:0 0 34px;text-align:right;color:var(--sub);font-family:var(--mono);font-variant-numeric:tabular-nums}
+@media(max-width:680px){.st-name{flex-basis:110px}}
+
+.schip{background:var(--panel2);border:1px solid var(--line);color:var(--sub);border-radius:var(--radius-pill);padding:3px 12px;font-size:12px;cursor:pointer;transition:.15s;font-weight:600}
+.schip:hover{border-color:var(--accent);color:var(--accent)}
+.schip.active{background:rgba(43,184,198,.16);border-color:rgba(43,184,198,.45);color:var(--accent)}
+
+.sess-arch{max-height:56vh;overflow-y:auto;margin-top:4px}
+.sess-day{font-size:11px;font-weight:700;color:var(--sub);margin:10px 0 2px;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.sess-day:first-child{margin-top:0}
+.sess-day .cc{margin-left:auto;font-size:10px;opacity:.7}
+.sess-arch .sess{padding:5px 8px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--panel2);margin-top:4px}
+.sess-arch .sess b{font-weight:600;font-size:12.5px}
+
+.pomo{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.pomo-h{font-size:11.5px;color:var(--sub);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.pomo-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pomo-t{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--txt-strong);font-variant-numeric:tabular-nums;min-width:64px}
+.pomo-bar-wrap{flex:1;min-width:70px;height:6px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.pomo-bar{height:100%;width:100%;background:var(--accent);transition:width 1s linear}

@@ -282,6 +282,56 @@
     var h = document.getElementById("todosHint");
     if (h) h.textContent = "✓ 已清除已完成";
   }
+
+  // ---------- 🍅 专注计时（番茄钟，纯前端） ----------
+  var pomoTotal = 25 * 60;
+  var pomoRemain = pomoTotal;
+  var pomoRunning = false;
+  var pomoTimer = null;
+  function pomoRender() {
+    var el = document.getElementById("pomoT");
+    if (el) el.textContent = ("0" + Math.floor(pomoRemain / 60)).slice(-2) + ":" + ("0" + (pomoRemain % 60)).slice(-2);
+    var bar = document.getElementById("pomoBar");
+    if (bar) bar.style.width = Math.round(100 * pomoRemain / pomoTotal) + "%";
+    var b = document.getElementById("pomoBtn");
+    if (b) b.textContent = pomoRunning ? "⏸ 暂停" : "▶ 开始专注";
+  }
+  function pomoToggle() {
+    if (pomoRunning) {
+      clearInterval(pomoTimer); pomoTimer = null; pomoRunning = false;
+    } else {
+      pomoRunning = true;
+      pomoTimer = setInterval(function () {
+        pomoRemain--;
+        if (pomoRemain <= 0) {
+          clearInterval(pomoTimer); pomoTimer = null; pomoRunning = false;
+          pomoRemain = pomoTotal;
+          var h = document.getElementById("pomoHint");
+          if (h) h.textContent = "🍅 专注结束！把完成的待办勾掉吧";
+          pomoBeep();
+        }
+        pomoRender();
+      }, 1000);
+    }
+    pomoRender();
+  }
+  function pomoReset() {
+    clearInterval(pomoTimer); pomoTimer = null; pomoRunning = false;
+    pomoRemain = pomoTotal;
+    var h = document.getElementById("pomoHint"); if (h) h.textContent = "";
+    pomoRender();
+  }
+  function pomoBeep() {
+    try {
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var o = ctx.createOscillator(); var g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = 880; g.gain.value = 0.15;
+      o.start(); o.stop(ctx.currentTime + 0.5);
+    } catch (e) {}
+  }
+  window.pomoToggle = pomoToggle; window.pomoReset = pomoReset;
+  window.sessFilter = sessFilter; window.sessStatus = sessStatus;
   window.addTodo = addTodo; window.toggleTodo = toggleTodo; window.delTodo = delTodo; window.clearDone = clearDone;
   window.dnewsDateChanged = dnewsDateChanged;
 
@@ -612,6 +662,98 @@
         '<button class="btn" onclick="cmdtext(' + "'在 knowledge-base/ 新建一篇笔记，主题：'" + ')">➕ 新建笔记</button>' +
         '<button class="btn" onclick="cmdtext(' + "'用 video-cangjie-distill 把以下视频转成 skill：'" + ')">🎬 蒸馏视频</button>' +
         '<button class="btn-sm" onclick="cmdtext(' + "'在 knowledge-base/ 搜索：'" + ')">🔍 搜知识库</button></div></div>';
+  }
+
+  // ---------- 📈 Skill 使用统计 ----------
+  function renderStats(d) {
+    var box = document.getElementById("col-stats");
+    if (!box) return;
+    var skills = d.skills || [];
+    var used = skills.filter(function (s) { return (s.usage || 0) > 0; });
+    var totalUsage = skills.reduce(function (a, s) { return a + (s.usage || 0); }, 0);
+    var top = skills.slice().sort(function (a, b) { return (b.usage || 0) - (a.usage || 0); }).filter(function (s) { return (s.usage || 0) > 0; }).slice(0, 10);
+    var maxU = top.length ? top[0].usage : 1;
+    var byCat = {};
+    skills.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
+    var catMax = 1; Object.keys(byCat).forEach(function (c) { if (byCat[c].length > catMax) catMax = byCat[c].length; });
+    var html = '<div class="card"><h2><span class="ic">📊</span>Skill 使用统计</h2>' +
+      '<div class="ov-res" style="margin-bottom:10px">' +
+      '<div class="ov-metric"><span class="rk">已装 Skills</span><span class="rv">' + skills.length + '</span><span class="rn">个能力</span></div>' +
+      '<div class="ov-metric"><span class="rk">用过</span><span class="rv">' + used.length + '</span><span class="rn">占 ' + Math.round(100 * used.length / Math.max(1, skills.length)) + '%</span></div>' +
+      '<div class="ov-metric"><span class="rk">累计使用</span><span class="rv">' + totalUsage + '</span><span class="rn">次调用</span></div>' +
+      "</div></div>";
+    html += '<div class="card"><h2><span class="ic">🔥</span>使用最多的 TOP ' + top.length + '</h2>';
+    if (!top.length) html += '<div class="empty">还没有使用记录，去 ① 能力速达 点几个 skill 试试（点一下即算一次）</div>';
+    html += '<div class="stat-list">' + top.map(function (s) {
+      return '<div class="stat"><span class="st-name">' + esc(s.name) + '</span>' +
+        '<span class="st-bar"><span class="st-fill" style="width:' + Math.round(100 * s.usage / maxU) + '%"></span></span>' +
+        '<span class="st-num">' + s.usage + '</span></div>';
+    }).join("") + "</div></div>";
+    html += '<div class="card"><h2><span class="ic">🗂</span>按分类分布（' + Object.keys(byCat).length + ' 类）</h2><div class="stat-list">' +
+      Object.keys(byCat).map(function (c) {
+        return '<div class="stat"><span class="st-name">' + esc(catLabel(c)) + '</span>' +
+          '<span class="st-bar"><span class="st-fill" style="width:' + Math.round(100 * byCat[c].length / catMax) + '%"></span></span>' +
+          '<span class="st-num">' + byCat[c].length + '</span></div>';
+      }).join("") + "</div></div>";
+    box.innerHTML = html;
+  }
+
+  // ---------- 💬 会话档案 ----------
+  function sessFilter() {
+    var q = (document.getElementById("sessQ").value || "").trim().toLowerCase();
+    var items = document.querySelectorAll("#sessArchiveList .sess-it");
+    var n = 0;
+    items.forEach(function (it) {
+      var show = !q || (it.getAttribute("data-title") || "").toLowerCase().indexOf(q) >= 0;
+      it.style.display = show ? "" : "none";
+      if (show) n++;
+    });
+    var c = document.getElementById("sessCount");
+    if (c) c.textContent = n + " 条";
+  }
+  function sessStatus(v) {
+    var chips = document.querySelectorAll(".schip");
+    chips.forEach(function (c) { c.classList.toggle("active", c.getAttribute("data-v") === v); });
+    var items = document.querySelectorAll("#sessRecentList .sess-it");
+    items.forEach(function (it) {
+      it.style.display = (v === "all" || it.getAttribute("data-status") === v) ? "" : "none";
+    });
+  }
+  function renderSessArchive(d) {
+    var box = document.getElementById("col-sess");
+    if (!box) return;
+    var sess = d.sessions || {};
+    var recent = sess.recent || [];
+    var heat = sess.heatmap || [];
+    var byDate = {};
+    heat.forEach(function (h) { byDate[h.date] = (h.titles || []); });
+    var dates = Object.keys(byDate).sort().reverse();
+    var totalTitles = 0; dates.forEach(function (dt) { totalTitles += byDate[dt].length; });
+    var archiveHtml = "";
+    dates.forEach(function (dt) {
+      var list = byDate[dt];
+      if (!list.length) return;
+      archiveHtml += '<div class="sess-day">' + esc(dt) + ' <span class="cc">' + list.length + "</span></div>";
+      list.forEach(function (t) {
+        archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
+      });
+    });
+    var recentHtml = '<div class="card"><h2><span class="ic">💬</span>近期会话（最近 ' + recent.length + ' 条）</h2>' +
+      '<div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">' +
+      '<button class="schip active" data-v="all" onclick="sessStatus(\'all\')">全部</button>' +
+      '<button class="schip" data-v="working" onclick="sessStatus(\'working\')">进行中</button></div>' +
+      '<div id="sessRecentList">' + (recent.length ? recent.map(function (s) {
+        var st = s.status || "";
+        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="cmdtext(' + "'回顾并继续这个会话：" + escAttr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
+      }).join("") : '<div class="empty">暂无近期会话</div>') + "</div></div>";
+    var html = '<div class="card"><h2><span class="ic">🔍</span>搜索会话</h2>' +
+      '<input id="sessQ" class="sf" placeholder="按标题搜索全部会话…" oninput="sessFilter()">' +
+      '<div class="empty" style="margin-top:4px">共 ' + totalTitles + ' 条历史记录 · ' + dates.length + ' 天</div></div>' +
+      recentHtml +
+      '<div class="card"><h2><span class="ic">📈</span>活跃热力图 · 近 ' + heat.length + ' 天</h2>' + renderHeat(heat) + "</div>" +
+      '<div class="card"><h2><span class="ic">🗂</span>全部会话档案<span class="news-n" id="sessCount">' + totalTitles + " 条</span></h2>" +
+      '<div id="sessArchiveList" class="sess-arch">' + archiveHtml + '</div></div>';
+    box.innerHTML = html;
   }
 
   function renderWeekly(d) {
@@ -968,6 +1110,8 @@
     renderNews(d);
     renderDailyNews(d);
     renderOv(d);
+    renderStats(d);
+    renderSessArchive(d);
     renderWeekly(d);
   }
 
@@ -1330,6 +1474,7 @@
   renderFavs();
   updateClock();
   setInterval(updateClock, 1000);
+  pomoRender();
   // 本地无课程表时，自动从云端拉取一次（换设备也能看到）
   if (!scheduleLoad().length) schedulePullCloud(true);
   var ni = document.getElementById("noteInput");
