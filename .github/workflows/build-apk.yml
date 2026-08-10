@@ -1,0 +1,55 @@
+name: Build Android APK
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-apk.yml'
+      - 'twa-manifest.json'
+      - 'manifest.json'
+      - 'icon-512.png'
+      - 'icon-maskable-512.png'
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Generate signing keystore
+        run: |
+          keytool -genkeypair -v -keystore workbench.keystore -alias workbench \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass workbench-pass -keypass workbench-pass \
+            -dname "CN=Qingdeng, OU=Personal, O=Personal, L=Fuzhou, ST=Fujian, C=CN"
+
+      - name: Build APK
+        run: bubblewrap build
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workbench-apk
+          path: app-release-signed.apk
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: success()
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk-${{ github.run_number }}
+          name: 工作台 APK v${{ github.run_number }}
+          files: app-release-signed.apk
+          generate_release_notes: false
