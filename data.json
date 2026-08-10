@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 18:46",
+  "generatedAt": "2026-08-10 19:57",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（13 条）：Scale AI 开源 Muse 系列模型",
+    "🗞️ 今日 AI 日报已更新（15 条）：SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -667,11 +667,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 239
+        "free": 238
       },
       "D": {
         "total": 544,
-        "free": 392
+        "free": 391
       }
     },
     "runtime": "3.13 / 22.22"
@@ -681,7 +681,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-10 18:46",
+        "updated": "08-10 19:55",
         "group": "今天"
       },
       {
@@ -1667,14 +1667,26 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 18:46",
+    "fetchedAt": "2026-08-10 19:57",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
-    "count": 13,
+    "count": 15,
     "sections": [
       {
         "label": "模型发布",
         "items": [
+          {
+            "title": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
+            "summary": "SGLang 与 Meta Superintelligence Labs 合作，为 30B 参数多模态模型 Muse Glimmer 提供 Day-0 支持，该模型拥有 128k+ token 上下文窗口。",
+            "url": "https://aihot.virxact.com/items/cmsn68brx03q2ron5vwp3pwta",
+            "source": ""
+          },
+          {
+            "title": "Meta 发布开源模型 Muse Glimmer",
+            "summary": "推出 Muse Glimmer，一款开放权重、300 亿参数的模型，专为本地、常驻运行的智能体工作流优化。\n\n与同尺寸领先模型相比，Muse Glimmer 在关键智能体用例和基准测试中表现出色，并设计为完全在消费级硬件（如 Mac 或配备高性能 GPU 的 PC）上运行。\n\n秉承我们长期分享基础 AI 研究的传统，我们以宽松的 Apache 2.0 许可证发布模型权重。",
+            "url": "https://aihot.virxact.com/items/cmsn2u3mt067ero8opidmwvz7",
+            "source": ""
+          },
           {
             "title": "Scale AI 开源 Muse 系列模型",
             "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
@@ -1775,12 +1787,24 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 18:46",
-        "count": 13,
+        "fetchedAt": "2026-08-10 19:57",
+        "count": 15,
         "sections": [
           {
             "label": "模型发布",
             "items": [
+              {
+                "title": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
+                "summary": "SGLang 与 Meta Superintelligence Labs 合作，为 30B 参数多模态模型 Muse Glimmer 提供 Day-0 支持，该模型拥有 128k+ token 上下文窗口。",
+                "url": "https://aihot.virxact.com/items/cmsn68brx03q2ron5vwp3pwta",
+                "source": ""
+              },
+              {
+                "title": "Meta 发布开源模型 Muse Glimmer",
+                "summary": "推出 Muse Glimmer，一款开放权重、300 亿参数的模型，专为本地、常驻运行的智能体工作流优化。\n\n与同尺寸领先模型相比，Muse Glimmer 在关键智能体用例和基准测试中表现出色，并设计为完全在消费级硬件（如 Mac 或配备高性能 GPU 的 PC）上运行。\n\n秉承我们长期分享基础 AI 研究的传统，我们以宽松的 Apache 2.0 许可证发布模型权重。",
+                "url": "https://aihot.virxact.com/items/cmsn2u3mt067ero8opidmwvz7",
+                "source": ""
+              },
               {
                 "title": "Scale AI 开源 Muse 系列模型",
                 "summary": "1/ 今天有个重大消息：我们很快将发布 Muse Spark 1.2 的开源权重版本。\n\n同时，我们还将发布 Muse Glimmer--一个 30B 参数的智能体模型，采用 Apache 2.0 协议开源权重。Muse Glimmer 可在 24GB 显存上运行，且不损失智能体可靠性。🧵",
@@ -2308,7 +2332,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 18:46",
+    "fetchedAt": "2026-08-10 19:57",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2410,7 +2434,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 18:46",
+        "fetchedAt": "2026-08-10 19:57",
         "count": 15,
         "items": [
           {
@@ -2709,12 +2733,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T18:46:45",
-    "status": "ok",
-    "nextRun": "2026-08-10T19:46:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
