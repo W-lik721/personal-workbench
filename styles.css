@@ -271,7 +271,7 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .news-meta{color:var(--sub);font-size:12px;margin-top:2px}
 .news-meta a{color:var(--accent)}
 .news-meta a:hover{text-decoration:underline}
-.news-sel{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub)}
+.news-sel{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);margin-bottom:10px}
 .news-sel select{appearance:none;-webkit-appearance:none;background:var(--panel2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2399a2b2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center;border:1px solid var(--line);border-radius:var(--radius-sm);color:var(--txt);font-family:inherit;font-size:12.5px;padding:4px 22px 4px 8px;cursor:pointer;transition:border-color .18s var(--ease),background .18s var(--ease)}
 .news-sel select:hover{border-color:rgba(43,184,198,.4);background-color:var(--tint)}
 .news-sel select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--tint)}
@@ -523,7 +523,7 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
   margin: 4px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 6px;
   max-height: 260px;
   overflow-y: auto;

@@ -504,12 +504,12 @@
     var curDate = a.date || "";
     var selHtml = "";
     if (hist.length > 1) {
-      selHtml = '<div class="card"><div class="news-sel">📅 历史日报：' +
+      selHtml = '<div class="news-sel">📅 历史日报：' +
         '<select id="newsSel" onchange="newsDateChanged()">' +
         hist.map(function (h) {
           return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
             esc(h.date) + ' (' + (h.count || 0) + ' 条)</option>';
-        }).join("") + '</select></div></div>';
+        }).join("") + '</select></div>';
     }
     box.innerHTML = selHtml + '<div id="newsBody"></div>';
     renderNewsBody(curDate);
@@ -567,12 +567,12 @@
     var curDate = a.date || "";
     var selHtml = "";
     if (hist.length > 1) {
-      selHtml = '<div class="card"><div class="news-sel">📅 历史新闻：' +
+      selHtml = '<div class="news-sel">📅 历史新闻：' +
         '<select id="dnewsSel" onchange="dnewsDateChanged()">' +
         hist.map(function (h) {
           return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
             esc(h.date) + ' (' + (h.count || 0) + ' 条)</option>';
-        }).join("") + '</select></div></div>';
+        }).join("") + '</select></div>';
     }
     box.innerHTML = selHtml + '<div id="dnewsBody"></div>';
     renderDNewsBody(curDate);
