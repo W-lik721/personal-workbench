@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10 16:26",
+  "generatedAt": "2026-08-10 16:49",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -681,7 +681,7 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "completed",
-        "updated": "08-10 16:22",
+        "updated": "08-10 16:48",
         "group": "今天"
       },
       {
@@ -1667,7 +1667,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 16:26",
+    "fetchedAt": "2026-08-10 16:49",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
     "count": 11,
@@ -1763,7 +1763,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 16:26",
+        "fetchedAt": "2026-08-10 16:49",
         "count": 11,
         "sections": [
           {
@@ -2284,7 +2284,7 @@
   },
   "dailyNews": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-10 16:26",
+    "fetchedAt": "2026-08-10 16:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2386,7 +2386,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-10 16:26",
+        "fetchedAt": "2026-08-10 16:49",
         "count": 15,
         "items": [
           {
@@ -2685,12 +2685,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-10T16:26:37",
-    "status": "ok",
-    "nextRun": "2026-08-10T17:26:37",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
