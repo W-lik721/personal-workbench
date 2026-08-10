@@ -50,7 +50,7 @@ jobs:
         run: |
           BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
           BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
-          bubblewrap build --manifest=./twa-manifest.json
+          echo "n" | bubblewrap build --manifest=./twa-manifest.json
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
