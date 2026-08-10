@@ -46,11 +46,17 @@ jobs:
           EOF
           cat "$HOME/.bubblewrap/config.json"
 
+      - name: Generate manifest checksum (skip regenerate prompt)
+        run: |
+          sha1sum twa-manifest.json | cut -d' ' -f1 | tr -d '\n' > manifest-checksum.txt
+          cat manifest-checksum.txt
+          echo ""
+
       - name: Build APK
         run: |
-          # script 伪造伪终端：inquirer 管道输入不可靠，无 TTY 会 SIGINT
-          # 喂 3 个回答：① regenerate? → n  ② keystore 密码  ③ key 密码
-          printf "n\nworkbench-pass\nworkbench-pass\n" | script -qec "bubblewrap build --manifest=./twa-manifest.json" /dev/null
+          BUBBLEWRAP_KEYSTORE_PASSWORD=workbench-pass \
+          BUBBLEWRAP_KEY_PASSWORD=workbench-pass \
+          bubblewrap build --manifest=./twa-manifest.json
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
