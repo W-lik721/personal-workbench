@@ -99,7 +99,7 @@
     } catch (e) {}
   }
   window.cmd = cmd; window.cmdtext = cmdtext; window.inspire = inspire; window.copyInspire = copyInspire;
-  window.robustCopy = robustCopy; window.flashCopied = flashCopied;
+  window.robustCopy = robustCopy;
 
   // ---------- 交互 ----------
   function filt() {
@@ -420,7 +420,7 @@
 
   function renderQuick(d) {
     document.getElementById("quickbar").innerHTML = (d.quickActions || []).map(function (q) {
-      return '<button class="qb" onclick="cmdtext(' + "'" + escAttr(q.cmd) + "'" + ')">' + q.icon + " " + esc(q.label) + "</button>";
+      return '<button class="qb" onclick="cmdtext(' + "'" + jsStr(q.cmd) + "'" + ')">' + q.icon + " " + esc(q.label) + "</button>";
     }).join("");
   }
 
@@ -498,7 +498,7 @@
         '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
         "</div>" +
         '<div class="guide-grid">' + guideHtml + "</div>" +
-        '<div style="margin-top:12px"><button class="btn" onclick="inspire(' + "'" + escAttr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button>' +
+        '<div style="margin-top:12px"><button class="btn" onclick="inspire(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button>' +
         '<div id="insbox"><textarea id="inspiretext" rows="5" placeholder="点击上方按钮，AI 灵感指令会出现在这里；可编辑，复制后到对话框 Ctrl+V 粘贴并发送"></textarea>' +
         '<div style="margin-top:6px"><button class="btn-sm" onclick="copyInspire()">📋 复制指令</button><span id="inshint"></span></div></div></div></div>' +
       '<div class="card"><h2><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h2>' +

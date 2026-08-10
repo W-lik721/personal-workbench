@@ -316,7 +316,6 @@
   window.addCourse = addCourse;
   window.delCourse = delCourse;
   window.exportSchedule = exportSchedule;
-  window.downloadFile = downloadFile;
   window.ghToken = ghToken;
   window.scheduleLoad = scheduleLoad;
   window.GH_REPO = GH_REPO;
