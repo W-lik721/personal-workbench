@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11 05:55",
+  "generatedAt": "2026-08-11 06:53",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -680,8 +680,8 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "working",
-        "updated": "08-11 05:55",
+        "status": "pending",
+        "updated": "08-11 05:57",
         "group": "今天"
       },
       {
@@ -1649,7 +1649,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-10",
-    "fetchedAt": "2026-08-11 05:55",
+    "fetchedAt": "2026-08-11 06:53",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-10",
     "count": 20,
@@ -1734,9 +1734,9 @@
         "label": "行业动态",
         "items": [
           {
-            "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
-            "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
-            "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+            "title": "英伟达联合六大机构融资5000亿美元建AI工厂",
+            "summary": "英伟达宣布与Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs和KKR合作，建立独立融资平台，动员超5000亿美元第三方资本支持AI基础设施建设。",
+            "url": "https://aihot.virxact.com/items/cmsnrwnsb0i1erohfuhfjc4q6",
             "source": ""
           }
         ]
@@ -1804,7 +1804,7 @@
     "history": [
       {
         "date": "2026-08-10",
-        "fetchedAt": "2026-08-11 05:55",
+        "fetchedAt": "2026-08-11 06:53",
         "count": 20,
         "sections": [
           {
@@ -1887,9 +1887,9 @@
             "label": "行业动态",
             "items": [
               {
-                "title": "宇树科技今日启动申购，A 股迎来\"人形机器人第一股\"",
-                "summary": "宇树科技8月10日正式启动申购，发行价150.80元/股，对应市值约609.93亿元，拟公开发行4044.64万股，预计募资总额约60.99亿元。发行市盈率219.23倍，战略配售获配808.9286万股，包括社保基金、深度求索、中国石油集团等。2023年至2025年营收分别为1.59亿元、3.93亿元和16.99亿元，净利润于2025年达2.78亿元。",
-                "url": "https://aihot.virxact.com/items/cmsmf2q0t030sroadf0o5jwoa",
+                "title": "英伟达联合六大机构融资5000亿美元建AI工厂",
+                "summary": "英伟达宣布与Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs和KKR合作，建立独立融资平台，动员超5000亿美元第三方资本支持AI基础设施建设。",
+                "url": "https://aihot.virxact.com/items/cmsnrwnsb0i1erohfuhfjc4q6",
                 "source": ""
               }
             ]
@@ -2785,12 +2785,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T05:55:31",
-    "status": "ok",
-    "nextRun": "2026-08-11T06:55:31",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
