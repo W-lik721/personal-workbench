@@ -199,7 +199,7 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .tab.active{background:var(--accent-strong);color:#fff;border-color:transparent;box-shadow:0 6px 16px -10px rgba(10,118,130,.7)}
 .tabpane{display:none}
 .tabpane.active{display:block;animation:fadeIn .4s ease both}
-.tabpane .wrap{grid-template-columns:1fr;max-width:880px;margin:0 auto}
+.tabpane .wrap{grid-template-columns:1fr}
 .tab-dot{display:none;width:6px;height:6px;border-radius:50%;background:var(--red);margin-left:6px;vertical-align:middle;box-shadow:0 0 0 3px rgba(255,107,107,.18)}
 
 /* ---------- 会话热力图 ---------- */
