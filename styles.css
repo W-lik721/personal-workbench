@@ -68,6 +68,12 @@ body::after{
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:var(--radius-sm)}
+/* 全局细滚动条（与各区域自设风格统一） */
+*{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.26)}
+::-webkit-scrollbar-track{background:transparent}
 
 /* ---------- 跳转链接（a11y） ---------- */
 .skip{position:absolute;left:-999px;top:8px;z-index:60;background:var(--accent-strong);color:#fff;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px}
@@ -86,16 +92,14 @@ a:hover{text-decoration:underline}
 .mcp{display:inline-block;padding:3px 10px;border-radius:var(--radius-pill);background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:12px;margin:2px 3px 2px 0}
 .mcp.off{opacity:.45;text-decoration:line-through;color:var(--sub)}
 .mcp-badge{font-size:10px;color:var(--amber);border:1px solid rgba(240,168,90,.5);border-radius:6px;padding:0 5px;margin-left:4px;text-decoration:none;vertical-align:middle}
-.next-sync{font-size:11px;color:var(--sub);white-space:nowrap}
 .clock{font-size:12px;color:var(--sub);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:var(--radius-pill);padding:6px 14px;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 /* ---------- 容器 / KPI ---------- */
 .container{max-width:1180px;margin:0 auto;padding:16px 18px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
 @media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;overflow:hidden;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.04);transition:transform .25s var(--ease),border-color .2s,box-shadow .25s;animation:fadeIn .5s ease both;cursor:pointer}
-.kpi:hover{border-color:rgba(43,184,198,.45);transform:translateY(-1px)}
-.kpi:hover{border-color:rgba(43,184,198,.42);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.kpi:hover{border-color:rgba(43,184,198,.45);transform:translateY(-2px);box-shadow:var(--shadow-md)}
 .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
 .kpi-blue::before,.kpi-purple::before{background:var(--accent)}
 .kpi-green::before{background:var(--green)}
@@ -111,7 +115,7 @@ a:hover{text-decoration:underline}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.03);transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;animation:fadeIn .5s ease both;scroll-margin-top:76px}
 .card:hover{transform:translateY(-2px);border-color:rgba(43,184,198,.38);box-shadow:var(--shadow-md)}
-.card h2{margin:0 0 9px;font-size:13px;color:var(--txt);display:flex;align-items:center;gap:8px;font-weight:650;letter-spacing:.02em}
+.card h2{margin:0 0 9px;font-size:13.5px;color:var(--txt);display:flex;align-items:center;gap:8px;font-weight:650;letter-spacing:.02em}
 .card h2 .ic{font-size:13px;background:var(--tint);border:1px solid rgba(43,184,198,.25);border-radius:8px;padding:4px 5px;display:inline-flex;line-height:1;color:var(--accent)}
 
 /* ===== 布局重排 v7.1：三小卡 + 时间线整行 ===== */
@@ -577,7 +581,7 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 @media(max-width:680px){
   .header{padding:10px 12px;gap:8px}
   .header .sub{display:none}
-  .snap-wrap .snap,.snap-wrap .next-sync,.snap-wrap .clock{display:none}
+  .snap-wrap .snap,.snap-wrap .clock{display:none}
   .snap-wrap{gap:6px}
   .sync-status{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .refresh-btn{padding:6px 10px;font-size:11.5px}

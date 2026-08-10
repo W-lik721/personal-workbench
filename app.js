@@ -1154,17 +1154,6 @@
       var nextStr = next ? (" · 下次约 " + ("0" + next.getHours()).slice(-2) + ":" + ("0" + next.getMinutes()).slice(-2)) : "";
       el.textContent = "✅ 同步正常（上次 " + hhmm + nextStr + "）";
     }
-
-    // 刷新按钮旁标注「下次自动同步」时间（④）
-    var ns = document.getElementById("nextSync");
-    if (ns) {
-      if (s && s.nextRun) {
-        var n = new Date(s.nextRun.replace(" ", "T"));
-        ns.textContent = "下次自动同步 · " + ("0" + n.getHours()).slice(-2) + ":" + ("0" + n.getMinutes()).slice(-2);
-      } else {
-        ns.textContent = "下次自动同步 · -";
-      }
-    }
   }
 
   // ---------- 启动 ----------
