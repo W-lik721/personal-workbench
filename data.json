@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-11 19:54",
+  "generatedAt": "2026-08-11 21:37",
   "kpi": {
-    "skills": 62,
+    "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 32,
     "knowledge": 9,
-    "sessions": 11
+    "sessions": 10
   },
   "skills": [
     {
@@ -46,14 +46,6 @@
       "desc": "Karpathy 风格 AI 方法论总入口，覆盖 15 个场景：① agentic engineering（代理工程 / agent",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：andrej-karpathy-skills__github",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "cangjie-skill",
-      "desc": "Distill a book, long-video transcript, podcast, course, or",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：cangjie-skill",
       "usage": 0,
       "lastUsed": ""
     },
@@ -114,26 +106,10 @@
       "lastUsed": ""
     },
     {
-      "name": "douyin-downloader",
+      "name": "douyin",
       "desc": "|",
       "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：douyin-downloader-skill__skillhub",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "douyin-to-kb",
-      "desc": "|",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：douyin-to-kb",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "douyin-yt-dlp",
-      "desc": "|",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：douyin-yt-dlp",
+      "cmd": "打开工作台后调用 skill：douyin",
       "usage": 0,
       "lastUsed": ""
     },
@@ -267,7 +243,7 @@
     },
     {
       "name": "memory-setup",
-      "desc": "WorkBuddy 原生记忆系统初始化与体检工具（用户级）。当用户要\"配置记忆/初始化记忆/记忆体检/整理记忆/记忆清理/查看记忆状态/给 WorkBuddy 配一套记忆系统\"，或想管理 WorkBuddy 自带的三层记忆时触发。覆盖三层记忆（云记忆/用户级 MEMORY.md/工作区 memory 目录）的骨架初始化、合规体检、规模统计、清理建议，贴合现有「踩坑标注手册三件套」规范，不另起炉灶。",
+      "desc": "\"WorkBuddy 原生记忆系统初始化与体检工具（用户级）。当用户要配置记忆/初始化记忆/记忆体检/整理记忆/记忆清理/查看记忆状态/给 WorkBuddy 配一套记忆系统/MEMORY 太大/超限/瘦身压线，或想管理 WorkBuddy 自带的三层记忆时触发。覆盖三层记忆（云记忆/用户级 MEMORY.md/工作区 memory 目录）的骨架初始化、合规体检、规模统计、清理建议、超限瘦身压线，贴合现有「踩坑标注手册三件套」规范，不另起炉灶。（memory-maintain 已并入）\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：memory-setup",
       "usage": 0,
@@ -394,18 +370,10 @@
       "lastUsed": ""
     },
     {
-      "name": "video-cangjie-distill",
-      "desc": "\"端到端流水线——把任意视频内容（本地视频文件 / 抖音链接 / 全网短视频 / 微信视频号 / YouTube）转成原始文字稿，再喂给 cangjie-skill 蒸馏成一组可执行 skills。来源：① 本地视频文件（ffmpeg 抽字幕轨 / faster-whisper 语音转写，沙箱可直跑，首选）；② 抖音链接（douyin-to-kb 取稿）；③ 全网短视频（快手/小红书/微博/西瓜等 20+ 平台，用 yby6-video-mcp 取无水印直链 + 本地 faster-whisper 转写，无需云端 ASR Key）；④ 微信视频号（tencent-video-capture 下载后转本地模式）；⑤ YouTube 链接（需能访问 YouTube 的环境，本机不可用）。当用户想把某个视频/课程/讲座/播客的方法论做成可复用 skill 时调用。曾用名 yt-cangjie-distill（2026-07-29 改名）。\"",
-      "category": "content",
-      "cmd": "打开工作台后调用 skill：video-cangjie-distill",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "video-summarizer",
-      "desc": "\"对任意来源的视频（本地文件/抖音链接/微信视频号/YouTube/现成文字稿）生成详尽的 STAR+R-I-S-E 结构化总结文档。先按来源路由取稿（本地转写链路已全部打通），再套总结框架输出。当用户想要'总结这个视频/不想看完整视频但要留资料'时调用。曾用名 youtube-summarizer（2026-07-29 改造扩源）。\"",
-      "category": "content",
-      "cmd": "打开工作台后调用 skill：video-summarizer",
+      "name": "video",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：video",
       "usage": 0,
       "lastUsed": ""
     },
@@ -467,7 +435,7 @@
     },
     {
       "name": "web-access",
-      "desc": "'AI 联网与浏览器自动化 skill。当用户要做联网操作（搜索信息、抓取网页、访问需登录的网站、操作网页界面、读取动态渲染页面、抓取社交媒体内容如小红书/微博/推特、跨平台并行调研）时调用。提供五层工具链：WebSearch / WebFetch / curl / Jina / CDP 浏览器自动化，按场景自动选型。注意：CDP 浏览器层需要用户本地 Chrome/Edge 开启远程调试；纯静态抓取可走 WebSearch/WebFetch/Jina。'",
+      "desc": "'AI 联网与浏览器自动化 skill。当用户要做联网操作（搜索信息、抓取网页、访问需登录的网站、操作网页界面、读取动态渲染页面、抓取社交媒体内容如小红书/微博/推特、跨平台并行调研）时调用。提供五层工具链：WebSearch / WebFetch / curl / Jina / CDP 浏览器自动化，按场景自动选型；并内置 16 引擎多引擎搜索（references/multi-search-engine/，无需 API key）。注意：CDP 浏览器层需要用户本地 Chrome/Edge 开启远程调试；纯静态抓取可走 WebSearch/WebFetch/Jina。'",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：web-access",
       "usage": 0,
@@ -611,7 +579,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "10 days ago",
+          "modified": "11 days ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -675,11 +643,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 232
+        "free": 231
       },
       "D": {
         "total": 544,
-        "free": 362
+        "free": 360
       }
     },
     "runtime": "3.13 / 22.22"
@@ -687,11 +655,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "合并可合并且需定边界的内容",
+        "customTitle": "",
+        "display": "合并可合并且需定边界的内容",
+        "status": "working",
+        "updated": "08-11 21:37",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "planning",
-        "updated": "08-11 19:54",
+        "status": "working",
+        "updated": "08-11 21:37",
         "group": "今天"
       },
       {
@@ -699,15 +675,7 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-11 19:40",
-        "group": "今天"
-      },
-      {
-        "title": "列举可用工具并写入记忆",
-        "customTitle": "",
-        "display": "列举可用工具并写入记忆",
-        "status": "completed",
-        "updated": "08-11 14:53",
+        "updated": "08-11 21:15",
         "group": "今天"
       },
       {
@@ -716,14 +684,6 @@
         "display": "学习计算机科学与技术",
         "status": "completed",
         "updated": "08-11 13:46",
-        "group": "今天"
-      },
-      {
-        "title": "合并可合并且需定边界的内容",
-        "customTitle": "",
-        "display": "合并可合并且需定边界的内容",
-        "status": "completed",
-        "updated": "08-11 00:11",
         "group": "今天"
       },
       {
@@ -1376,13 +1336,12 @@
       },
       {
         "date": "2026-08-11",
-        "count": 6,
+        "count": 5,
         "titles": [
+          "合并可合并且需定边界的内容",
           "工作台",
           "skill",
-          "列举可用工具并写入记忆",
           "学习计算机科学与技术",
-          "合并可合并且需定边界的内容",
           "Obsidian的管理"
         ]
       }
@@ -1435,7 +1394,37 @@
     {
       "kind": "skill",
       "name": "web-access",
-      "when": 1786446606.2964518,
+      "when": 1786455420.788178,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-mcp-connect",
+      "when": 1786455420.7844634,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "memory-setup",
+      "when": 1786455420.738446,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786455420.6912868,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "video",
+      "when": 1786453574.7550118,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin",
+      "when": 1786452880.590118,
       "scope": "本机"
     },
     {
@@ -1482,12 +1471,6 @@
     },
     {
       "kind": "skill",
-      "name": "cangjie-skill",
-      "when": 1786337349.3368387,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "andrej-karpathy-skills__github",
       "when": 1786337349.2357626,
       "scope": "本机"
@@ -1502,24 +1485,6 @@
       "kind": "skill",
       "name": "agency-agents__github",
       "when": 1786337348.90568,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin-to-kb",
-      "when": 1786288248.4537446,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin-downloader-skill__skillhub",
-      "when": 1786288237.682625,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin-yt-dlp",
-      "when": 1786288227.2720907,
       "scope": "本机"
     },
     {
@@ -1572,12 +1537,6 @@
     },
     {
       "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786210725.2677498,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "llm-onboard-diagnose",
       "when": 1786210725.225744,
       "scope": "本机"
@@ -1604,12 +1563,6 @@
       "kind": "skill",
       "name": "idea-landing-3prompt",
       "when": 1786210725.1112275,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "workbuddy-mcp-connect",
-      "when": 1786210725.0922258,
       "scope": "本机"
     },
     {
@@ -1675,29 +1628,11 @@
       "kind": "kb",
       "name": "gitnexus-mcp.bat",
       "when": 1785908583.6330864
-    },
-    {
-      "kind": "skill",
-      "name": "video-cangjie-distill",
-      "when": 1785859077.3366349,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "memory-setup",
-      "when": 1785853988.2525766,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "en-to-zh-translator",
-      "when": 1785845357.4193387,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 19:54",
+    "fetchedAt": "2026-08-11 21:37",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-11",
     "count": 20,
@@ -1852,7 +1787,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 19:54",
+        "fetchedAt": "2026-08-11 21:37",
         "count": 20,
         "sections": [
           {
@@ -2585,7 +2520,7 @@
   },
   "dailyNews": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 19:54",
+    "fetchedAt": "2026-08-11 21:37",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2687,7 +2622,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 19:54",
+        "fetchedAt": "2026-08-11 21:37",
         "count": 15,
         "items": [
           {
@@ -3086,12 +3021,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T19:54:42",
-    "status": "ok",
-    "nextRun": "2026-08-11T20:54:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
