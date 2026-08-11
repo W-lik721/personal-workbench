@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-11 17:12",
+  "generatedAt": "2026-08-11 18:10",
   "kpi": {
-    "skills": 61,
+    "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 31,
@@ -30,6 +30,14 @@
       "desc": "设计 AI Agent / skill 流程、为任务选型 agent 模式、写高质量提示词、用 LangGraph / AutoGen",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-design-kit",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "agent-reach",
+      "desc": ">",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：agent-reach",
       "usage": 0,
       "lastUsed": ""
     },
@@ -667,11 +675,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 233
+        "free": 232
       },
       "D": {
         "total": 544,
-        "free": 378
+        "free": 372
       }
     },
     "runtime": "3.13 / 22.22"
@@ -681,7 +689,13 @@
       {
         "title": "排查大量部署失败的原因",
         "status": "working",
-        "updated": "08-11 17:12",
+        "updated": "08-11 18:10",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "status": "working",
+        "updated": "08-11 18:10",
         "group": "今天"
       },
       {
@@ -707,12 +721,6 @@
         "status": "completed",
         "updated": "08-11 00:10",
         "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "status": "completed",
-        "updated": "08-10 00:53",
-        "group": "昨天"
       },
       {
         "title": "整理工作区",
@@ -1341,16 +1349,15 @@
       },
       {
         "date": "2026-08-10",
-        "count": 1,
-        "titles": [
-          "寻找无需apikey的抖音视频下载skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-11",
-        "count": 5,
+        "count": 6,
         "titles": [
           "排查大量部署失败的原因",
+          "寻找无需apikey的抖音视频下载skill",
           "列举可用工具并写入记忆",
           "学习计算机科学与技术",
           "合并可合并且需定边界的内容",
@@ -1403,6 +1410,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "agent-reach",
+      "when": 1786442804.9045787,
+      "scope": "本机"
+    },
     {
       "kind": "skill",
       "name": "ponytail",
@@ -1656,7 +1669,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 17:12",
+    "fetchedAt": "2026-08-11 18:10",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-11",
     "count": 20,
@@ -1811,7 +1824,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 17:12",
+        "fetchedAt": "2026-08-11 18:10",
         "count": 20,
         "sections": [
           {
@@ -2544,7 +2557,7 @@
   },
   "dailyNews": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 17:12",
+    "fetchedAt": "2026-08-11 18:10",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2646,7 +2659,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 17:12",
+        "fetchedAt": "2026-08-11 18:10",
         "count": 15,
         "items": [
           {
@@ -3045,12 +3058,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T17:13:01",
-    "status": "ok",
-    "nextRun": "2026-08-11T18:13:01",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
