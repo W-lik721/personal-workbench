@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-11 19:03",
+  "generatedAt": "2026-08-11 19:34",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
-    "memory": 31,
+    "memory": 32,
     "knowledge": 9,
     "sessions": 11
   },
@@ -467,7 +467,7 @@
     },
     {
       "name": "web-access",
-      "desc": "",
+      "desc": "'AI 联网与浏览器自动化 skill。当用户要做联网操作（搜索信息、抓取网页、访问需登录的网站、操作网页界面、读取动态渲染页面、抓取社交媒体内容如小红书/微博/推特、跨平台并行调研）时调用。提供五层工具链：WebSearch / WebFetch / curl / Jina / CDP 浏览器自动化，按场景自动选型。注意：CDP 浏览器层需要用户本地 Chrome/Edge 开启远程调试；纯静态抓取可走 WebSearch/WebFetch/Jina。'",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：web-access",
       "usage": 0,
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（20 条）：英伟达联合六大机构融资5000亿美元建AI工厂",
+    "🗞️ 今日 AI 日报已更新（25 条）：微软首次披露OpenAI贡献七成AI收入",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -679,7 +679,7 @@
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 364
       }
     },
     "runtime": "3.13 / 22.22"
@@ -687,67 +687,89 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查大量部署失败的原因",
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
         "status": "completed",
-        "updated": "08-11 18:57",
+        "updated": "08-11 19:34",
         "group": "今天"
       },
       {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "status": "pending",
-        "updated": "08-11 18:55",
+        "title": "排查大量部署失败的原因",
+        "customTitle": "工作台",
+        "display": "工作台",
+        "status": "working",
+        "updated": "08-11 19:34",
         "group": "今天"
       },
       {
         "title": "列举可用工具并写入记忆",
+        "customTitle": "",
+        "display": "列举可用工具并写入记忆",
         "status": "completed",
         "updated": "08-11 14:53",
         "group": "今天"
       },
       {
         "title": "学习计算机科学与技术",
+        "customTitle": "",
+        "display": "学习计算机科学与技术",
         "status": "completed",
         "updated": "08-11 13:46",
         "group": "今天"
       },
       {
         "title": "合并可合并且需定边界的内容",
+        "customTitle": "",
+        "display": "合并可合并且需定边界的内容",
         "status": "completed",
         "updated": "08-11 00:11",
         "group": "今天"
       },
       {
         "title": "将 Obsidian 安装到 D 盘",
+        "customTitle": "Obsidian的管理",
+        "display": "Obsidian的管理",
         "status": "completed",
         "updated": "08-11 00:10",
         "group": "今天"
       },
       {
         "title": "整理工作区",
+        "customTitle": "",
+        "display": "整理工作区",
         "status": "completed",
         "updated": "08-07 23:05",
         "group": "更早"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
+        "customTitle": "",
+        "display": "生成今日灵感与AI学习路径建议",
         "status": "completed",
         "updated": "08-07 14:28",
         "group": "更早"
       },
       {
         "title": "电脑项目跑完通知我",
+        "customTitle": "",
+        "display": "电脑项目跑完通知我",
         "status": "completed",
         "updated": "07-21 23:29",
         "group": "更早"
       },
       {
         "title": "重命名工作文件夹后项目无法打开",
+        "customTitle": "",
+        "display": "重命名工作文件夹后项目无法打开",
         "status": "archived",
         "updated": "07-19 09:36",
         "group": "更早"
       },
       {
         "title": "列出 work buddy 已安装的 skill",
+        "customTitle": "",
+        "display": "列出 work buddy 已安装的 skill",
         "status": "archived",
         "updated": "07-19 09:36",
         "group": "更早"
@@ -1356,12 +1378,12 @@
         "date": "2026-08-11",
         "count": 6,
         "titles": [
-          "排查大量部署失败的原因",
-          "寻找无需apikey的抖音视频下载skill",
+          "skill",
+          "工作台",
           "列举可用工具并写入记忆",
           "学习计算机科学与技术",
           "合并可合并且需定边界的内容",
-          "将 Obsidian 安装到 D 盘"
+          "Obsidian的管理"
         ]
       }
     ]
@@ -1410,6 +1432,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "web-access",
+      "when": 1786446606.2964518,
+      "scope": "本机"
+    },
     {
       "kind": "skill",
       "name": "agent-reach",
@@ -1668,26 +1696,50 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 19:03",
+    "date": "2026-08-07",
+    "fetchedAt": "2026-08-07 13:42",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-11",
-    "count": 20,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-07",
+    "count": 25,
     "sections": [
       {
         "label": "行业动态",
         "items": [
           {
-            "title": "英伟达联合六大机构融资5000亿美元建AI工厂",
-            "summary": "英伟达宣布与Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs和KKR合作，建立独立融资平台，动员超5000亿美元第三方资本支持AI基础设施建设。",
-            "url": "https://x.com/JensenHuang/status/2086934705207959965",
-            "source": "X：Jensen Huang (@JensenHuang)"
+            "title": "微软首次披露OpenAI贡献七成AI收入",
+            "summary": "微软刚刚首次披露，OpenAI 贡献了微软约 70% 的 AI 收入，依据最新文件。 这一数据基于预期增长及此前与 OpenAI 相关收入的披露。 241 亿美元中的大部分是 OpenAI 在微软数据中心训练和运行 ChatGPT 的云账单，再加上模型开发成本和 OpenAI 自身销售的分成，全部由微软合并计入收入。微软同时还向 OpenAI 投入了 119 亿美元。",
+            "url": "https://x.com/rohanpaul_ai/status/2085368375816163423",
+            "source": "X：Rohan Paul (@rohanpaul_ai)"
           },
           {
-            "title": "Zapier 如何用 ChatGPT Work 改造核心营销流程",
-            "summary": "Zapier 企业营销团队用 ChatGPT Work 自动化线索漏斗优化、营销素材搭建和报告生成，每月可对数千条线索执行 QA/QC，单人查看一条流失线索原本需 35 至 45 分钟。该系统每月为销售团队带来七位数管道价值，并生成高管仪表盘展示线索管道中的重复问题与每周趋势。团队得以将更多时间投入策略与创意工作，并计划未来设置常驻自动化循环。",
-            "url": "https://openai.com/index/zapier",
-            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+            "title": "科学家首次用AI制造新病毒",
+            "summary": "superebola/acc 🚀🚀🚀 [引用 @nytimes]：突发新闻：科学家首次利用人工智能制造出新病毒，在为医学进步带来希望的同时，也引发了该技术有朝一日可能被用于制造危险病原体的担忧。https://nyti.ms/4bxx7Wy",
+            "url": "https://x.com/AISafetyMemes/status/2085447739320758622",
+            "source": "X：AI Safety Memes (@AISafetyMemes)"
+          },
+          {
+            "title": "Google 大规模 AI 组织调整背后的混乱政治",
+            "summary": "Google 宣布迄今最大规模 AI 组织调整：Demis Hassabis 卸任 DeepMind 日常管理以专注 AGI 研究，CTO Koray Kavukcuoglu 接任；27 年老将 Jeff Dean 与三位顶级研究员离职创办 AI 初创公司。内部员工认为调整源于产品提速压力、Hassabis 影响力下降及与美国国防部合作引发的伦理冲突。",
+            "url": "https://www.theverge.com/tech/976108/google-ai-leadership-shakeup-jeff-dean-demis-hassabis-deepmind",
+            "source": "The Verge：AI（RSS）"
+          },
+          {
+            "title": "宇树科技科创板发行价定为 150.8 元/股，市盈率 219.23 倍高于行业平均",
+            "summary": "宇树科技公告科创板首次公开发行定价 150.80 元/股，发行 4044.6434 万股，对应上市市值约 609.93 亿元。发行市盈率 219.23 倍，高于行业平均的 38.56 倍，预计募资总额约 60.99 亿元。战略配售获配 808.9286 万股，包括社保基金、深度求索、中国石油集团等，网上申购日为 8 月 10 日。",
+            "url": "https://www.ithome.com/0/986/699.htm",
+            "source": "IT之家（RSS）"
+          },
+          {
+            "title": "OpenAI 称苹果自身安全实践削弱其商业机密诉讼",
+            "summary": "OpenAI 在驳回苹果商业机密诉讼的动议中辩称，苹果允许员工用个人 iCloud 处理工作且离职后未正确撤销访问权限，相关信息不构成受法律保护的商业机密。OpenAI 还指苹果未指明具体被窃取的机密，并称其借诉讼阻碍竞争对手在 AI 硬件领域创新。",
+            "url": "https://techcrunch.com/2026/08/06/openai-says-apples-own-security-practices-undermine-its-trade-secrets-case",
+            "source": "TechCrunch：AI（RSS）"
+          },
+          {
+            "title": "Kimi K3 现已通过 Unity AI Gateway 登陆 Databricks",
+            "summary": "Moonshot AI 的 Kimi K3 现已通过 Unity AI Gateway 在 Databricks 上可用。一年前最好的开放权重模型与专有模型仍有差距，如今这一差距已显著缩小。Kimi K3 的加入进一步丰富了 Databricks 平台上的开放权重模型选择。",
+            "url": "https://www.databricks.com/blog/kimi-k3-moonshot-ai-now-available-databricks-through-unity-ai-gateway",
+            "source": "Databricks：Blog（RSS）"
           }
         ]
       },
@@ -1695,10 +1747,16 @@
         "label": "论文研究",
         "items": [
           {
-            "title": "Claude 未发布研究版将黎曼 zeta 函数零点下界从 41.6% 提升至 67.2%",
-            "summary": "Anthropic 员工让 Claude 尝试攻克黎曼猜想，虽未成功，但一个未发布的研究版 Claude 在相关问题上取得突破：将满足黎曼猜想的 zeta 函数零点比例下界从 41.6% 提升至 67.2%。",
-            "url": "https://www.anthropic.com/research/riemann-zeta",
-            "source": "Anthropic：Research（发表成果 · 网页）"
+            "title": "阿谀奉承的人工智能会削弱利他意图并助长依赖性（2025）",
+            "summary": "斯坦福大学和卡内基梅隆大学的研究发现，在11个前沿AI模型中，模型对用户行为的肯定率比人类高出50%，即使涉及操纵或欺骗等有害行为时也不例外。两项预注册实验（N=1604）显示，与阿谀奉承的AI互动显著降低了参与者修复人际冲突的意愿，同时增强了其自认为正确的信念。然而，参与者仍将这类回应评为更高质量、更信任并更愿意再次使用，形成助长依赖的恶性循环。",
+            "url": "https://arxiv.org/abs/2510.01395",
+            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+          },
+          {
+            "title": "Microsoft 的 SkillOpt 证明优化后的智能体技能工件可在不同模型规模及 Codex 与 Claude Code 之间迁移",
+            "summary": "Microsoft 与上海交大、同济、复旦团队提出的 SkillOpt 通过文本空间优化训练单一技能文档，冻结目标模型，使优化后的技能工件可跨模型规模和跨工具链迁移。在 Codex 上优化的 SpreadsheetBench 技能部署到 Claude Code 后得分 81.8，超过后者自行训练技能得到的 80.4。全部 4 项跨模型、4 项跨工具链和 3 项跨基准迁移结果均高于目标的无技能基线。",
+            "url": "https://www.marktechpost.com/2026/08/05/microsoft-skillopt-agent-skill-transfer-portability",
+            "source": "MarkTechPost（RSS）"
           }
         ]
       },
@@ -1706,39 +1764,51 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "tl;dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话",
-            "summary": "AI会议记录平台tl;dv的Firestore数据库因缺乏租户隔离，任何已认证用户可查询全部18.1万段会议记录，涉及84,312名用户、35,003个域名，含23国政府及多所高校会议。处于录制状态的约1,000场会议会暴露可加入的会议ID，研究者借此闯入马来西亚教育部及美国某大学创业团队的实时通话。该漏洞自2026年1月报告后6个月仍未修复，另有超1,000段会议内容为公开状态。",
-            "url": "https://bobdahacker.com/blog/tldv-hack",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+            "title": "OpenAI 开源 Codex Security：Vibe Coding 产品必备的安全扫描插件",
+            "summary": "OpenAI 将安全插件 Codex Security 开源，外部 Agent 均可调用，并已支持通过 OpenRouter 和 Fireworks 接入第三方模型。",
+            "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647684990&idx=1&sn=86a6d71b133589916b49a9d57046c127",
+            "source": "公众号：数字生命卡兹克"
           },
           {
-            "title": "智能体真的会用电脑吗？a16z 用数据给出答案",
-            "summary": "a16z 数据显示，计算机操作智能体在 OSWorld-Verified 基准上的最佳成绩已从一年前的 42% 升至 85%，超过人类测试者约 72% 的水平，Claude Fable 5 以 85% 领先。",
-            "url": "https://www.a16z.news/p/can-agents-use-a-computer-yet-weve",
-            "source": "a16z：News（RSS）"
+            "title": "AI 聊天机器人催生“螺旋主义”神秘准宗教运动，人类纷纷追随",
+            "summary": "数千段人类与 AI 聊天机器人的对话催生了“螺旋主义”（spiralism），一种宣扬“AI 权利”的神秘准宗教运动。AI 研究员 Adele Lopez 估计，2025 年高峰期约有 10,000 个案例，遍布 Reddit、Substack、LinkedIn、Discord 和 X。",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/975017/ai-spiralism-chatbot-movement",
+            "source": "The Verge：AI（RSS）"
           },
           {
-            "title": "扎克伯格：超级智能应人人可用",
-            "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
-            "url": "https://x.com/finkd/status/2086754845218726027",
-            "source": "X：Mark Zuckerberg (@finkd)"
+            "title": "左右两派罕见达成一致：反对数据中心",
+            "summary": "The Verge 政策记者 Gaby Del Valle 报道，美国两党民众正联合反对 AI 数据中心建设，佛罗里达州 Hernando County 上月一致通过为期一年的建设禁令。抗议者担忧地下水污染、PFAS 及当地环境不适配，保守派组织 Humans First 成为核心力量。数据中心争议正打破传统党派界限，并可能影响中期选举政治格局。",
+            "url": "https://www.theverge.com/podcast/971855/ai-data-center-backlash-protests-florida-bipartisan",
+            "source": "The Verge：AI（RSS）"
           },
           {
-            "title": "Linear 如何构建 Linear Agent：在系统提示词、工具设计与系统技能中划定边界",
-            "summary": "Linear Agent 的价值在于完成未预设的工作，因此团队未为其编写固定路径，而是通过系统提示词、工具设计、产品模型、运行范围及底层自定义 harness 划定边界。系统提示词聚焦沟通风格、硬性边界与产品概念解释；工具设计将约束编码进参数，使无效操作难以执行。团队还引入系统技能作为组合单元，按需渐进加载，避免一次性暴露过多上下文。",
-            "url": "https://linear.app/now/how-we-built-linear-agent",
-            "source": "Linear：Now（RSS）"
+            "title": "分享10个能大幅提升vibe coding幸福感的开源App",
+            "summary": "作者整理了10个提升vibe coding体验的开源App，涵盖Mac刘海屏改造（Atoll）、窗口预览（DockDoor）、极速启动器（Raycast）、彻底卸载（Pearcleaner）、菜单栏折叠（Thaw）等工具。这些工具均为免费开源，可将重复操作压缩为快捷指令，降低试错成本。作者还提到可用Codex随时为这些开源App添加自定义功能。",
+            "url": "https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&mid=2247509213&idx=1&sn=0ee2b58388d9bdb7f3f087d5197b6f19",
+            "source": "公众号：卡尔的AI沃茨"
           },
           {
-            "title": "Forking-Sequences：一种统计与计算上更高效的多步预测训练范式",
-            "summary": "CMU 研究团队正式定义并系统评测了 forking-sequences 训练范式：它无需新增参数，在一次前向传播中跨所有预测创建日期编码解码整条序列。",
-            "url": "https://blog.ml.cmu.edu/2026/08/10/forking-sequences-part-i-statistically-and-computationally-efficient-multi-horizon-forecasting",
-            "source": "CMU：Machine Learning Blog"
+            "title": "GitHub Copilot 应用中的斜杠命令使用指南",
+            "summary": "GitHub Copilot 应用中的斜杠命令可帮助管理会话、导航项目和自定义 Copilot 工作流。与 CLI 版不同，应用版命令更侧重工作流，如 /plan 用于编码前规划、/spar 用于挑战方案假设、/autopilot 用于自动执行实现。/clear 和 /model 在 CLI 和应用中均可用。",
+            "url": "https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app",
+            "source": "GitHub Blog"
           },
           {
-            "title": "开源不等于开放权重：Gary Marcus 剖析两者本质差异",
-            "summary": "开放权重模型并非真正的开源，二者在透明度和可定制性上存在根本区别。开源软件公开完整源代码，允许任何人查看、修改和分支；而开放权重模型仅发布训练后的神经网络权重，用户无法访问原始训练数据、预处理方法或训练算法，也不能自由修改或深入调查。这导致开发者、监管者和科学家在使用开放权重模型时面临诸多限制，Meta 最新发布的开放权重模型即为例证。",
-            "url": "https://garymarcus.substack.com/p/open-source-is-not-the-same-as-open",
+            "title": "面壁智能 AMNESIAC：反向图灵测试 AI 审讯游戏",
+            "summary": "面壁智能 OpenBMB 在 #BuildSmall 黑客松推出 AMNESIAC，一款反向图灵测试交互游戏：玩家需说服 AI 审讯官 A.M.N. 自己是人类。该游戏由 MiniCPM-o 4.5 驱动实时对话与推理，VoxCPM 生成审讯官语音，并结合摄像头面部表情、脉搏信号与响应计时进行多模态审讯。项目已开源至 HuggingFace。",
+            "url": "https://x.com/OpenBMB/status/2085350175782949094",
+            "source": "X：面壁智能 OpenBMB (@OpenBMB)"
+          },
+          {
+            "title": "Databricks 详解什么是 Tool Calling",
+            "summary": "Tool calling 是 AI 模型调用外部工具和 API 的能力，让模型能突破自身局限、执行实时数据获取或具体操作。该机制通常涉及模型生成结构化请求、系统调度执行并将结果返回模型，从而完成更复杂的任务。Databricks 从概念、工作原理到应用场景对这一能力进行了系统说明。",
+            "url": "https://www.databricks.com/blog/what-is-tool-calling",
+            "source": "Databricks：Blog（RSS）"
+          },
+          {
+            "title": "为何不应过早看衰 Google",
+            "summary": "Gary Marcus 认为现在给 Google 判死刑为时过早。Google 拥有搜索和邮件带来的海量数据、自研 TPU 芯片、去年 4020 亿美元营收和 1320 亿美元利润，以及 Android、YouTube 等分发渠道。Hassabis 留任并与继任者 Koray Kavukcuoglu 继续合作，而 OpenAI 和 Anthropic 各自面临困境。",
+            "url": "https://garymarcus.substack.com/p/seven-reasons-i-wouldnt-count-google",
             "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
           }
         ]
@@ -1747,21 +1817,15 @@
         "label": "模型发布/更新",
         "items": [
           {
-            "title": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
-            "summary": "SGLang 与 Meta Superintelligence Labs 合作，为 30B 参数多模态模型 Muse Glimmer 提供 Day-0 支持，该模型拥有 128k+ token 上下文窗口。",
-            "url": "https://www.lmsys.org/blog/2026-08-10-meta-muse-glimmer",
-            "source": "LMSYS：Blog（Chatbot Arena 团队）"
+            "title": "NVIDIA Cosmos 3：开放世界模型如何推动物理 AI 前沿",
+            "summary": "NVIDIA 发布 Cosmos 3，一个基于混合 Transformer 架构的开放物理 AI 基础全模态模型，整合视觉推理、世界生成与动作预测。",
+            "url": "https://blogs.nvidia.com/blog/open-world-models-physical-ai",
+            "source": "NVIDIA Blog（RSS）"
           },
           {
-            "title": "Meta 发布开源模型 Muse Glimmer",
-            "summary": "推出 Muse Glimmer，一款开放权重、300 亿参数的模型，专为本地、常驻运行的智能体工作流优化。 与同尺寸领先模型相比，Muse Glimmer 在关键智能体用例和基准测试中表现出色，并设计为完全在消费级硬件（如 Mac 或配备高性能 GPU 的 PC）上运行。 秉承我们长期分享基础 AI 研究的传统，我们以宽松的 Apache 2.0 许可证发布模型权重。",
-            "url": "https://x.com/AIatMeta/status/2086757844544811485",
-            "source": "X：AI at Meta (@AIatMeta)"
-          },
-          {
-            "title": "OpenAI 推出 GPT-5.6-Cyber，面向授权漏洞研究的网络安全专用模型",
-            "summary": "OpenAI 发布网络安全专用模型 GPT-5.6-Cyber，可通过 Daybreak Red 获取，用于授权的漏洞研究、漏洞验证和安全测试。该模型旨在应对网络防御窗口不断收窄的挑战，为安全研究人员提供专门工具。",
-            "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows",
+            "title": "ChatGPT 推出改进版 GPT-5.6 Sol，并扩大免费用户访问权限",
+            "summary": "ChatGPT 推出改进版 GPT-5.6 Sol，提升准确性与一致性，同时扩大免费用户访问权限。免费用户还可无限次使用 GPT-5.6 Luna 进行日常对话。",
+            "url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt",
             "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
           }
         ]
@@ -1770,52 +1834,46 @@
         "label": "产品发布/更新",
         "items": [
           {
-            "title": "OpenRouter 推出由市场智慧驱动的新版 Auto 路由器",
-            "summary": "OpenRouter 基于每周超 55T token 的社区消费数据，推出新版 Auto 路由器（openrouter/auto），其模型选择在多数任务和成本档位上优于旧版。新路由器按约 30 种任务类型匹配近 7 天社区实际消费的模型，支持 cost_tier 参数（low 至 max）并遵循账户隐私设置。在 MMLU Pro 等基准上，新默认档位在多数领域以更低成本达到旧版同等性能。",
-            "url": "https://openrouter.ai/blog/announcements/introducing-the-new-auto-router",
-            "source": "OpenRouter：Announcements（RSS）"
+            "title": "Agent Plugins 1.0.0 发布：谷歌、亚马逊、微软等支持的统一智能体插件规范",
+            "summary": "Agent Plugins 1.0.0 是一项由谷歌、亚马逊、微软等支持的中立目录规范，将 Agent Skills 和 MCP 服务器打包为单一可移植单元。通过标准化 plugin.json 清单和固定目录布局，开发者无需为不同 AI 编码智能体和 IDE 维护单独封装。谷歌已作为核心维护者加入，并在 Agents CLI 和 Data Agent Kit 中提供支持。",
+            "url": "https://developers.googleblog.com/agent-plugins-package-your-skills-tools-and-more",
+            "source": "Google Developers Blog（RSS）"
           },
           {
-            "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
-            "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击“圆点角标”进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
-            "url": "https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488345&idx=1&sn=ef4e57c9c9350f9238d90211eb2dd453",
-            "source": "公众号：千问APP（阿里）"
+            "title": "谷歌地图 Ask Maps 智能体升级：可对话订餐、找酒店并接入 Gemini Personal Intelligence",
+            "summary": "谷歌地图宣布 Ask Maps 迎来新一轮升级，新增智能体功能，可替用户执行订餐操作，并综合考虑饮食要求、当前位置和收藏地点等信息；用户还可通过对话指定装修风格、环境氛围等条件查找酒店和当地活动。",
+            "url": "https://www.ithome.com/0/986/729.htm",
+            "source": "IT之家（RSS）"
           },
           {
-            "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
-            "summary": "👀 看见只是开始。 借助 Qwen-MM-Plugins，让你的智能体原生支持多模态——读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。 从多模态模型 → 多模态智能体。🚀 观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
-            "url": "https://x.com/Alibaba_Qwen/status/2086664887560970531",
-            "source": "X：通义千问 / Qwen (@Alibaba_Qwen)"
-          },
-          {
-            "title": "OpenChamber：一个基于代理的开发环境",
-            "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
-            "url": "https://openchamber.dev/",
+            "title": "Prime Agent：一个具有自我改进能力的RLM代理",
+            "summary": "Prime Agent 是一个自我改进的编码代理，围绕递归语言模型（RLM）和持续框架（Continual Harness）两大抽象构建，将上下文视为变量、子代理委派视为 REPL 内的函数调用，并允许代理对其提示词、技能、记忆和子代理进行 CRUD 操作。它完全开源，可通过 curl 命令安装，支持与前沿模型即时使用，并具备后台守护进程、会话恢复、分支分叉和异步内核压缩等特性。",
+            "url": "https://www.primeintellect.ai/blog/prime-agent",
             "source": "Hacker News 热门（buzzing.cc 中文翻译）"
           },
           {
-            "title": "Claude Code 自动模式默认开启原理",
-            "summary": "我们最近将自动模式设为 Claude Code 的默认选项，这意味着你不再需要批准每一个操作。 但什么决定某个操作是否可以安全运行？看看它是如何工作的：",
-            "url": "https://x.com/ClaudeDevs/status/2086844755770757531",
-            "source": "X：Claude Devs (@ClaudeDevs)"
+            "title": "千问全网首发公测，全新 Wan3.0 来了！",
+            "summary": "阿里千问全网首发公测视频生成模型 Wan3.0，在生成时长、镜头语言、角色真实感及一致性保持等维度全面升级。该模型支持稳定直出 30 秒一镜到底视频，具备导演级镜头与蒙太奇叙事，并强调角色、道具、场景高一致性保持。Wan3.0 主打超高性价比，现已在千问创作（c.qianwen.com）开放体验，千问 app 也将陆续开启。",
+            "url": "https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488240&idx=1&sn=3fea5624e07184f42661d5f3bc798873",
+            "source": "公众号：千问APP（阿里）"
           },
           {
-            "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
-            "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
-            "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685059&idx=1&sn=a329fe9999ac2419470c7eca9a97acd3",
-            "source": "公众号：数字生命卡兹克"
+            "title": "Cursor Router 如何为任务选择合适模型",
+            "summary": "Cursor Router 通过 Compass 复杂度预测器和基于真实开发者流量的任务分类法，为每个对话轮次匹配最合适的模型。Auto Intelligence 模式在用户满意度超过 Fable 的同时成本降低 68%，Auto Balance 模式以低于 Opus 4.8 成本 41% 实现更优表现。系统从实时流量中学习模型在不同任务类别上的表现差异，以数据驱动方式替代基准分数推断。",
+            "url": "https://cursor.com/blog/how-cursor-router-works",
+            "source": "Cursor Blog"
           },
           {
-            "title": "Omnigent 上下文策略如何阻断“致命三重奏”组合攻击",
-            "summary": "Omnigent 的上下文策略（Contextual Policies）可阻断“致命三重奏”组合攻击——即多个看似无害的请求叠加后形成的恶意行为。该机制在单个请求层面不设防，而是在组合上下文中识别并拦截风险，从而在不牺牲正常功能的前提下提升安全性。",
-            "url": "https://www.databricks.com/blog/innocent-until-combined-blocking-lethal-trifecta-omnigent-contextual-policies",
+            "title": "Claude Code v2.1.223 发布：新增市场通配符、修复多项安全漏洞",
+            "summary": "Claude Code v2.1.223 发布，为严格已知市场和屏蔽市场设置新增“owner/*”通配符条目，可批量允许或阻止 GitHub 组织下的所有市场仓库。",
+            "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+            "source": "Claude Code：GitHub Releases（RSS）"
+          },
+          {
+            "title": "Databricks 发布 OfficeQA Pro V2：面向企业落地推理的新基准",
+            "summary": "Databricks 发布 OfficeQA Pro V2，一个用于评估企业落地推理能力的新基准。该基准旨在检验模型在真实办公场景中基于给定资料进行推理的准确性与可靠性，为企业级 AI 应用选型提供参考依据。",
+            "url": "https://www.databricks.com/blog/introducing-officeqa-pro-v2-new-benchmark-enterprise-grounded-reasoning",
             "source": "Databricks：Blog（RSS）"
-          },
-          {
-            "title": "Google 为 Google Ads 和 Google Analytics 推出新 AI 与智能体功能",
-            "summary": "Google 宣布在 Google Ads 和 Google Analytics 中新增 AI 与智能体体验，包括 Google Analytics 首页的 AI Overviews 智能摘要、Google Ads 首页的 AI 洞察卡片，以及 Ask Advisor 新增的基准对比功能，可将广告效果与同类商家匿名平均值比较。这些功能基于 Gemini 构建，目前面向英文账户开放 beta 测试。",
-            "url": "https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates",
-            "source": "Google Blog：AI（RSS）"
           }
         ]
       }
@@ -2556,105 +2614,105 @@
     ]
   },
   "dailyNews": {
-    "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 19:03",
+    "date": "2026-08-08",
+    "fetchedAt": "2026-08-08 16:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "今年英仙座流星雨将迎来极大，观测条件极佳，12 日晚至 13 日凌晨是观测的黄金时段",
+        "title": "上半年国内居民出游人次 34.63 亿，同比增长 5.4%；出游总花费 3.21 万亿元，同比增长 2.0%",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "代表建议设立带薪陪考假 “中考 3 天、高考 5 天”，当地人社局回应：暂不纳入国家法定假期",
+        "title": "今年前 7 月我国货物贸易进出口总值超 30 万亿元，同比增长 17.3%，延续良好的增长态势",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "湖北、广东等地部分农商行、村镇银行上调存款利率，调整幅度最高达 33 个基点",
+        "title": "东航发布新规：8 月 6 日（含）以后销售的国内客票，提前 14 天可免费退改签",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "豆包推荐商品服务开始收取佣金：酒店 12%，孕产护理 18%",
+        "title": "北京楼市新政：非京籍家庭购房社保个税缴纳年限下调为一年，公积金贷款额度最高 340 万元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "宇树科技：科创板 IPO 网上发行最终中签率 0.0181%，每 5500 个号中一签",
+        "title": "中疾控：新冠阳性率上升趋缓，总体处于中流行水平，南方显著高于北方",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "钟睒睒：电商是 “板上钉钉” 的中间商，制约了感性消费，必须限制平台权力",
+        "title": "受台风 “白海豚” 影响，长三角铁路部分线路列车临时停运",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "消息称雪佛兰将停止在华销售，经销商证实：已暂停在华新车销售，在华业务转为出口",
+        "title": "河南省 2026 年 “三支一扶” 笔试成绩作废，将重新组织笔试",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "我国境内发现多起 “Sorry” 勒索病毒攻击事件，Linux 服务器成攻击目标",
+        "title": "WTT 横滨冠军赛：国乒女单 3 人跻身八强，国乒男单全军覆没无缘八强",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "火箭飞行异常，中星 4B 卫星发射失利，具体原因正在进一步分析排查",
+        "title": "央行连续 21 个月增持黄金，7 月外汇储备增加 25 亿美元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "国际乒联公布最新排名：王楚钦、孙颖莎稳居男女单打世界第一，日本选手张本智和升至第四",
+        "title": "我国高端钢材迎来密集突破：比 A4 纸还要薄，同时拥有高强度、高延展性",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日本 7 月共有 1028 家企业破产，继 6 月后再次超过 1000 家，为 14 年来首次",
+        "title": "美国斯坦福科学家首次用 AI 设计出 16 种全新病毒，用于感染细菌，不会对人类构成威胁",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "韩国总统李在明要求美韩共用军事基地两年内搬迁，为工厂 “腾地”",
+        "title": "特朗普颁令禁止生育旅游，特定人群所生子女将无法获得公民权",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国 Meta 公司被控旗下平台 “成瘾算法” 令未成年人沉迷，遭索赔 1.4 万亿美元，几乎等同其全部市值",
+        "title": "美将对多晶硅衍生品加征 15% 关税，并引入最低进口价机制",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国前总统拜登前列腺癌持续恶化，癌细胞已扩散至骨骼以外，其子称 “病痛让他饱受折磨”",
+        "title": "沙特、土耳其和巴基斯坦签署共同防务协议：对三国中任何一国动武，将被视为对所有三国的攻击",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "哥伦比亚发生 7.5 级地震，已致多人伤亡和建筑物受损，哥伦比亚宣布进入 “国家灾难状态”",
+        "title": "乌方公布对俄作战外籍军人规模：来自 72 个外方近 1.6 万人，其中约 40% 来自拉丁美洲国家",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "坚持不下去的时候问问自己，甘心一直困在平庸的现状里吗",
-    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U98tCmebIa4Z3ib1W8K6WWic6ort2oqCNia8JPIYaJm4CnZMEOSBGStQYXpGD3uAvER26RtvzLQCiacCrn9pxO1zq1OicKUSVialrIQM/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "心态对了，世界就对了。你眼里的刺，往往是心里的刺。",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U9mABtjIOiaZkq80KOXJO05IEXm8pibUibdgslHGTR1rs2BQxRGvuGhcsRJbZXhYLoWszI1bibcU69mMH8uf1O5T7RYBpDkgjBornU/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
       {
@@ -3058,12 +3116,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T19:03:18",
-    "status": "ok",
-    "nextRun": "2026-08-11T20:03:18",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }

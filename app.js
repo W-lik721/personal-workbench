@@ -494,9 +494,10 @@
       html += '<div class="grp"><div class="grp-h" onclick="toggleCat(this)"><span class="ci">🟢</span>' + g +
         '<span class="cc">' + groups[g].length + '</span><span class="car">▶</span></div><div class="grp-b">';
       groups[g].forEach(function (s) {
+        var disp = s.display || s.title || "";
         var badge = s.status === "working" ? '<span class="badge on">进行中</span>' : "";
-        html += '<div class="auto sess" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' +
-          esc(s.title) + '</b><span class="meta">' + s.updated + " " + badge + "</span></div>";
+        html += '<div class="auto sess" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(disp) + "'" + ')"><b>' +
+          esc(disp) + '</b><span class="meta">' + s.updated + " " + badge + "</span></div>";
       });
       html += "</div></div>";
     });
@@ -863,7 +864,8 @@
       '<button class="schip" data-v="working" onclick="sessStatus(\'working\')">进行中</button></div>' +
       '<div id="sessRecentList">' + (recent.length ? recent.map(function (s) {
         var st = s.status || "";
-        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(s.title) + "'" + ')"><b>' + esc(s.title) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
+        var disp = s.display || s.title || "";
+        return '<div class="auto sess sess-it" data-status="' + escAttr(st) + '" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(disp) + "'" + ')"><b>' + esc(disp) + '</b><span class="meta">' + esc(s.updated) + (st === "working" ? ' <span class="badge on">进行中</span>' : "") + "</span></div>";
       }).join("") : '<div class="empty">暂无近期会话</div>') + "</div></div>";
     var html = '<div class="card"><h2><span class="ic">🔍</span>搜索会话</h2>' +
       '<input id="sessQ" class="sf" placeholder="按标题搜索全部会话…" oninput="sessFilter()">' +

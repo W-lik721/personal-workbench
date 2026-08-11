@@ -189,7 +189,7 @@ def get_sessions():
     try:
         con = sqlite3.connect(DB)
         cur = con.cursor()
-        cur.execute("SELECT title, status, updated_at, created_at FROM sessions "
+        cur.execute("SELECT title, custom_title, status, updated_at, created_at FROM sessions "
                     "WHERE deleted_at IS NULL AND cwd LIKE ? ORDER BY updated_at DESC",
                     ("%%%s%%" % WS,))
         rows = cur.fetchall()
@@ -198,8 +198,10 @@ def get_sessions():
         days = {}
         for i in range(17 * 7):
             days[(start + timedelta(days=i)).isoformat()] = []
-        for title, status, ua, ca in rows:
-            if len(recent) < 15 and title:
+        for title, custom_title, status, ua, ca in rows:
+            # 优先显示 WorkBuddy 里的自定义会话名，没有时才用自动标题
+            display = custom_title.strip() if custom_title else title
+            if len(recent) < 15 and display:
                 try:
                     dt = datetime.fromtimestamp(int(ua) / 1000)
                 except Exception:
@@ -212,15 +214,18 @@ def get_sessions():
                     elif d0 == today - timedelta(days=1):
                         grp = "昨天"
                 recent.append({
-                    "title": title, "status": status,
+                    "title": title,
+                    "customTitle": custom_title.strip() if custom_title else "",
+                    "display": display,
+                    "status": status,
                     "updated": dt.strftime("%m-%d %H:%M") if dt else "",
                     "group": grp,
                 })
-            # 热力图按活跃日归集会话标题（点击可看当天聊了啥）
+            # 热力图按活跃日归集会话标题（点击可看当天聊了啥），也用显示名
             try:
                 d2 = datetime.fromtimestamp(int(ua) / 1000).date().isoformat()
-                if d2 in days and title and title not in days[d2]:
-                    days[d2].append(title)
+                if d2 in days and display and display not in days[d2]:
+                    days[d2].append(display)
             except Exception:
                 pass
         heat = [{"date": k, "count": len(v), "titles": v[:8]} for k, v in sorted(days.items())]
