@@ -141,13 +141,42 @@
     try { return JSON.parse(localStorage.getItem("wb_notes") || "[]"); } catch (e) { return []; }
   }
   function notesSave(list) { try { localStorage.setItem("wb_notes", JSON.stringify(list)); } catch (e) {} }
+  // ---------- 通用删除撤销（底部 toast，4 秒可撤销） ----------
+  function undoSnack(msg, undoFn) {
+    var old = document.querySelector(".undo-toast"); if (old && old.parentNode) old.parentNode.removeChild(old);
+    var el = document.createElement("div");
+    el.className = "undo-toast";
+    var span = document.createElement("span");
+    span.textContent = msg;
+    var btn = document.createElement("button");
+    btn.className = "undo-btn";
+    btn.textContent = "撤销";
+    var done = false;
+    var timer = setTimeout(function () {
+      if (done) return;
+      el.classList.add("hide");
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 250);
+    }, 4000);
+    btn.onclick = function () {
+      if (done) return; done = true; clearTimeout(timer);
+      try { undoFn(); } catch (e) {}
+      el.classList.add("hide");
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 250);
+    };
+    el.appendChild(span); el.appendChild(btn);
+    document.body.appendChild(el);
+  }
+  window.undoSnack = undoSnack;
+
   function renderNotes() {
     var ul = document.getElementById("notesList");
     if (!ul) return;
     var list = notesLoad();
     if (!list.length) { ul.innerHTML = '<li class="empty">还没有速记，记一笔吧～</li>'; return; }
     ul.innerHTML = list.map(function (n, i) {
-      return '<li class="note"><span class="nt">' + esc(n.text) + '</span><button class="nd" onclick="delNote(' + i + ')" title="删除">✕</button></li>';
+      return '<li class="note"><span class="nt">' + esc(n.text) + '</span>' +
+        '<button class="nd" onclick="editNote(' + i + ')" title="编辑">✎</button>' +
+        '<button class="nd" onclick="delNote(' + i + ')" title="删除">✕</button></li>';
     }).join("");
   }
   function addNote() {
@@ -160,7 +189,24 @@
     notesSave(list); ta.value = ""; if (h) h.textContent = "✓ 已添加";
     renderNotes();
   }
-  function delNote(i) { var list = notesLoad(); list.splice(i, 1); notesSave(list); renderNotes(); }
+  function delNote(i) {
+    var list = notesLoad();
+    if (i < 0 || i >= list.length) return;
+    var removed = list[i];
+    list.splice(i, 1); notesSave(list); renderNotes();
+    undoSnack("已删除速记", function () {
+      var l = notesLoad(); l.splice(Math.min(i, l.length), 0, removed); notesSave(l); renderNotes();
+    });
+  }
+  function editNote(i) {
+    var list = notesLoad();
+    if (i < 0 || i >= list.length) return;
+    var t = window.prompt("编辑这条速记：", list[i].text || "");
+    if (t === null) return;
+    t = t.trim();
+    if (!t) { delNote(i); return; }
+    list[i].text = t; list[i].at = Date.now(); notesSave(list); renderNotes();
+  }
 
   // ---------- 我的收藏 / 稍后读（localStorage 纯前端） ----------
   var FAV_KEY = "wb_favs";
@@ -205,7 +251,11 @@
   }
   function delFav(i) {
     var list = favsLoad(); if (i < 0 || i >= list.length) return;
+    var removed = list[i];
     list.splice(i, 1); favsSave(list); renderFavs();
+    undoSnack("已移除收藏", function () {
+      var l = favsLoad(); l.splice(Math.min(i, l.length), 0, removed); favsSave(l); renderFavs();
+    });
   }
   function clearFavs() {
     if (!favsLoad().length) return;
@@ -278,7 +328,7 @@
 
   window.filt = filt; window.toggleCat = toggleCat; window.switchTab = switchTab; window.goKPI = goKPI;
   window.openHeat = openHeat; window.closeHeat = closeHeat;
-  window.addNote = addNote; window.delNote = delNote; window.toggleTheme = toggleTheme;
+  window.addNote = addNote; window.delNote = delNote; window.editNote = editNote; window.toggleTheme = toggleTheme;
   window.toggleNews = toggleNews;
   window.toggleNS = toggleNS; window.newsDateChanged = newsDateChanged;
 
@@ -322,7 +372,11 @@
   function delTodo(i) {
     var list = todosLoad();
     if (i < 0 || i >= list.length) return;
+    var removed = list[i];
     list.splice(i, 1); todosSave(list); renderTodos();
+    undoSnack("已删除待办", function () {
+      var l = todosLoad(); l.splice(Math.min(i, l.length), 0, removed); todosSave(l); renderTodos();
+    });
   }
   function clearDone() {
     var list = todosLoad().filter(function (t) { return !t.done; });
@@ -369,6 +423,13 @@
     var h = document.getElementById("pomoHint"); if (h) h.textContent = "";
     pomoRender();
   }
+  // 切换专注时长（未运行时同步重置倒计时；运行中保持当前进度，结束后按新时长）
+  function pomoSetLen(min) {
+    min = parseInt(min, 10) || 25;
+    pomoTotal = min * 60;
+    if (!pomoRunning) { pomoRemain = pomoTotal; }
+    pomoRender();
+  }
   function pomoBeep() {
     try {
       var ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -377,8 +438,9 @@
       o.frequency.value = 880; g.gain.value = 0.15;
       o.start(); o.stop(ctx.currentTime + 0.5);
     } catch (e) {}
+    try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
   }
-  window.pomoToggle = pomoToggle; window.pomoReset = pomoReset;
+  window.pomoToggle = pomoToggle; window.pomoReset = pomoReset; window.pomoSetLen = pomoSetLen;
   window.sessFilter = sessFilter; window.sessStatus = sessStatus; window.weekSet = weekSet;
   window.addTodo = addTodo; window.toggleTodo = toggleTodo; window.delTodo = delTodo; window.clearDone = clearDone;
   window.dnewsDateChanged = dnewsDateChanged;
@@ -912,6 +974,10 @@
       '<input id="aiKey" class="sf" type="password" placeholder="' + escAttr(hint) + '" value="' + escAttr(aiKeyLoad()) + '">' +
       '<button class="btn-sm" onclick="aiSaveKey()">💾 保存 Key</button>' +
       '<span id="aiKeyHint" class="empty">' + (hasKey ? "已保存" : "未设置") + '</span></div>' +
+      '<div class="ai-bar">' +
+      '<button class="btn-sm" onclick="aiClear()">🗑 清空对话</button>' +
+      (hasKey ? "" : '<span class="ai-guide">⚠️ 还没设置 API Key，AI 暂时无法回答。在上方粘贴 Key 并点“保存”即可使用。</span>') +
+      '</div>' +
       '<div class="ai-chat" id="aiChat">' +
       '<div class="empty">输入你的问题，AI 会用大白话回答。可问它：总结今天日报 / 帮我挑值得看的新闻 / 待办怎么安排…</div>' +
       "</div>" +
@@ -945,11 +1011,46 @@
   function aiAppend(role, text) {
     var chat = document.getElementById("aiChat");
     if (!chat) return;
-    var div = document.createElement("div");
-    div.className = "ai-msg " + role;
-    div.textContent = text;
-    chat.appendChild(div);
+    if (role === "bot") {
+      var wrap = document.createElement("div");
+      wrap.className = "ai-msg bot";
+      var body = document.createElement("div");
+      body.className = "ai-bot-body";
+      body.textContent = text;
+      var cp = document.createElement("button");
+      cp.className = "ai-copy";
+      cp.textContent = "复制";
+      cp.title = "复制这条回复";
+      cp.onclick = function () {
+        copyText(text);
+        cp.textContent = "已复制";
+        setTimeout(function () { cp.textContent = "复制"; }, 1500);
+      };
+      wrap.appendChild(body); wrap.appendChild(cp);
+      chat.appendChild(wrap);
+    } else {
+      var div = document.createElement("div");
+      div.className = "ai-msg " + role;
+      div.textContent = text;
+      chat.appendChild(div);
+    }
     chat.scrollTop = chat.scrollHeight;
+  }
+  function copyText(t) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t);
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = t; document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); ta.remove();
+      }
+    } catch (e) {}
+  }
+  function aiClear() {
+    aiMsgs = [];
+    var chat = document.getElementById("aiChat");
+    if (chat) chat.innerHTML = '<div class="empty">对话已清空。输入问题，AI 会用大白话回答…</div>';
   }
   function aiSend() {
     if (aiBusy) return;
@@ -997,7 +1098,7 @@
       })
       .then(function () { aiBusy = false; });
   }
-  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk;
+  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk; window.aiClear = aiClear;
 
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
   // 对外接口：window.renderSchedule / ghToken / scheduleLoad / schedulePullCloud / setGhToken / GH_REPO
@@ -1421,6 +1522,50 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
 
+  // ---------- 数据备份 / 恢复（JSON，可完整还原） ----------
+  function backupExport() {
+    var data = { notes: notesLoad(), todos: todosLoad(), favs: favsLoad(), links: getLinks() };
+    var payload = { app: "lite_workbench_web", version: 1, exportedAt: new Date().toISOString(), data: data };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    var p2 = function (n) { return ("0" + n).slice(-2); };
+    var d = new Date();
+    a.download = "工作台备份_" + d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()) + ".json";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  function doImportBackup(m) {
+    if (!m || !m.data || typeof m.data !== "object") { window.alert("不是有效的工作台备份文件"); return; }
+    if (!window.confirm("导入将用备份覆盖当前的 速记 / 待办 / 收藏 / 常用入口。\n确定继续吗？（建议先点“备份”存一份当前数据）")) return;
+    var d = m.data;
+    if (d.notes) notesSave(d.notes);
+    if (d.todos) todosSave(d.todos);
+    if (d.favs) favsSave(d.favs);
+    if (d.links) saveLinks(d.links);
+    renderNotes(); renderTodos(); renderFavs(); renderLinks();
+    window.alert("✓ 已恢复备份（速记 / 待办 / 收藏 / 常用入口）");
+  }
+  function backupImportFromFile(input) {
+    var f = input.files && input.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function (e) {
+      try { doImportBackup(JSON.parse(String(e.target.result))); }
+      catch (err) { window.alert("备份文件解析失败：" + err.message); }
+    };
+    r.onerror = function () { window.alert("读取文件失败"); };
+    r.readAsText(f, "utf-8");
+    input.value = "";
+  }
+  function backupImport() {
+    var inp = document.createElement("input");
+    inp.type = "file"; inp.accept = "application/json,.json";
+    inp.onchange = function () { backupImportFromFile(inp); };
+    inp.click();
+  }
+  window.backupExport = backupExport; window.backupImport = backupImport;
+
   // ---------- 头部实时时钟 ----------
   function updateClock() {
     var el = document.getElementById("clock");
@@ -1430,7 +1575,7 @@
     var p2 = function (n) { return ("0" + n).slice(-2); };
     el.textContent = "🕐 " + (now.getMonth() + 1) + "-" + p2(now.getDate()) + " 周" + wd + " " + p2(now.getHours()) + ":" + p2(now.getMinutes()) + ":" + p2(now.getSeconds());
   }
-  window.exportAll = exportAll; window.updateClock = updateClock; window.copyToday = copyToday;
+  window.exportAll = exportAll; window.updateClock = updateClock; window.copyToday = copyToday; window.backupExport = backupExport; window.backupImport = backupImport;
   window.favToggle = favToggle; window.delFav = delFav; window.clearFavs = clearFavs; window.renderFavs = renderFavs;
   window.addLink = addLink; window.delLink = delLink; window.renderLinks = renderLinks;
 

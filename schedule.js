@@ -174,9 +174,20 @@
       reader.readAsArrayBuffer(file);
     });
   }
+  function sameCourse(a, b) {
+    return normDow(a.dow) === normDow(b.dow) && (a.time || "") === (b.time || "") && (a.name || "") === (b.name || "");
+  }
+  // 增量合并：保留现有，跳过与现有或本次导入内重复的条目（按 星期+时间+课程名 判定）
   function mergeSchedule(list) {
-    if (scheduleLoad().length && !window.confirm("导入将替换当前课程表全部内容，确定吗？\n（点“取消”可改为手动逐条补充）")) return;
-    scheduleSave(list);
+    var cur = scheduleLoad();
+    var added = 0, skipped = 0;
+    list.forEach(function (c, idx) {
+      if (cur.some(function (x) { return sameCourse(x, c); })) { skipped++; return; }
+      if (list.slice(0, idx).some(function (x) { return sameCourse(x, c); })) { skipped++; return; }
+      cur.push(c); added++;
+    });
+    scheduleSave(cur);
+    return { added: added, skipped: skipped };
   }
   function scheduleFileChosen(input) {
     var f = input.files && input.files[0];
@@ -185,8 +196,8 @@
     var lower = f.name.toLowerCase();
     var done = function (list) {
       if (!list.length) { if (hint) hint.textContent = "没解析出课程，检查表头或内容"; return; }
-      mergeSchedule(list);
-      if (hint) hint.textContent = "✓ 已导入 " + list.length + " 条";
+      var r = mergeSchedule(list);
+      if (hint) hint.textContent = "✓ 已导入 " + r.added + " 条" + (r.skipped ? "（" + r.skipped + " 重复已跳过）" : "");
       renderSchedule();
     };
     var fail = function (err) { if (hint) hint.textContent = "导入失败：" + (err && err.message ? err.message : err); };
@@ -205,8 +216,8 @@
     var hint = document.getElementById("schedHint");
     var list = parseDelimited(ta.value || "");
     if (!list.length) { if (hint) hint.textContent = "粘贴内容没解析出课程"; return; }
-    mergeSchedule(list);
-    if (hint) hint.textContent = "✓ 已导入 " + list.length + " 条（粘贴）";
+    var r = mergeSchedule(list);
+    if (hint) hint.textContent = "✓ 已导入 " + r.added + " 条（粘贴）" + (r.skipped ? "（" + r.skipped + " 重复已跳过）" : "");
     renderSchedule();
   }
   function addCourse() {
@@ -219,6 +230,14 @@
   function delCourse(i) {
     var list = scheduleLoad(); list.splice(i, 1); scheduleSave(list); renderSchedule();
   }
+  function delAllCourses() {
+    if (!scheduleLoad().length) return;
+    if (!window.confirm("确定清空全部课程表吗？此操作不可撤销。\n（如需换课表，可先清空再导入，或导入会自动跳过重复）")) return;
+    scheduleSave([]); renderSchedule();
+    var h = document.getElementById("schedHint");
+    if (h) h.textContent = "✓ 已清空全部课程";
+  }
+  window.delAllCourses = delAllCourses;
   function downloadFile(name, content, mime) {
     var blob = new Blob([content], { type: mime });
     var url = URL.createObjectURL(blob);
@@ -308,7 +327,8 @@
       });
       tableCard = '<div class="card"><h2><span class="ic">📅</span>我的课程表 · 共 ' + list.length + ' 节</h2>' + body + '</div>';
     }
-    box.innerHTML = importCard + addCard + tableCard;
+    var clearCard = list.length ? '<div class="card sched-clear"><button class="btn-sm danger" onclick="delAllCourses()">🗑 清空全部课程</button><span class="empty" style="margin:0">清空不可撤销；重复导入会自动跳过</span></div>' : "";
+    box.innerHTML = importCard + addCard + clearCard + tableCard;
   }
   window.renderSchedule = renderSchedule;
   window.scheduleFileChosen = scheduleFileChosen;
