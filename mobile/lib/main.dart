@@ -8,8 +8,9 @@ import 'pages/ai_page.dart';
 import 'pages/schedule_page.dart';
 import 'pages/settings_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Store.init(); // 初始化本地存储（必须，否则待办/Key/记忆无法持久化）
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
@@ -74,8 +75,8 @@ class _MainShellState extends State<MainShell> {
   }
 
   void _askAi(String text) {
+    aiFillGlobal?.call(text); // 把问题填进 AI 输入框
     setState(() => _index = 2); // 切到 AI tab
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已切到 AI 助手，问题已复制：${text.length > 30 ? text.substring(0, 30) + '…' : text}')));
   }
 
   @override

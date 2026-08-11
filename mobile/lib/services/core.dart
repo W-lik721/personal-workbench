@@ -1,10 +1,13 @@
 // 数据模型 + 本地存储 + 网络 API（纯 Dart，无第三方 UI 依赖）
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 // 新闻页"让 AI 讲讲"跳转 AI tab 的全局桥（由 main.dart 注入）
 void Function(String text)? aiAskGlobal;
+// AI 页注册：填充输入框（配合 aiAskGlobal 使用）
+void Function(String text)? aiFillGlobal;
 // 设置页"清空对话历史"通知 AI 页同步清空的全局回调（由 AiPage 注册）
 void Function()? aiClearGlobal;
 
@@ -84,7 +87,14 @@ class DailyNews {
 // ---------- 本地存储 ----------
 class Store {
   static SharedPreferences? _p;
-  static Future<void> init() async => _p = await SharedPreferences.getInstance();
+  static const _sec = FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
+
+  /// 必须在 main() 里 await 一次：初始化 SharedPreferences + 加密存储
+  static Future<void> init() async {
+    _p = await SharedPreferences.getInstance();
+  }
 
   static List<Todo> todos() => _load('wb_todos').map((j) => Todo.fromJson(j)).toList();
   static void saveTodos(List<Todo> l) => _save('wb_todos', l.map((t) => t.toJson()).toList());
@@ -101,8 +111,34 @@ class Store {
   static set darkMode(bool v) => _p?.setBool('wb_dark', v);
   static String get aiProv => _p?.getString('wb_ai_prov') ?? 'agnes';
   static set aiProv(String v) => _p?.setString('wb_ai_prov', v);
-  static String aiKey(String prov) => _p?.getString('wb_ai_key_$prov') ?? '';
-  static void setAiKey(String prov, String k) => _p?.setString('wb_ai_key_$prov', k);
+
+  // API Key：走系统加密存储（Keystore），不落明文
+  static Future<String> aiKey(String prov) async {
+    try {
+      return await _sec.read(key: 'wb_ai_key_$prov') ?? '';
+    } catch (_) {
+      return '';
+    }
+  }
+  static Future<void> setAiKey(String prov, String k) async {
+    try {
+      if (k.isEmpty) {
+        await _sec.delete(key: 'wb_ai_key_$prov');
+      } else {
+        await _sec.write(key: 'wb_ai_key_$prov', value: k);
+      }
+    } catch (_) {}
+  }
+
+  // ---------- 日报/新闻缓存（原始 JSON + 抓取时间） ----------
+  static String? get cacheReportJson => _p?.getString('wb_cache_report');
+  static set cacheReportJson(String? v) => v == null ? _p?.remove('wb_cache_report') : _p?.setString('wb_cache_report', v);
+  static int get cacheReportAt => _p?.getInt('wb_cache_report_at') ?? 0;
+  static set cacheReportAt(int v) => _p?.setInt('wb_cache_report_at', v);
+  static String? get cacheDnewsJson => _p?.getString('wb_cache_dnews');
+  static set cacheDnewsJson(String? v) => v == null ? _p?.remove('wb_cache_dnews') : _p?.setString('wb_cache_dnews', v);
+  static int get cacheDnewsAt => _p?.getInt('wb_cache_dnews_at') ?? 0;
+  static set cacheDnewsAt(int v) => _p?.setInt('wb_cache_dnews_at', v);
 
   // ---------- AI 记忆 ----------
   // 对话历史（role+content），自动保存/恢复
@@ -136,12 +172,16 @@ class Store {
 class Api {
   static const _ua = 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36';
 
-  // AI 日报：aihot 公开接口
-  static Future<DailyReport> fetchDailyReport() async {
+  // AI 日报：aihot 公开接口（返回原始 JSON 字符串，便于缓存）
+  static Future<String> fetchDailyReportBody() async {
     final r = await http.get(Uri.parse('https://aihot.virxact.com/api/public/daily'),
         headers: {'User-Agent': _ua}).timeout(const Duration(seconds: 20));
     if (r.statusCode != 200) throw Exception('日报接口 HTTP ${r.statusCode}');
-    final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+    return utf8.decode(r.bodyBytes);
+  }
+
+  static DailyReport parseDailyReport(String body) {
+    final j = jsonDecode(body) as Map<String, dynamic>;
     final secs = (j['sections'] as List? ?? []).map((s) {
       final sm = s as Map<String, dynamic>;
       final items = (sm['items'] as List? ?? []).map((it) {
@@ -166,12 +206,16 @@ class Api {
     );
   }
 
-  // 每日新闻：60s 公开接口
-  static Future<DailyNews> fetchDailyNews() async {
+  // 每日新闻：60s 公开接口（返回原始 JSON 字符串，便于缓存）
+  static Future<String> fetchDailyNewsBody() async {
     final r = await http.get(Uri.parse('https://60s-api.viki.moe/v2/60s'),
         headers: {'User-Agent': _ua}).timeout(const Duration(seconds: 20));
     if (r.statusCode != 200) throw Exception('新闻接口 HTTP ${r.statusCode}');
-    final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+    return utf8.decode(r.bodyBytes);
+  }
+
+  static DailyNews parseDailyNews(String body) {
+    final j = jsonDecode(body) as Map<String, dynamic>;
     final data = j['data'] as Map<String, dynamic>? ?? {};
     final news = (data['news'] as List? ?? []).map((t) => NewsItem(title: t.toString(), source: '每日60秒')).toList();
     return DailyNews(
@@ -187,24 +231,81 @@ class Api {
     'agnes': {'label': 'Agnes 2.5 Flash', 'url': 'https://apihub.agnes-ai.cn/v1/chat/completions', 'model': 'agnes-2.5-flash'},
     'glm': {'label': '智谱 GLM Flash', 'url': 'https://open.bigmodel.cn/api/paas/v4/chat/completions', 'model': 'glm-4-flash'},
   };
-  static Future<String> chat(String prov, String key, List<Map<String, String>> history, String question,
-      {List<String> memory = const []}) async {
-    final p = aiProviders[prov]!;
+
+  static List<Map<String, String>> _buildMsgs(List<Map<String, String>> history, String question,
+      {List<String> memory = const []}) {
     final memBlock = memory.isEmpty
         ? ''
         : '\n\n【关于用户的长期记忆，对话时请自然运用这些信息】\n- ${memory.join('\n- ')}';
-    final msgs = [
+    return [
       {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$memBlock'},
       ...history,
       {'role': 'user', 'content': question},
     ];
+  }
+
+  static void _checkStatus(int code) {
+    if (code == 401) throw Exception('Key 无效或已过期，请重新填写');
+    if (code == 429) throw Exception('问得太快了，休息几秒再试');
+    if (code != 200) throw Exception('网络开小差了（HTTP $code），稍后重试');
+  }
+
+  // 流式对话：逐字回调 onChunk（SSE）。client 可外部传入以便中途 close() 停止
+  static Future<void> chatStream(String prov, String key, List<Map<String, String>> history, String question,
+      {List<String> memory = const [], http.Client? client, required void Function(String chunk) onChunk}) async {
+    final p = aiProviders[prov]!;
+    final req = http.Request('POST', Uri.parse(p['url']!))
+      ..headers.addAll({'Content-Type': 'application/json', 'Authorization': 'Bearer $key'})
+      ..body = jsonEncode({
+        'model': p['model'],
+        'messages': _buildMsgs(history, question, memory: memory),
+        'max_tokens': prov == 'agnes' ? 4000 : 2000,
+        'stream': true,
+      });
+    final c = client ?? http.Client();
+    final resp = await c.send(req).timeout(const Duration(seconds: 90));
+    _checkStatus(resp.statusCode);
+    var full = '';
+    String? reasoning;
+    await for (final line in resp.stream.transform(utf8.decoder).transform(const LineSplitter())) {
+      final t = line.trim();
+      if (t.isEmpty || !t.startsWith('data:')) continue;
+      final data = t.substring(5).trim();
+      if (data == '[DONE]') break;
+      try {
+        final j = jsonDecode(data) as Map<String, dynamic>;
+        final delta = ((j['choices'] as List? ?? []) as List).isNotEmpty ? (j['choices'][0] as Map)['delta'] as Map? : null;
+        final c = delta?['content']?.toString();
+        if (c != null && c.isNotEmpty) {
+          full += c;
+          onChunk(c);
+        }
+        final rc = delta?['reasoning_content']?.toString();
+        if (rc != null && rc.isNotEmpty) reasoning = (reasoning ?? '') + rc;
+      } catch (_) {}
+    }
+    if (full.trim().isEmpty) {
+      final rc = reasoning?.trim();
+      if (rc != null && rc.isNotEmpty) {
+        onChunk('\n（模型思考过程：）\n$rc');
+        return;
+      }
+      throw Exception('模型没有给出回答，再试一次？');
+    }
+  }
+
+  // 非流式兜底（个别端点不支持 stream 时可用）
+  static Future<String> chat(String prov, String key, List<Map<String, String>> history, String question,
+      {List<String> memory = const []}) async {
+    final p = aiProviders[prov]!;
     final r = await http.post(Uri.parse(p['url']!),
         headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $key'},
-        body: jsonEncode({'model': p['model'], 'messages': msgs, 'max_tokens': prov == 'agnes' ? 4000 : 800}))
-        .timeout(const Duration(seconds: 60));
-    if (r.statusCode == 401) throw Exception('Key 无效或已过期');
-    if (r.statusCode == 429) throw Exception('请求太频繁（限流），稍等再试');
-    if (r.statusCode != 200) throw Exception('HTTP ${r.statusCode}');
+        body: jsonEncode({
+          'model': p['model'],
+          'messages': _buildMsgs(history, question, memory: memory),
+          'max_tokens': prov == 'agnes' ? 4000 : 2000,
+        })).timeout(const Duration(seconds: 60));
+    _checkStatus(r.statusCode);
     final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
     final msg = ((j['choices'] as List? ?? []) as List).isNotEmpty ? (j['choices'][0] as Map)['message'] as Map? : null;
     final content = msg?['content']?.toString().trim() ?? '';

@@ -73,12 +73,13 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build(BuildContext context) {
     final c = Theme.of(context).colorScheme;
-    final byDay = <String, List<Course>>{};
+    final byDay = <String, List<int>>{}; // 星期 → 课程索引（避免 indexOf 查找）
     for (final d in _days) byDay[d] = [];
-    _courses.forEach((cr) {
+    for (var i = 0; i < _courses.length; i++) {
+      final cr = _courses[i];
       final d = _days.contains(cr.dow) ? cr.dow : '其他';
-      byDay[d]!.add(cr);
-    });
+      byDay[d]!.add(i);
+    }
     return Column(children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
@@ -102,8 +103,8 @@ class _SchedulePageState extends State<SchedulePage> {
                       child: Text('${e.key} · ${e.value.length} 节',
                           style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: c.outline)),
                     ),
-                    ...e.value.map((cr) {
-                      final idx = _courses.indexOf(cr);
+                    ...e.value.map((idx) {
+                      final cr = _courses[idx];
                       return Card(
                         margin: const EdgeInsets.only(bottom: 6),
                         child: ListTile(

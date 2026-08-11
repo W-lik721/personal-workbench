@@ -1,5 +1,6 @@
-// AI 助手页：Agnes / 智谱双提供商，Key 存本地
+// AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../services/core.dart';
 
 class AiPage extends StatefulWidget {
@@ -14,12 +15,16 @@ class _AiPageState extends State<AiPage> {
   final List<_Msg> _msgs = [];
   String _prov = 'agnes';
   bool _busy = false;
+  bool _hasKey = false;
+  bool _cancel = false;
   String? _keyError;
+  http.Client? _chatClient;
 
   @override
   void initState() {
     super.initState();
     _prov = Store.aiProv;
+    _loadKey();
     // 恢复上次对话历史（记忆功能）
     for (final m in Store.aiHistory()) {
       _msgs.add(_Msg(m['content'] ?? '', m['role'] == 'user'));
@@ -30,10 +35,33 @@ class _AiPageState extends State<AiPage> {
       setState(() => _msgs.clear());
       Store.saveAiHistory([]);
     };
+    // 新闻"让 AI 讲讲"：填充输入框（切 tab 由 main 负责）
+    aiFillGlobal = (t) {
+      if (!mounted) return;
+      setState(() => _input.text = t);
+    };
   }
 
-  void _saveKey() {
-    final ctrl = TextEditingController(text: Store.aiKey(_prov));
+  Future<void> _loadKey() async {
+    final k = await Store.aiKey(_prov);
+    if (mounted) setState(() => _hasKey = k.isNotEmpty);
+  }
+
+  @override
+  void dispose() {
+    aiClearGlobal = null;
+    aiFillGlobal = null;
+    _cancel = true;
+    _chatClient?.close();
+    _input.dispose();
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  Future<void> _saveKey() async {
+    final current = await Store.aiKey(_prov);
+    if (!mounted) return;
+    final ctrl = TextEditingController(text: current);
     showDialog(
       context: context,
       builder: (c) => AlertDialog(
@@ -42,17 +70,17 @@ class _AiPageState extends State<AiPage> {
           controller: ctrl,
           obscureText: true,
           decoration: InputDecoration(
-            hintText: 'sk- 开头的 Key，仅存本机',
-            helperText: Store.aiKey(_prov).isNotEmpty ? '已保存（可覆盖）' : '未设置',
+            hintText: 'sk- 开头的 Key，加密存本机',
+            helperText: current.isNotEmpty ? '已保存（可覆盖）' : '未设置',
           ),
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
           FilledButton(
-            onPressed: () {
-              Store.setAiKey(_prov, ctrl.text.trim());
-              Navigator.pop(c);
-              setState(() {});
+            onPressed: () async {
+              await Store.setAiKey(_prov, ctrl.text.trim());
+              if (c.mounted) Navigator.pop(c);
+              if (mounted) setState(() => _hasKey = ctrl.text.trim().isNotEmpty);
             },
             child: const Text('保存'),
           ),
@@ -62,9 +90,13 @@ class _AiPageState extends State<AiPage> {
   }
 
   Future<void> _send() async {
+    if (_busy) {
+      _stop();
+      return;
+    }
     final q = _input.text.trim();
-    if (q.isEmpty || _busy) return;
-    final key = Store.aiKey(_prov);
+    if (q.isEmpty) return;
+    final key = await Store.aiKey(_prov);
     if (key.isEmpty) {
       _keyError = '请先点右上角设置 Key';
       setState(() {});
@@ -74,57 +106,77 @@ class _AiPageState extends State<AiPage> {
       _busy = true;
       _keyError = null;
       _msgs.add(_Msg(q, true));
-      _msgs.add(_Msg('…思考中', false, thinking: true));
+      _msgs.add(_Msg('', false, streaming: true)); // 空气泡，流式往里填字
       _input.clear();
     });
     _scrollToBottom();
+    _cancel = false;
+
+    final all = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
+    final history = all.sublist(0, all.length - 1);
+    final memory = Store.aiMemoryOn ? Store.aiMemory() : <String>[];
+    final maxMsgs = Store.aiMemoryMax;
+    final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
+
+    _chatClient = http.Client();
     try {
-      // 取除"思考中"占位外的历史消息（去掉最后一条=刚发的用户问题）
-      final all = _msgs.where((m) => !m.thinking && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
-      final history = all.sublist(0, all.length - 1);
-      // 记忆功能：带长期记忆 + 按上限截断历史
-      final memory = Store.aiMemoryOn ? Store.aiMemory() : <String>[];
-      final maxMsgs = Store.aiMemoryMax;
-      final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
-      final ans = await Api.chat(_prov, key, ctx.cast<Map<String, String>>(), q, memory: memory);
+      await Api.chatStream(_prov, key, ctx.cast<Map<String, String>>(), q,
+          memory: memory,
+          client: _chatClient,
+          onChunk: (c) {
+            if (!mounted || _cancel) return;
+            setState(() {
+              if (_msgs.isNotEmpty && _msgs.last.streaming) _msgs.last.text += c;
+            });
+            _scrollToBottom();
+          });
       if (!mounted) return;
       setState(() {
-        _msgs.removeLast();
-        _msgs.add(_Msg(ans, false));
+        if (_msgs.isNotEmpty) _msgs.last.streaming = false;
         _busy = false;
       });
-      // 记忆开关开着才保存历史（截断到上限，防止无限增长）
-      if (Store.aiMemoryOn) {
-        final hist = _msgs.where((m) => !m.thinking && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
-        if (hist.length > maxMsgs) {
-          Store.saveAiHistory(hist.sublist(hist.length - maxMsgs));
-        } else {
-          Store.saveAiHistory(hist);
-        }
-      }
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _msgs.removeLast();
-        _msgs.add(_Msg('⚠️ ${e.toString().replaceAll('Exception: ', '')}', false, isError: true));
         _busy = false;
+        final cur = _msgs.isNotEmpty && _msgs.last.streaming ? _msgs.last.text : '';
+        if (_cancel && cur.trim().isNotEmpty) {
+          _msgs.last.streaming = false; // 用户主动停止，保留已生成部分
+        } else {
+          _msgs.removeLast();
+          _msgs.add(_Msg('⚠️ ${_friendly(e)}', false, isError: true));
+        }
       });
+    } finally {
+      _chatClient = null;
+    }
+
+    // 记忆开关开着才保存历史（截断到上限，防止无限增长）
+    if (Store.aiMemoryOn && mounted) {
+      final hist = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
+      if (hist.length > maxMsgs) {
+        Store.saveAiHistory(hist.sublist(hist.length - maxMsgs));
+      } else {
+        Store.saveAiHistory(hist);
+      }
     }
     _scrollToBottom();
+  }
+
+  // 停止生成：中断流式请求
+  void _stop() {
+    _cancel = true;
+    _chatClient?.close();
+  }
+
+  String _friendly(Object e) {
+    return e.toString().replaceAll('Exception: ', '').replaceAll('ClientException', '已停止生成');
   }
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scroll.hasClients) _scroll.jumpTo(_scroll.position.maxScrollExtent);
     });
-  }
-
-  @override
-  void dispose() {
-    aiClearGlobal = null;
-    _input.dispose();
-    _scroll.dispose();
-    super.dispose();
   }
 
   @override
@@ -142,13 +194,14 @@ class _AiPageState extends State<AiPage> {
               if (v != null) {
                 Store.aiProv = v;
                 setState(() => _prov = v);
+                _loadKey();
               }
             },
           ),
           const Spacer(),
           TextButton.icon(
-            icon: Icon(Store.aiKey(_prov).isNotEmpty ? Icons.vpn_key : Icons.vpn_key_off, size: 16),
-            label: Text(Store.aiKey(_prov).isNotEmpty ? '已设 Key' : '设置 Key'),
+            icon: Icon(_hasKey ? Icons.vpn_key : Icons.vpn_key_off, size: 16),
+            label: Text(_hasKey ? '已设 Key' : '设置 Key'),
             onPressed: _saveKey,
           ),
         ]),
@@ -193,7 +246,10 @@ class _AiPageState extends State<AiPage> {
               ),
             ),
             const SizedBox(width: 8),
-            FilledButton(onPressed: _send, child: const Text('➤ 发送')),
+            FilledButton(
+              onPressed: _send,
+              child: Text(_busy ? '■ 停止' : '➤ 发送'),
+            ),
           ]),
         ),
       ),
@@ -222,16 +278,15 @@ class _AiPageState extends State<AiPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              m.text,
+              m.streaming && m.text.isEmpty ? '…' : (m.streaming ? '${m.text}▍' : m.text),
               style: TextStyle(
                 fontSize: 14,
                 height: 1.5,
                 color: m.user ? c.onPrimary : (m.isError ? c.error : c.onSurface),
-                fontStyle: m.thinking ? FontStyle.italic : null,
               ),
             ),
             // AI 回复可"记住"（存长期记忆）
-            if (!m.user && !m.thinking && !m.isError)
+            if (!m.user && !m.isError && !m.streaming)
               Padding(
                 padding: const EdgeInsets.only(top: 2),
                 child: InkWell(
@@ -264,9 +319,9 @@ class _AiPageState extends State<AiPage> {
 }
 
 class _Msg {
-  final String text;
+  String text;
   final bool user;
-  final bool thinking;
   final bool isError;
-  _Msg(this.text, this.user, {this.thinking = false, this.isError = false});
+  bool streaming;
+  _Msg(this.text, this.user, {this.isError = false, this.streaming = false});
 }

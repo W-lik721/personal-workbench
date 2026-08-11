@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   List<Fav> _favs = [];
   bool _pomoRunning = false;
   int _pomoLeft = 25 * 60;
+  DateTime? _pomoEnd; // 专注结束时刻（时间戳计时，后台/锁屏也不失真）
   Timer? _pomoTimer;
 
   void _reload() {
@@ -109,23 +110,44 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _delLink(int i) {
-    final l = Store.links()..removeAt(i);
-    Store.saveLinks(l);
-    _reload();
-  }
-
   void _pomoTick() {
+    final left = _pomoEnd == null ? _pomoLeft : _pomoEnd!.difference(DateTime.now()).inSeconds;
     setState(() {
-      _pomoLeft--;
+      _pomoLeft = left < 0 ? 0 : left;
       if (_pomoLeft <= 0) {
-        _pomoLeft = 0;
+        _pomoEnd = null;
         _pomoRunning = false;
         _pomoTimer?.cancel();
         _pomoTimer = null;
         _pomoBeep();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🍅 专注完成！去把待办勾掉吧')));
       }
+    });
+  }
+
+  void _pomoToggle() {
+    setState(() {
+      if (_pomoRunning) {
+        // 暂停：记下剩余时间
+        _pomoLeft = (_pomoEnd?.difference(DateTime.now()).inSeconds ?? _pomoLeft).clamp(0, 99999);
+        _pomoEnd = null;
+        _pomoRunning = false;
+        _pomoTimer?.cancel();
+        _pomoTimer = null;
+      } else {
+        _pomoEnd = DateTime.now().add(Duration(seconds: _pomoLeft));
+        _pomoRunning = true;
+        _pomoTimer = Timer.periodic(const Duration(milliseconds: 500), (_) => _pomoTick());
+      }
+    });
+  }
+
+  void _pomoReset() {
+    _pomoTimer?.cancel();
+    setState(() {
+      _pomoRunning = false;
+      _pomoEnd = null;
+      _pomoLeft = 25 * 60;
     });
   }
 
@@ -160,12 +182,12 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Text('$doneCount/${_todos.length} 已完成', style: TextStyle(fontSize: 12, color: c.outline)),
                 ),
-              ..._todos.map((t) => ListTile(
+              ..._todos.asMap().entries.map((e) => ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    leading: Checkbox(value: t.done, onChanged: (_) => _toggleTodo(_todos.indexOf(t))),
-                    title: Text(t.text, style: TextStyle(decoration: t.done ? TextDecoration.lineThrough : null, color: t.done ? c.outline : null)),
-                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delTodo(_todos.indexOf(t))),
+                    leading: Checkbox(value: e.value.done, onChanged: (_) => _toggleTodo(e.key)),
+                    title: Text(e.value.text, style: TextStyle(decoration: e.value.done ? TextDecoration.lineThrough : null, color: e.value.done ? c.outline : null)),
+                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delTodo(e.key)),
                   )),
               if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.outline, fontSize: 13))),
               TextField(
@@ -193,23 +215,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                FilledButton(onPressed: () {
-                  setState(() {
-                    if (_pomoRunning) {
-                      _pomoRunning = false;
-                      _pomoTimer?.cancel();
-                      _pomoTimer = null;
-                    } else {
-                      _pomoRunning = true;
-                      _pomoTimer = Timer.periodic(const Duration(seconds: 1), (_) => _pomoTick());
-                    }
-                  });
-                }, child: Text(_pomoRunning ? '⏸ 暂停' : '▶ 开始')),
+                FilledButton(onPressed: _pomoToggle, child: Text(_pomoRunning ? '⏸ 暂停' : '▶ 开始')),
                 const SizedBox(width: 6),
-                IconButton(icon: const Icon(Icons.refresh), onPressed: () {
-                  _pomoTimer?.cancel();
-                  setState(() { _pomoRunning = false; _pomoLeft = 25 * 60; });
-                }),
+                IconButton(icon: const Icon(Icons.refresh), onPressed: _pomoReset),
               ]),
             ]),
           ),
@@ -218,11 +226,11 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '📝 我的速记 · 随手记',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              ..._notes.map((n) => ListTile(
+              ..._notes.asMap().entries.map((e) => ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.zero,
-                    title: Text(n.text),
-                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delNote(_notes.indexOf(n))),
+                    title: Text(e.value.text),
+                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delNote(e.key)),
                   )),
               if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.outline, fontSize: 13))),
               TextField(
@@ -248,10 +256,7 @@ class _HomePageState extends State<HomePage> {
                       avatar: const Icon(Icons.link, size: 16),
                       label: Text(l.label),
                       onPressed: () async {
-                        final uri = Uri.parse(l.url);
-                        // ignore: avoid_print
-                        print('open $uri'); // 由外部浏览器打开（见 main.dart 处理）
-                        await launchUrl(uri, mode: LaunchMode.externalApplication);
+                        await launchUrl(Uri.parse(l.url), mode: LaunchMode.externalApplication);
                       },
                     )).toList(),
               ),
@@ -267,13 +272,13 @@ class _HomePageState extends State<HomePage> {
               if (_favs.isEmpty)
                 Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.outline, fontSize: 13))
               else
-                ..._favs.map((f) => ListTile(
+                ..._favs.asMap().entries.map((e) => ListTile(
                       dense: true,
                       contentPadding: EdgeInsets.zero,
-                      title: Text(f.title, maxLines: 2, overflow: TextOverflow.ellipsis),
-                      subtitle: f.source.isNotEmpty ? Text('${f.source} · ${_fmtDate(f.at)}') : null,
-                      onTap: f.url.isNotEmpty ? () async => launchUrl(Uri.parse(f.url), mode: LaunchMode.externalApplication) : null,
-                      trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delFav(_favs.indexOf(f))),
+                      title: Text(e.value.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      subtitle: e.value.source.isNotEmpty ? Text('${e.value.source} · ${_fmtDate(e.value.at)}') : null,
+                      onTap: e.value.url.isNotEmpty ? () async => launchUrl(Uri.parse(e.value.url), mode: LaunchMode.externalApplication) : null,
+                      trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delFav(e.key)),
                     )),
               if (_favs.isNotEmpty) ...[
                 const SizedBox(height: 4),

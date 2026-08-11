@@ -1,4 +1,4 @@
-// 新闻页：AI 日报 + 每日新闻（TabBar 切换）
+// 新闻页：AI 日报 + 每日新闻（TabBar 切换，本地缓存优先，Tab 懒加载）
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,33 +17,79 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   String? _errReport;
   String? _errDnews;
   bool _loadingReport = true;
-  bool _loadingDnews = true;
+  bool _loadingDnews = false;
+  bool _staleReport = false; // 当前日报来自缓存
+  bool _staleDnews = false;
 
   @override
   void initState() {
     super.initState();
     _tab = TabController(length: 2, vsync: this);
+    // 懒加载：切到"每日新闻"才首次请求
+    _tab.addListener(() {
+      if (_tab.index == 1 && _dnews == null && !_loadingDnews) _loadDnews();
+    });
     _loadReport();
-    _loadDnews();
   }
 
-  Future<void> _loadReport() async {
-    setState(() { _loadingReport = true; _errReport = null; });
+  Future<void> _loadReport({bool silent = false}) async {
+    if (!silent) setState(() { _loadingReport = true; _errReport = null; });
+    // 有缓存且还没显示 → 先显示缓存，避免白屏
+    final cj = Store.cacheReportJson;
+    if (cj != null && _report == null) {
+      try {
+        final r = Api.parseDailyReport(cj);
+        if (mounted) setState(() { _report = r; _loadingReport = false; _staleReport = true; });
+      } catch (_) {}
+    }
     try {
-      final r = await Api.fetchDailyReport();
-      if (mounted) setState(() { _report = r; _loadingReport = false; });
+      final body = await Api.fetchDailyReportBody();
+      Store.cacheReportJson = body;
+      Store.cacheReportAt = DateTime.now().millisecondsSinceEpoch;
+      if (mounted) setState(() {
+        _report = Api.parseDailyReport(body);
+        _loadingReport = false;
+        _staleReport = false;
+        _errReport = null;
+      });
     } catch (e) {
-      if (mounted) setState(() { _errReport = e.toString(); _loadingReport = false; });
+      if (!mounted) return;
+      if (_report == null) {
+        setState(() { _errReport = e.toString(); _loadingReport = false; });
+      } else {
+        setState(() { _loadingReport = false; _staleReport = true; });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('网络开小差了，当前显示的是缓存内容')));
+      }
     }
   }
 
-  Future<void> _loadDnews() async {
-    setState(() { _loadingDnews = true; _errDnews = null; });
+  Future<void> _loadDnews({bool silent = false}) async {
+    if (!silent) setState(() { _loadingDnews = true; _errDnews = null; });
+    final cj = Store.cacheDnewsJson;
+    if (cj != null && _dnews == null) {
+      try {
+        final d = Api.parseDailyNews(cj);
+        if (mounted) setState(() { _dnews = d; _loadingDnews = false; _staleDnews = true; });
+      } catch (_) {}
+    }
     try {
-      final r = await Api.fetchDailyNews();
-      if (mounted) setState(() { _dnews = r; _loadingDnews = false; });
+      final body = await Api.fetchDailyNewsBody();
+      Store.cacheDnewsJson = body;
+      Store.cacheDnewsAt = DateTime.now().millisecondsSinceEpoch;
+      if (mounted) setState(() {
+        _dnews = Api.parseDailyNews(body);
+        _loadingDnews = false;
+        _staleDnews = false;
+        _errDnews = null;
+      });
     } catch (e) {
-      if (mounted) setState(() { _errDnews = e.toString(); _loadingDnews = false; });
+      if (!mounted) return;
+      if (_dnews == null) {
+        setState(() { _errDnews = e.toString(); _loadingDnews = false; });
+      } else {
+        setState(() { _loadingDnews = false; _staleDnews = true; });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('网络开小差了，当前显示的是缓存内容')));
+      }
     }
   }
 
@@ -73,19 +119,28 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     ]);
   }
 
+  String _cacheTag(int at) {
+    if (at <= 0) return '';
+    final d = DateTime.fromMillisecondsSinceEpoch(at);
+    final hh = d.hour.toString().padLeft(2, '0');
+    final mm = d.minute.toString().padLeft(2, '0');
+    return '$hh:$mm';
+  }
+
   Widget _buildReport(ColorScheme c) {
-    if (_loadingReport) return const Center(child: CircularProgressIndicator());
-    if (_errReport != null) {
+    if (_loadingReport && _report == null) return const Center(child: CircularProgressIndicator());
+    if (_errReport != null && _report == null) {
       return _err(c, _errReport!, () => _loadReport());
     }
     final r = _report!;
     return RefreshIndicator(
-      onRefresh: _loadReport,
+      onRefresh: () => _loadReport(silent: true),
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
           Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text('数据源 ${r.source} · ${r.fetchedAt}', style: TextStyle(fontSize: 11, color: c.outline)),
+          Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
+              style: TextStyle(fontSize: 11, color: c.outline)),
           const SizedBox(height: 10),
           ...r.sections.map((s) => _sectionCard(s, ask: '用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：')),
         ],
@@ -94,18 +149,19 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   }
 
   Widget _buildDnews(ColorScheme c) {
-    if (_loadingDnews) return const Center(child: CircularProgressIndicator());
-    if (_errDnews != null) {
+    if (_loadingDnews && _dnews == null) return const Center(child: CircularProgressIndicator());
+    if (_errDnews != null && _dnews == null) {
       return _err(c, _errDnews!, () => _loadDnews());
     }
     final d = _dnews!;
     return RefreshIndicator(
-      onRefresh: _loadDnews,
+      onRefresh: () => _loadDnews(silent: true),
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
           Text('${d.date} 每日新闻 · ${d.items.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text('数据源 ${d.source}', style: TextStyle(fontSize: 11, color: c.outline)),
+          Text('数据源 ${d.source}${_staleDnews ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheDnewsAt)}' : ''}',
+              style: TextStyle(fontSize: 11, color: c.outline)),
           if (d.tip.isNotEmpty)
             Padding(padding: const EdgeInsets.only(top: 6), child: Text('💡 ${d.tip}', style: TextStyle(fontStyle: FontStyle.italic, color: c.outline))),
           const SizedBox(height: 10),
@@ -135,6 +191,16 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     );
   }
 
+  void _fav(NewsItem item) {
+    final favs = Store.favs();
+    if (favs.any((f) => f.title == item.title)) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经收藏过了')));
+      return;
+    }
+    Store.saveFavs([Fav(item.title, item.url, item.source, DateTime.now().millisecondsSinceEpoch), ...favs]);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
+  }
+
   Widget _newsTile({required String title, required NewsItem item, required String ask}) {
     final c = Theme.of(context).colorScheme;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -153,12 +219,8 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         TextButton.icon(
           icon: const Icon(Icons.star_border, size: 16),
           label: const Text('收藏', style: TextStyle(fontSize: 12)),
-          onPressed: () {
-            Store.saveFavs([Fav(item.title, item.url, item.source, DateTime.now().millisecondsSinceEpoch), ...Store.favs()]);
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
-          },
+          onPressed: () => _fav(item),
         ),
-        // 让 AI 讲讲：切到 AI tab 需要全局回调，这里直接 popup 提示（由 main 注入）
         if (aiAskGlobal != null)
           TextButton(
             onPressed: () => aiAskGlobal!(ask + item.title),
