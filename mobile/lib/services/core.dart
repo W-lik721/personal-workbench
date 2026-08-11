@@ -84,6 +84,15 @@ class DailyNews {
   DailyNews({this.date = '', this.source = '', this.tip = '', this.items = const []});
 }
 
+// 技术热榜条目（V2EX 国内开发者社区热帖；url 可能为空，此时回退到帖子页）
+class V2exItem {
+  int id;
+  String title, url, content, node, by;
+  int replies, created;
+  V2exItem({this.id = 0, this.title = '', this.url = '', this.content = '', this.node = '', this.by = '', this.replies = 0, this.created = 0});
+  String get link => url.isNotEmpty ? url : 'https://www.v2ex.com/t/$id';
+}
+
 // ---------- 本地存储 ----------
 class Store {
   static SharedPreferences? _p;
@@ -139,6 +148,12 @@ class Store {
   static set cacheDnewsJson(String? v) => v == null ? _p?.remove('wb_cache_dnews') : _p?.setString('wb_cache_dnews', v);
   static int get cacheDnewsAt => _p?.getInt('wb_cache_dnews_at') ?? 0;
   static set cacheDnewsAt(int v) => _p?.setInt('wb_cache_dnews_at', v);
+
+  // 技术热榜缓存（V2EX 原始 JSON + 抓取时间）
+  static String? get cacheHotJson => _p?.getString('wb_cache_hot');
+  static set cacheHotJson(String? v) => v == null ? _p?.remove('wb_cache_hot') : _p?.setString('wb_cache_hot', v);
+  static int get cacheHotAt => _p?.getInt('wb_cache_hot_at') ?? 0;
+  static set cacheHotAt(int v) => _p?.setInt('wb_cache_hot_at', v);
 
   // ---------- AI 记忆 ----------
   // 对话历史（role+content），自动保存/恢复
@@ -294,6 +309,34 @@ class Api {
       tip: data['note'] ?? data['tip'] ?? '',
       items: news,
     );
+  }
+
+  // 技术热榜：V2EX 国内开发者社区热帖（公开接口，无需鉴权，返回数组包一层便于缓存）
+  static Future<String> fetchHotBody() async {
+    final r = await http.get(Uri.parse('https://www.v2ex.com/api/topics/hot.json'),
+        headers: {'User-Agent': _ua}).timeout(const Duration(seconds: 20));
+    if (r.statusCode != 200) throw Exception('热榜接口 HTTP ${r.statusCode}');
+    final arr = jsonDecode(utf8.decode(r.bodyBytes)) as List;
+    return jsonEncode({'items': arr, 'fetchedAt': DateTime.now().toIso8601String()});
+  }
+
+  static List<V2exItem> parseHot(String body) {
+    final j = jsonDecode(body) as Map<String, dynamic>;
+    return (j['items'] as List? ?? []).map((it) {
+      final m = it as Map<String, dynamic>;
+      final member = (m['member'] as Map? ?? {}).cast<String, dynamic>();
+      final node = (m['node'] as Map? ?? {}).cast<String, dynamic>();
+      return V2exItem(
+        id: m['id'] as int? ?? 0,
+        title: (m['title'] ?? '').toString(),
+        url: (m['url'] ?? '').toString(),
+        content: (m['content'] ?? '').toString(),
+        node: (node['title'] ?? '').toString(),
+        by: (member['username'] ?? '').toString(),
+        replies: m['replies'] as int? ?? 0,
+        created: m['created'] as int? ?? 0,
+      );
+    }).toList();
   }
 
   // AI 助手：Agnes / 智谱

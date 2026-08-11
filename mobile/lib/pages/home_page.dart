@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   final _noteCtrl = TextEditingController();
   List<Todo> _todos = [];
   List<Note> _notes = [];
-  List<Link> _links = [];
   List<Fav> _favs = [];
   bool _pomoRunning = false;
   int _pomoLeft = 25 * 60;
@@ -28,7 +27,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _todos = Store.todos();
       _notes = Store.notes();
-      _links = Store.links();
       _favs = Store.favs();
     });
   }
@@ -98,42 +96,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _addLink() {
-    final ctrl1 = TextEditingController();
-    final ctrl2 = TextEditingController(text: 'https://');
-    showDialog(
-      context: context,
-      builder: (c) => AlertDialog(
-        title: const Text('添加常用入口'),
-        content: Column(mainAxisSize: MainAxisSize.min, children: [
-          TextField(controller: ctrl1, decoration: const InputDecoration(labelText: '名称（如 抖音）')),
-          const SizedBox(height: 8),
-          TextField(controller: ctrl2, decoration: const InputDecoration(labelText: '链接地址')),
+  // 今日概览的小数字卡片
+  Widget _stat(ColorScheme c, String icon, String label, int n) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: c.surfaceContainerHighest.withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(children: [
+          Text('$n', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: c.primary)),
+          const SizedBox(height: 2),
+          Text('$icon $label', style: TextStyle(fontSize: 12, color: c.outline)),
         ]),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
-          FilledButton(
-            onPressed: () {
-              final name = ctrl1.text.trim();
-              final url = ctrl2.text.trim();
-              if (name.isEmpty) {
-                Navigator.pop(c);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('名称不能为空')));
-                return;
-              }
-              if (url.isEmpty || url == 'https://') {
-                Navigator.pop(c);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('请填写有效的链接地址')));
-                return;
-              }
-              final l = Store.links()..add(Link(name, url));
-              Store.saveLinks(l);
-              Navigator.pop(c);
-              _reload();
-            },
-            child: const Text('添加'),
-          ),
-        ],
       ),
     );
   }
@@ -307,24 +284,24 @@ class _HomePageState extends State<HomePage> {
             ]),
           ),
           const SizedBox(height: 10),
-          // ---- 常用入口 ----
+          // ---- 今日概览（替换原"常用入口"） ----
           _card(
-            title: '🔗 常用入口 · 一键直达',
+            title: '📊 今日概览',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: _links.asMap().entries.map((e) => InputChip(
-                      avatar: const Icon(Icons.link, size: 16),
-                      label: Text(e.value.label),
-                      onPressed: () async {
-                        await launchUrl(Uri.parse(e.value.url), mode: LaunchMode.externalApplication);
-                      },
-                      onDeleted: () => _delLink(e.key),
-                    )).toList(),
+              Row(children: [
+                _stat(c, '✅', '待做', _todos.where((t) => !t.done).length),
+                _stat(c, '📝', '速记', _notes.length),
+                _stat(c, '⭐', '收藏', _favs.length),
+              ]),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  icon: const Icon(Icons.auto_awesome, size: 18),
+                  label: const Text('💡 让 AI 给我今日灵感'),
+                  onPressed: _aiInspire,
+                ),
               ),
-              const SizedBox(height: 8),
-              OutlinedButton.icon(onPressed: _addLink, icon: const Icon(Icons.add, size: 18), label: const Text('加一个')),
             ]),
           ),
           const SizedBox(height: 10),
@@ -374,25 +351,20 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  // 删除常用入口，带撤销（链接一般很少，直接删 + SnackBar 撤销最顺手）
-  void _delLink(int i) {
-    final removed = _links[i];
-    final l = Store.links()..removeAt(i);
-    Store.saveLinks(l);
-    _reload();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('已删除入口「${removed.label}」'),
-        action: SnackBarAction(
-          label: '撤销',
-          onPressed: () {
-            final l2 = Store.links()..insert(i, removed);
-            Store.saveLinks(l2);
-            _reload();
-          },
-        ),
-      ),
-    );
+  // 让 AI 根据今天的待办/速记给 1-2 个可动手的小建议（替换原"常用入口"的用处）
+  void _aiInspire() {
+    if (aiAskGlobal == null) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('AI 还没准备好，去设置里填好 Key 再试')));
+      return;
+    }
+    final pending = _todos.where((t) => !t.done).map((t) => t.text).take(8).toList();
+    final notes = _notes.map((n) => n.text).take(5).toList();
+    final b = StringBuffer();
+    b.writeln('这是我今天工作台的状态：');
+    b.writeln('待办（还没做的）：${pending.isEmpty ? '暂无' : pending.join('、')}');
+    b.writeln('随手记：${notes.isEmpty ? '暂无' : notes.join('、')}');
+    b.writeln('请基于上面这些，给我 1-2 个今天可以马上动手做的具体小建议或灵感，用大白话、别太啰嗦。');
+    aiAskGlobal!(b.toString());
   }
 
   // 删除后通用的"撤销"SnackBar（待办/速记/收藏复用，避免误删找不回）

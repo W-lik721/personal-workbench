@@ -467,6 +467,26 @@
     }).join("");
   }
 
+  function renderOverview(d) {
+    var a = d.aiDaily || {}, dn = d.dailyNews || {};
+    var aCount = a.count || 0, dCount = dn.count || 0;
+    var total = aCount + dCount;
+    var aTime = String(a.fetchedAt || "").slice(11, 16) || "-";
+    var dTime = String(dn.fetchedAt || "").slice(11, 16) || "-";
+    var prompt = "帮我把今天工作台里的资讯划 3 条重点：AI 日报 " + aCount + " 条、每日新闻 " + dCount + " 条。请挑出 3 条对我（青灯，在自学计算机、爱折腾 AI 工具）最值得关注的，每条用大白话说明：① 背景是什么；② 为什么重要；③ 今天能动手试什么。";
+    document.getElementById("overview").innerHTML =
+      '<div class="ov-hero">' +
+        '<div class="ov-hero-top"><div class="ov-ttl">📊 今日速览</div>' +
+        '<div class="ov-meta">共 ' + total + ' 条资讯 · 已加载 2 个网页来源</div></div>' +
+        '<div class="ov-chips">' +
+          '<span class="chip"><span class="ok">✓</span> AI 日报 · ' + aCount + ' 条 · ' + aTime + '</span>' +
+          '<span class="chip"><span class="ok">✓</span> 每日新闻 · ' + dCount + ' 条 · ' + dTime + '</span>' +
+          '<span class="chip"><span class="ok">✓</span> 技术热榜 · App 端实时</span>' +
+        '</div>' +
+        '<button class="btn-cy" onclick="aiAsk(' + "'" + jsStr(prompt) + "'" + ')">🤖 AI 帮你划 3 条重点</button>' +
+      '</div>';
+  }
+
   function renderSkills(skills) {
     var byCat = {};
     skills.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
@@ -1111,6 +1131,7 @@
     renderSync(d);
     renderFreshness(d);
     renderKPI(d);
+    renderOverview(d);
     renderQuick(d);
     renderWeekly(d);
   }

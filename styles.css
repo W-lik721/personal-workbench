@@ -659,3 +659,16 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .grp.open .grp-b{display:grid}
 .grp-b .sess{border-bottom:none;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:6px 8px;margin:0}
 .stat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px}
+
+/* ===== 今日速览整合条（v8）：三源合并 + AI 划重点 ===== */
+.overview{margin-bottom:14px}
+.ov-hero{background:linear-gradient(135deg,rgba(43,184,198,.12),rgba(43,184,198,.03));border:1px solid rgba(43,184,198,.28);border-radius:var(--radius-lg);padding:14px 16px;box-shadow:var(--shadow-md);animation:fadeIn .5s ease both}
+.ov-hero-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ov-ttl{font-size:16px;font-weight:700;color:var(--txt-strong);display:flex;align-items:center;gap:8px}
+.ov-meta{margin-left:auto;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+.ov-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-pill);padding:5px 12px;color:var(--txt)}
+.chip .ok{color:var(--green);font-weight:700}
+.btn-cy{margin-top:13px;width:100%;background:var(--accent-strong);color:#fff;border:none;border-radius:var(--radius-sm);padding:11px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 6px 16px -10px rgba(10,118,130,.7);transition:transform .15s,filter .15s,box-shadow .15s;font-family:inherit}
+.btn-cy:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-cy:active{transform:scale(.97)}
