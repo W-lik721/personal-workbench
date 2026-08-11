@@ -46,12 +46,14 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       final body = await Api.fetchDailyReportBody();
       Store.cacheReportJson = body;
       Store.cacheReportAt = DateTime.now().millisecondsSinceEpoch;
-      if (mounted) setState(() {
-        _report = Api.parseDailyReport(body);
-        _loadingReport = false;
-        _staleReport = false;
-        _errReport = null;
-      });
+      if (mounted) {
+        setState(() {
+          _report = Api.parseDailyReport(body);
+          _loadingReport = false;
+          _staleReport = false;
+          _errReport = null;
+        });
+      }
     } catch (e) {
       if (!mounted) return;
       if (_report == null) {
@@ -76,12 +78,14 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       final body = await Api.fetchDailyNewsBody();
       Store.cacheDnewsJson = body;
       Store.cacheDnewsAt = DateTime.now().millisecondsSinceEpoch;
-      if (mounted) setState(() {
-        _dnews = Api.parseDailyNews(body);
-        _loadingDnews = false;
-        _staleDnews = false;
-        _errDnews = null;
-      });
+      if (mounted) {
+        setState(() {
+          _dnews = Api.parseDailyNews(body);
+          _loadingDnews = false;
+          _staleDnews = false;
+          _errDnews = null;
+        });
+      }
     } catch (e) {
       if (!mounted) return;
       if (_dnews == null) {
@@ -149,9 +153,10 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   }
 
   Widget _buildDnews(ColorScheme c) {
-    if (_loadingDnews && _dnews == null) return const Center(child: CircularProgressIndicator());
-    if (_errDnews != null && _dnews == null) {
-      return _err(c, _errDnews!, () => _loadDnews());
+    // 尚未加载（每日新闻 Tab 懒加载，启动时 _dnews 为 null）先给占位，避免空指针崩溃
+    if (_dnews == null) {
+      if (_errDnews != null) return _err(c, _errDnews!, () => _loadDnews());
+      return const Center(child: CircularProgressIndicator());
     }
     final d = _dnews!;
     return RefreshIndicator(
@@ -231,6 +236,15 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     ]);
   }
 
+  // 把英文异常转成用户能看懂的中文提示
+  String _friendlyErr(String msg) {
+    final m = msg.toLowerCase();
+    if (m.contains('http')) return '网络请求失败了，可能是当前网络不稳定，或新闻接口暂时不可用。';
+    if (m.contains('timeout') || m.contains('超时')) return '连接超时了，请检查网络后重试。';
+    if (m.contains('socket') || m.contains('failed host') || m.contains('网络')) return '网络连接失败，请检查你的网络是否正常。';
+    return '内容加载失败了，点下面的按钮再试一次。';
+  }
+
   Widget _err(ColorScheme c, String msg, VoidCallback retry) {
     return Center(
       child: Padding(
@@ -238,7 +252,10 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('⚠️ 加载失败', style: TextStyle(color: c.error, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
-          Text(msg, textAlign: TextAlign.center, style: TextStyle(color: c.outline)),
+          Text(_friendlyErr(msg), textAlign: TextAlign.center, style: TextStyle(color: c.onSurface)),
+          const SizedBox(height: 8),
+          Text(msg, textAlign: TextAlign.center,
+              style: TextStyle(color: c.outline.withValues(alpha: 0.6), fontSize: 11)),
           const SizedBox(height: 12),
           FilledButton(onPressed: retry, child: const Text('重试')),
         ]),

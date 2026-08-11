@@ -1,8 +1,7 @@
 // 首页：待办 + 番茄钟 + 速记 + 常用入口 + 收藏
 import 'dart:async';
-import 'dart:ui' show FontFeature;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemSound, SystemSoundType;
+import 'package:flutter/services.dart' show SystemSound, SystemSoundType, HapticFeedback;
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 
@@ -21,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   List<Fav> _favs = [];
   bool _pomoRunning = false;
   int _pomoLeft = 25 * 60;
+  int _pomoTotal = 25 * 60; // 当前选择的专注总时长（进度条分母 + 重置基准）
   DateTime? _pomoEnd; // 专注结束时刻（时间戳计时，后台/锁屏也不失真）
   Timer? _pomoTimer;
 
@@ -56,9 +56,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _delTodo(int i) {
+    final removed = Store.todos()[i];
     final l = Store.todos()..removeAt(i);
     Store.saveTodos(l);
     _reload();
+    _undoSnack('已删除待办', () {
+      final l2 = Store.todos();
+      final idx = i.clamp(0, l2.length);
+      l2.insert(idx, removed);
+      Store.saveTodos(l2);
+      _reload();
+    });
   }
 
   void _clearDone() {
@@ -77,9 +85,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _delNote(int i) {
+    final removed = Store.notes()[i];
     final l = Store.notes()..removeAt(i);
     Store.saveNotes(l);
     _reload();
+    _undoSnack('已删除速记', () {
+      final l2 = Store.notes();
+      final idx = i.clamp(0, l2.length);
+      l2.insert(idx, removed);
+      Store.saveNotes(l2);
+      _reload();
+    });
   }
 
   void _addLink() {
@@ -98,7 +114,19 @@ class _HomePageState extends State<HomePage> {
           TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
           FilledButton(
             onPressed: () {
-              final l = Store.links()..add(Link(ctrl1.text.trim(), ctrl2.text.trim()));
+              final name = ctrl1.text.trim();
+              final url = ctrl2.text.trim();
+              if (name.isEmpty) {
+                Navigator.pop(c);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('名称不能为空')));
+                return;
+              }
+              if (url.isEmpty || url == 'https://') {
+                Navigator.pop(c);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('请填写有效的链接地址')));
+                return;
+              }
+              final l = Store.links()..add(Link(name, url));
               Store.saveLinks(l);
               Navigator.pop(c);
               _reload();
@@ -147,12 +175,15 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _pomoRunning = false;
       _pomoEnd = null;
-      _pomoLeft = 25 * 60;
+      _pomoLeft = _pomoTotal;
     });
   }
 
   void _pomoBeep() {
-    // 简单提示音：用 SystemSound（无第三方依赖）
+    // 结束提醒：震动 + 提示音，比单一的轻微提示音更不容易错过
+    try {
+      HapticFeedback.heavyImpact();
+    } catch (_) {}
     try {
       SystemSound.play(SystemSoundType.click);
     } catch (_) {}
@@ -182,12 +213,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Text('$doneCount/${_todos.length} 已完成', style: TextStyle(fontSize: 12, color: c.outline)),
                 ),
-              ..._todos.asMap().entries.map((e) => ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.zero,
-                    leading: Checkbox(value: e.value.done, onChanged: (_) => _toggleTodo(e.key)),
-                    title: Text(e.value.text, style: TextStyle(decoration: e.value.done ? TextDecoration.lineThrough : null, color: e.value.done ? c.outline : null)),
-                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delTodo(e.key)),
+              ..._todos.asMap().entries.map((e) => Dismissible(
+                    key: ObjectKey(e.value),
+                    direction: DismissDirection.endToStart,
+                    background: _swipeBg(c),
+                    onDismissed: (_) => _delTodo(e.key),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Checkbox(value: e.value.done, onChanged: (_) => _toggleTodo(e.key)),
+                      title: GestureDetector(
+                        onTap: () => _editTodo(e.key),
+                        child: Text(e.value.text, style: TextStyle(decoration: e.value.done ? TextDecoration.lineThrough : null, color: e.value.done ? c.outline : null)),
+                      ),
+                      trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editTodo(e.key)),
+                    ),
                   )),
               if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.outline, fontSize: 13))),
               TextField(
@@ -206,12 +246,27 @@ class _HomePageState extends State<HomePage> {
               const Divider(height: 24),
               // 番茄钟
               Row(children: [
+                const Text('🍅 专注计时', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                const Spacer(),
+                DropdownButton<int>(
+                  value: _pomoTotal ~/ 60,
+                  items: const [5, 15, 25, 45].map((m) => DropdownMenuItem(value: m, child: Text('$m 分钟'))).toList(),
+                  onChanged: (v) {
+                    if (v == null) return;
+                    setState(() {
+                      _pomoTotal = v * 60;
+                      if (!_pomoRunning) _pomoLeft = _pomoTotal;
+                    });
+                  },
+                ),
+              ]),
+              Row(children: [
                 Text(_pomoText(), style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, fontFeatures: const [FontFeature.tabularFigures()], color: c.primary)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
-                    child: LinearProgressIndicator(value: _pomoLeft / (25 * 60), minHeight: 8, backgroundColor: c.surfaceContainerHighest),
+                    child: LinearProgressIndicator(value: _pomoLeft / _pomoTotal, minHeight: 8, backgroundColor: c.surfaceContainerHighest),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -226,11 +281,18 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '📝 我的速记 · 随手记',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              ..._notes.asMap().entries.map((e) => ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(e.value.text),
-                    trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delNote(e.key)),
+              ..._notes.asMap().entries.map((e) => Dismissible(
+                    key: ObjectKey(e.value),
+                    direction: DismissDirection.endToStart,
+                    background: _swipeBg(c),
+                    onDismissed: (_) => _delNote(e.key),
+                    child: ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      onTap: () => _editNote(e.key),
+                      title: Text(e.value.text),
+                      trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editNote(e.key)),
+                    ),
                   )),
               if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.outline, fontSize: 13))),
               TextField(
@@ -252,12 +314,13 @@ class _HomePageState extends State<HomePage> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: _links.map((l) => ActionChip(
+                children: _links.asMap().entries.map((e) => InputChip(
                       avatar: const Icon(Icons.link, size: 16),
-                      label: Text(l.label),
+                      label: Text(e.value.label),
                       onPressed: () async {
-                        await launchUrl(Uri.parse(l.url), mode: LaunchMode.externalApplication);
+                        await launchUrl(Uri.parse(e.value.url), mode: LaunchMode.externalApplication);
                       },
+                      onDeleted: () => _delLink(e.key),
                     )).toList(),
               ),
               const SizedBox(height: 8),
@@ -272,13 +335,18 @@ class _HomePageState extends State<HomePage> {
               if (_favs.isEmpty)
                 Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.outline, fontSize: 13))
               else
-                ..._favs.asMap().entries.map((e) => ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(e.value.title, maxLines: 2, overflow: TextOverflow.ellipsis),
-                      subtitle: e.value.source.isNotEmpty ? Text('${e.value.source} · ${_fmtDate(e.value.at)}') : null,
-                      onTap: e.value.url.isNotEmpty ? () async => launchUrl(Uri.parse(e.value.url), mode: LaunchMode.externalApplication) : null,
-                      trailing: IconButton(icon: const Icon(Icons.close, size: 18), onPressed: () => _delFav(e.key)),
+                ..._favs.asMap().entries.map((e) => Dismissible(
+                      key: ObjectKey(e.value),
+                      direction: DismissDirection.endToStart,
+                      background: _swipeBg(c),
+                      onDismissed: (_) => _delFav(e.key),
+                      child: ListTile(
+                        dense: true,
+                        contentPadding: EdgeInsets.zero,
+                        title: Text(e.value.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+                        subtitle: e.value.source.isNotEmpty ? Text('${e.value.source} · ${_fmtDate(e.value.at)}') : null,
+                        onTap: e.value.url.isNotEmpty ? () async => launchUrl(Uri.parse(e.value.url), mode: LaunchMode.externalApplication) : null,
+                      ),
                     )),
               if (_favs.isNotEmpty) ...[
                 const SizedBox(height: 4),
@@ -293,9 +361,131 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _delFav(int i) {
+    final removed = Store.favs()[i];
     final l = Store.favs()..removeAt(i);
     Store.saveFavs(l);
     _reload();
+    _undoSnack('已删除收藏', () {
+      final l2 = Store.favs();
+      final idx = i.clamp(0, l2.length);
+      l2.insert(idx, removed);
+      Store.saveFavs(l2);
+      _reload();
+    });
+  }
+
+  // 删除常用入口，带撤销（链接一般很少，直接删 + SnackBar 撤销最顺手）
+  void _delLink(int i) {
+    final removed = _links[i];
+    final l = Store.links()..removeAt(i);
+    Store.saveLinks(l);
+    _reload();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('已删除入口「${removed.label}」'),
+        action: SnackBarAction(
+          label: '撤销',
+          onPressed: () {
+            final l2 = Store.links()..insert(i, removed);
+            Store.saveLinks(l2);
+            _reload();
+          },
+        ),
+      ),
+    );
+  }
+
+  // 删除后通用的"撤销"SnackBar（待办/速记/收藏复用，避免误删找不回）
+  void _undoSnack(String msg, VoidCallback undo) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        action: SnackBarAction(label: '撤销', onPressed: undo),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+  }
+
+  // 侧滑删除的红色背景（与移动端原生手感一致）
+  Widget _swipeBg(ColorScheme c) => Container(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 20),
+        color: c.error,
+        child: const Icon(Icons.delete_outline, color: Colors.white),
+      );
+
+  // 编辑已有待办（点文字或铅笔图标）
+  void _editTodo(int i) {
+    final cur = Store.todos()[i];
+    final ctrl = TextEditingController(text: cur.text);
+    showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('编辑待办'),
+        content: TextField(
+          controller: ctrl,
+          maxLines: 3,
+          minLines: 1,
+          autofocus: true,
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
+          FilledButton(
+            onPressed: () {
+              final t = ctrl.text.trim();
+              if (t.isEmpty) {
+                Navigator.pop(c);
+                return;
+              }
+              final l = Store.todos();
+              l[i].text = t;
+              Store.saveTodos(l);
+              Navigator.pop(c);
+              _reload();
+            },
+            child: const Text('保存'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 编辑已有速记（点文字或铅笔图标）
+  void _editNote(int i) {
+    final cur = Store.notes()[i];
+    final ctrl = TextEditingController(text: cur.text);
+    showDialog(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('编辑速记'),
+        content: TextField(
+          controller: ctrl,
+          maxLines: 5,
+          minLines: 1,
+          autofocus: true,
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
+          FilledButton(
+            onPressed: () {
+              final t = ctrl.text.trim();
+              if (t.isEmpty) {
+                Navigator.pop(c);
+                return;
+              }
+              final l = Store.notes();
+              l[i].text = t;
+              Store.saveNotes(l);
+              Navigator.pop(c);
+              _reload();
+            },
+            child: const Text('保存'),
+          ),
+        ],
+      ),
+    );
   }
 
   String _fmtDate(int ts) {

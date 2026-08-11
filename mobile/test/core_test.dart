@@ -67,7 +67,7 @@ void main() {
 
   group('Api 数据解析', () {
     test('AI 日报解析', () {
-      final body = '{"date":"2026-08-10","generatedAt":"2026-08-10T08:00:00Z",'
+      const body = '{"date":"2026-08-10","generatedAt":"2026-08-10T08:00:00Z",'
           '"sections":[{"label":"模型","items":[{"title":"新闻A","summary":"摘要","source":"源","url":"http://x"}]}]}';
       final r = Api.parseDailyReport(body);
       expect(r.date, '2026-08-10');
@@ -78,7 +78,7 @@ void main() {
     });
 
     test('每日新闻解析', () {
-      final body = '{"data":{"date":"2026-08-10","news":["新闻1","新闻2"],"note":"温馨提示"}}';
+      const body = '{"data":{"date":"2026-08-10","news":["新闻1","新闻2"],"note":"温馨提示"}}';
       final d = Api.parseDailyNews(body);
       expect(d.items.length, 2);
       expect(d.items[0].title, '新闻1');

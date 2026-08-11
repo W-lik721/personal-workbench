@@ -8,17 +8,44 @@ import 'pages/ai_page.dart';
 import 'pages/schedule_page.dart';
 import 'pages/settings_page.dart';
 
+// 主题切换通知器：让深处的开关能即时重建 MaterialApp（否则要重启才生效）
+final darkModeNotifier = ValueNotifier<bool>(true);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Store.init(); // 初始化本地存储（必须，否则待办/Key/记忆无法持久化）
+  darkModeNotifier.value = Store.darkMode; // 以已持久化的偏好初始化
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
   runApp(const WorkbenchApp());
 }
 
-class WorkbenchApp extends StatelessWidget {
+class WorkbenchApp extends StatefulWidget {
   const WorkbenchApp({super.key});
+
+  @override
+  State<WorkbenchApp> createState() => _WorkbenchAppState();
+}
+
+class _WorkbenchAppState extends State<WorkbenchApp> {
+  @override
+  void initState() {
+    super.initState();
+    darkModeNotifier.addListener(_onDarkChanged);
+  }
+
+  // 切换时：先持久化，再重建 MaterialApp 让主题立即生效
+  void _onDarkChanged() {
+    Store.darkMode = darkModeNotifier.value;
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    darkModeNotifier.removeListener(_onDarkChanged);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +67,7 @@ class WorkbenchApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFF0E0F13),
       ),
-      themeMode: Store.darkMode ? ThemeMode.dark : ThemeMode.light,
+      themeMode: darkModeNotifier.value ? ThemeMode.dark : ThemeMode.light,
       home: const MainShell(),
     );
   }
@@ -86,9 +113,9 @@ class _MainShellState extends State<MainShell> {
         title: const Text('🛠️ 轻量工作台'),
         actions: [
           IconButton(
-            icon: Icon(Store.darkMode ? Icons.light_mode : Icons.dark_mode),
+            icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
             tooltip: '切换主题',
-            onPressed: () => setState(() => Store.darkMode = !Store.darkMode),
+            onPressed: () => darkModeNotifier.value = !darkModeNotifier.value,
           ),
         ],
       ),

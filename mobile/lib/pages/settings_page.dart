@@ -1,5 +1,9 @@
 // 设置页：AI 助手记忆管理（开关/条数/长期记忆/清空历史）+ 外观
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import '../main.dart';
 import '../services/core.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -73,17 +77,34 @@ class _SettingsPageState extends State<SettingsPage> {
       // ---------- 外观 ----------
       _sectionTitle('🎨 外观'),
       Card(
-        child: ListTile(
-          leading: const Icon(Icons.dark_mode_outlined),
-          title: const Text('深色模式'),
-          trailing: Switch(
-            value: Store.darkMode,
-            onChanged: (v) {
-              Store.darkMode = v;
-              setState(() {});
-            },
+        child:           ListTile(
+            leading: const Icon(Icons.dark_mode_outlined),
+            title: const Text('深色模式'),
+            trailing: Switch(
+              value: darkModeNotifier.value,
+              onChanged: (v) => darkModeNotifier.value = v,
+            ),
           ),
-        ),
+      ),
+
+      // ---------- 数据备份 ----------
+      _sectionTitle('💾 数据备份'),
+      Card(
+        child: Column(children: [
+          ListTile(
+            leading: const Icon(Icons.upload_outlined),
+            title: const Text('导出备份'),
+            subtitle: const Text('把待办/速记/收藏/课程表等存成 JSON 文件（不含 API Key）'),
+            onTap: _exportBackup,
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.download_outlined),
+            title: const Text('导入恢复'),
+            subtitle: const Text('从备份文件还原，会覆盖当前同类数据'),
+            onTap: _importBackup,
+          ),
+        ]),
       ),
 
       // ---------- 关于 ----------
@@ -201,5 +222,79 @@ class _SettingsPageState extends State<SettingsPage> {
         ],
       ),
     );
+  }
+
+  // 导出备份：系统文件选择器选位置，存成 JSON
+  Future<void> _exportBackup() async {
+    final now = DateTime.now();
+    final stamp = '${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}_'
+        '${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}';
+    final fileName = 'workbench_backup_$stamp.json';
+    String? path;
+    try {
+      path = await FilePicker.saveFile(
+        dialogTitle: '保存备份',
+        fileName: fileName,
+        type: FileType.custom,
+        allowedExtensions: ['json'],
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('无法打开文件选择器')));
+      return;
+    }
+    if (path == null) return; // 用户取消
+    try {
+      await File(path).writeAsString(jsonEncode(Store.exportAll()));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 已导出备份：$fileName')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('保存失败：${e.toString().replaceAll('Exception: ', '')}')));
+    }
+  }
+
+  // 导入恢复：选 JSON 文件 → 校验 → 二次确认 → 还原
+  Future<void> _importBackup() async {
+    final result = await FilePicker.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+      withData: true,
+    );
+    if (result == null || result.files.isEmpty) return; // 取消
+    if (!mounted) return;
+    final bytes = result.files.single.bytes;
+    if (bytes == null || bytes.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('读不到文件内容')));
+      return;
+    }
+    Map<String, dynamic> m;
+    try {
+      m = jsonDecode(utf8.decode(bytes, allowMalformed: true)) as Map<String, dynamic>;
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('文件不是有效的备份 JSON')));
+      return;
+    }
+    if (m['app'] != 'lite_workbench') {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这不是本应用的备份文件')));
+      return;
+    }
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('导入备份'),
+        content: const Text('导入会覆盖当前的待办 / 速记 / 收藏 / 课程表等数据，确定继续吗？\n\n（不会覆盖已设置的 API Key）'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
+          FilledButton(onPressed: () => Navigator.pop(c, true), child: const Text('导入')),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    Store.importAll(m);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已从备份恢复数据')));
   }
 }

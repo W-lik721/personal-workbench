@@ -157,15 +157,83 @@ class Store {
   static int get aiMemoryMax => _p?.getInt('wb_ai_memory_max') ?? 20;
   static set aiMemoryMax(int v) => _p?.setInt('wb_ai_memory_max', v);
 
+  // ---------- 备份与恢复（不含 API Key：避免明文落盘泄露） ----------
+  // 导出的全部内容都是 SharedPreferences 里的本地数据，可用作"换机/误删"兜底
+  static Map<String, dynamic> exportAll() => {
+        'app': 'lite_workbench',
+        'version': 1,
+        'exportedAt': DateTime.now().toIso8601String(),
+        'data': {
+          'wb_todos': todos().map((t) => t.toJson()).toList(),
+          'wb_notes': notes().map((n) => n.toJson()).toList(),
+          'wb_favs': favs().map((f) => f.toJson()).toList(),
+          'wb_links': links().map((l) => l.toJson()).toList(),
+          'wb_schedule': courses().map((c) => c.toJson()).toList(),
+          'wb_ai_history': aiHistory(),
+          'wb_ai_memory': aiMemory(),
+          'wb_dark': darkMode,
+          'wb_ai_prov': aiProv,
+          'wb_ai_memory_on': aiMemoryOn,
+          'wb_ai_memory_max': aiMemoryMax,
+        }
+      };
+
+  // 从导出文件还原（只覆盖文件里有的字段，缺字段不动现有数据）。调用前需二次确认。
+  static void importAll(Map<String, dynamic> m) {
+    final data = ((m['data'] as Map?)?.cast<String, dynamic>()) ?? <String, dynamic>{};
+    if (data['wb_todos'] != null) {
+      saveTodos((data['wb_todos'] as List).map((j) => Todo.fromJson(j)).toList());
+    }
+    if (data['wb_notes'] != null) {
+      saveNotes((data['wb_notes'] as List).map((j) => Note.fromJson(j)).toList());
+    }
+    if (data['wb_favs'] != null) {
+      saveFavs((data['wb_favs'] as List).map((j) => Fav.fromJson(j)).toList());
+    }
+    if (data['wb_links'] != null) {
+      saveLinks((data['wb_links'] as List).map((j) => Link.fromJson(j)).toList());
+    }
+    if (data['wb_schedule'] != null) {
+      saveCourses((data['wb_schedule'] as List).map((j) => Course.fromJson(j)).toList());
+    }
+    if (data['wb_ai_history'] != null) {
+      saveAiHistory((data['wb_ai_history'] as List)
+          .map((j) => (j as Map).map((k, v) => MapEntry(k.toString(), v.toString())))
+          .toList()
+          .cast<Map<String, String>>());
+    }
+    if (data['wb_ai_memory'] != null) {
+      saveAiMemory((data['wb_ai_memory'] as List).map((j) => j.toString()).toList());
+    }
+    if (data['wb_dark'] != null) darkMode = data['wb_dark'] as bool;
+    if (data['wb_ai_prov'] != null) aiProv = data['wb_ai_prov'] as String;
+    if (data['wb_ai_memory_on'] != null) aiMemoryOn = data['wb_ai_memory_on'] as bool;
+    if (data['wb_ai_memory_max'] != null) aiMemoryMax = data['wb_ai_memory_max'] as int;
+  }
+
+  // 内存缓存：避免每次读写都全量 JSON 编解码（首页一个 _reload 会连 decode 4 遍，量大时明显卡）
+  // _load 返回副本，调用方（如 Store.todos()..insert/..removeAt）原地改动不会污染缓存；
+  // _save 同步刷新内存副本 + 落盘，保证内存与磁盘一致。
+  static final Map<String, List<dynamic>> _mem = {};
+
   static List<dynamic> _load(String k) {
     try {
+      final cached = _mem[k];
+      if (cached != null) {
+        return List<dynamic>.from(cached);
+      }
       final s = _p?.getString(k);
-      return s == null ? [] : (jsonDecode(s) as List);
+      final v = s == null ? <dynamic>[] : (jsonDecode(s) as List);
+      _mem[k] = List<dynamic>.from(v);
+      return List<dynamic>.from(_mem[k]!);
     } catch (_) {
       return [];
     }
   }
-  static void _save(String k, List<dynamic> v) => _p?.setString(k, jsonEncode(v));
+  static void _save(String k, List<dynamic> v) {
+    _mem[k] = List<dynamic>.from(v);
+    _p?.setString(k, jsonEncode(v));
+  }
 }
 
 // ---------- 网络 API ----------
@@ -196,7 +264,9 @@ class Api {
       return NewsSection(sm['label'] ?? '', items);
     }).toList();
     var count = 0;
-    for (final s in secs) count += s.items.length;
+    for (final s in secs) {
+      count += s.items.length;
+    }
     return DailyReport(
       date: j['date'] ?? '',
       source: 'AI HOT',
@@ -274,7 +344,8 @@ class Api {
       if (data == '[DONE]') break;
       try {
         final j = jsonDecode(data) as Map<String, dynamic>;
-        final delta = ((j['choices'] as List? ?? []) as List).isNotEmpty ? (j['choices'][0] as Map)['delta'] as Map? : null;
+        final choices = (j['choices'] as List? ?? const <dynamic>[]);
+        final delta = choices.isNotEmpty ? (choices[0] as Map)['delta'] as Map? : null;
         final c = delta?['content']?.toString();
         if (c != null && c.isNotEmpty) {
           full += c;
@@ -307,7 +378,8 @@ class Api {
         })).timeout(const Duration(seconds: 60));
     _checkStatus(r.statusCode);
     final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
-    final msg = ((j['choices'] as List? ?? []) as List).isNotEmpty ? (j['choices'][0] as Map)['message'] as Map? : null;
+    final choices = (j['choices'] as List? ?? const <dynamic>[]);
+    final msg = choices.isNotEmpty ? (choices[0] as Map)['message'] as Map? : null;
     final content = msg?['content']?.toString().trim() ?? '';
     if (content.isNotEmpty) return content;
     final reasoning = msg?['reasoning_content']?.toString();

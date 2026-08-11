@@ -1,6 +1,9 @@
 // AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 
 class AiPage extends StatefulWidget {
@@ -12,10 +15,12 @@ class AiPage extends StatefulWidget {
 class _AiPageState extends State<AiPage> {
   final _input = TextEditingController();
   final _scroll = ScrollController();
+  bool _atBottom = true;
   final List<_Msg> _msgs = [];
   String _prov = 'agnes';
   bool _busy = false;
   bool _hasKey = false;
+  bool _memOn = true;
   bool _cancel = false;
   String? _keyError;
   http.Client? _chatClient;
@@ -24,7 +29,9 @@ class _AiPageState extends State<AiPage> {
   void initState() {
     super.initState();
     _prov = Store.aiProv;
+    _memOn = Store.aiMemoryOn;
     _loadKey();
+    _input.addListener(_onInput);
     // 恢复上次对话历史（记忆功能）
     for (final m in Store.aiHistory()) {
       _msgs.add(_Msg(m['content'] ?? '', m['role'] == 'user'));
@@ -40,11 +47,27 @@ class _AiPageState extends State<AiPage> {
       if (!mounted) return;
       setState(() => _input.text = t);
     };
+    // 记录是否贴底：上滑看历史时，流式输出不强行拽到底
+    _scroll.addListener(() {
+      if (_scroll.hasClients) {
+        _atBottom = _scroll.position.pixels >= _scroll.position.maxScrollExtent - 50;
+      }
+    });
   }
 
   Future<void> _loadKey() async {
     final k = await Store.aiKey(_prov);
     if (mounted) setState(() => _hasKey = k.isNotEmpty);
+  }
+
+  // 输入框文字变化时重建，让"清空"按钮随文字出现/消失
+  void _onInput() => setState(() {});
+
+  // 记忆开关：在 AI 页头部一键切换，实时同步到 Store（设置页也读同一个值）
+  void _toggleMem() {
+    _memOn = !_memOn;
+    Store.aiMemoryOn = _memOn;
+    setState(() {});
   }
 
   @override
@@ -53,6 +76,7 @@ class _AiPageState extends State<AiPage> {
     aiFillGlobal = null;
     _cancel = true;
     _chatClient?.close();
+    _input.removeListener(_onInput);
     _input.dispose();
     _scroll.dispose();
     super.dispose();
@@ -102,21 +126,26 @@ class _AiPageState extends State<AiPage> {
       setState(() {});
       return;
     }
+    _input.clear(); // 先清空输入框（放在 setState 外，避免触发监听里的 setState 嵌套）
     setState(() {
       _busy = true;
       _keyError = null;
       _msgs.add(_Msg(q, true));
       _msgs.add(_Msg('', false, streaming: true)); // 空气泡，流式往里填字
-      _input.clear();
     });
-    _scrollToBottom();
-    _cancel = false;
+    _scrollToBottom(true);
+    await _runStream(q);
+  }
 
+  // 发起一次流式对话（不含"加用户气泡/清输入框"，由 _send/_regenerate 负责 UI）
+  Future<void> _runStream(String q) async {
+    _cancel = false;
     final all = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
     final history = all.sublist(0, all.length - 1);
     final memory = Store.aiMemoryOn ? Store.aiMemory() : <String>[];
     final maxMsgs = Store.aiMemoryMax;
     final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
+    final key = await Store.aiKey(_prov);
 
     _chatClient = http.Client();
     try {
@@ -163,6 +192,23 @@ class _AiPageState extends State<AiPage> {
     _scrollToBottom();
   }
 
+  // 重新生成最后一条 AI 回复（或重试失败的那条）：取最后一条用户消息重发
+  Future<void> _regenerate() async {
+    if (_busy) return;
+    final lastUser = _msgs.lastWhere((m) => m.user, orElse: () => _Msg('', true));
+    if (lastUser.text.trim().isEmpty) return;
+    // 移除当前的 AI 回复（普通或错误），准备替换
+    if (_msgs.isNotEmpty && !_msgs.last.user) {
+      _msgs.removeLast();
+    }
+    setState(() {
+      _busy = true;
+      _msgs.add(_Msg('', false, streaming: true));
+    });
+    _scrollToBottom(true);
+    await _runStream(lastUser.text);
+  }
+
   // 停止生成：中断流式请求
   void _stop() {
     _cancel = true;
@@ -173,9 +219,16 @@ class _AiPageState extends State<AiPage> {
     return e.toString().replaceAll('Exception: ', '').replaceAll('ClientException', '已停止生成');
   }
 
-  void _scrollToBottom() {
+  void _scrollToBottom([bool force = false]) {
+    if (!force && !_atBottom) return; // 用户上滑看历史时不强行拽到底
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scroll.hasClients) _scroll.jumpTo(_scroll.position.maxScrollExtent);
+      if (_scroll.hasClients) {
+        _scroll.animateTo(
+          _scroll.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 220),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 
@@ -198,11 +251,21 @@ class _AiPageState extends State<AiPage> {
               }
             },
           ),
+          IconButton(
+            icon: Icon(_memOn ? Icons.auto_awesome : Icons.auto_awesome_outlined, size: 20),
+            tooltip: _memOn ? 'AI 记忆已开（点此关闭）' : 'AI 记忆已关（点此开启）',
+            onPressed: _toggleMem,
+          ),
           const Spacer(),
           TextButton.icon(
             icon: Icon(_hasKey ? Icons.vpn_key : Icons.vpn_key_off, size: 16),
             label: Text(_hasKey ? '已设 Key' : '设置 Key'),
             onPressed: _saveKey,
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_outline, size: 20),
+            tooltip: '清空对话',
+            onPressed: _confirmClear,
           ),
         ]),
       ),
@@ -212,6 +275,21 @@ class _AiPageState extends State<AiPage> {
           child: Text(_keyError!, style: TextStyle(color: c.error, fontSize: 12)),
         ),
       const Divider(height: 8),
+      if (!_hasKey)
+        Container(
+          margin: const EdgeInsets.fromLTRB(12, 4, 12, 0),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(color: c.surfaceContainerHighest, borderRadius: BorderRadius.circular(8)),
+          child: Row(children: [
+            const Icon(Icons.vpn_key_off, color: Colors.orange),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text('还没设置 API Key，AI 暂时无法回答。点右侧去设置，填好就能用了。',
+                  style: TextStyle(fontSize: 13, color: c.onSurface)),
+            ),
+            TextButton(onPressed: _saveKey, child: const Text('去设置')),
+          ]),
+        ),
       // 消息区
       Expanded(
         child: _msgs.isEmpty
@@ -240,15 +318,22 @@ class _AiPageState extends State<AiPage> {
                 controller: _input,
                 minLines: 1,
                 maxLines: 4,
-                decoration: const InputDecoration(hintText: '问 AI 点什么…', border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                  hintText: '问 AI 点什么…',
+                  border: const OutlineInputBorder(),
+                  suffixIcon: _input.text.isNotEmpty
+                      ? IconButton(icon: const Icon(Icons.clear, size: 18), tooltip: '清空', onPressed: _input.clear)
+                      : null,
+                ),
                 textInputAction: TextInputAction.send,
                 onSubmitted: (_) => _send(),
               ),
             ),
             const SizedBox(width: 8),
-            FilledButton(
+            IconButton.filled(
               onPressed: _send,
-              child: Text(_busy ? '■ 停止' : '➤ 发送'),
+              tooltip: _busy ? '停止生成' : '发送',
+              icon: Icon(_busy ? Icons.stop : Icons.send),
             ),
           ]),
         ),
@@ -277,33 +362,91 @@ class _AiPageState extends State<AiPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              m.streaming && m.text.isEmpty ? '…' : (m.streaming ? '${m.text}▍' : m.text),
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.5,
-                color: m.user ? c.onPrimary : (m.isError ? c.error : c.onSurface),
+            // 流式输出中（或用户/错误）显示纯文本；AI 回复完成后再渲染 markdown，
+            // 避免半截 markdown（未闭合 **、# 等）解析出错或闪烁
+            if (m.streaming && m.text.isEmpty)
+              Row(mainAxisSize: MainAxisSize.min, children: [
+                Text('AI 正在思考', style: TextStyle(fontSize: 13, color: c.onSurface.withValues(alpha: 0.6))),
+                      const SizedBox(width: 6),
+                      TypingDots(color: c.onSurface.withValues(alpha: 0.6)),
+              ])
+            else if (m.streaming)
+              Text('${m.text}▍', style: TextStyle(fontSize: 14, height: 1.5, color: m.user ? c.onPrimary : c.onSurface))
+            else if (m.isError)
+              Text(m.text, style: TextStyle(fontSize: 14, height: 1.5, color: c.error))
+            else if (m.user)
+              Text(m.text, style: TextStyle(fontSize: 14, height: 1.5, color: c.onPrimary))
+            else
+              MarkdownBody(
+                data: m.text,
+                selectable: true,
+                styleSheet: _mdSheet(c),
+                onTapLink: (text, href, title) {
+                  if (href != null) _openLink(href);
+                },
               ),
-            ),
-            // AI 回复可"记住"（存长期记忆）
-            if (!m.user && !m.isError && !m.streaming)
+            // AI 回复操作：记住 / 复制（成功时）/ 重答（成功或失败时）
+            if (!m.user && !m.streaming)
               Padding(
                 padding: const EdgeInsets.only(top: 2),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(4),
-                  onTap: () => _remember(m.text),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.bookmark_add_outlined, size: 13, color: c.primary),
-                    const SizedBox(width: 3),
-                    Text('记住', style: TextStyle(fontSize: 11, color: c.primary)),
-                  ]),
-                ),
+                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                  if (!m.isError) ...[
+                    InkWell(
+                      borderRadius: BorderRadius.circular(4),
+                      onTap: () => _remember(m.text),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        Icon(Icons.bookmark_add_outlined, size: 13, color: c.primary),
+                        const SizedBox(width: 3),
+                        Text('记住', style: TextStyle(fontSize: 11, color: c.primary)),
+                      ]),
+                    ),
+                    const SizedBox(width: 12),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(4),
+                      onTap: () => _copy(m.text),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        Icon(Icons.copy_outlined, size: 13, color: c.primary),
+                        const SizedBox(width: 3),
+                        Text('复制', style: TextStyle(fontSize: 11, color: c.primary)),
+                      ]),
+                    ),
+                    const SizedBox(width: 12),
+                  ],
+                  InkWell(
+                    borderRadius: BorderRadius.circular(4),
+                    onTap: () => _regenerate(),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(Icons.refresh, size: 13, color: c.primary),
+                      const SizedBox(width: 3),
+                      Text(m.isError ? '重试' : '重答', style: TextStyle(fontSize: 11, color: c.primary)),
+                    ]),
+                  ),
+                ]),
               ),
           ],
         ),
       ),
     );
   }
+
+  // markdown 渲染样式：文字色匹配气泡背景（surfaceContainerHighest → onSurface）
+  MarkdownStyleSheet _mdSheet(ColorScheme c) => MarkdownStyleSheet(
+        p: TextStyle(fontSize: 14, height: 1.5, color: c.onSurface),
+        strong: TextStyle(fontWeight: FontWeight.bold, color: c.onSurface),
+        em: TextStyle(fontStyle: FontStyle.italic, color: c.onSurface),
+        h1: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: c.onSurface),
+        h2: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: c.onSurface),
+        h3: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: c.onSurface),
+        h4: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: c.onSurface),
+        h5: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: c.onSurface),
+        h6: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: c.onSurface),
+        code: TextStyle(fontFamily: 'monospace', fontSize: 13, backgroundColor: c.surfaceContainerHighest, color: c.onSurface),
+        codeblockDecoration: BoxDecoration(color: c.surfaceContainerHighest, borderRadius: BorderRadius.circular(6)),
+        blockquote: TextStyle(color: c.outline, fontStyle: FontStyle.italic),
+        listBullet: TextStyle(color: c.onSurface),
+        a: TextStyle(color: c.primary, decoration: TextDecoration.underline),
+        horizontalRuleDecoration: BoxDecoration(border: Border(top: BorderSide(color: c.outline))),
+      );
 
   void _remember(String text) {
     if (text.trim().isEmpty) return;
@@ -316,6 +459,46 @@ class _AiPageState extends State<AiPage> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经记住了')));
     }
   }
+
+  void _copy(String text) {
+    if (text.trim().isEmpty) return;
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制回复')));
+  }
+
+  // 打开 AI 回复里的链接（markdown 链接点击）
+  Future<void> _openLink(String url) async {
+    try {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('打不开链接：$url')));
+    }
+  }
+
+  // 清空对话：带二次确认，避免误触
+  Future<void> _confirmClear() async {
+    if (_msgs.isEmpty) return;
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('清空对话'),
+        content: const Text('确定要清空当前对话吗？已保存的长期记忆不受影响。'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
+          FilledButton(
+            onPressed: () => Navigator.pop(c, true),
+            child: const Text('清空'),
+          ),
+        ],
+      ),
+    );
+    if (ok == true && mounted) {
+      setState(() => _msgs.clear());
+      Store.saveAiHistory([]);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('对话已清空')));
+    }
+  }
 }
 
 class _Msg {
@@ -324,4 +507,48 @@ class _Msg {
   final bool isError;
   bool streaming;
   _Msg(this.text, this.user, {this.isError = false, this.streaming = false});
+}
+
+// AI 流式刚开始（还没收到第一个字）时的三点跳动"正在思考"指示器
+class TypingDots extends StatefulWidget {
+  final Color color;
+  const TypingDots({super.key, required this.color});
+  @override
+  State<TypingDots> createState() => _TypingDotsState();
+}
+
+class _TypingDotsState extends State<TypingDots> with SingleTickerProviderStateMixin {
+  late final AnimationController _c =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 900))..repeat();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(3, (i) {
+        return AnimatedBuilder(
+          animation: _c,
+          builder: (_, __) {
+            final t = (_c.value + i / 3) % 1;
+            final offset = -4 * (1 - (2 * t - 1).abs()); // 上下弹跳，错峰
+            return Transform.translate(
+              offset: Offset(0, offset),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                width: 5,
+                height: 5,
+                decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle),
+              ),
+            );
+          },
+        );
+      }),
+    );
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
 }
