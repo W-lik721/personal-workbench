@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11 18:10",
+  "generatedAt": "2026-08-11 19:03",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -35,7 +35,7 @@
     },
     {
       "name": "agent-reach",
-      "desc": ">",
+      "desc": "'Use this skill when the user wants to research / search / read / look up anything on the internet — e.g. \"全网调研 X\" / \"帮我调研一下 X\" / \"查一下 X\" / \"搜搜 X\" / \"看看大家怎么评价 X\" / \"X 上有什么讨论\" / \"research this topic\". Also use it whenever the user mentions any platform or shares any URL/链接: 小红书/xiaohongshu/xhs, Twitter/推特/X, B站/bilibili, Reddit, Facebook, Instagram, V2EX, LinkedIn/领英/招聘/求职/jobs, YouTube, GitHub code search, 小宇宙播客, 雪球/股票行情, RSS feeds, or any web URL. 15 platforms, multi-backend routing (OpenCLI / per-platform CLIs / APIs). Zero config for 6 channels. Run `agent-reach doctor --json` to see which backend serves each platform right now. NOT for: 写报告/数据分析/翻译等内容加工（本 skill 只负责从互联网获取内容）；发帖/评论/点赞等写操作；已有专门 skill 的平台（先用专门 skill）.'",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-reach",
       "usage": 0,
@@ -679,7 +679,7 @@
       },
       "D": {
         "total": 544,
-        "free": 372
+        "free": 368
       }
     },
     "runtime": "3.13 / 22.22"
@@ -688,14 +688,14 @@
     "recent": [
       {
         "title": "排查大量部署失败的原因",
-        "status": "working",
-        "updated": "08-11 18:10",
+        "status": "completed",
+        "updated": "08-11 18:57",
         "group": "今天"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
-        "status": "working",
-        "updated": "08-11 18:10",
+        "status": "pending",
+        "updated": "08-11 18:55",
         "group": "今天"
       },
       {
@@ -1413,7 +1413,7 @@
     {
       "kind": "skill",
       "name": "agent-reach",
-      "when": 1786442804.9045787,
+      "when": 1786443198.9303935,
       "scope": "本机"
     },
     {
@@ -1669,7 +1669,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 18:10",
+    "fetchedAt": "2026-08-11 19:03",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-11",
     "count": 20,
@@ -1824,7 +1824,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 18:10",
+        "fetchedAt": "2026-08-11 19:03",
         "count": 20,
         "sections": [
           {
@@ -2557,7 +2557,7 @@
   },
   "dailyNews": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 18:10",
+    "fetchedAt": "2026-08-11 19:03",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2659,7 +2659,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 18:10",
+        "fetchedAt": "2026-08-11 19:03",
         "count": 15,
         "items": [
           {
@@ -3058,12 +3058,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T18:10:27",
-    "status": "ok",
-    "nextRun": "2026-08-11T19:10:27",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
