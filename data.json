@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-11 21:37",
+  "generatedAt": "2026-08-11 23:15",
   "kpi": {
-    "skills": 58,
+    "skills": 54,
     "automations": 2,
     "models": 5,
     "memory": 32,
@@ -130,14 +130,6 @@
       "lastUsed": ""
     },
     {
-      "name": "gh-skill-install",
-      "desc": "从 GitHub 安装 / 移植 skill 到 WorkBuddy（user-level skills 目录）。触发：用户说\"把这个 skill 装上\"、\"从 GitHub 装个 skill\"、\"把这个仓库的 skill 装到 WorkBuddy\"、\"`npx skills add` 失败\"、\"raw.githubusercontent.com 超时\"、\"把这个 Claude Code skill 适配到 WorkBuddy\"。覆盖两条下载通道：① jsDelivr CDN 自动下载（install.py，含限流 + 路径重写）② gh-proxy 中转 git clone（大文件）；以及 Claude Code → WorkBuddy 适配（剥离专属配置、路径改绝对、bundle 摊平、轻量测试）。",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：gh-skill-install",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "github",
       "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
       "category": "通用能力",
@@ -226,34 +218,10 @@
       "lastUsed": ""
     },
     {
-      "name": "mcp-stdio-bridge",
-      "desc": "|",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：mcp-stdio-bridge",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "memory-maintain",
-      "desc": "\"MEMORY.md 分层体检与瘦身。当用户说 MEMORY 太大/超限/怎么解决/清理记忆，或检测到用户级(超4000)/工作区(超3000) MEMORY.md 接近注入上限时触发。提供测量到分层到砍重复下沉到工作区压线到固化防胀纪律的一键流程，防止记忆只进不出被静默截断导致重要信息丢失。\"",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：memory-maintain",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
       "name": "memory-setup",
       "desc": "\"WorkBuddy 原生记忆系统初始化与体检工具（用户级）。当用户要配置记忆/初始化记忆/记忆体检/整理记忆/记忆清理/查看记忆状态/给 WorkBuddy 配一套记忆系统/MEMORY 太大/超限/瘦身压线，或想管理 WorkBuddy 自带的三层记忆时触发。覆盖三层记忆（云记忆/用户级 MEMORY.md/工作区 memory 目录）的骨架初始化、合规体检、规模统计、清理建议、超限瘦身压线，贴合现有「踩坑标注手册三件套」规范，不另起炉灶。（memory-maintain 已并入）\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：memory-setup",
-      "usage": 0,
-      "lastUsed": ""
-    },
-    {
-      "name": "multi-search-engine",
-      "desc": "Multi search engine integration with 16 engines (7 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required.",
-      "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：multi-search-engine",
       "usage": 0,
       "lastUsed": ""
     },
@@ -588,7 +556,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "11 days ago",
+          "modified": "12 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -643,11 +611,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 231
+        "free": 232
       },
       "D": {
         "total": 544,
-        "free": 360
+        "free": 373
       }
     },
     "runtime": "3.13 / 22.22"
@@ -655,11 +623,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "合并可合并且需定边界的内容",
-        "customTitle": "",
-        "display": "合并可合并且需定边界的内容",
-        "status": "working",
-        "updated": "08-11 21:37",
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-11 23:11",
         "group": "今天"
       },
       {
@@ -667,15 +635,23 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-11 21:37",
+        "updated": "08-11 23:08",
         "group": "今天"
       },
       {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
+        "title": "整理工作区",
+        "customTitle": "",
+        "display": "整理工作区",
         "status": "completed",
-        "updated": "08-11 21:15",
+        "updated": "08-11 22:54",
+        "group": "今天"
+      },
+      {
+        "title": "合并可合并且需定边界的内容",
+        "customTitle": "",
+        "display": "合并可合并且需定边界的内容",
+        "status": "completed",
+        "updated": "08-11 22:24",
         "group": "今天"
       },
       {
@@ -693,14 +669,6 @@
         "status": "completed",
         "updated": "08-11 00:10",
         "group": "今天"
-      },
-      {
-        "title": "整理工作区",
-        "customTitle": "",
-        "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-07 23:05",
-        "group": "更早"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
@@ -1313,9 +1281,8 @@
       },
       {
         "date": "2026-08-07",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "整理工作区",
           "生成今日灵感与AI学习路径建议"
         ]
       },
@@ -1336,11 +1303,12 @@
       },
       {
         "date": "2026-08-11",
-        "count": 5,
+        "count": 6,
         "titles": [
-          "合并可合并且需定边界的内容",
-          "工作台",
           "skill",
+          "工作台",
+          "整理工作区",
+          "合并可合并且需定边界的内容",
           "学习计算机科学与技术",
           "Obsidian的管理"
         ]
@@ -1394,7 +1362,13 @@
     {
       "kind": "skill",
       "name": "web-access",
-      "when": 1786455420.788178,
+      "when": 1786455498.7174504,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786455498.7067213,
       "scope": "本机"
     },
     {
@@ -1407,12 +1381,6 @@
       "kind": "skill",
       "name": "memory-setup",
       "when": 1786455420.738446,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786455420.6912868,
       "scope": "本机"
     },
     {
@@ -1519,12 +1487,6 @@
     },
     {
       "kind": "skill",
-      "name": "memory-maintain",
-      "when": 1786273837.7591393,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "ollama-local-multimodal",
       "when": 1786210725.3042676,
       "scope": "本机"
@@ -1539,12 +1501,6 @@
       "kind": "skill",
       "name": "llm-onboard-diagnose",
       "when": 1786210725.225744,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "mcp-stdio-bridge",
-      "when": 1786210725.2067435,
       "scope": "本机"
     },
     {
@@ -1632,7 +1588,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 21:37",
+    "fetchedAt": "2026-08-11 23:14",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-11",
     "count": 20,
@@ -1787,7 +1743,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 21:37",
+        "fetchedAt": "2026-08-11 23:14",
         "count": 20,
         "sections": [
           {
@@ -2520,7 +2476,7 @@
   },
   "dailyNews": {
     "date": "2026-08-11",
-    "fetchedAt": "2026-08-11 21:37",
+    "fetchedAt": "2026-08-11 23:14",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2622,7 +2578,7 @@
     "history": [
       {
         "date": "2026-08-11",
-        "fetchedAt": "2026-08-11 21:37",
+        "fetchedAt": "2026-08-11 23:14",
         "count": 15,
         "items": [
           {
@@ -3021,12 +2977,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-11T21:38:04",
-    "status": "ok",
-    "nextRun": "2026-08-11T22:38:04",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
