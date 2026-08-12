@@ -77,14 +77,14 @@ class _SettingsPageState extends State<SettingsPage> {
       // ---------- 外观 ----------
       _sectionTitle('🎨 外观'),
       Card(
-        child:           ListTile(
-            leading: const Icon(Icons.dark_mode_outlined),
-            title: const Text('深色模式'),
-            trailing: Switch(
-              value: darkModeNotifier.value,
-              onChanged: (v) => darkModeNotifier.value = v,
-            ),
+        child: ListTile(
+          leading: const Icon(Icons.dark_mode_outlined),
+          title: const Text('深色模式'),
+          trailing: Switch(
+            value: darkModeNotifier.value,
+            onChanged: (v) => darkModeNotifier.value = v,
           ),
+        ),
       ),
 
       // ---------- 数据备份 ----------
@@ -107,13 +107,24 @@ class _SettingsPageState extends State<SettingsPage> {
         ]),
       ),
 
+      // ---------- 危险操作 ----------
+      _sectionTitle('🗑️ 危险操作'),
+      Card(
+        child: ListTile(
+          leading: Icon(Icons.delete_forever_outlined, color: c.error),
+          title: Text('清空所有数据', style: TextStyle(color: c.error, fontWeight: FontWeight.w600)),
+          subtitle: const Text('删除待办/速记/收藏/课程表/AI 历史与记忆（保留 API Key 和主题设置）'),
+          onTap: _confirmResetAll,
+        ),
+      ),
+
       // ---------- 关于 ----------
       _sectionTitle('ℹ️ 关于'),
       const Card(
         child: ListTile(
           leading: Icon(Icons.info_outline),
           title: Text('轻量工作台'),
-          subtitle: Text('v1.0 · 数据全部存手机本地，不上传\n日报/新闻来自公开接口，需联网'),
+          subtitle: Text('v$appVersion · 数据全部存手机本地，不上传\n日报/新闻来自公开接口，需联网'),
         ),
       ),
       const SizedBox(height: 8),
@@ -296,5 +307,57 @@ class _SettingsPageState extends State<SettingsPage> {
     Store.importAll(m);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已从备份恢复数据')));
+  }
+
+  // 清空所有数据：两次确认 + 输入"清空"验证，防止误触
+  Future<void> _confirmResetAll() async {
+    final step1 = await showDialog<bool>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('清空所有数据？'),
+        content: const Text('这会删除：\n· 待办清单\n· 我的速记\n· 我的收藏\n· 常用入口\n· 课程表\n· AI 对话历史与长期记忆\n\n不会删除：API Key、主题设置。\n\n此操作不可撤销！'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error),
+            onPressed: () => Navigator.pop(c, true),
+            child: const Text('继续'),
+          ),
+        ],
+      ),
+    );
+    if (step1 != true || !mounted) return;
+    final ctrl = TextEditingController();
+    final step2 = await showDialog<bool>(
+      context: context,
+      builder: (c) => StatefulBuilder(
+        builder: (c, setDlg) => AlertDialog(
+          title: const Text('最后确认'),
+          content: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('请输入「清空」两个字来确认：'),
+            const SizedBox(height: 10),
+            TextField(
+              controller: ctrl,
+              autofocus: true,
+              decoration: const InputDecoration(border: OutlineInputBorder(), hintText: '清空'),
+              onChanged: (_) => setDlg(() {}),
+            ),
+          ]),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
+            FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error),
+              onPressed: ctrl.text.trim() == '清空' ? () => Navigator.pop(c, true) : null,
+              child: const Text('确认清空'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (step2 != true || !mounted) return;
+    Store.resetAllData();
+    aiClearGlobal?.call(); // 通知 AI 页清空内存中的对话
+    _refresh();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🗑 已清空所有数据')));
   }
 }

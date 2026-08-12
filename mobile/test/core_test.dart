@@ -55,6 +55,42 @@ void main() {
       expect(Store.aiMemoryMax, 20); // 默认 20 条
     });
 
+    test('对话携带长期记忆只取最近 15 条', () {
+      final many = List.generate(30, (i) => '记忆$i');
+      Store.saveAiMemory(many);
+      final chat = Store.aiMemoryForChat();
+      expect(chat.length, Store.aiMemoryChatMax);
+      expect(chat.first, '记忆15'); // 最新在末尾，取末尾 15 条
+      expect(chat.last, '记忆29');
+    });
+
+    test('长期记忆少于上限时全量返回', () {
+      Store.saveAiMemory(['a', 'b']);
+      expect(Store.aiMemoryForChat(), ['a', 'b']);
+    });
+
+    test('清空所有数据：清内容、保留设置', () {
+      Store.saveTodos([Todo('x')]);
+      Store.saveNotes([Note('n', 1)]);
+      Store.saveFavs([Fav('f', 'u', 's', 1)]);
+      Store.saveLinks([Link('l', 'u')]);
+      Store.saveCourses([Course(name: 'c')]);
+      Store.saveAiHistory([{'role': 'user', 'content': 'hi'}]);
+      Store.saveAiMemory(['m']);
+      Store.aiMemoryOn = false;
+      Store.aiMemoryMax = 10;
+      Store.resetAllData();
+      expect(Store.todos(), isEmpty);
+      expect(Store.notes(), isEmpty);
+      expect(Store.favs(), isEmpty);
+      expect(Store.links(), isEmpty);
+      expect(Store.courses(), isEmpty);
+      expect(Store.aiHistory(), isEmpty);
+      expect(Store.aiMemory(), isEmpty);
+      expect(Store.aiMemoryOn, false); // 设置保留
+      expect(Store.aiMemoryMax, 10);
+    });
+
     test('日报/新闻缓存字段', () {
       Store.cacheReportJson = '{"date":"2026-08-10"}';
       Store.cacheReportAt = 12345;

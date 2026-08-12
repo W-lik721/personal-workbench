@@ -142,7 +142,7 @@ class _AiPageState extends State<AiPage> {
     _cancel = false;
     final all = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
     final history = all.sublist(0, all.length - 1);
-    final memory = Store.aiMemoryOn ? Store.aiMemory() : <String>[];
+    final memory = Store.aiMemoryOn ? Store.aiMemoryForChat() : <String>[]; // 只带最近 15 条长期记忆，防 prompt 撑爆
     final maxMsgs = Store.aiMemoryMax;
     final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
     final key = await Store.aiKey(_prov);

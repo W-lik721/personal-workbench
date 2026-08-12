@@ -15,9 +15,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Store.init(); // 初始化本地存储（必须，否则待办/Key/记忆无法持久化）
   darkModeNotifier.value = Store.darkMode; // 以已持久化的偏好初始化
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-  ));
   runApp(const WorkbenchApp());
 }
 
@@ -32,12 +29,26 @@ class _WorkbenchAppState extends State<WorkbenchApp> {
   @override
   void initState() {
     super.initState();
+    _applySystemUi(); // 状态栏图标颜色跟随初始主题
     darkModeNotifier.addListener(_onDarkChanged);
   }
 
-  // 切换时：先持久化，再重建 MaterialApp 让主题立即生效
+  // 状态栏/导航栏图标颜色随主题自适应（深色→浅色图标，浅色→深色图标），避免看不清
+  void _applySystemUi() {
+    final dark = darkModeNotifier.value;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: dark ? Brightness.light : Brightness.dark,
+      statusBarBrightness: dark ? Brightness.dark : Brightness.light,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: dark ? Brightness.light : Brightness.dark,
+    ));
+  }
+
+  // 切换时：先持久化，再重建 MaterialApp 让主题立即生效，并同步状态栏图标
   void _onDarkChanged() {
     Store.darkMode = darkModeNotifier.value;
+    _applySystemUi();
     setState(() {});
   }
 

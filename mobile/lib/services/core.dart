@@ -11,6 +11,9 @@ void Function(String text)? aiFillGlobal;
 // 设置页"清空对话历史"通知 AI 页同步清空的全局回调（由 AiPage 注册）
 void Function()? aiClearGlobal;
 
+// App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
+const String appVersion = '1.0.0+1';
+
 // ---------- 模型 ----------
 class Todo {
   String text;
@@ -165,6 +168,13 @@ class Store {
   // 长期记忆（用户点"记住"或手动添加的关键信息）
   static List<String> aiMemory() => _load('wb_ai_memory').map((j) => j.toString()).toList();
   static void saveAiMemory(List<String> l) => _save('wb_ai_memory', l);
+  // 对话时携带的长期记忆条数上限：存了几十条时不全带上，防止 prompt 撑爆
+  static const int aiMemoryChatMax = 15;
+  // 取最近 aiMemoryChatMax 条长期记忆（最新存的在末尾），供发消息时携带
+  static List<String> aiMemoryForChat() {
+    final m = aiMemory();
+    return m.length > aiMemoryChatMax ? m.sublist(m.length - aiMemoryChatMax) : m;
+  }
   // 记忆开关：关掉后不再保存新历史、发消息也不带记忆
   static bool get aiMemoryOn => _p?.getBool('wb_ai_memory_on') ?? true;
   static set aiMemoryOn(bool v) => _p?.setBool('wb_ai_memory_on', v);
@@ -224,6 +234,19 @@ class Store {
     if (data['wb_ai_prov'] != null) aiProv = data['wb_ai_prov'] as String;
     if (data['wb_ai_memory_on'] != null) aiMemoryOn = data['wb_ai_memory_on'] as bool;
     if (data['wb_ai_memory_max'] != null) aiMemoryMax = data['wb_ai_memory_max'] as int;
+  }
+
+  // 清空所有内容数据（待办/速记/收藏/入口/课程表/AI 历史/长期记忆）。
+  // 保留：API Key（加密存储）、主题、AI 提供商与记忆开关等设置。
+  // 调用方负责二次确认与通知 AI 页清空内存（aiClearGlobal）。
+  static void resetAllData() {
+    saveTodos([]);
+    saveNotes([]);
+    saveFavs([]);
+    saveLinks([]);
+    saveCourses([]);
+    saveAiHistory([]);
+    saveAiMemory([]);
   }
 
   // 内存缓存：避免每次读写都全量 JSON 编解码（首页一个 _reload 会连 decode 4 遍，量大时明显卡）
