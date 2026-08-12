@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-12 21:41",
+  "generatedAt": "2026-08-12 23:12",
   "kpi": {
     "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 34,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 11
   },
   "skills": [
     {
@@ -564,7 +564,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "12 days ago",
+          "modified": "13 days ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -619,11 +619,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 230
+        "free": 231
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 374
       }
     },
     "runtime": "3.13 / 22.22"
@@ -631,11 +631,27 @@
   "sessions": {
     "recent": [
       {
+        "title": "帮我清理一下C盘 别动系统文件和软件数据",
+        "customTitle": "",
+        "display": "帮我清理一下C盘 别动系统文件和软件数据",
+        "status": "working",
+        "updated": "08-12 23:11",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-12 21:38",
+        "updated": "08-12 23:06",
+        "group": "今天"
+      },
+      {
+        "title": "移动tools目录到D盘p7",
+        "customTitle": "整理工作区",
+        "display": "整理工作区",
+        "status": "completed",
+        "updated": "08-12 22:56",
         "group": "今天"
       },
       {
@@ -661,14 +677,6 @@
         "status": "completed",
         "updated": "08-12 14:08",
         "group": "今天"
-      },
-      {
-        "title": "整理工作区",
-        "customTitle": "",
-        "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-11 22:54",
-        "group": "昨天"
       },
       {
         "title": "合并可合并且需定边界的内容",
@@ -1306,17 +1314,18 @@
       },
       {
         "date": "2026-08-11",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "整理工作区",
           "合并可合并且需定边界的内容"
         ]
       },
       {
         "date": "2026-08-12",
-        "count": 4,
+        "count": 6,
         "titles": [
+          "帮我清理一下C盘 别动系统文件和软件数据",
           "工作台",
+          "整理工作区",
           "Obsidian的管理",
           "skill",
           "学习计算机科学与技术"
@@ -1334,6 +1343,14 @@
     },
     "files": [
       {
+        "name": "00-路由表.md",
+        "mtime": "08-12 22:51"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-12 22:51"
+      },
+      {
         "name": "workbench-mobile.html",
         "mtime": "08-07 03:46"
       },
@@ -1350,14 +1367,6 @@
         "mtime": "08-05 23:06"
       },
       {
-        "name": "AGENTS.md",
-        "mtime": "08-05 22:29"
-      },
-      {
-        "name": "00-路由表.md",
-        "mtime": "08-05 16:46"
-      },
-      {
         "name": "gitnexus-mcp.bat",
         "mtime": "08-05 13:43"
       },
@@ -1368,6 +1377,16 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1786546272.090956
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1786546266.132196
+    },
     {
       "kind": "skill",
       "name": "paper-pipeline",
@@ -1579,21 +1598,11 @@
       "kind": "automation",
       "name": "归档文件半年清理检查（WB实用Skills源文件）",
       "when": 1785998902.549
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1785942364.2573428
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1785940181.3500104
     }
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 21:41",
+    "fetchedAt": "2026-08-12 23:12",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1784,7 +1793,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 21:41",
+        "fetchedAt": "2026-08-12 23:12",
         "count": 26,
         "sections": [
           {
@@ -2706,7 +2715,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 21:41",
+    "fetchedAt": "2026-08-12 23:12",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2808,7 +2817,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 21:41",
+        "fetchedAt": "2026-08-12 23:12",
         "count": 15,
         "items": [
           {
@@ -3307,12 +3316,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-12T21:41:24",
-    "status": "ok",
-    "nextRun": "2026-08-12T22:41:24",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
