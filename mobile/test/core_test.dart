@@ -128,4 +128,57 @@ void main() {
       expect(empty.sections, isEmpty);
     });
   });
+
+  group('技术热榜多源解析', () {
+    test('掘金源解析', () {
+      const body = '{"source":"juejin","items":[{"article_info":{'
+          '"article_id":"7201","title":"掘金文章A","brief_content":"摘要A",'
+          '"article_url":"https://juejin.cn/post/7201","comment_count":3,"ctime":1700000000},'
+          '"author_user_info":{"user_name":"作者A"},"tags":[{"tag_name":"前端"}]}]}';
+      final list = Api.parseHot(body);
+      expect(list.length, 1);
+      expect(list[0].title, '掘金文章A');
+      expect(list[0].url, 'https://juejin.cn/post/7201');
+      expect(list[0].by, '作者A');
+      expect(list[0].source, contains('前端'));
+      expect(list[0].replies, 3);
+      expect(Api.hotSource(body), 'juejin');
+    });
+
+    test('少数派源解析（url 自动补全）', () {
+      const body = '{"source":"sspai","items":[{"id":123,"title":"少数派文章","summary":"摘要B",'
+          '"created_at":1700000000,"comments_count":5,"category":{"title":"效率"},"user":{"name":"作者B"}}]}';
+      final list = Api.parseHot(body);
+      expect(list.length, 1);
+      expect(list[0].title, '少数派文章');
+      expect(list[0].url, 'https://sspai.com/post/123');
+      expect(list[0].source, '效率');
+      expect(list[0].by, '作者B');
+      expect(list[0].replies, 5);
+      expect(Api.hotSource(body), 'sspai');
+    });
+
+    test('V2EX 源解析（含 url 为空回退）', () {
+      const body = '{"source":"v2ex","items":[{"id":1,"title":"V2EX帖子","url":"",'
+          '"content":"内容","replies":9,"created":1700000000,"member":{"username":"u"}}]}';
+      final list = Api.parseHot(body);
+      expect(list.length, 1);
+      expect(list[0].title, 'V2EX帖子');
+      expect(list[0].url, 'https://www.v2ex.com/t/1'); // url 为空回退到帖子页
+      expect(list[0].source, 'V2EX');
+      expect(list[0].replies, 9);
+    });
+
+    test('旧版无 source 缓存按 V2EX 解析', () {
+      const body = '{"items":[{"id":2,"title":"旧缓存帖","url":"https://www.v2ex.com/t/2","replies":1,"created":1700000000,"member":{"username":"u"}}]}';
+      final list = Api.parseHot(body);
+      expect(list.length, 1);
+      expect(list[0].source, 'V2EX');
+      expect(Api.hotSource(body), ''); // 旧缓存无 source
+    });
+
+    test('空 items 返回空列表不崩溃', () {
+      expect(Api.parseHot('{"source":"juejin","items":[]}'), isEmpty);
+    });
+  });
 }

@@ -87,13 +87,12 @@ class DailyNews {
   DailyNews({this.date = '', this.source = '', this.tip = '', this.items = const []});
 }
 
-// 技术热榜条目（V2EX 国内开发者社区热帖；url 可能为空，此时回退到帖子页）
-class V2exItem {
+// 技术热榜条目（多源归一：掘金 / 少数派 / V2EX；source 为显示用来源名）
+class HotItem {
   int id;
-  String title, url, content, node, by;
+  String title, url, content, source, by;
   int replies, created;
-  V2exItem({this.id = 0, this.title = '', this.url = '', this.content = '', this.node = '', this.by = '', this.replies = 0, this.created = 0});
-  String get link => url.isNotEmpty ? url : 'https://www.v2ex.com/t/$id';
+  HotItem({this.id = 0, this.title = '', this.url = '', this.content = '', this.source = '', this.by = '', this.replies = 0, this.created = 0});
 }
 
 // ---------- 本地存储 ----------
@@ -334,32 +333,132 @@ class Api {
     );
   }
 
-  // 技术热榜：V2EX 国内开发者社区热帖（公开接口，无需鉴权，返回数组包一层便于缓存）
+  // 技术热榜：多源兜底（掘金 → 少数派 → V2EX），第一个能解析出条目的源胜出。
+  // 返回统一包裹：{"source":"juejin|sspai|v2ex","items":[...],"fetchedAt":"..."}（items 为该源原始数组，便于缓存）
   static Future<String> fetchHotBody() async {
-    final r = await http.get(Uri.parse('https://www.v2ex.com/api/topics/hot.json'),
-        headers: {'User-Agent': _ua}).timeout(const Duration(seconds: 20));
-    if (r.statusCode != 200) throw Exception('热榜接口 HTTP ${r.statusCode}');
-    final arr = jsonDecode(utf8.decode(r.bodyBytes)) as List;
-    return jsonEncode({'items': arr, 'fetchedAt': DateTime.now().toIso8601String()});
+    Object? lastErr;
+    for (final src in const ['juejin', 'sspai', 'v2ex']) {
+      try {
+        final raw = await _fetchHotSource(src);
+        final wrapped = jsonEncode({
+          'source': src,
+          'items': raw,
+          'fetchedAt': DateTime.now().toIso8601String(),
+        });
+        if (parseHot(wrapped).isNotEmpty) return wrapped; // 能解析出条目才算成功
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw Exception('技术热榜所有数据源都不可用${lastErr == null ? '' : '（$lastErr）'}');
   }
 
-  static List<V2exItem> parseHot(String body) {
+  // 读取热榜响应/缓存里的来源标识（旧版无 source 的缓存按 v2ex 处理）
+  static String hotSource(String body) {
+    try {
+      return ((jsonDecode(body) as Map)['source'] ?? '').toString();
+    } catch (_) {
+      return '';
+    }
+  }
+
+  // 拉取指定源的原始条目数组；异常即抛，由 fetchHotBody 尝试下一源
+  static Future<List<dynamic>> _fetchHotSource(String src) async {
+    switch (src) {
+      case 'juejin':
+        final r = await http
+            .post(
+              Uri.parse('https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed'),
+              headers: {'Content-Type': 'application/json', 'User-Agent': _ua},
+              body: jsonEncode({'id_type': 2, 'client_type': 2608, 'sort_type': 200, 'cursor': '0', 'limit': 20}),
+            )
+            .timeout(const Duration(seconds: 15));
+        if (r.statusCode != 200) throw Exception('掘金 HTTP ${r.statusCode}');
+        final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+        if (j['err_no'] != 0) throw Exception('掘金 err_no=${j['err_no']}');
+        return j['data'] as List? ?? [];
+      case 'sspai':
+        final r = await http
+            .get(
+              Uri.parse('https://sspai.com/api/v1/article/index/page/get?limit=20&offset=0'),
+              headers: {'User-Agent': _ua},
+            )
+            .timeout(const Duration(seconds: 15));
+        if (r.statusCode != 200) throw Exception('少数派 HTTP ${r.statusCode}');
+        final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
+        return j['data'] as List? ?? [];
+      default: // v2ex
+        final r = await http.get(Uri.parse('https://www.v2ex.com/api/topics/hot.json'),
+            headers: {'User-Agent': _ua}).timeout(const Duration(seconds: 15));
+        if (r.statusCode != 200) throw Exception('V2EX HTTP ${r.statusCode}');
+        return jsonDecode(utf8.decode(r.bodyBytes)) as List;
+    }
+  }
+
+  static List<HotItem> parseHot(String body) {
     final j = jsonDecode(body) as Map<String, dynamic>;
+    final src = (j['source'] ?? '').toString();
     return (j['items'] as List? ?? []).map((it) {
       final m = it as Map<String, dynamic>;
-      final member = (m['member'] as Map? ?? {}).cast<String, dynamic>();
-      final node = (m['node'] as Map? ?? {}).cast<String, dynamic>();
-      return V2exItem(
-        id: m['id'] as int? ?? 0,
-        title: (m['title'] ?? '').toString(),
-        url: (m['url'] ?? '').toString(),
-        content: (m['content'] ?? '').toString(),
-        node: (node['title'] ?? '').toString(),
-        by: (member['username'] ?? '').toString(),
-        replies: m['replies'] as int? ?? 0,
-        created: m['created'] as int? ?? 0,
-      );
+      if (src == 'juejin') return _hotFromJuejin(m);
+      if (src == 'sspai') return _hotFromSspai(m);
+      return _hotFromV2ex(m); // 默认 v2ex（含旧版无 source 缓存）
     }).toList();
+  }
+
+  // 时间戳统一转秒（兼容 ms），供页面 *1000 显示
+  static int _normSec(dynamic v) {
+    final n = (v as num?)?.toInt() ?? 0;
+    return n > 100000000000 ? n ~/ 1000 : n; // 毫秒级转秒
+  }
+
+  static HotItem _hotFromJuejin(Map<String, dynamic> m) {
+    final info = (m['article_info'] as Map? ?? {}).cast<String, dynamic>();
+    final author = (m['author_user_info'] as Map? ?? {}).cast<String, dynamic>();
+    final tags = m['tags'] as List? ?? const <dynamic>[];
+    final firstTag = tags.isNotEmpty ? ((tags.first as Map)['tag_name']?.toString() ?? '') : '';
+    return HotItem(
+      id: int.tryParse(info['article_id']?.toString() ?? '') ?? 0,
+      title: info['title']?.toString() ?? '',
+      url: info['article_url']?.toString() ?? '',
+      content: info['brief_content']?.toString() ?? '',
+      source: firstTag.isEmpty ? '掘金' : '掘金 · $firstTag',
+      by: author['user_name']?.toString() ?? '',
+      replies: (info['comment_count'] as num?)?.toInt() ?? 0,
+      created: _normSec(info['ctime']),
+    );
+  }
+
+  static HotItem _hotFromSspai(Map<String, dynamic> m) {
+    final cat = (m['category'] as Map? ?? {}).cast<String, dynamic>();
+    final user = (m['user'] as Map? ?? {}).cast<String, dynamic>();
+    final id = (m['id'] as num?)?.toInt() ?? 0;
+    return HotItem(
+      id: id,
+      title: m['title']?.toString() ?? '',
+      url: id > 0 ? 'https://sspai.com/post/$id' : '',
+      content: m['summary']?.toString() ?? '',
+      source: (cat['title'] ?? '少数派').toString(),
+      by: user['name']?.toString() ?? '',
+      replies: (m['comments_count'] as num?)?.toInt() ?? 0,
+      created: _normSec(m['created_at']),
+    );
+  }
+
+  static HotItem _hotFromV2ex(Map<String, dynamic> m) {
+    final member = (m['member'] as Map? ?? {}).cast<String, dynamic>();
+    final id = (m['id'] as num?)?.toInt() ?? 0;
+    final url = (m['url'] ?? '').toString();
+    return HotItem(
+      id: id,
+      title: (m['title'] ?? '').toString(),
+      url: url.isNotEmpty ? url : 'https://www.v2ex.com/t/$id',
+      content: (m['content'] ?? '').toString(),
+      source: 'V2EX',
+      by: (member['username'] ?? '').toString(),
+      replies: (m['replies'] as num?)?.toInt() ?? 0,
+      created: (m['created'] as num?)?.toInt() ?? 0,
+    );
   }
 
   // AI 助手：Agnes / 智谱

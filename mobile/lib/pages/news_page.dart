@@ -14,7 +14,8 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   late final TabController _tab;
   DailyReport? _report;
   DailyNews? _dnews;
-  List<V2exItem>? _hot;
+  List<HotItem>? _hot;
+  String _hotSource = ''; // 热榜当前来源（掘金 / 少数派 / V2EX）
   String? _errReport;
   String? _errDnews;
   String? _errHot;
@@ -114,7 +115,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     if (cj != null && _hot == null) {
       try {
         final h = Api.parseHot(cj);
-        if (mounted) setState(() { _hot = h; _loadingHot = false; _staleHot = true; });
+        if (mounted) setState(() { _hot = h; _hotSource = Api.hotSource(cj); _loadingHot = false; _staleHot = true; });
       } catch (_) {}
     }
     try {
@@ -124,6 +125,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       if (mounted) {
         setState(() {
           _hot = Api.parseHot(body);
+          _hotSource = Api.hotSource(body);
           _loadingHot = false;
           _staleHot = false;
           _errHot = null;
@@ -320,8 +322,9 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
-          Text('V2EX 技术热帖 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text('数据源 V2EX${_staleHot ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}', style: TextStyle(fontSize: 11, color: c.outline)),
+          Text('技术热榜 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
+              style: TextStyle(fontSize: 11, color: c.outline)),
           const SizedBox(height: 10),
           ...list.asMap().entries.map((e) => _hotTile(c, e.value)),
         ],
@@ -329,7 +332,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget _hotTile(ColorScheme c, V2exItem it) {
+  Widget _hotTile(ColorScheme c, HotItem it) {
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
       child: Padding(
@@ -345,7 +348,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           const SizedBox(height: 6),
           Text(
             [
-              if (it.node.isNotEmpty) it.node,
+              if (it.source.isNotEmpty) it.source,
               if (it.by.isNotEmpty) '@${it.by}',
               '💬 ${it.replies}',
               if (it.created > 0) _fmtTs(it.created),
@@ -354,8 +357,9 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           ),
           const SizedBox(height: 4),
           Row(children: [
-            TextButton(onPressed: () => launchUrl(Uri.parse(it.link), mode: LaunchMode.externalApplication),
-                child: const Text('原文 ↗', style: TextStyle(fontSize: 12))),
+            if (it.url.isNotEmpty)
+              TextButton(onPressed: () => launchUrl(Uri.parse(it.url), mode: LaunchMode.externalApplication),
+                  child: const Text('原文 ↗', style: TextStyle(fontSize: 12))),
             TextButton.icon(
               icon: const Icon(Icons.star_border, size: 16),
               label: const Text('收藏', style: TextStyle(fontSize: 12)),
@@ -372,13 +376,13 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     );
   }
 
-  void _favHot(V2exItem it) {
+  void _favHot(HotItem it) {
     final favs = Store.favs();
     if (favs.any((f) => f.title == it.title)) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经收藏过了')));
       return;
     }
-    Store.saveFavs([Fav(it.title, it.link, 'V2EX', DateTime.now().millisecondsSinceEpoch), ...favs]);
+    Store.saveFavs([Fav(it.title, it.url, it.source.isEmpty ? '热榜' : it.source, DateTime.now().millisecondsSinceEpoch), ...favs]);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
   }
 
