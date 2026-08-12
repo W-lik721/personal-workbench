@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12 12:58",
+  "generatedAt": "2026-08-12 14:40",
   "kpi": {
     "skills": 54,
     "automations": 2,
@@ -539,7 +539,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "10 days ago",
+          "modified": "11 days ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -611,11 +611,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 231
+        "free": 234
       },
       "D": {
         "total": 544,
-        "free": 373
+        "free": 374
       }
     },
     "runtime": "3.13 / 22.22"
@@ -623,11 +623,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-12 14:39",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "completed",
-        "updated": "08-12 12:57",
+        "status": "working",
+        "updated": "08-12 14:38",
         "group": "今天"
       },
       {
@@ -635,16 +643,8 @@
         "customTitle": "",
         "display": "学习计算机科学与技术",
         "status": "completed",
-        "updated": "08-12 12:49",
+        "updated": "08-12 14:08",
         "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-11 23:46",
-        "group": "昨天"
       },
       {
         "title": "整理工作区",
@@ -1298,9 +1298,8 @@
       },
       {
         "date": "2026-08-11",
-        "count": 4,
+        "count": 3,
         "titles": [
-          "skill",
           "整理工作区",
           "合并可合并且需定边界的内容",
           "Obsidian的管理"
@@ -1308,8 +1307,9 @@
       },
       {
         "date": "2026-08-12",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "skill",
           "工作台",
           "学习计算机科学与技术"
         ]
@@ -1580,16 +1580,11 @@
       "kind": "kb",
       "name": "00-路由表.md",
       "when": 1785919608.3931186
-    },
-    {
-      "kind": "kb",
-      "name": "gitnexus-mcp.bat",
-      "when": 1785908583.6330864
     }
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 12:58",
+    "fetchedAt": "2026-08-12 14:40",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1780,7 +1775,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 12:58",
+        "fetchedAt": "2026-08-12 14:40",
         "count": 26,
         "sections": [
           {
@@ -2702,7 +2697,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 12:58",
+    "fetchedAt": "2026-08-12 14:40",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2804,7 +2799,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 12:58",
+        "fetchedAt": "2026-08-12 14:40",
         "count": 15,
         "items": [
           {
@@ -3303,12 +3298,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-12T12:58:31",
-    "status": "ok",
-    "nextRun": "2026-08-12T13:58:31",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
