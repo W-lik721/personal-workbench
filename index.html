@@ -14,7 +14,7 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link rel="stylesheet" href="styles.css?v=54">
+<link rel="stylesheet" href="styles.css?v=55">
 </head>
 <body>
 <a class="skip" href="#main">跳到主内容</a>
@@ -46,14 +46,6 @@
   </section>
   <section class="overview" id="overview"></section>
   <div class="bento">
-  <section class="card links-card">
-    <h2><span class="ic">🔗</span>常用入口 · 一键直达</h2>
-    <div class="links-grid" id="linksGrid"></div>
-    <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <button class="btn-sm" onclick="addLink()">➕ 加一个</button>
-      <span id="linksHint" class="empty"></span>
-    </div>
-  </section>
   <section class="card todos-card">
     <h2><span class="ic">✅</span>待办清单 · 可勾选</h2>
     <div class="todo-prog" id="todoProg"></div>
@@ -91,12 +83,25 @@
     </div>
     <ul class="notes" id="notesList"></ul>
   </section>
+  <section class="card ov-card">
+    <h2><span class="ic">📊</span>今日概览 · 本机小数据</h2>
+    <div class="ov-res" id="ovStats"></div>
+    <button class="mini-btn" onclick="inspireToday()">💡 让 AI 给我今日灵感</button>
+  </section>
   <section class="card fav-card">
     <h2><span class="ic">⭐</span>我的收藏 · 稍后读</h2>
     <ul class="fav-list" id="favList"></ul>
     <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
       <button class="btn-sm" onclick="clearFavs()">🗑 清空收藏</button>
       <span id="favsHint" class="empty"></span>
+    </div>
+  </section>
+  <section class="card links-card">
+    <h2><span class="ic">🔗</span>常用入口 · 一键直达</h2>
+    <div class="links-grid" id="linksGrid"></div>
+    <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button class="btn-sm" onclick="addLink()">➕ 加一个</button>
+      <span id="linksHint" class="empty"></span>
     </div>
   </section>
   <section class="card wk-card">
@@ -116,7 +121,7 @@
     <button class="tab" data-tab="schedule" onclick="switchTab('schedule')">📅 课程表</button>
   </nav>
   <section class="tabpane active" id="pane-cap">
-    <div class="wrap"><div class="col" id="col-cap"></div></div>
+    <div class="wrap"><div class="col" id="col-cap"></div><aside class="col" id="side-cap"></aside></div>
   </section>
   <section class="tabpane" id="pane-ai">
     <div class="wrap"><div class="col" id="col-ai"></div></div>
@@ -151,6 +156,6 @@
   </div>
 </div>
 <script src="schedule.js?v=2"></script>
-<script src="app.js?v=58"></script>
+<script src="app.js?v=59"></script>
 </body>
 </html>

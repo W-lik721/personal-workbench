@@ -487,6 +487,29 @@
       '</div>';
   }
 
+  // 今日概览统计卡（bento 内：待做 / 速记 / 收藏 本机小数据，与 App 端口径一致）
+  function renderOvCard(d) {
+    var box = document.getElementById("ovStats");
+    if (!box) return;
+    var todos = todosLoad().filter(function (t) { return !t.done; }).length;
+    var notes = notesLoad().length;
+    var favs = favsLoad().length;
+    box.innerHTML =
+      '<div class="ov-metric"><span class="rk">✅ 待做</span><span class="rv">' + todos + '</span><span class="rn">条未完成</span></div>' +
+      '<div class="ov-metric"><span class="rk">📝 速记</span><span class="rv">' + notes + '</span><span class="rn">条记录</span></div>' +
+      '<div class="ov-metric"><span class="rk">⭐ 收藏</span><span class="rv">' + favs + '</span><span class="rn">条稍后读</span></div>';
+  }
+
+  // 今日灵感：把工作台现状拼成 prompt 发给 AI 助手
+  function inspireToday() {
+    var d = __data || {};
+    var k = d.kpi || {};
+    var cmd = "根据我的工作台现状生成今日灵感：已装 " + (k.skills || 0) + " 个 skill，知识库 " + (k.knowledge || 0) +
+      " 个文件，模型 " + (k.models || 0) + " 个（本机 " + (((d.status || {}).localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
+    aiAsk(cmd);
+  }
+  window.inspireToday = inspireToday;
+
   function renderSkills(skills) {
     var byCat = {};
     skills.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
@@ -556,26 +579,30 @@
     var inspireCmd = "根据我的工作台现状生成今日灵感：已装 " + d.kpi.skills + " 个 skill，知识库 " + d.kpi.knowledge +
       " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
     document.getElementById("col-cap").innerHTML =
-      '<div class="card"><h2><span class="ic">🧭</span>⑤ 今日引导 / 灵感 / 学 Agent</h2>' +
-        '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
-        '<div class="ov-metric"><span class="rk">今日引导</span><span class="rv">' + (d.guide || []).length + '</span><span class="rn">条待办 / 提醒</span></div>' +
-        '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
-        "</div>" +
-        '<div class="guide-grid">' + guideHtml + "</div>" +
-        '<div style="margin-top:12px"><button class="btn" onclick="aiAsk(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button></div></div>' +
-      '<div class="card"><h2><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h2>' +
-        (d.aiDaily && d.aiDaily.count
-          ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
-          : '<div class="empty" style="margin:2px 0 4px">今日尚无日报数据</div>') +
-        trendHtml +
-        '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
-        '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
-        '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>' +
       '<div class="card" id="card-skills"><h2><span class="ic">🚀</span>① 能力速达（点击复制调用指令）</h2>' +
         '<textarea id="cmdbox" rows="2" placeholder="点击上方 skill，指令会出现在这里（也可直接编辑/粘贴）"></textarea>' +
         '<div id="hint"></div><div id="sempty" class="empty" style="display:none">没有匹配的 skill</div>' +
         '<div id="skills">' + skillsHtml + "</div></div>" +
       '<div class="card" id="card-sess"><h2><span class="ic">💬</span>⑥ 近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>";
+    var side = document.getElementById("side-cap");
+    if (side) {
+      side.innerHTML =
+        '<div class="side-card"><h4><span class="ic">🧭</span>⑤ 今日引导 / 灵感 / 学 Agent</h4>' +
+          '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
+          '<div class="ov-metric"><span class="rk">今日引导</span><span class="rv">' + (d.guide || []).length + '</span><span class="rn">条待办 / 提醒</span></div>' +
+          '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
+          "</div>" +
+          '<div class="guide-grid">' + guideHtml + "</div>" +
+          '<div style="margin-top:12px"><button class="btn" onclick="aiAsk(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button></div></div>' +
+        '<div class="side-card" style="margin-top:12px"><h4><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h4>' +
+          (d.aiDaily && d.aiDaily.count
+            ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
+            : '<div class="empty" style="margin:2px 0 4px">今日尚无日报数据</div>') +
+          trendHtml +
+          '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
+          '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
+          '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>';
+    }
   }
 
   // ---------- AI 日报（支持历史日期切换） ----------
@@ -1132,6 +1159,7 @@
     renderFreshness(d);
     renderKPI(d);
     renderOverview(d);
+    renderOvCard(d);
     renderQuick(d);
     renderWeekly(d);
   }

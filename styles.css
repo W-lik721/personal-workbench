@@ -96,7 +96,8 @@ a:hover{text-decoration:underline}
 
 /* ---------- 容器 / KPI ---------- */
 .container{max-width:1180px;margin:0 auto;padding:16px 18px}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;overflow:hidden;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.04);transition:transform .25s var(--ease),border-color .2s,box-shadow .25s;animation:fadeIn .5s ease both;cursor:pointer}
 .kpi:hover{border-color:rgba(43,184,198,.45);transform:translateY(-2px);box-shadow:var(--shadow-md)}
@@ -584,7 +585,7 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .ai-input textarea{flex:1;background:#14161c;border:1px solid var(--accent);color:var(--txt);border-radius:var(--radius-sm);padding:10px;font-size:13px;resize:vertical;line-height:1.5}
 
 /* ===== 我的收藏（稍后读）卡片 ===== */
-.fav-card{grid-column:1/-1}
+.fav-card{grid-column:span 2}
 .fav-card .fav-list{
   list-style: none;
   margin: 4px 0 0;
@@ -672,3 +673,18 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 .btn-cy{margin-top:13px;width:100%;background:var(--accent-strong);color:#fff;border:none;border-radius:var(--radius-sm);padding:11px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 6px 16px -10px rgba(10,118,130,.7);transition:transform .15s,filter .15s,box-shadow .15s;font-family:inherit}
 .btn-cy:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .btn-cy:active{transform:scale(.97)}
+
+/* ===== 预览稿剩余改版落地（v9）：今日概览统计卡 + 能力速达两列侧栏 ===== */
+/* 今日概览卡（bento 内，本机小数据：待做/速记/收藏 + AI 灵感） */
+.ov-card #ovStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ov-card .mini-btn{width:100%;background:var(--accent-strong);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px;font-size:12.5px;font-weight:600;cursor:pointer;margin-top:10px;box-shadow:0 6px 16px -10px rgba(10,118,130,.7);transition:transform .15s,filter .15s,box-shadow .15s;font-family:inherit}
+.ov-card .mini-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.ov-card .mini-btn:active{transform:scale(.97)}
+/* 能力速达 Tab 右栏（今日引导 / AI 趋势） */
+.side-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm),inset 0 1px 0 rgba(255,255,255,.03);animation:fadeIn .5s ease both}
+.side-card h4{margin:0 0 9px;font-size:13.5px;color:var(--txt);display:flex;align-items:center;gap:8px;font-weight:650;letter-spacing:.02em}
+.side-card h4 .ic{font-size:13px;background:var(--tint);border:1px solid rgba(43,184,198,.25);border-radius:8px;padding:4px 5px;display:inline-flex;line-height:1;color:var(--accent)}
+#pane-cap .wrap{grid-template-columns:1.55fr 1fr}
+@media(max-width:880px){#pane-cap .wrap{grid-template-columns:1fr}}
+body.light .side-card{box-shadow:var(--shadow-sm)}
+body.light .ov-card .mini-btn{box-shadow:none}
