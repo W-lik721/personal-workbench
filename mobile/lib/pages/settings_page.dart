@@ -1,10 +1,11 @@
-// 设置页：AI 助手记忆管理（开关/条数/长期记忆/清空历史）+ 外观
+// 设置页：AI 助手记忆管理（开关/条数/长期记忆/清空历史）+ 外观 + 云同步
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import '../main.dart';
 import '../services/core.dart';
+import '../services/sync.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -16,11 +17,24 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _memOn = true;
   int _memMax = 20;
   int _memCount = 0;
+  final _repoCtrl = TextEditingController(); // 云同步仓库
+  final _tokenCtrl = TextEditingController(); // GitHub Token（加密存储）
 
   @override
   void initState() {
     super.initState();
     _refresh();
+    _repoCtrl.text = Store.syncRepo;
+    Store.syncToken().then((t) {
+      if (mounted && t.isNotEmpty) _tokenCtrl.text = t;
+    });
+  }
+
+  @override
+  void dispose() {
+    _repoCtrl.dispose();
+    _tokenCtrl.dispose();
+    super.dispose();
   }
 
   void _refresh() {
@@ -103,6 +117,40 @@ class _SettingsPageState extends State<SettingsPage> {
             title: const Text('导入恢复'),
             subtitle: const Text('从备份文件还原，会覆盖当前同类数据'),
             onTap: _importBackup,
+          ),
+        ]),
+      ),
+
+      // ---------- 云同步（GitHub 中转，换机/多设备不丢数据） ----------
+      _sectionTitle('☁️ 云同步'),
+      Card(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
+            child: TextField(
+              controller: _repoCtrl,
+              decoration: const InputDecoration(labelText: 'GitHub 仓库', hintText: '用户名/仓库名，如 W-lik721/personal-workbench', border: OutlineInputBorder(), isDense: true),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 4),
+            child: TextField(
+              controller: _tokenCtrl,
+              obscureText: true,
+              decoration: const InputDecoration(labelText: 'GitHub Token（访问令牌）', border: OutlineInputBorder(), isDense: true),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 2),
+            child: Text('Token 在 GitHub「设置 → Developer settings → Personal access tokens」生成，勾 repo 权限。只加密存手机本地。', style: TextStyle(fontSize: 11, color: c.outline, height: 1.5)),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
+            child: Row(children: [
+              Expanded(child: FilledButton.tonal(onPressed: _syncUpload, child: const Text('☁️ 上传备份'))),
+              const SizedBox(width: 8),
+              Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('⬇️ 下载恢复'))),
+            ]),
           ),
         ]),
       ),
@@ -307,6 +355,60 @@ class _SettingsPageState extends State<SettingsPage> {
     Store.importAll(m);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已从备份恢复数据')));
+  }
+
+  // 云同步：上传备份（本地数据 → GitHub 仓库 app-data.json）
+  Future<void> _syncUpload() async {
+    final token = _tokenCtrl.text.trim();
+    final repo = _repoCtrl.text.trim();
+    if (token.isEmpty || !repo.contains('/')) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token 和仓库（格式：用户名/仓库名）')));
+      return;
+    }
+    Store.syncRepo = repo;
+    await Store.setSyncToken(token);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('☁️ 正在上传…')));
+    try {
+      await Sync.upload(token, repo);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('☁️ 已上传备份到 $repo')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 上传失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
+  }
+
+  // 云同步：下载恢复（GitHub → 本地，会覆盖当前数据，需二次确认）
+  Future<void> _syncDownload() async {
+    final token = _tokenCtrl.text.trim();
+    final repo = _repoCtrl.text.trim();
+    if (token.isEmpty || !repo.contains('/')) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token 和仓库（格式：用户名/仓库名）')));
+      return;
+    }
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('从云端恢复？'),
+        content: const Text('会用云端备份覆盖当前手机的待办/速记/收藏/课程表等数据。确定继续吗？'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
+          FilledButton(onPressed: () => Navigator.pop(c, true), child: const Text('恢复')),
+        ],
+      ),
+    );
+    if (ok != true || !mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⬇️ 正在下载…')));
+    try {
+      final m = await Sync.download(token, repo);
+      Store.importAll(m);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 已从云端恢复（$repo）')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 下载失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
   }
 
   // 清空所有数据：两次确认 + 输入"清空"验证，防止误触

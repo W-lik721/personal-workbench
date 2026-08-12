@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lite_workbench/services/core.dart';
@@ -17,6 +18,32 @@ void main() {
       expect(l.length, 2);
       expect(l[0].text, '买牛奶');
       expect(l[1].done, true);
+    });
+
+    test('待办提醒时间：读写 + 未设默认为空 + 旧数据兼容', () {
+      // 带提醒时间的待办 roundtrip
+      final at = DateTime(2026, 8, 15, 9, 30).millisecondsSinceEpoch;
+      Store.saveTodos([Todo('交作业', remindAt: at)]);
+      final l = Store.todos();
+      expect(l[0].remindAt, at);
+      // 未设提醒的待办 remindAt 为 null
+      Store.saveTodos([Todo('买菜')]);
+      expect(Store.todos()[0].remindAt, isNull);
+      // 旧格式数据（无 remindAt 字段）也能正常读
+      Store.saveTodos([Todo('旧数据')]);
+      final old = Store.todos()[0].toJson();
+      expect(old.containsKey('remindAt'), isFalse);
+      final t = Todo.fromJson({'text': '兼容', 'done': true});
+      expect(t.remindAt, isNull);
+      expect(t.done, true);
+    });
+
+    test('云同步仓库名归一化', () {
+      // 粘贴完整网址或带 .git 也能自动整理成 用户名/仓库名
+      Store.syncRepo = ' https://github.com/W-lik721/personal-workbench.git ';
+      expect(Store.syncRepo, 'W-lik721/personal-workbench');
+      Store.syncRepo = 'W-lik721/personal-workbench';
+      expect(Store.syncRepo, 'W-lik721/personal-workbench');
     });
 
     test('速记/收藏/入口/课程表读写', () {
@@ -179,6 +206,69 @@ void main() {
 
     test('空 items 返回空列表不崩溃', () {
       expect(Api.parseHot('{"source":"juejin","items":[]}'), isEmpty);
+    });
+
+    test('掘金解析：按真实结构 item_info.article_info（含兼容回退）', () {
+      // 真实结构（公开文档/项目实测）：data[].item_info.article_info.{...}
+      final body1 = jsonEncode({
+        'source': 'juejin',
+        'items': [{
+          'item_type': 2,
+          'item_info': {
+            'article_info': {
+              'article_id': '7446255234287714304',
+              'title': '真实标题A',
+              'brief_content': '真实简介A',
+              'url': 'https://juejin.cn/post/7446255234287714304',
+              'ctime': '1734428920',
+              'comment_count': 3,
+            },
+            'author_user_info': {'user_name': '作者甲'},
+            'tags': [{'tag_name': '前端'}]
+          }
+        }]
+      });
+      final l1 = Api.parseHot(body1);
+      expect(l1.length, 1);
+      expect(l1[0].title, '真实标题A');
+      expect(l1[0].content, '真实简介A');
+      expect(l1[0].source, '前端');
+      expect(l1[0].by, '作者甲');
+      expect(l1[0].replies, 3);
+      expect(l1[0].url, 'https://juejin.cn/post/7446255234287714304');
+
+      // 兼容：article_info 平铺在顶层（部分版本）
+      final body2 = jsonEncode({
+        'source': 'juejin',
+        'items': [{
+          'article_info': {
+            'article_id': '222',
+            'title': '平铺标题',
+            'brief_content': '平铺简介',
+            'ctime': 1700000000000,
+            'comment_count': 8,
+          },
+          'author_user_info': {'user_name': '作者乙'},
+          'tags': []
+        }]
+      });
+      final l2 = Api.parseHot(body2);
+      expect(l2[0].title, '平铺标题');
+      expect(l2[0].replies, 8);
+      expect(l2[0].created, 1700000000); // 毫秒转秒
+
+      // 兼容：item_info 直接挂 title（广告/沸点类条目）
+      final body3 = jsonEncode({
+        'source': 'juejin',
+        'items': [{
+          'item_type': 14,
+          'item_info': {'id': '333', 'title': '广告标题', 'url': 'https://juejin.cn/promo/333', 'brief': '广告简介'}
+        }]
+      });
+      final l3 = Api.parseHot(body3);
+      expect(l3[0].title, '广告标题');
+      expect(l3[0].url, 'https://juejin.cn/promo/333');
+      expect(l3[0].content, '广告简介');
     });
   });
 }

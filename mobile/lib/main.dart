@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'services/core.dart';
+import 'services/notifier.dart';
 import 'pages/home_page.dart';
 import 'pages/news_page.dart';
 import 'pages/ai_page.dart';
@@ -14,6 +15,8 @@ final darkModeNotifier = ValueNotifier<bool>(true);
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Store.init(); // 初始化本地存储（必须，否则待办/Key/记忆无法持久化）
+  await Store.clearHotCache(); // 清掉旧版技术热榜缓存（升级后避免一帧闪空卡）
+  await Notifier.init(); // 初始化本地通知（待办提醒用；顺带申请 Android 13+ 通知权限）
   darkModeNotifier.value = Store.darkMode; // 以已持久化的偏好初始化
   runApp(const WorkbenchApp());
 }

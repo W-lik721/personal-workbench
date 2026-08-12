@@ -1,5 +1,6 @@
 // 新闻页：AI 日报 + 每日新闻（TabBar 切换，本地缓存优先，Tab 懒加载）
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
@@ -317,6 +318,20 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       return _err(c, _errHot!, () => _loadHot());
     }
     final list = _hot!;
+    // 调试：若所有条目标题都为空，说明接口字段路径没对上，显示第一条原始数据供修复
+    final allEmpty = list.isNotEmpty && list.every((it) => it.title.isEmpty);
+    String debugRaw = '';
+    if (allEmpty) {
+      try {
+        final j = jsonDecode(Store.cacheHotJson ?? '{}') as Map<String, dynamic>;
+        final items = (j['items'] as List? ?? []);
+        debugRaw = items.isEmpty
+            ? 'items 为空（缓存长度 ${(Store.cacheHotJson ?? '').length}）'
+            : jsonEncode(items.first).substring(0, 600);
+      } catch (e) {
+        debugRaw = '原始数据解析失败: $e';
+      }
+    }
     return RefreshIndicator(
       onRefresh: () => _loadHot(silent: true),
       child: ListView(
@@ -325,6 +340,19 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           Text('技术热榜 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
+          if (allEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 4),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(color: c.errorContainer.withValues(alpha: 0.4), borderRadius: BorderRadius.circular(8)),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('⚠️ 接口字段没对上，第一条原始数据如下（长按可复制，发回给我修）:', style: TextStyle(fontSize: 12, color: c.error)),
+                  const SizedBox(height: 6),
+                  SelectableText(debugRaw, style: TextStyle(fontSize: 10, color: c.onSurface, fontFamily: 'monospace', height: 1.5)),
+                ]),
+              ),
+            ),
           const SizedBox(height: 10),
           ...list.asMap().entries.map((e) => _hotTile(c, e.value)),
         ],

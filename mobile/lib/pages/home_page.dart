@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemSound, SystemSoundType, HapticFeedback;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../services/core.dart';
+import '../services/notifier.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   int _pomoTotal = 25 * 60; // 当前选择的专注总时长（进度条分母 + 重置基准）
   DateTime? _pomoEnd; // 专注结束时刻（时间戳计时，后台/锁屏也不失真）
   Timer? _pomoTimer;
+  final stt.SpeechToText _speech = stt.SpeechToText(); // 语音速记（系统语音识别，免 key）
+  bool _listening = false; // 是否正在录音
 
   void _reload() {
     setState(() {
@@ -37,6 +41,37 @@ class _HomePageState extends State<HomePage> {
     _reload();
   }
 
+  @override
+  void dispose() {
+    _speech.stop(); // 离开页面时停止录音，释放麦克风
+    super.dispose();
+  }
+
+  // 语音速记：点一下开始听，再点停止；识别结果实时填入速记框
+  Future<void> _toggleSpeech() async {
+    if (_listening) {
+      await _speech.stop();
+      if (mounted) setState(() => _listening = false);
+      return;
+    }
+    final ok = await _speech.initialize();
+    if (!ok) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('语音识别不可用：手机上没装语音引擎，或没开麦克风权限')));
+      }
+      return;
+    }
+    if (!mounted) return;
+    setState(() => _listening = true);
+    await _speech.listen(
+      listenOptions: stt.SpeechListenOptions(localeId: 'zh_CN'),
+      onResult: (r) {
+        final t = r.recognizedWords;
+        if (t.isNotEmpty && mounted) _noteCtrl.text = t;
+      },
+    );
+  }
+
   void _addTodo() {
     final t = _todoCtrl.text.trim();
     if (t.isEmpty) return;
@@ -49,12 +84,15 @@ class _HomePageState extends State<HomePage> {
   void _toggleTodo(int i) {
     final l = Store.todos();
     l[i].done = !l[i].done;
+    // 勾选完成 → 取消该待办的提醒
+    if (l[i].done && l[i].remindAt != null) Notifier.cancelTodo(l[i].remindAt!);
     Store.saveTodos(l);
     _reload();
   }
 
   void _delTodo(int i) {
     final removed = Store.todos()[i];
+    if (removed.remindAt != null) Notifier.cancelTodo(removed.remindAt!);
     final l = Store.todos()..removeAt(i);
     Store.saveTodos(l);
     _reload();
@@ -203,7 +241,17 @@ class _HomePageState extends State<HomePage> {
                         onTap: () => _editTodo(e.key),
                         child: Text(e.value.text, style: TextStyle(decoration: e.value.done ? TextDecoration.lineThrough : null, color: e.value.done ? c.outline : null)),
                       ),
-                      trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editTodo(e.key)),
+                      subtitle: e.value.remindAt != null
+                          ? Text('🔔 ${_fmtRemind(e.value.remindAt!)}', style: TextStyle(fontSize: 11, color: c.primary))
+                          : null,
+                      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                        IconButton(
+                          tooltip: '提醒',
+                          icon: Icon(Icons.alarm_add, size: 18, color: e.value.remindAt != null ? c.primary : c.outline),
+                          onPressed: () => _setRemind(e.key),
+                        ),
+                        IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editTodo(e.key)),
+                      ]),
                     ),
                   )),
               if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.outline, fontSize: 13))),
@@ -272,12 +320,25 @@ class _HomePageState extends State<HomePage> {
                     ),
                   )),
               if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.outline, fontSize: 13))),
-              TextField(
-                controller: _noteCtrl,
-                maxLines: 3,
-                minLines: 1,
-                decoration: const InputDecoration(hintText: '写一条想法 / 灵感…', border: OutlineInputBorder()),
-                onSubmitted: (_) => _addNote(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _noteCtrl,
+                      maxLines: 3,
+                      minLines: 1,
+                      decoration: const InputDecoration(hintText: '写一条想法 / 灵感…', border: OutlineInputBorder()),
+                      onSubmitted: (_) => _addNote(),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton(
+                    tooltip: _listening ? '停止录音' : '语音速记（说中文转文字）',
+                    icon: Icon(_listening ? Icons.mic : Icons.mic_none, color: _listening ? c.error : null),
+                    onPressed: _toggleSpeech,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               FilledButton.tonal(onPressed: _addNote, child: const Text('➕ 添加')),
@@ -386,6 +447,87 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.delete_outline, color: Colors.white),
       );
 
+  // 设置/修改/取消待办提醒（点🔔按钮）
+  void _setRemind(int i) {
+    final todo = Store.todos()[i];
+    if (todo.remindAt == null) {
+      _pickRemind(i);
+      return;
+    }
+    showModalBottomSheet(
+      context: context,
+      builder: (c) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          ListTile(title: Text('⏰ 提醒时间：${_fmtRemind(todo.remindAt!)}')),
+          ListTile(
+            leading: const Icon(Icons.edit_outlined),
+            title: const Text('修改时间'),
+            onTap: () {
+              Navigator.pop(c);
+              _pickRemind(i);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.alarm_off_outlined),
+            title: const Text('取消提醒'),
+            onTap: () {
+              Navigator.pop(c);
+              _cancelRemind(i);
+            },
+          ),
+        ]),
+      ),
+    );
+  }
+
+  // 选日期 + 时间，保存并安排系统通知
+  void _pickRemind(int i) async {
+    final now = DateTime.now();
+    final d = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: now,
+      lastDate: now.add(const Duration(days: 365)),
+      helpText: '选择提醒日期',
+    );
+    if (d == null || !mounted) return;
+    final t = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(now.add(const Duration(hours: 1))),
+      helpText: '选择提醒时间',
+    );
+    if (t == null || !mounted) return;
+    final when = DateTime(d.year, d.month, d.day, t.hour, t.minute);
+    final l = Store.todos();
+    final oldAt = l[i].remindAt;
+    l[i].remindAt = when.millisecondsSinceEpoch;
+    Store.saveTodos(l);
+    await Notifier.scheduleTodo(when.millisecondsSinceEpoch, l[i].text);
+    if (oldAt != null) await Notifier.cancelTodo(oldAt);
+    _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('🔔 已设置提醒：${_fmtRemind(when.millisecondsSinceEpoch)}')));
+  }
+
+  // 取消提醒（仅清本地字段 + 取消系统通知）
+  void _cancelRemind(int i) async {
+    final l = Store.todos();
+    final oldAt = l[i].remindAt;
+    l[i].remindAt = null;
+    Store.saveTodos(l);
+    if (oldAt != null) await Notifier.cancelTodo(oldAt);
+    _reload();
+  }
+
+  // 提醒时间的友好显示："今天 14:30" / "8月15日 09:00"
+  String _fmtRemind(int ts) {
+    final d = DateTime.fromMillisecondsSinceEpoch(ts);
+    final now = DateTime.now();
+    final hm = '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+    if (d.year == now.year && d.month == now.month && d.day == now.day) return '今天 $hm';
+    return '${d.month}月${d.day}日 $hm';
+  }
+
   // 编辑已有待办（点文字或铅笔图标）
   void _editTodo(int i) {
     final cur = Store.todos()[i];
@@ -404,7 +546,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
           FilledButton(
-            onPressed: () {
+            onPressed: () async {
               final t = ctrl.text.trim();
               if (t.isEmpty) {
                 Navigator.pop(c);
@@ -412,8 +554,10 @@ class _HomePageState extends State<HomePage> {
               }
               final l = Store.todos();
               l[i].text = t;
+              // 已设提醒 → 同步更新通知里的文字（同 id 覆盖）
+              if (l[i].remindAt != null) await Notifier.scheduleTodo(l[i].remindAt!, t);
               Store.saveTodos(l);
-              Navigator.pop(c);
+              if (c.mounted) Navigator.pop(c);
               _reload();
             },
             child: const Text('保存'),

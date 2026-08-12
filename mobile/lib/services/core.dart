@@ -12,15 +12,19 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.0.0+1';
+const String appVersion = '1.1.0+2';
 
 // ---------- 模型 ----------
 class Todo {
   String text;
   bool done;
-  Todo(this.text, {this.done = false});
-  Map<String, dynamic> toJson() => {'text': text, 'done': done};
-  Todo.fromJson(Map<String, dynamic> j) : text = j['text'] ?? '', done = j['done'] ?? false;
+  int? remindAt; // 可选提醒时间（毫秒时间戳），null = 不提醒
+  Todo(this.text, {this.done = false, this.remindAt});
+  Map<String, dynamic> toJson() => {'text': text, 'done': done, if (remindAt != null) 'remindAt': remindAt};
+  Todo.fromJson(Map<String, dynamic> j)
+      : text = j['text'] ?? '',
+        done = j['done'] ?? false,
+        remindAt = (j['remindAt'] is int) ? (j['remindAt'] as int) : null;
 }
 
 class Note {
@@ -141,6 +145,28 @@ class Store {
     } catch (_) {}
   }
 
+  // ---------- 云同步（GitHub 备份中转） ----------
+  // 仓库名（owner/repo），默认用户自己的工作台仓库
+  static String get syncRepo => _p?.getString('wb_sync_repo') ?? 'W-lik721/personal-workbench';
+  static set syncRepo(String v) => _p?.setString('wb_sync_repo', v.trim().replaceAll(RegExp(r'^https?://[^/]+/'), '').replaceAll(RegExp(r'\.git$'), ''));
+  // GitHub Personal Access Token：走加密存储，不落明文
+  static Future<String> syncToken() async {
+    try {
+      return await _sec.read(key: 'wb_sync_token') ?? '';
+    } catch (_) {
+      return '';
+    }
+  }
+  static Future<void> setSyncToken(String k) async {
+    try {
+      if (k.isEmpty) {
+        await _sec.delete(key: 'wb_sync_token');
+      } else {
+        await _sec.write(key: 'wb_sync_token', value: k.trim());
+      }
+    } catch (_) {}
+  }
+
   // ---------- 日报/新闻缓存（原始 JSON + 抓取时间） ----------
   static String? get cacheReportJson => _p?.getString('wb_cache_report');
   static set cacheReportJson(String? v) => v == null ? _p?.remove('wb_cache_report') : _p?.setString('wb_cache_report', v);
@@ -156,6 +182,8 @@ class Store {
   static set cacheHotJson(String? v) => v == null ? _p?.remove('wb_cache_hot') : _p?.setString('wb_cache_hot', v);
   static int get cacheHotAt => _p?.getInt('wb_cache_hot_at') ?? 0;
   static set cacheHotAt(int v) => _p?.setInt('wb_cache_hot_at', v);
+  // 清掉旧版热榜缓存（升级时一次调用，避免坏数据闪烁）；新数据 fetchHotBody 会自动回填
+  static Future<void> clearHotCache() async => _p?.remove('wb_cache_hot');
 
   // ---------- AI 记忆 ----------
   // 对话历史（role+content），自动保存/恢复
@@ -406,33 +434,49 @@ class Api {
     }).toList();
   }
 
-  // 时间戳统一转秒（兼容 ms），供页面 *1000 显示
+  // 数字转换：兼容 num / 字符串数字 / null（掘金返回的 ctime 是字符串）
+  static int _num(dynamic v) {
+    if (v is num) return v.toInt();
+    final s = v?.toString().trim() ?? '';
+    return int.tryParse(s) ?? 0;
+  }
+
+  // 时间戳统一转秒（兼容 ms/字符串），供页面 *1000 显示
   static int _normSec(dynamic v) {
-    final n = (v as num?)?.toInt() ?? 0;
+    final n = _num(v);
     return n > 100000000000 ? n ~/ 1000 : n; // 毫秒级转秒
   }
 
   static HotItem _hotFromJuejin(Map<String, dynamic> m) {
-    final info = (m['article_info'] as Map? ?? {}).cast<String, dynamic>();
-    final author = (m['author_user_info'] as Map? ?? {}).cast<String, dynamic>();
-    final tags = m['tags'] as List? ?? const <dynamic>[];
+    // 掘金 API 真实结构（已按公开文档/开源项目实测确认）：
+    //   data[].item_info.article_info.{title, article_id, brief_content, url, ctime, comment_count}
+    //   data[].item_info.author_user_info.user_name
+    //   data[].item_info.tags[].tag_name
+    // 回退链：item_info.article_info → article_info → item_info → 顶层
+    final itemInfo = (m['item_info'] as Map? ?? {}).cast<String, dynamic>();
+    final info = ((itemInfo['article_info'] ?? m['article_info']) as Map?)?.cast<String, dynamic>() ?? itemInfo;
+    final author = ((itemInfo['author_user_info'] ?? m['author_user_info']) as Map? ?? {}).cast<String, dynamic>();
+    final tags = (itemInfo['tags'] ?? m['tags']) as List? ?? const <dynamic>[];
     final firstTag = tags.isNotEmpty ? ((tags.first as Map)['tag_name']?.toString() ?? '') : '';
+    final articleId = (info['article_id'] ?? info['id'] ?? '').toString();
+    var url = (info['article_url'] ?? info['url'] ?? itemInfo['url'] ?? '').toString();
+    if (url.isEmpty && articleId.isNotEmpty) url = 'https://juejin.cn/post/$articleId';
     return HotItem(
-      id: int.tryParse(info['article_id']?.toString() ?? '') ?? 0,
-      title: info['title']?.toString() ?? '',
-      url: info['article_url']?.toString() ?? '',
-      content: info['brief_content']?.toString() ?? '',
-      source: firstTag.isEmpty ? '掘金' : '掘金 · $firstTag',
-      by: author['user_name']?.toString() ?? '',
-      replies: (info['comment_count'] as num?)?.toInt() ?? 0,
-      created: _normSec(info['ctime']),
+      id: int.tryParse(articleId) ?? 0,
+      title: (info['title'] ?? info['article_title'] ?? itemInfo['title'] ?? m['title'] ?? '').toString(),
+      url: url,
+      content: (info['brief_content'] ?? info['brief'] ?? info['summary'] ?? info['content'] ?? itemInfo['brief_content'] ?? '').toString(),
+      source: firstTag, // 顶部已显示"数据源 juejin"，这里只显示文章分类标签
+      by: (author['user_name'] ?? author['name'] ?? '').toString(),
+      replies: _num(info['comment_count'] ?? info['comments_count']),
+      created: _normSec(info['ctime'] ?? info['created_at'] ?? itemInfo['ctime']),
     );
   }
 
   static HotItem _hotFromSspai(Map<String, dynamic> m) {
     final cat = (m['category'] as Map? ?? {}).cast<String, dynamic>();
     final user = (m['user'] as Map? ?? {}).cast<String, dynamic>();
-    final id = (m['id'] as num?)?.toInt() ?? 0;
+    final id = _num(m['id']);
     return HotItem(
       id: id,
       title: m['title']?.toString() ?? '',
@@ -440,14 +484,14 @@ class Api {
       content: m['summary']?.toString() ?? '',
       source: (cat['title'] ?? '少数派').toString(),
       by: user['name']?.toString() ?? '',
-      replies: (m['comments_count'] as num?)?.toInt() ?? 0,
+      replies: _num(m['comments_count']),
       created: _normSec(m['created_at']),
     );
   }
 
   static HotItem _hotFromV2ex(Map<String, dynamic> m) {
     final member = (m['member'] as Map? ?? {}).cast<String, dynamic>();
-    final id = (m['id'] as num?)?.toInt() ?? 0;
+    final id = _num(m['id']);
     final url = (m['url'] ?? '').toString();
     return HotItem(
       id: id,
@@ -456,8 +500,8 @@ class Api {
       content: (m['content'] ?? '').toString(),
       source: 'V2EX',
       by: (member['username'] ?? '').toString(),
-      replies: (m['replies'] as num?)?.toInt() ?? 0,
-      created: (m['created'] as num?)?.toInt() ?? 0,
+      replies: _num(m['replies']),
+      created: _normSec(m['created']),
     );
   }
 
