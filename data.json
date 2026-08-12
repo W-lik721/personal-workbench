@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-13 00:08",
+  "generatedAt": "2026-08-13 01:09",
   "kpi": {
-    "skills": 54,
+    "skills": 56,
     "automations": 2,
     "models": 5,
-    "memory": 34,
+    "memory": 35,
     "knowledge": 9,
-    "sessions": 12
+    "sessions": 11
   },
   "skills": [
     {
@@ -118,6 +118,14 @@
       "desc": "\"Translate English text files (.txt, .md) to Chinese for language learning and translation practice. Also handles formatted documents (PDF/DOCX/PPTX/EPUB/HTML) by first converting them to Markdown with the markitdown MCP server. Use when the user asks to translate a text file to Chinese, create a Chinese version of an English document, or generate bilingual materials for translation training. The translation preserves sentence structure and combines broken sentences into complete lines.\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：en-to-zh-translator",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "file-hygiene",
+      "desc": "\"文件整理与清理（Windows 安全版）。扫描目录（只读）→ 列出整理/清理方案 → 用户批准 → 安全执行（移动不覆盖、删除进回收站可反悔）。当用户说「整理下载文件夹」「清理一下 D 盘」「扫描大文件/重复文件/安装包残留」「删掉这些安装包」「帮我把文件归类」或任何文件整理/清理/瘦身请求时触发。核心理念：先审计、批准后才动、一切可回滚，绝不盲删。\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：file-hygiene",
       "usage": 0,
       "lastUsed": ""
     },
@@ -326,6 +334,14 @@
       "desc": "Download videos from Tencent share links (微信视频号 weixin.qq.com/sph, channels.weixin.qq.com, or QQ频道 pd.qq.com) whose real video URL is hidden behind a JS app and not in the page source. Use when curl/WebFetch can't find a direct mp4. (视频号/WeChat Channels/QQ频道 视频下载)",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：tencent-video-capture",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "tts-reader",
+      "desc": "\"文本朗读（文字转语音 TTS）。把文字/文档/长文转成 mp3 语音文件，供用户播放收听。当用户说「朗读这段文字」「把这篇文章读出来」「文字转语音」「生成语音」「TTS」「读给我听」「把文档转成音频」时触发。用微软 edge-tts 神经语音（免费、中文多音色、音质自然），需要网络。适合：长文档听读（学 CS 时眼睛累）、英文材料听力、把文章转成音频路上听。\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：tts-reader",
       "usage": 0,
       "lastUsed": ""
     },
@@ -611,11 +627,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 242
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 367
       }
     },
     "runtime": "3.13 / 22.22"
@@ -623,28 +639,28 @@
   "sessions": {
     "recent": [
       {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "working",
+        "updated": "08-13 01:09",
+        "group": "今天"
+      },
+      {
         "title": "找视频充实知识库",
         "customTitle": "",
         "display": "找视频充实知识库",
         "status": "working",
-        "updated": "08-13 00:07",
+        "updated": "08-13 01:02",
         "group": "今天"
       },
       {
         "title": "清理C盘释放空间",
         "customTitle": "",
         "display": "清理C盘释放空间",
-        "status": "working",
-        "updated": "08-13 00:05",
-        "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
         "status": "completed",
-        "updated": "08-12 23:36",
-        "group": "昨天"
+        "updated": "08-13 00:46",
+        "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
@@ -677,14 +693,6 @@
         "status": "completed",
         "updated": "08-12 14:08",
         "group": "昨天"
-      },
-      {
-        "title": "合并可合并且需定边界的内容",
-        "customTitle": "",
-        "display": "合并可合并且需定边界的内容",
-        "status": "completed",
-        "updated": "08-11 22:24",
-        "group": "更早"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
@@ -1309,16 +1317,13 @@
       },
       {
         "date": "2026-08-11",
-        "count": 1,
-        "titles": [
-          "合并可合并且需定边界的内容"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-12",
-        "count": 5,
+        "count": 4,
         "titles": [
-          "skill",
           "工作台",
           "整理工作区",
           "Obsidian的管理",
@@ -1327,8 +1332,9 @@
       },
       {
         "date": "2026-08-13",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "skill",
           "找视频充实知识库",
           "清理C盘释放空间"
         ]
@@ -1346,7 +1352,7 @@
     "files": [
       {
         "name": "00-路由表.md",
-        "mtime": "08-13 00:06"
+        "mtime": "08-13 00:56"
       },
       {
         "name": "AGENTS.md",
@@ -1380,9 +1386,21 @@
   },
   "weekly": [
     {
+      "kind": "skill",
+      "name": "tts-reader",
+      "when": 1786554523.357449,
+      "scope": "本机"
+    },
+    {
       "kind": "kb",
       "name": "00-路由表.md",
-      "when": 1786550805.0497591
+      "when": 1786553781.7485263
+    },
+    {
+      "kind": "skill",
+      "name": "file-hygiene",
+      "when": 1786553707.6080408,
+      "scope": "本机"
     },
     {
       "kind": "skill",
@@ -1610,7 +1628,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-13 00:08",
+    "fetchedAt": "2026-08-13 01:09",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1801,7 +1819,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-13 00:08",
+        "fetchedAt": "2026-08-13 01:09",
         "count": 26,
         "sections": [
           {
@@ -2723,7 +2741,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-13 00:08",
+    "fetchedAt": "2026-08-13 01:09",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2825,7 +2843,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-13 00:08",
+        "fetchedAt": "2026-08-13 01:09",
         "count": 15,
         "items": [
           {
@@ -3324,12 +3342,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T00:08:59",
-    "status": "ok",
-    "nextRun": "2026-08-13T01:08:59",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
