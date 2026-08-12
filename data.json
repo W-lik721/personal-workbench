@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12 16:38",
+  "generatedAt": "2026-08-12 18:18",
   "kpi": {
     "skills": 55,
     "automations": 2,
@@ -619,11 +619,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 233
+        "free": 234
       },
       "D": {
         "total": 544,
-        "free": 371
+        "free": 370
       }
     },
     "runtime": "3.13 / 22.22"
@@ -635,7 +635,7 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-12 16:35",
+        "updated": "08-12 18:18",
         "group": "今天"
       },
       {
@@ -643,7 +643,7 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-12 15:14",
+        "updated": "08-12 17:33",
         "group": "今天"
       },
       {
@@ -1589,16 +1589,11 @@
       "kind": "kb",
       "name": "AGENTS.md",
       "when": 1785940181.3500104
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1785919608.3931186
     }
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 16:38",
+    "fetchedAt": "2026-08-12 18:18",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1789,7 +1784,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 16:38",
+        "fetchedAt": "2026-08-12 18:18",
         "count": 26,
         "sections": [
           {
@@ -2711,7 +2706,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 16:38",
+    "fetchedAt": "2026-08-12 18:18",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2813,7 +2808,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 16:38",
+        "fetchedAt": "2026-08-12 18:18",
         "count": 15,
         "items": [
           {
@@ -3312,12 +3307,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-12T16:38:16",
-    "status": "ok",
-    "nextRun": "2026-08-12T17:38:16",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
