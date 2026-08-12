@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-12 12:05",
+  "generatedAt": "2026-08-12 12:58",
   "kpi": {
     "skills": 54,
     "automations": 2,
     "models": 5,
-    "memory": 32,
+    "memory": 33,
     "knowledge": 9,
-    "sessions": 11
+    "sessions": 10
   },
   "skills": [
     {
@@ -611,11 +611,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 232
+        "free": 231
       },
       "D": {
         "total": 544,
-        "free": 372
+        "free": 373
       }
     },
     "runtime": "3.13 / 22.22"
@@ -626,16 +626,16 @@
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "error",
-        "updated": "08-12 01:19",
+        "status": "completed",
+        "updated": "08-12 12:57",
         "group": "今天"
       },
       {
-        "title": "查找 Seelen UI 使用教程",
+        "title": "学习计算机科学与技术",
         "customTitle": "",
-        "display": "查找 Seelen UI 使用教程",
+        "display": "学习计算机科学与技术",
         "status": "completed",
-        "updated": "08-12 01:18",
+        "updated": "08-12 12:49",
         "group": "今天"
       },
       {
@@ -660,14 +660,6 @@
         "display": "合并可合并且需定边界的内容",
         "status": "completed",
         "updated": "08-11 22:24",
-        "group": "昨天"
-      },
-      {
-        "title": "学习计算机科学与技术",
-        "customTitle": "",
-        "display": "学习计算机科学与技术",
-        "status": "completed",
-        "updated": "08-11 13:46",
         "group": "昨天"
       },
       {
@@ -1306,12 +1298,11 @@
       },
       {
         "date": "2026-08-11",
-        "count": 5,
+        "count": 4,
         "titles": [
           "skill",
           "整理工作区",
           "合并可合并且需定边界的内容",
-          "学习计算机科学与技术",
           "Obsidian的管理"
         ]
       },
@@ -1320,7 +1311,7 @@
         "count": 2,
         "titles": [
           "工作台",
-          "查找 Seelen UI 使用教程"
+          "学习计算机科学与技术"
         ]
       }
     ]
@@ -1598,7 +1589,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 12:05",
+    "fetchedAt": "2026-08-12 12:58",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1789,7 +1780,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 12:05",
+        "fetchedAt": "2026-08-12 12:58",
         "count": 26,
         "sections": [
           {
@@ -2711,7 +2702,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 12:05",
+    "fetchedAt": "2026-08-12 12:58",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2813,7 +2804,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 12:05",
+        "fetchedAt": "2026-08-12 12:58",
         "count": 15,
         "items": [
           {
@@ -3314,9 +3305,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-12T12:05:17",
+    "lastRun": "2026-08-12T12:58:31",
     "status": "ok",
-    "nextRun": "2026-08-12T13:05:17",
+    "nextRun": "2026-08-12T13:58:31",
     "intervalHours": 1,
     "staleHours": 2
   }
