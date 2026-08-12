@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-12 14:40",
+  "generatedAt": "2026-08-12 16:38",
   "kpi": {
-    "skills": 54,
+    "skills": 55,
     "automations": 2,
     "models": 5,
     "memory": 33,
@@ -254,6 +254,14 @@
       "desc": "论文查重与AI率检测工具，支持中文英文论文查重、AI率检测、降重和降AI率处理。用于：(1)上传论文文件进行查重和AI率检测",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：paper-checker__skillhub",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "paper-pipeline",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：paper-pipeline",
       "usage": 0,
       "lastUsed": ""
     },
@@ -611,11 +619,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 234
+        "free": 233
       },
       "D": {
         "total": 544,
-        "free": 374
+        "free": 371
       }
     },
     "runtime": "3.13 / 22.22"
@@ -623,19 +631,19 @@
   "sessions": {
     "recent": [
       {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-12 14:39",
-        "group": "今天"
-      },
-      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-12 14:38",
+        "updated": "08-12 16:35",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-12 15:14",
         "group": "今天"
       },
       {
@@ -1309,8 +1317,8 @@
         "date": "2026-08-12",
         "count": 3,
         "titles": [
-          "skill",
           "工作台",
+          "skill",
           "学习计算机科学与技术"
         ]
       }
@@ -1360,6 +1368,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "paper-pipeline",
+      "when": 1786518514.8642063,
+      "scope": "本机"
+    },
     {
       "kind": "skill",
       "name": "web-access",
@@ -1584,7 +1598,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 14:40",
+    "fetchedAt": "2026-08-12 16:38",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-12",
     "count": 26,
@@ -1775,7 +1789,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 14:40",
+        "fetchedAt": "2026-08-12 16:38",
         "count": 26,
         "sections": [
           {
@@ -2697,7 +2711,7 @@
   },
   "dailyNews": {
     "date": "2026-08-12",
-    "fetchedAt": "2026-08-12 14:40",
+    "fetchedAt": "2026-08-12 16:38",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2799,7 +2813,7 @@
     "history": [
       {
         "date": "2026-08-12",
-        "fetchedAt": "2026-08-12 14:40",
+        "fetchedAt": "2026-08-12 16:38",
         "count": 15,
         "items": [
           {
@@ -3298,12 +3312,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-12T14:40:30",
-    "status": "ok",
-    "nextRun": "2026-08-12T15:40:30",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
