@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-13 18:20",
+  "generatedAt": "2026-08-13 19:56",
   "kpi": {
-    "skills": 56,
+    "skills": 57,
     "automations": 2,
     "models": 5,
     "memory": 35,
@@ -46,6 +46,14 @@
       "desc": "Karpathy 风格 AI 方法论总入口，覆盖 15 个场景：① agentic engineering（代理工程 / agent",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：andrej-karpathy-skills__github",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "ascetic-breaker",
+      "desc": "\"苦行僧破执术（元认知 Skill）。打破 AI 的'苦行僧模式'——仅依赖当前上下文埋头硬推、无视外部资源、重复造轮子、信息不足仍强行编造。触发信号：(1)任务涉及代码编写/方案设计/调研分析但未先检索现有资源；(2)连续多轮同一问题反复推理未引入外部新信息；(3)上下文缺版本号/API文档/行业数据却仍继续输出；(4)用'应该是''大概''通常'填充关键事实缺口；(5)正在从头实现可能有成熟库的功能。核心价值：缺口检测→资源路由→方案评分→交叉校验→假设显式化→卡壳自动触发。调研类任务委托 web-access/agent-reach，代码类用 WebSearch/WebFetch 定向查官方文档/GitHub，项目内复用优先 Glob/Grep。与用户红线'写代码/接口字段禁止靠猜'一致。\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：ascetic-breaker",
       "usage": 0,
       "lastUsed": ""
     },
@@ -643,7 +651,15 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-13 18:19",
+        "updated": "08-13 19:56",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-13 19:50",
         "group": "今天"
       },
       {
@@ -652,14 +668,6 @@
         "display": "Obsidian的管理",
         "status": "completed",
         "updated": "08-13 17:32",
-        "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-13 17:25",
         "group": "今天"
       },
       {
@@ -1332,8 +1340,8 @@
         "count": 6,
         "titles": [
           "工作台",
-          "Obsidian的管理",
           "skill",
+          "Obsidian的管理",
           "学习",
           "找视频充实知识库",
           "清理C盘释放空间"
@@ -1386,6 +1394,18 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "ascetic-breaker",
+      "when": 1786621360.978732,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "douyin",
+      "when": 1786621105.8219302,
+      "scope": "本机"
+    },
     {
       "kind": "kb",
       "name": "kb-index.json",
@@ -1459,12 +1479,6 @@
       "kind": "skill",
       "name": "video",
       "when": 1786453574.7550118,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "douyin",
-      "when": 1786452880.590118,
       "scope": "本机"
     },
     {
@@ -1624,7 +1638,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 18:20",
+    "fetchedAt": "2026-08-13 19:56",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1779,7 +1793,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 18:20",
+        "fetchedAt": "2026-08-13 19:56",
         "count": 20,
         "sections": [
           {
@@ -2854,7 +2868,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 18:20",
+    "fetchedAt": "2026-08-13 19:56",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2956,7 +2970,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 18:20",
+        "fetchedAt": "2026-08-13 19:56",
         "count": 15,
         "items": [
           {
@@ -3555,12 +3569,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T18:20:45",
-    "status": "ok",
-    "nextRun": "2026-08-13T19:20:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
