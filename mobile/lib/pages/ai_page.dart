@@ -1,5 +1,5 @@
 // AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
-// 支持「知识库问答」：开启时发送自动查 vault 知识库（kb.dart）拼上下文
+// 支持「知识库问答」：开启时发送自动查 vault 知识库（kb.dart）+ 内置 Skill 方法库（skilllib.dart）拼上下文
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 import '../services/kb.dart';
+import '../services/skilllib.dart';
 
 class AiPage extends StatefulWidget {
   const AiPage({super.key});
@@ -147,10 +148,13 @@ class _AiPageState extends State<AiPage> {
     final all = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
     final history = all.sublist(0, all.length - 1);
     final memory = Store.aiMemoryOn ? Store.aiMemoryForChat() : <String>[]; // 只带最近 15 条长期记忆，防 prompt 撑爆
-    // 知识库问答：开启且有 token 时，自动查 vault 知识库拼上下文（无匹配/失败则静默跳过）
+    // 知识库问答：开启时自动查（内置 Skill 方法库离线优先 + vault 知识库云端），无命中/失败静默跳过
     String kb = '';
-    if (_kbOn && (await Store.syncToken()).isNotEmpty) {
-      kb = await Kb.query(q);
+    if (_kbOn) {
+      await SkillLib.ensureLoaded();
+      final skillCtx = SkillLib.query(q); // 内置 skill 方法库（离线，无需 token）
+      final kbCtx = (await Store.syncToken()).isNotEmpty ? await Kb.query(q) : '';
+      kb = [if (skillCtx.isNotEmpty) skillCtx, if (kbCtx.isNotEmpty) kbCtx].join('\n');
     }
     final maxMsgs = Store.aiMemoryMax;
     final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
