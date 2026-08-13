@@ -111,6 +111,42 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           clipBehavior: Clip.antiAlias,
         ),
+        // 底部导航：选中态青色实色胶囊 + 白图标白字（点亮感），未选中低调灰
+        navigationBarTheme: NavigationBarThemeData(
+          height: 66,
+          elevation: 3,
+          indicatorColor: const Color(0xFF2BB8C6),
+          labelTextStyle: WidgetStateProperty.resolveWith((s) {
+            const base = TextStyle(fontSize: 11, fontWeight: FontWeight.w500);
+            return s.contains(WidgetState.selected)
+                ? base.copyWith(fontWeight: FontWeight.bold, color: Colors.white)
+                : base.copyWith(color: Colors.black54);
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((s) {
+            return s.contains(WidgetState.selected)
+                ? const IconThemeData(size: 24, color: Colors.white)
+                : const IconThemeData(size: 22, color: Colors.black54);
+          }),
+        ),
+        // 全局按钮统一圆角 12 + 舒适内边距，视觉更精致
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -124,6 +160,40 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           clipBehavior: Clip.antiAlias,
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          height: 66,
+          elevation: 3,
+          indicatorColor: const Color(0xFF2BB8C6),
+          labelTextStyle: WidgetStateProperty.resolveWith((s) {
+            const base = TextStyle(fontSize: 11, fontWeight: FontWeight.w500);
+            return s.contains(WidgetState.selected)
+                ? base.copyWith(fontWeight: FontWeight.bold, color: Colors.white)
+                : base.copyWith(color: Colors.white70);
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((s) {
+            return s.contains(WidgetState.selected)
+                ? const IconThemeData(size: 24, color: Colors.white)
+                : const IconThemeData(size: 22, color: Colors.white70);
+          }),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
         ),
       ),
       themeMode: themeModeNotifier.value == 'system'
