@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13 11:48",
+  "generatedAt": "2026-08-13 13:01",
   "kpi": {
     "skills": 56,
     "automations": 2,
@@ -627,7 +627,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 242
+        "free": 241
       },
       "D": {
         "total": 544,
@@ -638,6 +638,14 @@
   },
   "sessions": {
     "recent": [
+      {
+        "title": "约定明天再处理",
+        "customTitle": "",
+        "display": "约定明天再处理",
+        "status": "completed",
+        "updated": "08-13 13:00",
+        "group": "今天"
+      },
       {
         "title": "找视频充实知识库",
         "customTitle": "",
@@ -684,14 +692,6 @@
         "display": "Obsidian的管理",
         "status": "completed",
         "updated": "08-12 20:09",
-        "group": "昨天"
-      },
-      {
-        "title": "学习计算机科学与技术",
-        "customTitle": "",
-        "display": "学习计算机科学与技术",
-        "status": "completed",
-        "updated": "08-12 14:08",
         "group": "昨天"
       },
       {
@@ -1322,18 +1322,18 @@
       },
       {
         "date": "2026-08-12",
-        "count": 4,
+        "count": 3,
         "titles": [
           "工作台",
           "整理工作区",
-          "Obsidian的管理",
-          "学习计算机科学与技术"
+          "Obsidian的管理"
         ]
       },
       {
         "date": "2026-08-13",
-        "count": 3,
+        "count": 4,
         "titles": [
+          "约定明天再处理",
           "找视频充实知识库",
           "skill",
           "清理C盘释放空间"
@@ -1633,7 +1633,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 11:48",
+    "fetchedAt": "2026-08-13 13:01",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1788,7 +1788,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 11:48",
+        "fetchedAt": "2026-08-13 13:01",
         "count": 20,
         "sections": [
           {
@@ -2863,7 +2863,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 11:48",
+    "fetchedAt": "2026-08-13 13:01",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2965,7 +2965,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 11:48",
+        "fetchedAt": "2026-08-13 13:01",
         "count": 15,
         "items": [
           {
@@ -3564,12 +3564,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T11:48:18",
-    "status": "ok",
-    "nextRun": "2026-08-13T12:48:18",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
