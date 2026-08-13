@@ -270,7 +270,15 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
-          Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Row(children: [
+            Expanded(child: Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
+            IconButton(
+              visualDensity: VisualDensity.compact,
+              tooltip: '复制整份日报',
+              icon: Icon(Icons.copy, size: 18, color: c.primary),
+              onPressed: () => _copyReport(r),
+            ),
+          ]),
           Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
           const SizedBox(height: 8),
@@ -278,6 +286,22 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         ],
       ),
     );
+  }
+
+  // 复制整份 AI 日报（标题 + 各栏目条目）到剪贴板
+  void _copyReport(DailyReport r) {
+    final sb = StringBuffer('${r.date} AI 日报 · ${r.count} 条\n数据源 ${r.source} · ${r.fetchedAt}\n\n');
+    for (final s in r.sections) {
+      sb.writeln('## ${s.label}（${s.items.length}）');
+      for (final it in s.items) {
+        sb.writeln('- ${it.title}');
+        if (it.summary.isNotEmpty) sb.writeln('  ${it.summary}');
+        if (it.url.isNotEmpty) sb.writeln('  ${it.url}');
+      }
+      sb.writeln();
+    }
+    Clipboard.setData(ClipboardData(text: sb.toString()));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 整份日报已复制')));
   }
 
   Widget _buildDnews(ColorScheme c) {

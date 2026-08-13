@@ -12,7 +12,7 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.2.3+6';
+const String appVersion = '1.2.4+7';
 
 // ---------- 模型 ----------
 class Todo {

@@ -228,6 +228,8 @@ class _HomePageState extends State<HomePage> {
     // 速记/收藏搜索过滤（关键词为空时显示全部）
     final visNotes = _noteQ.isEmpty ? _notes : _notes.where((n) => n.text.contains(_noteQ)).toList();
     final visFavs = _favQ.isEmpty ? _favs : _favs.where((f) => f.title.contains(_favQ)).toList();
+    // 待办：未完成优先、完成项自动沉底（保持各自原顺序）
+    final visTodos = [..._todos.where((t) => !t.done), ..._todos.where((t) => t.done)];
     return RefreshIndicator(
       onRefresh: () async => _reload(),
       child: ListView(
@@ -236,39 +238,43 @@ class _HomePageState extends State<HomePage> {
           // ---- 待办 + 番茄钟 ----
           _card(
             title: '✅ 待办清单 · 可勾选',
+            foldKey: 'todo',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_todos.isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Text('$doneCount/${_todos.length} 已完成', style: TextStyle(fontSize: 12, color: c.outline)),
                 ),
-              ..._todos.asMap().entries.map((e) => Dismissible(
-                    key: ObjectKey(e.value),
-                    direction: DismissDirection.endToStart,
-                    background: _swipeBg(c),
-                    onDismissed: (_) => _delTodo(e.key),
-                    child: ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      leading: Checkbox(value: e.value.done, onChanged: (_) => _toggleTodo(e.key)),
-                      title: GestureDetector(
-                        onTap: () => _editTodo(e.key),
-                        child: Text(e.value.text, style: TextStyle(decoration: e.value.done ? TextDecoration.lineThrough : null, color: e.value.done ? c.outline : null)),
-                      ),
-                      subtitle: e.value.remindAt != null
-                          ? Text('🔔 ${_fmtRemind(e.value.remindAt!)}', style: TextStyle(fontSize: 11, color: c.primary))
-                          : null,
-                      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                        IconButton(
-                          tooltip: '提醒',
-                          icon: Icon(Icons.alarm_add, size: 20, color: e.value.remindAt != null ? c.primary : c.outline),
-                          onPressed: () => _setRemind(e.key),
-                        ),
-                        const SizedBox(width: 2),
-                        IconButton(icon: const Icon(Icons.edit_outlined, size: 20), onPressed: () => _editTodo(e.key)),
-                      ]),
+              ...visTodos.map((t) {
+                final i = _todos.indexOf(t); // 排序后取原始索引，保证删/改/勾选正确
+                return Dismissible(
+                  key: ObjectKey(t),
+                  direction: DismissDirection.endToStart,
+                  background: _swipeBg(c),
+                  onDismissed: (_) => _delTodo(i),
+                  child: ListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                    leading: Checkbox(value: t.done, onChanged: (_) => _toggleTodo(i)),
+                    title: GestureDetector(
+                      onTap: () => _editTodo(i),
+                      child: Text(t.text, style: TextStyle(decoration: t.done ? TextDecoration.lineThrough : null, color: t.done ? c.outline : null)),
                     ),
-                  )),
+                    subtitle: t.remindAt != null
+                        ? Text('🔔 ${_fmtRemind(t.remindAt!)}', style: TextStyle(fontSize: 11, color: c.primary))
+                        : null,
+                    trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                      IconButton(
+                        tooltip: '提醒',
+                        icon: Icon(Icons.alarm_add, size: 20, color: t.remindAt != null ? c.primary : c.outline),
+                        onPressed: () => _setRemind(i),
+                      ),
+                      const SizedBox(width: 2),
+                      IconButton(icon: const Icon(Icons.edit_outlined, size: 20), onPressed: () => _editTodo(i)),
+                    ]),
+                  ),
+                );
+              }),
               if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))),
               TextField(
                 controller: _todoCtrl,
@@ -320,6 +326,7 @@ class _HomePageState extends State<HomePage> {
           // ---- 速记 ----
           _card(
             title: '📝 我的速记 · 随手记',
+            foldKey: 'note',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_notes.length > 3) ...[
                 TextField(
@@ -377,6 +384,7 @@ class _HomePageState extends State<HomePage> {
           // ---- 今日概览（替换原"常用入口"） ----
           _card(
             title: '📊 今日概览',
+            foldKey: 'overview',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
                 _stat(c, '✅', '待做', _todos.where((t) => !t.done).length),
@@ -398,6 +406,7 @@ class _HomePageState extends State<HomePage> {
           // ---- 收藏 ----
           _card(
             title: '⭐ 我的收藏 · 稍后读',
+            foldKey: 'fav',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_favs.length > 3) ...[
                 TextField(
@@ -654,14 +663,36 @@ class _HomePageState extends State<HomePage> {
     return '${d.month}-${d.day}';
   }
 
-  Widget _card({required String title, required Widget child}) {
+  // 折叠状态：foldKey 存在即可点标题收起（长页面可收次要卡片）
+  final Set<String> _folded = {};
+
+  Widget _card({required String title, required Widget child, String? foldKey}) {
+    final folded = foldKey != null && _folded.contains(foldKey);
     return Card(
       margin: EdgeInsets.zero,
-      child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
-        child,
-      ])),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Expanded(child: Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600))),
+            if (foldKey != null)
+              InkWell(
+                borderRadius: BorderRadius.circular(6),
+                onTap: () => setState(() {
+                  folded ? _folded.remove(foldKey) : _folded.add(foldKey);
+                }),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  child: Icon(folded ? Icons.expand_more : Icons.expand_less, size: 18, color: Theme.of(context).colorScheme.outline),
+                ),
+              ),
+          ]),
+          if (!folded) ...[
+            const SizedBox(height: 8),
+            child,
+          ],
+        ]),
+      ),
     );
   }
 }
