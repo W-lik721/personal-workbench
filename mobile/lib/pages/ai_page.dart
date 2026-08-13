@@ -53,6 +53,16 @@ class _AiPageState extends State<AiPage> {
       if (!mounted) return;
       setState(() => _input.text = t);
     };
+    // 工具箱「拍照识题 / 心情周报」：填问题 + 选模式 + 切到 AI tab，可选直接发送
+    aiAskGlobal = (text, {String mode = '', bool send = false}) {
+      if (!mounted) return;
+      setState(() {
+        _input.text = text;
+        if (mode.isNotEmpty) _mode = mode;
+      });
+      switchTabGlobal?.call(2);
+      if (send) _send();
+    };
     // 记录是否贴底：上滑看历史时，流式输出不强行拽到底
     _scroll.addListener(() {
       if (_scroll.hasClients) {

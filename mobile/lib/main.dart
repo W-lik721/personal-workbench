@@ -9,6 +9,7 @@ import 'pages/news_page.dart';
 import 'pages/ai_page.dart';
 import 'pages/schedule_page.dart';
 import 'pages/study_page.dart';
+import 'pages/tools_page.dart';
 import 'pages/settings_page.dart';
 
 // 主题切换通知器：让深处的开关能即时重建 MaterialApp（否则要重启才生效）
@@ -147,6 +148,7 @@ class _MainShellState extends State<MainShell> {
     const AiPage(),
     const SchedulePage(),
     const StudyPage(),
+    const ToolsPage(),
     const SettingsPage(),
   ];
 
@@ -207,6 +209,7 @@ class _MainShellState extends State<MainShell> {
           NavigationDestination(icon: Icon(Icons.smart_toy_outlined), selectedIcon: Icon(Icons.smart_toy), label: 'AI 助手'),
           NavigationDestination(icon: Icon(Icons.calendar_month_outlined), selectedIcon: Icon(Icons.calendar_month), label: '课程表'),
           NavigationDestination(icon: Icon(Icons.school_outlined), selectedIcon: Icon(Icons.school), label: '学习'),
+          NavigationDestination(icon: Icon(Icons.build_outlined), selectedIcon: Icon(Icons.build), label: '工具'),
           NavigationDestination(icon: Icon(Icons.settings_outlined), selectedIcon: Icon(Icons.settings), label: '设置'),
         ],
       ),

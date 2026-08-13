@@ -28,7 +28,9 @@ android {
 
     defaultConfig {
         applicationId = "com.qingdeng.lite_workbench"
-        minSdk = flutter.minSdkVersion
+        // minSdk 固定 21：google_mlkit_text_recognition（拍照识题 OCR 引擎）要求 >= 21；
+        // 覆盖 Android 5.0+，现代手机 100% 兼容
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -71,4 +73,6 @@ flutter {
 dependencies {
     // desugar_jdk_libs：让低版本 Android 也能用 java.time（flutter_local_notifications 需要）
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    // 拍照识题 OCR：Google ML Kit 中文识别模型（插件默认只含拉丁字母，中文需单独引入）
+    implementation("com.google.mlkit:text-recognition-chinese:16.0.0-beta6")
 }

@@ -4,15 +4,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
-// 新闻页"让 AI 讲讲"跳转 AI tab 的全局桥（由 main.dart 注入）
-void Function(String text)? aiAskGlobal;
+// 跳转 AI tab 的全局桥：填问题 → 切到 AI tab（可选：选学习模式 + 直接发送）
+// 由 AiPage 在 initState 注入（支持 mode / send）；main.dart 提供无参兜底版本
+void Function(String text, {String mode, bool send})? aiAskGlobal;
 // AI 页注册：填充输入框（配合 aiAskGlobal 使用）
 void Function(String text)? aiFillGlobal;
 // 设置页"清空对话历史"通知 AI 页同步清空的全局回调（由 AiPage 注册）
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.3.1+10';
+const String appVersion = '1.3.2+11';
 
 // 由首页卡片跳转到指定 tab（学习中心等），由 MainShell 注入
 void Function(int index)? switchTabGlobal;
@@ -162,6 +163,34 @@ class Flashcard {
         box = j['box'] ?? 0;
 }
 
+// 账号保管箱条目（存加密存储，不落明文 SharedPreferences）
+class Account {
+  String title; // 平台/站点名
+  String username; // 账号/手机号
+  String password;
+  String note;
+  Account(this.title, {this.username = '', this.password = '', this.note = ''});
+  Map<String, dynamic> toJson() => {'title': title, 'username': username, 'password': password, 'note': note};
+  Account.fromJson(Map<String, dynamic> j)
+      : title = j['title'] ?? '',
+        username = j['username'] ?? '',
+        password = j['password'] ?? '',
+        note = j['note'] ?? '';
+}
+
+// 心情日记（每日一句 + emoji，AI 周报用）
+class Mood {
+  String text;
+  String emoji; // 心情图标
+  int at; // 时间戳
+  Mood(this.text, this.emoji, this.at);
+  Map<String, dynamic> toJson() => {'text': text, 'emoji': emoji, 'at': at};
+  Mood.fromJson(Map<String, dynamic> j)
+      : text = j['text'] ?? '',
+        emoji = j['emoji'] ?? '🙂',
+        at = j['at'] ?? 0;
+}
+
 // ---------- 本地存储 ----------
 class Store {
   static SharedPreferences? _p;
@@ -250,6 +279,26 @@ class Store {
   // 闪卡
   static List<Flashcard> cards() => _load('wb_cards').map((j) => Flashcard.fromJson(j)).toList();
   static void saveCards(List<Flashcard> l) => _save('wb_cards', l.map((c) => c.toJson()).toList());
+
+  // 心情日记（普通存储；AI 周报用）
+  static List<Mood> moods() => _load('wb_moods').map((j) => Mood.fromJson(j)).toList();
+  static void saveMoods(List<Mood> l) => _save('wb_moods', l.map((m) => m.toJson()).toList());
+
+  // 账号保管箱（存系统加密存储 Keystore/Keychain，不落明文）
+  static Future<List<Account>> accounts() async {
+    try {
+      final s = await _sec.read(key: 'wb_accounts');
+      if (s == null) return [];
+      return (jsonDecode(s) as List).map((j) => Account.fromJson(j)).toList();
+    } catch (_) {
+      return [];
+    }
+  }
+  static Future<void> saveAccounts(List<Account> l) async {
+    try {
+      await _sec.write(key: 'wb_accounts', value: jsonEncode(l.map((a) => a.toJson()).toList()));
+    } catch (_) {}
+  }
 
   static bool get darkMode => _p?.getBool('wb_dark') ?? true;
   static set darkMode(bool v) => _p?.setBool('wb_dark', v);
