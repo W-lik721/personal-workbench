@@ -99,36 +99,34 @@ class _SettingsPageState extends State<SettingsPage> {
       // ---------- 外观 ----------
       _sectionTitle('🎨 外观'),
       Card(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ListTile(
+              leading: Icon(Icons.dark_mode_outlined),
+              title: Text('外观'),
+              subtitle: Text('选择浅色 / 深色，或跟随系统自动切换'),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+              child: Row(
                 children: [
-                  const Icon(Icons.dark_mode_outlined),
-                  const SizedBox(width: 12),
-                  const Text('外观', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                  const Spacer(),
-                  SegmentedButton<String>(
-                    style: const ButtonStyle(visualDensity: VisualDensity.compact),
-                    segments: const [
-                      ButtonSegment(value: 'system', label: Text('系统'), icon: Icon(Icons.brightness_auto, size: 15)),
-                      ButtonSegment(value: 'dark', label: Text('深色'), icon: Icon(Icons.dark_mode, size: 15)),
-                      ButtonSegment(value: 'light', label: Text('浅色'), icon: Icon(Icons.light_mode, size: 15)),
-                    ],
-                    selected: {themeModeNotifier.value},
-                    onSelectionChanged: (s) => themeModeNotifier.value = s.first,
+                  Expanded(
+                    child: SegmentedButton<String>(
+                      style: const ButtonStyle(visualDensity: VisualDensity.compact),
+                      segments: const [
+                        ButtonSegment(value: 'system', label: Text('系统'), icon: Icon(Icons.brightness_auto, size: 15)),
+                        ButtonSegment(value: 'dark', label: Text('深色'), icon: Icon(Icons.dark_mode, size: 15)),
+                        ButtonSegment(value: 'light', label: Text('浅色'), icon: Icon(Icons.light_mode, size: 15)),
+                      ],
+                      selected: {themeModeNotifier.value},
+                      onSelectionChanged: (s) => themeModeNotifier.value = s.first,
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
-              Text(
-                '跟随系统：白天亮色、晚上暗色自动切换',
-                style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurfaceVariant),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
 
