@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   List<Todo> _todos = [];
   List<Note> _notes = [];
   List<Fav> _favs = [];
+  List<ExamEvent> _events = [];
   bool _pomoRunning = false;
   int _pomoLeft = 25 * 60;
   int _pomoTotal = 25 * 60; // 当前选择的专注总时长（进度条分母 + 重置基准）
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       _todos = Store.todos();
       _notes = Store.notes();
       _favs = Store.favs();
+      _events = Store.events();
     });
   }
 
@@ -412,6 +414,34 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ]),
+          ),
+          const SizedBox(height: 8),
+          // ---- 最近倒计时（跳学习中心） ----
+          _card(
+            title: '⏳ 最近倒计时',
+            foldKey: 'countdown',
+            child: _events.isEmpty
+                ? InkWell(
+                    onTap: () => switchTabGlobal?.call(4),
+                    child: Text('还没设倒计时。去「学习」页导入四六级/考研/寒暑假 →', style: TextStyle(color: c.outline, fontSize: 13)),
+                  )
+                : InkWell(
+                    onTap: () => switchTabGlobal?.call(4),
+                    child: Builder(builder: (ctx) {
+                      final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).millisecondsSinceEpoch;
+                      final future = _events.where((e) => e.at >= today).toList()..sort((a, b) => a.at.compareTo(b.at));
+                      final nearest = future.isNotEmpty ? future.first : (_events..sort((a, b) => b.at.compareTo(a.at))).first;
+                      final d = DateTime.fromMillisecondsSinceEpoch(nearest.at);
+                      final diff = DateTime(d.year, d.month, d.day).difference(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)).inDays;
+                      final txt = diff == 0 ? '就是今天' : (diff > 0 ? '还有 $diff 天' : '已过 ${-diff} 天');
+                      return Row(children: [
+                        Text(nearest.emoji, style: const TextStyle(fontSize: 22)),
+                        const SizedBox(width: 10),
+                        Expanded(child: Text(nearest.name, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600))),
+                        Text(txt, style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: c.primary)),
+                      ]);
+                    }),
+                  ),
           ),
           const SizedBox(height: 8),
           // ---- 收藏 ----

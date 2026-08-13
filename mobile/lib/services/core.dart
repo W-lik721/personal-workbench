@@ -12,7 +12,10 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.2.5+8';
+const String appVersion = '1.3.0+9';
+
+// 由首页卡片跳转到指定 tab（学习中心等），由 MainShell 注入
+void Function(int index)? switchTabGlobal;
 
 // ---------- 模型 ----------
 class Todo {
@@ -99,6 +102,66 @@ class HotItem {
   HotItem({this.id = 0, this.title = '', this.url = '', this.content = '', this.source = '', this.by = '', this.replies = 0, this.created = 0});
 }
 
+// 考试/假期倒计时事件（内置常用模板 + 自定义）
+class ExamEvent {
+  String name;
+  int at; // 目标日期（毫秒时间戳，当天 00:00）
+  String emoji; // 图标
+  bool preset; // 是否来自内置模板（仅展示用，不影响逻辑）
+  ExamEvent(this.name, this.at, {this.emoji = '📅', this.preset = false});
+  Map<String, dynamic> toJson() => {'name': name, 'at': at, 'emoji': emoji, 'preset': preset};
+  ExamEvent.fromJson(Map<String, dynamic> j)
+      : name = j['name'] ?? '',
+        at = j['at'] ?? 0,
+        emoji = j['emoji'] ?? '📅',
+        preset = j['preset'] ?? false;
+}
+
+// 课程成绩（GPA / 加权平均分计算用）
+class Grade {
+  String name;
+  double credit; // 学分
+  double score; // 百分制分数
+  Grade(this.name, this.credit, this.score);
+  Map<String, dynamic> toJson() => {'name': name, 'credit': credit, 'score': score};
+  Grade.fromJson(Map<String, dynamic> j)
+      : name = j['name'] ?? '',
+        credit = (j['credit'] is num) ? (j['credit'] as num).toDouble() : 0,
+        score = (j['score'] is num) ? (j['score'] as num).toDouble() : 0;
+}
+
+// 论文阶段进度（开题 → 初稿 → 查重 → 答辩）
+class ThesisStage {
+  String name;
+  bool done;
+  int? at; // 完成日期（毫秒），null = 未完成
+  ThesisStage(this.name, {this.done = false, this.at});
+  Map<String, dynamic> toJson() => {'name': name, 'done': done, if (at != null) 'at': at};
+  ThesisStage.fromJson(Map<String, dynamic> j)
+      : name = j['name'] ?? '',
+        done = j['done'] ?? false,
+        at = (j['at'] is int) ? j['at'] : null;
+}
+
+// 闪卡（间隔重复复习用）
+class Flashcard {
+  String front; // 问题 / 正面
+  String back; // 答案 / 背面
+  int createdAt;
+  int dueAt; // 下次复习到期（毫秒）
+  int box; // 复习盒：0=新, 1=1天后, 2=3天后, 3=7天后
+  Flashcard(this.front, this.back, {int? createdAt, int? dueAt, this.box = 0})
+      : createdAt = createdAt ?? DateTime.now().millisecondsSinceEpoch,
+        dueAt = dueAt ?? DateTime.now().millisecondsSinceEpoch;
+  Map<String, dynamic> toJson() => {'front': front, 'back': back, 'createdAt': createdAt, 'dueAt': dueAt, 'box': box};
+  Flashcard.fromJson(Map<String, dynamic> j)
+      : front = j['front'] ?? '',
+        back = j['back'] ?? '',
+        createdAt = j['createdAt'] ?? 0,
+        dueAt = j['dueAt'] ?? 0,
+        box = j['box'] ?? 0;
+}
+
 // ---------- 本地存储 ----------
 class Store {
   static SharedPreferences? _p;
@@ -121,6 +184,62 @@ class Store {
   static void saveLinks(List<Link> l) => _save('wb_links', l.map((x) => x.toJson()).toList());
   static List<Course> courses() => _load('wb_schedule').map((j) => Course.fromJson(j)).toList();
   static void saveCourses(List<Course> l) => _save('wb_schedule', l.map((c) => c.toJson()).toList());
+
+  // 考试/假期倒计时
+  static List<ExamEvent> events() => _load('wb_events').map((j) => ExamEvent.fromJson(j)).toList();
+  static void saveEvents(List<ExamEvent> l) => _save('wb_events', l.map((e) => e.toJson()).toList());
+  // 内置常用模板（日期为常见参考，可改）：考研初试 / 四六级 / 寒暑假
+  static List<ExamEvent> examPresets() {
+    final y = DateTime.now().year;
+    int d(int m, int day) => DateTime(y, m, day).millisecondsSinceEpoch;
+    return [
+      ExamEvent('🎓 考研初试', d(12, 19), emoji: '🎓', preset: true),
+      ExamEvent('📚 英语四级(CET-4)', d(6, 13), emoji: '📚', preset: true),
+      ExamEvent('📚 英语六级(CET-6)', d(12, 12), emoji: '📚', preset: true),
+      ExamEvent('🌞 暑假', d(7, 1), emoji: '🌞', preset: true),
+      ExamEvent('❄️ 寒假', d(1, 20), emoji: '❄️', preset: true),
+    ];
+  }
+
+  // 成绩 / GPA
+  static List<Grade> grades() => _load('wb_grades').map((j) => Grade.fromJson(j)).toList();
+  static void saveGrades(List<Grade> l) => _save('wb_grades', l.map((g) => g.toJson()).toList());
+  // 百分制分数 → 4.0 绩点（常见标准算法）
+  static double scoreToGpa(double score) {
+    if (score >= 90) return 4.0;
+    if (score >= 85) return 3.7;
+    if (score >= 82) return 3.3;
+    if (score >= 78) return 3.0;
+    if (score >= 75) return 2.7;
+    if (score >= 72) return 2.3;
+    if (score >= 68) return 2.0;
+    if (score >= 64) return 1.5;
+    if (score >= 60) return 1.0;
+    return 0.0;
+  }
+  // 加权平均分 + GPA（学分加权）
+  static Map<String, double> computeGpa(List<Grade> grades) {
+    double sumCredit = 0, wScore = 0, wGpa = 0;
+    for (final g in grades) {
+      sumCredit += g.credit;
+      wScore += g.score * g.credit;
+      wGpa += scoreToGpa(g.score) * g.credit;
+    }
+    if (sumCredit == 0) return {'avg': 0, 'gpa': 0};
+    return {'avg': wScore / sumCredit, 'gpa': wGpa / sumCredit};
+  }
+
+  // 论文阶段进度（首次进入给 4 个默认阶段）
+  static List<ThesisStage> thesisStages() {
+    final l = _load('wb_thesis');
+    if (l.isEmpty) return [ThesisStage('开题'), ThesisStage('初稿'), ThesisStage('查重'), ThesisStage('答辩')];
+    return l.map((j) => ThesisStage.fromJson(j)).toList();
+  }
+  static void saveThesis(List<ThesisStage> l) => _save('wb_thesis', l.map((s) => s.toJson()).toList());
+
+  // 闪卡
+  static List<Flashcard> cards() => _load('wb_cards').map((j) => Flashcard.fromJson(j)).toList();
+  static void saveCards(List<Flashcard> l) => _save('wb_cards', l.map((c) => c.toJson()).toList());
 
   static bool get darkMode => _p?.getBool('wb_dark') ?? true;
   static set darkMode(bool v) => _p?.setBool('wb_dark', v);
@@ -259,6 +378,10 @@ class Store {
           'wb_favs': favs().map((f) => f.toJson()).toList(),
           'wb_links': links().map((l) => l.toJson()).toList(),
           'wb_schedule': courses().map((c) => c.toJson()).toList(),
+          'wb_events': events().map((e) => e.toJson()).toList(),
+          'wb_grades': grades().map((g) => g.toJson()).toList(),
+          'wb_thesis': thesisStages().map((s) => s.toJson()).toList(),
+          'wb_cards': cards().map((c) => c.toJson()).toList(),
           'wb_ai_history': aiHistory(),
           'wb_ai_memory': aiMemory(),
           'wb_dark': darkMode,
@@ -286,6 +409,18 @@ class Store {
     if (data['wb_schedule'] != null) {
       saveCourses((data['wb_schedule'] as List).map((j) => Course.fromJson(j)).toList());
     }
+    if (data['wb_events'] != null) {
+      saveEvents((data['wb_events'] as List).map((j) => ExamEvent.fromJson(j)).toList());
+    }
+    if (data['wb_grades'] != null) {
+      saveGrades((data['wb_grades'] as List).map((j) => Grade.fromJson(j)).toList());
+    }
+    if (data['wb_thesis'] != null) {
+      saveThesis((data['wb_thesis'] as List).map((j) => ThesisStage.fromJson(j)).toList());
+    }
+    if (data['wb_cards'] != null) {
+      saveCards((data['wb_cards'] as List).map((j) => Flashcard.fromJson(j)).toList());
+    }
     if (data['wb_ai_history'] != null) {
       saveAiHistory((data['wb_ai_history'] as List)
           .map((j) => (j as Map).map((k, v) => MapEntry(k.toString(), v.toString())))
@@ -310,6 +445,10 @@ class Store {
     saveFavs([]);
     saveLinks([]);
     saveCourses([]);
+    saveEvents([]);
+    saveGrades([]);
+    saveThesis([]);
+    saveCards([]);
     saveAiHistory([]);
     saveAiMemory([]);
   }
