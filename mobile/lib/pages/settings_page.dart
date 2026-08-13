@@ -58,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
     final c = Theme.of(context).colorScheme;
     return ListView(padding: const EdgeInsets.all(12), children: [
       // ---------- AI 记忆 ----------
-      _sectionTitle('🤖 AI 助手记忆'),
+      _sectionTitle('AI 助手记忆'),
       Card(
         child: Column(children: [
           SwitchListTile(
@@ -97,7 +97,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 外观 ----------
-      _sectionTitle('🎨 外观'),
+      _sectionTitle('外观'),
       Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 数据备份 ----------
-      _sectionTitle('💾 数据备份'),
+      _sectionTitle('数据备份'),
       Card(
         child: Column(children: [
           ListTile(
@@ -151,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 云同步（GitHub 中转，换机/多设备不丢数据） ----------
-      _sectionTitle('☁️ 云同步'),
+      _sectionTitle('云同步'),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
@@ -176,9 +176,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
             child: Row(children: [
-              Expanded(child: FilledButton.tonal(onPressed: _syncUpload, child: const Text('☁️ 上传备份'))),
+              Expanded(child: FilledButton.tonal(onPressed: _syncUpload, child: const Text('上传备份'))),
               const SizedBox(width: 8),
-              Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('⬇️ 下载恢复'))),
+              Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('下载恢复'))),
             ]),
           ),
           ListTile(
@@ -193,7 +193,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 知识库（vault 中转，复用云同步 token） ----------
-      _sectionTitle('📚 知识库'),
+      _sectionTitle('知识库'),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
@@ -217,9 +217,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
             child: Row(children: [
-              Expanded(child: FilledButton.tonal(onPressed: _kbUpload, child: const Text('📤 记忆入库'))),
+              Expanded(child: FilledButton.tonal(onPressed: _kbUpload, child: const Text('记忆入库'))),
               const SizedBox(width: 8),
-              Expanded(child: OutlinedButton(onPressed: _kbIndex, child: const Text('🔍 测试索引'))),
+              Expanded(child: OutlinedButton(onPressed: _kbIndex, child: const Text('测试索引'))),
             ]),
           ),
           Padding(
@@ -229,7 +229,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: OutlinedButton.icon(
                 onPressed: _kbNotes,
                 icon: const Icon(Icons.note_alt_outlined, size: 18),
-                label: const Text('📝 速记入库（今天的速记存进知识库）'),
+                label: const Text('速记入库（今天的速记存进知识库）'),
               ),
             ),
           ),
@@ -237,7 +237,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 危险操作 ----------
-      _sectionTitle('🗑️ 危险操作'),
+      _sectionTitle('危险操作'),
       Card(
         child: ListTile(
           leading: Icon(Icons.delete_forever_outlined, color: c.error),
@@ -248,7 +248,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 关于 ----------
-      _sectionTitle('ℹ️ 关于'),
+      _sectionTitle('关于'),
       const Card(
         child: ListTile(
           leading: Icon(Icons.info_outline),
@@ -355,7 +355,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onPressed: () {
               aiClearGlobal?.call();
               Navigator.pop(c);
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🗑 对话历史已清空')));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('对话历史已清空')));
             },
             child: const Text('清空'),
           ),
@@ -386,7 +386,7 @@ class _SettingsPageState extends State<SettingsPage> {
     if (path == null) return; // 用户取消
     try {
       await File(path).writeAsString(jsonEncode(Store.exportAll()));
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 已导出备份：$fileName')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已导出备份：$fileName')));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('保存失败：${e.toString().replaceAll('Exception: ', '')}')));
@@ -435,7 +435,7 @@ class _SettingsPageState extends State<SettingsPage> {
     if (ok != true) return;
     Store.importAll(m);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已从备份恢复数据')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已从备份恢复数据')));
   }
 
   // 云同步：上传备份（本地数据 → GitHub 仓库 app-data.json）
@@ -449,14 +449,14 @@ class _SettingsPageState extends State<SettingsPage> {
     Store.syncRepo = repo;
     await Store.setSyncToken(token);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('☁️ 正在上传…')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传…')));
     try {
       await Sync.upload(token, repo);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('☁️ 已上传备份到 $repo')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已上传备份到 $repo')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 上传失败：${e.toString().replaceFirst('Exception: ', '')}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('上传失败：${e.toString().replaceFirst('Exception: ', '')}')));
     }
   }
 
@@ -480,15 +480,15 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
     if (ok != true || !mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⬇️ 正在下载…')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在下载…')));
     try {
       final m = await Sync.download(token, repo);
       Store.importAll(m);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 已从云端恢复（$repo）')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已从云端恢复（$repo）')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 下载失败：${e.toString().replaceFirst('Exception: ', '')}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('下载失败：${e.toString().replaceFirst('Exception: ', '')}')));
     }
   }
 
@@ -498,21 +498,21 @@ class _SettingsPageState extends State<SettingsPage> {
     final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
     Store.kbRepo = repo;
     if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token（复用同一个）')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token（复用同一个）')));
       return;
     }
     if (!repo.contains('/')) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📤 正在上传记忆到知识库…')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传记忆到知识库…')));
     try {
       await Kb.uploadMemory(token, repo);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 记忆已入库：$repo 的 05-数字分身/App记忆/')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('记忆已入库：$repo 的 05-数字分身/App记忆/')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
     }
   }
 
@@ -522,21 +522,21 @@ class _SettingsPageState extends State<SettingsPage> {
     final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
     Store.kbRepo = repo;
     if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token（复用同一个）')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token（复用同一个）')));
       return;
     }
     if (!repo.contains('/')) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📝 正在上传速记到知识库…')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传速记到知识库…')));
     try {
       await Kb.uploadNotes(token, repo);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 速记已入库：$repo 的 05-数字分身/App速记/')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('速记已入库：$repo 的 05-数字分身/App速记/')));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
     }
   }
 
@@ -546,17 +546,17 @@ class _SettingsPageState extends State<SettingsPage> {
     final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
     Store.kbRepo = repo;
     if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token')));
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🔍 正在测试知识库索引…')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在测试知识库索引…')));
     final idx = await Kb.index(token, repo, Store.kbBranch);
     if (!mounted) return;
     if (idx.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('❌ 索引拉取失败：仓库里没有 kb-index.json（电脑端需先运行 gen_kb_index.py）')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('索引拉取失败：仓库里没有 kb-index.json（电脑端需先运行 gen_kb_index.py）')));
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 知识库连通：索引 ${idx.length} 篇笔记，AI 问答可用')));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('知识库连通：索引 ${idx.length} 篇笔记，AI 问答可用')));
   }
 
   // 清空所有数据：两次确认 + 输入"清空"验证，防止误触
@@ -608,6 +608,6 @@ class _SettingsPageState extends State<SettingsPage> {
     Store.resetAllData();
     aiClearGlobal?.call(); // 通知 AI 页清空内存中的对话
     _refresh();
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🗑 已清空所有数据')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已清空所有数据')));
   }
 }

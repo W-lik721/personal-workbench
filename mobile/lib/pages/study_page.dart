@@ -15,7 +15,7 @@ class _StudyPageState extends State<StudyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('📚 学习中心')),
+      appBar: AppBar(title: const Text('学习中心')),
       body: Column(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
@@ -177,9 +177,9 @@ class _CountdownTabState extends State<_CountdownTab> {
         Padding(
           padding: const EdgeInsets.only(bottom: 6),
           child: Row(children: [
-            Expanded(child: FilledButton.tonal(onPressed: _importPresets, child: const Text('📥 导入常用'))),
+            Expanded(child: FilledButton.tonal(onPressed: _importPresets, child: const Text('导入常用'))),
             const SizedBox(width: 8),
-            Expanded(child: OutlinedButton(onPressed: _add, child: const Text('➕ 自定义'))),
+            Expanded(child: OutlinedButton(onPressed: _add, child: const Text('自定义'))),
           ]),
         ),
         ...sorted.asMap().entries.map((e) => Dismissible(
@@ -487,7 +487,7 @@ class _FlashTabState extends State<_FlashTab> {
     }
     if (_qi + 1 >= _queue.length) {
       setState(() => _reviewing = false);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 本轮复习完成！')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('本轮复习完成！')));
       _reload();
     } else {
       setState(() { _qi++; _reveal = false; });
@@ -531,14 +531,14 @@ class _FlashTabState extends State<_FlashTab> {
           ),
           const SizedBox(height: 12),
           if (!_reveal)
-            FilledButton.tonal(onPressed: () => setState(() => _reveal = true), child: const Text('👀 显示答案'))
+            FilledButton.tonal(onPressed: () => setState(() => _reveal = true), child: const Text('显示答案'))
           else
             Row(children: [
-              Expanded(child: OutlinedButton(onPressed: () => _rate(1), child: const Text('😵 不会'))),
+              Expanded(child: OutlinedButton(onPressed: () => _rate(1), child: const Text('不会'))),
               const SizedBox(width: 8),
-              Expanded(child: FilledButton.tonal(onPressed: () => _rate(3), child: const Text('🤔 模糊'))),
+              Expanded(child: FilledButton.tonal(onPressed: () => _rate(3), child: const Text('模糊'))),
               const SizedBox(width: 8),
-              Expanded(child: FilledButton(onPressed: () => _rate(7), child: const Text('😎 认识'))),
+              Expanded(child: FilledButton(onPressed: () => _rate(7), child: const Text('认识'))),
             ]),
         ]),
       );
@@ -563,7 +563,7 @@ class _FlashTabState extends State<_FlashTab> {
           ),
         ),
         const SizedBox(height: 8),
-        FilledButton.icon(icon: const Icon(Icons.play_arrow), label: const Text('▶ 开始复习'), onPressed: _startReview),
+        FilledButton.icon(icon: const Icon(Icons.play_arrow), label: const Text('开始复习'), onPressed: _startReview),
         const SizedBox(height: 8),
         ..._cards.asMap().entries.map((e) => Dismissible(
               key: ObjectKey(e.value),

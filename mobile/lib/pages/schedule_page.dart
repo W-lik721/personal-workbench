@@ -303,11 +303,11 @@ class _SchedulePageState extends State<SchedulePage> {
       child: ListTile(
         dense: true,
         leading: Icon(Icons.schedule, color: c.primary),
-        title: Text('⏭ 下一节：${cr.name.isEmpty ? '未命名' : cr.name}',
+        title: Text('下一节：${cr.name.isEmpty ? '未命名' : cr.name}',
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
         subtitle: Text([
           cr.time,
-          if (cr.location.isNotEmpty) '📍 ${cr.location}',
+          if (cr.location.isNotEmpty) cr.location,
           '${mins ~/ 60 > 0 ? '${mins ~/ 60} 小时' : ''}${mins % 60} 分钟后开始',
         ].join(' · '), style: TextStyle(fontSize: 12, color: c.primary)),
         trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _edit(next.idx)),
@@ -460,9 +460,9 @@ class _SchedulePageState extends State<SchedulePage> {
                             title: Text(cr.name.isEmpty ? '未命名' : cr.name),
                             subtitle: Text([
                               if (cr.time.isNotEmpty) cr.time,
-                              if (cr.location.isNotEmpty) '📍 ${cr.location}',
-                              if (cr.teacher.isNotEmpty) '👤 ${cr.teacher}',
-                              if (cr.note.isNotEmpty) '📝 ${cr.note}',
+                              if (cr.location.isNotEmpty) cr.location,
+                              if (cr.teacher.isNotEmpty) cr.teacher,
+                              if (cr.note.isNotEmpty) cr.note,
                             ].join(' · ')),
                             trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _edit(idx)),
                           ),

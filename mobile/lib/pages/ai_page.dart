@@ -199,7 +199,7 @@ class _AiPageState extends State<AiPage> {
           _msgs.last.streaming = false; // 用户主动停止，保留已生成部分
         } else {
           _msgs.removeLast();
-          _msgs.add(_Msg('⚠️ ${_friendly(e)}', false, isError: true));
+          _msgs.add(_Msg(_friendly(e), false, isError: true));
         }
       });
     } finally {
@@ -349,7 +349,7 @@ class _AiPageState extends State<AiPage> {
               return Padding(
                 padding: const EdgeInsets.only(right: 6),
                 child: ChoiceChip(
-                  label: Text(m.isEmpty ? '💬 通用' : m, style: const TextStyle(fontSize: 12)),
+                  label: Text(m.isEmpty ? '通用' : m, style: const TextStyle(fontSize: 12)),
                   selected: sel,
                   visualDensity: VisualDensity.compact,
                   onSelected: (_) => setState(() => _mode = m),
@@ -533,7 +533,7 @@ class _AiPageState extends State<AiPage> {
     if (!mem.contains(text)) {
       mem.add(text);
       Store.saveAiMemory(mem);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📌 已记住这条，可在"设置 → AI 记忆"里查看/删除')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已记住这条，可在"设置 → AI 记忆"里查看/删除')));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经记住了')));
     }

@@ -150,7 +150,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       _overviewCard(c),
       TabBar(
         controller: _tab,
-        tabs: const [Tab(text: '🗞️ AI 日报'), Tab(text: '📰 每日新闻'), Tab(text: '🔥 技术热榜')],
+        tabs: const [Tab(text: 'AI 日报'), Tab(text: '每日新闻'), Tab(text: '技术热榜')],
       ),
       Expanded(
         child: TabBarView(
@@ -187,7 +187,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         padding: const EdgeInsets.all(12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            const Text('📊 今日速览', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            const Text('今日速览', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             const Spacer(),
             Text('共 $total 条 · 已加载 $loaded/3 来源', style: TextStyle(fontSize: 11, color: c.outline)),
           ]),
@@ -202,7 +202,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
             width: double.infinity,
             child: FilledButton.icon(
               icon: const Icon(Icons.auto_awesome, size: 18),
-              label: const Text('🤖 AI 帮你划 3 条重点'),
+              label: const Text('AI 帮你划 3 条重点'),
               onPressed: hasContent ? _aiTop3 : null,
             ),
           ),
@@ -279,7 +279,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               onPressed: () => _copyReport(r),
             ),
           ]),
-          Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
+          Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · 离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
           const SizedBox(height: 8),
           ...r.sections.map((s) => _sectionCard(s, ask: '用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：')),
@@ -301,7 +301,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       sb.writeln();
     }
     Clipboard.setData(ClipboardData(text: sb.toString()));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 整份日报已复制')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('整份日报已复制')));
   }
 
   Widget _buildDnews(ColorScheme c) {
@@ -317,13 +317,13 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         padding: const EdgeInsets.all(12),
         children: [
           Text('${d.date} 每日新闻 · ${d.items.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text('数据源 ${d.source}${_staleDnews ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheDnewsAt)}' : ''}',
+          Text('数据源 ${d.source}${_staleDnews ? ' · 离线缓存 ${_cacheTag(Store.cacheDnewsAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
           if (d.tip.isNotEmpty)
-            Padding(padding: const EdgeInsets.only(top: 6), child: Text('💡 ${d.tip}', style: TextStyle(fontStyle: FontStyle.italic, color: c.outline))),
+            Padding(padding: const EdgeInsets.only(top: 6), child: Text(d.tip, style: TextStyle(fontStyle: FontStyle.italic, color: c.outline))),
           const SizedBox(height: 8),
           Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('📌 今日头条', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+            const Text('今日头条', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
             const SizedBox(height: 6),
             ...d.items.asMap().entries.map((e) => _newsTile(
                   title: '${e.key + 1}. ${e.value.title}',
@@ -348,7 +348,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         padding: const EdgeInsets.all(12),
         children: [
           Text('技术热榜 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
+          Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · 离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
           const SizedBox(height: 8),
           ...list.asMap().entries.map((e) => _hotTile(c, e.value)),
@@ -375,7 +375,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
             [
               if (it.source.isNotEmpty) it.source,
               if (it.by.isNotEmpty) '@${it.by}',
-              '💬 ${it.replies}',
+              '${it.replies}',
               if (it.created > 0) _fmtTs(it.created),
             ].where((s) => s.isNotEmpty).join(' · '),
             style: TextStyle(fontSize: 11, color: c.outline),
@@ -399,7 +399,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
             if (aiAskGlobal != null)
               TextButton(
                 onPressed: () => aiAskGlobal!('用大白话讲讲这个技术热点是什么、为什么这么火：${it.title}'),
-                child: const Text('☁️ 让 AI 讲讲', style: TextStyle(fontSize: 12)),
+                child: const Text('让 AI 讲讲', style: TextStyle(fontSize: 12)),
               ),
           ]),
         ]),
@@ -415,7 +415,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     }
     HapticFeedback.selectionClick(); // 轻触感：收藏成功
     Store.saveFavs([Fav(it.title, it.url, it.source.isEmpty ? '热榜' : it.source, DateTime.now().millisecondsSinceEpoch), ...favs]);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已收藏')));
   }
 
   String _fmtTs(int ts) {
@@ -444,7 +444,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       return;
     }
     Store.saveFavs([Fav(item.title, item.url, item.source, DateTime.now().millisecondsSinceEpoch), ...favs]);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已收藏')));
   }
 
   Widget _newsTile({required String title, required NewsItem item, required String ask}) {
@@ -476,7 +476,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         if (aiAskGlobal != null)
           TextButton(
             onPressed: () => aiAskGlobal!(ask + item.title),
-            child: const Text('☁️ 让 AI 讲讲', style: TextStyle(fontSize: 12)),
+            child: const Text('让 AI 讲讲', style: TextStyle(fontSize: 12)),
           ),
       ]),
       const Divider(height: 16),
@@ -492,7 +492,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       if (item.url.isNotEmpty) item.url,
     ].join('\n');
     Clipboard.setData(ClipboardData(text: txt));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已复制')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制')));
   }
 
   // 复制热榜内容
@@ -504,7 +504,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       if (it.url.isNotEmpty) it.url,
     ].join('\n');
     Clipboard.setData(ClipboardData(text: txt));
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已复制')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制')));
   }
 
   // 把英文异常转成用户能看懂的中文提示
@@ -521,7 +521,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text('⚠️ 加载失败', style: TextStyle(color: c.error, fontWeight: FontWeight.w600)),
+          Text('加载失败', style: TextStyle(color: c.error, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           Text(_friendlyErr(msg), textAlign: TextAlign.center, style: TextStyle(color: c.onSurface)),
           const SizedBox(height: 8),
