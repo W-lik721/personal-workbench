@@ -45,7 +45,7 @@ class Notifier {
     if (!when.isAfter(now)) when = now.add(const Duration(minutes: 1));
     await _p.zonedSchedule(
       id: id,
-      title: '⏰ 待办提醒',
+      title: '待办提醒',
       body: text,
       scheduledDate: tz.TZDateTime.from(when, tz.local),
       notificationDetails: const NotificationDetails(

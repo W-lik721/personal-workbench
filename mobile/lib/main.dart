@@ -131,19 +131,19 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
         // 全局按钮统一圆角 12 + 舒适内边距，视觉更精致
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
@@ -179,19 +179,19 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
         ),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           ),
         ),
@@ -257,7 +257,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🛠️ 轻量工作台'),
+        title: const Text('轻量工作台'),
         actions: [
           IconButton(
             icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
