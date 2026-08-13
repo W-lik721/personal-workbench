@@ -13,9 +13,9 @@ class LucideNavIcons {
 
   static const IconData home = IconData(0xf35e, fontFamily: _family);
   static const IconData newspaper = IconData(0xf40c, fontFamily: _family);
-  static const IconData bot = IconData(0xf1c0, fontFamily: _family);
+  static const IconData sparkles = IconData(0xf4e8, fontFamily: _family);
   static const IconData calendar = IconData(0xf1d2, fontFamily: _family);
-  static const IconData graduationCap = IconData(0xf33e, fontFamily: _family);
-  static const IconData wrench = IconData(0xf59d, fontFamily: _family);
+  static const IconData bookOpen = IconData(0xf1b6, fontFamily: _family);
+  static const IconData sliders = IconData(0xf4db, fontFamily: _family);
   static const IconData settings = IconData(0xf4b9, fontFamily: _family);
 }

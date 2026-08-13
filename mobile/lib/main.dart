@@ -278,10 +278,10 @@ class _MainShellState extends State<MainShell> {
         destinations: const [
           NavigationDestination(icon: Icon(LucideNavIcons.home), label: '首页'),
           NavigationDestination(icon: Icon(LucideNavIcons.newspaper), label: '日报'),
-          NavigationDestination(icon: Icon(LucideNavIcons.bot), label: 'AI 助手'),
+          NavigationDestination(icon: Icon(LucideNavIcons.sparkles), label: 'AI 助手'),
           NavigationDestination(icon: Icon(LucideNavIcons.calendar), label: '课程表'),
-          NavigationDestination(icon: Icon(LucideNavIcons.graduationCap), label: '学习'),
-          NavigationDestination(icon: Icon(LucideNavIcons.wrench), label: '工具'),
+          NavigationDestination(icon: Icon(LucideNavIcons.bookOpen), label: '学习'),
+          NavigationDestination(icon: Icon(LucideNavIcons.sliders), label: '工具'),
           NavigationDestination(icon: Icon(LucideNavIcons.settings), label: '设置'),
         ],
       ),
