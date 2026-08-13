@@ -75,6 +75,7 @@ class _HomePageState extends State<HomePage> {
   void _addTodo() {
     final t = _todoCtrl.text.trim();
     if (t.isEmpty) return;
+    HapticFeedback.selectionClick(); // 轻触感：添加成功
     final l = Store.todos()..insert(0, Todo(t));
     Store.saveTodos(l);
     _todoCtrl.clear();
@@ -82,6 +83,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _toggleTodo(int i) {
+    HapticFeedback.selectionClick(); // 轻触感：勾选/取消勾选
     final l = Store.todos();
     l[i].done = !l[i].done;
     // 勾选完成 → 取消该待办的提醒
@@ -93,6 +95,7 @@ class _HomePageState extends State<HomePage> {
   void _delTodo(int i) {
     final removed = Store.todos()[i];
     if (removed.remindAt != null) Notifier.cancelTodo(removed.remindAt!);
+    HapticFeedback.mediumImpact(); // 重点触感：删除
     final l = Store.todos()..removeAt(i);
     Store.saveTodos(l);
     _reload();
@@ -114,6 +117,7 @@ class _HomePageState extends State<HomePage> {
   void _addNote() {
     final t = _noteCtrl.text.trim();
     if (t.isEmpty) return;
+    HapticFeedback.selectionClick(); // 轻触感：添加成功
     final l = Store.notes()..insert(0, Note(t, DateTime.now().millisecondsSinceEpoch));
     Store.saveNotes(l);
     _noteCtrl.clear();
@@ -122,6 +126,7 @@ class _HomePageState extends State<HomePage> {
 
   void _delNote(int i) {
     final removed = Store.notes()[i];
+    HapticFeedback.mediumImpact(); // 重点触感：删除
     final l = Store.notes()..removeAt(i);
     Store.saveNotes(l);
     _reload();
@@ -145,7 +150,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(children: [
-          Text('$n', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: c.primary)),
+          _AnimatedCount(value: n, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: c.primary)),
           const SizedBox(height: 2),
           Text('$icon $label', style: TextStyle(fontSize: 12, color: c.outline)),
         ]),
@@ -400,6 +405,7 @@ class _HomePageState extends State<HomePage> {
 
   void _delFav(int i) {
     final removed = Store.favs()[i];
+    HapticFeedback.mediumImpact(); // 重点触感：删除
     final l = Store.favs()..removeAt(i);
     Store.saveFavs(l);
     _reload();
@@ -617,6 +623,34 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(height: 8),
         child,
       ])),
+    );
+  }
+}
+
+// 数字从旧值平滑滚动到新值（避免每次 setState 从 0 硬跳）
+class _AnimatedCount extends StatefulWidget {
+  final int value;
+  final TextStyle style;
+  const _AnimatedCount({required this.value, required this.style});
+  @override
+  State<_AnimatedCount> createState() => _AnimatedCountState();
+}
+
+class _AnimatedCountState extends State<_AnimatedCount> {
+  late int _last = widget.value;
+  @override
+  void didUpdateWidget(covariant _AnimatedCount old) {
+    super.didUpdateWidget(old);
+    if (old.value != widget.value) _last = old.value; // 记住旧值作为动画起点
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<int>(
+      tween: IntTween(begin: _last, end: widget.value),
+      duration: const Duration(milliseconds: 450),
+      curve: Curves.easeOutCubic,
+      builder: (c, v, _) => Text('$v', style: widget.style),
     );
   }
 }

@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 
@@ -410,6 +411,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('这条已经收藏过了')));
       return;
     }
+    HapticFeedback.selectionClick(); // 轻触感：收藏成功
     Store.saveFavs([Fav(it.title, it.url, it.source.isEmpty ? '热榜' : it.source, DateTime.now().millisecondsSinceEpoch), ...favs]);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('⭐ 已收藏')));
   }

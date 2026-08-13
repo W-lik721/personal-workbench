@@ -123,6 +123,17 @@ a:hover{text-decoration:underline}
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch;margin-bottom:14px}
 .bento>.card{margin:0;min-width:0}
 .bento>.wk-card{grid-column:1/-1}
+/* 入场 stagger：卡片/指标按顺序淡入（首屏层次感，避免同时出现） */
+.bento>.card:nth-child(2){animation-delay:.05s}
+.bento>.card:nth-child(3){animation-delay:.10s}
+.bento>.card:nth-child(4){animation-delay:.15s}
+.bento>.card:nth-child(5){animation-delay:.20s}
+.bento>.card:nth-child(6){animation-delay:.25s}
+.kpis>.kpi:nth-child(2){animation-delay:.04s}
+.kpis>.kpi:nth-child(3){animation-delay:.08s}
+.kpis>.kpi:nth-child(4){animation-delay:.12s}
+.kpis>.kpi:nth-child(5){animation-delay:.16s}
+.kpis>.kpi:nth-child(6){animation-delay:.20s}
 @media(max-width:1000px){.bento{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.bento{grid-template-columns:1fr}.bento>.wk-card{grid-column:auto}}
 
