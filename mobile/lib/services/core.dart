@@ -12,7 +12,7 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.3.0+9';
+const String appVersion = '1.3.1+10';
 
 // 由首页卡片跳转到指定 tab（学习中心等），由 MainShell 注入
 void Function(int index)? switchTabGlobal;
@@ -204,26 +204,36 @@ class Store {
   // 成绩 / GPA
   static List<Grade> grades() => _load('wb_grades').map((j) => Grade.fromJson(j)).toList();
   static void saveGrades(List<Grade> l) => _save('wb_grades', l.map((g) => g.toJson()).toList());
-  // 百分制分数 → 4.0 绩点（常见标准算法）
-  static double scoreToGpa(double score) {
-    if (score >= 90) return 4.0;
-    if (score >= 85) return 3.7;
-    if (score >= 82) return 3.3;
-    if (score >= 78) return 3.0;
-    if (score >= 75) return 2.7;
-    if (score >= 72) return 2.3;
-    if (score >= 68) return 2.0;
-    if (score >= 64) return 1.5;
-    if (score >= 60) return 1.0;
+  // GPA 绩点算法表：键=算法名，值=按分数下限降序的 [最低分, 绩点] 档（命中第一个 <= score 的档）
+  static const Map<String, List<List<num>>> gpaAlgos = {
+    '仰恩大学(4.0粗档)': [[90, 4.0], [80, 3.0], [70, 2.0], [60, 1.0], [0, 0.0]],
+    '标准4.0(通用)': [[90, 4.0], [85, 3.7], [82, 3.3], [78, 3.0], [75, 2.7], [72, 2.3], [68, 2.0], [64, 1.5], [60, 1.0], [0, 0.0]],
+    '浙大4.3': [[95, 4.3], [90, 4.0], [85, 3.7], [81, 3.3], [78, 3.0], [75, 2.7], [72, 2.3], [68, 2.0], [64, 1.5], [60, 1.0], [0, 0.0]],
+  };
+  // 选中的 GPA 算法（默认仰恩大学，用户为学校在读）
+  static String get gpaAlgo => _p?.getString('wb_gpa_algo') ?? '仰恩大学(4.0粗档)';
+  static set gpaAlgo(String v) => _p?.setString('wb_gpa_algo', v);
+  // 百分制分数 → 绩点（按指定算法）
+  static double scoreToGpaAlgo(String algo, double score) {
+    if (algo == '5.0线性') {
+      if (score < 60) return 0;
+      return ((score - 50) / 10).clamp(0.0, 5.0);
+    }
+    final table = gpaAlgos[algo] ?? gpaAlgos['标准4.0(通用)']!;
+    for (final row in table) {
+      if (score >= row[0]) return row[1].toDouble();
+    }
     return 0.0;
   }
-  // 加权平均分 + GPA（学分加权）
-  static Map<String, double> computeGpa(List<Grade> grades) {
+  // 百分制分数 → 4.0 绩点（常见标准算法，兼容旧调用）
+  static double scoreToGpa(double score) => scoreToGpaAlgo('标准4.0(通用)', score);
+  // 加权平均分 + GPA（学分加权，按指定算法）
+  static Map<String, double> computeGpa(List<Grade> grades, String algo) {
     double sumCredit = 0, wScore = 0, wGpa = 0;
     for (final g in grades) {
       sumCredit += g.credit;
       wScore += g.score * g.credit;
-      wGpa += scoreToGpa(g.score) * g.credit;
+      wGpa += scoreToGpaAlgo(algo, g.score) * g.credit;
     }
     if (sumCredit == 0) return {'avg': 0, 'gpa': 0};
     return {'avg': wScore / sumCredit, 'gpa': wGpa / sumCredit};

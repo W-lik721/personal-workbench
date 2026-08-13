@@ -213,6 +213,7 @@ class _GpaTab extends StatefulWidget {
 }
 class _GpaTabState extends State<_GpaTab> {
   List<Grade> _grades = [];
+  String _algo = Store.gpaAlgo;
   void _reload() => setState(() => _grades = Store.grades());
   @override
   void initState() { super.initState(); _reload(); }
@@ -268,9 +269,26 @@ class _GpaTabState extends State<_GpaTab> {
   @override
   Widget build(BuildContext context) {
     final c = Theme.of(context).colorScheme;
-    final r = Store.computeGpa(_grades);
+    final r = Store.computeGpa(_grades, _algo);
+    final algoNames = [...Store.gpaAlgos.keys, '5.0线性'];
     return Stack(children: [
       ListView(padding: const EdgeInsets.all(12), children: [
+        Row(children: [
+          const Text('绩点算法', style: TextStyle(fontSize: 13, color: Colors.grey)),
+          const SizedBox(width: 8),
+          Expanded(
+            child: DropdownButton<String>(
+              value: _algo,
+              isExpanded: true,
+              items: algoNames.map((a) => DropdownMenuItem(value: a, child: Text(a, style: const TextStyle(fontSize: 13)))).toList(),
+              onChanged: (v) {
+                if (v == null) return;
+                setState(() { _algo = v; Store.gpaAlgo = v; });
+              },
+            ),
+          ),
+        ]),
+        const SizedBox(height: 8),
         if (_grades.isNotEmpty)
           Card(
             color: c.secondaryContainer,
@@ -282,7 +300,7 @@ class _GpaTabState extends State<_GpaTab> {
                   Text(r['avg']!.toStringAsFixed(1), style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
                 ])),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  const Text('GPA（4.0）', style: TextStyle(fontSize: 12)),
+                  Text('GPA（$_algo）', style: const TextStyle(fontSize: 12)),
                   Text(r['gpa']!.toStringAsFixed(2), style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
                 ])),
                 Column(children: [
@@ -300,7 +318,7 @@ class _GpaTabState extends State<_GpaTab> {
               onDismissed: (_) => _del(e.key),
               child: ListTile(
                 title: Text(e.value.name),
-                subtitle: Text('学分 ${e.value.credit.toStringAsFixed(1)} · 绩点 ${Store.scoreToGpa(e.value.score).toStringAsFixed(1)}'),
+                subtitle: Text('学分 ${e.value.credit.toStringAsFixed(1)} · 绩点 ${Store.scoreToGpaAlgo(_algo, e.value.score).toStringAsFixed(1)}'),
                 trailing: Text(e.value.score.toStringAsFixed(0), style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: c.primary)),
                 onTap: () => _edit(e.value, e.key),
               ),
