@@ -1,4 +1,4 @@
-// 设置页：AI 助手记忆管理（开关/条数/长期记忆/清空历史）+ 外观 + 云同步
+// 设置页：AI 助手记忆管理（开关/条数/长期记忆/清空历史）+ 外观 + 云同步 + 知识库
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import '../main.dart';
 import '../services/core.dart';
 import '../services/sync.dart';
+import '../services/kb.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -19,12 +20,16 @@ class _SettingsPageState extends State<SettingsPage> {
   int _memCount = 0;
   final _repoCtrl = TextEditingController(); // 云同步仓库
   final _tokenCtrl = TextEditingController(); // GitHub Token（加密存储）
+  final _kbRepoCtrl = TextEditingController(); // 知识库仓库
+  bool _kbOn = true; // 知识库问答开关
 
   @override
   void initState() {
     super.initState();
     _refresh();
     _repoCtrl.text = Store.syncRepo;
+    _kbRepoCtrl.text = Store.kbRepo;
+    _kbOn = Store.kbOn;
     Store.syncToken().then((t) {
       if (mounted && t.isNotEmpty) _tokenCtrl.text = t;
     });
@@ -34,6 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void dispose() {
     _repoCtrl.dispose();
     _tokenCtrl.dispose();
+    _kbRepoCtrl.dispose();
     super.dispose();
   }
 
@@ -150,6 +156,39 @@ class _SettingsPageState extends State<SettingsPage> {
               Expanded(child: FilledButton.tonal(onPressed: _syncUpload, child: const Text('☁️ 上传备份'))),
               const SizedBox(width: 8),
               Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('⬇️ 下载恢复'))),
+            ]),
+          ),
+        ]),
+      ),
+
+      // ---------- 知识库（vault 中转，复用云同步 token） ----------
+      _sectionTitle('📚 知识库'),
+      Card(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
+            child: TextField(
+              controller: _kbRepoCtrl,
+              decoration: const InputDecoration(labelText: '知识库仓库', hintText: 'W-lik721/vault-backup', border: OutlineInputBorder(), isDense: true),
+            ),
+          ),
+          ListTile(
+            dense: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            leading: const Icon(Icons.menu_book_outlined, size: 20),
+            title: const Text('AI 问答时自动查知识库', style: TextStyle(fontSize: 13)),
+            trailing: Switch(value: _kbOn, onChanged: (v) { setState(() { _kbOn = v; Store.kbOn = v; }); }),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 2),
+            child: Text('AI 助手发送时自动匹配电脑知识库（vault）相关笔记作为参考。仓库填你 vault 的 GitHub 镜像，token 复用上面的云同步。', style: TextStyle(fontSize: 11, color: c.outline, height: 1.5)),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
+            child: Row(children: [
+              Expanded(child: FilledButton.tonal(onPressed: _kbUpload, child: const Text('📤 记忆入库'))),
+              const SizedBox(width: 8),
+              Expanded(child: OutlinedButton(onPressed: _kbIndex, child: const Text('🔍 测试索引'))),
             ]),
           ),
         ]),
@@ -409,6 +448,49 @@ class _SettingsPageState extends State<SettingsPage> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 下载失败：${e.toString().replaceFirst('Exception: ', '')}')));
     }
+  }
+
+  // 知识库：记忆入库（AI 长期记忆 → vault 05-数字分身/App记忆/）
+  Future<void> _kbUpload() async {
+    final token = _tokenCtrl.text.trim();
+    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
+    Store.kbRepo = repo;
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token（复用同一个）')));
+      return;
+    }
+    if (!repo.contains('/')) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📤 正在上传记忆到知识库…')));
+    try {
+      await Kb.uploadMemory(token, repo);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 记忆已入库：$repo 的 05-数字分身/App记忆/')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
+  }
+
+  // 知识库：测试索引连通（拉 kb-index.json 看条数）
+  Future<void> _kbIndex() async {
+    final token = _tokenCtrl.text.trim();
+    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
+    Store.kbRepo = repo;
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token')));
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🔍 正在测试知识库索引…')));
+    final idx = await Kb.index(token, repo, Store.kbBranch);
+    if (!mounted) return;
+    if (idx.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('❌ 索引拉取失败：仓库里没有 kb-index.json（电脑端需先运行 gen_kb_index.py）')));
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 知识库连通：索引 ${idx.length} 篇笔记，AI 问答可用')));
   }
 
   // 清空所有数据：两次确认 + 输入"清空"验证，防止误触

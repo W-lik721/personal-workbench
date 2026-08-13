@@ -1,10 +1,12 @@
 // AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
+// 支持「知识库问答」：开启时发送自动查 vault 知识库（kb.dart）拼上下文
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
+import '../services/kb.dart';
 
 class AiPage extends StatefulWidget {
   const AiPage({super.key});
@@ -21,6 +23,7 @@ class _AiPageState extends State<AiPage> {
   bool _busy = false;
   bool _hasKey = false;
   bool _memOn = true;
+  bool _kbOn = true; // 知识库问答开关（设置页也可改 Store.kbOn）
   bool _cancel = false;
   String? _keyError;
   http.Client? _chatClient;
@@ -30,6 +33,7 @@ class _AiPageState extends State<AiPage> {
     super.initState();
     _prov = Store.aiProv;
     _memOn = Store.aiMemoryOn;
+    _kbOn = Store.kbOn;
     _loadKey();
     _input.addListener(_onInput);
     // 恢复上次对话历史（记忆功能）
@@ -143,6 +147,11 @@ class _AiPageState extends State<AiPage> {
     final all = _msgs.where((m) => !m.streaming && !m.isError).map((m) => {'role': m.user ? 'user' : 'assistant', 'content': m.text}).toList();
     final history = all.sublist(0, all.length - 1);
     final memory = Store.aiMemoryOn ? Store.aiMemoryForChat() : <String>[]; // 只带最近 15 条长期记忆，防 prompt 撑爆
+    // 知识库问答：开启且有 token 时，自动查 vault 知识库拼上下文（无匹配/失败则静默跳过）
+    String kb = '';
+    if (_kbOn && (await Store.syncToken()).isNotEmpty) {
+      kb = await Kb.query(q);
+    }
     final maxMsgs = Store.aiMemoryMax;
     final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
     final key = await Store.aiKey(_prov);
@@ -151,6 +160,7 @@ class _AiPageState extends State<AiPage> {
     try {
       await Api.chatStream(_prov, key, ctx.cast<Map<String, String>>(), q,
           memory: memory,
+          kb: kb,
           client: _chatClient,
           onChunk: (c) {
             if (!mounted || _cancel) return;
@@ -306,6 +316,33 @@ class _AiPageState extends State<AiPage> {
                 itemCount: _msgs.length,
                 itemBuilder: (c, i) => _bubble(_msgs[i]),
               ),
+      ),
+      // 知识库问答开关：开=发送时自动查 vault 知识库（电脑端 vault-backup 中转）
+      Padding(
+        padding: const EdgeInsets.fromLTRB(12, 2, 12, 0),
+        child: Row(children: [
+          InkWell(
+            borderRadius: BorderRadius.circular(6),
+            onTap: () {
+              setState(() {
+                _kbOn = !_kbOn;
+                Store.kbOn = _kbOn;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+              child: Row(children: [
+                Icon(_kbOn ? Icons.menu_book : Icons.menu_book_outlined,
+                    size: 14, color: _kbOn ? c.primary : c.outline),
+                const SizedBox(width: 4),
+                Text('知识库', style: TextStyle(fontSize: 11, color: _kbOn ? c.primary : c.outline)),
+                const SizedBox(width: 4),
+                Icon(_kbOn ? Icons.check_circle : Icons.circle_outlined,
+                    size: 12, color: _kbOn ? c.primary : c.outline),
+              ]),
+            ),
+          ),
+        ]),
       ),
       // 输入区
       SafeArea(

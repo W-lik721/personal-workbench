@@ -12,7 +12,7 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.1.0+2';
+const String appVersion = '1.2.0+3';
 
 // ---------- 模型 ----------
 class Todo {
@@ -166,6 +166,17 @@ class Store {
       }
     } catch (_) {}
   }
+
+  // ---------- 知识库（vault 中转，复用云同步 token 与 GitHub） ----------
+  // 知识库仓库（默认用户 vault 的 GitHub 镜像 vault-backup）
+  static String get kbRepo => _p?.getString('wb_kb_repo') ?? 'W-lik721/vault-backup';
+  static set kbRepo(String v) => _p?.setString('wb_kb_repo', v.trim().replaceAll(RegExp(r'^https?://[^/]+/'), '').replaceAll(RegExp(r'\.git$'), ''));
+  // 知识库分支（vault-backup 默认 master）
+  static String get kbBranch => _p?.getString('wb_kb_branch') ?? 'master';
+  static set kbBranch(String v) => _p?.setString('wb_kb_branch', v.trim().isEmpty ? 'master' : v.trim());
+  // AI 助手「知识库问答」开关：开=发送时自动查知识库拼上下文
+  static bool get kbOn => _p?.getBool('wb_kb_on') ?? true;
+  static set kbOn(bool v) => _p?.setBool('wb_kb_on', v);
 
   // ---------- 日报/新闻缓存（原始 JSON + 抓取时间） ----------
   static String? get cacheReportJson => _p?.getString('wb_cache_report');
@@ -512,12 +523,13 @@ class Api {
   };
 
   static List<Map<String, String>> _buildMsgs(List<Map<String, String>> history, String question,
-      {List<String> memory = const []}) {
+      {List<String> memory = const [], String kb = ''}) {
     final memBlock = memory.isEmpty
         ? ''
         : '\n\n【关于用户的长期记忆，对话时请自然运用这些信息】\n- ${memory.join('\n- ')}';
+    final kbBlock = kb.isEmpty ? '' : '\n\n$kb';
     return [
-      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$memBlock'},
+      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$memBlock$kbBlock'},
       ...history,
       {'role': 'user', 'content': question},
     ];
@@ -531,13 +543,13 @@ class Api {
 
   // 流式对话：逐字回调 onChunk（SSE）。client 可外部传入以便中途 close() 停止
   static Future<void> chatStream(String prov, String key, List<Map<String, String>> history, String question,
-      {List<String> memory = const [], http.Client? client, required void Function(String chunk) onChunk}) async {
+      {List<String> memory = const [], String kb = '', http.Client? client, required void Function(String chunk) onChunk}) async {
     final p = aiProviders[prov]!;
     final req = http.Request('POST', Uri.parse(p['url']!))
       ..headers.addAll({'Content-Type': 'application/json', 'Authorization': 'Bearer $key'})
       ..body = jsonEncode({
         'model': p['model'],
-        'messages': _buildMsgs(history, question, memory: memory),
+        'messages': _buildMsgs(history, question, memory: memory, kb: kb),
         'max_tokens': prov == 'agnes' ? 4000 : 2000,
         'stream': true,
       });
