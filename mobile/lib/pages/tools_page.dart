@@ -18,7 +18,7 @@ class _ToolsPageState extends State<ToolsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('🔧 工具箱')),
+      appBar: AppBar(title: const Text('工具箱')),
       body: Column(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
@@ -269,7 +269,7 @@ class _MoodTabState extends State<_MoodTab> {
     Store.saveMoods(l);
     _ctrl.clear();
     _reload();
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已记下今天的心情')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已记下今天的心情')));
   }
 
   void _del(int i) {
@@ -355,14 +355,14 @@ class _MoodTabState extends State<_MoodTab> {
           child: FilledButton.tonalIcon(
             onPressed: _weeklyReport,
             icon: const Icon(Icons.auto_awesome, size: 18),
-            label: const Text('📊 AI 生成本周周报'),
+            label: const Text('AI 生成本周周报'),
           ),
         ),
       ]),
       const SizedBox(height: 8),
       Padding(
         padding: const EdgeInsets.only(left: 4, bottom: 4),
-        child: Text('历史', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: c.primary)),
+        child: Row(children: [Icon(Icons.history_rounded, size: 16, color: c.primary), const SizedBox(width: 4), Text('历史', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: c.primary))]),
       ),
       ..._list.asMap().entries.map((e) {
         final m = e.value;
@@ -437,7 +437,7 @@ class _OcrTabState extends State<_OcrTab> {
       _err = text.isEmpty ? '没识别出文字，换个角度或手写更清楚的照片试试' : null;
     });
     if (text.isNotEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已识别文字，可编辑后发给 AI 讲解')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已识别文字，可编辑后发给 AI 讲解')));
     }
   }
 
@@ -452,7 +452,7 @@ class _OcrTabState extends State<_OcrTab> {
       return;
     }
     // 用「解题讲解」模式把题目交给 AI（先讲思路再给答案）
-    aiAskGlobal!(text, mode: '📚 解题讲解', send: true);
+    aiAskGlobal!(text, mode: '解题讲解', send: true);
   }
 
   @override
@@ -490,7 +490,7 @@ class _OcrTabState extends State<_OcrTab> {
       if (!_busy && _textCtrl.text.isNotEmpty) ...[
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 4),
-          child: Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+          child: Row(children: const [Icon(Icons.text_snippet_rounded, size: 16), SizedBox(width: 4), Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))]),
         ),
         TextField(
           controller: _textCtrl,
@@ -504,7 +504,7 @@ class _OcrTabState extends State<_OcrTab> {
           child: FilledButton.icon(
             onPressed: _send,
             icon: const Icon(Icons.smart_toy_outlined, size: 18),
-            label: const Text('📚 发给 AI 解题讲解'),
+            label: const Text('发给 AI 解题讲解'),
           ),
         ),
       ],

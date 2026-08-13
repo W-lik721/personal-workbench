@@ -111,6 +111,42 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           clipBehavior: Clip.antiAlias,
         ),
+        // 底部导航：选中态青色实色胶囊 + 白图标白字（点亮感），未选中低调灰
+        navigationBarTheme: NavigationBarThemeData(
+          height: 66,
+          elevation: 3,
+          indicatorColor: const Color(0xFF2BB8C6),
+          labelTextStyle: WidgetStateProperty.resolveWith((s) {
+            const base = TextStyle(fontSize: 11, fontWeight: FontWeight.w500);
+            return s.contains(WidgetState.selected)
+                ? base.copyWith(fontWeight: FontWeight.bold, color: Colors.white)
+                : base.copyWith(color: Colors.black54);
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((s) {
+            return s.contains(WidgetState.selected)
+                ? const IconThemeData(size: 24, color: Colors.white)
+                : const IconThemeData(size: 22, color: Colors.black54);
+          }),
+        ),
+        // 全局按钮统一圆角 12 + 舒适内边距，视觉更精致
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -124,6 +160,40 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           clipBehavior: Clip.antiAlias,
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          height: 66,
+          elevation: 3,
+          indicatorColor: const Color(0xFF2BB8C6),
+          labelTextStyle: WidgetStateProperty.resolveWith((s) {
+            const base = TextStyle(fontSize: 11, fontWeight: FontWeight.w500);
+            return s.contains(WidgetState.selected)
+                ? base.copyWith(fontWeight: FontWeight.bold, color: Colors.white)
+                : base.copyWith(color: Colors.white70);
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((s) {
+            return s.contains(WidgetState.selected)
+                ? const IconThemeData(size: 24, color: Colors.white)
+                : const IconThemeData(size: 22, color: Colors.white70);
+          }),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: const StadiumBorder(),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          ),
         ),
       ),
       themeMode: themeModeNotifier.value == 'system'
@@ -187,7 +257,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🛠️ 轻量工作台'),
+        title: const Text('轻量工作台'),
         actions: [
           IconButton(
             icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
@@ -205,13 +275,13 @@ class _MainShellState extends State<MainShell> {
           setState(() => _index = i);
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: '首页'),
-          NavigationDestination(icon: Icon(Icons.newspaper_outlined), selectedIcon: Icon(Icons.newspaper), label: '日报'),
-          NavigationDestination(icon: Icon(Icons.smart_toy_outlined), selectedIcon: Icon(Icons.smart_toy), label: 'AI 助手'),
-          NavigationDestination(icon: Icon(Icons.calendar_month_outlined), selectedIcon: Icon(Icons.calendar_month), label: '课程表'),
-          NavigationDestination(icon: Icon(Icons.school_outlined), selectedIcon: Icon(Icons.school), label: '学习'),
-          NavigationDestination(icon: Icon(Icons.build_outlined), selectedIcon: Icon(Icons.build), label: '工具'),
-          NavigationDestination(icon: Icon(Icons.settings_outlined), selectedIcon: Icon(Icons.settings), label: '设置'),
+          NavigationDestination(icon: Icon(Icons.home_rounded), label: '首页'),
+          NavigationDestination(icon: Icon(Icons.article_rounded), label: '日报'),
+          NavigationDestination(icon: Icon(Icons.smart_toy_rounded), label: 'AI 助手'),
+          NavigationDestination(icon: Icon(Icons.calendar_month_rounded), label: '课程表'),
+          NavigationDestination(icon: Icon(Icons.school_rounded), label: '学习'),
+          NavigationDestination(icon: Icon(Icons.handyman_rounded), label: '工具'),
+          NavigationDestination(icon: Icon(Icons.settings_rounded), label: '设置'),
         ],
       ),
     );

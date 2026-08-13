@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // 今日概览的小数字卡片
-  Widget _stat(ColorScheme c, String icon, String label, int n) {
+  Widget _stat(ColorScheme c, String label, int n) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(children: [
           _AnimatedCount(value: n, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: c.primary)),
           const SizedBox(height: 2),
-          Text('$icon $label', style: TextStyle(fontSize: 12, color: c.outline)),
+          Text(label, style: TextStyle(fontSize: 12, color: c.outline)),
         ]),
       ),
     );
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
         _pomoTimer = null;
         Store.addStudyMinutes(_pomoTotal ~/ 60); // 学习打卡：累计时长 + 连续天数
         _pomoBeep();
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🍅 专注完成！去把待办勾掉吧')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('专注完成！去把待办勾掉吧')));
       }
     });
   }
@@ -240,8 +240,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           // ---- 待办 + 番茄钟 ----
           _card(
-            title: '✅ 待办清单 · 可勾选',
+            title: '待办清单 · 可勾选',
             foldKey: 'todo',
+            icon: Icons.checklist_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_todos.isNotEmpty)
                 Padding(
@@ -264,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text(t.text, style: TextStyle(decoration: t.done ? TextDecoration.lineThrough : null, color: t.done ? c.outline : null)),
                     ),
                     subtitle: t.remindAt != null
-                        ? Text('🔔 ${_fmtRemind(t.remindAt!)}', style: TextStyle(fontSize: 11, color: c.primary))
+                        ? Text(_fmtRemind(t.remindAt!), style: TextStyle(fontSize: 11, color: c.primary))
                         : null,
                     trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                       IconButton(
@@ -288,14 +289,14 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 8),
               Row(children: [
-                FilledButton.tonal(onPressed: _addTodo, child: const Text('➕ 添加')),
+                FilledButton.tonal(onPressed: _addTodo, child: const Text('添加')),
                 const SizedBox(width: 8),
-                OutlinedButton(onPressed: _clearDone, child: const Text('🧹 清除已完成')),
+                OutlinedButton(onPressed: _clearDone, child: const Text('清除已完成')),
               ]),
               const Divider(height: 24),
               // 番茄钟
               Row(children: [
-                const Text('🍅 专注计时', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                const Text('专注计时', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
                 const Spacer(),
                 DropdownButton<int>(
                   value: _pomoTotal ~/ 60,
@@ -319,7 +320,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                FilledButton(onPressed: _pomoToggle, child: Text(_pomoRunning ? '⏸ 暂停' : '▶ 开始')),
+                FilledButton(onPressed: _pomoToggle, child: Text(_pomoRunning ? '暂停' : '开始')),
                 const SizedBox(width: 6),
                 IconButton(icon: const Icon(Icons.refresh), onPressed: _pomoReset),
               ]),
@@ -328,14 +329,15 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 8),
           // ---- 速记 ----
           _card(
-            title: '📝 我的速记 · 随手记',
+            title: '我的速记 · 随手记',
             foldKey: 'note',
+            icon: Icons.edit_note_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_notes.length > 3) ...[
                 TextField(
                   controller: _noteQCtl,
                   decoration: const InputDecoration(
-                    hintText: '🔍 搜速记…',
+                    hintText: '搜速记…',
                     border: OutlineInputBorder(),
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -380,19 +382,20 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               const SizedBox(height: 8),
-              FilledButton.tonal(onPressed: _addNote, child: const Text('➕ 添加')),
+              FilledButton.tonal(onPressed: _addNote, child: const Text('添加')),
             ]),
           ),
           const SizedBox(height: 8),
           // ---- 今日概览（替换原"常用入口"） ----
           _card(
-            title: '📊 今日概览',
+            title: '今日概览',
             foldKey: 'overview',
+            icon: Icons.insights_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
-                _stat(c, '✅', '待做', _todos.where((t) => !t.done).length),
-                _stat(c, '📝', '速记', _notes.length),
-                _stat(c, '⭐', '收藏', _favs.length),
+                _stat(c, '待做', _todos.where((t) => !t.done).length),
+                _stat(c, '速记', _notes.length),
+                _stat(c, '收藏', _favs.length),
               ]),
               // 学习打卡：今日番茄钟时长 + 连续天数
               Padding(
@@ -409,7 +412,7 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 child: FilledButton.icon(
                   icon: const Icon(Icons.auto_awesome, size: 18),
-                  label: const Text('💡 让 AI 给我今日灵感'),
+                  label: const Text('让 AI 给我今日灵感'),
                   onPressed: _aiInspire,
                 ),
               ),
@@ -418,8 +421,9 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 8),
           // ---- 最近倒计时（跳学习中心） ----
           _card(
-            title: '⏳ 最近倒计时',
+            title: '最近倒计时',
             foldKey: 'countdown',
+            icon: Icons.hourglass_top_rounded,
             child: _events.isEmpty
                 ? InkWell(
                     onTap: () => switchTabGlobal?.call(4),
@@ -446,14 +450,15 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 8),
           // ---- 收藏 ----
           _card(
-            title: '⭐ 我的收藏 · 稍后读',
+            title: '我的收藏 · 稍后读',
             foldKey: 'fav',
+            icon: Icons.bookmark_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_favs.length > 3) ...[
                 TextField(
                   controller: _favQCtl,
                   decoration: const InputDecoration(
-                    hintText: '🔍 搜收藏…',
+                    hintText: '搜收藏…',
                     border: OutlineInputBorder(),
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -463,7 +468,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 6),
               ],
               if (_favs.isEmpty)
-                Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
+                Text('还没有收藏。点新闻的收藏，稍后在这回看', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
               else if (visFavs.isEmpty)
                 Text('没有匹配「$_favQ」的收藏', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
               else
@@ -482,7 +487,7 @@ class _HomePageState extends State<HomePage> {
                     )),
               if (_favs.isNotEmpty) ...[
                 const SizedBox(height: 4),
-                TextButton(onPressed: () { Store.saveFavs([]); _reload(); }, child: const Text('🗑 清空收藏')),
+                TextButton(onPressed: () { Store.saveFavs([]); _reload(); }, child: const Text('清空收藏')),
               ],
             ]),
           ),
@@ -542,7 +547,7 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.delete_outline, color: Colors.white),
       );
 
-  // 设置/修改/取消待办提醒（点🔔按钮）
+  // 设置/修改/取消待办提醒（点提醒按钮）
   void _setRemind(int i) {
     final todo = Store.todos()[i];
     if (todo.remindAt == null) {
@@ -553,7 +558,7 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (c) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          ListTile(title: Text('⏰ 提醒时间：${_fmtRemind(todo.remindAt!)}')),
+          ListTile(title: Text('提醒时间：${_fmtRemind(todo.remindAt!)}')),
           ListTile(
             leading: const Icon(Icons.edit_outlined),
             title: const Text('修改时间'),
@@ -601,7 +606,7 @@ class _HomePageState extends State<HomePage> {
     if (oldAt != null) await Notifier.cancelTodo(oldAt);
     _reload();
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('🔔 已设置提醒：${_fmtRemind(when.millisecondsSinceEpoch)}')));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已设置提醒：${_fmtRemind(when.millisecondsSinceEpoch)}')));
   }
 
   // 取消提醒（仅清本地字段 + 取消系统通知）
@@ -707,7 +712,7 @@ class _HomePageState extends State<HomePage> {
   // 折叠状态：foldKey 存在即可点标题收起（长页面可收次要卡片）
   final Set<String> _folded = {};
 
-  Widget _card({required String title, required Widget child, String? foldKey}) {
+  Widget _card({required String title, required Widget child, String? foldKey, IconData? icon}) {
     final folded = foldKey != null && _folded.contains(foldKey);
     return Card(
       margin: EdgeInsets.zero,
@@ -715,6 +720,10 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
+            if (icon != null) ...[
+              Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+              const SizedBox(width: 6),
+            ],
             Expanded(child: Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600))),
             if (foldKey != null)
               InkWell(
