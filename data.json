@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13 19:56",
+  "generatedAt": "2026-08-13 21:41",
   "kpi": {
     "skills": 57,
     "automations": 2,
@@ -571,7 +571,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "12 days ago",
+          "modified": "13 days ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -635,11 +635,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 240
+        "free": 241
       },
       "D": {
         "total": 544,
-        "free": 365
+        "free": 367
       }
     },
     "runtime": "3.13 / 22.22"
@@ -647,11 +647,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "移动tools目录到D盘p7",
+        "customTitle": "整理工作区",
+        "display": "整理工作区",
+        "status": "working",
+        "updated": "08-13 21:41",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "working",
-        "updated": "08-13 19:56",
+        "status": "completed",
+        "updated": "08-13 21:38",
         "group": "今天"
       },
       {
@@ -693,14 +701,6 @@
         "status": "completed",
         "updated": "08-13 00:46",
         "group": "今天"
-      },
-      {
-        "title": "移动tools目录到D盘p7",
-        "customTitle": "整理工作区",
-        "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-12 22:56",
-        "group": "昨天"
       },
       {
         "title": "生成今日灵感与AI学习路径建议",
@@ -1330,15 +1330,14 @@
       },
       {
         "date": "2026-08-12",
-        "count": 1,
-        "titles": [
-          "整理工作区"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-13",
-        "count": 6,
+        "count": 7,
         "titles": [
+          "整理工作区",
           "工作台",
           "skill",
           "Obsidian的管理",
@@ -1638,7 +1637,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 19:56",
+    "fetchedAt": "2026-08-13 21:41",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1793,7 +1792,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 19:56",
+        "fetchedAt": "2026-08-13 21:41",
         "count": 20,
         "sections": [
           {
@@ -2868,7 +2867,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 19:56",
+    "fetchedAt": "2026-08-13 21:41",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2970,7 +2969,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 19:56",
+        "fetchedAt": "2026-08-13 21:41",
         "count": 15,
         "items": [
           {
@@ -3569,12 +3568,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T19:57:06",
-    "status": "ok",
-    "nextRun": "2026-08-13T20:57:06",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
