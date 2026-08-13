@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-13 21:41",
+  "generatedAt": "2026-08-13 23:12",
   "kpi": {
     "skills": 57,
     "automations": 2,
     "models": 5,
     "memory": 35,
-    "knowledge": 10,
+    "knowledge": 7,
     "sessions": 11
   },
   "skills": [
@@ -580,7 +580,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "13 days ago",
+          "modified": "2 weeks ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -635,7 +635,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 241
+        "free": 240
       },
       "D": {
         "total": 544,
@@ -647,19 +647,35 @@
   "sessions": {
     "recent": [
       {
-        "title": "移动tools目录到D盘p7",
-        "customTitle": "整理工作区",
-        "display": "整理工作区",
-        "status": "working",
-        "updated": "08-13 21:41",
-        "group": "今天"
-      },
-      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
+        "status": "working",
+        "updated": "08-13 23:12",
+        "group": "今天"
+      },
+      {
+        "title": "将 Obsidian 安装到 D 盘",
+        "customTitle": "Obsidian的管理",
+        "display": "Obsidian的管理",
         "status": "completed",
-        "updated": "08-13 21:38",
+        "updated": "08-13 21:58",
+        "group": "今天"
+      },
+      {
+        "title": "找视频充实知识库",
+        "customTitle": "",
+        "display": "找视频充实知识库",
+        "status": "completed",
+        "updated": "08-13 21:58",
+        "group": "今天"
+      },
+      {
+        "title": "移动tools目录到D盘p7",
+        "customTitle": "整理工作区",
+        "display": "整理工作区",
+        "status": "completed",
+        "updated": "08-13 21:43",
         "group": "今天"
       },
       {
@@ -671,27 +687,11 @@
         "group": "今天"
       },
       {
-        "title": "将 Obsidian 安装到 D 盘",
-        "customTitle": "Obsidian的管理",
-        "display": "Obsidian的管理",
-        "status": "completed",
-        "updated": "08-13 17:32",
-        "group": "今天"
-      },
-      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
         "updated": "08-13 17:25",
-        "group": "今天"
-      },
-      {
-        "title": "找视频充实知识库",
-        "customTitle": "",
-        "display": "找视频充实知识库",
-        "status": "completed",
-        "updated": "08-13 14:32",
         "group": "今天"
       },
       {
@@ -1337,46 +1337,36 @@
         "date": "2026-08-13",
         "count": 7,
         "titles": [
-          "整理工作区",
           "工作台",
-          "skill",
           "Obsidian的管理",
-          "学习",
           "找视频充实知识库",
+          "整理工作区",
+          "skill",
+          "学习",
           "清理C盘释放空间"
         ]
       }
     ]
   },
   "knowledge": {
-    "total": 10,
+    "total": 7,
     "types": {
       ".md": 5,
       "(无扩展名)": 1,
-      ".bat": 1,
-      ".json": 1,
-      ".html": 2
+      ".json": 1
     },
     "files": [
+      {
+        "name": "00-路由表.md",
+        "mtime": "08-13 21:56"
+      },
       {
         "name": "kb-index.json",
         "mtime": "08-13 17:31"
       },
       {
-        "name": "00-路由表.md",
-        "mtime": "08-13 15:27"
-      },
-      {
         "name": "AGENTS.md",
         "mtime": "08-13 14:43"
-      },
-      {
-        "name": "workbench-mobile.html",
-        "mtime": "08-07 03:46"
-      },
-      {
-        "name": "workbench-desktop.html",
-        "mtime": "08-07 03:45"
       },
       {
         "name": "Home.md",
@@ -1387,12 +1377,21 @@
         "mtime": "08-05 23:06"
       },
       {
-        "name": "gitnexus-mcp.bat",
-        "mtime": "08-05 13:43"
+        "name": ".gitignore",
+        "mtime": "08-01 14:48"
+      },
+      {
+        "name": "分类指南.md",
+        "mtime": "08-01 14:09"
       }
     ]
   },
   "weekly": [
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1786629365.710313
+    },
     {
       "kind": "skill",
       "name": "ascetic-breaker",
@@ -1409,11 +1408,6 @@
       "kind": "kb",
       "name": "kb-index.json",
       "when": 1786613467.678975
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1786606046.2728746
     },
     {
       "kind": "kb",
@@ -1617,27 +1611,11 @@
       "name": "quarkclouddrive",
       "when": 1786104700.013316,
       "scope": "本机"
-    },
-    {
-      "kind": "kb",
-      "name": "workbench-mobile.html",
-      "when": 1786045575.9287202
-    },
-    {
-      "kind": "kb",
-      "name": "workbench-desktop.html",
-      "when": 1786045519.091767
-    },
-    {
-      "kind": "skill",
-      "name": "last30days",
-      "when": 1786023752.3110254,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 21:41",
+    "fetchedAt": "2026-08-13 23:12",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1792,7 +1770,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 21:41",
+        "fetchedAt": "2026-08-13 23:12",
         "count": 20,
         "sections": [
           {
@@ -2867,7 +2845,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 21:41",
+    "fetchedAt": "2026-08-13 23:12",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2969,7 +2947,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 21:41",
+        "fetchedAt": "2026-08-13 23:12",
         "count": 15,
         "items": [
           {
@@ -3568,12 +3546,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T21:42:04",
-    "status": "ok",
-    "nextRun": "2026-08-13T22:42:04",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
