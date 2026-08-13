@@ -22,6 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _tokenCtrl = TextEditingController(); // GitHub Token（加密存储）
   final _kbRepoCtrl = TextEditingController(); // 知识库仓库
   bool _kbOn = true; // 知识库问答开关
+  bool _autoSync = false; // 启动时自动备份
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _repoCtrl.text = Store.syncRepo;
     _kbRepoCtrl.text = Store.kbRepo;
     _kbOn = Store.kbOn;
+    _autoSync = Store.autoSync;
     Store.syncToken().then((t) {
       if (mounted && t.isNotEmpty) _tokenCtrl.text = t;
     });
@@ -99,10 +101,17 @@ class _SettingsPageState extends State<SettingsPage> {
       Card(
         child: ListTile(
           leading: const Icon(Icons.dark_mode_outlined),
-          title: const Text('深色模式'),
-          trailing: Switch(
-            value: darkModeNotifier.value,
-            onChanged: (v) => darkModeNotifier.value = v,
+          title: const Text('外观'),
+          subtitle: const Text('跟随系统：白天亮色、晚上暗色自动切换'),
+          trailing: SegmentedButton<String>(
+            style: const ButtonStyle(visualDensity: VisualDensity.compact),
+            segments: const [
+              ButtonSegment(value: 'system', label: Text('系统'), icon: Icon(Icons.brightness_auto, size: 15)),
+              ButtonSegment(value: 'dark', label: Text('深色'), icon: Icon(Icons.dark_mode, size: 15)),
+              ButtonSegment(value: 'light', label: Text('浅色'), icon: Icon(Icons.light_mode, size: 15)),
+            ],
+            selected: {themeModeNotifier.value},
+            onSelectionChanged: (s) => themeModeNotifier.value = s.first,
           ),
         ),
       ),
@@ -157,6 +166,14 @@ class _SettingsPageState extends State<SettingsPage> {
               const SizedBox(width: 8),
               Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('⬇️ 下载恢复'))),
             ]),
+          ),
+          ListTile(
+            dense: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            leading: const Icon(Icons.backup_outlined, size: 20),
+            title: const Text('启动时自动备份', style: TextStyle(fontSize: 13)),
+            subtitle: const Text('每次打开 App 自动把数据备份到 GitHub（需已配 Token）', style: TextStyle(fontSize: 11)),
+            trailing: Switch(value: _autoSync, onChanged: (v) { setState(() { _autoSync = v; Store.autoSync = v; }); }),
           ),
         ]),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'services/core.dart';
 import 'services/notifier.dart';
+import 'services/sync.dart';
 import 'pages/home_page.dart';
 import 'pages/news_page.dart';
 import 'pages/ai_page.dart';
@@ -10,14 +11,24 @@ import 'pages/schedule_page.dart';
 import 'pages/settings_page.dart';
 
 // 主题切换通知器：让深处的开关能即时重建 MaterialApp（否则要重启才生效）
+// darkModeNotifier = 实际亮度（深=真）；themeModeNotifier = 三态 'system'/'dark'/'light'
 final darkModeNotifier = ValueNotifier<bool>(true);
+final themeModeNotifier = ValueNotifier<String>('dark');
+
+// 由三态模式解析实际亮度（system 时跟随系统亮度）
+bool _resolveDark(String mode) {
+  if (mode == 'dark') return true;
+  if (mode == 'light') return false;
+  return WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Store.init(); // 初始化本地存储（必须，否则待办/Key/记忆无法持久化）
   await Store.clearHotCache(); // 清掉旧版技术热榜缓存（升级后避免一帧闪空卡）
   await Notifier.init(); // 初始化本地通知（待办提醒用；顺带申请 Android 13+ 通知权限）
-  darkModeNotifier.value = Store.darkMode; // 以已持久化的偏好初始化
+  themeModeNotifier.value = Store.themeMode;
+  darkModeNotifier.value = _resolveDark(Store.themeMode); // 以已持久化的偏好初始化
   runApp(const WorkbenchApp());
 }
 
@@ -28,12 +39,14 @@ class WorkbenchApp extends StatefulWidget {
   State<WorkbenchApp> createState() => _WorkbenchAppState();
 }
 
-class _WorkbenchAppState extends State<WorkbenchApp> {
+class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _applySystemUi(); // 状态栏图标颜色跟随初始主题
     darkModeNotifier.addListener(_onDarkChanged);
+    themeModeNotifier.addListener(_onThemeModeChanged);
   }
 
   // 状态栏/导航栏图标颜色随主题自适应（深色→浅色图标，浅色→深色图标），避免看不清
@@ -55,9 +68,26 @@ class _WorkbenchAppState extends State<WorkbenchApp> {
     setState(() {});
   }
 
+  // 三态切换：持久化 + 重算实际亮度
+  void _onThemeModeChanged() {
+    Store.themeMode = themeModeNotifier.value;
+    darkModeNotifier.value = _resolveDark(themeModeNotifier.value);
+    setState(() {});
+  }
+
+  // 系统亮度变化（仅"跟随系统"模式生效）
+  @override
+  void didChangePlatformBrightness() {
+    if (themeModeNotifier.value == 'system') {
+      darkModeNotifier.value = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
+    }
+  }
+
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     darkModeNotifier.removeListener(_onDarkChanged);
+    themeModeNotifier.removeListener(_onThemeModeChanged);
     super.dispose();
   }
 
@@ -94,7 +124,9 @@ class _WorkbenchAppState extends State<WorkbenchApp> {
           clipBehavior: Clip.antiAlias,
         ),
       ),
-      themeMode: darkModeNotifier.value ? ThemeMode.dark : ThemeMode.light,
+      themeMode: themeModeNotifier.value == 'system'
+          ? ThemeMode.system
+          : (themeModeNotifier.value == 'dark' ? ThemeMode.dark : ThemeMode.light),
       home: const MainShell(),
     );
   }
@@ -120,6 +152,17 @@ class _MainShellState extends State<MainShell> {
   void initState() {
     super.initState();
     aiAskGlobal = _askAi;
+    _autoBackup();
+  }
+
+  // 启动时自动云备份（设置里开了且已配 Token 才生效；静默失败不打扰）
+  Future<void> _autoBackup() async {
+    if (!Store.autoSync) return;
+    final token = await Store.syncToken();
+    if (token.isEmpty) return;
+    try {
+      await Sync.upload(token, Store.syncRepo);
+    } catch (_) {}
   }
 
   @override
@@ -142,7 +185,8 @@ class _MainShellState extends State<MainShell> {
           IconButton(
             icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
             tooltip: '切换主题',
-            onPressed: () => darkModeNotifier.value = !darkModeNotifier.value,
+            // 深/浅间翻转并固定模式（跟随系统时按当前亮度翻转；同时退出 system 模式）
+            onPressed: () => themeModeNotifier.value = darkModeNotifier.value ? 'light' : 'dark',
           ),
         ],
       ),

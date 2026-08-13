@@ -16,6 +16,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _todoCtrl = TextEditingController();
   final _noteCtrl = TextEditingController();
+  final _noteQCtl = TextEditingController(); // 速记搜索
+  final _favQCtl = TextEditingController(); // 收藏搜索
+  String _noteQ = '';
+  String _favQ = '';
   List<Todo> _todos = [];
   List<Note> _notes = [];
   List<Fav> _favs = [];
@@ -44,6 +48,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _speech.stop(); // 离开页面时停止录音，释放麦克风
+    _noteQCtl.dispose();
+    _favQCtl.dispose();
     super.dispose();
   }
 
@@ -219,6 +225,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final c = Theme.of(context).colorScheme;
     final doneCount = _todos.where((t) => t.done).length;
+    // 速记/收藏搜索过滤（关键词为空时显示全部）
+    final visNotes = _noteQ.isEmpty ? _notes : _notes.where((n) => n.text.contains(_noteQ)).toList();
+    final visFavs = _favQ.isEmpty ? _favs : _favs.where((f) => f.title.contains(_favQ)).toList();
     return RefreshIndicator(
       onRefresh: () async => _reload(),
       child: ListView(
@@ -312,7 +321,20 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '📝 我的速记 · 随手记',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              ..._notes.asMap().entries.map((e) => Dismissible(
+              if (_notes.length > 3) ...[
+                TextField(
+                  controller: _noteQCtl,
+                  decoration: const InputDecoration(
+                    hintText: '🔍 搜速记…',
+                    border: OutlineInputBorder(),
+                    isDense: true,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  ),
+                  onChanged: (v) => setState(() => _noteQ = v.trim()),
+                ),
+                const SizedBox(height: 6),
+              ],
+              ...visNotes.asMap().entries.map((e) => Dismissible(
                     key: ObjectKey(e.value),
                     direction: DismissDirection.endToStart,
                     background: _swipeBg(c),
@@ -325,7 +347,8 @@ class _HomePageState extends State<HomePage> {
                       trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editNote(e.key)),
                     ),
                   )),
-              if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))),
+              if (visNotes.isEmpty)
+                Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(_noteQ.isEmpty ? '还没有速记。随手记一条想法…' : '没有匹配「$_noteQ」的速记', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -376,10 +399,25 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '⭐ 我的收藏 · 稍后读',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              if (_favs.length > 3) ...[
+                TextField(
+                  controller: _favQCtl,
+                  decoration: const InputDecoration(
+                    hintText: '🔍 搜收藏…',
+                    border: OutlineInputBorder(),
+                    isDense: true,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  ),
+                  onChanged: (v) => setState(() => _favQ = v.trim()),
+                ),
+                const SizedBox(height: 6),
+              ],
               if (_favs.isEmpty)
                 Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
+              else if (visFavs.isEmpty)
+                Text('没有匹配「$_favQ」的收藏', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
               else
-                ..._favs.asMap().entries.map((e) => Dismissible(
+                ...visFavs.asMap().entries.map((e) => Dismissible(
                       key: ObjectKey(e.value),
                       direction: DismissDirection.endToStart,
                       background: _swipeBg(c),

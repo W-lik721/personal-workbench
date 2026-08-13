@@ -12,7 +12,7 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.2.2+5';
+const String appVersion = '1.2.3+6';
 
 // ---------- 模型 ----------
 class Todo {
@@ -124,6 +124,12 @@ class Store {
 
   static bool get darkMode => _p?.getBool('wb_dark') ?? true;
   static set darkMode(bool v) => _p?.setBool('wb_dark', v);
+  // 主题模式三态：system=跟随系统 / dark=深色 / light=浅色（默认深色，保持老用户习惯）
+  static String get themeMode => _p?.getString('wb_theme_mode') ?? 'dark';
+  static set themeMode(String v) => _p?.setString('wb_theme_mode', v);
+  // 启动时自动云备份（需要已配 GitHub Token）
+  static bool get autoSync => _p?.getBool('wb_auto_sync') ?? false;
+  static set autoSync(bool v) => _p?.setBool('wb_auto_sync', v);
   static String get aiProv => _p?.getString('wb_ai_prov') ?? 'agnes';
   static set aiProv(String v) => _p?.setString('wb_ai_prov', v);
 
