@@ -1,6 +1,7 @@
 // 轻量工作台 Flutter 入口
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'lucide_nav_icons.dart';
 import 'services/core.dart';
 import 'services/notifier.dart';
 import 'services/sync.dart';
@@ -275,13 +276,13 @@ class _MainShellState extends State<MainShell> {
           setState(() => _index = i);
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_rounded), label: '首页'),
-          NavigationDestination(icon: Icon(Icons.article_rounded), label: '日报'),
-          NavigationDestination(icon: Icon(Icons.smart_toy_rounded), label: 'AI 助手'),
-          NavigationDestination(icon: Icon(Icons.calendar_month_rounded), label: '课程表'),
-          NavigationDestination(icon: Icon(Icons.school_rounded), label: '学习'),
-          NavigationDestination(icon: Icon(Icons.handyman_rounded), label: '工具'),
-          NavigationDestination(icon: Icon(Icons.settings_rounded), label: '设置'),
+          NavigationDestination(icon: Icon(LucideNavIcons.home), label: '首页'),
+          NavigationDestination(icon: Icon(LucideNavIcons.newspaper), label: '日报'),
+          NavigationDestination(icon: Icon(LucideNavIcons.bot), label: 'AI 助手'),
+          NavigationDestination(icon: Icon(LucideNavIcons.calendar), label: '课程表'),
+          NavigationDestination(icon: Icon(LucideNavIcons.graduationCap), label: '学习'),
+          NavigationDestination(icon: Icon(LucideNavIcons.wrench), label: '工具'),
+          NavigationDestination(icon: Icon(LucideNavIcons.settings), label: '设置'),
         ],
       ),
     );
