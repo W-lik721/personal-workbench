@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-14 00:09",
+  "generatedAt": "2026-08-14 01:09",
   "kpi": {
     "skills": 57,
     "automations": 2,
     "models": 5,
-    "memory": 35,
+    "memory": 36,
     "knowledge": 7,
-    "sessions": 11
+    "sessions": 12
   },
   "skills": [
     {
@@ -639,7 +639,7 @@
       },
       "D": {
         "total": 544,
-        "free": 366
+        "free": 367
       }
     },
     "runtime": "3.13 / 22.22"
@@ -651,7 +651,15 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-14 00:09",
+        "updated": "08-14 01:07",
+        "group": "今天"
+      },
+      {
+        "title": "询问 seelen ui 能否监控CPU温度",
+        "customTitle": "",
+        "display": "询问 seelen ui 能否监控CPU温度",
+        "status": "completed",
+        "updated": "08-14 01:04",
         "group": "今天"
       },
       {
@@ -1342,9 +1350,10 @@
       },
       {
         "date": "2026-08-14",
-        "count": 1,
+        "count": 2,
         "titles": [
-          "工作台"
+          "工作台",
+          "询问 seelen ui 能否监控CPU温度"
         ]
       }
     ]
@@ -1616,7 +1625,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-14 00:09",
+    "fetchedAt": "2026-08-14 01:09",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1771,7 +1780,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-14 00:09",
+        "fetchedAt": "2026-08-14 01:09",
         "count": 20,
         "sections": [
           {
@@ -2846,7 +2855,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-14 00:09",
+    "fetchedAt": "2026-08-14 01:09",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2948,7 +2957,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-14 00:09",
+        "fetchedAt": "2026-08-14 01:09",
         "count": 15,
         "items": [
           {
@@ -3547,12 +3556,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-14T00:09:51",
-    "status": "ok",
-    "nextRun": "2026-08-14T01:09:51",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
