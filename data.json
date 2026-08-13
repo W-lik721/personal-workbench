@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-13 14:42",
+  "generatedAt": "2026-08-13 16:41",
   "kpi": {
     "skills": 56,
     "automations": 2,
     "models": 5,
     "memory": 35,
-    "knowledge": 10,
-    "sessions": 12
+    "knowledge": 11,
+    "sessions": 11
   },
   "skills": [
     {
@@ -627,11 +627,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 242
+        "free": 240
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 366
       }
     },
     "runtime": "3.13 / 22.22"
@@ -643,15 +643,7 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-13 14:42",
-        "group": "今天"
-      },
-      {
-        "title": "排查弹窗频繁出现原因",
-        "customTitle": "",
-        "display": "排查弹窗频繁出现原因",
-        "status": "completed",
-        "updated": "08-13 14:35",
+        "updated": "08-13 16:41",
         "group": "今天"
       },
       {
@@ -1338,10 +1330,9 @@
       },
       {
         "date": "2026-08-13",
-        "count": 6,
+        "count": 5,
         "titles": [
           "工作台",
-          "排查弹窗频繁出现原因",
           "找视频充实知识库",
           "skill",
           "约定明天再处理",
@@ -1351,25 +1342,30 @@
     ]
   },
   "knowledge": {
-    "total": 10,
+    "total": 11,
     "types": {
       ".md": 6,
       "(无扩展名)": 1,
       ".bat": 1,
+      ".json": 1,
       ".html": 2
     },
     "files": [
       {
+        "name": "kb-index.json",
+        "mtime": "08-13 15:28"
+      },
+      {
         "name": "00-路由表.md",
-        "mtime": "08-13 14:20"
+        "mtime": "08-13 15:27"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-13 14:43"
       },
       {
         "name": "video url.md",
         "mtime": "08-13 01:36"
-      },
-      {
-        "name": "AGENTS.md",
-        "mtime": "08-12 22:51"
       },
       {
         "name": "workbench-mobile.html",
@@ -1386,18 +1382,24 @@
       {
         "name": "AGENTS.md",
         "mtime": "08-05 23:06"
-      },
-      {
-        "name": "gitnexus-mcp.bat",
-        "mtime": "08-05 13:43"
       }
     ]
   },
   "weekly": [
     {
       "kind": "kb",
+      "name": "kb-index.json",
+      "when": 1786606104.601082
+    },
+    {
+      "kind": "kb",
       "name": "00-路由表.md",
-      "when": 1786602047.3830695
+      "when": 1786606046.2728746
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1786603390.886124
     },
     {
       "kind": "skill",
@@ -1427,11 +1429,6 @@
       "name": "deeptutor-tutor",
       "when": 1786548229.0079756,
       "scope": "本机"
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1786546266.132196
     },
     {
       "kind": "skill",
@@ -1628,21 +1625,11 @@
       "name": "last30days",
       "when": 1786023752.3110254,
       "scope": "本机"
-    },
-    {
-      "kind": "kb",
-      "name": "Home.md",
-      "when": 1785999151.8258364
-    },
-    {
-      "kind": "automation",
-      "name": "归档文件半年清理检查（WB实用Skills源文件）",
-      "when": 1785998902.549
     }
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 14:42",
+    "fetchedAt": "2026-08-13 16:41",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1797,7 +1784,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 14:42",
+        "fetchedAt": "2026-08-13 16:41",
         "count": 20,
         "sections": [
           {
@@ -2872,7 +2859,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 14:42",
+    "fetchedAt": "2026-08-13 16:41",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2974,7 +2961,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 14:42",
+        "fetchedAt": "2026-08-13 16:41",
         "count": 15,
         "items": [
           {
@@ -3573,12 +3560,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T14:42:46",
-    "status": "ok",
-    "nextRun": "2026-08-13T15:42:46",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
