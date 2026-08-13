@@ -1,7 +1,7 @@
 // 新闻页：AI 日报 + 每日新闻（TabBar 切换，本地缓存优先，Tab 懒加载）
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show HapticFeedback;
+import 'package:flutter/services.dart' show Clipboard, ClipboardData, HapticFeedback;
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 
@@ -366,6 +366,12 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               label: const Text('收藏', style: TextStyle(fontSize: 12)),
               onPressed: () => _favHot(it),
             ),
+            IconButton(
+              visualDensity: VisualDensity.compact,
+              tooltip: '复制',
+              icon: Icon(Icons.copy, size: 15, color: c.outline),
+              onPressed: () => _copyHot(it),
+            ),
             if (aiAskGlobal != null)
               TextButton(
                 onPressed: () => aiAskGlobal!('用大白话讲讲这个技术热点是什么、为什么这么火：${it.title}'),
@@ -437,6 +443,12 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           label: const Text('收藏', style: TextStyle(fontSize: 12)),
           onPressed: () => _fav(item),
         ),
+        IconButton(
+          visualDensity: VisualDensity.compact,
+          tooltip: '复制',
+          icon: Icon(Icons.copy, size: 15, color: c.outline),
+          onPressed: () => _copyNews(title, item),
+        ),
         if (aiAskGlobal != null)
           TextButton(
             onPressed: () => aiAskGlobal!(ask + item.title),
@@ -445,6 +457,30 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
       ]),
       const Divider(height: 16),
     ]);
+  }
+
+  // 复制新闻内容（标题 + 摘要 + 来源 + 链接）到剪贴板
+  void _copyNews(String title, NewsItem item) {
+    final txt = [
+      title,
+      if (item.summary.isNotEmpty) item.summary,
+      if (item.source.isNotEmpty) '（来源：${item.source}）',
+      if (item.url.isNotEmpty) item.url,
+    ].join('\n');
+    Clipboard.setData(ClipboardData(text: txt));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已复制')));
+  }
+
+  // 复制热榜内容
+  void _copyHot(HotItem it) {
+    final txt = [
+      it.title,
+      if (it.by.isNotEmpty) '作者：${it.by}',
+      if (it.source.isNotEmpty) '（来源：${it.source}）',
+      if (it.url.isNotEmpty) it.url,
+    ].join('\n');
+    Clipboard.setData(ClipboardData(text: txt));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('✅ 已复制')));
   }
 
   // 把英文异常转成用户能看懂的中文提示

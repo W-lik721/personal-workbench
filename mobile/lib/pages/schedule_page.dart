@@ -285,6 +285,36 @@ class _SchedulePageState extends State<SchedulePage> {
     return int.parse(m.group(1)!) * 60 + int.parse(m.group(2)!);
   }
 
+  // 下一节：今天还没开始的最近一节（没有则返回 null）
+  Widget? _nextCourseCard(ColorScheme c, String? todayKey, Map<String, List<int>> byDay) {
+    if (todayKey == null) return null;
+    final nowMin = DateTime.now().hour * 60 + DateTime.now().minute;
+    final upcoming = (byDay[todayKey] ?? [])
+        .where((i) => _toMin(_courses[i].time) > nowMin)
+        .map((i) => (idx: i, start: _toMin(_courses[i].time)))
+        .toList()
+      ..sort((a, b) => a.start.compareTo(b.start));
+    if (upcoming.isEmpty) return null;
+    final next = upcoming.first;
+    final cr = _courses[next.idx];
+    final mins = next.start - nowMin;
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: ListTile(
+        dense: true,
+        leading: Icon(Icons.schedule, color: c.primary),
+        title: Text('⏭ 下一节：${cr.name.isEmpty ? '未命名' : cr.name}',
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+        subtitle: Text([
+          cr.time,
+          if (cr.location.isNotEmpty) '📍 ${cr.location}',
+          '${mins ~/ 60 > 0 ? '${mins ~/ 60} 小时' : ''}${mins % 60} 分钟后开始',
+        ].join(' · '), style: TextStyle(fontSize: 12, color: c.primary)),
+        trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _edit(next.idx)),
+      ),
+    );
+  }
+
   // 清空全部课程（二次确认，防误触）
   Future<void> _clearAll() async {
     final ok = await showDialog<bool>(
@@ -396,7 +426,9 @@ class _SchedulePageState extends State<SchedulePage> {
             ? Center(child: Text('还没有课程。点右上角「加一门」', style: TextStyle(color: c.outline)))
             : ListView(
                 padding: const EdgeInsets.all(12),
-                children: byDay.entries.map((e) {
+                children: [
+                  if (_nextCourseCard(c, todayKey, byDay) case final nextCard?) nextCard,
+                  ...byDay.entries.map((e) {
                   if (e.value.isEmpty) return const SizedBox.shrink();
                   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Padding(
@@ -438,7 +470,8 @@ class _SchedulePageState extends State<SchedulePage> {
                       );
                     }),
                   ]);
-                }).toList(),
+                }),
+                ],
               ),
       ),
     ]);
