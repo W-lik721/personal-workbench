@@ -362,7 +362,7 @@ class _MoodTabState extends State<_MoodTab> {
       const SizedBox(height: 8),
       Padding(
         padding: const EdgeInsets.only(left: 4, bottom: 4),
-        child: Text('历史', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: c.primary)),
+        child: Row(children: [Icon(Icons.history_rounded, size: 16, color: c.primary), const SizedBox(width: 4), Text('历史', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: c.primary))]),
       ),
       ..._list.asMap().entries.map((e) {
         final m = e.value;
@@ -490,7 +490,7 @@ class _OcrTabState extends State<_OcrTab> {
       if (!_busy && _textCtrl.text.isNotEmpty) ...[
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 4),
-          child: Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+          child: Row(children: const [Icon(Icons.text_snippet_rounded, size: 16), SizedBox(width: 4), Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))]),
         ),
         TextField(
           controller: _textCtrl,

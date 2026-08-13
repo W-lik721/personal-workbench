@@ -58,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
     final c = Theme.of(context).colorScheme;
     return ListView(padding: const EdgeInsets.all(12), children: [
       // ---------- AI 记忆 ----------
-      _sectionTitle('AI 助手记忆'),
+      _sectionTitle('AI 助手记忆', icon: Icons.psychology_rounded),
       Card(
         child: Column(children: [
           SwitchListTile(
@@ -97,7 +97,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 外观 ----------
-      _sectionTitle('外观'),
+      _sectionTitle('外观', icon: Icons.palette_rounded),
       Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 数据备份 ----------
-      _sectionTitle('数据备份'),
+      _sectionTitle('数据备份', icon: Icons.archive_rounded),
       Card(
         child: Column(children: [
           ListTile(
@@ -151,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 云同步（GitHub 中转，换机/多设备不丢数据） ----------
-      _sectionTitle('云同步'),
+      _sectionTitle('云同步', icon: Icons.cloud_sync_rounded),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
@@ -193,7 +193,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 知识库（vault 中转，复用云同步 token） ----------
-      _sectionTitle('知识库'),
+      _sectionTitle('知识库', icon: Icons.menu_book_rounded),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
@@ -237,7 +237,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 危险操作 ----------
-      _sectionTitle('危险操作'),
+      _sectionTitle('危险操作', icon: Icons.dangerous_rounded),
       Card(
         child: ListTile(
           leading: Icon(Icons.delete_forever_outlined, color: c.error),
@@ -248,7 +248,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
 
       // ---------- 关于 ----------
-      _sectionTitle('关于'),
+      _sectionTitle('关于', icon: Icons.info_rounded),
       const Card(
         child: ListTile(
           leading: Icon(Icons.info_outline),
@@ -260,9 +260,15 @@ class _SettingsPageState extends State<SettingsPage> {
     ]);
   }
 
-  Widget _sectionTitle(String t) => Padding(
+  Widget _sectionTitle(String t, {IconData? icon}) => Padding(
         padding: const EdgeInsets.fromLTRB(4, 14, 4, 6),
-        child: Text(t, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
+        child: Row(children: [
+          if (icon != null) ...[
+            Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary),
+            const SizedBox(width: 6),
+          ],
+          Text(t, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
+        ]),
       );
 
   // 选择历史条数上限

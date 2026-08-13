@@ -409,7 +409,7 @@ class _SchedulePageState extends State<SchedulePage> {
       Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
         child: Row(children: [
-          Text('我的课程表 · ${_courses.length} 节', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          Row(children: [Icon(Icons.view_agenda_rounded, size: 18, color: c.primary), const SizedBox(width: 6), Text('我的课程表 · ${_courses.length} 节', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold))]),
           const Spacer(),
           FilledButton.tonalIcon(onPressed: _import, icon: const Icon(Icons.paste, size: 18), label: const Text('一键导入')),
           const SizedBox(width: 8),

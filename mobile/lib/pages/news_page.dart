@@ -187,6 +187,8 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         padding: const EdgeInsets.all(12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
+            Icon(Icons.space_dashboard_rounded, size: 18, color: c.primary),
+            const SizedBox(width: 6),
             const Text('今日速览', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             const Spacer(),
             Text('共 $total 条 · 已加载 $loaded/3 来源', style: TextStyle(fontSize: 11, color: c.outline)),
@@ -323,7 +325,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
             Padding(padding: const EdgeInsets.only(top: 6), child: Text(d.tip, style: TextStyle(fontStyle: FontStyle.italic, color: c.outline))),
           const SizedBox(height: 8),
           Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('今日头条', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+            const Row(children: [Icon(Icons.article_rounded, size: 18), SizedBox(width: 6), Text('今日头条', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600))]),
             const SizedBox(height: 6),
             ...d.items.asMap().entries.map((e) => _newsTile(
                   title: '${e.key + 1}. ${e.value.title}',

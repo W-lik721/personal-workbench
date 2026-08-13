@@ -242,6 +242,7 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '待办清单 · 可勾选',
             foldKey: 'todo',
+            icon: Icons.checklist_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_todos.isNotEmpty)
                 Padding(
@@ -330,6 +331,7 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '我的速记 · 随手记',
             foldKey: 'note',
+            icon: Icons.edit_note_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_notes.length > 3) ...[
                 TextField(
@@ -388,6 +390,7 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '今日概览',
             foldKey: 'overview',
+            icon: Icons.insights_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
                 _stat(c, '待做', _todos.where((t) => !t.done).length),
@@ -420,6 +423,7 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '最近倒计时',
             foldKey: 'countdown',
+            icon: Icons.hourglass_top_rounded,
             child: _events.isEmpty
                 ? InkWell(
                     onTap: () => switchTabGlobal?.call(4),
@@ -448,6 +452,7 @@ class _HomePageState extends State<HomePage> {
           _card(
             title: '我的收藏 · 稍后读',
             foldKey: 'fav',
+            icon: Icons.bookmark_rounded,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_favs.length > 3) ...[
                 TextField(
@@ -707,7 +712,7 @@ class _HomePageState extends State<HomePage> {
   // 折叠状态：foldKey 存在即可点标题收起（长页面可收次要卡片）
   final Set<String> _folded = {};
 
-  Widget _card({required String title, required Widget child, String? foldKey}) {
+  Widget _card({required String title, required Widget child, String? foldKey, IconData? icon}) {
     final folded = foldKey != null && _folded.contains(foldKey);
     return Card(
       margin: EdgeInsets.zero,
@@ -715,6 +720,10 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
+            if (icon != null) ...[
+              Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+              const SizedBox(width: 6),
+            ],
             Expanded(child: Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600))),
             if (foldKey != null)
               InkWell(
