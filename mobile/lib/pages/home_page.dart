@@ -173,6 +173,7 @@ class _HomePageState extends State<HomePage> {
         _pomoRunning = false;
         _pomoTimer?.cancel();
         _pomoTimer = null;
+        Store.addStudyMinutes(_pomoTotal ~/ 60); // 学习打卡：累计时长 + 连续天数
         _pomoBeep();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('🍅 专注完成！去把待办勾掉吧')));
       }
@@ -391,6 +392,16 @@ class _HomePageState extends State<HomePage> {
                 _stat(c, '📝', '速记', _notes.length),
                 _stat(c, '⭐', '收藏', _favs.length),
               ]),
+              // 学习打卡：今日番茄钟时长 + 连续天数
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Row(children: [
+                  Icon(Icons.local_fire_department, size: 15, color: Store.studyStreak > 0 ? const Color(0xFFF0A858) : c.outline),
+                  const SizedBox(width: 4),
+                  Text('今日专注 ${Store.studySecondsToday ~/ 60} 分钟 · 连续打卡 ${Store.studyStreak} 天',
+                      style: TextStyle(fontSize: 12, color: Store.studyStreak > 0 ? c.primary : c.outline)),
+                ]),
+              ),
               const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,

@@ -123,7 +123,33 @@ class Kb {
     sb.writeln();
     sb.writeln('## 对话历史条数');
     sb.writeln('- 共 ${Store.aiHistory().length} 条消息（仅记条数，正文不上传）');
-    final content = base64Encode(utf8.encode(sb.toString()));
+    await _put(token, repo, path, 'App AI 记忆入库 $ds', sb.toString());
+  }
+
+  // 速记入库：把 App 的速记快照上传到 vault 的 05-数字分身/App速记/
+  static Future<void> uploadNotes(String token, String repo) async {
+    final notes = Store.notes();
+    final now = DateTime.now();
+    final ds = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+    final path = '05-数字分身/App速记/$ds-速记.md';
+    final sb = StringBuffer();
+    sb.writeln('# App 速记快照 · $ds');
+    sb.writeln();
+    sb.writeln('> 由轻量工作台 App「速记入库」自动生成，勿手改（历史按日期保留）。');
+    sb.writeln();
+    sb.writeln('## 速记（${notes.length} 条）');
+    sb.writeln();
+    if (notes.isEmpty) {
+      sb.writeln('（暂无速记）');
+    } else {
+      notes.asMap().forEach((i, n) => sb.writeln('${i + 1}. ${n.text}'));
+    }
+    await _put(token, repo, path, 'App 速记入库 $ds', sb.toString());
+  }
+
+  // 上传 md 到仓库指定路径（已存在则带 sha 更新）
+  static Future<void> _put(String token, String repo, String path, String msg, String md) async {
+    final content = base64Encode(utf8.encode(md));
     final uri = Uri.parse('https://api.github.com/repos/$repo/contents/${Uri.encodeComponent(path)}');
     // 先查 sha（已存在则更新）
     String? sha;
@@ -138,7 +164,7 @@ class Kb {
       uri,
       headers: {..._h(token), 'Content-Type': 'application/json'},
       body: jsonEncode({
-        'message': 'App AI 记忆入库 $ds',
+        'message': msg,
         'content': content,
         if (sha != null) 'sha': sha,
       }),

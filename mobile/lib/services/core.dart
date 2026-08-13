@@ -12,7 +12,7 @@ void Function(String text)? aiFillGlobal;
 void Function()? aiClearGlobal;
 
 // App 版本号：与 pubspec.yaml 的 version 字段保持同步（设置页"关于"展示用）
-const String appVersion = '1.2.4+7';
+const String appVersion = '1.2.5+8';
 
 // ---------- 模型 ----------
 class Todo {
@@ -225,6 +225,27 @@ class Store {
   // 发送时携带的历史条数上限（消息条数，默认 20 = 最近 10 轮对话）
   static int get aiMemoryMax => _p?.getInt('wb_ai_memory_max') ?? 20;
   static set aiMemoryMax(int v) => _p?.setInt('wb_ai_memory_max', v);
+
+  // ---------- 学习打卡（番茄钟时长累计 + 连续天数） ----------
+  // 今日已学习秒数（番茄钟完成时累加）；连续打卡天数；上次学习日期（YYYY-MM-DD）
+  static int get studySecondsToday => _p?.getInt('wb_study_sec') ?? 0;
+  static set studySecondsToday(int v) => _p?.setInt('wb_study_sec', v);
+  static int get studyStreak => _p?.getInt('wb_study_streak') ?? 0;
+  static set studyStreak(int v) => _p?.setInt('wb_study_streak', v);
+  static String get studyLastDate => _p?.getString('wb_study_last') ?? '';
+  static set studyLastDate(String v) => _p?.setString('wb_study_last', v);
+
+  // 番茄钟完成一次：累计时长 + 更新连续打卡（昨天学过→+1，否则重置为 1）
+  static void addStudyMinutes(int minutes) {
+    studySecondsToday = studySecondsToday + minutes * 60;
+    final today = DateTime.now();
+    final ds = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+    if (studyLastDate == ds) return; // 今天已打过卡
+    final yesterday = today.subtract(const Duration(days: 1));
+    final ys = '${yesterday.year}-${yesterday.month.toString().padLeft(2, '0')}-${yesterday.day.toString().padLeft(2, '0')}';
+    studyStreak = studyLastDate == ys ? studyStreak + 1 : 1;
+    studyLastDate = ds;
+  }
 
   // ---------- 备份与恢复（不含 API Key：避免明文落盘泄露） ----------
   // 导出的全部内容都是 SharedPreferences 里的本地数据，可用作"换机/误删"兜底
@@ -528,14 +549,25 @@ class Api {
     'glm': {'label': '智谱 GLM Flash', 'url': 'https://open.bigmodel.cn/api/paas/v4/chat/completions', 'model': 'glm-4-flash'},
   };
 
+  // AI 学习模式：预设 system 提示词（空=通用助手）
+  static const aiModes = {
+    '': '',
+    '📚 解题讲解': '你现在是耐心的学习导师。用户给你题目/代码/概念时：先讲清思路（为什么），再给答案；用大白话，遇到常见错误（如变量名拼写、for 缩进）主动提醒。',
+    '📝 论文润色': '你现在是学术写作编辑。对用户的中英文论文/段落做润色：学术化表达、去掉口语与 AI 味、保持原意；输出润色后版本 + 简要说明改了哪里。',
+    '📖 期末重点': '你现在是备考教练。根据用户给的课程笔记/教材内容，提炼期末考试重点：核心概念、易考点、常见题型，输出结构化复习清单。',
+    '🛠 作业检查': '你现在是作业批改老师。对用户粘贴的作业/代码：先指出错误和问题（含拼写/缩进等常见坑），再讲正确写法，最后给修改建议。',
+    '🌍 翻译': '你现在是中英互译助手。中文→地道英文，英文→自然中文；保持专业术语准确，输出译文 + 必要的注释。',
+  };
+
   static List<Map<String, String>> _buildMsgs(List<Map<String, String>> history, String question,
-      {List<String> memory = const [], String kb = ''}) {
+      {List<String> memory = const [], String kb = '', String mode = ''}) {
     final memBlock = memory.isEmpty
         ? ''
         : '\n\n【关于用户的长期记忆，对话时请自然运用这些信息】\n- ${memory.join('\n- ')}';
     final kbBlock = kb.isEmpty ? '' : '\n\n$kb';
+    final modeBlock = mode.isEmpty ? '' : '\n\n$mode';
     return [
-      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$memBlock$kbBlock'},
+      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$modeBlock$memBlock$kbBlock'},
       ...history,
       {'role': 'user', 'content': question},
     ];
@@ -549,13 +581,13 @@ class Api {
 
   // 流式对话：逐字回调 onChunk（SSE）。client 可外部传入以便中途 close() 停止
   static Future<void> chatStream(String prov, String key, List<Map<String, String>> history, String question,
-      {List<String> memory = const [], String kb = '', http.Client? client, required void Function(String chunk) onChunk}) async {
+      {List<String> memory = const [], String kb = '', String mode = '', http.Client? client, required void Function(String chunk) onChunk}) async {
     final p = aiProviders[prov]!;
     final req = http.Request('POST', Uri.parse(p['url']!))
       ..headers.addAll({'Content-Type': 'application/json', 'Authorization': 'Bearer $key'})
       ..body = jsonEncode({
         'model': p['model'],
-        'messages': _buildMsgs(history, question, memory: memory, kb: kb),
+        'messages': _buildMsgs(history, question, memory: memory, kb: kb, mode: mode),
         'max_tokens': prov == 'agnes' ? 4000 : 2000,
         'stream': true,
       });

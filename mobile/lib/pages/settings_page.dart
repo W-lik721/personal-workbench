@@ -208,6 +208,17 @@ class _SettingsPageState extends State<SettingsPage> {
               Expanded(child: OutlinedButton(onPressed: _kbIndex, child: const Text('🔍 测试索引'))),
             ]),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+            child: SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _kbNotes,
+                icon: const Icon(Icons.note_alt_outlined, size: 18),
+                label: const Text('📝 速记入库（今天的速记存进知识库）'),
+              ),
+            ),
+          ),
         ]),
       ),
 
@@ -485,6 +496,30 @@ class _SettingsPageState extends State<SettingsPage> {
       await Kb.uploadMemory(token, repo);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 记忆已入库：$repo 的 05-数字分身/App记忆/')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
+  }
+
+  // 知识库：速记入库（今天的速记 → vault 05-数字分身/App速记/）
+  Future<void> _kbNotes() async {
+    final token = _tokenCtrl.text.trim();
+    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
+    Store.kbRepo = repo;
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 ☁️ 云同步 填好 GitHub Token（复用同一个）')));
+      return;
+    }
+    if (!repo.contains('/')) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('📝 正在上传速记到知识库…')));
+    try {
+      await Kb.uploadNotes(token, repo);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('✅ 速记已入库：$repo 的 05-数字分身/App速记/')));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('❌ 入库失败：${e.toString().replaceFirst('Exception: ', '')}')));

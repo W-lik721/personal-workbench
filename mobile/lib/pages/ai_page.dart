@@ -21,6 +21,7 @@ class _AiPageState extends State<AiPage> {
   bool _atBottom = true;
   final List<_Msg> _msgs = [];
   String _prov = 'agnes';
+  String _mode = ''; // AI 学习模式（''=通用，见 Api.aiModes）
   bool _busy = false;
   bool _hasKey = false;
   bool _memOn = true;
@@ -165,6 +166,7 @@ class _AiPageState extends State<AiPage> {
       await Api.chatStream(_prov, key, ctx.cast<Map<String, String>>(), q,
           memory: memory,
           kb: kb,
+          mode: Api.aiModes[_mode] ?? '',
           client: _chatClient,
           onChunk: (c) {
             if (!mounted || _cancel) return;
@@ -325,6 +327,27 @@ class _AiPageState extends State<AiPage> {
                 itemCount: _msgs.length,
                 itemBuilder: (c, i) => _bubble(_msgs[i]),
               ),
+      ),
+      // AI 学习模式：通用 / 解题讲解 / 论文润色 / 期末重点 / 作业检查 / 翻译
+      Padding(
+        padding: const EdgeInsets.fromLTRB(12, 4, 12, 0),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: [
+            ...Api.aiModes.keys.map((m) {
+              final sel = _mode == m;
+              return Padding(
+                padding: const EdgeInsets.only(right: 6),
+                child: ChoiceChip(
+                  label: Text(m.isEmpty ? '💬 通用' : m, style: const TextStyle(fontSize: 12)),
+                  selected: sel,
+                  visualDensity: VisualDensity.compact,
+                  onSelected: (_) => setState(() => _mode = m),
+                ),
+              );
+            }),
+          ]),
+        ),
       ),
       // 知识库问答开关：开=发送时自动查 vault 知识库（电脑端 vault-backup 中转）
       Padding(
