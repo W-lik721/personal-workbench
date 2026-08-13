@@ -28,9 +28,10 @@ android {
 
     defaultConfig {
         applicationId = "com.qingdeng.lite_workbench"
-        // minSdk 固定 21：google_mlkit_text_recognition（拍照识题 OCR 引擎）要求 >= 21；
-        // 覆盖 Android 5.0+，现代手机 100% 兼容
-        minSdk = 21
+        // minSdk 由 local.properties 的 flutter.minSdkVersion 控制（当前 = 21）。
+        // google_mlkit_text_recognition（拍照识题 OCR 引擎）要求 >= 21。
+        // 用 local.properties 而不是硬编码，避免 Flutter 自动升级 build.gradle.kts 时覆盖。
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -52,9 +53,12 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            // R8 压缩 + 资源收缩 + 混淆
-            isMinifyEnabled = true
-            isShrinkResources = true
+            // R8 压缩/混淆/资源收缩全部关闭：新引入的 google_mlkit_text_recognition、
+            // image_picker 等原生插件在 R8 tree-shaking 下会被剥离运行时所需类，
+            // 导致 GeneratedPluginRegistrant 启动时找不到类而闪退。个人 App 稳定性优先，
+            // 关闭后包体略增（已含 OCR 模型约 +几 MB），但不再有混淆相关崩溃。
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

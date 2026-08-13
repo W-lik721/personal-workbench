@@ -177,9 +177,10 @@ class _MainShellState extends State<MainShell> {
     super.dispose();
   }
 
-  void _askAi(String text) {
+  void _askAi(String text, {String mode = '', bool send = false}) {
     aiFillGlobal?.call(text); // 把问题填进 AI 输入框
     setState(() => _index = 2); // 切到 AI tab
+    // mode/send 由 ai_page 的 aiAskGlobal 处理；main.dart 兜底只负责跳转。
   }
 
   @override

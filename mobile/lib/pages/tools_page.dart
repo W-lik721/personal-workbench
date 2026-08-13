@@ -195,7 +195,7 @@ class _AccountTabState extends State<_AccountTab> {
                         if (e.value.password.isNotEmpty)
                           IconButton(icon: const Icon(Icons.copy_outlined, size: 18), tooltip: '复制密码', onPressed: () => _copy(e.value.password, '密码')),
                         IconButton(icon: const Icon(Icons.edit_outlined, size: 18), tooltip: '编辑', onPressed: () => _add(e.value, e.key)),
-                        IconButton(icon: const Icon(Icons.delete_outline, size: 18, color: c.error), tooltip: '删除', onPressed: () => _del(e.key)),
+                        IconButton(icon: Icon(Icons.delete_outline, size: 18, color: c.error), tooltip: '删除', onPressed: () => _del(e.key)),
                       ]),
                     ),
                   )),
@@ -352,7 +352,7 @@ class _MoodTabState extends State<_MoodTab> {
       const SizedBox(height: 10),
       Row(children: [
         Expanded(
-          child: FilledButton.tonal.icon(
+          child: FilledButton.tonalIcon(
             onPressed: _weeklyReport,
             icon: const Icon(Icons.auto_awesome, size: 18),
             label: const Text('📊 AI 生成本周周报'),
@@ -472,7 +472,7 @@ class _OcrTabState extends State<_OcrTab> {
                 style: TextStyle(fontSize: 12, color: c.onSecondaryContainer), textAlign: TextAlign.center),
             const SizedBox(height: 12),
             Row(children: [
-              Expanded(child: FilledButton.tonal.icon(onPressed: _busy ? null : () => _pick(ImageSource.camera), icon: const Icon(Icons.camera_alt, size: 18), label: const Text('拍照'))),
+              Expanded(child: FilledButton.tonalIcon(onPressed: _busy ? null : () => _pick(ImageSource.camera), icon: const Icon(Icons.camera_alt, size: 18), label: const Text('拍照'))),
               const SizedBox(width: 8),
               Expanded(child: OutlinedButton.icon(onPressed: _busy ? null : () => _pick(ImageSource.gallery), icon: const Icon(Icons.photo_library_outlined, size: 18), label: const Text('相册'))),
             ]),
