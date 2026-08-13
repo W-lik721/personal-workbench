@@ -197,7 +197,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
             _srcChip(c, '每日新闻', _dnews == null ? null : Store.cacheDnewsAt, _staleDnews),
             _srcChip(c, '技术热榜', _hot == null ? null : Store.cacheHotAt, _staleHot),
           ]),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           SizedBox(
             width: double.infinity,
             child: FilledButton.icon(
@@ -216,7 +216,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     final tag = loading ? '加载中…' : _cacheTag(at);
     return Chip(
       visualDensity: VisualDensity.compact,
-      avatar: Icon(loading ? Icons.hourglass_empty : Icons.check_circle_outline, size: 14,
+      avatar: Icon(loading ? Icons.hourglass_empty : Icons.check_circle_outlined, size: 14,
           color: loading ? c.outline : c.primary),
       label: Text('$name · $tag${stale && !loading ? ' · 缓存' : ''}', style: const TextStyle(fontSize: 11)),
     );
@@ -273,7 +273,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           ...r.sections.map((s) => _sectionCard(s, ask: '用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：')),
         ],
       ),
@@ -297,7 +297,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               style: TextStyle(fontSize: 11, color: c.outline)),
           if (d.tip.isNotEmpty)
             Padding(padding: const EdgeInsets.only(top: 6), child: Text('💡 ${d.tip}', style: TextStyle(fontStyle: FontStyle.italic, color: c.outline))),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('📌 今日头条', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
             const SizedBox(height: 6),
@@ -326,7 +326,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
           Text('技术热榜 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · ⚡离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
               style: TextStyle(fontSize: 11, color: c.outline)),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           ...list.asMap().entries.map((e) => _hotTile(c, e.value)),
         ],
       ),

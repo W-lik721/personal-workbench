@@ -72,6 +72,13 @@ class _WorkbenchAppState extends State<WorkbenchApp> {
           brightness: Brightness.light,
         ),
         useMaterial3: true,
+        // 全局卡片体系统一：扁平 0 阴影、圆角 14、页边距 12/6（实例级 margin 优先覆盖）
+        cardTheme: CardThemeData(
+          elevation: 0,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          clipBehavior: Clip.antiAlias,
+        ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -80,6 +87,12 @@ class _WorkbenchAppState extends State<WorkbenchApp> {
         ),
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFF0E0F13),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          clipBehavior: Clip.antiAlias,
+        ),
       ),
       themeMode: darkModeNotifier.value ? ThemeMode.dark : ThemeMode.light,
       home: const MainShell(),

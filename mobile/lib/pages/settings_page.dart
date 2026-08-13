@@ -519,7 +519,7 @@ class _SettingsPageState extends State<SettingsPage> {
           title: const Text('最后确认'),
           content: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
             const Text('请输入「清空」两个字来确认：'),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             TextField(
               controller: ctrl,
               autofocus: true,

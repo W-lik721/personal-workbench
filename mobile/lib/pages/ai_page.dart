@@ -272,7 +272,7 @@ class _AiPageState extends State<AiPage> {
           ),
           const Spacer(),
           TextButton.icon(
-            icon: Icon(_hasKey ? Icons.vpn_key : Icons.vpn_key_off, size: 16),
+            icon: Icon(_hasKey ? Icons.key : Icons.key_off, size: 16),
             label: Text(_hasKey ? '已设 Key' : '设置 Key'),
             onPressed: _saveKey,
           ),
@@ -295,7 +295,12 @@ class _AiPageState extends State<AiPage> {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(color: c.surfaceContainerHighest, borderRadius: BorderRadius.circular(8)),
           child: Row(children: [
-            const Icon(Icons.vpn_key_off, color: Colors.orange),
+            // 警告提示：橙色随主题深浅自动适配（不用硬编码 Colors.orange）
+            Icon(Icons.key_off,
+                size: 18,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? const Color(0xFFF0A858)
+                    : const Color(0xFFB45309)),
             const SizedBox(width: 8),
             Expanded(
               child: Text('还没设置 API Key，AI 暂时无法回答。点右侧去设置，填好就能用了。',

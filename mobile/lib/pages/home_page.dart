@@ -252,14 +252,15 @@ class _HomePageState extends State<HomePage> {
                       trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                         IconButton(
                           tooltip: '提醒',
-                          icon: Icon(Icons.alarm_add, size: 18, color: e.value.remindAt != null ? c.primary : c.outline),
+                          icon: Icon(Icons.alarm_add, size: 20, color: e.value.remindAt != null ? c.primary : c.outline),
                           onPressed: () => _setRemind(e.key),
                         ),
-                        IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editTodo(e.key)),
+                        const SizedBox(width: 2),
+                        IconButton(icon: const Icon(Icons.edit_outlined, size: 20), onPressed: () => _editTodo(e.key)),
                       ]),
                     ),
                   )),
-              if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.outline, fontSize: 13))),
+              if (_todos.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有待办。写一个今天要做的事…', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))),
               TextField(
                 controller: _todoCtrl,
                 maxLines: 2,
@@ -306,7 +307,7 @@ class _HomePageState extends State<HomePage> {
               ]),
             ]),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           // ---- 速记 ----
           _card(
             title: '📝 我的速记 · 随手记',
@@ -324,7 +325,7 @@ class _HomePageState extends State<HomePage> {
                       trailing: IconButton(icon: const Icon(Icons.edit_outlined, size: 18), onPressed: () => _editNote(e.key)),
                     ),
                   )),
-              if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.outline, fontSize: 13))),
+              if (_notes.isEmpty) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text('还没有速记。随手记一条想法…', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -349,7 +350,7 @@ class _HomePageState extends State<HomePage> {
               FilledButton.tonal(onPressed: _addNote, child: const Text('➕ 添加')),
             ]),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           // ---- 今日概览（替换原"常用入口"） ----
           _card(
             title: '📊 今日概览',
@@ -359,7 +360,7 @@ class _HomePageState extends State<HomePage> {
                 _stat(c, '📝', '速记', _notes.length),
                 _stat(c, '⭐', '收藏', _favs.length),
               ]),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
@@ -370,13 +371,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ]),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 8),
           // ---- 收藏 ----
           _card(
             title: '⭐ 我的收藏 · 稍后读',
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (_favs.isEmpty)
-                Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.outline, fontSize: 13))
+                Text('还没有收藏。点新闻的 ☆ 收藏，稍后在这回看', style: TextStyle(color: c.onSurfaceVariant, fontSize: 13))
               else
                 ..._favs.asMap().entries.map((e) => Dismissible(
                       key: ObjectKey(e.value),
