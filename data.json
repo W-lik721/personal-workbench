@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-13 13:01",
+  "generatedAt": "2026-08-13 14:42",
   "kpi": {
     "skills": 56,
     "automations": 2,
     "models": 5,
     "memory": 35,
     "knowledge": 10,
-    "sessions": 11
+    "sessions": 12
   },
   "skills": [
     {
@@ -555,7 +555,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "11 days ago",
+          "modified": "12 days ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -627,11 +627,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 241
+        "free": 242
       },
       "D": {
         "total": 544,
-        "free": 369
+        "free": 368
       }
     },
     "runtime": "3.13 / 22.22"
@@ -639,11 +639,19 @@
   "sessions": {
     "recent": [
       {
-        "title": "约定明天再处理",
+        "title": "排查大量部署失败的原因",
+        "customTitle": "工作台",
+        "display": "工作台",
+        "status": "working",
+        "updated": "08-13 14:42",
+        "group": "今天"
+      },
+      {
+        "title": "排查弹窗频繁出现原因",
         "customTitle": "",
-        "display": "约定明天再处理",
+        "display": "排查弹窗频繁出现原因",
         "status": "completed",
-        "updated": "08-13 13:00",
+        "updated": "08-13 14:35",
         "group": "今天"
       },
       {
@@ -651,7 +659,7 @@
         "customTitle": "",
         "display": "找视频充实知识库",
         "status": "completed",
-        "updated": "08-13 01:27",
+        "updated": "08-13 14:32",
         "group": "今天"
       },
       {
@@ -659,7 +667,15 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-13 01:10",
+        "updated": "08-13 13:18",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "",
+        "display": "约定明天再处理",
+        "status": "completed",
+        "updated": "08-13 13:05",
         "group": "今天"
       },
       {
@@ -669,14 +685,6 @@
         "status": "completed",
         "updated": "08-13 00:46",
         "group": "今天"
-      },
-      {
-        "title": "排查大量部署失败的原因",
-        "customTitle": "工作台",
-        "display": "工作台",
-        "status": "completed",
-        "updated": "08-12 23:06",
-        "group": "昨天"
       },
       {
         "title": "移动tools目录到D盘p7",
@@ -1322,20 +1330,21 @@
       },
       {
         "date": "2026-08-12",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "工作台",
           "整理工作区",
           "Obsidian的管理"
         ]
       },
       {
         "date": "2026-08-13",
-        "count": 4,
+        "count": 6,
         "titles": [
-          "约定明天再处理",
+          "工作台",
+          "排查弹窗频繁出现原因",
           "找视频充实知识库",
           "skill",
+          "约定明天再处理",
           "清理C盘释放空间"
         ]
       }
@@ -1351,12 +1360,12 @@
     },
     "files": [
       {
-        "name": "video url.md",
-        "mtime": "08-13 01:36"
+        "name": "00-路由表.md",
+        "mtime": "08-13 14:20"
       },
       {
-        "name": "00-路由表.md",
-        "mtime": "08-13 01:18"
+        "name": "video url.md",
+        "mtime": "08-13 01:36"
       },
       {
         "name": "AGENTS.md",
@@ -1387,25 +1396,25 @@
   "weekly": [
     {
       "kind": "kb",
-      "name": "video url.md",
-      "when": 1786556162.1486144
-    },
-    {
-      "kind": "kb",
       "name": "00-路由表.md",
-      "when": 1786555128.7460597
+      "when": 1786602047.3830695
     },
     {
       "kind": "skill",
       "name": "tts-reader",
-      "when": 1786554523.357449,
+      "when": 1786597826.9338126,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "file-hygiene",
-      "when": 1786553707.6080408,
+      "when": 1786597779.3670435,
       "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "video url.md",
+      "when": 1786556162.1486144
     },
     {
       "kind": "skill",
@@ -1633,7 +1642,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 13:01",
+    "fetchedAt": "2026-08-13 14:42",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-13",
     "count": 20,
@@ -1788,7 +1797,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 13:01",
+        "fetchedAt": "2026-08-13 14:42",
         "count": 20,
         "sections": [
           {
@@ -2863,7 +2872,7 @@
   },
   "dailyNews": {
     "date": "2026-08-13",
-    "fetchedAt": "2026-08-13 13:01",
+    "fetchedAt": "2026-08-13 14:42",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -2965,7 +2974,7 @@
     "history": [
       {
         "date": "2026-08-13",
-        "fetchedAt": "2026-08-13 13:01",
+        "fetchedAt": "2026-08-13 14:42",
         "count": 15,
         "items": [
           {
@@ -3564,12 +3573,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-13T13:01:55",
-    "status": "ok",
-    "nextRun": "2026-08-13T14:01:55",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
