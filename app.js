@@ -27,6 +27,62 @@
     return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/'/g, "\\u0027");
   }
 
+  // ---------- 自定义弹窗（替代原生 alert/prompt/confirm，风格统一） ----------
+  WB.dialog = (function () {
+    function close() {
+      var m = document.querySelector(".wb-mask");
+      if (m) m.remove();
+      document.removeEventListener("keydown", onKey, true);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") close();
+      else if (e.key === "Enter") {
+        var ok = document.querySelector('.wb-dlg [data-role="ok"]');
+        if (ok) ok.click();
+      }
+    }
+    function open(opts) {
+      close();
+      var mask = document.createElement("div");
+      mask.className = "wb-mask";
+      var dlg = document.createElement("div");
+      dlg.className = "wb-dlg";
+      var h = "<h3>" + esc(opts.title || "提示") + "</h3>";
+      if (opts.msg) h += '<div class="wb-dlg-msg">' + esc(opts.msg) + "</div>";
+      var inp = opts.input === undefined
+        ? ""
+        : '<input class="wb-dlg-in" value="' + escAttr(String(opts.input)) + '"' +
+          (opts.placeholder ? ' placeholder="' + escAttr(opts.placeholder) + '"' : "") + ">";
+      h += inp +
+        '<div class="wb-dlg-acts">' +
+        (opts.hideCancel ? "" : '<button class="btn-sm" data-role="cancel">取消</button>') +
+        '<button class="btn" data-role="ok">' + esc(opts.okText || "确定") + "</button>" +
+        "</div>";
+      dlg.innerHTML = h;
+      mask.appendChild(dlg);
+      document.body.appendChild(mask);
+      var okBtn = dlg.querySelector('[data-role="ok"]');
+      var cancelBtn = dlg.querySelector('[data-role="cancel"]');
+      var inputEl = dlg.querySelector(".wb-dlg-in");
+      okBtn.onclick = function () {
+        var v = inputEl ? inputEl.value : null;
+        close();
+        if (opts.onOk) opts.onOk(v);
+      };
+      if (cancelBtn) cancelBtn.onclick = function () { close(); if (opts.onCancel) opts.onCancel(); };
+      if (inputEl) { inputEl.focus(); inputEl.select(); }
+      document.addEventListener("keydown", onKey, true);
+    }
+    return {
+      alert: function (msg, onOk) { open({ title: "提示", msg: msg, hideCancel: true, onOk: onOk }); },
+      confirm: function (msg, onOk, onCancel) { open({ title: "确认", msg: msg, okText: "确定", onOk: onOk, onCancel: onCancel }); },
+      prompt: function (title, defVal, onOk, onCancel, placeholder) {
+        open({ title: title, input: defVal || "", okText: "保存", onOk: onOk, onCancel: onCancel, placeholder: placeholder });
+      }
+    };
+  })();
+  WB.jsStr = jsStr;
+
   // ---------- 复制指令（降级 + 按钮即时反馈） ----------
   function flashCopied(btn, ok) {
     if (!btn) return;
@@ -201,11 +257,12 @@
   function editNote(i) {
     var list = notesLoad();
     if (i < 0 || i >= list.length) return;
-    var t = window.prompt("编辑这条速记：", list[i].text || "");
-    if (t === null) return;
-    t = t.trim();
-    if (!t) { delNote(i); return; }
-    list[i].text = t; list[i].at = Date.now(); notesSave(list); renderNotes();
+    WB.dialog.prompt("编辑这条速记", list[i].text || "", function (t) {
+      if (t === null) return;
+      t = (t || "").trim();
+      if (!t) { delNote(i); return; }
+      list[i].text = t; list[i].at = Date.now(); notesSave(list); renderNotes();
+    });
   }
 
   // ---------- 我的收藏 / 稍后读（localStorage 纯前端） ----------
@@ -1276,8 +1333,7 @@
     var btn = document.getElementById("refreshBtn");
     var token = ghToken();
     if (!token) {
-      window.alert("首次使用需要先填 GitHub Token（只存你浏览器）。\n点「确定」后在弹窗粘贴 Token（需要 repo + workflow 权限），填好再来点刷新。");
-      setGhToken();
+      WB.dialog.alert("首次使用需要先填 GitHub Token（只存你浏览器）。\n点「确定」后粘贴 Token（需要 repo + workflow 权限），填好再来点刷新。", function () { setGhToken(); });
       return;
     }
     var old = btn ? btn.textContent : "🔄 立即刷新";
@@ -1305,7 +1361,7 @@
       pollUntilSynced(btn, old, 0, afterTs);
     }).catch(function (err) {
       if (btn) { btn.disabled = false; btn.textContent = old; }
-      window.alert("立即刷新失败：" + err.message);
+      WB.dialog.alert("立即刷新失败：" + err.message);
     });
   }
 
@@ -1314,7 +1370,7 @@
     var MAX = 24; // 24 × 10s ≈ 4 分钟
     if (tries >= MAX) {
       if (btn) { btn.disabled = false; btn.textContent = old; }
-      window.alert("同步任务已提交，但本机 Runner 似乎没在运行（任务一直排队）。\n请确认本机 Runner 进程已启动，或稍后手动刷新浏览器。");
+      WB.dialog.alert("同步任务已提交，但本机 Runner 似乎没在运行（任务一直排队）。\n请确认本机 Runner 进程已启动，或稍后手动刷新浏览器。");
       loadData().catch(function () {});
       return;
     }
@@ -1339,7 +1395,7 @@
           tightReload(btn, old, 0);
         } else {
           if (btn) { btn.disabled = false; btn.textContent = old; }
-          window.alert("本次同步运行失败（" + (run.conclusion || "unknown") + "），请到 GitHub Actions 看日志。");
+          WB.dialog.alert("本次同步运行失败（" + (run.conclusion || "unknown") + "），请到 GitHub Actions 看日志。");
           loadData().catch(function () {});
         }
       } else if (run && (run.status === "in_progress" || run.status === "queued" || run.status === "waiting")) {
@@ -1357,7 +1413,7 @@
   function tightReload(btn, old, tries) {
     if (tries >= 30) { // 30 × 10s ≈ 5 分钟，给 GitHub Pages 部署留足时间
       if (btn) { btn.disabled = false; btn.textContent = old; }
-      window.alert("本机同步已完成，但 GitHub Pages 上线略有延迟。\n页面会在后台继续检测，30 秒内若数据上线会自动刷新；也可稍后手动刷新浏览器。");
+      WB.dialog.alert("本机同步已完成，但 GitHub Pages 上线略有延迟。\n页面会在后台继续检测，30 秒内若数据上线会自动刷新；也可稍后手动刷新浏览器。");
       return;
     }
     if (btn) btn.textContent = "✅ 同步完成，刷新中… (" + (tries + 1) + "/30)";
@@ -1497,13 +1553,18 @@
     });
   }
   function addLink() {
-    var label = window.prompt("入口名称（如 抖音）：");
-    if (!label) return;
-    var url = window.prompt("链接地址（以 http 开头，可留空自动补 https://）：", "https://");
-    if (url === null) return;
-    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
-    var links = getLinks(); links.push({ label: label, url: url }); saveLinks(links); renderLinks();
-    var h = document.getElementById("linksHint"); if (h) h.textContent = "✓ 已添加（仅存本浏览器）";
+    WB.dialog.prompt("入口名称", "", function (label) {
+      if (!label) return;
+      label = label.trim();
+      if (!label) return;
+      WB.dialog.prompt("链接地址", "https://", function (url) {
+        if (url === null) return;
+        url = (url || "").trim();
+        if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+        var links = getLinks(); links.push({ label: label, url: url }); saveLinks(links); renderLinks();
+        var h = document.getElementById("linksHint"); if (h) h.textContent = "✓ 已添加（仅存本浏览器）";
+      }, null, "以 http 开头，可留空自动补 https://");
+    }, null, "如：抖音");
   }
   function delLink(i) {
     var links = getLinks(); if (i < 0 || i >= links.length) return;
@@ -1587,15 +1648,16 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
   }
   function doImportBackup(m) {
-    if (!m || !m.data || typeof m.data !== "object") { window.alert("不是有效的工作台备份文件"); return; }
-    if (!window.confirm("导入将用备份覆盖当前的 速记 / 待办 / 收藏 / 常用入口。\n确定继续吗？（建议先点“备份”存一份当前数据）")) return;
-    var d = m.data;
-    if (d.notes) notesSave(d.notes);
-    if (d.todos) todosSave(d.todos);
-    if (d.favs) favsSave(d.favs);
-    if (d.links) saveLinks(d.links);
-    renderNotes(); renderTodos(); renderFavs(); renderLinks();
-    window.alert("✓ 已恢复备份（速记 / 待办 / 收藏 / 常用入口）");
+    if (!m || !m.data || typeof m.data !== "object") { WB.dialog.alert("不是有效的工作台备份文件"); return; }
+    WB.dialog.confirm("导入将用备份覆盖当前的 速记 / 待办 / 收藏 / 常用入口。\n确定继续吗？（建议先点“备份”存一份当前数据）", function () {
+      var d = m.data;
+      if (d.notes) notesSave(d.notes);
+      if (d.todos) todosSave(d.todos);
+      if (d.favs) favsSave(d.favs);
+      if (d.links) saveLinks(d.links);
+      renderNotes(); renderTodos(); renderFavs(); renderLinks();
+      WB.dialog.alert("✓ 已恢复备份（速记 / 待办 / 收藏 / 常用入口）");
+    });
   }
   function backupImportFromFile(input) {
     var f = input.files && input.files[0];
@@ -1603,9 +1665,9 @@
     var r = new FileReader();
     r.onload = function (e) {
       try { doImportBackup(JSON.parse(String(e.target.result))); }
-      catch (err) { window.alert("备份文件解析失败：" + err.message); }
+      catch (err) { WB.dialog.alert("备份文件解析失败：" + err.message); }
     };
-    r.onerror = function () { window.alert("读取文件失败"); };
+    r.onerror = function () { WB.dialog.alert("读取文件失败"); };
     r.readAsText(f, "utf-8");
     input.value = "";
   }
@@ -1673,4 +1735,31 @@
       navigator.serviceWorker.register("sw.js").catch(function () {});
     });
   }
+
+  // ---------- PWA 安装引导（Android/Chrome 一键装，iOS 给说明） ----------
+  var installEvt = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    installEvt = e;
+    var b = document.getElementById("installBtn");
+    if (b) b.style.display = "";
+  });
+  window.addEventListener("appinstalled", function () {
+    installEvt = null;
+    var b = document.getElementById("installBtn");
+    if (b) b.style.display = "none";
+  });
+  window.promptInstall = function () {
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS) {
+      WB.dialog.alert("iPhone / iPad 安装方法：点浏览器底部「分享」按钮 → 「添加到主屏幕」，之后就能像 App 一样从桌面打开。");
+      return;
+    }
+    if (!installEvt) {
+      WB.dialog.alert("当前浏览器不支持一键安装。可以打开浏览器菜单 →「添加到主屏幕 / 安装应用」，效果一样。");
+      return;
+    }
+    installEvt.prompt();
+    installEvt.userChoice.then(function () { installEvt = null; });
+  };
 })();

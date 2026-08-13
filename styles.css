@@ -699,3 +699,15 @@ body.light #todoInput { background: #f0f2f5; color: #1a1c20; }
 @media(max-width:880px){#pane-cap .wrap{grid-template-columns:1fr}}
 body.light .side-card{box-shadow:var(--shadow-sm)}
 body.light .ov-card .mini-btn{box-shadow:none}
+
+/* ---------- 自定义弹窗（替代原生 alert/prompt/confirm） ---------- */
+.wb-mask{position:fixed;inset:0;background:rgba(8,10,14,.62);display:flex;align-items:center;justify-content:center;z-index:999;padding:18px;animation:fadeIn .18s ease both}
+.wb-dlg{width:min(420px,94vw);background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 20px;box-shadow:var(--shadow-lg);animation:dlgIn .22s var(--ease) both}
+@keyframes dlgIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.wb-dlg h3{margin:0 0 10px;font-size:14px;font-weight:600}
+.wb-dlg .wb-dlg-msg{font-size:13px;line-height:1.65;color:var(--sub);white-space:pre-line;margin-bottom:14px}
+.wb-dlg .wb-dlg-in{width:100%;box-sizing:border-box;background:#14161c;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);color:var(--txt);padding:9px 11px;font-size:13px;font-family:inherit;margin-bottom:14px;transition:border-color .2s,box-shadow .2s}
+.wb-dlg .wb-dlg-in:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,184,198,.18)}
+.wb-dlg .wb-dlg-acts{display:flex;gap:8px;justify-content:flex-end}
+body.light .wb-dlg .wb-dlg-in{background:#fff}
+@media(prefers-reduced-motion:reduce){.wb-mask,.wb-dlg{animation:none}}

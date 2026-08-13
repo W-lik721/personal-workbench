@@ -16,12 +16,13 @@
   var GH_TOKEN_KEY = "wb_gh_token";
   function ghToken() { return localStorage.getItem(GH_TOKEN_KEY) || ""; }
   function setGhToken() {
-    var t = window.prompt("粘贴你的 GitHub Personal Access Token（需要 repo + workflow 权限）。\n仅存于本浏览器 localStorage，不会上传。留空可清除。", ghToken());
-    if (t === null) return;
-    if (t.trim()) localStorage.setItem(GH_TOKEN_KEY, t.trim());
-    else localStorage.removeItem(GH_TOKEN_KEY);
-    var h = document.getElementById("schedHint");
-    if (h) h.textContent = t.trim() ? "✓ Token 已保存（仅本浏览器）" : "已清除 Token";
+    WB.dialog.prompt("GitHub Token", ghToken(), function (t) {
+      if (t === null) return;
+      if (t.trim()) localStorage.setItem(GH_TOKEN_KEY, t.trim());
+      else localStorage.removeItem(GH_TOKEN_KEY);
+      var h = document.getElementById("schedHint");
+      if (h) h.textContent = t.trim() ? "✓ Token 已保存（仅本浏览器）" : "已清除 Token";
+    }, null, "需要 repo + workflow 权限，仅存本浏览器");
   }
   function b64encodeUtf8(str) {
     return btoa(unescape(encodeURIComponent(str)));
@@ -232,10 +233,11 @@
   }
   function delAllCourses() {
     if (!scheduleLoad().length) return;
-    if (!window.confirm("确定清空全部课程表吗？此操作不可撤销。\n（如需换课表，可先清空再导入，或导入会自动跳过重复）")) return;
-    scheduleSave([]); renderSchedule();
-    var h = document.getElementById("schedHint");
-    if (h) h.textContent = "✓ 已清空全部课程";
+    WB.dialog.confirm("确定清空全部课程表吗？此操作不可撤销。\n（如需换课表，可先清空再导入，或导入会自动跳过重复）", function () {
+      scheduleSave([]); renderSchedule();
+      var h = document.getElementById("schedHint");
+      if (h) h.textContent = "✓ 已清空全部课程";
+    });
   }
   window.delAllCourses = delAllCourses;
   function downloadFile(name, content, mime) {
