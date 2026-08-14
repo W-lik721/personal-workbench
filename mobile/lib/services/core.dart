@@ -400,6 +400,12 @@ class Store {
   // 记忆开关：关掉后不再保存新历史、发消息也不带记忆
   static bool get aiMemoryOn => _p?.getBool('wb_ai_memory_on') ?? true;
   static set aiMemoryOn(bool v) => _p?.setBool('wb_ai_memory_on', v);
+  // 情境感知开关：发消息时自动带入今日课程/待办/倒计时/心情（默认开）
+  static bool get aiContextOn => _p?.getBool('wb_ai_context_on') ?? true;
+  static set aiContextOn(bool v) => _p?.setBool('wb_ai_context_on', v);
+  // 记忆自动抽取开关：对话结束自动提炼关键事实存长期记忆（默认关，防乱记）
+  static bool get aiAutoMemOn => _p?.getBool('wb_ai_auto_mem_on') ?? false;
+  static set aiAutoMemOn(bool v) => _p?.setBool('wb_ai_auto_mem_on', v);
   // 发送时携带的历史条数上限（消息条数，默认 20 = 最近 10 轮对话）
   static int get aiMemoryMax => _p?.getInt('wb_ai_memory_max') ?? 20;
   static set aiMemoryMax(int v) => _p?.setInt('wb_ai_memory_max', v);
@@ -757,17 +763,25 @@ class Api {
     '翻译': '你现在是中英互译助手。中文→地道英文，英文→自然中文；保持专业术语准确，输出译文 + 必要的注释。',
   };
 
-  static List<Map<String, String>> _buildMsgs(List<Map<String, String>> history, String question,
-      {List<String> memory = const [], String kb = '', String mode = ''}) {
+  static List<Map<String, dynamic>> _buildMsgs(List<Map<String, String>> history, String question,
+      {List<String> memory = const [], String kb = '', String mode = '', String context = '', List<String> images = const []}) {
     final memBlock = memory.isEmpty
         ? ''
         : '\n\n【关于用户的长期记忆，对话时请自然运用这些信息】\n- ${memory.join('\n- ')}';
     final kbBlock = kb.isEmpty ? '' : '\n\n$kb';
     final modeBlock = mode.isEmpty ? '' : '\n\n$mode';
+    final ctxBlock = context.isEmpty ? '' : '\n\n$context';
+    // 多模态：本轮带图时，user 消息 content 改为 [text, image_url...] 数组；历史消息始终是纯文本
+    final userContent = images.isEmpty
+        ? question
+        : <Map<String, dynamic>>[
+            {'type': 'text', 'text': question},
+            ...images.map((b64) => {'type': 'image_url', 'image_url': {'url': 'data:image/jpeg;base64,$b64'}}),
+          ];
     return [
-      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$modeBlock$memBlock$kbBlock'},
+      {'role': 'system', 'content': '你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。$modeBlock$memBlock$kbBlock$ctxBlock'},
       ...history,
-      {'role': 'user', 'content': question},
+      {'role': 'user', 'content': userContent},
     ];
   }
 
@@ -778,14 +792,16 @@ class Api {
   }
 
   // 流式对话：逐字回调 onChunk（SSE）。client 可外部传入以便中途 close() 停止
+  // images: 本轮附带的多模态图片（jpeg base64，不含 data: 前缀），仅拼在最后一条 user 消息
+  // onReasoning: 模型思考过程（reasoning_content）逐段回调，供 UI 折叠展示
   static Future<void> chatStream(String prov, String key, List<Map<String, String>> history, String question,
-      {List<String> memory = const [], String kb = '', String mode = '', http.Client? client, required void Function(String chunk) onChunk}) async {
+      {List<String> memory = const [], String kb = '', String mode = '', String context = '', List<String>? images, void Function(String)? onReasoning, http.Client? client, required void Function(String chunk) onChunk}) async {
     final p = aiProviders[prov]!;
     final req = http.Request('POST', Uri.parse(p['url']!))
       ..headers.addAll({'Content-Type': 'application/json', 'Authorization': 'Bearer $key'})
       ..body = jsonEncode({
         'model': p['model'],
-        'messages': _buildMsgs(history, question, memory: memory, kb: kb, mode: mode),
+        'messages': _buildMsgs(history, question, memory: memory, kb: kb, mode: mode, context: context, images: images ?? const []),
         'max_tokens': prov == 'agnes' ? 4000 : 2000,
         'stream': true,
       });
@@ -809,7 +825,10 @@ class Api {
           onChunk(c);
         }
         final rc = delta?['reasoning_content']?.toString();
-        if (rc != null && rc.isNotEmpty) reasoning = (reasoning ?? '') + rc;
+        if (rc != null && rc.isNotEmpty) {
+          reasoning = (reasoning ?? '') + rc;
+          onReasoning?.call(rc);
+        }
       } catch (_) {}
     }
     if (full.trim().isEmpty) {

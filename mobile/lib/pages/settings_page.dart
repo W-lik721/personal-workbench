@@ -18,6 +18,8 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _memOn = true;
   int _memMax = 20;
   int _memCount = 0;
+  bool _ctxOn = true; // 情境感知：AI 发送时自动带入今日课程/待办/倒计时/心情
+  bool _autoMemOn = false; // 记忆自动抽取：对话结束自动提炼关键事实存长期记忆
   final _repoCtrl = TextEditingController(); // 云同步仓库
   final _tokenCtrl = TextEditingController(); // GitHub Token（加密存储）
   final _kbRepoCtrl = TextEditingController(); // 知识库仓库
@@ -49,6 +51,8 @@ class _SettingsPageState extends State<SettingsPage> {
     _memOn = Store.aiMemoryOn;
     _memMax = Store.aiMemoryMax;
     _memCount = Store.aiMemory().length;
+    _ctxOn = Store.aiContextOn;
+    _autoMemOn = Store.aiAutoMemOn;
   }
 
   void _reload() => setState(_refresh);
@@ -67,6 +71,26 @@ class _SettingsPageState extends State<SettingsPage> {
             value: _memOn,
             onChanged: (v) {
               Store.aiMemoryOn = v;
+              _reload();
+            },
+          ),
+          const Divider(height: 1),
+          SwitchListTile(
+            title: const Text('情境感知'),
+            subtitle: const Text('AI 发送时自动带入你今天的课程 / 待办 / 倒计时 / 心情，给更贴合的建议'),
+            value: _ctxOn,
+            onChanged: (v) {
+              Store.aiContextOn = v;
+              _reload();
+            },
+          ),
+          const Divider(height: 1),
+          SwitchListTile(
+            title: const Text('记忆自动抽取'),
+            subtitle: const Text('对话结束后自动提炼关键事实存进长期记忆（默认关，防止 AI 乱记）'),
+            value: _autoMemOn,
+            onChanged: (v) {
+              Store.aiAutoMemOn = v;
               _reload();
             },
           ),

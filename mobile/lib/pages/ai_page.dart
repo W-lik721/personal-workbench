@@ -1,9 +1,13 @@
 // AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
 // 支持「知识库问答」：开启时发送自动查 vault 知识库（kb.dart）+ 内置 Skill 方法库（skilllib.dart）拼上下文
+// 增强：情境感知（注入今日真实数据）/ 多模态发图 / 语音输入 / 常用问题快捷 / 存笔记收藏 / 思考过程 / 记忆自动抽取
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 import '../services/kb.dart';
@@ -29,6 +33,16 @@ class _AiPageState extends State<AiPage> {
   bool _cancel = false;
   String? _keyError;
   http.Client? _chatClient;
+  // 多模态：本轮附带图片（jpeg base64，发送后清空）
+  final List<String> _pendingImages = [];
+  // 语音输入
+  final SpeechToText _stt = SpeechToText();
+  bool _sttReady = false;
+  bool _listening = false;
+  // 情境感知开关（默认开：发送时自动带上今日真实数据）
+  bool _ctxOn = true;
+  // 记忆自动抽取开关（默认关：防乱记）
+  bool _autoMemOn = false;
 
   @override
   void initState() {
@@ -36,7 +50,10 @@ class _AiPageState extends State<AiPage> {
     _prov = Store.aiProv;
     _memOn = Store.aiMemoryOn;
     _kbOn = Store.kbOn;
+    _ctxOn = Store.aiContextOn;
+    _autoMemOn = Store.aiAutoMemOn;
     _loadKey();
+    _initStt();
     _input.addListener(_onInput);
     // 恢复上次对话历史（记忆功能）
     for (final m in Store.aiHistory()) {
@@ -76,6 +93,51 @@ class _AiPageState extends State<AiPage> {
     if (mounted) setState(() => _hasKey = k.isNotEmpty);
   }
 
+  // 语音识别可用性初始化（speech_to_text 需先 initialize）
+  Future<void> _initStt() async {
+    try {
+      _sttReady = await _stt.initialize(
+        onError: (e) => _stopListen(),
+      );
+      if (mounted) setState(() {});
+    } catch (_) {
+      _sttReady = false;
+    }
+  }
+
+  // 开始/停止语音听写：实时把识别文字回填输入框
+  Future<void> _toggleListen() async {
+    if (_busy) return;
+    if (_listening) {
+      _stopListen();
+      return;
+    }
+    if (!_sttReady) {
+      _sttReady = await _stt.initialize();
+      if (!_sttReady) {
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('语音识别不可用（设备不支持或未授权麦克风）')));
+        return;
+      }
+    }
+    final locales = await _stt.locales();
+    final zh = locales.where((l) => l.localeId.startsWith('zh')).isNotEmpty ? 'zh_CN' : null;
+    setState(() => _listening = true);
+    await _stt.listen(
+      onResult: (r) {
+        if (!mounted) return;
+        setState(() => _input.text = r.recognizedWords);
+        _input.selection = TextSelection.fromPosition(TextPosition(offset: _input.text.length));
+      },
+      listenOptions: SpeechListenOptions(listenMode: ListenMode.dictation, localeId: zh),
+    );
+  }
+
+  void _stopListen() {
+    if (!_listening) return;
+    _stt.stop();
+    if (mounted) setState(() => _listening = false);
+  }
+
   // 输入框文字变化时重建，让"清空"按钮随文字出现/消失
   void _onInput() => setState(() {});
 
@@ -91,6 +153,7 @@ class _AiPageState extends State<AiPage> {
     aiClearGlobal = null;
     aiFillGlobal = null;
     _cancel = true;
+    _stopListen();
     _chatClient?.close();
     _input.removeListener(_onInput);
     _input.dispose();
@@ -167,16 +230,25 @@ class _AiPageState extends State<AiPage> {
       final kbCtx = (await Store.syncToken()).isNotEmpty ? await Kb.query(q) : '';
       kb = [if (skillCtx.isNotEmpty) skillCtx, if (kbCtx.isNotEmpty) kbCtx].join('\n');
     }
+    // 情境感知：开启时把今日真实数据（课程/待办/倒计时/心情）打包进上下文，让 AI 给个性化建议
+    final situation = _ctxOn ? _situationBlock() : '';
+    // 多模态：本轮附带图片（发送后清空，避免污染下一轮历史）
+    final imgs = List<String>.from(_pendingImages);
+    _pendingImages.clear();
     final maxMsgs = Store.aiMemoryMax;
     final ctx = history.length > maxMsgs ? history.sublist(history.length - maxMsgs) : history;
     final key = await Store.aiKey(_prov);
 
+    String? reasoning; // 本轮思考过程（解题/作业模式展示）
     _chatClient = http.Client();
     try {
       await Api.chatStream(_prov, key, ctx.cast<Map<String, String>>(), q,
           memory: memory,
           kb: kb,
           mode: Api.aiModes[_mode] ?? '',
+          context: situation,
+          images: imgs.isNotEmpty ? imgs : null,
+          onReasoning: (r) => reasoning = (reasoning ?? '') + r,
           client: _chatClient,
           onChunk: (c) {
             if (!mounted || _cancel) return;
@@ -187,7 +259,10 @@ class _AiPageState extends State<AiPage> {
           });
       if (!mounted) return;
       setState(() {
-        if (_msgs.isNotEmpty) _msgs.last.streaming = false;
+        if (_msgs.isNotEmpty) {
+          _msgs.last.streaming = false;
+          _msgs.last.reasoning = reasoning?.trim();
+        }
         _busy = false;
       });
     } catch (e) {
@@ -215,7 +290,86 @@ class _AiPageState extends State<AiPage> {
         Store.saveAiHistory(hist);
       }
     }
+    // 记忆自动抽取（默认关）：从本轮问答提炼关键事实存入长期记忆
+    if (_autoMemOn && mounted && !_msgs.last.isError) {
+      await _autoExtract(q, _msgs.last.text);
+    }
     _scrollToBottom();
+  }
+
+  // 情境感知：把今日真实数据打包成一段上下文，让 AI 给个性化建议
+  String _situationBlock() {
+    final buf = StringBuffer();
+    buf.writeln('【用户今日真实数据（用于给个性化建议，不要复述，直接用）】');
+    // 今日课程
+    final courses = Store.courses();
+    if (courses.isNotEmpty) {
+      buf.writeln('· 课程表（共 ${courses.length} 节）：');
+      for (final c in courses.take(12)) {
+        buf.writeln('  - ${c.dow}${c.time.isNotEmpty ? " $c.time" : ""} ${c.name}${c.location.isNotEmpty ? " @$c.location" : ""}');
+      }
+    }
+    // 未完成待办
+    final todos = Store.todos().where((t) => !t.done).toList();
+    if (todos.isNotEmpty) {
+      buf.writeln('· 未完成待办（${todos.length} 条）：');
+      for (final t in todos.take(10)) {
+        buf.writeln('  - ${t.text}${t.remindAt != null ? "（提醒）" : ""}');
+      }
+    }
+    // 最近倒计时（离今天最近 3 个）
+    final now = DateTime.now();
+    final events = Store.events()
+        .where((e) => e.at >= DateTime(now.year, now.month, now.day).millisecondsSinceEpoch)
+        .toList()
+      ..sort((a, b) => a.at.compareTo(b.at));
+    if (events.isNotEmpty) {
+      buf.writeln('· 即将到来的事项（最近 ${events.length.clamp(0, 3)} 个）：');
+      for (final e in events.take(3)) {
+        final days = DateTime.fromMillisecondsSinceEpoch(e.at).difference(DateTime(now.year, now.month, now.day)).inDays;
+        buf.writeln('  - ${e.emoji} ${e.name}（还有 $days 天）');
+      }
+    }
+    // 最近一周心情
+    final moods = Store.moods();
+    if (moods.isNotEmpty) {
+      final weekAgo = now.subtract(const Duration(days: 7)).millisecondsSinceEpoch;
+      final recent = moods.where((m) => m.at >= weekAgo).toList();
+      if (recent.isNotEmpty) {
+        buf.writeln('· 近期心情（${recent.length} 条）：${recent.map((m) => m.emoji).join('')}');
+      }
+    }
+    return buf.toString();
+  }
+
+  // 记忆自动抽取：让模型从本轮问答提炼关键事实，存入长期记忆（去重）
+  Future<void> _autoExtract(String q, String answer) async {
+    if (q.trim().isEmpty || answer.trim().isEmpty) return;
+    final key = await Store.aiKey(_prov);
+    if (key.isEmpty) return;
+    try {
+      final prompt = '从下面的问答里提取用户可能想长期记住的关键事实（偏好、计划、个人信息、决定等），'
+          '每条一行，不要编号和解释。如果没有值得长期记住的内容，只回复"无"。\n\n'
+          '用户：$q\n\n助手：$answer';
+      final extracted = await Api.chat(_prov, key, const [], prompt, memory: const []);
+      final lines = extracted.split('\n').map((l) => l.trim()).where((l) => l.isNotEmpty && l != '无').toList();
+      if (lines.isEmpty) return;
+      final mem = Store.aiMemory();
+      var added = 0;
+      for (final l in lines) {
+        final clean = l.replaceAll(RegExp(r'^[-\d.、)\s]+'), '').trim();
+        if (clean.isNotEmpty && !mem.contains(clean) && mem.length + added < 200) {
+          mem.add(clean);
+          added++;
+        }
+      }
+      if (added > 0) {
+        Store.saveAiMemory(mem);
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已自动记住 $added 条新信息')));
+      }
+    } catch (_) {
+      // 自动抽取失败静默跳过，不影响主对话
+    }
   }
 
   // 重新生成最后一条 AI 回复（或重试失败的那条）：取最后一条用户消息重发
@@ -239,6 +393,51 @@ class _AiPageState extends State<AiPage> {
   void _stop() {
     _cancel = true;
     _chatClient?.close();
+  }
+
+  // 快捷问题按钮：填充并直接发送
+  Widget _quickChip(String q) {
+    final c = Theme.of(context).colorScheme;
+    return ActionChip(
+      label: Text(q, style: const TextStyle(fontSize: 12)),
+      backgroundColor: c.surfaceContainerHighest,
+      onPressed: () {
+        if (_busy) return;
+        _input.text = q;
+        _send();
+      },
+    );
+  }
+
+  // 选图（相册/拍照），转 base64 暂存，随本条消息发给视觉模型
+  Future<void> _pickImage() async {
+    final b64 = await showDialog<String>(
+      context: context,
+      builder: (c) => AlertDialog(
+        title: const Text('发图片给 AI'),
+        content: const Text('选一张图（拍题、拍文档、拍实物都行），AI 会结合图片回答。'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c), child: const Text('取消')),
+          TextButton.icon(onPressed: () => Navigator.pop(c, 'camera'), icon: const Icon(Icons.camera_alt), label: const Text('拍照')),
+          FilledButton.icon(onPressed: () => Navigator.pop(c, 'gallery'), icon: const Icon(Icons.photo), label: const Text('相册')),
+        ],
+      ),
+    );
+    if (b64 == null) return;
+    try {
+      final picker = ImagePicker();
+      final x = await picker.pickImage(
+        source: b64 == 'camera' ? ImageSource.camera : ImageSource.gallery,
+        imageQuality: 80,
+        maxWidth: 1280,
+      );
+      if (x == null) return;
+      final bytes = await x.readAsBytes();
+      // 控制体积：过大则压缩提示（jpeg base64 通常 <2MB 可接受）
+      setState(() => _pendingImages.add(base64Encode(bytes)));
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('选图失败：$e')));
+    }
   }
 
   String _friendly(Object e) {
@@ -281,6 +480,16 @@ class _AiPageState extends State<AiPage> {
             icon: Icon(_memOn ? Icons.auto_awesome : Icons.auto_awesome_outlined, size: 20),
             tooltip: _memOn ? 'AI 记忆已开（点此关闭）' : 'AI 记忆已关（点此开启）',
             onPressed: _toggleMem,
+          ),
+          IconButton(
+            icon: Icon(_ctxOn ? Icons.today : Icons.today_outlined, size: 20),
+            tooltip: _ctxOn ? '情境感知已开：AI 会结合你今天的课程/待办/倒计时（点此关闭）' : '情境感知已关（点此开启）',
+            onPressed: () {
+              setState(() {
+                _ctxOn = !_ctxOn;
+                Store.aiContextOn = _ctxOn;
+              });
+            },
           ),
           const Spacer(),
           TextButton.icon(
@@ -325,10 +534,27 @@ class _AiPageState extends State<AiPage> {
       Expanded(
         child: _msgs.isEmpty
             ? Center(
-                child: Padding(
+                child: SingleChildScrollView(
                   padding: const EdgeInsets.all(24),
-                  child: Text('输入你的问题，AI 会用大白话回答。\n\nAI 有记忆：聊天会自动记住，下次打开还能接着聊；AI 回答下点「记住」可存为长期记忆。\n\n可问它：总结今天的日报 / 帮我挑值得看的新闻 / 待办怎么安排…',
-                      textAlign: TextAlign.center, style: TextStyle(color: c.outline)),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Text('输入你的问题，AI 会用大白话回答。\n\nAI 有记忆：聊天会自动记住，下次打开还能接着聊；AI 回答下点「记住」可存为长期记忆。',
+                        textAlign: TextAlign.center, style: TextStyle(color: c.outline)),
+                    const SizedBox(height: 16),
+                    const Text('试试直接问（点一下就发）：', style: TextStyle(fontSize: 13, color: Colors.grey)),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        _quickChip('总结今天的日报'),
+                        _quickChip('帮我安排今天'),
+                        _quickChip('用大白话讲讲这条新闻'),
+                        _quickChip('这道错题怎么改'),
+                        _quickChip('我最近该重点学什么'),
+                      ],
+                    ),
+                  ]),
                 ),
               )
             : ListView.builder(
@@ -391,29 +617,66 @@ class _AiPageState extends State<AiPage> {
         top: false,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 4, 12, 8),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            Expanded(
-              child: TextField(
-                controller: _input,
-                minLines: 1,
-                maxLines: 4,
-                decoration: InputDecoration(
-                  hintText: '问 AI 点什么…',
-                  border: const OutlineInputBorder(),
-                  suffixIcon: _input.text.isNotEmpty
-                      ? IconButton(icon: const Icon(Icons.clear, size: 18), tooltip: '清空', onPressed: _input.clear)
-                      : null,
-                ),
-                textInputAction: TextInputAction.send,
-                onSubmitted: (_) => _send(),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            // 待发送图片缩略图
+            if (_pendingImages.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Wrap(spacing: 6, runSpacing: 6, children: [
+                  ..._pendingImages.map((b64) => Stack(children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.memory(base64Decode(b64), width: 56, height: 56, fit: BoxFit.cover),
+                        ),
+                        Positioned(
+                          right: -2,
+                          top: -2,
+                          child: InkWell(
+                            onTap: () => setState(() => _pendingImages.remove(b64)),
+                            child: Container(
+                              decoration: const BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
+                              child: const Icon(Icons.close, size: 14, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ])),
+                ]),
               ),
-            ),
-            const SizedBox(width: 8),
-            IconButton.filled(
-              onPressed: _send,
-              tooltip: _busy ? '停止生成' : '发送',
-              icon: Icon(_busy ? Icons.stop : Icons.send),
-            ),
+            Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              IconButton(
+                onPressed: _toggleListen,
+                tooltip: _listening ? '停止语音' : '语音输入',
+                icon: Icon(_listening ? Icons.mic : Icons.mic_none, color: _listening ? c.primary : null),
+              ),
+              IconButton(
+                onPressed: _busy ? null : _pickImage,
+                tooltip: '发图片（拍题/拍文档直接问）',
+                icon: const Icon(Icons.image_outlined),
+              ),
+              const SizedBox(width: 4),
+              Expanded(
+                child: TextField(
+                  controller: _input,
+                  minLines: 1,
+                  maxLines: 4,
+                  decoration: InputDecoration(
+                    hintText: _listening ? '正在听…说完点麦克风停止' : '问 AI 点什么…',
+                    border: const OutlineInputBorder(),
+                    suffixIcon: _input.text.isNotEmpty
+                        ? IconButton(icon: const Icon(Icons.clear, size: 18), tooltip: '清空', onPressed: _input.clear)
+                        : null,
+                  ),
+                  textInputAction: TextInputAction.send,
+                  onSubmitted: (_) => _send(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              IconButton.filled(
+                onPressed: _send,
+                tooltip: _busy ? '停止生成' : '发送',
+                icon: Icon(_busy ? Icons.stop : Icons.send),
+              ),
+            ]),
           ]),
         ),
       ),
@@ -464,42 +727,21 @@ class _AiPageState extends State<AiPage> {
                   if (href != null) _openLink(href);
                 },
               ),
-            // AI 回复操作：记住 / 复制（成功时）/ 重答（成功或失败时）
+            // 思考过程（模型返回推理链时，解题/作业模式尤其有用）
+            if (!m.user && !m.streaming && !m.isError && m.reasoning != null && m.reasoning!.trim().isNotEmpty)
+              _reasoningTile(m.reasoning!, c),
+            // AI 回复操作：记住 / 复制 / 存笔记 / 收藏 / 重答
             if (!m.user && !m.streaming)
               Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                padding: const EdgeInsets.only(top: 4),
+                child: Wrap(spacing: 12, runSpacing: 4, children: [
                   if (!m.isError) ...[
-                    InkWell(
-                      borderRadius: BorderRadius.circular(4),
-                      onTap: () => _remember(m.text),
-                      child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(Icons.bookmark_add_outlined, size: 13, color: c.primary),
-                        const SizedBox(width: 3),
-                        Text('记住', style: TextStyle(fontSize: 11, color: c.primary)),
-                      ]),
-                    ),
-                    const SizedBox(width: 12),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(4),
-                      onTap: () => _copy(m.text),
-                      child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(Icons.copy_outlined, size: 13, color: c.primary),
-                        const SizedBox(width: 3),
-                        Text('复制', style: TextStyle(fontSize: 11, color: c.primary)),
-                      ]),
-                    ),
-                    const SizedBox(width: 12),
+                    _opBtn(c, Icons.bookmark_add_outlined, '记住', () => _remember(m.text)),
+                    _opBtn(c, Icons.copy_outlined, '复制', () => _copy(m.text)),
+                    _opBtn(c, Icons.note_add_outlined, '存笔记', () => _saveNote(m.text)),
+                    _opBtn(c, Icons.star_outline, '收藏', () => _favReply(m.text)),
                   ],
-                  InkWell(
-                    borderRadius: BorderRadius.circular(4),
-                    onTap: () => _regenerate(),
-                    child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      Icon(Icons.refresh, size: 13, color: c.primary),
-                      const SizedBox(width: 3),
-                      Text(m.isError ? '重试' : '重答', style: TextStyle(fontSize: 11, color: c.primary)),
-                    ]),
-                  ),
+                  _opBtn(c, Icons.refresh, m.isError ? '重试' : '重答', () => _regenerate()),
                 ]),
               ),
           ],
@@ -545,6 +787,59 @@ class _AiPageState extends State<AiPage> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已复制回复')));
   }
 
+  // 操作栏小按钮（记住/复制/存笔记/收藏/重答 复用）
+  Widget _opBtn(ColorScheme c, IconData icon, String label, VoidCallback onTap) => InkWell(
+        borderRadius: BorderRadius.circular(4),
+        onTap: onTap,
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(icon, size: 13, color: c.primary),
+          const SizedBox(width: 3),
+          Text(label, style: TextStyle(fontSize: 11, color: c.primary)),
+        ]),
+      );
+
+  // 思考过程折叠块（解题/作业模式展示模型推理链）
+  Widget _reasoningTile(String reasoning, ColorScheme c) => Padding(
+        padding: const EdgeInsets.only(top: 6, bottom: 2),
+        child: ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          dense: true,
+          visualDensity: VisualDensity.compact,
+          shape: const Border(),
+          collapsedShape: const Border(),
+          title: Row(children: [
+            Icon(Icons.psychology, size: 14, color: c.outline),
+            const SizedBox(width: 4),
+            Text('查看思考过程', style: TextStyle(fontSize: 12, color: c.outline)),
+          ]),
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Text(reasoning, style: TextStyle(fontSize: 12, height: 1.5, color: c.outline)),
+            ),
+          ],
+        ),
+      );
+
+  // 把 AI 回复存到「我的速记」
+  void _saveNote(String text) {
+    if (text.trim().isEmpty) return;
+    final notes = Store.notes();
+    notes.add(Note(text.trim(), DateTime.now().millisecondsSinceEpoch));
+    Store.saveNotes(notes);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已存到我的速记')));
+  }
+
+  // 把 AI 回复收藏
+  void _favReply(String text) {
+    if (text.trim().isEmpty) return;
+    final title = text.trim().length > 30 ? '${text.trim().substring(0, 30)}…' : text.trim();
+    final favs = Store.favs();
+    favs.add(Fav(title, '', 'AI 回复', DateTime.now().millisecondsSinceEpoch));
+    Store.saveFavs(favs);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已收藏')));
+  }
+
   // 打开 AI 回复里的链接（markdown 链接点击）
   Future<void> _openLink(String url) async {
     try {
@@ -585,6 +880,7 @@ class _Msg {
   final bool user;
   final bool isError;
   bool streaming;
+  String? reasoning; // 模型思考过程（解题/作业模式可展开）
   _Msg(this.text, this.user, {this.isError = false, this.streaming = false});
 }
 
