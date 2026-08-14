@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-14 21:37",
+  "generatedAt": "2026-08-14 23:05",
   "kpi": {
     "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 36,
     "knowledge": 7,
-    "sessions": 14
+    "sessions": 9
   },
   "skills": [
     {
@@ -652,7 +652,7 @@
       },
       "D": {
         "total": 544,
-        "free": 367
+        "free": 375
       }
     },
     "runtime": "3.13 / 22.22"
@@ -664,15 +664,15 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-14 21:36",
+        "updated": "08-14 23:04",
         "group": "今天"
       },
       {
-        "title": "查看D盘根目录文件的创建者",
+        "title": "整理知识库",
         "customTitle": "",
-        "display": "查看D盘根目录文件的创建者",
-        "status": "working",
-        "updated": "08-14 21:33",
+        "display": "整理知识库",
+        "status": "completed",
+        "updated": "08-14 23:04",
         "group": "今天"
       },
       {
@@ -684,36 +684,12 @@
         "group": "今天"
       },
       {
-        "title": "询问截图中弹窗来源",
-        "customTitle": "",
-        "display": "询问截图中弹窗来源",
-        "status": "completed",
-        "updated": "08-14 16:30",
-        "group": "今天"
-      },
-      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
         "updated": "08-14 16:10",
         "group": "今天"
-      },
-      {
-        "title": "询问 seelen ui 能否监控CPU温度",
-        "customTitle": "",
-        "display": "询问 seelen ui 能否监控CPU温度",
-        "status": "completed",
-        "updated": "08-14 01:54",
-        "group": "今天"
-      },
-      {
-        "title": "将 Obsidian 安装到 D 盘",
-        "customTitle": "Obsidian的管理",
-        "display": "Obsidian的管理",
-        "status": "completed",
-        "updated": "08-13 21:58",
-        "group": "昨天"
       },
       {
         "title": "找视频充实知识库",
@@ -730,22 +706,6 @@
         "status": "completed",
         "updated": "08-13 21:43",
         "group": "昨天"
-      },
-      {
-        "title": "清理C盘释放空间",
-        "customTitle": "",
-        "display": "清理C盘释放空间",
-        "status": "completed",
-        "updated": "08-13 00:46",
-        "group": "昨天"
-      },
-      {
-        "title": "生成今日灵感与AI学习路径建议",
-        "customTitle": "",
-        "display": "生成今日灵感与AI学习路径建议",
-        "status": "completed",
-        "updated": "08-07 14:28",
-        "group": "更早"
       },
       {
         "title": "电脑项目跑完通知我",
@@ -1335,10 +1295,8 @@
       },
       {
         "date": "2026-08-07",
-        "count": 1,
-        "titles": [
-          "生成今日灵感与AI学习路径建议"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-08",
@@ -1367,24 +1325,20 @@
       },
       {
         "date": "2026-08-13",
-        "count": 4,
+        "count": 2,
         "titles": [
-          "Obsidian的管理",
           "找视频充实知识库",
-          "整理工作区",
-          "清理C盘释放空间"
+          "整理工作区"
         ]
       },
       {
         "date": "2026-08-14",
-        "count": 6,
+        "count": 4,
         "titles": [
           "工作台",
-          "查看D盘根目录文件的创建者",
+          "整理知识库",
           "skill",
-          "询问截图中弹窗来源",
-          "学习",
-          "询问 seelen ui 能否监控CPU温度"
+          "学习"
         ]
       }
     ]
@@ -1398,16 +1352,16 @@
     },
     "files": [
       {
-        "name": "00-路由表.md",
-        "mtime": "08-13 21:56"
+        "name": "AGENTS.md",
+        "mtime": "08-14 22:08"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-13 17:31"
+        "mtime": "08-14 22:08"
       },
       {
-        "name": "AGENTS.md",
-        "mtime": "08-13 14:43"
+        "name": "00-路由表.md",
+        "mtime": "08-14 22:07"
       },
       {
         "name": "Home.md",
@@ -1429,6 +1383,27 @@
   },
   "weekly": [
     {
+      "kind": "kb",
+      "name": "kb-index.json",
+      "when": 1786716493.6951752
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1786716487.9798143
+    },
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1786716478.2579143
+    },
+    {
+      "kind": "skill",
+      "name": "file-hygiene",
+      "when": 1786716136.2766514,
+      "scope": "本机"
+    },
+    {
       "kind": "skill",
       "name": "experience-loop",
       "when": 1786650228.6096203,
@@ -1441,36 +1416,15 @@
       "scope": "本机"
     },
     {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1786629365.710313
-    },
-    {
       "kind": "skill",
       "name": "ascetic-breaker",
       "when": 1786621360.978732,
       "scope": "本机"
     },
     {
-      "kind": "kb",
-      "name": "kb-index.json",
-      "when": 1786613467.678975
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1786603390.886124
-    },
-    {
       "kind": "skill",
       "name": "tts-reader",
       "when": 1786597826.9338126,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "file-hygiene",
-      "when": 1786597779.3670435,
       "scope": "本机"
     },
     {
@@ -1656,7 +1610,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 21:37",
+    "fetchedAt": "2026-08-14 23:05",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-14",
     "count": 23,
@@ -1829,7 +1783,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 21:37",
+        "fetchedAt": "2026-08-14 23:05",
         "count": 23,
         "sections": [
           {
@@ -3075,7 +3029,7 @@
   },
   "dailyNews": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 21:37",
+    "fetchedAt": "2026-08-14 23:05",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3177,7 +3131,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 21:37",
+        "fetchedAt": "2026-08-14 23:05",
         "count": 15,
         "items": [
           {
@@ -3876,12 +3830,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-14T21:37:47",
-    "status": "ok",
-    "nextRun": "2026-08-14T22:37:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
