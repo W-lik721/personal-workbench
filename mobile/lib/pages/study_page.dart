@@ -18,15 +18,16 @@ class _StudyPageState extends State<StudyPage> {
       appBar: AppBar(title: const Text('学习中心')),
       body: Column(children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
+          padding: const EdgeInsets.fromLTRB(12, 16, 12, 8),
           child: SegmentedButton<int>(
             selected: {_seg},
             onSelectionChanged: (s) => setState(() => _seg = s.first),
+            showSelectedIcon: false,
             segments: const [
-              ButtonSegment(value: 0, icon: Icon(Icons.hourglass_empty, size: 18), label: Text('倒计时')),
-              ButtonSegment(value: 1, icon: Icon(Icons.calculate, size: 18), label: Text('GPA')),
-              ButtonSegment(value: 2, icon: Icon(Icons.menu_book, size: 18), label: Text('论文')),
-              ButtonSegment(value: 3, icon: Icon(Icons.style, size: 18), label: Text('闪卡')),
+              ButtonSegment(value: 0, icon: Icon(Icons.hourglass_empty, size: 16), label: Text('倒计时', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12))),
+              ButtonSegment(value: 1, icon: Icon(Icons.calculate, size: 16), label: Text('GPA', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12))),
+              ButtonSegment(value: 2, icon: Icon(Icons.menu_book, size: 16), label: Text('论文', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12))),
+              ButtonSegment(value: 3, icon: Icon(Icons.style, size: 16), label: Text('闪卡', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12))),
             ],
           ),
         ),
@@ -173,7 +174,7 @@ class _CountdownTabState extends State<_CountdownTab> {
               ]),
             ),
           ),
-        if (nearest != null) const SizedBox(height: 10),
+        if (nearest != null) const SizedBox(height: 12),
         Padding(
           padding: const EdgeInsets.only(bottom: 6),
           child: Row(children: [
@@ -194,7 +195,12 @@ class _CountdownTabState extends State<_CountdownTab> {
                 trailing: Text(_countdownText(e.value.at), style: TextStyle(color: c.primary, fontWeight: FontWeight.w600)),
               ),
             )),
-        if (sorted.isEmpty) Padding(padding: const EdgeInsets.only(top: 20), child: Text('还没有倒计时。先「导入常用」或从四六级/考研/寒暑假挑一个。', style: TextStyle(color: c.outline))),
+        if (sorted.isEmpty) Padding(
+          padding: const EdgeInsets.fromLTRB(16, 28, 16, 0),
+          child: Text('还没有倒计时。先「导入常用」或从四六级/考研/寒暑假挑一个。',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: c.outline, height: 1.5)),
+        ),
         const SizedBox(height: 70),
       ]),
       Positioned(
@@ -323,7 +329,12 @@ class _GpaTabState extends State<_GpaTab> {
                 onTap: () => _edit(e.value, e.key),
               ),
             )),
-        if (_grades.isEmpty) Padding(padding: const EdgeInsets.only(top: 20), child: Text('还没有成绩。一门门录进去，自动算加权平均分和 GPA。', style: TextStyle(color: c.outline))),
+        if (_grades.isEmpty) Padding(
+          padding: const EdgeInsets.fromLTRB(16, 28, 16, 0),
+          child: Text('还没有成绩。一门门录进去，自动算加权平均分和 GPA。',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: c.outline, height: 1.5)),
+        ),
         const SizedBox(height: 70),
       ]),
       Positioned(
@@ -407,7 +418,11 @@ class _ThesisTabState extends State<_ThesisTab> {
             ),
           )),
       const SizedBox(height: 12),
-      const Text('提示：点阶段标记完成并选日期，进度条自动推进。长按右侧图标可清空日期。', style: TextStyle(fontSize: 12, color: Colors.grey)),
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4),
+        child: Text('提示：点阶段标记完成并选日期，进度条自动推进。长按右侧图标可清空日期。',
+            style: TextStyle(fontSize: 12, color: Colors.grey, height: 1.5)),
+      ),
       const SizedBox(height: 20),
     ]);
   }
@@ -576,7 +591,12 @@ class _FlashTabState extends State<_FlashTab> {
                 trailing: e.value.dueAt <= DateTime.now().millisecondsSinceEpoch ? Icon(Icons.notifications_active, color: c.primary, size: 18) : null,
               ),
             )),
-        if (_cards.isEmpty) Padding(padding: const EdgeInsets.only(top: 20), child: Text('还没有闪卡。把要背的单词 / 公式 / 概念录进来，到期会提醒复习。', style: TextStyle(color: c.outline))),
+        if (_cards.isEmpty) Padding(
+          padding: const EdgeInsets.fromLTRB(16, 28, 16, 0),
+          child: Text('还没有闪卡。把要背的单词 / 公式 / 概念录进来，到期会提醒复习。',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: c.outline, height: 1.5)),
+        ),
         const SizedBox(height: 70),
       ]),
       Positioned(

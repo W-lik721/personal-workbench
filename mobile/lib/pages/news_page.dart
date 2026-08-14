@@ -182,24 +182,24 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     if (_hot != null) loaded++;
     final hasContent = total > 0;
     return Card(
-      margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Icon(Icons.space_dashboard_rounded, size: 18, color: c.primary),
-            const SizedBox(width: 6),
-            const Text('今日速览', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            Icon(Icons.space_dashboard_rounded, size: 20, color: c.primary),
+            const SizedBox(width: 8),
+            const Text('今日速览', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const Spacer(),
-            Text('共 $total 条 · 已加载 $loaded/3 来源', style: TextStyle(fontSize: 11, color: c.outline)),
+            Text('共 $total 条 · 已加载 $loaded/3 来源', style: TextStyle(fontSize: 12, color: c.outline)),
           ]),
-          const SizedBox(height: 8),
-          Wrap(spacing: 6, runSpacing: 6, children: [
+          const SizedBox(height: 12),
+          Wrap(spacing: 8, runSpacing: 8, children: [
             _srcChip(c, 'AI 日报', _report == null ? null : Store.cacheReportAt, _staleReport),
             _srcChip(c, '每日新闻', _dnews == null ? null : Store.cacheDnewsAt, _staleDnews),
             _srcChip(c, '技术热榜', _hot == null ? null : Store.cacheHotAt, _staleHot),
           ]),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           SizedBox(
             width: double.infinity,
             child: FilledButton.icon(
@@ -270,20 +270,21 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     return RefreshIndicator(
       onRefresh: () => _loadReport(silent: true),
       child: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         children: [
           Row(children: [
-            Expanded(child: Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
+            Expanded(child: Text('${r.date} AI 日报 · ${r.count} 条', style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))),
             IconButton(
               visualDensity: VisualDensity.compact,
               tooltip: '复制整份日报',
-              icon: Icon(Icons.copy, size: 18, color: c.primary),
+              icon: Icon(Icons.copy, size: 20, color: c.primary),
               onPressed: () => _copyReport(r),
             ),
           ]),
+          const SizedBox(height: 4),
           Text('数据源 ${r.source} · ${r.fetchedAt}${_staleReport ? ' · 离线缓存 ${_cacheTag(Store.cacheReportAt)}' : ''}',
-              style: TextStyle(fontSize: 11, color: c.outline)),
-          const SizedBox(height: 8),
+              style: TextStyle(fontSize: 12, color: c.outline)),
+          const SizedBox(height: 12),
           ...r.sections.map((s) => _sectionCard(s, ask: '用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：')),
         ],
       ),
@@ -316,7 +317,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     return RefreshIndicator(
       onRefresh: () => _loadDnews(silent: true),
       child: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         children: [
           Text('${d.date} 每日新闻 · ${d.items.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Text('数据源 ${d.source}${_staleDnews ? ' · 离线缓存 ${_cacheTag(Store.cacheDnewsAt)}' : ''}',
@@ -347,7 +348,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     return RefreshIndicator(
       onRefresh: () => _loadHot(silent: true),
       child: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         children: [
           Text('技术热榜 · ${list.length} 条', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           Text('数据源 ${_hotSource.isEmpty ? 'V2EX' : _hotSource}${_staleHot ? ' · 离线缓存 ${_cacheTag(Store.cacheHotAt)}' : ''}',
@@ -429,11 +430,12 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
 
   Widget _sectionCard(NewsSection s, {required String ask}) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 12),
       child: ExpansionTile(
         initiallyExpanded: true,
-        leading: const Icon(Icons.label, size: 18),
-        title: Text('${s.label}（${s.items.length}）', style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+        leading: const Icon(Icons.label, size: 20),
+        title: Text('${s.label}（${s.items.length}）', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+        childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
         children: s.items.map((it) => _newsTile(title: it.title, item: it, ask: ask)).toList(),
       ),
     );
@@ -452,36 +454,38 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   Widget _newsTile({required String title, required NewsItem item, required String ask}) {
     final c = Theme.of(context).colorScheme;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(title, style: const TextStyle(fontSize: 14, height: 1.4)),
+      Text(title, style: const TextStyle(fontSize: 14, height: 1.5, fontWeight: FontWeight.w600)),
       if (item.summary.isNotEmpty)
         Padding(
-          padding: const EdgeInsets.only(top: 4),
+          padding: const EdgeInsets.only(top: 8),
           child: Text(item.summary, maxLines: 3, overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 12.5, height: 1.5, color: c.outline)),
+              style: TextStyle(fontSize: 13, height: 1.6, color: c.outline)),
         ),
+      const SizedBox(height: 12),
       Row(children: [
-        if (item.source.isNotEmpty) Text(item.source, style: TextStyle(fontSize: 11, color: c.outline)),
+        if (item.source.isNotEmpty) Text(item.source, style: TextStyle(fontSize: 12, color: c.outline)),
         const Spacer(),
         if (item.url.isNotEmpty)
           TextButton(onPressed: () => launchUrl(Uri.parse(item.url), mode: LaunchMode.externalApplication), child: const Text('原文 ↗', style: TextStyle(fontSize: 12))),
         TextButton.icon(
-          icon: const Icon(Icons.star_border, size: 16),
-          label: const Text('收藏', style: TextStyle(fontSize: 12)),
+          icon: const Icon(Icons.star_border, size: 18),
+          label: const Text('收藏', style: TextStyle(fontSize: 13)),
           onPressed: () => _fav(item),
         ),
         IconButton(
           visualDensity: VisualDensity.compact,
           tooltip: '复制',
-          icon: Icon(Icons.copy, size: 15, color: c.outline),
+          icon: Icon(Icons.copy, size: 16, color: c.outline),
           onPressed: () => _copyNews(title, item),
         ),
         if (aiAskGlobal != null)
           TextButton(
             onPressed: () => aiAskGlobal!(ask + item.title),
-            child: const Text('让 AI 讲讲', style: TextStyle(fontSize: 12)),
+            child: const Text('让 AI 讲讲', style: TextStyle(fontSize: 13)),
           ),
       ]),
-      const Divider(height: 16),
+      const SizedBox(height: 12),
+      const Divider(height: 1),
     ]);
   }
 

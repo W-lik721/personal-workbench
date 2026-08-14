@@ -407,23 +407,47 @@ class _SchedulePageState extends State<SchedulePage> {
     }
     return Column(children: [
       Padding(
-        padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-        child: Row(children: [
-          Row(children: [Icon(Icons.view_agenda_rounded, size: 18, color: c.primary), const SizedBox(width: 6), Text('我的课程表 · ${_courses.length} 节', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold))]),
-          const Spacer(),
-          FilledButton.tonalIcon(onPressed: _import, icon: const Icon(Icons.paste, size: 18), label: const Text('一键导入')),
-          const SizedBox(width: 8),
-          FilledButton.tonalIcon(onPressed: _add, icon: const Icon(Icons.add, size: 18), label: const Text('加一门')),
-          if (_courses.isNotEmpty) ...[
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.view_agenda_rounded, size: 20, color: c.primary),
+                const SizedBox(width: 8),
+                Text('我的课程表 · ${_courses.length} 节', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              ],
+            ),
+            const Spacer(),
+            FilledButton.tonalIcon(onPressed: _import, icon: const Icon(Icons.paste, size: 18), label: const Text('一键导入')),
             const SizedBox(width: 8),
-            OutlinedButton.icon(onPressed: _clearAll, icon: const Icon(Icons.delete_sweep_outlined, size: 18), label: const Text('清空全部')),
+            FilledButton.tonalIcon(onPressed: _add, icon: const Icon(Icons.add, size: 18), label: const Text('加一门')),
+            if (_courses.isNotEmpty) ...[
+              const SizedBox(width: 8),
+              OutlinedButton.icon(onPressed: _clearAll, icon: const Icon(Icons.delete_sweep_outlined, size: 18), label: const Text('清空全部')),
+            ],
           ],
-        ]),
+        ),
       ),
-      const SizedBox(height: 4),
+      const SizedBox(height: 8),
       Expanded(
         child: _courses.isEmpty
-            ? Center(child: Text('还没有课程。点右上角「加一门」', style: TextStyle(color: c.outline)))
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.event_busy_outlined, size: 48, color: c.outline.withValues(alpha: 0.6)),
+                      const SizedBox(height: 16),
+                      Text('还没有课程', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: c.onSurface)),
+                      const SizedBox(height: 6),
+                      Text('点右上角「加一门」或「一键导入」添加', textAlign: TextAlign.center, style: TextStyle(color: c.outline, height: 1.5)),
+                    ],
+                  ),
+                ),
+              )
             : ListView(
                 padding: const EdgeInsets.all(12),
                 children: [
@@ -432,7 +456,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   if (e.value.isEmpty) return const SizedBox.shrink();
                   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 4),
+                      padding: const EdgeInsets.only(top: 12, bottom: 6),
                       child: Container(
                         decoration: e.key == todayKey ? BoxDecoration(color: c.primaryContainer, borderRadius: BorderRadius.circular(6)) : null,
                         padding: e.key == todayKey ? const EdgeInsets.symmetric(horizontal: 8, vertical: 2) : null,
@@ -453,9 +477,9 @@ class _SchedulePageState extends State<SchedulePage> {
                         ),
                         onDismissed: (_) => _del(idx),
                         child: Card(
-                          margin: const EdgeInsets.only(bottom: 6),
+                          margin: const EdgeInsets.only(bottom: 8),
                           child: ListTile(
-                            dense: true,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             onTap: () => _edit(idx),
                             title: Text(cr.name.isEmpty ? '未命名' : cr.name),
                             subtitle: Text([
