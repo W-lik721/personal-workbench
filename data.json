@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14 16:36",
+  "generatedAt": "2026-08-14 18:15",
   "kpi": {
     "skills": 58,
     "automations": 2,
@@ -637,6 +637,11 @@
         "name": "context7",
         "type": "stdio",
         "online": true
+      },
+      {
+        "name": "qwen-mm-plugins-core",
+        "type": "stdio",
+        "online": true
       }
     ],
     "memoryLastUpdate": "2026-08-14",
@@ -647,7 +652,7 @@
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 366
       }
     },
     "runtime": "3.13 / 22.22"
@@ -655,11 +660,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "working",
+        "updated": "08-14 18:14",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-14 16:34",
+        "updated": "08-14 18:05",
         "group": "今天"
       },
       {
@@ -676,14 +689,6 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-14 16:10",
-        "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-14 03:47",
         "group": "今天"
       },
       {
@@ -1366,10 +1371,10 @@
         "date": "2026-08-14",
         "count": 5,
         "titles": [
+          "skill",
           "工作台",
           "询问截图中弹窗来源",
           "学习",
-          "skill",
           "询问 seelen ui 能否监控CPU温度"
         ]
       }
@@ -1648,7 +1653,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 16:36",
+    "fetchedAt": "2026-08-14 18:14",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-14",
     "count": 23,
@@ -1821,7 +1826,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 16:36",
+        "fetchedAt": "2026-08-14 18:14",
         "count": 23,
         "sections": [
           {
@@ -3067,7 +3072,7 @@
   },
   "dailyNews": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 16:36",
+    "fetchedAt": "2026-08-14 18:15",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3169,7 +3174,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 16:36",
+        "fetchedAt": "2026-08-14 18:15",
         "count": 15,
         "items": [
           {
@@ -3868,12 +3873,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-14T16:36:22",
-    "status": "ok",
-    "nextRun": "2026-08-14T17:36:22",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
