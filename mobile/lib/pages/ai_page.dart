@@ -492,9 +492,9 @@ class _AiPageState extends State<AiPage> {
             },
           ),
           const Spacer(),
-          TextButton.icon(
-            icon: Icon(_hasKey ? Icons.key : Icons.key_off, size: 16),
-            label: Text(_hasKey ? '已设 Key' : '设置 Key'),
+          IconButton(
+            icon: Icon(_hasKey ? Icons.key : Icons.key_off, size: 20),
+            tooltip: _hasKey ? 'API Key 已设置（点此更换）' : '设置 API Key',
             onPressed: _saveKey,
           ),
           IconButton(
