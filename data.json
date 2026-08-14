@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-14 14:48",
+  "generatedAt": "2026-08-14 16:36",
   "kpi": {
     "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 36,
     "knowledge": 7,
-    "sessions": 12
+    "sessions": 13
   },
   "skills": [
     {
@@ -659,7 +659,23 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-14 03:50",
+        "updated": "08-14 16:34",
+        "group": "今天"
+      },
+      {
+        "title": "询问截图中弹窗来源",
+        "customTitle": "",
+        "display": "询问截图中弹窗来源",
+        "status": "completed",
+        "updated": "08-14 16:30",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-14 16:10",
         "group": "今天"
       },
       {
@@ -700,14 +716,6 @@
         "display": "整理工作区",
         "status": "completed",
         "updated": "08-13 21:43",
-        "group": "昨天"
-      },
-      {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "08-13 17:25",
         "group": "昨天"
       },
       {
@@ -1346,20 +1354,21 @@
       },
       {
         "date": "2026-08-13",
-        "count": 5,
+        "count": 4,
         "titles": [
           "Obsidian的管理",
           "找视频充实知识库",
           "整理工作区",
-          "学习",
           "清理C盘释放空间"
         ]
       },
       {
         "date": "2026-08-14",
-        "count": 3,
+        "count": 5,
         "titles": [
           "工作台",
+          "询问截图中弹窗来源",
+          "学习",
           "skill",
           "询问 seelen ui 能否监控CPU温度"
         ]
@@ -1639,7 +1648,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 14:48",
+    "fetchedAt": "2026-08-14 16:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-14",
     "count": 23,
@@ -1812,7 +1821,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 14:48",
+        "fetchedAt": "2026-08-14 16:36",
         "count": 23,
         "sections": [
           {
@@ -3058,7 +3067,7 @@
   },
   "dailyNews": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 14:48",
+    "fetchedAt": "2026-08-14 16:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3160,7 +3169,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 14:48",
+        "fetchedAt": "2026-08-14 16:36",
         "count": 15,
         "items": [
           {
@@ -3859,12 +3868,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-14T14:48:58",
-    "status": "ok",
-    "nextRun": "2026-08-14T15:48:58",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
