@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-14 19:54",
+  "generatedAt": "2026-08-14 21:37",
   "kpi": {
     "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 36,
     "knowledge": 7,
-    "sessions": 13
+    "sessions": 14
   },
   "skills": [
     {
@@ -579,7 +579,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "13 days ago",
+          "modified": "2 weeks ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -664,7 +664,15 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-14 19:53",
+        "updated": "08-14 21:36",
+        "group": "今天"
+      },
+      {
+        "title": "查看D盘根目录文件的创建者",
+        "customTitle": "",
+        "display": "查看D盘根目录文件的创建者",
+        "status": "working",
+        "updated": "08-14 21:33",
         "group": "今天"
       },
       {
@@ -672,7 +680,7 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-14 19:53",
+        "updated": "08-14 19:54",
         "group": "今天"
       },
       {
@@ -1369,9 +1377,10 @@
       },
       {
         "date": "2026-08-14",
-        "count": 5,
+        "count": 6,
         "titles": [
           "工作台",
+          "查看D盘根目录文件的创建者",
           "skill",
           "询问截图中弹窗来源",
           "学习",
@@ -1643,17 +1652,11 @@
       "name": "prompt-forge",
       "when": 1786210725.0571768,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "quarkclouddrive",
-      "when": 1786104700.013316,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 19:54",
+    "fetchedAt": "2026-08-14 21:37",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-14",
     "count": 23,
@@ -1826,7 +1829,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 19:54",
+        "fetchedAt": "2026-08-14 21:37",
         "count": 23,
         "sections": [
           {
@@ -3072,7 +3075,7 @@
   },
   "dailyNews": {
     "date": "2026-08-14",
-    "fetchedAt": "2026-08-14 19:54",
+    "fetchedAt": "2026-08-14 21:37",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3174,7 +3177,7 @@
     "history": [
       {
         "date": "2026-08-14",
-        "fetchedAt": "2026-08-14 19:54",
+        "fetchedAt": "2026-08-14 21:37",
         "count": 15,
         "items": [
           {
@@ -3873,12 +3876,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-14T19:54:30",
-    "status": "ok",
-    "nextRun": "2026-08-14T20:54:30",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
