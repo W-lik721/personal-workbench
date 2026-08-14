@@ -408,8 +408,8 @@ class _SchedulePageState extends State<SchedulePage> {
     return Column(children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -419,14 +419,32 @@ class _SchedulePageState extends State<SchedulePage> {
                 Text('我的课程表 · ${_courses.length} 节', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ],
             ),
-            const Spacer(),
-            FilledButton.tonalIcon(onPressed: _import, icon: const Icon(Icons.paste, size: 18), label: const Text('一键导入')),
-            const SizedBox(width: 8),
-            FilledButton.tonalIcon(onPressed: _add, icon: const Icon(Icons.add, size: 18), label: const Text('加一门')),
-            if (_courses.isNotEmpty) ...[
-              const SizedBox(width: 8),
-              OutlinedButton.icon(onPressed: _clearAll, icon: const Icon(Icons.delete_sweep_outlined, size: 18), label: const Text('清空全部')),
-            ],
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                FilledButton.tonalIcon(
+                  style: FilledButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+                  onPressed: _import,
+                  icon: const Icon(Icons.paste, size: 16),
+                  label: const Text('导入', style: TextStyle(fontSize: 13)),
+                ),
+                FilledButton.tonalIcon(
+                  style: FilledButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+                  onPressed: _add,
+                  icon: const Icon(Icons.add, size: 16),
+                  label: const Text('添加', style: TextStyle(fontSize: 13)),
+                ),
+                if (_courses.isNotEmpty)
+                  OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+                    onPressed: _clearAll,
+                    icon: const Icon(Icons.delete_sweep_outlined, size: 16),
+                    label: const Text('清空', style: TextStyle(fontSize: 13)),
+                  ),
+              ],
+            ),
           ],
         ),
       ),
