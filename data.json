@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15 15:40",
+  "generatedAt": "2026-08-15 16:42",
   "kpi": {
     "skills": 60,
     "automations": 2,
@@ -203,7 +203,7 @@
     },
     {
       "name": "job-hunting-hub",
-      "desc": "统一求职全流程 skill（由 job-hunting-hub 与 ai-job-search 合并）。当用户需要找工作、准备简历、匹配JD、写求职信、评估职位适配度、准备面试、查薪资基准、发现职位、做技能差距分析、查询公司信息、管理投递进度时使用。覆盖：简历知识库、JD评估(6维)、ATS优化、CV/求职信生成(drafter-reviewer校验)、公司查询、投递跟踪、面试准备(STAR)、薪资基准、职位发现、技能差距与学习规划、记忆同步。触发词：找工作、准备简历、分析JD、写求职信、评估这个职位、面试准备、薪资、职位发现、技能差距、查公司、投递进度、帮我应聘。",
+      "desc": "统一求职全流程 skill（由 job-hunting-hub 与 ai-job-search",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：job-hunting-hub__skillhub",
       "usage": 0,
@@ -323,7 +323,7 @@
     },
     {
       "name": "product-manager-suite",
-      "desc": "'完整产品经理技能包。用于从想法、截图/图片、用户反馈、老板指令、竞品功能、数据现象、PRD 草稿或一句模糊问题出发，完成需求澄清、用户与场景分析、需求合理性判断、需求评审、头脑风暴、产品方案设计、MVP 拆分、PRD 撰写、优先级排序、路线图规划、指标与实验设计、风险评审、干系人沟通、上线复盘和 HTML 原型设计。只要用户在讨论产品/业务/用户体验/功能取舍，并询问”这个需求合理吗””要不要做””怎么设计””怎么评审””有没有问题””怎么拆 MVP””怎么写 PRD””帮我画个原型””做个 demo”等，即使问题看起来很简单、只有一句话或配了一张截图，也应优先使用本技能；它专门处理需求判断背后的用户、场景、价值、成本、风险和验证方式。用户提到需求、PRD、产品方案、功能设计、需求评审、截图里的需求、头脑风暴、用户痛点、用户反馈、竞品分析、MVP、路线图、验收标准、埋点、指标、A/B 实验、产品经理工作流、原型、线框图、wireframe、demo、交互设计时，应触发本技能。'",
+      "desc": "完整产品经理技能包。用于从想法、截图/图片、用户反馈、老板指令、竞品功能、数据现象、PRD",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：product-manager-suite",
       "usage": 0,
@@ -355,7 +355,7 @@
     },
     {
       "name": "superpowers",
-      "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。\"",
+      "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。【路由】通用工程默认入口；点名 Karpathy / AK 风格走 karpathy-kit，agent/skill 架构设计走 agent-design-kit。\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：superpowers",
       "usage": 0,
@@ -379,7 +379,7 @@
     },
     {
       "name": "url-redirect-vuln",
-      "desc": ">-",
+      "desc": "URL 跳转（重定向）漏洞单一大类 skill。覆盖：① 概念与钓鱼危害 ② 授权/SRC 场景下的发现与验证 ③ SRC",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：url-redirect-vuln",
       "usage": 0,
@@ -676,19 +676,19 @@
   "sessions": {
     "recent": [
       {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "working",
-        "updated": "08-15 15:39",
-        "group": "今天"
-      },
-      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-15 15:38",
+        "updated": "08-15 16:41",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-15 16:41",
         "group": "今天"
       },
       {
@@ -1353,8 +1353,8 @@
         "date": "2026-08-15",
         "count": 3,
         "titles": [
-          "skill",
           "工作台",
+          "skill",
           "学习"
         ]
       }
@@ -1401,14 +1401,188 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "job-hunting-hub__skillhub",
+      "when": 1786782548.1068697,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "product-manager-suite",
+      "when": 1786782516.4026313,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "url-redirect-vuln",
+      "when": 1786782379.0382464,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "wechat-miniprogram",
-      "when": 1786779565.511611,
+      "when": 1786782248.066716,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agency-agents__github",
+      "when": 1786782207.8256402,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1786780649.3348434,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pua",
+      "when": 1786779953.3635383,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "planning-with-files",
+      "when": 1786779953.3569803,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "literature-review",
+      "when": 1786779953.349154,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-thesis-zh",
+      "when": 1786779953.3444595,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-paper-en",
+      "when": 1786779953.3387737,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "en-to-zh-translator",
+      "when": 1786779953.3291235,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "citation-management",
+      "when": 1786779953.3198032,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ascetic-breaker",
+      "when": 1786779953.3139088,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-reach",
+      "when": 1786779953.3073583,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1786779853.204291,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "andrej-karpathy-skills__github",
+      "when": 1786779849.65851,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "superpowers",
+      "when": 1786779844.823827,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-workspace-recover",
+      "when": 1786779790.096045,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-text-tuner",
+      "when": 1786779790.0881774,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "wb-self-iter",
-      "when": 1786779480.1346922,
+      "when": 1786779790.0826347,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1786779790.0781305,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ponytail",
+      "when": 1786779790.064534,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pitfall-manual-audit",
+      "when": 1786779790.0585425,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pdf",
+      "when": 1786779790.0539384,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-checker__skillhub",
+      "when": 1786779790.0479758,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "memory-setup",
+      "when": 1786779790.040673,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "grill-me__skillhub",
+      "when": 1786779790.0278685,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "full-output-enforcement",
+      "when": 1786779790.0210829,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "claude-mem",
+      "when": 1786779790.0132637,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-chat",
+      "when": 1786779789.9968443,
       "scope": "本机"
     },
     {
@@ -1425,32 +1599,8 @@
     },
     {
       "kind": "skill",
-      "name": "claude-mem",
-      "when": 1786779447.6013186,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-reach",
-      "when": 1786779447.595696,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "pitfall-manual-audit",
-      "when": 1786779262.6099868,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "design-taste-frontend",
       "when": 1786778712.594938,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-design-kit",
-      "when": 1786778712.5439615,
       "scope": "本机"
     },
     {
@@ -1488,12 +1638,6 @@
     },
     {
       "kind": "skill",
-      "name": "ascetic-breaker",
-      "when": 1786621360.978732,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "tts-reader",
       "when": 1786597826.9338126,
       "scope": "本机"
@@ -1518,20 +1662,8 @@
     },
     {
       "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786455498.7067213,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "workbuddy-mcp-connect",
       "when": 1786455420.7844634,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "memory-setup",
-      "when": 1786455420.738446,
       "scope": "本机"
     },
     {
@@ -1542,44 +1674,8 @@
     },
     {
       "kind": "skill",
-      "name": "ponytail",
-      "when": 1786337349.9429066,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "paper-checker__skillhub",
-      "when": 1786337349.9299057,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "full-output-enforcement",
-      "when": 1786337349.8173928,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "cs-learning",
       "when": 1786337349.4888604,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "andrej-karpathy-skills__github",
-      "when": 1786337349.2357626,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-design-kit",
-      "when": 1786337349.0754702,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agency-agents__github",
-      "when": 1786337348.90568,
       "scope": "本机"
     },
     {
@@ -1604,12 +1700,6 @@
       "kind": "skill",
       "name": "ollama-local-multimodal",
       "when": 1786210725.3042676,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "url-redirect-vuln",
-      "when": 1786210725.2862692,
       "scope": "本机"
     },
     {
@@ -1651,7 +1741,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 15:40",
+    "fetchedAt": "2026-08-15 16:42",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1782,7 +1872,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 15:40",
+        "fetchedAt": "2026-08-15 16:42",
         "count": 16,
         "sections": [
           {
@@ -3157,7 +3247,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 15:40",
+    "fetchedAt": "2026-08-15 16:42",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3259,7 +3349,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 15:40",
+        "fetchedAt": "2026-08-15 16:42",
         "count": 15,
         "items": [
           {
@@ -4058,12 +4148,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T15:40:38",
-    "status": "ok",
-    "nextRun": "2026-08-15T16:40:38",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
