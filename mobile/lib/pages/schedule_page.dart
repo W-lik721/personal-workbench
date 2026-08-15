@@ -258,9 +258,20 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   void _del(int i) {
+    final removed = Store.courses()[i];
     final l = Store.courses()..removeAt(i);
     Store.saveCourses(l);
     _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('已删除课程'),
+      action: SnackBarAction(label: '撤销', onPressed: () {
+        final cur = Store.courses();
+        cur.insert(i.clamp(0, cur.length).toInt(), removed);
+        Store.saveCourses(cur);
+        _reload();
+      }),
+    ));
   }
 
   // 判断两门课是否重复（同一天 + 同一时间 + 同名）

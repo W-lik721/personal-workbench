@@ -50,6 +50,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _speech.stop(); // 离开页面时停止录音，释放麦克风
+    _todoCtrl.dispose();
+    _noteCtrl.dispose();
     _noteQCtl.dispose();
     _favQCtl.dispose();
     super.dispose();

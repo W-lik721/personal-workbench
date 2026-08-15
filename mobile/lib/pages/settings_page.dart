@@ -25,6 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _kbRepoCtrl = TextEditingController(); // 知识库仓库
   bool _kbOn = true; // 知识库问答开关
   bool _autoSync = false; // 启动时自动备份
+  bool _busy = false; // 云同步/知识库操作进行中，禁用按钮防误触
 
   @override
   void initState() {
@@ -182,6 +183,7 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
             child: TextField(
               controller: _repoCtrl,
+              onChanged: (v) => Store.syncRepo = v, // 实时持久化，避免只在按钮里存
               decoration: const InputDecoration(labelText: 'GitHub 仓库', hintText: '用户名/仓库名，如 W-lik721/personal-workbench', border: OutlineInputBorder(), isDense: true),
             ),
           ),
@@ -190,6 +192,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: TextField(
               controller: _tokenCtrl,
               obscureText: true,
+              onChanged: (v) { if (v.trim().isNotEmpty) Store.setSyncToken(v.trim()); }, // 实时持久化
               decoration: const InputDecoration(labelText: 'GitHub Token（访问令牌）', border: OutlineInputBorder(), isDense: true),
             ),
           ),
@@ -200,9 +203,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
             child: Row(children: [
-              Expanded(child: FilledButton.tonal(onPressed: _syncUpload, child: const Text('上传备份'))),
+              Expanded(child: FilledButton.tonal(onPressed: _busy ? null : _syncUpload, child: const Text('上传备份'))),
               const SizedBox(width: 8),
-              Expanded(child: OutlinedButton(onPressed: _syncDownload, child: const Text('下载恢复'))),
+              Expanded(child: OutlinedButton(onPressed: _busy ? null : _syncDownload, child: const Text('下载恢复'))),
             ]),
           ),
           ListTile(
@@ -220,13 +223,14 @@ class _SettingsPageState extends State<SettingsPage> {
       _sectionTitle('知识库', icon: Icons.menu_book_rounded),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
-            child: TextField(
-              controller: _kbRepoCtrl,
-              decoration: const InputDecoration(labelText: '知识库仓库', hintText: 'W-lik721/vault-backup', border: OutlineInputBorder(), isDense: true),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
+              child: TextField(
+                controller: _kbRepoCtrl,
+                onChanged: (v) => Store.kbRepo = v, // 实时持久化，去掉方法内 isEmpty 兜底
+                decoration: const InputDecoration(labelText: '知识库仓库', hintText: 'W-lik721/vault-backup', border: OutlineInputBorder(), isDense: true),
+              ),
             ),
-          ),
           ListTile(
             dense: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -241,9 +245,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 6, 16, 12),
             child: Row(children: [
-              Expanded(child: FilledButton.tonal(onPressed: _kbUpload, child: const Text('记忆入库'))),
+              Expanded(child: FilledButton.tonal(onPressed: _busy ? null : _kbUpload, child: const Text('记忆入库'))),
               const SizedBox(width: 8),
-              Expanded(child: OutlinedButton(onPressed: _kbIndex, child: const Text('测试索引'))),
+              Expanded(child: OutlinedButton(onPressed: _busy ? null : _kbIndex, child: const Text('测试索引'))),
             ]),
           ),
           Padding(
@@ -251,7 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: _kbNotes,
+                onPressed: _busy ? null : _kbNotes,
                 icon: const Icon(Icons.note_alt_outlined, size: 18),
                 label: const Text('速记入库（今天的速记存进知识库）'),
               ),
@@ -294,6 +298,9 @@ class _SettingsPageState extends State<SettingsPage> {
           Text(t, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
         ]),
       );
+
+  // 仓库名校验：owner/repo，禁止多余斜杠、空段、尾斜杠
+  bool _validRepo(String repo) => RegExp(r'^\w[\w.-]*/\w[\w.-]*$').hasMatch(repo.trim());
 
   // 选择历史条数上限
   void _pickMax() {
@@ -470,15 +477,21 @@ class _SettingsPageState extends State<SettingsPage> {
 
   // 云同步：上传备份（本地数据 → GitHub 仓库 app-data.json）
   Future<void> _syncUpload() async {
+    if (_busy) return;
     final token = _tokenCtrl.text.trim();
     final repo = _repoCtrl.text.trim();
-    if (token.isEmpty || !repo.contains('/')) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token 和仓库（格式：用户名/仓库名）')));
+    if (!_validRepo(repo)) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式应为：用户名/仓库名（如 W-lik721/personal-workbench）')));
+      return;
+    }
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token（在云同步栏）')));
       return;
     }
     Store.syncRepo = repo;
     await Store.setSyncToken(token);
     if (!mounted) return;
+    setState(() => _busy = true);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传…')));
     try {
       await Sync.upload(token, repo);
@@ -487,17 +500,26 @@ class _SettingsPageState extends State<SettingsPage> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('上传失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
   // 云同步：下载恢复（GitHub → 本地，会覆盖当前数据，需二次确认）
   Future<void> _syncDownload() async {
+    if (_busy) return;
     final token = _tokenCtrl.text.trim();
     final repo = _repoCtrl.text.trim();
-    if (token.isEmpty || !repo.contains('/')) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token 和仓库（格式：用户名/仓库名）')));
+    if (!_validRepo(repo)) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式应为：用户名/仓库名（如 W-lik721/personal-workbench）')));
       return;
     }
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先填好 GitHub Token（在云同步栏）')));
+      return;
+    }
+    Store.syncRepo = repo;
+    await Store.setSyncToken(token); // 持久化，避免进程重建后丢失
     final ok = await showDialog<bool>(
       context: context,
       builder: (c) => AlertDialog(
@@ -510,6 +532,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
     if (ok != true || !mounted) return;
+    setState(() => _busy = true);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在下载…')));
     try {
       final m = await Sync.download(token, repo);
@@ -519,75 +542,63 @@ class _SettingsPageState extends State<SettingsPage> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('下载失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  // 知识库通用鉴权包装：校验 token / 仓库格式，统一 loading 态与错误提示
+  // fn(token, repo) 为实际操作；onBusy 用于在操作期间禁用按钮
+  Future<void> _withKbAuth(Future<void> Function(String token, String repo) fn, String doing) async {
+    if (_busy) return;
+    final token = _tokenCtrl.text.trim();
+    final repo = Store.kbRepo; // 已通过 onChanged 实时持久化，不再就地兜底默认仓库
+    if (token.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在「云同步」填好 GitHub Token（复用同一个）')));
+      return;
+    }
+    if (!_validRepo(repo)) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('知识库仓库格式应为：用户名/仓库名（左侧「知识库」栏）')));
+      return;
+    }
+    setState(() => _busy = true);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(doing)));
+    try {
+      await fn(token, repo);
+      if (!mounted) return;
+      // 各 fn 内已弹成功 SnackBar；这里仅结束 loading
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
   // 知识库：记忆入库（AI 长期记忆 → vault 05-数字分身/App记忆/）
-  Future<void> _kbUpload() async {
-    final token = _tokenCtrl.text.trim();
-    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
-    Store.kbRepo = repo;
-    if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token（复用同一个）')));
-      return;
-    }
-    if (!repo.contains('/')) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
-      return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传记忆到知识库…')));
-    try {
-      await Kb.uploadMemory(token, repo);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('记忆已入库：$repo 的 05-数字分身/App记忆/')));
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
-    }
-  }
+  Future<void> _kbUpload() => _withKbAuth((token, repo) async {
+        await Kb.uploadMemory(token, repo);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('记忆已入库：$repo 的 05-数字分身/App记忆/')));
+      }, '正在上传记忆到知识库…');
 
   // 知识库：速记入库（今天的速记 → vault 05-数字分身/App速记/）
-  Future<void> _kbNotes() async {
-    final token = _tokenCtrl.text.trim();
-    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
-    Store.kbRepo = repo;
-    if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token（复用同一个）')));
-      return;
-    }
-    if (!repo.contains('/')) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('仓库格式：用户名/仓库名')));
-      return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在上传速记到知识库…')));
-    try {
-      await Kb.uploadNotes(token, repo);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('速记已入库：$repo 的 05-数字分身/App速记/')));
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('入库失败：${e.toString().replaceFirst('Exception: ', '')}')));
-    }
-  }
+  Future<void> _kbNotes() => _withKbAuth((token, repo) async {
+        await Kb.uploadNotes(token, repo);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('速记已入库：$repo 的 05-数字分身/App速记/')));
+      }, '正在上传速记到知识库…');
 
   // 知识库：测试索引连通（拉 kb-index.json 看条数）
-  Future<void> _kbIndex() async {
-    final token = _tokenCtrl.text.trim();
-    final repo = _kbRepoCtrl.text.trim().isEmpty ? 'W-lik721/vault-backup' : _kbRepoCtrl.text.trim();
-    Store.kbRepo = repo;
-    if (token.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('先在 云同步 填好 GitHub Token')));
-      return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在测试知识库索引…')));
-    final idx = await Kb.index(token, repo, Store.kbBranch);
-    if (!mounted) return;
-    if (idx.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('索引拉取失败：仓库里没有 kb-index.json（电脑端需先运行 gen_kb_index.py）')));
-      return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('知识库连通：索引 ${idx.length} 篇笔记，AI 问答可用')));
-  }
+  Future<void> _kbIndex() => _withKbAuth((token, repo) async {
+        final idx = await Kb.index(token, repo, Store.kbBranch);
+        if (!mounted) return;
+        if (idx.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('索引拉取失败：仓库里没有 kb-index.json（电脑端需先运行 gen_kb_index.py）')));
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('知识库连通：索引 ${idx.length} 篇笔记，AI 问答可用')));
+      }, '正在测试知识库索引…');
 
   // 清空所有数据：两次确认 + 输入"清空"验证，防止误触
   Future<void> _confirmResetAll() async {

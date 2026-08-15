@@ -82,7 +82,7 @@ class _AccountTabState extends State<_AccountTab> {
         builder: (c, setD) => AlertDialog(
           title: Text(a == null ? '添加账号' : '编辑账号'),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
-            TextField(controller: titleCtrl, autofocus: true, decoration: const InputDecoration(labelText: '平台 / 站点', border: OutlineInputBorder())),
+            TextField(controller: titleCtrl, autofocus: true, onChanged: (_) => setD(() {}), decoration: const InputDecoration(labelText: '平台 / 站点', border: OutlineInputBorder())),
             const SizedBox(height: 8),
             TextField(controller: userCtrl, decoration: const InputDecoration(labelText: '账号 / 手机号', border: OutlineInputBorder())),
             const SizedBox(height: 8),
@@ -93,10 +93,9 @@ class _AccountTabState extends State<_AccountTab> {
           actions: [
             TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('取消')),
             FilledButton(
-              onPressed: () {
-                if (titleCtrl.text.trim().isEmpty) return;
-                Navigator.pop(c, true);
-              },
+              onPressed: titleCtrl.text.trim().isEmpty
+                  ? null
+                  : () => Navigator.pop(c, true),
               child: const Text('保存'),
             ),
           ],
@@ -274,10 +273,25 @@ class _MoodTabState extends State<_MoodTab> {
 
   void _del(int i) {
     HapticFeedback.mediumImpact();
-    final l = Store.moods();
-    l.removeAt(i);
+    final removed = Store.moods()[i];
+    final l = Store.moods()..removeAt(i);
     Store.saveMoods(l);
     _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('已删除心情'),
+        action: SnackBarAction(
+          label: '撤销',
+          onPressed: () {
+            final cur = Store.moods();
+            cur.insert(i.clamp(0, cur.length), removed);
+            Store.saveMoods(cur);
+            _reload();
+          },
+        ),
+      ),
+    );
   }
 
   // 生成「本周心情周报」并交给 AI：取最近 7 天的心情，拼成提示词

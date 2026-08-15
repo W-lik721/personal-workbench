@@ -39,70 +39,86 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     _loadHot();
   }
 
-  Future<void> _loadReport({bool silent = false}) async {
-    if (!silent) setState(() { _loadingReport = true; _errReport = null; });
+  // 通用加载骨架：缓存优先显示 → 后台拉取 → 失败按"有无数据"分流（报错 / 标陈旧）
+  Future<void> _loadTab<T>({
+    required bool silent,
+    required void Function(bool) setLoading,
+    required void Function(String?) setErr,
+    required bool hasData,
+    required String? cacheJson,
+    required void Function(String) setCache,
+    required Future<String> Function() fetchBody,
+    required T Function(String) parse,
+    required void Function(T, String, bool) apply, // (数据, 原始json, 是否陈旧)
+    required void Function() markStaleOnError,
+  }) async {
+    if (!silent) {
+      setLoading(true);
+      setErr(null);
+    }
     // 有缓存且还没显示 → 先显示缓存，避免白屏
-    final cj = Store.cacheReportJson;
-    if (cj != null && _report == null) {
+    if (cacheJson != null && !hasData) {
       try {
-        final r = Api.parseDailyReport(cj);
-        if (mounted) setState(() { _report = r; _loadingReport = false; _staleReport = true; });
+        apply(parse(cacheJson), cacheJson, true);
       } catch (_) {}
     }
     try {
-      final body = await Api.fetchDailyReportBody();
-      Store.cacheReportJson = body;
-      Store.cacheReportAt = DateTime.now().millisecondsSinceEpoch;
-      if (mounted) {
-        setState(() {
-          _report = Api.parseDailyReport(body);
-          _loadingReport = false;
-          _staleReport = false;
-          _errReport = null;
-        });
-      }
+      final body = await fetchBody();
+      setCache(body);
+      if (mounted) apply(parse(body), body, false);
     } catch (e) {
       if (!mounted) return;
-      if (_report == null) {
-        setState(() { _errReport = e.toString(); _loadingReport = false; });
+      if (!hasData) {
+        setErr(e.toString());
+        setLoading(false);
       } else {
-        setState(() { _loadingReport = false; _staleReport = true; });
+        markStaleOnError();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('网络开小差了，当前显示的是缓存内容')));
       }
     }
   }
 
-  Future<void> _loadDnews({bool silent = false}) async {
-    if (!silent) setState(() { _loadingDnews = true; _errDnews = null; });
-    final cj = Store.cacheDnewsJson;
-    if (cj != null && _dnews == null) {
-      try {
-        final d = Api.parseDailyNews(cj);
-        if (mounted) setState(() { _dnews = d; _loadingDnews = false; _staleDnews = true; });
-      } catch (_) {}
-    }
-    try {
-      final body = await Api.fetchDailyNewsBody();
-      Store.cacheDnewsJson = body;
-      Store.cacheDnewsAt = DateTime.now().millisecondsSinceEpoch;
-      if (mounted) {
-        setState(() {
-          _dnews = Api.parseDailyNews(body);
+  Future<void> _loadReport({bool silent = false}) => _loadTab<DailyReport>(
+        silent: silent,
+        setLoading: (v) => setState(() => _loadingReport = v),
+        setErr: (v) => setState(() => _errReport = v),
+        hasData: _report != null,
+        cacheJson: Store.cacheReportJson,
+        setCache: (b) {
+          Store.cacheReportJson = b;
+          Store.cacheReportAt = DateTime.now().millisecondsSinceEpoch;
+        },
+        fetchBody: Api.fetchDailyReportBody,
+        parse: Api.parseDailyReport,
+        apply: (r, _, stale) => setState(() {
+          _report = r;
+          _loadingReport = false;
+          _staleReport = stale;
+          if (!stale) _errReport = null;
+        }),
+        markStaleOnError: () => setState(() { _loadingReport = false; _staleReport = true; }),
+      );
+
+  Future<void> _loadDnews({bool silent = false}) => _loadTab<DailyNews>(
+        silent: silent,
+        setLoading: (v) => setState(() => _loadingDnews = v),
+        setErr: (v) => setState(() => _errDnews = v),
+        hasData: _dnews != null,
+        cacheJson: Store.cacheDnewsJson,
+        setCache: (b) {
+          Store.cacheDnewsJson = b;
+          Store.cacheDnewsAt = DateTime.now().millisecondsSinceEpoch;
+        },
+        fetchBody: Api.fetchDailyNewsBody,
+        parse: Api.parseDailyNews,
+        apply: (d, _, stale) => setState(() {
+          _dnews = d;
           _loadingDnews = false;
-          _staleDnews = false;
-          _errDnews = null;
-        });
-      }
-    } catch (e) {
-      if (!mounted) return;
-      if (_dnews == null) {
-        setState(() { _errDnews = e.toString(); _loadingDnews = false; });
-      } else {
-        setState(() { _loadingDnews = false; _staleDnews = true; });
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('网络开小差了，当前显示的是缓存内容')));
-      }
-    }
-  }
+          _staleDnews = stale;
+          if (!stale) _errDnews = null;
+        }),
+        markStaleOnError: () => setState(() { _loadingDnews = false; _staleDnews = true; }),
+      );
 
   @override
   void dispose() {
@@ -110,38 +126,27 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
-  Future<void> _loadHot({bool silent = false}) async {
-    if (!silent) setState(() { _loadingHot = true; _errHot = null; });
-    final cj = Store.cacheHotJson;
-    if (cj != null && _hot == null) {
-      try {
-        final h = Api.parseHot(cj);
-        if (mounted) setState(() { _hot = h; _hotSource = Api.hotSource(cj); _loadingHot = false; _staleHot = true; });
-      } catch (_) {}
-    }
-    try {
-      final body = await Api.fetchHotBody();
-      Store.cacheHotJson = body;
-      Store.cacheHotAt = DateTime.now().millisecondsSinceEpoch;
-      if (mounted) {
-        setState(() {
-          _hot = Api.parseHot(body);
-          _hotSource = Api.hotSource(body);
+  Future<void> _loadHot({bool silent = false}) => _loadTab<List<HotItem>>(
+        silent: silent,
+        setLoading: (v) => setState(() => _loadingHot = v),
+        setErr: (v) => setState(() => _errHot = v),
+        hasData: _hot != null,
+        cacheJson: Store.cacheHotJson,
+        setCache: (b) {
+          Store.cacheHotJson = b;
+          Store.cacheHotAt = DateTime.now().millisecondsSinceEpoch;
+        },
+        fetchBody: Api.fetchHotBody,
+        parse: Api.parseHot,
+        apply: (h, raw, stale) => setState(() {
+          _hot = h;
+          _hotSource = Api.hotSource(raw);
           _loadingHot = false;
-          _staleHot = false;
-          _errHot = null;
-        });
-      }
-    } catch (e) {
-      if (!mounted) return;
-      if (_hot == null) {
-        setState(() { _errHot = e.toString(); _loadingHot = false; });
-      } else {
-        setState(() { _loadingHot = false; _staleHot = true; });
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('网络开小差了，当前显示的是缓存内容')));
-      }
-    }
-  }
+          _staleHot = stale;
+          if (!stale) _errHot = null;
+        }),
+        markStaleOnError: () => setState(() { _loadingHot = false; _staleHot = true; }),
+      );
 
   @override
   Widget build(BuildContext context) {

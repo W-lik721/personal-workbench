@@ -140,11 +140,24 @@ class _CountdownTabState extends State<_CountdownTab> {
     _reload();
   }
 
-  void _del(int i) {
+  void _del(ExamEvent e) {
     HapticFeedback.mediumImpact();
-    final l = Store.events()..removeAt(i);
+    final l = Store.events();
+    final idx = l.indexOf(e);
+    if (idx < 0) return;
+    final removed = l.removeAt(idx);
     Store.saveEvents(l);
     _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('已删除倒计时'),
+      action: SnackBarAction(label: '撤销', onPressed: () {
+        final cur = Store.events();
+        cur.insert(idx.clamp(0, cur.length).toInt(), removed);
+        Store.saveEvents(cur);
+        _reload();
+      }),
+    ));
   }
 
   @override
@@ -187,7 +200,7 @@ class _CountdownTabState extends State<_CountdownTab> {
               key: ObjectKey(e.value),
               direction: DismissDirection.endToStart,
               background: Container(alignment: Alignment.centerRight, padding: const EdgeInsets.only(right: 20), color: c.error, child: const Icon(Icons.delete_outline, color: Colors.white)),
-              onDismissed: (_) => _del(e.key),
+              onDismissed: (_) => _del(e.value),
               child: ListTile(
                 leading: Text(e.value.emoji, style: const TextStyle(fontSize: 22)),
                 title: Text(e.value.name),
@@ -265,11 +278,24 @@ class _GpaTabState extends State<_GpaTab> {
     _reload();
   }
 
-  void _del(int i) {
+  void _del(Grade g) {
     HapticFeedback.mediumImpact();
-    final l = Store.grades()..removeAt(i);
+    final l = Store.grades();
+    final idx = l.indexOf(g);
+    if (idx < 0) return;
+    final removed = l.removeAt(idx);
     Store.saveGrades(l);
     _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('已删除成绩'),
+      action: SnackBarAction(label: '撤销', onPressed: () {
+        final cur = Store.grades();
+        cur.insert(idx.clamp(0, cur.length).toInt(), removed);
+        Store.saveGrades(cur);
+        _reload();
+      }),
+    ));
   }
 
   @override
@@ -321,7 +347,7 @@ class _GpaTabState extends State<_GpaTab> {
               key: ObjectKey(e.value),
               direction: DismissDirection.endToStart,
               background: Container(alignment: Alignment.centerRight, padding: const EdgeInsets.only(right: 20), color: c.error, child: const Icon(Icons.delete_outline, color: Colors.white)),
-              onDismissed: (_) => _del(e.key),
+              onDismissed: (_) => _del(e.value),
               child: ListTile(
                 title: Text(e.value.name),
                 subtitle: Text('学分 ${e.value.credit.toStringAsFixed(1)} · 绩点 ${Store.scoreToGpaAlgo(_algo, e.value.score).toStringAsFixed(1)}'),
@@ -473,11 +499,24 @@ class _FlashTabState extends State<_FlashTab> {
     _reload();
   }
 
-  void _del(int i) {
+  void _del(Flashcard f) {
     HapticFeedback.mediumImpact();
-    final l = Store.cards()..removeAt(i);
+    final l = Store.cards();
+    final idx = l.indexOf(f);
+    if (idx < 0) return;
+    final removed = l.removeAt(idx);
     Store.saveCards(l);
     _reload();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('已删除闪卡'),
+      action: SnackBarAction(label: '撤销', onPressed: () {
+        final cur = Store.cards();
+        cur.insert(idx.clamp(0, cur.length).toInt(), removed);
+        Store.saveCards(cur);
+        _reload();
+      }),
+    ));
   }
 
   void _startReview() {
@@ -584,7 +623,7 @@ class _FlashTabState extends State<_FlashTab> {
               key: ObjectKey(e.value),
               direction: DismissDirection.endToStart,
               background: Container(alignment: Alignment.centerRight, padding: const EdgeInsets.only(right: 20), color: c.error, child: const Icon(Icons.delete_outline, color: Colors.white)),
-              onDismissed: (_) => _del(e.key),
+              onDismissed: (_) => _del(e.value),
               child: ListTile(
                 title: Text(e.value.front),
                 subtitle: Text(e.value.back, maxLines: 1, overflow: TextOverflow.ellipsis),
