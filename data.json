@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-15 14:55",
+  "generatedAt": "2026-08-15 15:40",
   "kpi": {
-    "skills": 59,
+    "skills": 60,
     "automations": 2,
     "models": 5,
     "memory": 37,
@@ -67,7 +67,7 @@
     },
     {
       "name": "claude-mem",
-      "desc": "\"跨会话持久记忆系统（thedotmack/claude-mem）。当用户问\"我们之前是不是讨论过 X / 上次那个决定是什么 / 之前试过什么\"，或你要在长周期项目里积累、检索、复用历史上下文时触发。触发词：claude-mem、记忆、回忆、之前、上次、did we、recall。本包内置 18 个记忆相关子能力文档（见 techniques/），覆盖记忆检索、学习代码库、做计划、知识库、时间线报告等。\"",
+      "desc": "\"跨会话持久记忆系统（thedotmack/claude-mem）。当用户问「我们之前是不是讨论过 X / 上次那个决定是什么 / 之前试过什么」，或你要在长周期项目里积累、检索、复用历史上下文时触发。触发词：claude-mem、记忆、回忆、之前、上次、did we、recall。本包内置 18 个记忆相关子能力文档（见 techniques/），覆盖记忆检索、学习代码库、做计划、知识库、时间线报告等。仅作项目技术记忆方法论参考，须主动触发才读，不自动注入；不替代 WorkBuddy 原生三层记忆与 experience-loop 的记坑流程，同一件事不双写。\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：claude-mem",
       "usage": 0,
@@ -131,7 +131,7 @@
     },
     {
       "name": "experience-loop",
-      "desc": "\"经验捕获与晋升闭环（记忆运维）。把'记坑 → 标第N次 → 满3次晋升 → 复盘'这套流程一键触发。当用户说「记个坑」「记录一下这个报错」「这条经验记下来」「这个需求记一下」「复盘经验」「检查有没有重复踩的坑」「晋升检查」时使用。三分类记录（ERR错误/LRN经验/FEAT需求）→ 落每日日志+踩坑手册 → 三条件晋升（满3次+跨2任务+30天内 → 环境坑入手册/原则进MEMORY/流程提skill）。与 wb-self-iter（认知层深度复盘）分工：本 skill 管'记忆怎么写、何时升级'，复盘认知提炼仍走 wb-self-iter。\"",
+      "desc": "\"经验捕获与晋升闭环（记忆运维）。把'记坑 → 标第N次 → 满3次晋升 → 复盘'这套流程一键触发。当用户说「记个坑」「记录一下这个报错」「这条经验记下来」「这个需求记一下」「复盘经验」「检查有没有重复踩的坑」「晋升检查」时使用。三分类记录（ERR错误/LRN经验/FEAT需求）→ 落每日日志+踩坑手册 → 三条件晋升（满3次+跨2任务+30天内 → 环境坑入手册/原则进MEMORY/流程提skill）。与 wb-self-iter（认知层深度复盘）分工：本 skill 管'记忆怎么写、何时升级'，复盘认知提炼仍走 wb-self-iter；与 claude-mem 分工：项目技术记忆检索走 claude-mem(techniques/mem-search)，本机环境坑/用户偏好走原生三层记忆，不双写。\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：experience-loop",
       "usage": 0,
@@ -174,6 +174,14 @@
       "desc": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\".",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：grill-me__skillhub",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "hallmark",
+      "desc": "\"Anti-AI-slop design skill for greenfield pages, audits, redesigns, and design extraction from URLs or screenshots. Use when the user asks to build a new app or landing page, wants to redesign something, invokes Hallmark by name, or uses audit/redesign/study.\"",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：hallmark",
       "usage": 0,
       "lastUsed": ""
     },
@@ -291,7 +299,7 @@
     },
     {
       "name": "pitfall-manual-audit",
-      "desc": "",
+      "desc": "核查踩坑标注手册的引用完整性、检测编号碰撞并执行安全重排。手册条目增长、做重排、或怀疑有 #编号 断链时触发。触发词：引用完整性、编号碰撞、断链修复、audit_orphan、手册重排。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：pitfall-manual-audit",
       "usage": 0,
@@ -419,7 +427,7 @@
     },
     {
       "name": "wb-self-iter",
-      "desc": "自我迭代总入口：①模型自我检查与纠错（用户反对/指出错误时重新分析原始意图） ②每日复盘/自我复盘（深度洞察与方法论提炼，每天22:00定时运行） ③lobster 自我迭代优化（规则/代码/闭环自动迭代与评分）。",
+      "desc": "自我迭代总入口：①模型自我检查与纠错（用户反对/指出错误时重新分析原始意图） ②每日复盘/自我复盘（深度洞察与方法论提炼，每天22:00定时运行） ③lobster 自我迭代优化（规则/代码/闭环自动迭代与评分）。【路由】与 experience-loop 分工：认知复盘/方法论提炼/每日22:00 走我，记坑/晋升/查重复踩坑走 experience-loop；claude-mem 仅作项目技术记忆参考，主动触发才读，不替代原生三层记忆。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：wb-self-iter",
       "usage": 0,
@@ -443,7 +451,7 @@
     },
     {
       "name": "web-access",
-      "desc": "'AI 联网与浏览器自动化 skill。当用户要做联网操作（搜索信息、抓取网页、访问需登录的网站、操作网页界面、读取动态渲染页面、抓取社交媒体内容如小红书/微博/推特、跨平台并行调研）时调用。提供五层工具链：WebSearch / WebFetch / curl / Jina / CDP 浏览器自动化，按场景自动选型；并内置 16 引擎多引擎搜索（references/multi-search-engine/，无需 API key）。注意：CDP 浏览器层需要用户本地 Chrome/Edge 开启远程调试；纯静态抓取可走 WebSearch/WebFetch/Jina。'",
+      "desc": "'AI 联网与浏览器自动化 skill。当用户要做联网操作（搜索信息、抓取网页、访问需登录的网站、操作网页界面、读取动态渲染页面、抓取社交媒体内容如小红书/微博/推特、跨平台并行调研）时调用。提供五层工具链：WebSearch / WebFetch / curl / Jina / CDP 浏览器自动化，按场景自动选型；并内置 16 引擎多引擎搜索（references/multi-search-engine/，无需 API key）。注意：CDP 浏览器层需要用户本地 Chrome/Edge 开启远程调试；纯静态抓取可走 WebSearch/WebFetch/Jina。协同路由：平台专属/登录态抓取（小红书/Reddit/B站/推特等）转 agent-reach；AI 资讯/日报走 wb-ai-radar；过去30天社媒舆情走 last30days。'",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：web-access",
       "usage": 0,
@@ -451,7 +459,7 @@
     },
     {
       "name": "wechat-miniprogram",
-      "desc": "\"WeChat Mini Program (微信小程序) development framework. Use when building WeChat mini apps with WXML templates, WXSS styles, WXS scripting, component development, WeChat API integration, cloud development (云开发), and Mini Program lifecycle/performance optimization.\"",
+      "desc": "WeChat Mini Program (微信小程序) development framework. Use when",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：wechat-miniprogram",
       "usage": 0,
@@ -668,11 +676,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "working",
+        "updated": "08-15 15:39",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-15 14:55",
+        "updated": "08-15 15:38",
         "group": "今天"
       },
       {
@@ -689,14 +705,6 @@
         "display": "整理知识库",
         "status": "completed",
         "updated": "08-14 23:27",
-        "group": "昨天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-14 19:54",
         "group": "昨天"
       },
       {
@@ -1336,16 +1344,16 @@
       },
       {
         "date": "2026-08-14",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "整理知识库",
-          "skill"
+          "整理知识库"
         ]
       },
       {
         "date": "2026-08-15",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "skill",
           "工作台",
           "学习"
         ]
@@ -1393,8 +1401,62 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "wechat-miniprogram",
+      "when": 1786779565.511611,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-self-iter",
+      "when": 1786779480.1346922,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "experience-loop",
+      "when": 1786779447.6224716,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "web-access",
+      "when": 1786779447.6033254,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "claude-mem",
+      "when": 1786779447.6013186,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-reach",
+      "when": 1786779447.595696,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "pitfall-manual-audit",
-      "when": 1786770471.4607637,
+      "when": 1786779262.6099868,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1786778712.594938,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1786778712.5439615,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "hallmark",
+      "when": 1786778268.70928,
       "scope": "本机"
     },
     {
@@ -1416,12 +1478,6 @@
       "kind": "skill",
       "name": "file-hygiene",
       "when": 1786716136.2766514,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "experience-loop",
-      "when": 1786650228.6096203,
       "scope": "本机"
     },
     {
@@ -1462,12 +1518,6 @@
     },
     {
       "kind": "skill",
-      "name": "web-access",
-      "when": 1786455498.7174504,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "wb-skill-ops",
       "when": 1786455498.7067213,
       "scope": "本机"
@@ -1492,12 +1542,6 @@
     },
     {
       "kind": "skill",
-      "name": "agent-reach",
-      "when": 1786443198.9303935,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "ponytail",
       "when": 1786337349.9429066,
       "scope": "本机"
@@ -1512,12 +1556,6 @@
       "kind": "skill",
       "name": "full-output-enforcement",
       "when": 1786337349.8173928,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "design-taste-frontend",
-      "when": 1786337349.6628819,
       "scope": "本机"
     },
     {
@@ -1546,20 +1584,8 @@
     },
     {
       "kind": "skill",
-      "name": "claude-mem",
-      "when": 1786280448.2268574,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "impeccable",
       "when": 1786280088.2773352,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-design-kit",
-      "when": 1786280057.206777,
       "scope": "本机"
     },
     {
@@ -1625,7 +1651,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 14:55",
+    "fetchedAt": "2026-08-15 15:40",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1756,7 +1782,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 14:55",
+        "fetchedAt": "2026-08-15 15:40",
         "count": 16,
         "sections": [
           {
@@ -3131,7 +3157,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 14:55",
+    "fetchedAt": "2026-08-15 15:40",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3233,7 +3259,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 14:55",
+        "fetchedAt": "2026-08-15 15:40",
         "count": 15,
         "items": [
           {
@@ -4032,12 +4058,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T14:55:54",
-    "status": "ok",
-    "nextRun": "2026-08-15T15:55:54",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
