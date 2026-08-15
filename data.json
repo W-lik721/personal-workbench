@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-15 12:43",
+  "generatedAt": "2026-08-15 13:36",
   "kpi": {
-    "skills": 58,
+    "skills": 59,
     "automations": 2,
     "models": 5,
     "memory": 37,
     "knowledge": 7,
-    "sessions": 11
+    "sessions": 9
   },
   "skills": [
     {
@@ -286,6 +286,14 @@
       "desc": "Use this skill whenever the user wants to OPERATE ON an existing PDF file — read/extract text-tables, merge/split/rotate, watermark, fill forms, encrypt/decrypt, extract images, OCR scanned PDFs. For GENERATING a brand-new visual/designed PDF (report, proposal, resume, 画册, 封面) from content, use the wb-doc-kit skill (minimax-pdf) instead. If the user mentions a .pdf file or asks to manipulate one, use this skill.",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：pdf",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "pitfall-manual-audit",
+      "desc": "",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：pitfall-manual-audit",
       "usage": 0,
       "lastUsed": ""
     },
@@ -660,27 +668,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "建立五步严谨思考与批判框架",
-        "customTitle": "",
-        "display": "建立五步严谨思考与批判框架",
-        "status": "completed",
-        "updated": "08-15 12:39",
-        "group": "今天"
-      },
-      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-15 12:38",
-        "group": "今天"
-      },
-      {
-        "title": "识别截图中的程序报错来源",
-        "customTitle": "",
-        "display": "识别截图中的程序报错来源",
-        "status": "completed",
-        "updated": "08-15 12:36",
+        "updated": "08-15 13:21",
         "group": "今天"
       },
       {
@@ -1352,11 +1344,9 @@
       },
       {
         "date": "2026-08-15",
-        "count": 4,
+        "count": 2,
         "titles": [
-          "建立五步严谨思考与批判框架",
           "学习",
-          "识别截图中的程序报错来源",
           "工作台"
         ]
       }
@@ -1401,6 +1391,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "pitfall-manual-audit",
+      "when": 1786770471.4607637,
+      "scope": "本机"
+    },
     {
       "kind": "kb",
       "name": "kb-index.json",
@@ -1629,7 +1625,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 12:43",
+    "fetchedAt": "2026-08-15 13:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1760,7 +1756,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 12:43",
+        "fetchedAt": "2026-08-15 13:36",
         "count": 16,
         "sections": [
           {
@@ -3135,7 +3131,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 12:43",
+    "fetchedAt": "2026-08-15 13:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3237,7 +3233,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 12:43",
+        "fetchedAt": "2026-08-15 13:36",
         "count": 15,
         "items": [
           {
@@ -4036,12 +4032,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T12:44:04",
-    "status": "ok",
-    "nextRun": "2026-08-15T13:44:04",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
