@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15 18:36",
+  "generatedAt": "2026-08-15 19:31",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（16 条）：通义千问开源 Qwen3.8 系列模型",
+    "🗞️ 今日 AI 日报已更新（17 条）：通义千问开源 Qwen3.8 系列模型",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -687,8 +687,8 @@
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "completed",
-        "updated": "08-15 18:28",
+        "status": "pending",
+        "updated": "08-15 19:03",
         "group": "今天"
       },
       {
@@ -1755,10 +1755,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 18:36",
+    "fetchedAt": "2026-08-15 19:31",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
-    "count": 16,
+    "count": 17,
     "sections": [
       {
         "label": "模型发布",
@@ -1797,6 +1797,17 @@
             "summary": "印尼通信与数字事务部、Indosat、NVIDIA与加查马达大学（UGM）在日惹共同启动UGM Indosat NVIDIA AI技术中心（NVAITC），这是该国首个大学AI技术中心。",
             "url": "https://blogs.nvidia.com/blog/ugm-indosat-nvidia-ai-technology-center",
             "source": "NVIDIA Blog（RSS）"
+          }
+        ]
+      },
+      {
+        "label": "论文研究",
+        "items": [
+          {
+            "title": "AI-generated books are flooding Amazon and tanking sales for human authors",
+            "summary": "",
+            "url": "https://aihot.virxact.com/items/cmsuaf2hr05zgroe0y1e7275v",
+            "source": ""
           }
         ]
       },
@@ -1886,8 +1897,8 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 18:36",
-        "count": 16,
+        "fetchedAt": "2026-08-15 19:31",
+        "count": 17,
         "sections": [
           {
             "label": "模型发布",
@@ -1926,6 +1937,17 @@
                 "summary": "印尼通信与数字事务部、Indosat、NVIDIA与加查马达大学（UGM）在日惹共同启动UGM Indosat NVIDIA AI技术中心（NVAITC），这是该国首个大学AI技术中心。",
                 "url": "https://blogs.nvidia.com/blog/ugm-indosat-nvidia-ai-technology-center",
                 "source": "NVIDIA Blog（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "AI-generated books are flooding Amazon and tanking sales for human authors",
+                "summary": "",
+                "url": "https://aihot.virxact.com/items/cmsuaf2hr05zgroe0y1e7275v",
+                "source": ""
               }
             ]
           },
@@ -3261,7 +3283,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 18:36",
+    "fetchedAt": "2026-08-15 19:31",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3363,7 +3385,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 18:36",
+        "fetchedAt": "2026-08-15 19:31",
         "count": 15,
         "items": [
           {
@@ -4162,12 +4184,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T18:36:12",
-    "status": "ok",
-    "nextRun": "2026-08-15T19:36:12",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
