@@ -1620,7 +1620,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 11:56",
+    "fetchedAt": "2026-08-15 11:57",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1751,7 +1751,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 11:56",
+        "fetchedAt": "2026-08-15 11:57",
         "count": 16,
         "sections": [
           {
@@ -3126,7 +3126,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 11:56",
+    "fetchedAt": "2026-08-15 11:57",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3228,7 +3228,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 11:56",
+        "fetchedAt": "2026-08-15 11:57",
         "count": 15,
         "items": [
           {
@@ -4027,12 +4027,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T11:57:04",
-    "status": "ok",
-    "nextRun": "2026-08-15T12:57:04",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
