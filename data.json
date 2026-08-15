@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15 22:36",
+  "generatedAt": "2026-08-15 23:33",
   "kpi": {
     "skills": 61,
     "automations": 2,
@@ -541,7 +541,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（17 条）：通义千问开源 Qwen3.8 系列模型",
+    "🗞️ 今日 AI 日报已更新（16 条）：OpenAI and Anthropic in price war as Chinese AI rivals gain ground",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -672,11 +672,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 240
+        "free": 239
       },
       "D": {
         "total": 544,
-        "free": 374
+        "free": 372
       }
     },
     "runtime": "3.13 / 22.22"
@@ -688,7 +688,7 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-15 22:36",
+        "updated": "08-15 23:31",
         "group": "今天"
       },
       {
@@ -1755,22 +1755,11 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 22:36",
+    "fetchedAt": "2026-08-15 23:33",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
-    "count": 17,
+    "count": 16,
     "sections": [
-      {
-        "label": "模型发布",
-        "items": [
-          {
-            "title": "通义千问开源 Qwen3.8 系列模型",
-            "summary": "通义千问兑现承诺，开源 Qwen3.8 系列模型。其中 Qwen3.8-27B 为原生多模态稠密模型，仅 27B 参数即全面超越 Qwen3.7-Plus，原生支持 262K 上下文，可通过 YaRN 扩展至 1M tokens，采用 Apache 2.0 许可。Max 级 Qwen3.8-2.4T-A95B 的开放权重也已同步发布。",
-            "url": "https://aihot.virxact.com/items/cmst3j53e03ncro068tgsr4xn",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "行业动态",
         "items": [
@@ -1897,20 +1886,9 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 22:36",
-        "count": 17,
+        "fetchedAt": "2026-08-15 23:33",
+        "count": 16,
         "sections": [
-          {
-            "label": "模型发布",
-            "items": [
-              {
-                "title": "通义千问开源 Qwen3.8 系列模型",
-                "summary": "通义千问兑现承诺，开源 Qwen3.8 系列模型。其中 Qwen3.8-27B 为原生多模态稠密模型，仅 27B 参数即全面超越 Qwen3.7-Plus，原生支持 262K 上下文，可通过 YaRN 扩展至 1M tokens，采用 Apache 2.0 许可。Max 级 Qwen3.8-2.4T-A95B 的开放权重也已同步发布。",
-                "url": "https://aihot.virxact.com/items/cmst3j53e03ncro068tgsr4xn",
-                "source": ""
-              }
-            ]
-          },
           {
             "label": "行业动态",
             "items": [
@@ -3283,7 +3261,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 22:36",
+    "fetchedAt": "2026-08-15 23:33",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3385,7 +3363,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 22:36",
+        "fetchedAt": "2026-08-15 23:33",
         "count": 15,
         "items": [
           {
@@ -4184,12 +4162,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T22:36:59",
-    "status": "ok",
-    "nextRun": "2026-08-15T23:36:59",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
