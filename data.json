@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15 11:56",
+  "generatedAt": "2026-08-15 11:57",
   "kpi": {
     "skills": 58,
     "automations": 2,
@@ -4027,12 +4027,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T11:56:16",
-    "status": "ok",
-    "nextRun": "2026-08-15T12:56:16",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
