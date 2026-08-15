@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-15 12:02",
+  "generatedAt": "2026-08-15 12:43",
   "kpi": {
     "skills": 58,
     "automations": 2,
     "models": 5,
     "memory": 37,
     "knowledge": 7,
-    "sessions": 10
+    "sessions": 11
   },
   "skills": [
     {
@@ -648,7 +648,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 237
       },
       "D": {
         "total": 544,
@@ -664,7 +664,23 @@
         "customTitle": "",
         "display": "建立五步严谨思考与批判框架",
         "status": "completed",
-        "updated": "08-15 02:57",
+        "updated": "08-15 12:39",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-15 12:38",
+        "group": "今天"
+      },
+      {
+        "title": "识别截图中的程序报错来源",
+        "customTitle": "",
+        "display": "识别截图中的程序报错来源",
+        "status": "completed",
+        "updated": "08-15 12:36",
         "group": "今天"
       },
       {
@@ -689,14 +705,6 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-14 19:54",
-        "group": "昨天"
-      },
-      {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "08-14 16:10",
         "group": "昨天"
       },
       {
@@ -1336,18 +1344,19 @@
       },
       {
         "date": "2026-08-14",
-        "count": 3,
+        "count": 2,
         "titles": [
           "整理知识库",
-          "skill",
-          "学习"
+          "skill"
         ]
       },
       {
         "date": "2026-08-15",
-        "count": 2,
+        "count": 4,
         "titles": [
           "建立五步严谨思考与批判框架",
+          "学习",
+          "识别截图中的程序报错来源",
           "工作台"
         ]
       }
@@ -1620,7 +1629,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 12:02",
+    "fetchedAt": "2026-08-15 12:43",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1751,7 +1760,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 12:02",
+        "fetchedAt": "2026-08-15 12:43",
         "count": 16,
         "sections": [
           {
@@ -3126,7 +3135,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 12:02",
+    "fetchedAt": "2026-08-15 12:43",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3228,7 +3237,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 12:02",
+        "fetchedAt": "2026-08-15 12:43",
         "count": 15,
         "items": [
           {
@@ -4027,12 +4036,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T12:02:28",
-    "status": "ok",
-    "nextRun": "2026-08-15T13:02:28",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
