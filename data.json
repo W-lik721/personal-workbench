@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-15 17:37",
+  "generatedAt": "2026-08-15 18:36",
   "kpi": {
-    "skills": 60,
+    "skills": 61,
     "automations": 2,
     "models": 5,
     "memory": 37,
@@ -354,6 +354,14 @@
       "lastUsed": ""
     },
     {
+      "name": "reverse-skill",
+      "desc": "安全研究 / 逆向工程路由包（reverse-skill，MIT）。覆盖：逆向工程、二进制/ELF/PE/SO 分析、APK/Android 逆向、IDA Pro/radare2/Ghidra、前端 JS 加密参数逆向、Frida/Hook、抓包与请求重放、渗透测试与漏洞扫描、CTF 竞赛、恶意软件分析、固件/IoT、EDR 绕过、LLM/AI 安全、攻击链编排、安全技术报告生成。触发场景：拿到未知样本/安装包/APK 要分析、定位前端加密参数或签名、需要静态/动态逆向方法论、做 CTF 题、写渗透/逆向报告、搭建安全研究工具链。本 skill 仅用于合法授权的安全研究与 CTF 竞赛，禁止对未授权目标操作。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：reverse-skill",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "superpowers",
       "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。【路由】通用工程默认入口；点名 Karpathy / AK 风格走 karpathy-kit，agent/skill 架构设计走 agent-design-kit。\"",
       "category": "通用能力",
@@ -668,7 +676,7 @@
       },
       "D": {
         "total": 544,
-        "free": 374
+        "free": 373
       }
     },
     "runtime": "3.13 / 22.22"
@@ -679,8 +687,8 @@
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "working",
-        "updated": "08-15 17:36",
+        "status": "completed",
+        "updated": "08-15 18:28",
         "group": "今天"
       },
       {
@@ -688,7 +696,7 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-15 17:32",
+        "updated": "08-15 17:59",
         "group": "今天"
       },
       {
@@ -1401,6 +1409,12 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "reverse-skill",
+      "when": 1786787905.6078217,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "job-hunting-hub__skillhub",
       "when": 1786782548.1068697,
       "scope": "本机"
@@ -1741,7 +1755,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 17:36",
+    "fetchedAt": "2026-08-15 18:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-15",
     "count": 16,
@@ -1872,7 +1886,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 17:36",
+        "fetchedAt": "2026-08-15 18:36",
         "count": 16,
         "sections": [
           {
@@ -3247,7 +3261,7 @@
   },
   "dailyNews": {
     "date": "2026-08-15",
-    "fetchedAt": "2026-08-15 17:37",
+    "fetchedAt": "2026-08-15 18:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3349,7 +3363,7 @@
     "history": [
       {
         "date": "2026-08-15",
-        "fetchedAt": "2026-08-15 17:37",
+        "fetchedAt": "2026-08-15 18:36",
         "count": 15,
         "items": [
           {
@@ -4148,12 +4162,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-15T17:37:12",
-    "status": "ok",
-    "nextRun": "2026-08-15T18:37:12",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
