@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-16 13:33",
+  "generatedAt": "2026-08-16 18:36",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 38,
     "knowledge": 7,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -354,10 +354,10 @@
       "lastUsed": ""
     },
     {
-      "name": "reverse-skill",
-      "desc": "安全研究 / 逆向工程路由包（reverse-skill，MIT）。覆盖：逆向工程、二进制/ELF/PE/SO 分析、APK/Android 逆向、IDA Pro/radare2/Ghidra、前端 JS 加密参数逆向、Frida/Hook、抓包与请求重放、渗透测试与漏洞扫描、CTF 竞赛、恶意软件分析、固件/IoT、EDR 绕过、LLM/AI 安全、攻击链编排、安全技术报告生成。触发场景：拿到未知样本/安装包/APK 要分析、定位前端加密参数或签名、需要静态/动态逆向方法论、做 CTF 题、写渗透/逆向报告、搭建安全研究工具链。本 skill 仅用于合法授权的安全研究与 CTF 竞赛，禁止对未授权目标操作。",
+      "name": "skill-trigger-audit",
+      "desc": "|",
       "category": "通用能力",
-      "cmd": "打开工作台后调用 skill：reverse-skill",
+      "cmd": "打开工作台后调用 skill：skill-trigger-audit",
       "usage": 0,
       "lastUsed": ""
     },
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 373
+        "free": 374
       }
     },
     "runtime": "3.13 / 22.22"
@@ -692,11 +692,19 @@
   "sessions": {
     "recent": [
       {
-        "title": "询问对方为何也停止了",
-        "customTitle": "",
-        "display": "询问对方为何也停止了",
+        "title": "排查大量部署失败的原因",
+        "customTitle": "工作台",
+        "display": "工作台",
+        "status": "working",
+        "updated": "08-16 18:36",
+        "group": "今天"
+      },
+      {
+        "title": "复盘今天所有项目和改动",
+        "customTitle": "复盘",
+        "display": "复盘",
         "status": "completed",
-        "updated": "08-16 13:33",
+        "updated": "08-16 17:56",
         "group": "今天"
       },
       {
@@ -704,23 +712,23 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-16 13:32",
+        "updated": "08-16 15:54",
         "group": "今天"
       },
       {
-        "title": "排查大量部署失败的原因",
-        "customTitle": "工作台",
-        "display": "工作台",
-        "status": "working",
-        "updated": "08-16 13:32",
-        "group": "今天"
-      },
-      {
-        "title": "整理知识库",
+        "title": "清理并规范工作区目录结构",
         "customTitle": "",
-        "display": "整理知识库",
-        "status": "working",
-        "updated": "08-16 13:32",
+        "display": "清理并规范工作区目录结构",
+        "status": "completed",
+        "updated": "08-16 14:14",
+        "group": "今天"
+      },
+      {
+        "title": "询问对方为何也停止了",
+        "customTitle": "填充知识库",
+        "display": "填充知识库",
+        "status": "completed",
+        "updated": "08-16 13:34",
         "group": "今天"
       },
       {
@@ -1354,12 +1362,13 @@
       },
       {
         "date": "2026-08-16",
-        "count": 5,
+        "count": 6,
         "titles": [
-          "询问对方为何也停止了",
-          "skill",
           "工作台",
-          "整理知识库",
+          "复盘",
+          "skill",
+          "清理并规范工作区目录结构",
+          "填充知识库",
           "学习"
         ]
       }
@@ -1406,14 +1415,212 @@
   "weekly": [
     {
       "kind": "skill",
-      "name": "workbuddy-git-safety",
-      "when": 1786809263.8583333,
+      "name": "skill-trigger-audit",
+      "when": 1786865833.182793,
       "scope": "本机"
     },
     {
       "kind": "skill",
-      "name": "reverse-skill",
-      "when": 1786787905.6078217,
+      "name": "workbuddy-bluebook",
+      "when": 1786864144.939459,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-legal-policy",
+      "when": 1786864144.930918,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-doc-kit",
+      "when": 1786864144.9238777,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1786864144.9178605,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-ai-radar",
+      "when": 1786864144.911805,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "tencent-video-capture",
+      "when": 1786864144.9021952,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "superpowers",
+      "when": 1786864144.895134,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "quarkclouddrive",
+      "when": 1786864144.888096,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pua",
+      "when": 1786864144.8800414,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ponytail",
+      "when": 1786864144.8734927,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "planning-with-files",
+      "when": 1786864144.8689725,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-pipeline",
+      "when": 1786864144.861435,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-checker__skillhub",
+      "when": 1786864144.854413,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "literature-review",
+      "when": 1786864144.8483322,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-thesis-zh",
+      "when": 1786864144.8421867,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-paper-en",
+      "when": 1786864144.8370047,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "last30days",
+      "when": 1786864144.830498,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "when": 1786864144.8199615,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "idea-landing-3prompt",
+      "when": 1786864144.8134463,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "hallmark",
+      "when": 1786864144.8074098,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "grill-me__skillhub",
+      "when": 1786864144.8003526,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "github-pages-auto-deploy",
+      "when": 1786864144.7942364,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "github",
+      "when": 1786864144.789201,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "full-output-enforcement",
+      "when": 1786864144.7826865,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "en-to-zh-translator",
+      "when": 1786864144.776177,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1786864144.7696636,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "daily-insight",
+      "when": 1786864144.7605948,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "citation-management",
+      "when": 1786864144.7530253,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ascetic-breaker",
+      "when": 1786864144.747505,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "andrej-karpathy-skills__github",
+      "when": 1786864144.7404835,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1786864144.7349677,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-chat",
+      "when": 1786864144.729455,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "file-hygiene",
+      "when": 1786860749.4316323,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "workbuddy-git-safety",
+      "when": 1786809263.8583333,
       "scope": "本机"
     },
     {
@@ -1454,74 +1661,8 @@
     },
     {
       "kind": "skill",
-      "name": "pua",
-      "when": 1786779953.3635383,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "planning-with-files",
-      "when": 1786779953.3569803,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "literature-review",
-      "when": 1786779953.349154,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "latex-thesis-zh",
-      "when": 1786779953.3444595,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "latex-paper-en",
-      "when": 1786779953.3387737,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "en-to-zh-translator",
-      "when": 1786779953.3291235,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "citation-management",
-      "when": 1786779953.3198032,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "ascetic-breaker",
-      "when": 1786779953.3139088,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "agent-reach",
       "when": 1786779953.3073583,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-design-kit",
-      "when": 1786779853.204291,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "andrej-karpathy-skills__github",
-      "when": 1786779849.65851,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "superpowers",
-      "when": 1786779844.823827,
       "scope": "本机"
     },
     {
@@ -1544,18 +1685,6 @@
     },
     {
       "kind": "skill",
-      "name": "wb-design-kit",
-      "when": 1786779790.0781305,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "ponytail",
-      "when": 1786779790.064534,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "pitfall-manual-audit",
       "when": 1786779790.0585425,
       "scope": "本机"
@@ -1568,38 +1697,14 @@
     },
     {
       "kind": "skill",
-      "name": "paper-checker__skillhub",
-      "when": 1786779790.0479758,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "memory-setup",
       "when": 1786779790.040673,
       "scope": "本机"
     },
     {
       "kind": "skill",
-      "name": "grill-me__skillhub",
-      "when": 1786779790.0278685,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "full-output-enforcement",
-      "when": 1786779790.0210829,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "claude-mem",
       "when": 1786779790.0132637,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-chat",
-      "when": 1786779789.9968443,
       "scope": "本机"
     },
     {
@@ -1612,18 +1717,6 @@
       "kind": "skill",
       "name": "web-access",
       "when": 1786779447.6033254,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "design-taste-frontend",
-      "when": 1786778712.594938,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "hallmark",
-      "when": 1786778268.70928,
       "scope": "本机"
     },
     {
@@ -1643,12 +1736,6 @@
     },
     {
       "kind": "skill",
-      "name": "file-hygiene",
-      "when": 1786716136.2766514,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "douyin",
       "when": 1786649119.913333,
       "scope": "本机"
@@ -1661,20 +1748,8 @@
     },
     {
       "kind": "skill",
-      "name": "wb-ai-radar",
-      "when": 1786548728.884472,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "deeptutor-tutor",
       "when": 1786548229.0079756,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "paper-pipeline",
-      "when": 1786518514.8642063,
       "scope": "本机"
     },
     {
@@ -1697,12 +1772,6 @@
     },
     {
       "kind": "skill",
-      "name": "impeccable",
-      "when": 1786280088.2773352,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "obsidian-cli",
       "when": 1786279957.1611066,
       "scope": "本机"
@@ -1716,7 +1785,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 13:33",
+    "fetchedAt": "2026-08-16 18:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 2,
@@ -1748,7 +1817,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 13:33",
+        "fetchedAt": "2026-08-16 18:36",
         "count": 2,
         "sections": [
           {
@@ -3153,7 +3222,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 13:33",
+    "fetchedAt": "2026-08-16 18:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3255,7 +3324,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 13:33",
+        "fetchedAt": "2026-08-16 18:36",
         "count": 15,
         "items": [
           {
@@ -4156,9 +4225,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-16T13:34:00",
+    "lastRun": "2026-08-16T18:36:45",
     "status": "ok",
-    "nextRun": "2026-08-16T14:34:00",
+    "nextRun": "2026-08-16T19:36:45",
     "intervalHours": 1,
     "staleHours": 2
   }
