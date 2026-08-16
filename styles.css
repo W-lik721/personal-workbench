@@ -347,10 +347,10 @@ textarea:focus{outline:2px solid var(--accent-strong);outline-offset:-1px;backgr
 .news-sel select:hover{border-color:var(--accent-line-2);background-color:var(--tint)}
 .news-sel select:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-color:var(--accent);box-shadow:0 0 0 3px var(--tint)}
 .news-sel select option{background:var(--panel-2);color:var(--ink)}
-.nw{border:1px solid var(--line);background:var(--panel-2);border-radius:var(--radius);padding:9px 12px;margin-top:8px;animation:fadeIn .3s ease both}
+.nw{border:1px solid var(--line);background:var(--panel-2);border-radius:var(--radius);padding:10px 14px;margin-top:8px;animation:fadeIn .3s ease both}
 .nw:hover{border-color:var(--accent-line-2)}
-.nw-t{font-size:var(--text-sm);font-weight:600;line-height:1.45;color:var(--ink)}
-.nw-d{font-size:var(--text-sm);line-height:1.6;color:var(--sub);margin-top:4px;word-break:break-word}
+.nw-t{font-size:var(--text-md);font-weight:500;line-height:1.55;letter-spacing:.01em;color:var(--ink)}
+.nw-d{font-size:var(--text-sm);line-height:1.65;color:var(--sub);margin-top:5px;word-break:break-word}
 .nw-d.clamp{max-height:4.6em;overflow:hidden;position:relative}
 .nw-d.clamp.open{max-height:none;overflow:visible}
 .nw-d.clamp:not(.open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.8em;background:linear-gradient(transparent,var(--panel-2))}

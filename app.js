@@ -784,7 +784,7 @@
     html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2><div class="nw-grid">';
     items.forEach(function (it, i) {
       html += renderNewsItem(it, {
-        prefix: '<span style="color:var(--accent2);font-weight:700;margin-right:7px;flex:0 0 auto">' + (i + 1) + ".</span>",
+        prefix: '<span style="color:var(--accent2);font-weight:600;margin-right:7px;flex:0 0 auto">' + (i + 1) + ".</span>",
         defaultSrc: "每日60秒",
         ask: "用大白话展开讲讲这条新闻的背景，并说说对我有什么影响："
       });
