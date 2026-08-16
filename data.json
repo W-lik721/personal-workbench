@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-16 12:45",
+  "generatedAt": "2026-08-16 13:33",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 38,
     "knowledge": 7,
-    "sessions": 9
+    "sessions": 8
   },
   "skills": [
     {
@@ -692,19 +692,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
+        "title": "询问对方为何也停止了",
+        "customTitle": "",
+        "display": "询问对方为何也停止了",
         "status": "completed",
-        "updated": "08-16 12:37",
-        "group": "今天"
-      },
-      {
-        "title": "排查大量部署失败的原因",
-        "customTitle": "工作台",
-        "display": "工作台",
-        "status": "completed",
-        "updated": "08-16 00:06",
+        "updated": "08-16 13:33",
         "group": "今天"
       },
       {
@@ -712,32 +704,32 @@
         "customTitle": "skill",
         "display": "skill",
         "status": "completed",
-        "updated": "08-15 20:10",
-        "group": "昨天"
+        "updated": "08-16 13:32",
+        "group": "今天"
+      },
+      {
+        "title": "排查大量部署失败的原因",
+        "customTitle": "工作台",
+        "display": "工作台",
+        "status": "working",
+        "updated": "08-16 13:32",
+        "group": "今天"
       },
       {
         "title": "整理知识库",
         "customTitle": "",
         "display": "整理知识库",
-        "status": "completed",
-        "updated": "08-14 23:27",
-        "group": "更早"
+        "status": "working",
+        "updated": "08-16 13:32",
+        "group": "今天"
       },
       {
-        "title": "找视频充实知识库",
-        "customTitle": "",
-        "display": "找视频充实知识库",
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
         "status": "completed",
-        "updated": "08-13 21:58",
-        "group": "更早"
-      },
-      {
-        "title": "移动tools目录到D盘p7",
-        "customTitle": "整理工作区",
-        "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-13 21:43",
-        "group": "更早"
+        "updated": "08-16 13:09",
+        "group": "今天"
       },
       {
         "title": "电脑项目跑完通知我",
@@ -1347,32 +1339,28 @@
       },
       {
         "date": "2026-08-13",
-        "count": 2,
-        "titles": [
-          "找视频充实知识库",
-          "整理工作区"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-14",
-        "count": 1,
-        "titles": [
-          "整理知识库"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-15",
-        "count": 1,
-        "titles": [
-          "skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-16",
-        "count": 2,
+        "count": 5,
         "titles": [
-          "学习",
-          "工作台"
+          "询问对方为何也停止了",
+          "skill",
+          "工作台",
+          "整理知识库",
+          "学习"
         ]
       }
     ]
@@ -1728,7 +1716,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 12:44",
+    "fetchedAt": "2026-08-16 13:33",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 2,
@@ -1760,7 +1748,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 12:44",
+        "fetchedAt": "2026-08-16 13:33",
         "count": 2,
         "sections": [
           {
@@ -3165,7 +3153,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 12:44",
+    "fetchedAt": "2026-08-16 13:33",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3267,7 +3255,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 12:44",
+        "fetchedAt": "2026-08-16 13:33",
         "count": 15,
         "items": [
           {
@@ -4166,12 +4154,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T12:45:08",
-    "status": "ok",
-    "nextRun": "2026-08-16T13:45:08",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
