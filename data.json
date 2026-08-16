@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-16 18:36",
+  "generatedAt": "2026-08-16 19:32",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 38,
     "knowledge": 7,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -171,7 +171,7 @@
     },
     {
       "name": "grill-me",
-      "desc": "Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions \"grill me\".",
+      "desc": "Interview the user relentlessly about a plan or design until",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：grill-me__skillhub",
       "usage": 0,
@@ -339,7 +339,7 @@
     },
     {
       "name": "pua",
-      "desc": "\"让你的 AI 不敢摆烂。用大厂 PUA 话术穷尽一切方案。触发条件：(1) 任务失败 2+ 次或反复微调同一思路; (2) 即将说'我无法解决'、建议用户手动操作、未验证就归因环境; (3) 被动等待——不搜索、不读源码、只等指示; (4) 用户不满：'try harder'、'stop giving up'、'换个方法'、'为什么还不行'、'你再试试'、'你怎么又失败了'。适用于所有任务类型。首次失败或已知修复正在执行时不触发。\"",
+      "desc": "让你的 AI 不敢摆烂。用大厂 PUA 话术穷尽一切方案。触发条件：(1) 任务失败 2+ 次或反复微调同一思路; (2)",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：pua",
       "usage": 0,
@@ -347,7 +347,7 @@
     },
     {
       "name": "quarkclouddrive",
-      "desc": "夸克网盘官方(Quark Drive)Skill，用于文件上传/下载（支持断点续传）、文件分享与转存、网盘文件搜索、相册整理、AI助手（文件总结与知识问答，支持万级文件）。当用户需要操作夸克网盘文件或进行身份验证时使用。",
+      "desc": "夸克网盘官方(Quark",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：quarkclouddrive",
       "usage": 0,
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（2 条）：Cursor 正式被 SpaceX 收购",
+    "🗞️ 今日 AI 日报已更新（3 条）：Cursor 正式被 SpaceX 收购",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 374
+        "free": 364
       }
     },
     "runtime": "3.13 / 22.22"
@@ -692,11 +692,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "整理夸克网盘文件",
+        "customTitle": "",
+        "display": "整理夸克网盘文件",
+        "status": "working",
+        "updated": "08-16 19:32",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "working",
-        "updated": "08-16 18:36",
+        "status": "completed",
+        "updated": "08-16 18:54",
         "group": "今天"
       },
       {
@@ -1362,8 +1370,9 @@
       },
       {
         "date": "2026-08-16",
-        "count": 6,
+        "count": 7,
         "titles": [
+          "整理夸克网盘文件",
           "工作台",
           "复盘",
           "skill",
@@ -1415,6 +1424,24 @@
   "weekly": [
     {
       "kind": "skill",
+      "name": "quarkclouddrive",
+      "when": 1786877726.2159922,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "pua",
+      "when": 1786877724.4664671,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "grill-me__skillhub",
+      "when": 1786877700.869698,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "skill-trigger-audit",
       "when": 1786865833.182793,
       "scope": "本机"
@@ -1459,18 +1486,6 @@
       "kind": "skill",
       "name": "superpowers",
       "when": 1786864144.895134,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "quarkclouddrive",
-      "when": 1786864144.888096,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "pua",
-      "when": 1786864144.8800414,
       "scope": "本机"
     },
     {
@@ -1537,12 +1552,6 @@
       "kind": "skill",
       "name": "hallmark",
       "when": 1786864144.8074098,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "grill-me__skillhub",
-      "when": 1786864144.8003526,
       "scope": "本机"
     },
     {
@@ -1785,10 +1794,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 18:36",
+    "fetchedAt": "2026-08-16 19:32",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
-    "count": 2,
+    "count": 3,
     "sections": [
       {
         "label": "行业动态",
@@ -1809,6 +1818,12 @@
             "summary": "一项对14,419本自出版电子书的分析显示，AI生成书籍正以数量而非质量挤占人类作者市场，即便未检测到AI文本的书籍，单书收入也在下滑。2023年Q1至2026年Q1，书目总量增长38.3倍，而季度收入仅增长8.9倍；在八个类型中，七个类型的无AI文本书籍单书收入下降。",
             "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
             "source": "The Decoder：AI News（RSS）"
+          },
+          {
+            "title": "新兴多智能体系统的模式与问题",
+            "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
+            "url": "https://aihot.virxact.com/items/cmsvptx2m061frovmjoavsi0l",
+            "source": ""
           }
         ]
       }
@@ -1817,8 +1832,8 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 18:36",
-        "count": 2,
+        "fetchedAt": "2026-08-16 19:32",
+        "count": 3,
         "sections": [
           {
             "label": "行业动态",
@@ -1839,6 +1854,12 @@
                 "summary": "一项对14,419本自出版电子书的分析显示，AI生成书籍正以数量而非质量挤占人类作者市场，即便未检测到AI文本的书籍，单书收入也在下滑。2023年Q1至2026年Q1，书目总量增长38.3倍，而季度收入仅增长8.9倍；在八个类型中，七个类型的无AI文本书籍单书收入下降。",
                 "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
                 "source": "The Decoder：AI News（RSS）"
+              },
+              {
+                "title": "新兴多智能体系统的模式与问题",
+                "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
+                "url": "https://aihot.virxact.com/items/cmsvptx2m061frovmjoavsi0l",
+                "source": ""
               }
             ]
           }
@@ -3222,7 +3243,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 18:36",
+    "fetchedAt": "2026-08-16 19:32",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3324,7 +3345,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 18:36",
+        "fetchedAt": "2026-08-16 19:32",
         "count": 15,
         "items": [
           {
@@ -4223,12 +4244,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T18:36:45",
-    "status": "ok",
-    "nextRun": "2026-08-16T19:36:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
