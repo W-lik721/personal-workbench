@@ -695,8 +695,8 @@
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
-        "status": "planning",
-        "updated": "08-16 11:57",
+        "status": "working",
+        "updated": "08-16 11:58",
         "group": "今天"
       },
       {
@@ -4166,12 +4166,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T11:58:06",
-    "status": "ok",
-    "nextRun": "2026-08-16T12:58:06",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
