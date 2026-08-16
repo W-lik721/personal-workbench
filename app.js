@@ -1059,6 +1059,39 @@
   var aiBusy = false;
   function aiKeyLoad() { try { return localStorage.getItem(AI_PROVIDERS[aiProv].keyKey) || ""; } catch (e) { return ""; } }
   function aiKeySave(k) { try { localStorage.setItem(AI_PROVIDERS[aiProv].keyKey, k); } catch (e) {} }
+  // 记忆：① 会话历史（刷新/重开不丢）② 长期记忆库（跨会话注入系统提示词）
+  var AI_HIST_KEY = "wb_ai_history";
+  var AI_MEM_KEY = "wb_ai_memory";
+  function aiHistLoad() {
+    try { var a = JSON.parse(localStorage.getItem(AI_HIST_KEY) || "[]"); return Array.isArray(a) ? a : []; }
+    catch (e) { return []; }
+  }
+  function aiHistSave() {
+    try { localStorage.setItem(AI_HIST_KEY, JSON.stringify(aiMsgs.slice(-50))); } catch (e) {}
+  }
+  function aiMemLoad() {
+    try { var a = JSON.parse(localStorage.getItem(AI_MEM_KEY) || "[]"); return Array.isArray(a) ? a : []; }
+    catch (e) { return []; }
+  }
+  function aiMemSave(arr) {
+    try { localStorage.setItem(AI_MEM_KEY, JSON.stringify(arr)); } catch (e) {}
+  }
+  function aiMemHtml() {
+    var mem = aiMemLoad();
+    if (!mem.length) return '<li class="empty">还没有记忆。记一笔，AI 以后跨会话都记得。</li>';
+    return mem.map(function (m) {
+      return '<li><span class="ai-mem-t">' + esc(m.text) + '</span><button class="ai-mem-x" title="删除" onclick="aiMemoryDel(' + m.ts + ')">✕</button></li>';
+    }).join("");
+  }
+  function aiSysPrompt() {
+    var sys = "你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。";
+    var mem = aiMemLoad();
+    if (mem.length) {
+      sys += "\n\n以下是你记住的关于用户的信息（长期有效、跨会话，回答时自然运用，不要逐条复述）：\n" +
+        mem.map(function (m) { return "• " + m.text; }).join("\n");
+    }
+    return sys;
+  }
   function aiSetProv(p) {
     aiProv = AI_PROVIDERS[p] ? p : "agnes";
     try { localStorage.setItem("wb_ai_prov", aiProv); } catch (e) {}
@@ -1067,7 +1100,10 @@
   function renderAI(d) {
     var box = document.getElementById("col-ai");
     if (!box) return;
+    aiMsgs = aiHistLoad();   // 恢复上次会话（刷新/重开不丢）
     var hasKey = !!aiKeyLoad();
+    var mem = aiMemLoad();
+    var memHtml = aiMemHtml();
     var provSel = Object.keys(AI_PROVIDERS).map(function (k) {
       return '<option value="' + k + '"' + (aiProv === k ? " selected" : "") + '>' + AI_PROVIDERS[k].label + "</option>";
     }).join("");
@@ -1084,8 +1120,14 @@
       '<button class="btn-sm" onclick="aiClear()">🗑 清空对话</button>' +
       (hasKey ? "" : '<span class="ai-guide">⚠️ 还没设置 API Key，AI 暂时无法回答。在上方粘贴 Key 并点“保存”即可使用。</span>') +
       '</div>' +
+      '<details class="ai-mem"><summary>🧠 长期记忆库（' + mem.length + ' 条）· 点开管理</summary>' +
+      '<div class="ai-mem-add"><input id="aiMemInput" class="sf" placeholder="记一笔长期记忆，如：我偏好简洁回答 / 我在学 Flutter…">' +
+      '<button class="btn-sm" onclick="aiMemoryAdd()">📌 记下</button></div>' +
+      '<ul class="ai-mem-list" id="aiMemList">' + memHtml + '</ul>' +
+      '<div class="ai-mem-foot"><button class="btn-sm danger" onclick="aiMemoryClear()">🗑 清空记忆库</button>' +
+      '<span class="empty">仅存本机，AI 跨会话都会看到</span></div></details>' +
       '<div class="ai-chat" id="aiChat">' +
-      '<div class="empty">输入你的问题，AI 会用大白话回答。可问它：总结今天日报 / 帮我挑值得看的新闻 / 待办怎么安排…</div>' +
+      (aiMsgs.length ? "" : '<div class="empty">输入你的问题，AI 会用大白话回答。可问它：总结今天日报 / 帮我挑值得看的新闻 / 待办怎么安排…</div>') +
       "</div>" +
       '<div class="ai-input">' +
       '<textarea id="aiBox" rows="2" placeholder="问 AI 点什么…（Enter 发送，Shift+Enter 换行）"></textarea>' +
@@ -1095,6 +1137,10 @@
     if (ta) ta.addEventListener("keydown", function (e) {
       if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); aiSend(); }
     });
+    // 恢复历史对话到聊天框
+    if (aiMsgs.length) {
+      aiMsgs.forEach(function (m) { aiAppend(m.role, m.content); });
+    }
   }
   function aiSaveKey() {
     var k = document.getElementById("aiKey");
@@ -1154,7 +1200,9 @@
     } catch (e) {}
   }
   function aiClear() {
+    if (window.confirm && !window.confirm("清空当前对话？记忆库和长期记忆不受影响。")) return;
     aiMsgs = [];
+    try { localStorage.removeItem(AI_HIST_KEY); } catch (e) {}
     var chat = document.getElementById("aiChat");
     if (chat) chat.innerHTML = '<div class="empty">对话已清空。输入问题，AI 会用大白话回答…</div>';
   }
@@ -1169,6 +1217,7 @@
     if (box) box.value = "";
     aiAppend("user", q);
     aiMsgs.push({ role: "user", content: q });
+    aiHistSave();
     aiBusy = true;
     aiAppend("bot", "…思考中");
     fetchT(prov.url, {
@@ -1176,7 +1225,7 @@
       headers: { "Content-Type": "application/json", "Authorization": "Bearer " + key },
       body: JSON.stringify({
         model: prov.model,
-        messages: [{ role: "system", content: "你是用户个人工作台的 AI 助手，用中文大白话回答，简洁、可操作。" }].concat(aiMsgs.slice(-10)),
+        messages: [{ role: "system", content: aiSysPrompt() }].concat(aiMsgs.slice(-10)),
         max_tokens: aiProv === "agnes" ? 4000 : 800
       })
     }, 60000)
@@ -1193,6 +1242,7 @@
         // 推理模型可能把 token 都花在思考上：正文空时回退展示思考片段
         var ans = (msg && msg.content && msg.content.trim()) || (msg && msg.reasoning_content ? "（思考中：）\n" + msg.reasoning_content : "（空回复）");
         aiMsgs.push({ role: "assistant", content: ans });
+        aiHistSave();
         var chat = document.getElementById("aiChat");
         if (chat && chat.lastChild) chat.removeChild(chat.lastChild);
         aiAppend("bot", ans);
@@ -1204,7 +1254,29 @@
       })
       .then(function () { aiBusy = false; });
   }
-  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk; window.aiClear = aiClear;
+  function aiMemoryAdd() {
+    var inp = document.getElementById("aiMemInput");
+    if (!inp) return;
+    var t = inp.value.trim();
+    if (!t) return;
+    var mem = aiMemLoad();
+    mem.push({ ts: Date.now(), text: t });
+    aiMemSave(mem);
+    inp.value = "";
+    if (__data) renderAI(__data);
+    else { var ul = document.getElementById("aiMemList"); if (ul) ul.innerHTML = aiMemHtml(); }
+  }
+  function aiMemoryDel(ts) {
+    var mem = aiMemLoad().filter(function (m) { return m.ts !== ts; });
+    aiMemSave(mem);
+    if (__data) renderAI(__data);
+  }
+  function aiMemoryClear() {
+    if (window.confirm && !window.confirm("清空全部长期记忆？此操作不可恢复，对话不受影响。")) return;
+    aiMemSave([]);
+    if (__data) renderAI(__data);
+  }
+  window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk; window.aiClear = aiClear; window.aiMemoryAdd = aiMemoryAdd; window.aiMemoryDel = aiMemoryDel; window.aiMemoryClear = aiMemoryClear;
 
   // 课程表模块已拆到 schedule.js（独立 IIFE，window.WB.esc 依赖注入，加载顺序在 app.js 前）
   // 对外接口：window.renderSchedule / ghToken / scheduleLoad / schedulePullCloud / setGhToken / GH_REPO
