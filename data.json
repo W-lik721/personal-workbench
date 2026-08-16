@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-16 15:36",
+  "generatedAt": "2026-08-16 16:44",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 38,
     "knowledge": 7,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -692,11 +692,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "询问能否修改记忆截图内容",
+        "customTitle": "",
+        "display": "询问能否修改记忆截图内容",
+        "status": "completed",
+        "updated": "08-16 16:44",
+        "group": "今天"
+      },
+      {
         "title": "寻找无需apikey的抖音视频下载skill",
         "customTitle": "skill",
         "display": "skill",
-        "status": "working",
-        "updated": "08-16 15:34",
+        "status": "completed",
+        "updated": "08-16 15:54",
         "group": "今天"
       },
       {
@@ -1354,8 +1362,9 @@
       },
       {
         "date": "2026-08-16",
-        "count": 5,
+        "count": 6,
         "titles": [
+          "询问能否修改记忆截图内容",
           "skill",
           "清理并规范工作区目录结构",
           "工作台",
@@ -1407,7 +1416,7 @@
     {
       "kind": "skill",
       "name": "skill-trigger-audit",
-      "when": 1786865592.9787638,
+      "when": 1786865833.182793,
       "scope": "本机"
     },
     {
@@ -1776,7 +1785,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 15:36",
+    "fetchedAt": "2026-08-16 16:44",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 2,
@@ -1808,7 +1817,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 15:36",
+        "fetchedAt": "2026-08-16 16:44",
         "count": 2,
         "sections": [
           {
@@ -3213,7 +3222,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 15:36",
+    "fetchedAt": "2026-08-16 16:44",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3315,7 +3324,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 15:36",
+        "fetchedAt": "2026-08-16 16:44",
         "count": 15,
         "items": [
           {
@@ -4214,12 +4223,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T15:36:22",
-    "status": "ok",
-    "nextRun": "2026-08-16T16:36:22",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
