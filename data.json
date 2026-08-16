@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16 16:44",
+  "generatedAt": "2026-08-16 17:38",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -692,11 +692,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "询问能否修改记忆截图内容",
+        "title": "复盘今天所有项目和改动",
         "customTitle": "",
-        "display": "询问能否修改记忆截图内容",
+        "display": "复盘今天所有项目和改动",
         "status": "completed",
-        "updated": "08-16 16:44",
+        "updated": "08-16 17:24",
         "group": "今天"
       },
       {
@@ -1364,7 +1364,7 @@
         "date": "2026-08-16",
         "count": 6,
         "titles": [
-          "询问能否修改记忆截图内容",
+          "复盘今天所有项目和改动",
           "skill",
           "清理并规范工作区目录结构",
           "工作台",
@@ -1785,7 +1785,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 16:44",
+    "fetchedAt": "2026-08-16 17:38",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 2,
@@ -1817,7 +1817,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 16:44",
+        "fetchedAt": "2026-08-16 17:38",
         "count": 2,
         "sections": [
           {
@@ -3222,7 +3222,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 16:44",
+    "fetchedAt": "2026-08-16 17:38",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3324,7 +3324,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 16:44",
+        "fetchedAt": "2026-08-16 17:38",
         "count": 15,
         "items": [
           {
@@ -4223,12 +4223,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T16:45:10",
-    "status": "ok",
-    "nextRun": "2026-08-16T17:45:10",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
