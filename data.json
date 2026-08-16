@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16 23:33",
+  "generatedAt": "2026-08-17 00:38",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -556,7 +556,7 @@
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-16",
+    "skillsLastUpdate": "2026-08-17",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -676,7 +676,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-16",
+    "memoryLastUpdate": "2026-08-17",
     "disk": {
       "C": {
         "total": 380,
@@ -697,7 +697,7 @@
         "display": "清理并规范工作区目录结构",
         "status": "completed",
         "updated": "08-16 23:32",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "排查大量部署失败的原因",
@@ -705,7 +705,7 @@
         "display": "工作台",
         "status": "completed",
         "updated": "08-16 18:54",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "复盘今天所有项目和改动",
@@ -713,7 +713,7 @@
         "display": "复盘",
         "status": "completed",
         "updated": "08-16 17:56",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -721,7 +721,7 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-16 15:54",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "询问对方为何也停止了",
@@ -729,7 +729,7 @@
         "display": "填充知识库",
         "status": "completed",
         "updated": "08-16 13:34",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -737,7 +737,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-16 13:09",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "电脑项目跑完通知我",
@@ -765,11 +765,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-20",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-21",
         "count": 0,
@@ -1371,6 +1366,11 @@
           "填充知识库",
           "学习"
         ]
+      },
+      {
+        "date": "2026-08-17",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1773,7 +1773,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 23:33",
+    "fetchedAt": "2026-08-17 00:38",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 3,
@@ -1811,7 +1811,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 23:33",
+        "fetchedAt": "2026-08-17 00:38",
         "count": 3,
         "sections": [
           {
@@ -3222,7 +3222,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 23:33",
+    "fetchedAt": "2026-08-17 00:38",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3324,7 +3324,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 23:33",
+        "fetchedAt": "2026-08-17 00:38",
         "count": 15,
         "items": [
           {
@@ -4223,12 +4223,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T23:33:55",
-    "status": "ok",
-    "nextRun": "2026-08-17T00:33:55",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
