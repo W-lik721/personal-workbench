@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16 19:32",
+  "generatedAt": "2026-08-16 20:58",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 364
+        "free": 356
       }
     },
     "runtime": "3.13 / 22.22"
@@ -695,8 +695,8 @@
         "title": "整理夸克网盘文件",
         "customTitle": "",
         "display": "整理夸克网盘文件",
-        "status": "working",
-        "updated": "08-16 19:32",
+        "status": "completed",
+        "updated": "08-16 20:10",
         "group": "今天"
       },
       {
@@ -1778,23 +1778,11 @@
       "name": "cs-learning",
       "when": 1786337349.4888604,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "obsidian-cli",
-      "when": 1786279957.1611066,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "crawl4ai-to-vault",
-      "when": 1786277437.963398,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 19:32",
+    "fetchedAt": "2026-08-16 20:58",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 3,
@@ -1832,7 +1820,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 19:32",
+        "fetchedAt": "2026-08-16 20:58",
         "count": 3,
         "sections": [
           {
@@ -3243,7 +3231,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 19:32",
+    "fetchedAt": "2026-08-16 20:58",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3345,7 +3333,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 19:32",
+        "fetchedAt": "2026-08-16 20:58",
         "count": 15,
         "items": [
           {
@@ -4244,12 +4232,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T19:32:26",
-    "status": "ok",
-    "nextRun": "2026-08-16T20:32:26",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
