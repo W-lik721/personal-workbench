@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16 21:41",
+  "generatedAt": "2026-08-16 22:35",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 356
+        "free": 357
       }
     },
     "runtime": "3.13 / 22.22"
@@ -692,11 +692,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "清理并规范工作区目录结构",
+        "customTitle": "",
+        "display": "清理并规范工作区目录结构",
+        "status": "working",
+        "updated": "08-16 22:35",
+        "group": "今天"
+      },
+      {
         "title": "整理夸克网盘文件",
         "customTitle": "",
         "display": "整理夸克网盘文件",
         "status": "completed",
-        "updated": "08-16 20:10",
+        "updated": "08-16 22:34",
         "group": "今天"
       },
       {
@@ -721,14 +729,6 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-16 15:54",
-        "group": "今天"
-      },
-      {
-        "title": "清理并规范工作区目录结构",
-        "customTitle": "",
-        "display": "清理并规范工作区目录结构",
-        "status": "completed",
-        "updated": "08-16 14:14",
         "group": "今天"
       },
       {
@@ -1372,11 +1372,11 @@
         "date": "2026-08-16",
         "count": 7,
         "titles": [
+          "清理并规范工作区目录结构",
           "整理夸克网盘文件",
           "工作台",
           "复盘",
           "skill",
-          "清理并规范工作区目录结构",
           "填充知识库",
           "学习"
         ]
@@ -1425,7 +1425,7 @@
     {
       "kind": "skill",
       "name": "quarkclouddrive",
-      "when": 1786877726.2159922,
+      "when": 1786889368.9927335,
       "scope": "本机"
     },
     {
@@ -1782,7 +1782,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 21:41",
+    "fetchedAt": "2026-08-16 22:35",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-16",
     "count": 3,
@@ -1820,7 +1820,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 21:41",
+        "fetchedAt": "2026-08-16 22:35",
         "count": 3,
         "sections": [
           {
@@ -3231,7 +3231,7 @@
   },
   "dailyNews": {
     "date": "2026-08-16",
-    "fetchedAt": "2026-08-16 21:41",
+    "fetchedAt": "2026-08-16 22:35",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3333,7 +3333,7 @@
     "history": [
       {
         "date": "2026-08-16",
-        "fetchedAt": "2026-08-16 21:41",
+        "fetchedAt": "2026-08-16 22:35",
         "count": 15,
         "items": [
           {
@@ -4232,12 +4232,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-16T21:41:43",
-    "status": "ok",
-    "nextRun": "2026-08-16T22:41:43",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
