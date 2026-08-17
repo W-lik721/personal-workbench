@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-17 19:36",
+  "generatedAt": "2026-08-17 21:03",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
-    "memory": 39,
+    "memory": 40,
     "knowledge": 7,
     "sessions": 9
   },
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（2 条）：Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
+    "🗞️ 今日 AI 日报已更新（3 条）：OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -692,19 +692,19 @@
   "sessions": {
     "recent": [
       {
+        "title": "询问记忆管理方式及记忆文档",
+        "customTitle": "",
+        "display": "询问记忆管理方式及记忆文档",
+        "status": "working",
+        "updated": "08-17 21:03",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-17 19:36",
-        "group": "今天"
-      },
-      {
-        "title": "询问记忆管理方式及记忆文档",
-        "customTitle": "",
-        "display": "询问记忆管理方式及记忆文档",
-        "status": "completed",
-        "updated": "08-17 19:12",
+        "updated": "08-17 21:00",
         "group": "今天"
       },
       {
@@ -1367,8 +1367,8 @@
         "date": "2026-08-17",
         "count": 4,
         "titles": [
-          "工作台",
           "询问记忆管理方式及记忆文档",
+          "工作台",
           "skill",
           "学习"
         ]
@@ -1768,11 +1768,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 19:36",
+    "fetchedAt": "2026-08-17 21:03",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-17",
-    "count": 2,
+    "count": 3,
     "sections": [
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
+            "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
+            "url": "https://aihot.virxact.com/items/cmsx7ffrz049uromm6en3if02",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "技巧与观点",
         "items": [
@@ -1795,9 +1806,20 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 19:36",
-        "count": 2,
+        "fetchedAt": "2026-08-17 21:03",
+        "count": 3,
         "sections": [
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
+                "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
+                "url": "https://aihot.virxact.com/items/cmsx7ffrz049uromm6en3if02",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "技巧与观点",
             "items": [
@@ -3231,7 +3253,7 @@
   },
   "dailyNews": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 19:36",
+    "fetchedAt": "2026-08-17 21:03",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3333,7 +3355,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 19:36",
+        "fetchedAt": "2026-08-17 21:03",
         "count": 15,
         "items": [
           {
@@ -4332,12 +4354,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-17T19:36:47",
-    "status": "ok",
-    "nextRun": "2026-08-17T20:36:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
