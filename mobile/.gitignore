@@ -4,3 +4,5 @@ build/
 *.iml
 android/key.properties
 .gradle*/
+.flutter-plugins-dependencies
+android/.kotlin/
