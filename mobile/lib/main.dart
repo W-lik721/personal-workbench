@@ -1,17 +1,11 @@
-// 轻量工作台 Flutter 入口
+// 个人工作台 Flutter 入口
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'lucide_nav_icons.dart';
 import 'services/core.dart';
 import 'services/notifier.dart';
 import 'services/sync.dart';
-import 'pages/home_page.dart';
-import 'pages/news_page.dart';
-import 'pages/ai_page.dart';
-import 'pages/schedule_page.dart';
-import 'pages/study_page.dart';
-import 'pages/tools_page.dart';
-import 'pages/settings_page.dart';
+import 'boards.dart';
+import 'nav_notifier.dart';
 
 // 主题切换通知器：让深处的开关能即时重建 MaterialApp（否则要重启才生效）
 // darkModeNotifier = 实际亮度（深=真）；themeModeNotifier = 三态 'system'/'dark'/'light'
@@ -97,7 +91,7 @@ class _WorkbenchAppState extends State<WorkbenchApp> with WidgetsBindingObserver
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '轻量工作台',
+      title: '个人工作台',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -213,22 +207,26 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> {
   int _index = 0;
-  final _pages = [
-    const HomePage(),
-    const NewsPage(),
-    const AiPage(),
-    const SchedulePage(),
-    const StudyPage(),
-    const ToolsPage(),
-    const SettingsPage(),
-  ];
+  late List<BoardMeta> _boards;
 
   @override
   void initState() {
     super.initState();
+    _boards = buildBoards(Store.navConfig); // 按存储的导航配置动态生成 7 个板块
     aiAskGlobal = _askAi;
-    switchTabGlobal = (i) => setState(() => _index = i);
+    switchTabGlobal = (i) => setState(() => _index = i.clamp(0, _boards.length - 1));
+    navConfigNotifier.addListener(_rebuildBoards); // 设置页改了导航/删了板块→刷新
     _autoBackup();
+  }
+
+  // 导航配置变化时重建底部导航（保持当前位置尽量有效）
+  void _rebuildBoards() {
+    if (!mounted) return;
+    final b = buildBoards(Store.navConfig);
+    setState(() {
+      _boards = b;
+      if (_index >= _boards.length) _index = _boards.length - 1;
+    });
   }
 
   // 启动时自动云备份（设置里开了且已配 Token 才生效；静默失败不打扰）
@@ -245,12 +243,14 @@ class _MainShellState extends State<MainShell> {
   void dispose() {
     aiAskGlobal = null;
     switchTabGlobal = null;
+    navConfigNotifier.removeListener(_rebuildBoards);
     super.dispose();
   }
 
   void _askAi(String text, {String mode = '', bool send = false}) {
     aiFillGlobal?.call(text); // 把问题填进 AI 输入框
-    setState(() => _index = 2); // 切到 AI tab
+    final i = _boards.indexWhere((b) => b.id == 'ai'); // 动态顺序下找到 AI 页位置
+    setState(() => _index = i < 0 ? _index : i);
     // mode/send 由 ai_page 的 aiAskGlobal 处理；main.dart 兜底只负责跳转。
   }
 
@@ -258,7 +258,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('轻量工作台'),
+        title: const Text('个人工作台'),
         actions: [
           IconButton(
             icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
@@ -268,22 +268,14 @@ class _MainShellState extends State<MainShell> {
           ),
         ],
       ),
-      body: IndexedStack(index: _index, children: _pages),
+      body: IndexedStack(index: _index, children: _boards.map((b) => b.page).toList()),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) {
           HapticFeedback.selectionClick(); // 轻触感：切换 Tab
           setState(() => _index = i);
         },
-        destinations: const [
-          NavigationDestination(icon: Icon(LucideNavIcons.home), label: '首页'),
-          NavigationDestination(icon: Icon(LucideNavIcons.newspaper), label: '日报'),
-          NavigationDestination(icon: Icon(LucideNavIcons.sparkles), label: 'AI 助手'),
-          NavigationDestination(icon: Icon(LucideNavIcons.calendar), label: '课程表'),
-          NavigationDestination(icon: Icon(LucideNavIcons.bookOpen), label: '学习'),
-          NavigationDestination(icon: Icon(LucideNavIcons.sliders), label: '工具'),
-          NavigationDestination(icon: Icon(LucideNavIcons.settings), label: '设置'),
-        ],
+        destinations: _boards.map((b) => NavigationDestination(icon: b.icon, label: b.label)).toList(),
       ),
     );
   }

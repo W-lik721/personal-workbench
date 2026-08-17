@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <application
-        android:label="轻量工作台"
+        android:label="个人工作台"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

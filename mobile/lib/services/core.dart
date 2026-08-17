@@ -191,6 +191,41 @@ class Mood {
         at = j['at'] ?? 0;
 }
 
+// 自定义板块：一个命名板块 + 里面一列条目（链接或笔记）
+// 链接：点开跳系统浏览器（不嵌 App）；笔记：点开弹窗看文字
+class BoardItem {
+  String type; // 'link' | 'note'
+  String title;
+  String url; // 链接地址（type=link）
+  String body; // 笔记正文（type=note）
+  BoardItem({required this.type, required this.title, this.url = '', this.body = ''});
+  Map<String, dynamic> toJson() => {'type': type, 'title': title, 'url': url, 'body': body};
+  BoardItem.fromJson(Map<String, dynamic> j)
+      : type = j['type'] == 'link' ? 'link' : 'note',
+        title = j['title'] ?? '',
+        url = j['url'] ?? '',
+        body = j['body'] ?? '';
+}
+
+class CustomBoard {
+  String id; // 唯一标识（用于底部导航配置引用），形如 cb_<时间戳>
+  String name; // 板块显示名（底部导航标签文字）
+  String iconName; // 图标名（boards.dart 的 _customIcon 映射到 Material 图标）
+  List<BoardItem> items;
+  CustomBoard({required this.id, required this.name, this.iconName = 'star', this.items = const []});
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'iconName': iconName,
+        'items': items.map((e) => e.toJson()).toList(),
+      };
+  CustomBoard.fromJson(Map<String, dynamic> j)
+      : id = j['id'] ?? '',
+        name = j['name'] ?? '',
+        iconName = j['iconName'] ?? 'star',
+        items = (j['items'] as List? ?? []).map((e) => BoardItem.fromJson(e as Map<String, dynamic>)).toList();
+}
+
 // ---------- 本地存储 ----------
 class Store {
   static SharedPreferences? _p;
@@ -439,6 +474,39 @@ class Store {
     studyLastDate = ds;
   }
 
+  // ---------- 底部导航板块配置 ----------
+  // 导航固定 7 个位置，存的是板块 ID 列表（内置 7 个 + 自定义板块）。
+  // 内置 ID：home/news/ai/schedule/study/tools/settings；自定义 ID：cb_<时间戳>
+  static const List<String> _defaultNav = ['home', 'news', 'ai', 'schedule', 'study', 'tools', 'settings'];
+  static const List<String> builtInBoardIds = ['home', 'news', 'ai', 'schedule', 'study', 'tools', 'settings'];
+  static List<String> get navConfig {
+    final s = _p?.getString('wb_nav_config');
+    if (s == null) return List<String>.from(_defaultNav);
+    try {
+      final v = (jsonDecode(s) as List).map((e) => e.toString()).toList();
+      // 必须是 7 个才能用，否则回退默认（防止坏数据让导航错乱）
+      return v.length == 7 ? List<String>.from(v) : List<String>.from(_defaultNav);
+    } catch (_) {
+      return List<String>.from(_defaultNav);
+    }
+  }
+
+  static set navConfig(List<String> v) => _p?.setString('wb_nav_config', jsonEncode(v));
+
+  // 自定义板块列表（命名板块 + 条目）
+  static List<CustomBoard> customBoards() {
+    final s = _p?.getString('wb_custom_boards');
+    if (s == null) return [];
+    try {
+      return (jsonDecode(s) as List).map((j) => CustomBoard.fromJson(j as Map<String, dynamic>)).toList();
+    } catch (_) {
+      return [];
+    }
+  }
+
+  static void saveCustomBoards(List<CustomBoard> l) =>
+      _p?.setString('wb_custom_boards', jsonEncode(l.map((b) => b.toJson()).toList()));
+
   // ---------- 备份与恢复（不含 API Key：避免明文落盘泄露） ----------
   // 导出的全部内容都是 SharedPreferences 里的本地数据，可用作"换机/误删"兜底
   static Map<String, dynamic> exportAll() => {
@@ -461,6 +529,8 @@ class Store {
           'wb_ai_prov': aiProv,
           'wb_ai_memory_on': aiMemoryOn,
           'wb_ai_memory_max': aiMemoryMax,
+          'wb_nav_config': navConfig,
+          'wb_custom_boards': customBoards().map((b) => b.toJson()).toList(),
         }
       };
 
@@ -502,6 +572,13 @@ class Store {
     }
     if (data['wb_ai_memory'] != null) {
       saveAiMemory((data['wb_ai_memory'] as List).map((j) => j.toString()).toList());
+    }
+    if (data['wb_nav_config'] != null) {
+      final v = (data['wb_nav_config'] as List).map((e) => e.toString()).toList();
+      if (v.length == 7) navConfig = v;
+    }
+    if (data['wb_custom_boards'] != null) {
+      saveCustomBoards((data['wb_custom_boards'] as List).map((j) => CustomBoard.fromJson(j as Map<String, dynamic>)).toList());
     }
     if (data['wb_dark'] != null) darkMode = data['wb_dark'] as bool;
     if (data['wb_ai_prov'] != null) aiProv = data['wb_ai_prov'] as String;

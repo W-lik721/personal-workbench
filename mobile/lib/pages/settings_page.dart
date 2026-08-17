@@ -7,6 +7,9 @@ import '../main.dart';
 import '../services/core.dart';
 import '../services/sync.dart';
 import '../services/kb.dart';
+import '../boards.dart';
+import '../nav_notifier.dart';
+import 'custom_board_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -27,6 +30,8 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _kbOn = true; // 知识库问答开关
   bool _autoSync = false; // 启动时自动备份
   bool _busy = false; // 云同步/知识库操作进行中，禁用按钮防误触
+  List<String> _navCfg = Store.builtInBoardIds.toList(); // 底部导航 7 个板块 ID
+  List<CustomBoard> _boards = []; // 自定义板块列表
 
   @override
   void initState() {
@@ -57,6 +62,10 @@ class _SettingsPageState extends State<SettingsPage> {
     _memCount = Store.aiMemory().length;
     _ctxOn = Store.aiContextOn;
     _autoMemOn = Store.aiAutoMemOn;
+    // 用 buildBoards 收敛成恰好 7 个有效板块，自动剔除脏 ID，避免导航错乱
+    _navCfg = buildBoards(Store.navConfig).map((b) => b.id).toList();
+    if (_navCfg.join(',') != Store.navConfig.join(',')) Store.navConfig = _navCfg; // 存量脏数据顺手修复
+    _boards = Store.customBoards();
   }
 
   void _reload() => setState(_refresh);
@@ -156,6 +165,35 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
+      ),
+
+      // ---------- 板块管理（底部导航 7 槽位可排序/替换 + 自定义板块） ----------
+      _sectionTitle('板块管理', icon: Icons.view_agenda_rounded),
+      Card(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+            child: Text('底部导航固定 7 个位置，可拖动排序、替换成内置板块，或放你自建的板块。', style: TextStyle(fontSize: 12)),
+          ),
+          ...List.generate(7, (i) => _navSlot(i)),
+          const Divider(height: 1),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+            child: FilledButton.icon(
+              onPressed: _newBoard,
+              icon: const Icon(Icons.add),
+              label: const Text('新建自定义板块'),
+            ),
+          ),
+          if (_boards.isNotEmpty) ...[
+            const Divider(height: 1),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 4),
+              child: Text('已建板块', style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.outline)),
+            ),
+            ..._boards.map((b) => _customBoardRow(b)),
+          ],
+        ]),
       ),
 
       // ---------- 数据备份 ----------
@@ -291,7 +329,7 @@ class _SettingsPageState extends State<SettingsPage> {
       const Card(
         child: ListTile(
           leading: Icon(Icons.info_outline),
-          title: Text('轻量工作台'),
+          title: Text('个人工作台'),
           subtitle: Text('v$appVersion · 数据全部存手机本地，不上传\n日报/新闻来自公开接口，需联网'),
         ),
       ),
@@ -309,6 +347,151 @@ class _SettingsPageState extends State<SettingsPage> {
           Text(t, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
         ]),
       );
+
+  // 单个导航槽位：显示当前板块 + 下拉替换 + 上下排序（自定义板块可进入编辑）
+  Widget _navSlot(int i) {
+    final c = Theme.of(context).colorScheme;
+    final curId = _navCfg[i];
+    final meta = resolveBoard(curId);
+    final usedElsewhere = _navCfg.where((id) => id != curId).toSet();
+    // 可选项：未在其他槽位使用的内置板块 + 未在其他槽位使用的自定义板块 + 当前项本身
+    final pool = <String>[];
+    for (final id in kBuiltInIds) {
+      if (id == curId || !usedElsewhere.contains(id)) pool.add(id);
+    }
+    for (final b in _boards) {
+      if (b.id == curId || !usedElsewhere.contains(b.id)) pool.add(b.id);
+    }
+    final isCustom = !kBuiltInIds.contains(curId);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Row(children: [
+        SizedBox(width: 18, child: Text('${i + 1}', style: TextStyle(color: c.outline, fontSize: 13))),
+        IconTheme(data: const IconThemeData(size: 20), child: meta.icon),
+        const SizedBox(width: 8),
+        Expanded(
+          child: DropdownButton<String>(
+            value: curId,
+            isExpanded: true,
+            underline: const SizedBox(),
+            items: pool.map((id) {
+              final m = resolveBoard(id);
+              return DropdownMenuItem(
+                value: id,
+                child: Row(children: [
+                  IconTheme(data: const IconThemeData(size: 18), child: m.icon),
+                  const SizedBox(width: 8),
+                  Text(m.label),
+                ]),
+              );
+            }).toList(),
+            onChanged: (v) {
+              if (v == null || v == curId) return;
+              setState(() {
+                _navCfg[i] = v;
+                Store.navConfig = _navCfg;
+                navConfigNotifier.value++;
+              });
+            },
+          ),
+        ),
+        if (i > 0) IconButton(icon: const Icon(Icons.arrow_upward, size: 18), tooltip: '上移', onPressed: () => _moveSlot(i, -1)),
+        if (i < 6) IconButton(icon: const Icon(Icons.arrow_downward, size: 18), tooltip: '下移', onPressed: () => _moveSlot(i, 1)),
+        if (isCustom) IconButton(icon: const Icon(Icons.open_in_new, size: 18), tooltip: '编辑板块内容', onPressed: () => _openBoard(curId)),
+      ]),
+    );
+  }
+
+  void _moveSlot(int i, int dir) {
+    final j = i + dir;
+    if (j < 0 || j >= 7) return;
+    setState(() {
+      final t = _navCfg[i];
+      _navCfg[i] = _navCfg[j];
+      _navCfg[j] = t;
+      Store.navConfig = _navCfg;
+      navConfigNotifier.value++;
+    });
+  }
+
+  // 已建板块的一行：显示名称/条数/是否在导航，可进入编辑或删除（删除会同步修复导航）
+  Widget _customBoardRow(CustomBoard b) {
+    final c = Theme.of(context).colorScheme;
+    final idx = _navCfg.indexOf(b.id);
+    return ListTile(
+      leading: Icon(customIcon(b.iconName)),
+      title: Text(b.name.isEmpty ? '我的板块' : b.name),
+      subtitle: Text('${b.items.length} 条${idx >= 0 ? ' · 已在导航第 ${idx + 1} 位' : ' · 未在导航'}'),
+      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+        IconButton(icon: const Icon(Icons.open_in_new, size: 18), tooltip: '编辑', onPressed: () => _openBoard(b.id)),
+        IconButton(icon: Icon(Icons.delete_outline, size: 18, color: c.error), tooltip: '删除板块', onPressed: () => _deleteBoard(b.id)),
+      ]),
+    );
+  }
+
+  void _openBoard(String id) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => CustomBoardPage(boardId: id))).then((_) {
+      // 板块名/图标可能被改 → 刷新导航标签；列表也可能变
+      setState(() {
+        _navCfg = Store.navConfig;
+        _boards = Store.customBoards();
+      });
+      navConfigNotifier.value++;
+    });
+  }
+
+  // 新建自定义板块：直接打开编辑页，建好后再去任意槽位下拉里选它
+  void _newBoard() {
+    final id = 'cb_${DateTime.now().millisecondsSinceEpoch}';
+    final nb = CustomBoard(id: id, name: '我的板块', iconName: 'star', items: const []);
+    Store.saveCustomBoards([...Store.customBoards(), nb]);
+    setState(() => _boards = Store.customBoards());
+    _openBoard(id);
+  }
+
+  // 删除自定义板块：同步把导航里引用它的位置换成未使用的内置板块，保证仍是 7 个
+  Future<void> _deleteBoard(String id) async {
+    final c = Theme.of(context).colorScheme;
+    final b = _boards.where((x) => x.id == id).firstOrNull;
+    final name = b?.name.isEmpty == true ? '我的板块' : (b?.name ?? '这个板块');
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (d) => AlertDialog(
+        title: const Text('删除板块？'),
+        content: Text('会删掉「$name」及里面的内容，并从底部导航移除。此操作不可撤销。'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(d, false), child: const Text('取消')),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: c.error),
+            onPressed: () => Navigator.pop(d, true),
+            child: const Text('删除'),
+          ),
+        ],
+      ),
+    );
+    if (ok != true || !mounted) return;
+    Store.saveCustomBoards(Store.customBoards().where((x) => x.id != id).toList());
+    // 导航自愈
+    final nav = Store.navConfig;
+    final keep = nav.where((x) => x != id && boardExists(x)).toSet();
+    final healed = <String>[];
+    for (final x in nav) {
+      if (x == id || !boardExists(x)) {
+        final unused = kBuiltInIds.firstWhere((b2) => !keep.contains(b2) && !healed.contains(b2), orElse: () => 'home');
+        healed.add(unused);
+        keep.add(unused);
+      } else {
+        healed.add(x);
+      }
+    }
+    Store.navConfig = healed;
+    navConfigNotifier.value++;
+    setState(() {
+      _navCfg = Store.navConfig;
+      _boards = Store.customBoards();
+    });
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已删除板块')));
+  }
 
   // 仓库名校验：owner/repo，禁止多余斜杠、空段、尾斜杠
   bool _validRepo(String repo) => RegExp(r'^\w[\w.-]*/\w[\w.-]*$').hasMatch(repo.trim());
