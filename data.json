@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17 15:14",
+  "generatedAt": "2026-08-17 16:58",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -680,11 +680,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 236
       },
       "D": {
         "total": 544,
-        "free": 370
+        "free": 369
       }
     },
     "runtime": "3.13 / 22.22"
@@ -696,7 +696,7 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-17 15:13",
+        "updated": "08-17 16:56",
         "group": "今天"
       },
       {
@@ -1408,7 +1408,7 @@
     {
       "kind": "skill",
       "name": "workbuddy-git-safety",
-      "when": 1786950768.900728,
+      "when": 1786952842.763738,
       "scope": "本机"
     },
     {
@@ -1759,7 +1759,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 15:14",
+    "fetchedAt": "2026-08-17 16:58",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-17",
     "count": 3,
@@ -1797,7 +1797,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 15:14",
+        "fetchedAt": "2026-08-17 16:58",
         "count": 3,
         "sections": [
           {
@@ -3244,7 +3244,7 @@
   },
   "dailyNews": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 15:14",
+    "fetchedAt": "2026-08-17 16:58",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3346,7 +3346,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 15:14",
+        "fetchedAt": "2026-08-17 16:58",
         "count": 15,
         "items": [
           {
@@ -4345,12 +4345,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-17T15:14:36",
-    "status": "ok",
-    "nextRun": "2026-08-17T16:14:36",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
