@@ -1419,7 +1419,8 @@
   // 数据变化时自动重渲染（覆盖自动/手动同步），免去手动刷新浏览器
   // HEAD 优先：先取文件头对比 Last-Modified，没变就跳过正文下载，省 99% 流量
   function maybeReload() {
-    return fetchT("data.json", { method: "HEAD", cache: "no-store" })
+    // 加 cache-buster 穿透 GitHub Pages 边缘缓存，确保拿到最新 Last-Modified（否则旧缓存让误判"没变"→ 顶部同步状态卡在旧快照）
+    return fetchT("data.json?t=" + Date.now(), { method: "HEAD", cache: "no-store" })
       .then(function (r) {
         if (!r.ok) return false;
         var lm = r.headers.get("Last-Modified") || "";
