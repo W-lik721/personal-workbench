@@ -444,8 +444,8 @@ class _ThesisTabState extends State<_ThesisTab> {
             ),
           )),
       const SizedBox(height: 12),
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Text('提示：点阶段标记完成并选日期，进度条自动推进。长按右侧图标可清空日期。',
             style: TextStyle(fontSize: 12, color: c.outline, height: 1.5)),
       ),

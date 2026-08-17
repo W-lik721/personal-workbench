@@ -25,7 +25,17 @@ echo BUILD_RC=%BUILD_RC%
 
 if "%BUILD_RC%"=="0" (
   echo.
-  echo BUILD OK - APK at mobile\build\app\outputs\flutter-apk\app-release.apk
+  echo BUILD OK
+  echo   source : mobile\build\app\outputs\flutter-apk\app-release.apk
+  rem === 拷到浅层 APK\ 目录，方便查找安装 ===
+  if not exist "%~dp0APK" mkdir "%~dp0APK"
+  copy /Y "%~dp0mobile\build\app\outputs\flutter-apk\app-release.apk" "%~dp0APK\app-release.apk" >nul
+  if errorlevel 1 (
+    echo   WARNING: 拷贝到 APK\ 失败，安装包仍在上面的 source 路径
+  ) else (
+    echo   copied : APK\app-release.apk
+    echo   full   : %~dp0APK\app-release.apk
+  )
 ) else (
   echo.
   echo BUILD FAILED - check log above.
