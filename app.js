@@ -1200,18 +1200,19 @@
     } catch (e) {}
   }
   function aiClear() {
-    if (window.confirm && !window.confirm("清空当前对话？记忆库和长期记忆不受影响。")) return;
-    aiMsgs = [];
-    try { localStorage.removeItem(AI_HIST_KEY); } catch (e) {}
-    var chat = document.getElementById("aiChat");
-    if (chat) chat.innerHTML = '<div class="empty">对话已清空。输入问题，AI 会用大白话回答…</div>';
+    WB.dialog.confirm("清空当前对话？记忆库和长期记忆不受影响。", function () {
+      aiMsgs = [];
+      try { localStorage.removeItem(AI_HIST_KEY); } catch (e) {}
+      var chat = document.getElementById("aiChat");
+      if (chat) chat.innerHTML = '<div class="empty">对话已清空。输入问题，AI 会用大白话回答…</div>';
+    });
   }
   function aiSend() {
     if (aiBusy) return;
     var box = document.getElementById("aiBox");
     var key = aiKeyLoad();
     var prov = AI_PROVIDERS[aiProv];
-    if (!key) { alert(aiProv === "agnes" ? "请先在上方粘贴 Agnes API Key 并保存。" : "请先在上方粘贴智谱 API Key 并保存（bigmodel.cn 注册免费领）。"); return; }
+    if (!key) { WB.dialog.alert(aiProv === "agnes" ? "请先在上方粘贴 Agnes API Key 并保存。" : "请先在上方粘贴智谱 API Key 并保存（bigmodel.cn 注册免费领）。"); return; }
     var q = (box ? box.value : "").trim();
     if (!q) return;
     if (box) box.value = "";
@@ -1272,9 +1273,10 @@
     if (__data) renderAI(__data);
   }
   function aiMemoryClear() {
-    if (window.confirm && !window.confirm("清空全部长期记忆？此操作不可恢复，对话不受影响。")) return;
-    aiMemSave([]);
-    if (__data) renderAI(__data);
+    WB.dialog.confirm("清空全部长期记忆？此操作不可恢复，对话不受影响。", function () {
+      aiMemSave([]);
+      if (__data) renderAI(__data);
+    });
   }
   window.aiSaveKey = aiSaveKey; window.aiSend = aiSend; window.aiSetProv = aiSetProv; window.aiAsk = aiAsk; window.aiClear = aiClear; window.aiMemoryAdd = aiMemoryAdd; window.aiMemoryDel = aiMemoryDel; window.aiMemoryClear = aiMemoryClear;
 
@@ -1306,10 +1308,45 @@
     else if (id === "week") renderWeekAll(d);
     // schedule 是纯 localStorage，启动时已渲染，无需数据
   }
+  // ---------- 数据规范化（兜底缺字段，避免 data.json 部分缺失/损坏导致白屏） ----------
+  function normalizeData(d) {
+    d = d || {};
+    d.kpi = d.kpi || {};
+    d.status = d.status || {};
+    d.status.disk = d.status.disk || {};
+    d.skills = Array.isArray(d.skills) ? d.skills : [];
+    d.sessions = d.sessions || {};
+    d.sessions.recent = Array.isArray(d.sessions.recent) ? d.sessions.recent : [];
+    d.sessions.heatmap = Array.isArray(d.sessions.heatmap) ? d.sessions.heatmap : [];
+    d.aiDaily = d.aiDaily || {};
+    d.aiDaily.sections = Array.isArray(d.aiDaily.sections) ? d.aiDaily.sections : [];
+    d.aiDaily.history = Array.isArray(d.aiDaily.history) ? d.aiDaily.history : [];
+    d.dailyNews = d.dailyNews || {};
+    d.dailyNews.items = Array.isArray(d.dailyNews.items) ? d.dailyNews.items : [];
+    d.dailyNews.history = Array.isArray(d.dailyNews.history) ? d.dailyNews.history : [];
+    d.weekly = Array.isArray(d.weekly) ? d.weekly : [];
+    d.guide = Array.isArray(d.guide) ? d.guide : [];
+    d.quickActions = Array.isArray(d.quickActions) ? d.quickActions : [];
+    d.knowledge = d.knowledge || {};
+    d.knowledge.types = d.knowledge.types || {};
+    d.knowledge.files = Array.isArray(d.knowledge.files) ? d.knowledge.files : [];
+    return d;
+  }
   function render(d) {
-    __data = d;
-    renderHeaderStrip(d);
-    renderActiveTab(d);
+    try {
+      d = normalizeData(d);
+      __data = d;
+      renderHeaderStrip(d);
+      renderActiveTab(d);
+    } catch (err) {
+      console.error("render 出错", err);
+      var box = document.getElementById("col-cap");
+      if (box && !box.innerHTML) {
+        box.innerHTML = '<div class="card"><h2>⚠️ 渲染异常</h2><div class="empty">页面渲染遇到问题：' +
+          esc(String((err && err.message) || err)) +
+          '。其余内容已尽量保留，可点「立即刷新」重试。</div></div>';
+      }
+    }
   }
 
   // ---------- 同步健康度（数据新鲜度 + 失败/陈旧告警） ----------
@@ -1390,6 +1427,7 @@
         return fetchT("data.json?t=" + Date.now(), { cache: "no-store" })
           .then(function (rr) { return rr.json(); })
           .then(function (d) {
+            d = normalizeData(d);
             __data = d;
             renderHeaderStrip(d);
             renderActiveTab(d);
@@ -1801,6 +1839,36 @@
       maybeReload();
     }
   });
+
+  // 全局键盘增强：按 / 聚焦搜索（不在输入框时）；按 Esc 关闭热力图弹窗
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      var hm = document.getElementById("heat-detail");
+      if (hm && hm.style.display === "flex") { closeHeat(); return; }
+    }
+    if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || "")) {
+      var q = document.getElementById("q");
+      if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  // 离线提示：断网时顶部出现提示条，恢复后自动消失（复用已有 Service Worker 离线缓存能力）
+  var offlineEl = null;
+  function showOffline(on) {
+    if (on && !offlineEl) {
+      offlineEl = document.createElement("div");
+      offlineEl.className = "offline-bar";
+      offlineEl.textContent = "📡 当前离线 · 正在显示已缓存的数据";
+      var hd = document.querySelector(".header");
+      if (hd && hd.parentNode) hd.parentNode.insertBefore(offlineEl, hd);
+    } else if (!on && offlineEl) {
+      if (offlineEl.parentNode) offlineEl.parentNode.removeChild(offlineEl);
+      offlineEl = null;
+    }
+  }
+  window.addEventListener("offline", function () { showOffline(true); });
+  window.addEventListener("online", function () { showOffline(false); });
+  if (!navigator.onLine) showOffline(true);
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
