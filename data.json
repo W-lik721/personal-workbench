@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17 17:54",
+  "generatedAt": "2026-08-17 18:46",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -696,7 +696,7 @@
         "customTitle": "工作台",
         "display": "工作台",
         "status": "working",
-        "updated": "08-17 17:52",
+        "updated": "08-17 18:45",
         "group": "今天"
       },
       {
@@ -1759,7 +1759,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 17:54",
+    "fetchedAt": "2026-08-17 18:46",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-17",
     "count": 3,
@@ -1797,7 +1797,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 17:54",
+        "fetchedAt": "2026-08-17 18:46",
         "count": 3,
         "sections": [
           {
@@ -3244,7 +3244,7 @@
   },
   "dailyNews": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 17:54",
+    "fetchedAt": "2026-08-17 18:46",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3346,7 +3346,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 17:54",
+        "fetchedAt": "2026-08-17 18:46",
         "count": 15,
         "items": [
           {
@@ -4347,9 +4347,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-17T17:55:11",
+    "lastRun": "2026-08-17T18:46:39",
     "status": "ok",
-    "nextRun": "2026-08-17T18:55:11",
+    "nextRun": "2026-08-17T19:46:39",
     "intervalHours": 1,
     "staleHours": 2
   }
