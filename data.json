@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-17 11:59",
+  "generatedAt": "2026-08-17 15:14",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
-    "memory": 38,
+    "memory": 39,
     "knowledge": 7,
-    "sessions": 9
+    "sessions": 8
   },
   "skills": [
     {
@@ -347,7 +347,7 @@
     },
     {
       "name": "quarkclouddrive",
-      "desc": "夸克网盘官方(Quark",
+      "desc": "夸克网盘官方(Quark Drive)Skill，用于文件上传/下载（支持断点续传）、文件分享与转存、网盘文件搜索、相册整理、AI助手（文件总结与知识问答，支持万级文件）。当用户需要操作夸克网盘文件或进行身份验证时使用。",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：quarkclouddrive",
       "usage": 0,
@@ -551,7 +551,7 @@
   "guide": [
     "🗞️ 今日 AI 日报已更新（3 条）：新兴多智能体系统的模式与问题",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
@@ -561,7 +561,7 @@
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-17 09:50",
+        "next": "08-24 09:50",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       },
       {
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 369
+        "free": 370
       }
     },
     "runtime": "3.13 / 22.22"
@@ -692,20 +692,28 @@
   "sessions": {
     "recent": [
       {
-        "title": "清理并规范工作区目录结构",
-        "customTitle": "",
-        "display": "清理并规范工作区目录结构",
-        "status": "completed",
-        "updated": "08-16 23:32",
-        "group": "昨天"
-      },
-      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-16 18:54",
-        "group": "昨天"
+        "updated": "08-17 15:13",
+        "group": "今天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "08-17 15:00",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-17 13:05",
+        "group": "今天"
       },
       {
         "title": "复盘今天所有项目和改动",
@@ -716,27 +724,11 @@
         "group": "昨天"
       },
       {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-16 15:54",
-        "group": "昨天"
-      },
-      {
         "title": "询问对方为何也停止了",
         "customTitle": "填充知识库",
         "display": "填充知识库",
         "status": "completed",
         "updated": "08-16 13:34",
-        "group": "昨天"
-      },
-      {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "08-16 13:09",
         "group": "昨天"
       },
       {
@@ -1357,20 +1349,20 @@
       },
       {
         "date": "2026-08-16",
-        "count": 6,
+        "count": 2,
         "titles": [
-          "清理并规范工作区目录结构",
-          "工作台",
           "复盘",
-          "skill",
-          "填充知识库",
-          "学习"
+          "填充知识库"
         ]
       },
       {
         "date": "2026-08-17",
-        "count": 0,
-        "titles": []
+        "count": 3,
+        "titles": [
+          "工作台",
+          "skill",
+          "学习"
+        ]
       }
     ]
   },
@@ -1415,8 +1407,8 @@
   "weekly": [
     {
       "kind": "skill",
-      "name": "quarkclouddrive",
-      "when": 1786889368.9927335,
+      "name": "workbuddy-git-safety",
+      "when": 1786950768.900728,
       "scope": "本机"
     },
     {
@@ -1619,12 +1611,6 @@
     },
     {
       "kind": "skill",
-      "name": "workbuddy-git-safety",
-      "when": 1786809263.8583333,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "job-hunting-hub__skillhub",
       "when": 1786782548.1068697,
       "scope": "本机"
@@ -1736,6 +1722,12 @@
     },
     {
       "kind": "skill",
+      "name": "quarkclouddrive",
+      "when": 1786701982.0,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
       "name": "douyin",
       "when": 1786649119.913333,
       "scope": "本机"
@@ -1763,17 +1755,11 @@
       "name": "video",
       "when": 1786453574.7550118,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "cs-learning",
-      "when": 1786337349.4888604,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 11:59",
+    "fetchedAt": "2026-08-17 15:14",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-17",
     "count": 3,
@@ -1811,7 +1797,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 11:59",
+        "fetchedAt": "2026-08-17 15:14",
         "count": 3,
         "sections": [
           {
@@ -3258,7 +3244,7 @@
   },
   "dailyNews": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 11:59",
+    "fetchedAt": "2026-08-17 15:14",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3360,7 +3346,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 11:59",
+        "fetchedAt": "2026-08-17 15:14",
         "count": 15,
         "items": [
           {
@@ -4359,12 +4345,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-17T13:47:49",
-    "status": "fail",
-    "nextRun": "2026-08-17T14:47:49",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
