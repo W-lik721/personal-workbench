@@ -540,7 +540,7 @@ class _AiPageState extends State<AiPage> {
                     Text('输入你的问题，AI 会用大白话回答。\n\nAI 有记忆：聊天会自动记住，下次打开还能接着聊；AI 回答下点「记住」可存为长期记忆。',
                         textAlign: TextAlign.center, style: TextStyle(color: c.outline)),
                     const SizedBox(height: 16),
-                    const Text('试试直接问（点一下就发）：', style: TextStyle(fontSize: 13, color: Colors.grey)),
+                    Text('试试直接问（点一下就发）：', style: TextStyle(fontSize: 13, color: c.outline)),
                     const SizedBox(height: 10),
                     Wrap(
                       spacing: 8,

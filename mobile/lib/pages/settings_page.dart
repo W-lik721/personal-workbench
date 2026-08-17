@@ -23,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _repoCtrl = TextEditingController(); // 云同步仓库
   final _tokenCtrl = TextEditingController(); // GitHub Token（加密存储）
   final _kbRepoCtrl = TextEditingController(); // 知识库仓库
+  final _kbBranchCtrl = TextEditingController(); // 知识库分支
   bool _kbOn = true; // 知识库问答开关
   bool _autoSync = false; // 启动时自动备份
   bool _busy = false; // 云同步/知识库操作进行中，禁用按钮防误触
@@ -33,6 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _refresh();
     _repoCtrl.text = Store.syncRepo;
     _kbRepoCtrl.text = Store.kbRepo;
+    _kbBranchCtrl.text = Store.kbBranch;
     _kbOn = Store.kbOn;
     _autoSync = Store.autoSync;
     Store.syncToken().then((t) {
@@ -45,6 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _repoCtrl.dispose();
     _tokenCtrl.dispose();
     _kbRepoCtrl.dispose();
+    _kbBranchCtrl.dispose();
     super.dispose();
   }
 
@@ -223,14 +226,22 @@ class _SettingsPageState extends State<SettingsPage> {
       _sectionTitle('知识库', icon: Icons.menu_book_rounded),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
-              child: TextField(
-                controller: _kbRepoCtrl,
-                onChanged: (v) => Store.kbRepo = v, // 实时持久化，去掉方法内 isEmpty 兜底
-                decoration: const InputDecoration(labelText: '知识库仓库', hintText: 'W-lik721/vault-backup', border: OutlineInputBorder(), isDense: true),
-              ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
+            child: TextField(
+              controller: _kbRepoCtrl,
+              onChanged: (v) => Store.kbRepo = v, // 实时持久化，去掉方法内 isEmpty 兜底
+              decoration: const InputDecoration(labelText: '知识库仓库', hintText: 'W-lik721/vault-backup', border: OutlineInputBorder(), isDense: true),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 6, 16, 4),
+            child: TextField(
+              controller: _kbBranchCtrl,
+              onChanged: (v) => Store.kbBranch = v, // 实时持久化
+              decoration: const InputDecoration(labelText: '分支（默认 main）', hintText: 'main', border: OutlineInputBorder(), isDense: true),
+            ),
+          ),
           ListTile(
             dense: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -317,7 +328,7 @@ class _SettingsPageState extends State<SettingsPage> {
             },
             child: Row(children: [
               Expanded(child: Text('最近 $n 条')),
-              if (_memMax == n) const Icon(Icons.check, color: Colors.teal),
+              if (_memMax == n) Icon(Icons.check, color: Theme.of(context).colorScheme.primary),
             ]),
           );
         }).toList(),
@@ -342,7 +353,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     setDlg(() {});
                     _reload();
                   },
-                  child: const Text('清空全部', style: TextStyle(color: Colors.redAccent)),
+                  child: Text('清空全部', style: TextStyle(color: Theme.of(context).colorScheme.error)),
                 ),
             ]),
             content: SizedBox(
@@ -359,7 +370,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         contentPadding: EdgeInsets.zero,
                         title: Text(mem[i], maxLines: 3, overflow: TextOverflow.ellipsis),
                         trailing: IconButton(
-                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                          icon: Icon(Icons.delete_outline, color: Theme.of(context).colorScheme.error),
                           tooltip: '删除这条',
                           onPressed: () {
                             final l = Store.aiMemory()..removeAt(i);

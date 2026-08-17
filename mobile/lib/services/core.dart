@@ -356,11 +356,19 @@ class Store {
   static String get kbRepo => _p?.getString('wb_kb_repo') ?? 'W-lik721/vault-backup';
   static set kbRepo(String v) => _p?.setString('wb_kb_repo', v.trim().replaceAll(RegExp(r'^https?://[^/]+/'), '').replaceAll(RegExp(r'\.git$'), ''));
   // 知识库分支（vault-backup 默认 master）
-  static String get kbBranch => _p?.getString('wb_kb_branch') ?? 'master';
-  static set kbBranch(String v) => _p?.setString('wb_kb_branch', v.trim().isEmpty ? 'master' : v.trim());
+  static String get kbBranch => _p?.getString('wb_kb_branch') ?? 'main';
+  static set kbBranch(String v) => _p?.setString('wb_kb_branch', v.trim().isEmpty ? 'main' : v.trim());
   // AI 助手「知识库问答」开关：开=发送时自动查知识库拼上下文
   static bool get kbOn => _p?.getBool('wb_kb_on') ?? true;
   static set kbOn(bool v) => _p?.setBool('wb_kb_on', v);
+
+  // 番茄钟跨进程持久化：App 被系统回收后再开，进行中/暂停的专注还能接着
+  static int? get pomoEndMs => _p?.getInt('wb_pomo_end'); // 结束时间戳(ms)，null=未在计时
+  static set pomoEndMs(int? v) { if (v == null) _p?.remove('wb_pomo_end'); else _p?.setInt('wb_pomo_end', v); }
+  static int? get pomoLeftSec => _p?.getInt('wb_pomo_left'); // 暂停时剩余秒数
+  static set pomoLeftSec(int? v) { if (v == null) _p?.remove('wb_pomo_left'); else _p?.setInt('wb_pomo_left', v); }
+  static int get pomoTotalSec => _p?.getInt('wb_pomo_total') ?? (25 * 60);
+  static set pomoTotalSec(int v) => _p?.setInt('wb_pomo_total', v);
 
   // ---------- 日报/新闻缓存（原始 JSON + 抓取时间） ----------
   static String? get cacheReportJson => _p?.getString('wb_cache_report');

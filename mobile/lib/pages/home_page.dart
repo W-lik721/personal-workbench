@@ -45,6 +45,25 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _reload();
+    _restorePomo();
+  }
+
+  // 跨进程恢复番茄钟：App 被系统杀掉再开，进行中/暂停的计时还能接着
+  void _restorePomo() {
+    final end = Store.pomoEndMs;
+    if (end != null && end > DateTime.now().millisecondsSinceEpoch) {
+      // 进行中：恢复结束时刻并自动续跑
+      _pomoEnd = DateTime.fromMillisecondsSinceEpoch(end);
+      _pomoTotal = Store.pomoTotalSec;
+      _pomoLeft = (_pomoEnd!.difference(DateTime.now()).inSeconds).clamp(0, 99999);
+      _pomoRunning = true;
+      _pomoTimer = Timer.periodic(const Duration(milliseconds: 500), (_) => _pomoTick());
+    } else {
+      // 暂停态或已结束：恢复剩余秒数（若有），否则用默认/上次时长
+      _pomoTotal = Store.pomoTotalSec;
+      _pomoLeft = Store.pomoLeftSec ?? _pomoTotal;
+      Store.pomoEndMs = null; // 清理过期的"进行中"标记
+    }
   }
 
   @override
@@ -177,6 +196,8 @@ class _HomePageState extends State<HomePage> {
         _pomoRunning = false;
         _pomoTimer?.cancel();
         _pomoTimer = null;
+        Store.pomoEndMs = null;
+        Store.pomoLeftSec = null;
         Store.addStudyMinutes(_pomoTotal ~/ 60); // 学习打卡：累计时长 + 连续天数
         _pomoBeep();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('专注完成！去把待办勾掉吧')));
@@ -193,10 +214,15 @@ class _HomePageState extends State<HomePage> {
         _pomoRunning = false;
         _pomoTimer?.cancel();
         _pomoTimer = null;
+        Store.pomoEndMs = null;
+        Store.pomoLeftSec = _pomoLeft;
       } else {
         _pomoEnd = DateTime.now().add(Duration(seconds: _pomoLeft));
         _pomoRunning = true;
         _pomoTimer = Timer.periodic(const Duration(milliseconds: 500), (_) => _pomoTick());
+        Store.pomoEndMs = _pomoEnd!.millisecondsSinceEpoch;
+        Store.pomoTotalSec = _pomoTotal;
+        Store.pomoLeftSec = null;
       }
     });
   }
@@ -208,6 +234,8 @@ class _HomePageState extends State<HomePage> {
       _pomoEnd = null;
       _pomoLeft = _pomoTotal;
     });
+    Store.pomoEndMs = null;
+    Store.pomoLeftSec = null;
   }
 
   void _pomoBeep() {
@@ -309,6 +337,7 @@ class _HomePageState extends State<HomePage> {
                       _pomoTotal = v * 60;
                       if (!_pomoRunning) _pomoLeft = _pomoTotal;
                     });
+                    Store.pomoTotalSec = _pomoTotal;
                   },
                 ),
               ]),

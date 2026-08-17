@@ -15,6 +15,11 @@ class Kb {
         'User-Agent': 'lite-workbench',
       };
 
+  // GitHub Contents API 的路径里 '/' 是目录分隔符，必须保留；
+  // 只能逐段 encode，整段 encode 会把 '/' 变成 %2F，导致嵌套目录（05-数字分身/App记忆/...）拉不到或传错
+  static String _encPath(String p) =>
+      p.split('/').map((s) => Uri.encodeComponent(s)).join('/');
+
   // 拉取并解析 kb-index.json（失败返回空列表，err 存原因）
   static Future<List<dynamic>> index(String token, String repo, String branch) async {
     if (_idx.isNotEmpty) return _idx;
@@ -66,7 +71,7 @@ class Kb {
 
   // 拉取一篇笔记全文（截断到 maxChars 防 prompt 撑爆）
   static Future<String> doc(String token, String repo, String branch, String path, {int maxChars = 3000}) async {
-    final uri = Uri.parse('https://api.github.com/repos/$repo/contents/${Uri.encodeComponent(path)}?ref=$branch');
+    final uri = Uri.parse('https://api.github.com/repos/$repo/contents/${_encPath(path)}?ref=$branch');
     try {
       final r = await http.get(uri, headers: _h(token)).timeout(const Duration(seconds: 20));
       if (r.statusCode != 200) return '';
@@ -150,7 +155,7 @@ class Kb {
   // 上传 md 到仓库指定路径（已存在则带 sha 更新）
   static Future<void> _put(String token, String repo, String path, String msg, String md) async {
     final content = base64Encode(utf8.encode(md));
-    final uri = Uri.parse('https://api.github.com/repos/$repo/contents/${Uri.encodeComponent(path)}');
+    final uri = Uri.parse('https://api.github.com/repos/$repo/contents/${_encPath(path)}');
     // 先查 sha（已存在则更新）
     String? sha;
     final r0 = await http.get(uri, headers: _h(token)).timeout(const Duration(seconds: 20));

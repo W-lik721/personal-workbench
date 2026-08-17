@@ -306,7 +306,7 @@ class _GpaTabState extends State<_GpaTab> {
     return Stack(children: [
       ListView(padding: const EdgeInsets.all(12), children: [
         Row(children: [
-          const Text('绩点算法', style: TextStyle(fontSize: 13, color: Colors.grey)),
+          Text('绩点算法', style: TextStyle(fontSize: 13, color: c.outline)),
           const SizedBox(width: 8),
           Expanded(
             child: DropdownButton<String>(
@@ -447,7 +447,7 @@ class _ThesisTabState extends State<_ThesisTab> {
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 4),
         child: Text('提示：点阶段标记完成并选日期，进度条自动推进。长按右侧图标可清空日期。',
-            style: TextStyle(fontSize: 12, color: Colors.grey, height: 1.5)),
+            style: TextStyle(fontSize: 12, color: c.outline, height: 1.5)),
       ),
       const SizedBox(height: 20),
     ]);
