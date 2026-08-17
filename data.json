@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-17 18:46",
+  "generatedAt": "2026-08-17 19:36",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 39,
     "knowledge": 7,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（3 条）：新兴多智能体系统的模式与问题",
+    "🗞️ 今日 AI 日报已更新（2 条）：Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 369
+        "free": 368
       }
     },
     "runtime": "3.13 / 22.22"
@@ -695,8 +695,16 @@
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "working",
-        "updated": "08-17 18:45",
+        "status": "completed",
+        "updated": "08-17 19:36",
+        "group": "今天"
+      },
+      {
+        "title": "询问记忆管理方式及记忆文档",
+        "customTitle": "",
+        "display": "询问记忆管理方式及记忆文档",
+        "status": "completed",
+        "updated": "08-17 19:12",
         "group": "今天"
       },
       {
@@ -1357,9 +1365,10 @@
       },
       {
         "date": "2026-08-17",
-        "count": 3,
+        "count": 4,
         "titles": [
           "工作台",
+          "询问记忆管理方式及记忆文档",
           "skill",
           "学习"
         ]
@@ -1759,22 +1768,11 @@
   ],
   "aiDaily": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 18:46",
+    "fetchedAt": "2026-08-17 19:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-17",
-    "count": 3,
+    "count": 2,
     "sections": [
-      {
-        "label": "论文研究",
-        "items": [
-          {
-            "title": "新兴多智能体系统的模式与问题",
-            "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
-            "url": "https://aihot.virxact.com/items/cmsvptx2m061frovmjoavsi0l",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "技巧与观点",
         "items": [
@@ -1797,20 +1795,9 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 18:46",
-        "count": 3,
+        "fetchedAt": "2026-08-17 19:36",
+        "count": 2,
         "sections": [
-          {
-            "label": "论文研究",
-            "items": [
-              {
-                "title": "新兴多智能体系统的模式与问题",
-                "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
-                "url": "https://aihot.virxact.com/items/cmsvptx2m061frovmjoavsi0l",
-                "source": ""
-              }
-            ]
-          },
           {
             "label": "技巧与观点",
             "items": [
@@ -3244,7 +3231,7 @@
   },
   "dailyNews": {
     "date": "2026-08-17",
-    "fetchedAt": "2026-08-17 18:46",
+    "fetchedAt": "2026-08-17 19:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3346,7 +3333,7 @@
     "history": [
       {
         "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 18:46",
+        "fetchedAt": "2026-08-17 19:36",
         "count": 15,
         "items": [
           {
@@ -4345,12 +4332,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-17T18:46:39",
-    "status": "ok",
-    "nextRun": "2026-08-17T19:46:39",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
