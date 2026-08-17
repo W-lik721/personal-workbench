@@ -113,3 +113,11 @@ personal-workbench/
 ```
 
 > 为什么 `daily_ai.py` 是 Python 而不是 `.cmd`：cmd.exe 走 GBK 代码页，含中文的 UTF-8 批处理会直接崩溃（实测退出码 `-1073741510`，脚本第一行都跑不到）。Python 无此问题。
+
+## 更新记录
+
+### 2026-08-17 · 网页端 PWA 健壮性 & 交互打磨
+- **防白屏（健壮性）**：新增 `normalizeData()` 兜底 `data.json` 缺字段（`kpi` / `status` / `skills` / `sessions` / `aiDaily` / `dailyNews` / `weekly` / `guide` / `knowledge` 等）；`render()` 包裹 `try/catch`，数据异常时显示友好错误卡而非整页空白。
+- **弹窗统一（一致性）**：`aiClear` / `aiMemoryClear` 的原生 `confirm` 与 `aiSend` 无 Key 提示统一改为自定义 `WB.dialog`，风格一致且不被浏览器拦截。
+- **交互增强（体验）**：新增快捷键 `/` 聚焦搜索框、`Esc` 关闭热力图详情；新增离线提示条（`offline` / `online` 事件 + 初始在线状态检测，复用 Service Worker 离线缓存）。
+- **版本 bump（部署纪律）**：`index.html` `?v=62→63`、`sw.js` `CACHE workbench-v76→v77`（静态资源版本号三处一致，避免用户端吃旧缓存）。
