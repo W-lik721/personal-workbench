@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17 00:38",
+  "generatedAt": "2026-08-17 11:40",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（3 条）：Cursor 正式被 SpaceX 收购",
+    "🗞️ 今日 AI 日报已更新（3 条）：新兴多智能体系统的模式与问题",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-17 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1772,32 +1772,15 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-16",
-    "fetchedAt": "2026-08-17 00:38",
+    "date": "2026-08-17",
+    "fetchedAt": "2026-08-17 11:40",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-16",
+    "canonical": "https://aihot.virxact.com/daily/2026-08-17",
     "count": 3,
     "sections": [
       {
-        "label": "行业动态",
-        "items": [
-          {
-            "title": "Cursor 正式被 SpaceX 收购",
-            "summary": "Cursor 已被 SpaceX 正式收购，完成自 4 月启动的收购流程。借助 SpaceX 全球最大规模的 GPU 集群，Cursor 将构建更强且运行成本更低的模型，并以更低价格向客户提供更强大的模型。本周三发布的 Grok 4.6 是双方合作成果的早期体现。",
-            "url": "https://aihot.virxact.com/items/cmsuto7hk0912rouhodiiywlk",
-            "source": ""
-          }
-        ]
-      },
-      {
         "label": "论文研究",
         "items": [
-          {
-            "title": "AI生成书籍正淹没亚马逊，并拉低人类作者的单书收入",
-            "summary": "一项对14,419本自出版电子书的分析显示，AI生成书籍正以数量而非质量挤占人类作者市场，即便未检测到AI文本的书籍，单书收入也在下滑。2023年Q1至2026年Q1，书目总量增长38.3倍，而季度收入仅增长8.9倍；在八个类型中，七个类型的无AI文本书籍单书收入下降。",
-            "url": "https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors",
-            "source": "The Decoder：AI News（RSS）"
-          },
           {
             "title": "新兴多智能体系统的模式与问题",
             "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
@@ -1805,10 +1788,63 @@
             "source": ""
           }
         ]
+      },
+      {
+        "label": "技巧与观点",
+        "items": [
+          {
+            "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
+            "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
+            "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
+            "source": "Simon Willison 博客"
+          },
+          {
+            "title": "The hyping of Anthropic’s IPO",
+            "summary": "对 Anthropic IPO 静默期流传的 2028 年 1900 亿美元级营收预测，文章提示其多基于匿名信源和未披露算法，可帮助在追踪上市进展时区分已核实数据与传闻。",
+            "url": "https://garymarcus.substack.com/p/the-hyping-of-anthropics-ipo",
+            "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
+          }
+        ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-17",
+        "fetchedAt": "2026-08-17 11:40",
+        "count": 3,
+        "sections": [
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "新兴多智能体系统的模式与问题",
+                "summary": "随着AI智能体在共享代码库、市场等社会系统中承担更多任务，智能体间的真实交互将激增，其交互量可能超过人机交互。Anthropic实验显示，协调式智能体群在2700万token运行中发现266个漏洞，远超独立并行方法的21个，但两者互补性明显。智能体虽擅长工具使用，但在长期协作与协调方面仍面临挑战。",
+                "url": "https://aihot.virxact.com/items/cmsvptx2m061frovmjoavsi0l",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
+                "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
+                "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
+                "source": "Simon Willison 博客"
+              },
+              {
+                "title": "The hyping of Anthropic’s IPO",
+                "summary": "对 Anthropic IPO 静默期流传的 2028 年 1900 亿美元级营收预测，文章提示其多基于匿名信源和未披露算法，可帮助在追踪上市进展时区分已核实数据与传闻。",
+                "url": "https://garymarcus.substack.com/p/the-hyping-of-anthropics-ipo",
+                "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-17"
+      },
       {
         "date": "2026-08-16",
         "fetchedAt": "2026-08-17 00:38",
@@ -3221,107 +3257,207 @@
     ]
   },
   "dailyNews": {
-    "date": "2026-08-16",
-    "fetchedAt": "2026-08-17 00:38",
+    "date": "2026-08-17",
+    "fetchedAt": "2026-08-17 11:40",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "气象台中期预报：未来 10 天华南或成降水最多区域，江南、华南下周高温范围扩大",
+        "title": "2026 年暑期档电影总票房已突破 100 亿元，单日票房连续 37 天破亿元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "国铁集团：1 至 7 月全国铁路发送旅客 28 亿人次、同比增长 4.1%，再创历史同期新高",
+        "title": "央视财经曝光暑期游乱象：999 元低价游，一段行程更换 5 家旅行社",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "动画电影《牛来》因制作粗糙遭全网群嘲反向爆火：单日票房暴涨近 90 倍，剧组仅两人，网友边吐槽边表示想看",
+        "title": "多地社会工作部正密集发出提醒：社会工作部不能简称为 “社工部”",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "广东东莞：随地吐痰、便溺，乱扔果皮、纸屑最高罚 1000 元，9 月 1 日起施行",
+        "title": "内蒙古多地公布乡镇街道、部门 “一把手” 微信二维码，拓宽群众诉求表达渠道",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "生态环境法典施行首案宣判，商铺低频噪声扰民被判担责",
+        "title": "加油新规 11 月起正式实施：全国成品油零售加油站全面推广 “交易即开票”，报销更便捷",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "河南 “明代石狮被盗 17 年” 最新进展：追索成功，已运回县文物所",
+        "title": "甘肃一高校披露：省内普通类文史缩招近两成，生源质量不降反升",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "四川眉山一小村落有 33 对双胞胎，发生率高达 5% 左右，专家回应：遗传因素可能性最大，土壤含硒、特殊水源等无直接依据",
+        "title": "美国知名宠物冻干品牌 VE 试吃装被曝 “爬出活虫”，涉事店铺：正抽检溯源",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "2026 上半年人形机器人 TOP5：国产厂商包揽前五，智元、宇树形成双寡头",
+        "title": "WTT 欧洲大满贯：王曼昱 4 比 2 战胜队友王艺迪获得冠军",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "2026 软科世界大学学术排名出炉：中国内地 16 校入围百强，清华全球第 18 位、亚洲第一，北大第 23、浙大第 24",
+        "title": "中国队在第 38 届国际信息学奥赛斩获 3 金 1 银，并取得团体第一名的优异成绩",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中方在埃及米娜宫饭店建立的《开罗宣言》纪念碑对公众开放",
+        "title": "消息称诺基亚计划关闭中国杭州研发中心，裁员 1600 人",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日媒担忧：澳大利亚的中国电车销量猛增，日企又一阵地面临挑战",
+        "title": "泰国计划于 2027 年初开始向入境旅客收取旅游费，每人 450 泰铢",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "印尼 15 日发生 7.7 级地震，遇难人数升至 47 人，环太平洋地震带今年 7 级以上强震已超 10 次",
+        "title": "韩国首尔首次购房人数确实创下四年多来的新高，楼市热度显著回升",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "韩国西江大学 18 万条个人信息泄露，韩前总统朴槿惠或在其中",
+        "title": "莫迪再次承诺印度将在 2047 年成为发达国家，并建立完整制造业供应链",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国近 1900 万枚鸡蛋被定为 “一级召回”，疑似受沙门氏菌污染，波及全美 17 个州",
+        "title": "澳大利亚新南威尔士州将于 11 月启动枪支回购计划，每支最高获 1000 澳元补偿",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普称击败伊朗后会宣布霍尔木兹海峡为美国领土 ，伊朗回应：不会被威慑吓倒",
+        "title": "美媒称特朗普对福特级航母外观不满意，考虑大幅调整设计，使其更接近二战时期的美国航母外形",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "生活不会辜负持续向上的人，你每一份默默付出，都自有回响",
-    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U9lBKRu1GJPwdgpHutaibXQNggXfrFtvLHycv1Xw3qRZkEicbFcM9IQCEVdlXRmg8fmdiagKl8blraFG8Bl2iagh18MKbwEXBRDDkw/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "努力这件事没有观众席，你不上场，永远不知道自己什么水平",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U8vicCdrpM4NQP2ucfOc3oKN7AupXuhWC6bibmo0k8bww6owQy7STpxWlOOG8JibnvNke4EjnwYPYfSibyLoAC9o21ribcER5vYfjYU/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-17",
+        "fetchedAt": "2026-08-17 11:40",
+        "count": 15,
+        "items": [
+          {
+            "title": "2026 年暑期档电影总票房已突破 100 亿元，单日票房连续 37 天破亿元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "央视财经曝光暑期游乱象：999 元低价游，一段行程更换 5 家旅行社",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多地社会工作部正密集发出提醒：社会工作部不能简称为 “社工部”",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "内蒙古多地公布乡镇街道、部门 “一把手” 微信二维码，拓宽群众诉求表达渠道",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "加油新规 11 月起正式实施：全国成品油零售加油站全面推广 “交易即开票”，报销更便捷",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "甘肃一高校披露：省内普通类文史缩招近两成，生源质量不降反升",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国知名宠物冻干品牌 VE 试吃装被曝 “爬出活虫”，涉事店铺：正抽检溯源",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "WTT 欧洲大满贯：王曼昱 4 比 2 战胜队友王艺迪获得冠军",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中国队在第 38 届国际信息学奥赛斩获 3 金 1 银，并取得团体第一名的优异成绩",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "消息称诺基亚计划关闭中国杭州研发中心，裁员 1600 人",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "泰国计划于 2027 年初开始向入境旅客收取旅游费，每人 450 泰铢",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "韩国首尔首次购房人数确实创下四年多来的新高，楼市热度显著回升",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "莫迪再次承诺印度将在 2047 年成为发达国家，并建立完整制造业供应链",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "澳大利亚新南威尔士州将于 11 月启动枪支回购计划，每支最高获 1000 澳元补偿",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美媒称特朗普对福特级航母外观不满意，考虑大幅调整设计，使其更接近二战时期的美国航母外形",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "努力这件事没有观众席，你不上场，永远不知道自己什么水平",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-16",
         "fetchedAt": "2026-08-17 00:38",
@@ -4223,12 +4359,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-17T00:38:44",
-    "status": "ok",
-    "nextRun": "2026-08-17T01:38:44",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
