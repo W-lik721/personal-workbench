@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-18 13:42",
+  "generatedAt": "2026-08-18 15:01",
   "kpi": {
     "skills": 62,
     "automations": 2,
     "models": 5,
     "memory": 41,
     "knowledge": 7,
-    "sessions": 8
+    "sessions": 9
   },
   "skills": [
     {
@@ -692,6 +692,14 @@
   "sessions": {
     "recent": [
       {
+        "title": "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
+        "customTitle": "",
+        "display": "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
+        "status": "working",
+        "updated": "08-18 15:01",
+        "group": "今天"
+      },
+      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
@@ -1359,8 +1367,9 @@
       },
       {
         "date": "2026-08-18",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
           "学习",
           "工作台"
         ]
@@ -1406,6 +1415,12 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "douyin",
+      "when": 1787036458.2214522,
+      "scope": "本机"
+    },
     {
       "kind": "skill",
       "name": "workbuddy-git-safety",
@@ -1729,12 +1744,6 @@
     },
     {
       "kind": "skill",
-      "name": "douyin",
-      "when": 1786649119.913333,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "tts-reader",
       "when": 1786597826.9338126,
       "scope": "本机"
@@ -1760,7 +1769,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 13:42",
+    "fetchedAt": "2026-08-18 15:01",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
     "count": 19,
@@ -1904,7 +1913,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 13:42",
+        "fetchedAt": "2026-08-18 15:01",
         "count": 19,
         "sections": [
           {
@@ -3522,7 +3531,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 13:42",
+    "fetchedAt": "2026-08-18 15:01",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3624,7 +3633,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 13:42",
+        "fetchedAt": "2026-08-18 15:01",
         "count": 15,
         "items": [
           {
@@ -4723,12 +4732,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T13:42:58",
-    "status": "ok",
-    "nextRun": "2026-08-18T14:42:58",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
