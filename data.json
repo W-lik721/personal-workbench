@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 16:51",
+  "generatedAt": "2026-08-18 17:46",
   "kpi": {
     "skills": 63,
     "automations": 3,
@@ -710,7 +710,7 @@
         "customTitle": "",
         "display": "查看抖音知识库系统详解视频",
         "status": "working",
-        "updated": "08-18 16:50",
+        "updated": "08-18 17:45",
         "group": "今天"
       },
       {
@@ -1399,6 +1399,10 @@
     },
     "files": [
       {
+        "name": ".gitignore",
+        "mtime": "08-18 17:00"
+      },
+      {
         "name": "📑 索引.md",
         "mtime": "08-18 15:50"
       },
@@ -1425,14 +1429,15 @@
       {
         "name": "AGENTS.md",
         "mtime": "08-05 23:06"
-      },
-      {
-        "name": ".gitignore",
-        "mtime": "08-01 14:48"
       }
     ]
   },
   "weekly": [
+    {
+      "kind": "kb",
+      "name": ".gitignore",
+      "when": 1787043659.9108534
+    },
     {
       "kind": "kb",
       "name": "kb-index.json",
@@ -1808,7 +1813,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 16:51",
+    "fetchedAt": "2026-08-18 17:46",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
     "count": 18,
@@ -1946,7 +1951,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 16:51",
+        "fetchedAt": "2026-08-18 17:46",
         "count": 18,
         "sections": [
           {
@@ -3558,7 +3563,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 16:51",
+    "fetchedAt": "2026-08-18 17:46",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3660,7 +3665,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 16:51",
+        "fetchedAt": "2026-08-18 17:46",
         "count": 15,
         "items": [
           {
@@ -4759,12 +4764,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T16:51:56",
-    "status": "ok",
-    "nextRun": "2026-08-18T17:51:56",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
