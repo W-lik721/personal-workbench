@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-18 18:43",
+  "generatedAt": "2026-08-18 19:36",
   "kpi": {
-    "skills": 63,
+    "skills": 65,
     "automations": 3,
     "models": 5,
     "memory": 40,
@@ -206,6 +206,22 @@
       "desc": "统一求职全流程 skill（由 job-hunting-hub 与 ai-job-search",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：job-hunting-hub__skillhub",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "kb-ingest",
+      "desc": "",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：kb-ingest",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "kb-preflight",
+      "desc": "",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：kb-preflight",
       "usage": 0,
       "lastUsed": ""
     },
@@ -557,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
+    "🗞️ 今日 AI 日报已更新（19 条）：OpenAI 推出 ChatGPT for Teens：面向青少年的学习体验与更强安全保护",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -706,11 +722,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "查看抖音知识库系统详解视频",
+        "title": "整理知识库并做系统体检",
         "customTitle": "",
-        "display": "查看抖音知识库系统详解视频",
-        "status": "completed",
-        "updated": "08-18 18:21",
+        "display": "整理知识库并做系统体检",
+        "status": "working",
+        "updated": "08-18 19:36",
         "group": "今天"
       },
       {
@@ -1383,7 +1399,7 @@
         "date": "2026-08-18",
         "count": 3,
         "titles": [
-          "查看抖音知识库系统详解视频",
+          "整理知识库并做系统体检",
           "学习",
           "工作台"
         ]
@@ -1399,28 +1415,28 @@
     },
     "files": [
       {
-        "name": ".gitignore",
-        "mtime": "08-18 17:00"
-      },
-      {
         "name": "📑 索引.md",
-        "mtime": "08-18 15:50"
+        "mtime": "08-18 19:16"
       },
       {
         "name": "00-导航总览.md",
-        "mtime": "08-18 15:50"
+        "mtime": "08-18 19:16"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-18 15:50"
+        "mtime": "08-18 19:16"
       },
       {
         "name": "00-路由表.md",
-        "mtime": "08-18 15:36"
+        "mtime": "08-18 19:13"
       },
       {
         "name": "AGENTS.md",
-        "mtime": "08-18 15:36"
+        "mtime": "08-18 19:12"
+      },
+      {
+        "name": ".gitignore",
+        "mtime": "08-18 17:00"
       },
       {
         "name": "Home.md",
@@ -1435,23 +1451,45 @@
   "weekly": [
     {
       "kind": "kb",
-      "name": ".gitignore",
-      "when": 1787043659.9108534
-    },
-    {
-      "kind": "kb",
       "name": "kb-index.json",
-      "when": 1787039419.4763477
+      "when": 1787051794.5386684
     },
     {
       "kind": "kb",
       "name": "00-导航总览.md",
-      "when": 1787039418.9828362
+      "when": 1787051794.0244927
     },
     {
       "kind": "kb",
       "name": "📑 索引.md",
-      "when": 1787039418.0761151
+      "when": 1787051793.0491455
+    },
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1787051587.6502998
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1787051577.420082
+    },
+    {
+      "kind": "skill",
+      "name": "kb-preflight",
+      "when": 1787051525.5996559,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "kb-ingest",
+      "when": 1787051516.7195687,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": ".gitignore",
+      "when": 1787043659.9108534
     },
     {
       "kind": "skill",
@@ -1463,16 +1501,6 @@
       "kind": "automation",
       "name": "知识库每周体检",
       "when": 1787038643.01
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1787038613.2007613
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1787038565.85033
     },
     {
       "kind": "skill",
@@ -1813,11 +1841,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 18:43",
+    "fetchedAt": "2026-08-18 19:36",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
-    "count": 18,
+    "count": 19,
     "sections": [
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "OpenAI 推出 ChatGPT for Teens：面向青少年的学习体验与更强安全保护",
+            "summary": "OpenAI 发布 ChatGPT for Teens，为 13-17 岁用户自动启用，内置更强安全保护与家长控制。新增 Study Mode、负责任作业提醒、测验与学习可视化，以及可设定默认开启时段的 Study Hours，引导青少年分步解题而非直接给答案。OpenAI 同时宣布与 CodeAI 合作，帮助青少年理解、质疑并创造性地使用 AI。",
+            "url": "https://aihot.virxact.com/items/cmsykcnkt0yh1roz0a9h404r5",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
@@ -1951,9 +1990,20 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 18:43",
-        "count": 18,
+        "fetchedAt": "2026-08-18 19:36",
+        "count": 19,
         "sections": [
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "OpenAI 推出 ChatGPT for Teens：面向青少年的学习体验与更强安全保护",
+                "summary": "OpenAI 发布 ChatGPT for Teens，为 13-17 岁用户自动启用，内置更强安全保护与家长控制。新增 Study Mode、负责任作业提醒、测验与学习可视化，以及可设定默认开启时段的 Study Hours，引导青少年分步解题而非直接给答案。OpenAI 同时宣布与 CodeAI 合作，帮助青少年理解、质疑并创造性地使用 AI。",
+                "url": "https://aihot.virxact.com/items/cmsykcnkt0yh1roz0a9h404r5",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "行业动态",
             "items": [
@@ -3563,7 +3613,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 18:43",
+    "fetchedAt": "2026-08-18 19:36",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3665,7 +3715,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 18:43",
+        "fetchedAt": "2026-08-18 19:36",
         "count": 15,
         "items": [
           {
@@ -4764,12 +4814,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T18:43:42",
-    "status": "ok",
-    "nextRun": "2026-08-18T19:43:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
