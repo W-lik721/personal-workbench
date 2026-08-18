@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 17:46",
+  "generatedAt": "2026-08-18 18:43",
   "kpi": {
     "skills": 63,
     "automations": 3,
@@ -709,8 +709,8 @@
         "title": "查看抖音知识库系统详解视频",
         "customTitle": "",
         "display": "查看抖音知识库系统详解视频",
-        "status": "working",
-        "updated": "08-18 17:45",
+        "status": "completed",
+        "updated": "08-18 18:21",
         "group": "今天"
       },
       {
@@ -1813,7 +1813,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 17:46",
+    "fetchedAt": "2026-08-18 18:43",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
     "count": 18,
@@ -1951,7 +1951,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 17:46",
+        "fetchedAt": "2026-08-18 18:43",
         "count": 18,
         "sections": [
           {
@@ -3563,7 +3563,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 17:46",
+    "fetchedAt": "2026-08-18 18:43",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3665,7 +3665,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 17:46",
+        "fetchedAt": "2026-08-18 18:43",
         "count": 15,
         "items": [
           {
@@ -4764,12 +4764,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T17:46:37",
-    "status": "ok",
-    "nextRun": "2026-08-18T18:46:37",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
