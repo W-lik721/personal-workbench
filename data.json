@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 19:36",
+  "generatedAt": "2026-08-18 21:05",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -725,8 +725,8 @@
         "title": "整理知识库并做系统体检",
         "customTitle": "",
         "display": "整理知识库并做系统体检",
-        "status": "working",
-        "updated": "08-18 19:36",
+        "status": "completed",
+        "updated": "08-18 20:21",
         "group": "今天"
       },
       {
@@ -734,7 +734,7 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-18 13:16",
+        "updated": "08-18 20:20",
         "group": "今天"
       },
       {
@@ -1841,7 +1841,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 19:36",
+    "fetchedAt": "2026-08-18 21:05",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
     "count": 19,
@@ -1990,7 +1990,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 19:36",
+        "fetchedAt": "2026-08-18 21:05",
         "count": 19,
         "sections": [
           {
@@ -3613,7 +3613,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 19:36",
+    "fetchedAt": "2026-08-18 21:05",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3715,7 +3715,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 19:36",
+        "fetchedAt": "2026-08-18 21:05",
         "count": 15,
         "items": [
           {
@@ -4814,12 +4814,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T19:37:02",
-    "status": "ok",
-    "nextRun": "2026-08-18T20:37:02",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
