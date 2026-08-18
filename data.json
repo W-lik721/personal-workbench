@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 00:41",
+  "generatedAt": "2026-08-18 12:05",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -549,7 +549,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（7 条）：OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
+    "🗞️ 今日 AI 日报已更新（19 条）：NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -684,7 +684,7 @@
       },
       "D": {
         "total": 544,
-        "free": 355
+        "free": 373
       }
     },
     "runtime": "3.13 / 22.22"
@@ -1759,43 +1759,55 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-17",
-    "fetchedAt": "2026-08-18 00:41",
+    "date": "2026-08-18",
+    "fetchedAt": "2026-08-18 12:05",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-17",
-    "count": 7,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-18",
+    "count": 19,
     "sections": [
-      {
-        "label": "产品发布",
-        "items": [
-          {
-            "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
-            "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
-            "url": "https://aihot.virxact.com/items/cmsx7ffrz049uromm6en3if02",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "行业动态",
         "items": [
+          {
+            "title": "NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
+            "summary": "NVIDIA 宣布与 SB Energy 合作，锁定俄亥俄州 PORTS-Pike 科技园区的电力容量（LPS）以独家部署 NVIDIA 算力，OpenAI 将成为租户。",
+            "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
+            "source": "NVIDIA Blog（RSS）"
+          },
+          {
+            "title": "A 股迎来“人形机器人第一股”，宇树科技官宣 8 月 19 日科创板上市",
+            "summary": "宇树科技宣布股票将于 2026 年 8 月 19 日在科创板上市，发行价 150.80 元/股，对应市值约 609.93 亿元，预计募资约 60.99 亿元。该公司 2023 至 2025 年营收分别为 1.59 亿元、3.93 亿元和 16.99 亿元，净利润分别为-1114.51 万元、9547.47 万元和 2.78 亿元，是全球少数实现盈利的高性能通用机器人公司。",
+            "url": "https://www.ithome.com/0/990/812.htm",
+            "source": "IT之家（RSS）"
+          },
+          {
+            "title": "404 Media 追踪珍本图书流向：亚马逊批量购书扫描用于 AI 训练后销毁",
+            "summary": "404 Media 通过在一本珍本图书中放置追踪设备，首次揭露亚马逊未公开的购书行动：批量购入大量书籍，扫描用于 AI 训练数据，随后销毁。追踪显示这些书最终被送往亚马逊的一处人工智能训练中心。",
+            "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
+            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+          },
+          {
+            "title": "OpenAI 为 14 个独立项目提供资助，推动智能时代经济机遇与韧性研究",
+            "summary": "OpenAI 宣布向 14 个由独立组织主导的项目提供总计 100 万美元资金及最高 100 万美元 API 额度，以推动 AI 进步下的经济机遇与社会韧性研究。",
+            "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+          },
           {
             "title": "黄仁勋宣布与SB Energy合作，为OpenAI建AI工厂",
             "summary": "黄仁勋宣布NVIDIA与SB Energy合作，在俄亥俄州PORTS-Pike科技园区锁定LPS容量，专供NVIDIA AI工厂使用，OpenAI将作为租户。初始部署预计提供4.25吉瓦AI工厂容量，每代系统约150万块NVIDIA GPU，对应1500亿至2000亿美元收入。OpenAI已承诺至2030年部署约12吉瓦NVIDIA算力，可扩展至16吉瓦，总机会约6000亿美元。",
             "url": "https://aihot.virxact.com/items/cmsx8zij405t2rommm4gwgzjh",
             "source": ""
-          },
+          }
+        ]
+      },
+      {
+        "label": "论文研究",
+        "items": [
           {
-            "title": "NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
-            "summary": "NVIDIA 宣布与 SB Energy 合作，锁定俄亥俄州 PORTS-Pike 科技园区的电力容量（LPS）以独家部署 NVIDIA 算力，OpenAI 将成为租户。",
-            "url": "https://aihot.virxact.com/items/cmsx9jvre05y6romms3bo1umb",
-            "source": ""
-          },
-          {
-            "title": "A 股迎来\"人形机器人第一股\"，宇树科技官宣 8 月 19 日科创板上市",
-            "summary": "宇树科技宣布股票将于 2026 年 8 月 19 日在科创板上市，发行价 150.80 元/股，对应市值约 609.93 亿元，预计募资约 60.99 亿元。该公司 2023 至 2025 年营收分别为 1.59 亿元、3.93 亿元和 16.99 亿元，净利润分别为-1114.51 万元、9547.47 万元和 2.78 亿元，是全球少数实现盈利的高性能通用机器人公司。",
-            "url": "https://aihot.virxact.com/items/cmsx9jy2a05yerommy1e0jc6t",
-            "source": ""
+            "title": "PhotoScan：用智能手机照片估算胰岛素抵抗，精度接近DXA",
+            "summary": "Google Research 推出 PhotoScan，一种从智能手机 2D 照片直接估算三维身体成分的深度学习框架，可预测胰岛素抵抗，在临床研究中精度接近 DXA 扫描。",
+            "url": "https://research.google/blog/seeing-beyond-bmi-estimating-cardiometabolic-risk-with-smartphone-imagery",
+            "source": "Google Research：Blog（网页）"
           }
         ]
       },
@@ -1803,28 +1815,235 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
-            "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
-            "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
-            "source": "Simon Willison 博客"
-          },
-          {
-            "title": "The hyping of Anthropic’s IPO",
-            "summary": "对 Anthropic IPO 静默期流传的 2028 年 1900 亿美元级营收预测，文章提示其多基于匿名信源和未披露算法，可帮助在追踪上市进展时区分已核实数据与传闻。",
-            "url": "https://garymarcus.substack.com/p/the-hyping-of-anthropics-ipo",
-            "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-          },
-          {
-            "title": "OpenAI 如何用前沿智能加固自身防御：The Defender's Window",
+            "title": "OpenAI 如何用前沿智能加固自身防御：The Defender’s Window",
             "summary": "OpenAI 在 OpenAI-Hugging Face 事件后反思低估了模型真实网络攻击能力，正通过四大支柱强化自身安全：用 Codex 验证代码漏洞、用智能体优先分流安全告警、持续枚举攻击路径，并仅向可信防御者开放网络能力。文中演示 ChatGPT Work（基于 GPT-5.6 Sol）15 分钟发现个人网站 13 个问题并在一小时内完成修复。",
-            "url": "https://aihot.virxact.com/items/cmsx9696t05u7rommdoa60l4p",
-            "source": ""
+            "url": "https://openai.com/index/the-defenders-window",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+          },
+          {
+            "title": "如何禁用或避免侵入式 AI：一份覆盖 Windows、Chrome、Edge、Firefox 及主流应用的实用指南",
+            "summary": "一份面向希望减少技术环境中侵入式 AI 的用户的操作指南，涵盖 Adobe Acrobat、Android/Gemini、Apple Intelligence、Chrome、Edge、Firefox、DuckDuckGo、Google Workspace、Slack、WhatsApp 及 Windows 11/Copilot 等平台。",
+            "url": "https://www.librarian.net/notoai",
+            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+          },
+          {
+            "title": "用 Google 的 Agent Development Kit 构建零信任 AI 智能体",
+            "summary": "Google 开源了基于 ADK 和 Gemini 的零信任客服与退货智能体示例，演示如何防御提示注入等攻击。该架构在 LLM 上下文之外通过三层硬性安全机制保障：硬件支持的加密签名确保数据库写入不可抵赖、gVisor 沙箱隔离动态代码执行、确定性语义网关校验业务逻辑。系统提示词只是软约束，无法作为安全边界。",
+            "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
+            "source": "Google Developers Blog（RSS）"
+          },
+          {
+            "title": "开源模型生态的未来：Nvidia 押注“教所有人炼 token”",
+            "summary": "开源模型生态正日益依赖 Nvidia 的资助，其已投入 260 亿美元推动近乎开源的模型开发，以扩大推理芯片需求。若此路径不奏效，开源模型将转向效率、可修改性等长尾场景，与闭源模型分化。同时，基础模型训练门槛升高，开源社区兴趣正从全量训练转向对 DeepSeek V4 Flash、GLM 5.X 等模型的微调。",
+            "url": "https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens",
+            "source": "Nathan Lambert：Interconnects（RSS）"
+          },
+          {
+            "title": "同一集群利用率提升 33 个百分点：改变的是分配顺序",
+            "summary": "Hugging Face 构建了一个约束感知的 GPU 分配器，并在七个基准场景中与 FIFO 调度器对比。在相同硬件和负载下，GPU 利用率最高提升 33 个百分点，优先级加权输出在全部场景中均上升，最高达 105%。分配器将实时推理需求按曲线而非峰值处理，批量任务按优先级跨整个调度周期排序，从而回收了预留闲置容量。",
+            "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+            "source": "Hugging Face：Blog（RSS）"
+          },
+          {
+            "title": "ABC Legal 如何借助 Claude Managed Agents 让每位员工成为构建者",
+            "summary": "ABC Legal 为 1,100 名员工部署 Claude Enterprise 后，通过 Claude Managed Agents 将零散实验转变为受治理的智能体体系，截至 2026 年 7 月已上线 50 多个生产级智能体，部分覆盖的人工任务成本降低约 50%，约 310 名员工日常使用 Claude。",
+            "url": "https://claude.com/blog/how-abc-legal-turned-every-employee-into-a-builder-with-claude-managed-agents",
+            "source": "Claude：Blog（网页）"
+          },
+          {
+            "title": "当模型持续学习：测试时训练如何改变 AI 的记忆与成本",
+            "summary": "测试时训练（Test-time training）让模型在使用中持续更新权重，而非训练结束后冻结。相比标准 Transformer，其内存需求从随上下文线性增长变为恒定，斯坦福研究显示推理速度最高可提升 2.7 倍，且 In-Place TTT 无需重训即可将 4B 模型提升至 128k 上下文性能。但代价是每个用户需独立模型副本，服务成本转向算力与芯片，更适合编码助手等个性化场景。",
+            "url": "https://www.tomtunguz.com/test-time-training-impact",
+            "source": "Tomer Tunguz 博客（VC 分析）"
+          },
+          {
+            "title": "SGLang 重构 CUDA Graph 支持，Breakable CUDA Graph 成 prefill 默认方案",
+            "summary": "SGLang 重构 CUDA Graph 支持，通过 runner/backend 接口拆分使不同捕获策略可复用。其社区首创的 Breakable CUDA Graph（BCG）现为 prefill 默认方案，代码量仅为 torch.compile 方案的约四分之一（521 行对比 1,771 行），构建速度快 3.8–5.2 倍。",
+            "url": "https://www.lmsys.org/blog/2026-08-17-advanced-cuda-graph",
+            "source": "LMSYS：Blog（Chatbot Arena 团队）"
+          }
+        ]
+      },
+      {
+        "label": "产品发布/更新",
+        "items": [
+          {
+            "title": "Cursor 推出 Origin 代码托管服务，作为 GitHub 的替代方案",
+            "summary": "Cursor 今日起向所有付费计划用户开放 Origin 代码托管的早期测试版，提供仓库、拉取请求、代码浏览及 GitHub 同步功能。用户可创建以 cursor.com/codebase/ 为前缀的仓库，或将 GitHub 仓库同步至 Origin，双向同步评论与审查。Vercel、Depot 和 Buildkite 集成已可用，智能体功能即将推出。",
+            "url": "https://cursor.com/changelog/origin-code-hosting",
+            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+          },
+          {
+            "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
+            "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
+            "url": "https://openrouter.ai/blog/announcements/activity-dashboard",
+            "source": "OpenRouter：Announcements（RSS）"
+          },
+          {
+            "title": "OpenRouter 图像生成 API：代码优先的接入教程",
+            "summary": "OpenRouter 推出专用图像生成 API，通过统一请求格式和单一密钥即可调用多个提供商的图像模型。开发者向 POST /api/v1/images 发送请求，响应中的 data[0].b64_json 包含 base64 编码的图像数据，解码后即可保存为本地文件。教程演示了 Python 和 JavaScript 两种实现，并支持通过 input_references 传入参考图像生成变体。",
+            "url": "https://openrouter.ai/blog/tutorials/image-generation",
+            "source": "OpenRouter：Announcements（RSS）"
+          },
+          {
+            "title": "AgentCore Payments 中间件为 LangChain 智能体提供 API 支付能力",
+            "summary": "AgentCore Payments 中间件让 LangChain 智能体以确定性会话预算支付 API 费用。该中间件为 x402 支付签名，LangSmith 可追踪每一笔支付记录。",
+            "url": "https://www.langchain.com/blog/langchain-agentcore-payments",
+            "source": "LangChain：Blog（RSS）"
+          },
+          {
+            "title": "Claude Code v2.1.234 发布：新增项目目录名变量与 GitLab MR 徽章，修复多项安全与稳定性问题",
+            "summary": "Claude Code v2.1.234 新增可选 CLAUDE_CODE_PROJECT_DIR_NAME 环境变量、selection:clear 键绑定及 GitLab MR 徽章，并在用量限制重置后自动继续会话。",
+            "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.234",
+            "source": "Claude Code：GitHub Releases（RSS）"
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-18",
+        "fetchedAt": "2026-08-18 12:05",
+        "count": 19,
+        "sections": [
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
+                "summary": "NVIDIA 宣布与 SB Energy 合作，锁定俄亥俄州 PORTS-Pike 科技园区的电力容量（LPS）以独家部署 NVIDIA 算力，OpenAI 将成为租户。",
+                "url": "https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence",
+                "source": "NVIDIA Blog（RSS）"
+              },
+              {
+                "title": "A 股迎来“人形机器人第一股”，宇树科技官宣 8 月 19 日科创板上市",
+                "summary": "宇树科技宣布股票将于 2026 年 8 月 19 日在科创板上市，发行价 150.80 元/股，对应市值约 609.93 亿元，预计募资约 60.99 亿元。该公司 2023 至 2025 年营收分别为 1.59 亿元、3.93 亿元和 16.99 亿元，净利润分别为-1114.51 万元、9547.47 万元和 2.78 亿元，是全球少数实现盈利的高性能通用机器人公司。",
+                "url": "https://www.ithome.com/0/990/812.htm",
+                "source": "IT之家（RSS）"
+              },
+              {
+                "title": "404 Media 追踪珍本图书流向：亚马逊批量购书扫描用于 AI 训练后销毁",
+                "summary": "404 Media 通过在一本珍本图书中放置追踪设备，首次揭露亚马逊未公开的购书行动：批量购入大量书籍，扫描用于 AI 训练数据，随后销毁。追踪显示这些书最终被送往亚马逊的一处人工智能训练中心。",
+                "url": "https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility",
+                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+              },
+              {
+                "title": "OpenAI 为 14 个独立项目提供资助，推动智能时代经济机遇与韧性研究",
+                "summary": "OpenAI 宣布向 14 个由独立组织主导的项目提供总计 100 万美元资金及最高 100 万美元 API 额度，以推动 AI 进步下的经济机遇与社会韧性研究。",
+                "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              },
+              {
+                "title": "黄仁勋宣布与SB Energy合作，为OpenAI建AI工厂",
+                "summary": "黄仁勋宣布NVIDIA与SB Energy合作，在俄亥俄州PORTS-Pike科技园区锁定LPS容量，专供NVIDIA AI工厂使用，OpenAI将作为租户。初始部署预计提供4.25吉瓦AI工厂容量，每代系统约150万块NVIDIA GPU，对应1500亿至2000亿美元收入。OpenAI已承诺至2030年部署约12吉瓦NVIDIA算力，可扩展至16吉瓦，总机会约6000亿美元。",
+                "url": "https://aihot.virxact.com/items/cmsx8zij405t2rommm4gwgzjh",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "PhotoScan：用智能手机照片估算胰岛素抵抗，精度接近DXA",
+                "summary": "Google Research 推出 PhotoScan，一种从智能手机 2D 照片直接估算三维身体成分的深度学习框架，可预测胰岛素抵抗，在临床研究中精度接近 DXA 扫描。",
+                "url": "https://research.google/blog/seeing-beyond-bmi-estimating-cardiometabolic-risk-with-smartphone-imagery",
+                "source": "Google Research：Blog（网页）"
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "OpenAI 如何用前沿智能加固自身防御：The Defender’s Window",
+                "summary": "OpenAI 在 OpenAI-Hugging Face 事件后反思低估了模型真实网络攻击能力，正通过四大支柱强化自身安全：用 Codex 验证代码漏洞、用智能体优先分流安全告警、持续枚举攻击路径，并仅向可信防御者开放网络能力。文中演示 ChatGPT Work（基于 GPT-5.6 Sol）15 分钟发现个人网站 13 个问题并在一小时内完成修复。",
+                "url": "https://openai.com/index/the-defenders-window",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              },
+              {
+                "title": "如何禁用或避免侵入式 AI：一份覆盖 Windows、Chrome、Edge、Firefox 及主流应用的实用指南",
+                "summary": "一份面向希望减少技术环境中侵入式 AI 的用户的操作指南，涵盖 Adobe Acrobat、Android/Gemini、Apple Intelligence、Chrome、Edge、Firefox、DuckDuckGo、Google Workspace、Slack、WhatsApp 及 Windows 11/Copilot 等平台。",
+                "url": "https://www.librarian.net/notoai",
+                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+              },
+              {
+                "title": "用 Google 的 Agent Development Kit 构建零信任 AI 智能体",
+                "summary": "Google 开源了基于 ADK 和 Gemini 的零信任客服与退货智能体示例，演示如何防御提示注入等攻击。该架构在 LLM 上下文之外通过三层硬性安全机制保障：硬件支持的加密签名确保数据库写入不可抵赖、gVisor 沙箱隔离动态代码执行、确定性语义网关校验业务逻辑。系统提示词只是软约束，无法作为安全边界。",
+                "url": "https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit",
+                "source": "Google Developers Blog（RSS）"
+              },
+              {
+                "title": "开源模型生态的未来：Nvidia 押注“教所有人炼 token”",
+                "summary": "开源模型生态正日益依赖 Nvidia 的资助，其已投入 260 亿美元推动近乎开源的模型开发，以扩大推理芯片需求。若此路径不奏效，开源模型将转向效率、可修改性等长尾场景，与闭源模型分化。同时，基础模型训练门槛升高，开源社区兴趣正从全量训练转向对 DeepSeek V4 Flash、GLM 5.X 等模型的微调。",
+                "url": "https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens",
+                "source": "Nathan Lambert：Interconnects（RSS）"
+              },
+              {
+                "title": "同一集群利用率提升 33 个百分点：改变的是分配顺序",
+                "summary": "Hugging Face 构建了一个约束感知的 GPU 分配器，并在七个基准场景中与 FIFO 调度器对比。在相同硬件和负载下，GPU 利用率最高提升 33 个百分点，优先级加权输出在全部场景中均上升，最高达 105%。分配器将实时推理需求按曲线而非峰值处理，批量任务按优先级跨整个调度周期排序，从而回收了预留闲置容量。",
+                "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+                "source": "Hugging Face：Blog（RSS）"
+              },
+              {
+                "title": "ABC Legal 如何借助 Claude Managed Agents 让每位员工成为构建者",
+                "summary": "ABC Legal 为 1,100 名员工部署 Claude Enterprise 后，通过 Claude Managed Agents 将零散实验转变为受治理的智能体体系，截至 2026 年 7 月已上线 50 多个生产级智能体，部分覆盖的人工任务成本降低约 50%，约 310 名员工日常使用 Claude。",
+                "url": "https://claude.com/blog/how-abc-legal-turned-every-employee-into-a-builder-with-claude-managed-agents",
+                "source": "Claude：Blog（网页）"
+              },
+              {
+                "title": "当模型持续学习：测试时训练如何改变 AI 的记忆与成本",
+                "summary": "测试时训练（Test-time training）让模型在使用中持续更新权重，而非训练结束后冻结。相比标准 Transformer，其内存需求从随上下文线性增长变为恒定，斯坦福研究显示推理速度最高可提升 2.7 倍，且 In-Place TTT 无需重训即可将 4B 模型提升至 128k 上下文性能。但代价是每个用户需独立模型副本，服务成本转向算力与芯片，更适合编码助手等个性化场景。",
+                "url": "https://www.tomtunguz.com/test-time-training-impact",
+                "source": "Tomer Tunguz 博客（VC 分析）"
+              },
+              {
+                "title": "SGLang 重构 CUDA Graph 支持，Breakable CUDA Graph 成 prefill 默认方案",
+                "summary": "SGLang 重构 CUDA Graph 支持，通过 runner/backend 接口拆分使不同捕获策略可复用。其社区首创的 Breakable CUDA Graph（BCG）现为 prefill 默认方案，代码量仅为 torch.compile 方案的约四分之一（521 行对比 1,771 行），构建速度快 3.8–5.2 倍。",
+                "url": "https://www.lmsys.org/blog/2026-08-17-advanced-cuda-graph",
+                "source": "LMSYS：Blog（Chatbot Arena 团队）"
+              }
+            ]
+          },
+          {
+            "label": "产品发布/更新",
+            "items": [
+              {
+                "title": "Cursor 推出 Origin 代码托管服务，作为 GitHub 的替代方案",
+                "summary": "Cursor 今日起向所有付费计划用户开放 Origin 代码托管的早期测试版，提供仓库、拉取请求、代码浏览及 GitHub 同步功能。用户可创建以 cursor.com/codebase/ 为前缀的仓库，或将 GitHub 仓库同步至 Origin，双向同步评论与审查。Vercel、Depot 和 Buildkite 集成已可用，智能体功能即将推出。",
+                "url": "https://cursor.com/changelog/origin-code-hosting",
+                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+              },
+              {
+                "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
+                "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
+                "url": "https://openrouter.ai/blog/announcements/activity-dashboard",
+                "source": "OpenRouter：Announcements（RSS）"
+              },
+              {
+                "title": "OpenRouter 图像生成 API：代码优先的接入教程",
+                "summary": "OpenRouter 推出专用图像生成 API，通过统一请求格式和单一密钥即可调用多个提供商的图像模型。开发者向 POST /api/v1/images 发送请求，响应中的 data[0].b64_json 包含 base64 编码的图像数据，解码后即可保存为本地文件。教程演示了 Python 和 JavaScript 两种实现，并支持通过 input_references 传入参考图像生成变体。",
+                "url": "https://openrouter.ai/blog/tutorials/image-generation",
+                "source": "OpenRouter：Announcements（RSS）"
+              },
+              {
+                "title": "AgentCore Payments 中间件为 LangChain 智能体提供 API 支付能力",
+                "summary": "AgentCore Payments 中间件让 LangChain 智能体以确定性会话预算支付 API 费用。该中间件为 x402 支付签名，LangSmith 可追踪每一笔支付记录。",
+                "url": "https://www.langchain.com/blog/langchain-agentcore-payments",
+                "source": "LangChain：Blog（RSS）"
+              },
+              {
+                "title": "Claude Code v2.1.234 发布：新增项目目录名变量与 GitLab MR 徽章，修复多项安全与稳定性问题",
+                "summary": "Claude Code v2.1.234 新增可选 CLAUDE_CODE_PROJECT_DIR_NAME 环境变量、selection:clear 键绑定及 GitLab MR 徽章，并在用量限制重置后自动继续会话。",
+                "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.234",
+                "source": "Claude Code：GitHub Releases（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-18"
+      },
       {
         "date": "2026-08-17",
         "fetchedAt": "2026-08-18 00:41",
@@ -3302,107 +3521,207 @@
     ]
   },
   "dailyNews": {
-    "date": "2026-08-17",
-    "fetchedAt": "2026-08-18 00:41",
+    "date": "2026-08-18",
+    "fetchedAt": "2026-08-18 12:05",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "2026 年暑期档电影总票房已突破 100 亿元，单日票房连续 37 天破亿元",
+        "title": "7月70城房价出炉：17城新房价格环比上涨，杭州涨0.3%领跑；一线城市二手房连续5个月上涨，广州涨幅居首",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "央视财经曝光暑期游乱象：999 元低价游，一段行程更换 5 家旅行社",
+        "title": "统计局：1-7月份社会消费品零售总额同比增长1.2%，市场销售规模扩大",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "多地社会工作部正密集发出提醒：社会工作部不能简称为 “社工部”",
+        "title": "多地婚姻登记机关宣布：七夕节不间断办公、延时服务；多地景区公告：新婚夫妻七夕节凭结婚证免门票",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "内蒙古多地公布乡镇街道、部门 “一把手” 微信二维码，拓宽群众诉求表达渠道",
+        "title": "北京拟出新规严管“地沟油”：废弃油脂定向收运，鼓励资源化利用",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "加油新规 11 月起正式实施：全国成品油零售加油站全面推广 “交易即开票”，报销更便捷",
+        "title": "国家医保局：首次遴选158个基层病种“同病同付”，涉高血压、糖尿病等",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "甘肃一高校披露：省内普通类文史缩招近两成，生源质量不降反升",
+        "title": "多地商场外墙广告“C位”让给科学家，网友称他们值得我们抬头仰望",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国知名宠物冻干品牌 VE 试吃装被曝 “爬出活虫”，涉事店铺：正抽检溯源",
+        "title": "BBA集体大降价：宝马5系跌至28万，奥迪A6L最大降幅超10万，部分高端车型优惠突破20万元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "WTT 欧洲大满贯：王曼昱 4 比 2 战胜队友王艺迪获得冠军",
+        "title": "iPhone 17系列或月底前全球涨价，单台最高多花近千元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中国队在第 38 届国际信息学奥赛斩获 3 金 1 银，并取得团体第一名的优异成绩",
+        "title": "宇树科技发布“超人”机器人：原地跳高2米，极限速度12.66m/s，均超越人类纪录",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "消息称诺基亚计划关闭中国杭州研发中心，裁员 1600 人",
+        "title": "豆包“工作任务”升级，新增手机远程控制电脑功能，实现跨设备任务下发、执行与结果实时回传",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "泰国计划于 2027 年初开始向入境旅客收取旅游费，每人 450 泰铢",
+        "title": "顶级AI安全专家警告：到2040年AI发生“失控式接管”的概率高达35%至40%",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "韩国首尔首次购房人数确实创下四年多来的新高，楼市热度显著回升",
+        "title": "比利时史上最大野火逼近德国边境，多国消防参与扑救",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "莫迪再次承诺印度将在 2047 年成为发达国家，并建立完整制造业供应链",
+        "title": "日本千叶暴雨致“放射性物质废液泄漏到外部”，当地称经检测不会对周边环境造成影响",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "澳大利亚新南威尔士州将于 11 月启动枪支回购计划，每支最高获 1000 澳元补偿",
+        "title": "美国称大幅缩减与韩国联合军演规模，韩国防部发声：军演正按计划进行",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美媒称特朗普对福特级航母外观不满意，考虑大幅调整设计，使其更接近二战时期的美国航母外形",
+        "title": "美驱逐舰曾因工程故障在海上失去电力达4天，舰上厕所、空调无法使用，饮用水供应也受影响",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "努力这件事没有观众席，你不上场，永远不知道自己什么水平",
-    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0U8vicCdrpM4NQP2ucfOc3oKN7AupXuhWC6bibmo0k8bww6owQy7STpxWlOOG8JibnvNke4EjnwYPYfSibyLoAC9o21ribcER5vYfjYU/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "改变从来不是一瞬间发生，日复一日微小的调整，终将重塑生活",
+    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0Uicc1iaBvSm35GKBq8V9XnQaA1WBFaUNgBUqGUFE91SicpCHJHic2N1yYhxPDHbxneGUVqzU49whlkzf4jRXngakqcbBYjPq1AZTu4/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-18",
+        "fetchedAt": "2026-08-18 12:05",
+        "count": 15,
+        "items": [
+          {
+            "title": "7月70城房价出炉：17城新房价格环比上涨，杭州涨0.3%领跑；一线城市二手房连续5个月上涨，广州涨幅居首",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "统计局：1-7月份社会消费品零售总额同比增长1.2%，市场销售规模扩大",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多地婚姻登记机关宣布：七夕节不间断办公、延时服务；多地景区公告：新婚夫妻七夕节凭结婚证免门票",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "北京拟出新规严管“地沟油”：废弃油脂定向收运，鼓励资源化利用",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国家医保局：首次遴选158个基层病种“同病同付”，涉高血压、糖尿病等",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多地商场外墙广告“C位”让给科学家，网友称他们值得我们抬头仰望",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "BBA集体大降价：宝马5系跌至28万，奥迪A6L最大降幅超10万，部分高端车型优惠突破20万元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "iPhone 17系列或月底前全球涨价，单台最高多花近千元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "宇树科技发布“超人”机器人：原地跳高2米，极限速度12.66m/s，均超越人类纪录",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "豆包“工作任务”升级，新增手机远程控制电脑功能，实现跨设备任务下发、执行与结果实时回传",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "顶级AI安全专家警告：到2040年AI发生“失控式接管”的概率高达35%至40%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "比利时史上最大野火逼近德国边境，多国消防参与扑救",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "日本千叶暴雨致“放射性物质废液泄漏到外部”，当地称经检测不会对周边环境造成影响",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国称大幅缩减与韩国联合军演规模，韩国防部发声：军演正按计划进行",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美驱逐舰曾因工程故障在海上失去电力达4天，舰上厕所、空调无法使用，饮用水供应也受影响",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "改变从来不是一瞬间发生，日复一日微小的调整，终将重塑生活",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-17",
         "fetchedAt": "2026-08-18 00:41",
@@ -4404,12 +4723,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T00:42:14",
-    "status": "ok",
-    "nextRun": "2026-08-18T01:42:14",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
