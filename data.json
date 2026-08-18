@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18 12:11",
+  "generatedAt": "2026-08-18 12:13",
   "kpi": {
     "skills": 62,
     "automations": 2,
@@ -692,6 +692,14 @@
   "sessions": {
     "recent": [
       {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-18 12:12",
+        "group": "今天"
+      },
+      {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
@@ -705,14 +713,6 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-17 15:00",
-        "group": "昨天"
-      },
-      {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "08-17 13:05",
         "group": "昨天"
       },
       {
@@ -1352,16 +1352,16 @@
       },
       {
         "date": "2026-08-17",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "skill",
-          "学习"
+          "skill"
         ]
       },
       {
         "date": "2026-08-18",
-        "count": 1,
+        "count": 2,
         "titles": [
+          "学习",
           "工作台"
         ]
       }
@@ -1760,7 +1760,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 12:11",
+    "fetchedAt": "2026-08-18 12:13",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
     "count": 19,
@@ -1904,7 +1904,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 12:11",
+        "fetchedAt": "2026-08-18 12:13",
         "count": 19,
         "sections": [
           {
@@ -3522,7 +3522,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 12:11",
+    "fetchedAt": "2026-08-18 12:13",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3624,7 +3624,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 12:11",
+        "fetchedAt": "2026-08-18 12:13",
         "count": 15,
         "items": [
           {
@@ -4723,12 +4723,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T12:11:58",
-    "status": "ok",
-    "nextRun": "2026-08-18T13:11:58",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
