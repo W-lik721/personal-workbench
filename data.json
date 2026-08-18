@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-18 15:01",
+  "generatedAt": "2026-08-18 15:51",
   "kpi": {
-    "skills": 62,
-    "automations": 2,
+    "skills": 63,
+    "automations": 3,
     "models": 5,
     "memory": 41,
-    "knowledge": 7,
+    "knowledge": 9,
     "sessions": 9
   },
   "skills": [
@@ -394,6 +394,14 @@
       "lastUsed": ""
     },
     {
+      "name": "vault-index-refresh",
+      "desc": "刷新 WorkBuddy vault 的知识索引与机器可读 kb-index.json。当知识库增删文件、完成一次\"入库\"、或需要重建导航/索引时使用。一键自动生成各区域 📑 索引.md、00-导航总览.md、🛠 代码项目索引.md，重生成 kb-index.json，并自动校验一致性（文件数/漏索引/缺索引页），输出 ✅/⚠️ 摘要。支持 --check 只读巡检。触发词：刷新索引、重建导航、入库后更新、索引不同步、索引巡检、体检索引、重建知识库索引。",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：vault-index-refresh",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
       "name": "video",
       "desc": "|",
       "category": "通用能力",
@@ -549,7 +557,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（19 条）：NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
+    "🗞️ 今日 AI 日报已更新（18 条）：NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -569,6 +577,12 @@
         "status": "ACTIVE",
         "next": "02-06 09:00",
         "cron": ""
+      },
+      {
+        "name": "知识库每周体检",
+        "status": "ACTIVE",
+        "next": "08-24 09:04",
+        "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=9"
       }
     ],
     "models": [
@@ -692,11 +706,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
+        "title": "查看抖音知识库系统详解视频",
         "customTitle": "",
-        "display": "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
-        "status": "working",
-        "updated": "08-18 15:01",
+        "display": "查看抖音知识库系统详解视频",
+        "status": "completed",
+        "updated": "08-18 15:50",
         "group": "今天"
       },
       {
@@ -1369,7 +1383,7 @@
         "date": "2026-08-18",
         "count": 3,
         "titles": [
-          "1.00 复制打开抖音，看看【小屿AI实战笔记的作品】基于卡帕西理论所搭建的知识库系统详解 附个人学...",
+          "查看抖音知识库系统详解视频",
           "学习",
           "工作台"
         ]
@@ -1377,24 +1391,32 @@
     ]
   },
   "knowledge": {
-    "total": 7,
+    "total": 9,
     "types": {
-      ".md": 5,
+      ".md": 7,
       "(无扩展名)": 1,
       ".json": 1
     },
     "files": [
       {
-        "name": "AGENTS.md",
-        "mtime": "08-14 22:08"
+        "name": "📑 索引.md",
+        "mtime": "08-18 15:50"
+      },
+      {
+        "name": "00-导航总览.md",
+        "mtime": "08-18 15:50"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-14 22:08"
+        "mtime": "08-18 15:50"
       },
       {
         "name": "00-路由表.md",
-        "mtime": "08-14 22:07"
+        "mtime": "08-18 15:36"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-18 15:36"
       },
       {
         "name": "Home.md",
@@ -1407,14 +1429,46 @@
       {
         "name": ".gitignore",
         "mtime": "08-01 14:48"
-      },
-      {
-        "name": "分类指南.md",
-        "mtime": "08-01 14:09"
       }
     ]
   },
   "weekly": [
+    {
+      "kind": "kb",
+      "name": "kb-index.json",
+      "when": 1787039419.4763477
+    },
+    {
+      "kind": "kb",
+      "name": "00-导航总览.md",
+      "when": 1787039418.9828362
+    },
+    {
+      "kind": "kb",
+      "name": "📑 索引.md",
+      "when": 1787039418.0761151
+    },
+    {
+      "kind": "skill",
+      "name": "vault-index-refresh",
+      "when": 1787039405.529322,
+      "scope": "本机"
+    },
+    {
+      "kind": "automation",
+      "name": "知识库每周体检",
+      "when": 1787038643.01
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1787038613.2007613
+    },
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1787038565.85033
+    },
     {
       "kind": "skill",
       "name": "douyin",
@@ -1722,21 +1776,6 @@
       "scope": "本机"
     },
     {
-      "kind": "kb",
-      "name": "kb-index.json",
-      "when": 1786716493.6951752
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1786716487.9798143
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1786716478.2579143
-    },
-    {
       "kind": "skill",
       "name": "quarkclouddrive",
       "when": 1786701982.0,
@@ -1769,10 +1808,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 15:01",
+    "fetchedAt": "2026-08-18 15:51",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-18",
-    "count": 19,
+    "count": 18,
     "sections": [
       {
         "label": "行业动态",
@@ -1800,12 +1839,6 @@
             "summary": "OpenAI 宣布向 14 个由独立组织主导的项目提供总计 100 万美元资金及最高 100 万美元 API 额度，以推动 AI 进步下的经济机遇与社会韧性研究。",
             "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
             "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-          },
-          {
-            "title": "黄仁勋宣布与SB Energy合作，为OpenAI建AI工厂",
-            "summary": "黄仁勋宣布NVIDIA与SB Energy合作，在俄亥俄州PORTS-Pike科技园区锁定LPS容量，专供NVIDIA AI工厂使用，OpenAI将作为租户。初始部署预计提供4.25吉瓦AI工厂容量，每代系统约150万块NVIDIA GPU，对应1500亿至2000亿美元收入。OpenAI已承诺至2030年部署约12吉瓦NVIDIA算力，可扩展至16吉瓦，总机会约6000亿美元。",
-            "url": "https://aihot.virxact.com/items/cmsx8zij405t2rommm4gwgzjh",
-            "source": ""
           }
         ]
       },
@@ -1913,8 +1946,8 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 15:01",
-        "count": 19,
+        "fetchedAt": "2026-08-18 15:51",
+        "count": 18,
         "sections": [
           {
             "label": "行业动态",
@@ -1942,12 +1975,6 @@
                 "summary": "OpenAI 宣布向 14 个由独立组织主导的项目提供总计 100 万美元资金及最高 100 万美元 API 额度，以推动 AI 进步下的经济机遇与社会韧性研究。",
                 "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
                 "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              },
-              {
-                "title": "黄仁勋宣布与SB Energy合作，为OpenAI建AI工厂",
-                "summary": "黄仁勋宣布NVIDIA与SB Energy合作，在俄亥俄州PORTS-Pike科技园区锁定LPS容量，专供NVIDIA AI工厂使用，OpenAI将作为租户。初始部署预计提供4.25吉瓦AI工厂容量，每代系统约150万块NVIDIA GPU，对应1500亿至2000亿美元收入。OpenAI已承诺至2030年部署约12吉瓦NVIDIA算力，可扩展至16吉瓦，总机会约6000亿美元。",
-                "url": "https://aihot.virxact.com/items/cmsx8zij405t2rommm4gwgzjh",
-                "source": ""
               }
             ]
           },
@@ -3531,7 +3558,7 @@
   },
   "dailyNews": {
     "date": "2026-08-18",
-    "fetchedAt": "2026-08-18 15:01",
+    "fetchedAt": "2026-08-18 15:51",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3633,7 +3660,7 @@
     "history": [
       {
         "date": "2026-08-18",
-        "fetchedAt": "2026-08-18 15:01",
+        "fetchedAt": "2026-08-18 15:51",
         "count": 15,
         "items": [
           {
@@ -4732,12 +4759,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-18T15:01:53",
-    "status": "ok",
-    "nextRun": "2026-08-18T16:01:53",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
