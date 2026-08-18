@@ -83,26 +83,31 @@ def api_request(method, url, data=None, token=None, retries=3):
         raise last
 
 
-def push_data(token):
-    """把本地 data.json 推送到仓库（Contents API）。成功返回 True。"""
-    url = "%s/repos/%s/contents/data.json" % (API, REPO)
+def push_file(token, relpath, msg):
+    """把本地 relpath 文件推送到仓库（Contents API）。成功返回 True。
+
+    relpath 为相对仓库根的路径，如 "data.json"、"ai_daily.json"。
+    统一推送通道：daily_ai.py 也 import 本函数，与 sync.py 共用
+    GitHub Contents API（唯一无交互依赖、实测长期成功的通道）。
+    """
+    url = "%s/repos/%s/contents/%s" % (API, REPO, relpath)
     try:
         cur = api_request("GET", url, token=token)
         sha = cur.get("sha") if isinstance(cur, dict) else None
     except Exception as e:
-        diag("GET 当前 sha 失败: %s" % e)
+        diag("GET %s sha 失败: %s" % (relpath, e))
         sha = None
-    with open(os.path.join(HERE, "data.json"), "rb") as f:
+    with open(os.path.join(HERE, relpath), "rb") as f:
         content = base64.b64encode(f.read()).decode("ascii")
     body = {
-        "message": "chore: auto-sync data %s" % datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "message": msg,
         "content": content,
     }
     if sha:
         body["sha"] = sha
     try:
         api_request("PUT", url, data=body, token=token)
-        diag("PUT data.json 成功 (sha=%s)" % (sha or "new"))
+        diag("PUT %s 成功 (sha=%s)" % (relpath, sha or "new"))
         return True
     except RuntimeError as e:
         if "409" in str(e):  # 并发更新，取最新 sha 重试一次
@@ -112,11 +117,11 @@ def push_data(token):
                 if sha:
                     body["sha"] = sha
                     api_request("PUT", url, data=body, token=token)
-                    diag("PUT data.json 重试成功")
+                    diag("PUT %s 重试成功" % relpath)
                     return True
             except Exception as e2:
-                diag("PUT 重试失败: %s" % e2)
-        diag("PUT data.json 最终失败")
+                diag("PUT %s 重试失败: %s" % (relpath, e2))
+        diag("PUT %s 最终失败" % relpath)
         return False
 
 
@@ -137,7 +142,8 @@ def main():
     diag("[export_data.py] rc=%d" % rc)
     export_ok = (rc == 0)
 
-    push1_ok = push_data(token)
+    push1_ok = push_file(token, "data.json",
+                         "chore: auto-sync data %s" % datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
     diag("push1_ok=%s" % push1_ok)
 
     # 把同步健康度（成功/失败/陈旧告警）写回 data.json
@@ -148,7 +154,7 @@ def main():
         lines.append("[sync status 错误] %s" % e)
 
     # 再推一次，让线上的 sync.status 也最新（刷新按钮据此判断成功/失败）
-    push2_ok = push_data(token)
+    push2_ok = push_file(token, "data.json", "chore: update sync health status")
     diag("push2_ok=%s" % push2_ok)
 
     ok = export_ok and push1_ok and push2_ok
