@@ -5,6 +5,7 @@ import 'package:flutter/services.dart' show SystemSound, SystemSoundType, Haptic
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 import '../services/notifier.dart';
+import 'search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -239,6 +240,29 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
+          // ---- 全局搜索入口（待办/速记/收藏/课程/账号 等跨模块） ----
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Material(
+              color: c.surfaceContainerHighest.withValues(alpha: 0.5),
+              borderRadius: BorderRadius.circular(24),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SearchPage())),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  child: Row(children: [
+                    Icon(Icons.search, size: 18, color: c.outline),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text('搜索待办 / 速记 / 收藏 / 课程 / 账号…',
+                          style: TextStyle(fontSize: 13, color: c.outline), maxLines: 1, overflow: TextOverflow.ellipsis),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
+          ),
           // ---- 待办 + 番茄钟 ----
           _card(
             title: '待办清单 · 可勾选',

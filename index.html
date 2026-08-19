@@ -112,9 +112,8 @@
   <nav class="tabs">
     <button class="tab active" data-tab="cap" onclick="switchTab('cap')">🚀 能力速达</button>
     <button class="tab" data-tab="ai" onclick="switchTab('ai')">🤖 AI 助手</button>
-    <button class="tab" data-tab="news" onclick="switchTab('news')">🗞️ AI 日报<span class="tab-dot" id="newsDot"></span></button>
-    <button class="tab" data-tab="dnews" onclick="switchTab('dnews')">📰 每日新闻<span class="tab-dot" id="dnewsDot"></span></button>
-    <button class="tab" data-tab="ov" onclick="switchTab('ov')">📊 总览状态</button>
+    <button class="tab" data-tab="info" onclick="switchTab('info')">🗞️ 资讯<span class="tab-dot" id="infoDot"></span></button>
+    <button class="tab" data-tab="ov" onclick="switchTab('ov')">📊 系统状态</button>
     <button class="tab" data-tab="stats" onclick="switchTab('stats')">📈 Skill 统计</button>
     <button class="tab" data-tab="sess" onclick="switchTab('sess')">💬 会话档案</button>
     <button class="tab" data-tab="week" onclick="switchTab('week')">📅 本周动态</button>
@@ -126,11 +125,8 @@
   <section class="tabpane" id="pane-ai">
     <div class="wrap"><div class="col" id="col-ai"></div></div>
   </section>
-  <section class="tabpane" id="pane-news">
-    <div class="wrap"><div class="col" id="col-news"></div></div>
-  </section>
-  <section class="tabpane" id="pane-dnews">
-    <div class="wrap"><div class="col" id="col-dnews"></div></div>
+  <section class="tabpane" id="pane-info">
+    <div class="wrap"><div class="col" id="col-info"><div id="newsBlock"></div><div id="dnewsBlock"></div></div></div>
   </section>
   <section class="tabpane" id="pane-ov">
     <div class="wrap"><div class="col" id="col-ov"></div></div>
@@ -156,6 +152,6 @@
   </div>
 </div>
 <script src="schedule.js?v=2"></script>
-<script src="app.js?v=65"></script>
+<script src="app.js?v=66"></script>
 </body>
 </html>

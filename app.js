@@ -687,7 +687,7 @@
   function renderNews(d) {
     NEWS_DATA = d;
     var a = d.aiDaily || {};
-    var box = document.getElementById("col-news");
+    var box = document.getElementById("newsBlock");
     if (!box) return;
     var dot = document.getElementById("newsDot");
     if (dot) dot.style.display = ((a.count || 0) > 0) ? "inline-block" : "none";
@@ -710,6 +710,16 @@
   function newsDateChanged() {
     var sel = document.getElementById("newsSel");
     if (sel) renderNewsBody(sel.value);
+  }
+  // 资讯 Tab（AI 日报 + 每日新闻合并渲染，红点任一有更新即亮）
+  function renderInfo(d) {
+    renderNews(d);
+    renderDailyNews(d);
+    var dot = document.getElementById("infoDot");
+    if (dot) {
+      var n = ((d.aiDaily || {}).count || 0) + ((d.dailyNews || {}).count || 0);
+      dot.style.display = n > 0 ? "inline-block" : "none";
+    }
   }
   function renderNewsBody(date) {
     var box = document.getElementById("newsBody");
@@ -751,7 +761,7 @@
   function renderDailyNews(d) {
     DNEWS_DATA = d;
     var a = d.dailyNews || {};
-    var box = document.getElementById("col-dnews");
+    var box = document.getElementById("dnewsBlock");
     if (!box) return;
     var dot = document.getElementById("dnewsDot");
     if (dot) dot.style.display = ((a.count || 0) > 0) ? "inline-block" : "none";
@@ -1320,8 +1330,7 @@
     var id = a ? a.getAttribute("data-tab") : "cap";
     if (id === "cap") renderCap(d);
     else if (id === "ai") renderAI(d);
-    else if (id === "news") renderNews(d);
-    else if (id === "dnews") renderDailyNews(d);
+    else if (id === "info") renderInfo(d);
     else if (id === "ov") renderOv(d);
     else if (id === "stats") renderStats(d);
     else if (id === "sess") renderSessArchive(d);
@@ -1847,6 +1856,7 @@
   // 恢复上次停留的标签页
   var lastTab = "";
   try { lastTab = localStorage.getItem("wb_tab") || ""; } catch (e) {}
+  if (lastTab === "news" || lastTab === "dnews") lastTab = "info"; // 资讯 Tab 合并兼容
   if (lastTab && lastTab !== "cap") switchTab(lastTab);
 
   // 后台自动刷新：每 30s 检测数据是否更新，有变化就自动重渲染（覆盖每小时自动同步）
