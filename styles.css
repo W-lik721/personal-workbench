@@ -171,7 +171,7 @@ body.light ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18)}
 .ic-svg{width:14px;height:14px;display:inline-block;vertical-align:-2px;flex:none}
 .card h2 .ic .ic-svg,.side-card h4 .ic .ic-svg{width:13px;height:13px}
 .tab .ic-svg{width:13px;height:13px;vertical-align:-2px;margin-right:5px}
-.refresh-btn .ic-svg,.btn,.btn-sm,.mini-btn .ic-svg{width:13px;height:13px;vertical-align:-2px}
+.refresh-btn .ic-svg,.btn .ic-svg,.btn-sm .ic-svg,.mini-btn .ic-svg{width:13px;height:13px;vertical-align:-2px}
 .qb-title .ic-svg,.qb-item .ic-svg{width:15px;height:15px;vertical-align:-3px}
 .kpi .ic-svg{width:17px;height:17px}
 .si .ic-svg{width:15px;height:15px;vertical-align:-3px}
