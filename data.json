@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19 21:55",
+  "generatedAt": "2026-08-19 22:50",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（17 条）：GLM-5.3上线：AA智能指数60分并列开源第一，成本更低",
+    "🗞️ 今日 AI 日报已更新（18 条）：Liquid AI 发布 LFM2.5 系列 QAD Q4_0 量化检查点，恢复 97% 精度损失",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1824,11 +1824,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 21:55",
+    "fetchedAt": "2026-08-19 22:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
-    "count": 17,
+    "count": 18,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "Liquid AI 发布 LFM2.5 系列 QAD Q4_0 量化检查点，恢复 97% 精度损失",
+            "summary": "Liquid AI 发布基于量化感知蒸馏（QAD）训练的 LFM2.5-230M、350M、1.2B-Instruct 和 2.6B 四款 Q4_0 GGUF 检查点，在保持原生 Q4_0 内存与速度的同时，恢复 BF16 平均精度损失的 97%。",
+            "url": "https://aihot.virxact.com/items/cmt05zhyg139trodp6bxsy9e2",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "产品发布",
         "items": [
@@ -1961,9 +1972,20 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 21:55",
-        "count": 17,
+        "fetchedAt": "2026-08-19 22:50",
+        "count": 18,
         "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "Liquid AI 发布 LFM2.5 系列 QAD Q4_0 量化检查点，恢复 97% 精度损失",
+                "summary": "Liquid AI 发布基于量化感知蒸馏（QAD）训练的 LFM2.5-230M、350M、1.2B-Instruct 和 2.6B 四款 Q4_0 GGUF 检查点，在保持原生 Q4_0 内存与速度的同时，恢复 BF16 平均精度损失的 97%。",
+                "url": "https://aihot.virxact.com/items/cmt05zhyg139trodp6bxsy9e2",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "产品发布",
             "items": [
@@ -3719,7 +3741,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 21:55",
+    "fetchedAt": "2026-08-19 22:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3821,7 +3843,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 21:55",
+        "fetchedAt": "2026-08-19 22:50",
         "count": 15,
         "items": [
           {
@@ -5020,12 +5042,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T21:55:35",
-    "status": "ok",
-    "nextRun": "2026-08-19T22:55:35",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
