@@ -2,6 +2,46 @@
 (function () {
   "use strict";
 
+  // ---------- 线条图标库（Feather Icons，MIT，统一 stroke 风格） ----------
+  var ICONS = {
+    zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    checkSquare: '<polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+    fileText: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+    edit2: '<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>',
+    barChart: '<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>',
+    barChart2: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+    star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+    trendingUp: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+    grid: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+    messageCircle: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+    messageSquare: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+    clipboard: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>',
+    refreshCw: '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+    sun: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>',
+    moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+    book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+    settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+    hardDrive: '<line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/>',
+    database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+    archive: '<polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>',
+    compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+    tool: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    search: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+    trash: '<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+    plus: '<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>',
+    x: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+  };
+  // 渲染一个线条图标（颜色跟随 currentColor，尺寸由 CSS 控制）
+  function ic(name, extra) {
+    var p = ICONS[name] || ICONS.grid;
+    return '<svg class="ic-svg' + (extra ? " " + extra : "") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + "</svg>";
+  }
+  WB.ic = ic; // 供 schedule.js 等子模块取用
+
   // 分类中英文映射（上游英文 kebab-case，未命中回退原值）
   var CAT_ZH = {
     "academic-writing": "学术写作",
@@ -284,7 +324,7 @@
     if (btn) { btn.textContent = added ? "★" : "☆"; btn.classList.toggle("on", added); }
     renderFavs();
     var h = document.getElementById("favsHint");
-    if (h) h.textContent = added ? "⭐ 已收藏" : "已取消收藏";
+    if (h) h.textContent = added ? "已收藏" : "已取消收藏";
   }
   function fmtFavDate(ts) {
     var d = new Date(ts);
@@ -295,11 +335,11 @@
     if (!box) return;
     var list = favsLoad();
     var h2 = document.querySelector(".fav-card h2");
-    if (h2) h2.innerHTML = '<span class="ic">⭐</span>我的收藏 · 稍后读（' + list.length + '）';
+    if (h2) h2.innerHTML = '我的收藏 · 稍后读（' + list.length + '）';
     if (!list.length) { box.innerHTML = '<li class="empty" style="grid-column:1/-1">还没有收藏，去 AI 日报 / 每日新闻点 ☆ 收藏</li>'; return; }
     box.innerHTML = list.map(function (f, i) {
       var meta = [f.source, f.at ? fmtFavDate(f.at) : ""].filter(Boolean).join(" · ");
-      return '<li class="wk"><span class="wk-ic">⭐</span>' +
+      return '<li class="wk"><span class="wk-ic"></span>' +
         '<div class="wk-b">' +
         (f.url ? '<a class="wk-name fav-a" href="' + escAttr(f.url) + '" target="_blank" rel="noopener">' + esc(f.title) + "</a>" : '<span class="wk-name">' + esc(f.title) + "</span>") +
         '<span class="wk-meta">' + esc(meta) + '</span></div>' +
@@ -342,7 +382,7 @@
     document.body.classList.toggle("light", light);
     var b = document.getElementById("themeBtn");
     if (b) {
-      b.textContent = mode === "system" ? "🌗" : (light ? "☀️" : "🌙");
+      b.innerHTML = ic(light ? "sun" : "moon");
       b.title = "主题：" + (mode === "system" ? "跟随系统" : (light ? "浅色" : "深色")) + "（点此切换）";
     }
     syncThemeColor(light);
@@ -399,7 +439,7 @@
     return '<div class="nw"><div class="nw-t">' + prefix + esc(it.title) + "</div>" +
       dHtml +
       '<div class="nw-f">' + src + link + fav +
-      '<button class="nw-ask" onclick="aiAsk(' + "'" + jsStr(askText + it.title) + "'" + ')">☁️ 让 AI 讲讲</button>' +
+      '<button class="nw-ask" onclick="aiAsk(' + "'" + jsStr(askText + it.title) + "'" + ')">让 AI 讲讲</button>' +
       "</div></div>";
   }
 
@@ -462,7 +502,7 @@
     if (h) h.textContent = "✓ 已清除已完成";
   }
 
-  // ---------- 🍅 专注计时（番茄钟，纯前端） ----------
+  // ---------- 专注计时（番茄钟，纯前端） ----------
   var pomoTotal = 25 * 60;
   var pomoRemain = pomoTotal;
   var pomoRunning = false;
@@ -486,7 +526,7 @@
           clearInterval(pomoTimer); pomoTimer = null; pomoRunning = false;
           pomoRemain = pomoTotal;
           var h = document.getElementById("pomoHint");
-          if (h) h.textContent = "🍅 专注结束！把完成的待办勾掉吧";
+          if (h) h.textContent = "专注结束！把完成的待办勾掉吧";
           pomoBeep();
         }
         pomoRender();
@@ -526,12 +566,12 @@
   function renderKPI(d) {
     var k = d.kpi, disk = (d.status && d.status.disk) || {};
     var items = [
-      { c: "kpi-blue", i: "📚", v: k.knowledge, l: "知识库文件", tab: "ov", card: "card-kb" },
-      { c: "kpi-green", i: "⚙️", v: k.automations, l: "定时任务", tab: "ov", card: "card-auto" },
-      { c: "kpi-purple", i: "💾", v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-"), tab: "ov", card: "card-ov" },
-      { c: "kpi-amber", i: "🚀", v: k.skills, l: "已装 Skills", tab: "cap", card: "card-skills" },
-      { c: "kpi-blue", i: "💬", v: k.sessions, l: "近期会话", tab: "cap", card: "card-sess" },
-      { c: "kpi-purple", i: "🧠", v: k.memory, l: "记忆库文件", tab: "ov", card: "card-ov" },
+      { c: "kpi-blue", i: ic("book"), v: k.knowledge, l: "知识库文件", tab: "ov", card: "card-kb" },
+      { c: "kpi-green", i: ic("settings"), v: k.automations, l: "定时任务", tab: "ov", card: "card-auto" },
+      { c: "kpi-purple", i: ic("hardDrive"), v: (disk.D ? disk.D.free + "G" : "-"), l: "磁盘可用 · 共 " + (disk.D ? disk.D.total + "G" : "-"), tab: "ov", card: "card-ov" },
+      { c: "kpi-amber", i: ic("zap"), v: k.skills, l: "已装 Skills", tab: "cap", card: "card-skills" },
+      { c: "kpi-blue", i: ic("messageSquare"), v: k.sessions, l: "近期会话", tab: "cap", card: "card-sess" },
+      { c: "kpi-purple", i: ic("archive"), v: k.memory, l: "记忆库文件", tab: "ov", card: "card-ov" },
     ];
     document.getElementById("kpis").innerHTML = items.map(function (x) {
       return '<div class="kpi ' + x.c + '" onclick="goKPI(' + "'" + x.tab + "','" + x.card + "'" + ')" title="跳转到 ' + esc(x.l) + '"><div class="ki">' + x.i + '</div><div><div class="kv">' + x.v + '</div><div class="kl">' + x.l + "</div></div></div>";
@@ -550,17 +590,17 @@
     var total = aCount + dCount;
     var aTime = String(a.fetchedAt || "").slice(11, 16) || "-";
     var dTime = String(dn.fetchedAt || "").slice(11, 16) || "-";
-    var prompt = "帮我把今天工作台里的资讯划 3 条重点：AI 日报 " + aCount + " 条、每日新闻 " + dCount + " 条。请挑出 3 条对我（青灯，在自学计算机、爱折腾 AI 工具）最值得关注的，每条用大白话说明：① 背景是什么；② 为什么重要；③ 今天能动手试什么。";
+    var prompt = "帮我把今天工作台里的资讯划 3 条重点：AI 日报 " + aCount + " 条、每日新闻 " + dCount + " 条。请挑出 3 条对我（青灯，在自学计算机、爱折腾 AI 工具）最值得关注的，每条用大白话说明：背景是什么；为什么重要；今天能动手试什么。";
     document.getElementById("overview").innerHTML =
       '<div class="ov-hero">' +
-        '<div class="ov-hero-top"><div class="ov-ttl">📊 今日速览</div>' +
+        '<div class="ov-hero-top"><div class="ov-ttl">今日速览</div>' +
         '<div class="ov-meta">共 ' + total + ' 条资讯 · 已加载 2 个网页来源</div></div>' +
         '<div class="ov-chips">' +
           '<span class="chip"><span class="ok">✓</span> AI 日报 · ' + aCount + ' 条 · ' + aTime + '</span>' +
           '<span class="chip"><span class="ok">✓</span> 每日新闻 · ' + dCount + ' 条 · ' + dTime + '</span>' +
           '<span class="chip"><span class="ok">✓</span> 技术热榜 · App 端实时</span>' +
         '</div>' +
-        '<button class="btn-cy" onclick="aiAsk(' + "'" + jsStr(prompt) + "'" + ')">🤖 AI 帮你划 3 条重点</button>' +
+        '<button class="btn-cy" onclick="aiAsk(' + "'" + jsStr(prompt) + "'" + ')">AI 帮你划 3 条重点</button>' +
       '</div>';
   }
 
@@ -573,16 +613,16 @@
     var favs = favsLoad().length;
     box.innerHTML =
       '<div class="ov-metric"><span class="rk">✅ 待做</span><span class="rv">' + todos + '</span><span class="rn">条未完成</span></div>' +
-      '<div class="ov-metric"><span class="rk">📝 速记</span><span class="rv">' + notes + '</span><span class="rn">条记录</span></div>' +
-      '<div class="ov-metric"><span class="rk">⭐ 收藏</span><span class="rv">' + favs + '</span><span class="rn">条稍后读</span></div>';
+      '<div class="ov-metric"><span class="rk">速记</span><span class="rv">' + notes + '</span><span class="rn">条记录</span></div>' +
+      '<div class="ov-metric"><span class="rk">收藏</span><span class="rv">' + favs + '</span><span class="rn">条稍后读</span></div>';
   }
 
-  // 今日灵感：把工作台现状拼成 prompt 发给 AI 助手
+  // 今日建议：把工作台现状拼成 prompt 发给 AI 助手
   function inspireToday() {
     var d = __data || {};
     var k = d.kpi || {};
-    var cmd = "根据我的工作台现状生成今日灵感：已装 " + (k.skills || 0) + " 个 skill，知识库 " + (k.knowledge || 0) +
-      " 个文件，模型 " + (k.models || 0) + " 个（本机 " + (((d.status || {}).localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
+    var cmd = "根据我的工作台现状生成今日建议：已装 " + (k.skills || 0) + " 个 skill，知识库 " + (k.knowledge || 0) +
+      " 个文件，模型 " + (k.models || 0) + " 个（本机 " + (((d.status || {}).localModels || []).length) + "）。请给我：1-2 个今天可以动手的小任务点子；一条 AI agent 学习路径（结合我已装的 skill）；一个值得关注的 AI 趋势。";
     aiAsk(cmd);
   }
   window.inspireToday = inspireToday;
@@ -593,7 +633,7 @@
     var html = "";
     Object.keys(byCat).forEach(function (cat) {
       var list = byCat[cat].slice().sort(function (a, b) { return (b.usage || 0) - (a.usage || 0); });
-      html += '<div class="cat"><div class="cat-h" onclick="toggleCat(this)"><span class="ci">📦</span>' + esc(catLabel(cat)) +
+      html += '<div class="cat"><div class="cat-h" onclick="toggleCat(this)"><span class="ci"></span>' + esc(catLabel(cat)) +
         '<span class="cc">' + list.length + '</span><span class="car">▶</span></div><div class="cat-b">';
       list.forEach(function (s) {
         var fire = (s.usage > 0) ? '<span class="fire">🔥' + s.usage + "</span>" : "";
@@ -626,7 +666,7 @@
 
   function renderHeat(heat) {
     var total = heat.reduce(function (a, b) { return a + b.count; }, 0);
-    var html = '<div class="heat"><div class="heat-t">📈 近 17 周会话活跃 · 合计 ' + total + ' 条记录 · 点格子看当天聊了啥</div><div class="heat-g">';
+    var html = '<div class="heat"><div class="heat-t">近 17 周会话活跃 · 合计 ' + total + ' 条记录 · 点格子看当天聊了啥</div><div class="heat-g">';
     heat.forEach(function (h) {
       var lvl = h.count === 0 ? "l0" : (h.count <= 2 ? "l1" : (h.count <= 5 ? "l2" : "l3"));
       var titles = (h.titles || []).map(function (t) { return esc(t); }).join("\n");
@@ -653,32 +693,32 @@
       return '<a class="trend" href="' + escAttr(it.url || "#") + '" target="_blank" rel="noopener">' + esc(it.title) +
         (it.source ? '<span class="ts">' + esc(it.source) + "</span>" : "") + "</a>";
     }).join("") + "</div>" : "";
-    var inspireCmd = "根据我的工作台现状生成今日灵感：已装 " + d.kpi.skills + " 个 skill，知识库 " + d.kpi.knowledge +
-      " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：① 1-2 个今天可以动手的小任务灵感；② 一条 AI agent 学习路径（结合我已装的 skill）；③ 一个值得关注的 AI 趋势。";
+    var inspireCmd = "根据我的工作台现状生成今日建议：已装 " + d.kpi.skills + " 个 skill，知识库 " + d.kpi.knowledge +
+      " 个文件，模型 " + d.kpi.models + " 个（本机 " + ((d.status.localModels || []).length) + "）。请给我：1-2 个今天可以动手的小任务点子；一条 AI agent 学习路径（结合我已装的 skill）；一个值得关注的 AI 趋势。";
     document.getElementById("col-cap").innerHTML =
-      '<div class="card" id="card-skills"><h2><span class="ic">🚀</span>① 能力速达（点击复制调用指令）</h2>' +
+      '<div class="card" id="card-skills"><h2><span class="ic">' + ic("zap") + '</span>能力速达（点击复制调用指令）</h2>' +
         '<textarea id="cmdbox" rows="2" placeholder="点击上方 skill，指令会出现在这里（也可直接编辑/粘贴）"></textarea>' +
         '<div id="hint"></div><div id="sempty" class="empty" style="display:none">没有匹配的 skill</div>' +
         '<div id="skills">' + skillsHtml + "</div></div>" +
-      '<div class="card" id="card-sess"><h2><span class="ic">💬</span>⑥ 近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>";
+      '<div class="card" id="card-sess"><h2><span class="ic">' + ic("messageSquare") + '</span>近期会话 / 任务流</h2>' + sessHtml + heatHtml + "</div>";
     var side = document.getElementById("side-cap");
     if (side) {
       side.innerHTML =
-        '<div class="side-card"><h4><span class="ic">🧭</span>⑤ 今日引导 / 灵感 / 学 Agent</h4>' +
+        '<div class="side-card"><h4><span class="ic">' + ic("compass") + '</span>今日引导 / 建议 / Agent 学习</h4>' +
           '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
           '<div class="ov-metric"><span class="rk">今日引导</span><span class="rv">' + (d.guide || []).length + '</span><span class="rn">条待办 / 提醒</span></div>' +
           '<div class="ov-metric"><span class="rk">AI 日报</span><span class="rv">' + ((d.aiDaily && d.aiDaily.count) || 0) + '</span><span class="rn">条今日资讯</span></div>' +
           "</div>" +
           '<div class="guide-grid">' + guideHtml + "</div>" +
-          '<div style="margin-top:12px"><button class="btn" onclick="aiAsk(' + "'" + jsStr(inspireCmd) + "'" + ')">💡 给我灵感（AI 生成）</button></div></div>' +
-        '<div class="side-card" style="margin-top:12px"><h4><span class="ic">📡</span>⑧ AI 趋势 / 学习流</h4>' +
+          '<div style="margin-top:12px"><button class="btn" onclick="aiAsk(' + "'" + jsStr(inspireCmd) + "'" + ')">生成建议</button></div></div>' +
+        '<div class="side-card" style="margin-top:12px"><h4><span class="ic">' + ic("trendingUp") + '</span>AI 趋势 / 学习流</h4>' +
           (d.aiDaily && d.aiDaily.count
             ? '<div class="empty" style="margin:2px 0 4px">今日已抓 ' + d.aiDaily.count + ' 条 AI 资讯（' + esc(d.aiDaily.date || "") + '），每天 08:30 自动更新</div>'
             : '<div class="empty" style="margin:2px 0 4px">今日尚无日报数据</div>') +
           trendHtml +
           '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
-          '<button class="btn" onclick="switchTab(' + "'news'" + ')">🗞️ 看今日 AI 日报</button>' +
-          '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">🔭 趋势研究</button></div></div>';
+          '<button class="btn" onclick="switchTab(' + "'news'" + ')">看今日 AI 日报</button>' +
+          '<button class="btn-sm" onclick="cmdtext(' + "'检索最近 30 天 AI 趋势，输出一份研究笔记'" + ')">趋势研究</button></div></div>';
     }
   }
 
@@ -697,7 +737,7 @@
     var curDate = a.date || "";
     var selHtml = "";
     if (hist.length > 1) {
-      selHtml = '<div class="news-sel">📅 历史日报：' +
+      selHtml = '<div class="news-sel">历史日报：' +
         '<select id="newsSel" onchange="newsDateChanged()">' +
         hist.map(function (h) {
           return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
@@ -728,24 +768,24 @@
     var day = (a.history || []).filter(function (h) { return h.date === date; })[0] || a;
     var secs = day.sections || [];
     if (!secs.length) {
-      box.innerHTML = '<div class="card"><h2><span class="ic">🗞️</span>AI 日报</h2>' +
+      box.innerHTML = '<div class="card"><h2><span class="ic">' + ic("fileText") + '</span>AI 日报</h2>' +
         '<div class="empty">这一天还没有抓到日报数据。可以点「立即刷新」让本机重新抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_ai_daily.py</code>。</div>' +
-        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_ai_daily.py 抓今天的 AI 日报，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
+        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_ai_daily.py 抓今天的 AI 日报，然后 export + push'" + ')">让 AI 现在抓一次</button></div></div>';
       return;
     }
-    var html = '<div class="card news-head"><h2><span class="ic">🗞️</span>' + esc(day.date || "") + ' AI 日报' +
+    var html = '<div class="card news-head"><h2>' + esc(day.date || "") + ' AI 日报' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "AI HOT") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看完整日报 ↗</a>' : "") + "</div></div>" +
-      '<div class="card"><h2><span class="ic">🧪</span>基于日报做点什么</h2>' +
+      '<div class="card"><h2><span class="ic">' + ic("compass") + '</span>基于日报做点什么</h2>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">📝 提炼 3 条要点</button>' +
-      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的 AI 日报总结成 3 条对我最有用的要点，并各给一个可以今天动手试的小实验'" + ')">提炼 3 条要点</button>' +
+      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的 AI 日报存进 vault/ 知识库，按主题归档'" + ')">存进知识库</button>' +
       "</div></div>";
 
     secs.forEach(function (s) {
       html += '<div class="card news-sec"><div class="ns-h" onclick="toggleNS(this)">' +
-        '<span class="ic">📌</span>' + esc(s.label) +
+        '' + esc(s.label) +
         '<span class="news-n">' + (s.items || []).length + '</span><span class="ns-car">▾</span></div><div class="ns-b">';
       (s.items || []).forEach(function (it) {
         html += renderNewsItem(it, { showSummary: true, ask: "用大白话展开讲讲这条 AI 新闻的背景和影响，并说说对我有什么用：" });
@@ -770,7 +810,7 @@
     var curDate = a.date || "";
     var selHtml = "";
     if (hist.length > 1) {
-      selHtml = '<div class="news-sel">📅 历史新闻：' +
+      selHtml = '<div class="news-sel">历史新闻：' +
         '<select id="dnewsSel" onchange="dnewsDateChanged()">' +
         hist.map(function (h) {
           return '<option value="' + escAttr(h.date) + '"' + (h.date === curDate ? " selected" : "") + '>' +
@@ -793,25 +833,25 @@
     var tip = day.tip || "";
     var cover = day.cover || a.cover || "";
     if (!items.length) {
-      box.innerHTML = '<div class="card"><h2><span class="ic">📰</span>每日新闻</h2>' +
+      box.innerHTML = '<div class="card"><h2><span class="ic">' + ic("fileText") + '</span>每日新闻</h2>' +
         '<div class="empty">这一天还没有抓到新闻数据。可以点「立即刷新」让本机重新抓一次；也可以让 WorkBuddy 手动跑 <code>fetch_daily_news.py</code>。</div>' +
-        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_daily_news.py 抓今天的国内新闻，然后 export + push'" + ')">🔄 让 AI 现在抓一次</button></div></div>';
+        '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'跑一下 personal-workbench 的 fetch_daily_news.py 抓今天的国内新闻，然后 export + push'" + ')">让 AI 现在抓一次</button></div></div>';
       return;
     }
     var html = '<div class="card news-head">' +
       (cover ? '<div class="dnews-cover" style="display:none"><img src="' + escAttr(cover) + '" alt="每日新闻封面" loading="lazy" referrerpolicy="no-referrer" onload="if(this.naturalWidth)this.parentNode.style.display=\'block\'" onerror="this.parentNode.style.display=\'none\'"></div>' : "") +
-      '<h2><span class="ic">📰</span>' + esc(day.date || "") + ' 每日新闻' +
+      '<h2>' + esc(day.date || "") + ' 每日新闻' +
       '<span class="news-n">' + (day.count || 0) + ' 条</span></h2>' +
       '<div class="news-meta">数据源 ' + esc(day.source || a.source || "每日60秒") + ' · 抓取于 ' + esc(day.fetchedAt || "-") +
       (day.canonical ? ' · <a href="' + escAttr(day.canonical) + '" target="_blank" rel="noopener">看来源 ↗</a>' : "") + "</div>" +
-      (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">💡 ' + esc(tip) + "</div>" : "") + "</div>" +
-      '<div class="card"><h2><span class="ic">🧪</span>基于新闻做点什么</h2>' +
+      (tip ? '<div style="margin-top:8px;color:var(--sub);font-style:italic;line-height:1.5">' + esc(tip) + "</div>" : "") + "</div>" +
+      '<div class="card"><h2><span class="ic">' + ic("compass") + '</span>基于新闻做点什么</h2>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">📝 挑 3 条相关的</button>' +
-      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">📚 存进知识库</button>' +
+      '<button class="btn" onclick="aiAsk(' + "'把今天工作台里的每日新闻挑 3 条跟我最相关的，说说为什么值得关注'" + ')">挑 3 条相关的</button>' +
+      '<button class="btn-sm" onclick="aiAsk(' + "'把今天的每日新闻存进 vault/ 知识库，按主题归档'" + ')">存进知识库</button>' +
       "</div></div>";
 
-    html += '<div class="card"><h2><span class="ic">📌</span>今日头条</h2><div class="nw-grid">';
+    html += '<div class="card"><h2><span class="ic">' + ic("trendingUp") + '</span>今日头条</h2><div class="nw-grid">';
     items.forEach(function (it, i) {
       html += renderNewsItem(it, {
         prefix: '<span style="color:var(--accent2);font-weight:600;margin-right:7px;flex:0 0 auto">' + (i + 1) + ".</span>",
@@ -858,7 +898,7 @@
         (off ? ' <span class="mcp-badge">离线</span>' : "") + "</span>";
     }).join("");
     var disk = st.disk || {};
-    var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">🧠 ' + esc(m) + "</div>"; }).join("");
+    var localHtml = (st.localModels || []).map(function (m) { return '<div class="model">' + esc(m) + "</div>"; }).join("");
     var ol = st.ollama || {};
     var olModels = ol.models || [];
     var olRunning = ol.running || [];
@@ -882,7 +922,7 @@
     }).join("");
 
     document.getElementById("col-ov").innerHTML =
-      '<div class="card" id="card-ov"><h2><span class="ic">📊</span>③ 个人状态看板</h2>' +
+      '<div class="card" id="card-ov"><h2><span class="ic">' + ic("activity") + '</span>个人状态看板</h2>' +
         '<div class="ov-sub">已接入模型（' + (st.models || []).length + '）</div><div class="ov-models">' + modelsHtml + "</div>" +
         '<div class="ov-sub">集成与资源</div>' +
         '<div class="ov-res">' +
@@ -891,7 +931,7 @@
         '<div class="ov-metric"><span class="rk">磁盘 C:</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
         '<div class="ov-metric"><span class="rk">磁盘 D:</span><span class="rv">' + (disk.D ? disk.D.free + "G" : "-") + '</span><span class="rn">可用 · 共 ' + (disk.D ? disk.D.total + "G" : "-") + "</span></div>" +
         "</div></div>" +
-      '<div class="card"><h2><span class="ic">🔧</span>⑦ 环境体检台</h2>' +
+      '<div class="card"><h2><span class="ic">' + ic("tool") + '</span>环境体检台</h2>' +
         '<div class="ov-res">' +
         '<div class="ov-metric"><span class="rk">本地模型</span><span class="rv">' + olModels.length + '</span><span class="rn">' + (ol.available === false ? "Ollama 未装" : (olRunning.length ? olRunning.length + " 运行中" : "已就绪")) + "</span></div>" +
         '<div class="ov-metric"><span class="rk">C 盘剩余</span><span class="rv">' + (disk.C ? disk.C.free + "G" : "-") + '</span><span class="rn">共 ' + (disk.C ? disk.C.total + "G" : "-") + "</span></div>" +
@@ -899,14 +939,14 @@
         "</div>" +
         (olModels.length ? '<div style="margin:8px 0 2px;color:var(--accent2);font-size:13px">本地 Ollama 模型（' + olModels.length + '）</div><div class="ov-ol">' + olHtml + "</div>" : "") +
       "</div>" +
-      '<div class="card" id="card-auto"><h2><span class="ic">⚙️</span>② 自动化与任务编排</h2>' +
+      '<div class="card" id="card-auto"><h2><span class="ic">' + ic("settings") + '</span>自动化与任务编排</h2>' +
         '<div class="ov-res" style="grid-template-columns:repeat(2,1fr);margin-bottom:8px">' +
         '<div class="ov-metric"><span class="rk">自动化任务</span><span class="rv">' + (st.automations || []).length + '</span><span class="rn">WorkBuddy 内置</span></div>' +
         '<div class="ov-metric"><span class="rk">活跃中</span><span class="rv">' + (st.automations || []).filter(function (a) { return a.status === "ACTIVE" || a.status === "active"; }).length + '</span><span class="rn">ACTIVE 状态</span></div>' +
         "</div>" +
         '<div class="ov-auto-panel">' + autoHtml + "</div>" +
         '<div style="margin-top:10px"><button class="btn" onclick="cmdtext(' + "'新建定时任务：频率（如每周一10点）+ 工作区 + 任务描述'" + ')">➕ 新建定时任务</button></div></div>' +
-      '<div class="card" id="card-kb"><h2><span class="ic">📚</span>④ 内容与知识生产</h2>' +
+      '<div class="card" id="card-kb"><h2><span class="ic">' + ic("book") + '</span>内容与知识生产</h2>' +
         '<div class="ov-res" style="grid-template-columns:repeat(2,1fr)">' +
         '<div class="ov-metric"><span class="rk">知识库文件</span><span class="rv">' + kb.files.length + '</span><span class="rn">篇笔记 / 资料</span></div>' +
         '<div class="ov-metric"><span class="rk">知识库类型</span><span class="rv" style="font-size:14px">' + Object.keys(kb.types || {}).length + '</span><span class="rn">' + esc(kbTypes || "未分类") + "</span></div>" +
@@ -914,11 +954,11 @@
         (kb.files.length ? '<div class="ov-kb" style="margin-top:8px">' + kbHtml + "</div>" : '<div class="empty" style="margin-top:8px">暂无知识库文件，点下方新建</div>') +
         '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">' +
         '<button class="btn" onclick="cmdtext(' + "'在 knowledge-base/ 新建一篇笔记，主题：'" + ')">➕ 新建笔记</button>' +
-        '<button class="btn" onclick="cmdtext(' + "'用 video-cangjie-distill 把以下视频转成 skill：'" + ')">🎬 蒸馏视频</button>' +
+        '<button class="btn" onclick="cmdtext(' + "'用 video-cangjie-distill 把以下视频转成 skill：'" + ')">蒸馏视频</button>' +
         '<button class="btn-sm" onclick="cmdtext(' + "'在 knowledge-base/ 搜索：'" + ')">🔍 搜知识库</button></div></div>';
   }
 
-  // ---------- 📈 Skill 使用统计 ----------
+  // ---------- Skill 使用统计 ----------
   function renderStats(d) {
     var box = document.getElementById("col-stats");
     if (!box) return;
@@ -930,20 +970,20 @@
     var byCat = {};
     skills.forEach(function (s) { (byCat[s.category] = byCat[s.category] || []).push(s); });
     var catMax = 1; Object.keys(byCat).forEach(function (c) { if (byCat[c].length > catMax) catMax = byCat[c].length; });
-    var html = '<div class="card"><h2><span class="ic">📊</span>Skill 使用统计</h2>' +
+    var html = '<div class="card"><h2><span class="ic">' + ic("barChart2") + '</span>Skill 使用统计</h2>' +
       '<div class="ov-res" style="margin-bottom:10px">' +
       '<div class="ov-metric"><span class="rk">已装 Skills</span><span class="rv">' + skills.length + '</span><span class="rn">个能力</span></div>' +
       '<div class="ov-metric"><span class="rk">用过</span><span class="rv">' + used.length + '</span><span class="rn">占 ' + Math.round(100 * used.length / Math.max(1, skills.length)) + '%</span></div>' +
       '<div class="ov-metric"><span class="rk">累计使用</span><span class="rv">' + totalUsage + '</span><span class="rn">次调用</span></div>' +
       "</div></div>";
     html += '<div class="card"><h2><span class="ic">🔥</span>使用最多的 TOP ' + top.length + '</h2>';
-    if (!top.length) html += '<div class="empty">还没有使用记录，去 ① 能力速达 点几个 skill 试试（点一下即算一次）</div>';
+    if (!top.length) html += '<div class="empty">还没有使用记录，去 能力速达 点几个 skill 试试（点一下即算一次）</div>';
     html += '<div class="stat-list">' + top.map(function (s) {
       return '<div class="stat"><span class="st-name">' + esc(s.name) + '</span>' +
         '<span class="st-bar"><span class="st-fill" style="width:' + Math.round(100 * s.usage / maxU) + '%"></span></span>' +
         '<span class="st-num">' + s.usage + '</span></div>';
     }).join("") + "</div></div>";
-    html += '<div class="card"><h2><span class="ic">🗂</span>按分类分布（' + Object.keys(byCat).length + ' 类）</h2><div class="stat-list">' +
+    html += '<div class="card"><h2>按分类分布（' + Object.keys(byCat).length + ' 类）</h2><div class="stat-list">' +
       Object.keys(byCat).map(function (c) {
         return '<div class="stat"><span class="st-name">' + esc(catLabel(c)) + '</span>' +
           '<span class="st-bar"><span class="st-fill" style="width:' + Math.round(100 * byCat[c].length / catMax) + '%"></span></span>' +
@@ -952,7 +992,7 @@
     box.innerHTML = html;
   }
 
-  // ---------- 💬 会话档案 ----------
+  // ---------- 会话档案 ----------
   function sessFilter() {
     var q = (document.getElementById("sessQ").value || "").trim().toLowerCase();
     var items = document.querySelectorAll("#sessArchiveList .sess-it");
@@ -992,7 +1032,7 @@
         archiveHtml += '<div class="auto sess sess-it" data-title="' + escAttr(t) + '" onclick="aiAsk(' + "'回顾并继续这个会话：" + jsStr(t) + "'" + ')"><b>' + esc(t) + "</b></div>";
       });
     });
-    var recentHtml = '<div class="card"><h2><span class="ic">💬</span>近期会话（最近 ' + recent.length + ' 条）</h2>' +
+    var recentHtml = '<div class="card"><h2>近期会话（最近 ' + recent.length + ' 条）</h2>' +
       '<div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">' +
       '<button class="schip active" data-v="all" onclick="sessStatus(\'all\')">全部</button>' +
       '<button class="schip" data-v="working" onclick="sessStatus(\'working\')">进行中</button></div>' +
@@ -1005,21 +1045,21 @@
       '<input id="sessQ" class="sf" placeholder="按标题搜索全部会话…" oninput="sessFilter()">' +
       '<div class="empty" style="margin-top:4px">共 ' + totalTitles + ' 条历史记录 · ' + dates.length + ' 天</div></div>' +
       recentHtml +
-      '<div class="card"><h2><span class="ic">📈</span>活跃热力图 · 近 ' + heat.length + ' 天</h2>' + renderHeat(heat) + "</div>" +
-      '<div class="card"><h2><span class="ic">🗂</span>全部会话档案<span class="news-n" id="sessCount">' + totalTitles + " 条</span></h2>" +
+      '<div class="card"><h2>活跃热力图 · 近 ' + heat.length + ' 天</h2>' + renderHeat(heat) + "</div>" +
+      '<div class="card"><h2>全部会话档案<span class="news-n" id="sessCount">' + totalTitles + " 条</span></h2>" +
       '<div id="sessArchiveList" class="sess-arch">' + archiveHtml + '</div></div>';
     box.innerHTML = html;
   }
 
   // 本周动态：bento 首页卡（最近 12 条）+ 独立 tab（全部 + 类型筛选）共用渲染
-  var WK_ICON = { skill: "📦", automation: "⚙️", kb: "📄", model: "🧠" };
+  var WK_ICON = { skill: "", automation: "", kb: "", model: "" };
   var WK_LABEL = { skill: "新增/更新 skill", automation: "新建自动化任务", kb: "新增知识库文件", model: "拉取本地模型" };
   function wkItemHtml(it) {
     var dt = new Date((it.when || 0) * 1000);
     var ds = (dt.getMonth() + 1) + "-" + dt.getDate() + " " +
       ("0" + dt.getHours()).slice(-2) + ":" + ("0" + dt.getMinutes()).slice(-2);
     var scope = (it.scope || "").replace(/^[（(]|[）)]$/g, "").trim();
-    return '<li class="wk"><span class="wk-ic">' + (WK_ICON[it.kind] || "•") + '</span>' +
+    return '<li class="wk">' + "•" + '</span>' +
       '<div class="wk-b"><span class="wk-name">' + esc(it.name) + '</span></div>' +
       (scope ? '<span class="wk-scope">' + esc(scope) + '</span>' : '') +
       '<span class="wk-meta">' + ds + '</span></li>';
@@ -1030,7 +1070,7 @@
     order.forEach(function (k) {
       var list = items.filter(function (it) { return it.kind === k; });
       if (!list.length) return;
-      html += '<li class="wk-grp">' + (WK_ICON[k] || "•") + " " + esc(WK_LABEL[k] || k) +
+      html += '<li class="wk-grp">' + "•" + " " + esc(WK_LABEL[k] || k) +
         '<span class="cc">' + list.length + "</span></li>" + list.map(wkItemHtml).join("");
     });
     var rest = items.filter(function (it) { return order.indexOf(it.kind) < 0; });
@@ -1045,7 +1085,7 @@
     if (!box) return;
     var items = d.weekly || [];
     var h2 = document.querySelector(".wk-card h2");
-    if (h2) h2.innerHTML = '<span class="ic">📅</span>本周动态 · 近期变化（' + items.length + '）';
+    if (h2) h2.innerHTML = '本周动态 · 近期变化（' + items.length + '）';
     if (!items.length) {
       box.innerHTML = '<li class="empty">本周暂无新增变化 · 工作台平稳运行中</li>';
       return;
@@ -1075,11 +1115,11 @@
     var body = list.length
       ? '<ul class="wk-list week-full">' + wkGroupHtml(list) + "</ul>"
       : '<div class="empty">该类型暂无变化</div>';
-    box.innerHTML = '<div class="card"><h2><span class="ic">📅</span>本周动态 · 全部（' + items.length + ' 条）</h2>' +
+    box.innerHTML = '<div class="card"><h2>本周动态 · 全部（' + items.length + ' 条）</h2>' +
       '<div class="week-chips">' + chips + '</div>' + body + "</div>";
   }
 
-  // ---------- 🤖 AI 助手（Agnes / 智谱 GLM 双可选，浏览器直连，Key 存本机） ----------
+  // ---------- AI 助手（Agnes / 智谱 GLM 双可选，浏览器直连，Key 存本机） ----------
   var AI_PROVIDERS = {
     agnes: { label: "Agnes 2.5 Flash", url: "https://apihub.agnes-ai.cn/v1/chat/completions", model: "agnes-2.5-flash", keyKey: "wb_ai_key_agnes" },
     glm: { label: "智谱 GLM Flash", url: "https://open.bigmodel.cn/api/paas/v4/chat/completions", model: "glm-4-flash", keyKey: "wb_ai_key_glm" }
@@ -1089,7 +1129,7 @@
   var aiBusy = false;
   function aiKeyLoad() { try { return localStorage.getItem(AI_PROVIDERS[aiProv].keyKey) || ""; } catch (e) { return ""; } }
   function aiKeySave(k) { try { localStorage.setItem(AI_PROVIDERS[aiProv].keyKey, k); } catch (e) {} }
-  // 记忆：① 会话历史（刷新/重开不丢）② 长期记忆库（跨会话注入系统提示词）
+  // 记忆：会话历史（刷新/重开不丢）长期记忆库（跨会话注入系统提示词）
   var AI_HIST_KEY = "wb_ai_history";
   var AI_MEM_KEY = "wb_ai_memory";
   function aiHistLoad() {
@@ -1140,28 +1180,28 @@
     var hint = aiProv === "agnes"
       ? "粘贴你的 Agnes API Key（apihub.agnes-ai.cn 申请，仅存本机浏览器）"
       : "粘贴智谱 API Key（bigmodel.cn 注册免费领，仅存本机浏览器）";
-    box.innerHTML = '<div class="card"><h2><span class="ic">🤖</span>AI 助手</h2>' +
+    box.innerHTML = '<div class="card"><h2>AI 助手</h2>' +
       '<div class="ai-set">' +
       '<select id="aiProvSel" class="sf ai-sel" onchange="aiSetProv(this.value)">' + provSel + "</select>" +
       '<input id="aiKey" class="sf" type="password" placeholder="' + escAttr(hint) + '" value="' + escAttr(aiKeyLoad()) + '">' +
-      '<button class="btn-sm" onclick="aiSaveKey()">💾 保存 Key</button>' +
+      '<button class="btn-sm" onclick="aiSaveKey()">保存 Key</button>' +
       '<span id="aiKeyHint" class="empty">' + (hasKey ? "已保存" : "未设置") + '</span></div>' +
       '<div class="ai-bar">' +
-      '<button class="btn-sm" onclick="aiClear()">🗑 清空对话</button>' +
+      '<button class="btn-sm" onclick="aiClear()">清空对话</button>' +
       (hasKey ? "" : '<span class="ai-guide">⚠️ 还没设置 API Key，AI 暂时无法回答。在上方粘贴 Key 并点“保存”即可使用。</span>') +
       '</div>' +
-      '<details class="ai-mem"><summary>🧠 长期记忆库（' + mem.length + ' 条）· 点开管理</summary>' +
+      '<details class="ai-mem"><summary>长期记忆库（' + mem.length + ' 条）· 点开管理</summary>' +
       '<div class="ai-mem-add"><input id="aiMemInput" class="sf" placeholder="记一笔长期记忆，如：我偏好简洁回答 / 我在学 Flutter…">' +
-      '<button class="btn-sm" onclick="aiMemoryAdd()">📌 记下</button></div>' +
+      '<button class="btn-sm" onclick="aiMemoryAdd()">记下</button></div>' +
       '<ul class="ai-mem-list" id="aiMemList">' + memHtml + '</ul>' +
-      '<div class="ai-mem-foot"><button class="btn-sm danger" onclick="aiMemoryClear()">🗑 清空记忆库</button>' +
+      '<div class="ai-mem-foot"><button class="btn-sm danger" onclick="aiMemoryClear()">清空记忆库</button>' +
       '<span class="empty">仅存本机，AI 跨会话都会看到</span></div></details>' +
       '<div class="ai-chat" id="aiChat">' +
       (aiMsgs.length ? "" : '<div class="empty">输入你的问题，AI 会用大白话回答。可问它：总结今天日报 / 帮我挑值得看的新闻 / 待办怎么安排…</div>') +
       "</div>" +
       '<div class="ai-input">' +
       '<textarea id="aiBox" rows="2" placeholder="问 AI 点什么…（Enter 发送，Shift+Enter 换行）"></textarea>' +
-      '<button class="btn" onclick="aiSend()">➤ 发送</button></div>' +
+      '<button class="btn" onclick="aiSend()">发送</button></div>' +
       "</div>";
     var ta = document.getElementById("aiBox");
     if (ta) ta.addEventListener("keydown", function (e) {
@@ -1315,7 +1355,7 @@
 
   // 头部条（KPI/同步/快捷启动/本周动态）+ tab 内容拆分渲染：省 CPU、按需
   function renderHeaderStrip(d) {
-    document.getElementById("snap").textContent = "📸 快照 · " + (d.generatedAt || "-");
+    document.getElementById("snap").textContent = "快照 · " + (d.generatedAt || "-");
     renderSync(d);
     renderFreshness(d);
     renderKPI(d);
@@ -1476,7 +1516,7 @@
       WB.dialog.alert("首次使用需要先填 GitHub Token（只存你浏览器）。\n点「确定」后粘贴 Token（需要 repo + workflow 权限），填好再来点刷新。", function () { setGhToken(); });
       return;
     }
-    var old = btn ? btn.textContent : "🔄 立即刷新";
+    var old = btn ? btn.textContent : "立即刷新";
     if (btn) { btn.disabled = true; btn.textContent = "⏳ 触发同步…"; }
 
     var api = "https://api.github.com/repos/" + GH_REPO + "/actions/workflows/sync.yml/dispatches";
@@ -1497,7 +1537,7 @@
       if (r.status === 404) throw new Error("找不到同步工作流（404），请确认仓库/分支名");
       throw new Error("触发失败：HTTP " + r.status);
     }).then(function () {
-      if (btn) btn.textContent = "🔄 本机 Runner 执行中…";
+      if (btn) btn.textContent = "本机 Runner 执行中…";
       pollUntilSynced(btn, old, 0, afterTs);
     }).catch(function (err) {
       if (btn) { btn.disabled = false; btn.textContent = old; }
@@ -1539,7 +1579,7 @@
           loadData().catch(function () {});
         }
       } else if (run && (run.status === "in_progress" || run.status === "queued" || run.status === "waiting")) {
-        if (btn) btn.textContent = "🔄 本机 Runner 执行中… (" + (tries + 1) + "/" + MAX + ")";
+        if (btn) btn.textContent = "本机 Runner 执行中… (" + (tries + 1) + "/" + MAX + ")";
         setTimeout(function () { pollUntilSynced(btn, old, tries + 1, afterTs); }, 10000);
       } else {
         // 列表里还没出现本次触发，继续等
@@ -1576,7 +1616,7 @@
     var btn = document.getElementById("selfCheckBtn");
     var token = ghToken();
     if (!token) {
-      setSelfCheck("warn", "⚠️ 需先填 GitHub Token（点「🌙」旁的 ⚙️ 或首次点「立即刷新」会提示）");
+      setSelfCheck("warn", "⚠️ 需先填 GitHub Token（点「🌙」旁的 或首次点「立即刷新」会提示）");
       return;
     }
     if (btn) { btn.disabled = true; btn.textContent = "🔍 自检中…"; }
@@ -1682,7 +1722,7 @@
     if (!links.length) { g.innerHTML = '<div class="empty">还没有入口，点“加一个”添加常用链接</div>'; return; }
     g.innerHTML = links.map(function (l, i) {
       return '<a class="link-item" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
-        '<span class="li-ic">🔗</span><span class="li-label">' + esc(l.label) + '</span>' +
+        '<span class="li-ic"></span><span class="li-label">' + esc(l.label) + '</span>' +
         '<span class="li-del" data-i="' + i + '" title="删除">✕</span></a>';
     }).join("");
     Array.prototype.forEach.call(g.querySelectorAll(".li-del"), function (b) {
@@ -1889,7 +1929,7 @@
     if (on && !offlineEl) {
       offlineEl = document.createElement("div");
       offlineEl.className = "offline-bar";
-      offlineEl.textContent = "📡 当前离线 · 正在显示已缓存的数据";
+      offlineEl.textContent = "当前离线 · 正在显示已缓存的数据";
       var hd = document.querySelector(".header");
       if (hd && hd.parentNode) hd.parentNode.insertBefore(offlineEl, hd);
     } else if (!on && offlineEl) {

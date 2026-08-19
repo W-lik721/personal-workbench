@@ -167,6 +167,14 @@ body.light ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18)}
 .card:focus-within{border-color:var(--accent-line-2)}
 .card h2{margin:0 0 9px;font-size:14px;color:var(--ink-strong);display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.02em}
 .card h2 .ic{font-size:14px;background:var(--tint);border:1px solid var(--accent-line-2);border-radius:8px;padding:5px 6px;display:inline-flex;line-height:1;color:var(--accent)}
+/* 线条图标（Feather 风格，替代 emoji）：尺寸统一、颜色跟随 currentColor */
+.ic-svg{width:14px;height:14px;display:inline-block;vertical-align:-2px;flex:none}
+.card h2 .ic .ic-svg,.side-card h4 .ic .ic-svg{width:13px;height:13px}
+.tab .ic-svg{width:13px;height:13px;vertical-align:-2px;margin-right:5px}
+.refresh-btn .ic-svg,.btn,.btn-sm,.mini-btn .ic-svg{width:13px;height:13px;vertical-align:-2px}
+.qb-title .ic-svg,.qb-item .ic-svg{width:15px;height:15px;vertical-align:-3px}
+.kpi .ic-svg{width:17px;height:17px}
+.si .ic-svg{width:15px;height:15px;vertical-align:-3px}
 
 /* ===== 布局重排：三小卡 + 时间线整行 ===== */
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-xs);align-items:stretch;margin-bottom:var(--space-xs)}
@@ -678,7 +686,7 @@ body.light .wk-list::-webkit-scrollbar-thumb{background:rgba(0,0,0,.16)}
 .week-chip.on{background:var(--accent-strong);color:var(--accent-ink);border-color:transparent;box-shadow:var(--sh-btn)}
 .week-chip .cc{font-size:12px;opacity:.75;margin-left:2px}
 
-/* ===== 🤖 AI 助手 ===== */
+/* ===== AI 助手 ===== */
 .ai-set{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .ai-set .sf{flex:1;min-width:200px}
 .ai-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}

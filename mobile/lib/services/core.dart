@@ -257,11 +257,11 @@ class Store {
     final y = DateTime.now().year;
     int d(int m, int day) => DateTime(y, m, day).millisecondsSinceEpoch;
     return [
-      ExamEvent('🎓 考研初试', d(12, 19), emoji: '🎓', preset: true),
-      ExamEvent('📚 英语四级(CET-4)', d(6, 13), emoji: '📚', preset: true),
-      ExamEvent('📚 英语六级(CET-6)', d(12, 12), emoji: '📚', preset: true),
-      ExamEvent('🌞 暑假', d(7, 1), emoji: '🌞', preset: true),
-      ExamEvent('❄️ 寒假', d(1, 20), emoji: '❄️', preset: true),
+      ExamEvent('考研初试', d(12, 19), emoji: '🎓', preset: true),
+      ExamEvent('英语四级(CET-4)', d(6, 13), emoji: '📚', preset: true),
+      ExamEvent('英语六级(CET-6)', d(12, 12), emoji: '📚', preset: true),
+      ExamEvent('暑假', d(7, 1), emoji: '🌞', preset: true),
+      ExamEvent('寒假', d(1, 20), emoji: '❄️', preset: true),
     ];
   }
 

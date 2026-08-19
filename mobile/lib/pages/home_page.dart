@@ -395,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                       controller: _noteCtrl,
                       maxLines: 3,
                       minLines: 1,
-                      decoration: const InputDecoration(hintText: '写一条想法 / 灵感…', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(hintText: '写一条想法…', border: OutlineInputBorder()),
                       onSubmitted: (_) => _addNote(),
                     ),
                   ),
@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 child: FilledButton.icon(
                   icon: const Icon(Icons.auto_awesome, size: 18),
-                  label: const Text('让 AI 给我今日灵感'),
+                  label: const Text('生成今日建议'),
                   onPressed: _aiInspire,
                 ),
               ),
@@ -545,7 +545,7 @@ class _HomePageState extends State<HomePage> {
     b.writeln('这是我今天工作台的状态：');
     b.writeln('待办（还没做的）：${pending.isEmpty ? '暂无' : pending.join('、')}');
     b.writeln('随手记：${notes.isEmpty ? '暂无' : notes.join('、')}');
-    b.writeln('请基于上面这些，给我 1-2 个今天可以马上动手做的具体小建议或灵感，用大白话、别太啰嗦。');
+    b.writeln('请基于上面这些，给我 1-2 个今天可以马上动手做的具体小建议，用大白话、别太啰嗦。');
     aiAskGlobal!(b.toString());
   }
 

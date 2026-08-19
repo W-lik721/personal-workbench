@@ -75,7 +75,7 @@ class _SchedulePageState extends State<SchedulePage> {
     showDialog(
       context: context,
       builder: (c) => AlertDialog(
-        title: const Text('一键导入课程'),
+        title: const Text('导入课程'),
         content: SizedBox(
           width: double.maxFinite,
           child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -472,7 +472,7 @@ class _SchedulePageState extends State<SchedulePage> {
                       const SizedBox(height: 16),
                       Text('还没有课程', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: c.onSurface)),
                       const SizedBox(height: 6),
-                      Text('点右上角「加一门」或「一键导入」添加', textAlign: TextAlign.center, style: TextStyle(color: c.outline, height: 1.5)),
+                      Text('点右上角「加一门」或「导入」添加', textAlign: TextAlign.center, style: TextStyle(color: c.outline, height: 1.5)),
                     ],
                   ),
                 ),

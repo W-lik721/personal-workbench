@@ -31,7 +31,7 @@
   function schedulePushCloud() {
     var token = ghToken();
     var hint = document.getElementById("schedHint");
-    if (!token) { if (hint) hint.textContent = "请先点 ⚙️ 设置 GitHub Token"; return; }
+    if (!token) { if (hint) hint.textContent = "请先点 设置 GitHub Token"; return; }
     var list = scheduleLoad();
     var body = b64encodeUtf8(JSON.stringify(list, null, 2));
     var put = function (sha) {
@@ -278,23 +278,23 @@
       byDay[d].sort(function (a, b) { return (a.time || "").localeCompare(b.time || ""); });
     });
     var importCard =
-      '<div class="card"><h2><span class="ic">📥</span>导入课程表（CSV / Excel / 粘贴）</h2>' +
+      '<div class="card"><h2><span class="ic">' + WB.ic("download") + '</span>导入课程表（CSV / Excel / 粘贴）</h2>' +
       '<div class="sched-imp">' +
-      '<label class="sched-file">📁 选择文件<input type="file" accept=".csv,.xlsx,.xls,.txt" onchange="scheduleFileChosen(this)"></label>' +
+      '<label class="sched-file">选择文件<input type="file" accept=".csv,.xlsx,.xls,.txt" onchange="scheduleFileChosen(this)"></label>' +
       '<span class="empty" style="margin:0">或</span>' +
-      '<button class="btn-sm" onclick="document.getElementById(&quot;schedPaste&quot;).focus()">📋 粘贴表格</button>' +
+      '<button class="btn-sm" onclick="document.getElementById(&quot;schedPaste&quot;).focus()">粘贴表格</button>' +
       '<button class="btn-sm" onclick="exportSchedule(&quot;csv&quot;)">⬇️ 导出 CSV</button>' +
       '<button class="btn-sm" onclick="exportSchedule(&quot;json&quot;)">⬇️ 导出 JSON</button>' +
       '</div>' +
       '<textarea id="schedPaste" rows="3" class="sched-paste" placeholder="把 Excel/表格里的几行复制粘贴到这里（首行写表头：星期/时间/课程/地点/老师/备注，用制表符或逗号分开），再点“解析粘贴内容”。"></textarea>' +
       '<div style="margin-top:8px;display:flex;gap:8px;align-items:center">' +
-      '<button class="btn" onclick="importSchedulePaste()">🔄 解析粘贴内容</button>' +
+      '<button class="btn" onclick="importSchedulePaste()">解析粘贴内容</button>' +
       '<span id="schedHint" class="empty"></span></div>' +
       '<div style="margin-top:9px;display:flex;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:9px">' +
-      '<span class="empty" style="margin:0">☁️ 云端同步：</span>' +
+      '<span class="empty" style="margin:0">云端同步：</span>' +
       '<button class="btn-sm" onclick="schedulePushCloud()">⬆️ 备份到云端</button>' +
       '<button class="btn-sm" onclick="schedulePullCloud(false)">⬇️ 从云端拉取</button>' +
-      '<button class="btn-sm" onclick="setGhToken()">⚙️ Token</button>' +
+      '<button class="btn-sm" onclick="setGhToken()">Token</button>' +
       '</div></div>';
     var addCard =
       '<div class="card"><h2><span class="ic">➕</span>手动加一行</h2>' +
@@ -309,7 +309,7 @@
       '<div style="margin-top:8px"><button class="btn-sm" onclick="addCourse()">➕ 添加这一行</button></div></div>';
     var tableCard;
     if (!list.length) {
-      tableCard = '<div class="card"><h2><span class="ic">📅</span>课程表</h2><div class="empty">还没有课程。用上方导入，或手动加一行。</div></div>';
+      tableCard = '<div class="card"><h2><span class="ic">' + WB.ic("calendar") + '</span>课程表</h2><div class="empty">还没有课程。用上方导入，或手动加一行。</div></div>';
     } else {
       var body = "";
       WEEKDAYS.concat(["其他"]).forEach(function (d) {
@@ -319,17 +319,17 @@
           body += '<div class="sched-row">' +
             '<div class="sr-time">' + esc(c.time || "-") + '</div>' +
             '<div class="sr-main"><b>' + esc(c.name || "未命名") + '</b>' +
-            (c.location ? '<span class="sr-loc">📍 ' + esc(c.location) + '</span>' : '') +
-            (c.teacher ? '<span class="sr-teach">👤 ' + esc(c.teacher) + '</span>' : '') +
-            (c.note ? '<span class="sr-note">📝 ' + esc(c.note) + '</span>' : '') + '</div>' +
+            (c.location ? '<span class="sr-loc">' + esc(c.location) + '</span>' : '') +
+            (c.teacher ? '<span class="sr-teach">' + esc(c.teacher) + '</span>' : '') +
+            (c.note ? '<span class="sr-note">' + esc(c.note) + '</span>' : '') + '</div>' +
             '<button class="nd" onclick="delCourse(' + c.__i + ')">✕</button>' +
             '</div>';
         });
         body += '</div>';
       });
-      tableCard = '<div class="card"><h2><span class="ic">📅</span>我的课程表 · 共 ' + list.length + ' 节</h2>' + body + '</div>';
+      tableCard = '<div class="card"><h2><span class="ic">' + WB.ic("calendar") + '</span>我的课程表 · 共 ' + list.length + ' 节</h2>' + body + '</div>';
     }
-    var clearCard = list.length ? '<div class="card sched-clear"><button class="btn-sm danger" onclick="delAllCourses()">🗑 清空全部课程</button><span class="empty" style="margin:0">清空不可撤销；重复导入会自动跳过</span></div>' : "";
+    var clearCard = list.length ? '<div class="card sched-clear"><button class="btn-sm danger" onclick="delAllCourses()">清空全部课程</button><span class="empty" style="margin:0">清空不可撤销；重复导入会自动跳过</span></div>' : "";
     box.innerHTML = importCard + addCard + clearCard + tableCard;
   }
   window.renderSchedule = renderSchedule;
