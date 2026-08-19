@@ -40,7 +40,6 @@
     var p = ICONS[name] || ICONS.grid;
     return '<svg class="ic-svg' + (extra ? " " + extra : "") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + "</svg>";
   }
-  WB.ic = ic; // 供 schedule.js 等子模块取用
 
   // 分类中英文映射（上游英文 kebab-case，未命中回退原值）
   var CAT_ZH = {
@@ -58,6 +57,7 @@
   // 共享工具命名空间：schedule.js 等子模块通过 window.WB.esc 惰性取用（加载顺序无关）
   var WB = window.WB = window.WB || {};
   WB.esc = esc;
+  WB.ic = ic; // 供 schedule.js 等子模块取用（必须在 WB 声明之后，否则 strict 模式抛 TypeError）
   function escAttr(s) {
     return esc(s).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
   }
