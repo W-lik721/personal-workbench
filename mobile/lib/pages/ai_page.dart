@@ -1,13 +1,12 @@
 // AI 助手页：Agnes / 智谱双提供商，Key 走系统加密存储，流式打字机输出
 // 支持「知识库问答」：开启时发送自动查 vault 知识库（kb.dart）+ 内置 Skill 方法库（skilllib.dart）拼上下文
-// 增强：情境感知（注入今日真实数据）/ 多模态发图 / 语音输入 / 常用问题快捷 / 存笔记收藏 / 思考过程 / 记忆自动抽取
+// 增强：情境感知（注入今日真实数据）/ 多模态发图 / 常用问题快捷 / 存笔记收藏 / 思考过程 / 记忆自动抽取
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/core.dart';
 import '../services/kb.dart';
@@ -35,10 +34,6 @@ class _AiPageState extends State<AiPage> {
   http.Client? _chatClient;
   // 多模态：本轮附带图片（jpeg base64，发送后清空）
   final List<String> _pendingImages = [];
-  // 语音输入
-  final SpeechToText _stt = SpeechToText();
-  bool _sttReady = false;
-  bool _listening = false;
   // 情境感知开关（默认开：发送时自动带上今日真实数据）
   bool _ctxOn = true;
   // 记忆自动抽取开关（默认关：防乱记）
@@ -53,7 +48,6 @@ class _AiPageState extends State<AiPage> {
     _ctxOn = Store.aiContextOn;
     _autoMemOn = Store.aiAutoMemOn;
     _loadKey();
-    _initStt();
     _input.addListener(_onInput);
     // 恢复上次对话历史（记忆功能）
     for (final m in Store.aiHistory()) {
@@ -93,51 +87,6 @@ class _AiPageState extends State<AiPage> {
     if (mounted) setState(() => _hasKey = k.isNotEmpty);
   }
 
-  // 语音识别可用性初始化（speech_to_text 需先 initialize）
-  Future<void> _initStt() async {
-    try {
-      _sttReady = await _stt.initialize(
-        onError: (e) => _stopListen(),
-      );
-      if (mounted) setState(() {});
-    } catch (_) {
-      _sttReady = false;
-    }
-  }
-
-  // 开始/停止语音听写：实时把识别文字回填输入框
-  Future<void> _toggleListen() async {
-    if (_busy) return;
-    if (_listening) {
-      _stopListen();
-      return;
-    }
-    if (!_sttReady) {
-      _sttReady = await _stt.initialize();
-      if (!_sttReady) {
-        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('语音识别不可用（设备不支持或未授权麦克风）')));
-        return;
-      }
-    }
-    final locales = await _stt.locales();
-    final zh = locales.where((l) => l.localeId.startsWith('zh')).isNotEmpty ? 'zh_CN' : null;
-    setState(() => _listening = true);
-    await _stt.listen(
-      onResult: (r) {
-        if (!mounted) return;
-        setState(() => _input.text = r.recognizedWords);
-        _input.selection = TextSelection.fromPosition(TextPosition(offset: _input.text.length));
-      },
-      listenOptions: SpeechListenOptions(listenMode: ListenMode.dictation, localeId: zh),
-    );
-  }
-
-  void _stopListen() {
-    if (!_listening) return;
-    _stt.stop();
-    if (mounted) setState(() => _listening = false);
-  }
-
   // 输入框文字变化时重建，让"清空"按钮随文字出现/消失
   void _onInput() => setState(() {});
 
@@ -153,7 +102,6 @@ class _AiPageState extends State<AiPage> {
     aiClearGlobal = null;
     aiFillGlobal = null;
     _cancel = true;
-    _stopListen();
     _chatClient?.close();
     _input.removeListener(_onInput);
     _input.dispose();
@@ -643,25 +591,20 @@ class _AiPageState extends State<AiPage> {
                 ]),
               ),
             Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              IconButton(
-                onPressed: _toggleListen,
-                tooltip: _listening ? '停止语音' : '语音输入',
-                icon: Icon(_listening ? Icons.mic : Icons.mic_none, color: _listening ? c.primary : null),
-              ),
-              IconButton(
-                onPressed: _busy ? null : _pickImage,
-                tooltip: '发图片（拍题/拍文档直接问）',
-                icon: const Icon(Icons.image_outlined),
-              ),
-              const SizedBox(width: 4),
               Expanded(
                 child: TextField(
                   controller: _input,
                   minLines: 1,
                   maxLines: 4,
                   decoration: InputDecoration(
-                    hintText: _listening ? '正在听…说完点麦克风停止' : '问 AI 点什么…',
+                    hintText: '问 AI 点什么…',
                     border: const OutlineInputBorder(),
+                    prefixIcon: IconButton(
+                      visualDensity: VisualDensity.compact,
+                      onPressed: _busy ? null : _pickImage,
+                      tooltip: '发图片（拍题/拍文档直接问）',
+                      icon: const Icon(Icons.image_outlined),
+                    ),
                     suffixIcon: _input.text.isNotEmpty
                         ? IconButton(icon: const Icon(Icons.clear, size: 18), tooltip: '清空', onPressed: _input.clear)
                         : null,

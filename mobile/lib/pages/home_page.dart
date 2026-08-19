@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemSound, SystemSoundType, HapticFeedback;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../services/core.dart';
 import '../services/notifier.dart';
 
@@ -29,8 +28,6 @@ class _HomePageState extends State<HomePage> {
   int _pomoTotal = 25 * 60; // 当前选择的专注总时长（进度条分母 + 重置基准）
   DateTime? _pomoEnd; // 专注结束时刻（时间戳计时，后台/锁屏也不失真）
   Timer? _pomoTimer;
-  final stt.SpeechToText _speech = stt.SpeechToText(); // 语音速记（系统语音识别，免 key）
-  bool _listening = false; // 是否正在录音
 
   void _reload() {
     setState(() {
@@ -68,37 +65,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _speech.stop(); // 离开页面时停止录音，释放麦克风
     _todoCtrl.dispose();
     _noteCtrl.dispose();
     _noteQCtl.dispose();
     _favQCtl.dispose();
     super.dispose();
-  }
-
-  // 语音速记：点一下开始听，再点停止；识别结果实时填入速记框
-  Future<void> _toggleSpeech() async {
-    if (_listening) {
-      await _speech.stop();
-      if (mounted) setState(() => _listening = false);
-      return;
-    }
-    final ok = await _speech.initialize();
-    if (!ok) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('语音识别不可用：手机上没装语音引擎，或没开麦克风权限')));
-      }
-      return;
-    }
-    if (!mounted) return;
-    setState(() => _listening = true);
-    await _speech.listen(
-      listenOptions: stt.SpeechListenOptions(localeId: 'zh_CN'),
-      onResult: (r) {
-        final t = r.recognizedWords;
-        if (t.isNotEmpty && mounted) _noteCtrl.text = t;
-      },
-    );
   }
 
   void _addTodo() {
@@ -405,11 +376,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(width: 4),
-                  IconButton(
-                    tooltip: _listening ? '停止录音' : '语音速记（说中文转文字）',
-                    icon: Icon(_listening ? Icons.mic : Icons.mic_none, color: _listening ? c.error : null),
-                    onPressed: _toggleSpeech,
-                  ),
                 ],
               ),
               const SizedBox(height: 8),
