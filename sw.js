@@ -1,5 +1,5 @@
 ﻿// 个人工作台 Service Worker - 离线可开、可安装到主屏幕
-const CACHE = "workbench-v85";
+const CACHE = "workbench-v86";
 const FILES = [
   "./index.html",
   "./styles.css?v=65",
@@ -20,14 +20,13 @@ self.addEventListener("install", (e) => {
       .then(() => self.skipWaiting())
   );
 });
-
+// 激进清缓存：activate 时清掉所有 CACHE 再重建（不只是非当前名），保证用户刷新后 0 旧缓存可用
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches
       .keys()
-      .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-      )
+      .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+      .then(() => caches.open(CACHE).then((c) => c.addAll(FILES)))
       .then(() => self.clients.claim())
   );
 });
