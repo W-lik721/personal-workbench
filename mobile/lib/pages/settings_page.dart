@@ -722,6 +722,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
     Store.syncRepo = repo;
     await Store.setSyncToken(token); // 持久化，避免进程重建后丢失
+    if (!mounted) return;
     final ok = await showDialog<bool>(
       context: context,
       builder: (c) => AlertDialog(

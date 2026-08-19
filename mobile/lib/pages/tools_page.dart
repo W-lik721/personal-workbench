@@ -122,6 +122,7 @@ class _AccountTabState extends State<_AccountTab> {
   Future<void> _del(int i) async {
     HapticFeedback.mediumImpact();
     final l = await Store.accounts();
+    if (!mounted) return;
     final name = l[i].title;
     final ok = await showDialog<bool>(
       context: context,
@@ -504,7 +505,7 @@ class _OcrTabState extends State<_OcrTab> {
       if (!_busy && _textCtrl.text.isNotEmpty) ...[
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 4),
-          child: Row(children: const [Icon(Icons.text_snippet_rounded, size: 16), SizedBox(width: 4), Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))]),
+          child: Row(children: [Icon(Icons.text_snippet_rounded, size: 16), SizedBox(width: 4), Text('识别出的文字（可编辑）', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))]),
         ),
         TextField(
           controller: _textCtrl,

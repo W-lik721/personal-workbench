@@ -399,9 +399,21 @@ class Store {
 
   // 番茄钟跨进程持久化：App 被系统回收后再开，进行中/暂停的专注还能接着
   static int? get pomoEndMs => _p?.getInt('wb_pomo_end'); // 结束时间戳(ms)，null=未在计时
-  static set pomoEndMs(int? v) { if (v == null) _p?.remove('wb_pomo_end'); else _p?.setInt('wb_pomo_end', v); }
+  static set pomoEndMs(int? v) {
+    if (v == null) {
+      _p?.remove('wb_pomo_end');
+    } else {
+      _p?.setInt('wb_pomo_end', v);
+    }
+  }
   static int? get pomoLeftSec => _p?.getInt('wb_pomo_left'); // 暂停时剩余秒数
-  static set pomoLeftSec(int? v) { if (v == null) _p?.remove('wb_pomo_left'); else _p?.setInt('wb_pomo_left', v); }
+  static set pomoLeftSec(int? v) {
+    if (v == null) {
+      _p?.remove('wb_pomo_left');
+    } else {
+      _p?.setInt('wb_pomo_left', v);
+    }
+  }
   static int get pomoTotalSec => _p?.getInt('wb_pomo_total') ?? (25 * 60);
   static set pomoTotalSec(int v) => _p?.setInt('wb_pomo_total', v);
 
