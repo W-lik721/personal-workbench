@@ -1,4 +1,4 @@
-/* schedule.js —— 课程表模块（从 app.js 拆出）
+﻿/* schedule.js —— 课程表模块（从 app.js 拆出）
  * 依赖：window.WB.esc（由 app.js 注入，函数调用时才求值，加载顺序无关）
  * 加载顺序：schedule.js 必须在 app.js 之前（app.js 启动段会调用 window.renderSchedule）
  */
