@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19 18:43",
+  "generatedAt": "2026-08-19 19:37",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：GLM-5.3上线：AA智能指数60分并列开源第一，成本更低",
+    "🗞️ 今日 AI 日报已更新（17 条）：GLM-5.3上线：AA智能指数60分并列开源第一，成本更低",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1824,10 +1824,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 18:43",
+    "fetchedAt": "2026-08-19 19:37",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
-    "count": 18,
+    "count": 17,
     "sections": [
       {
         "label": "产品发布",
@@ -1912,12 +1912,6 @@
             "summary": "全球设计公司 Populous 高级建筑师 Georgina Myers 介绍团队用 Runway 辅助体育场馆概念设计：过去完整视频需外部渲染团队至少三周，且提交前两周须冻结设计模型；如今 Runway 能生成传达尺度感的完整渲染和航拍图，将视觉制作时间缩短，让设计师把时间还给设计本身。该工具已用于利雅得 MBS 体育场等中东项目，支持 9 种不同活动模式的场景迭代。",
             "url": "https://runwayml.com/news/customers/populous",
             "source": "Runway：News（网页）"
-          },
-          {
-            "title": "OpenAI 在\"关键网络能力\"时代放缓模型开发节奏",
-            "summary": "OpenAI 因 OpenAI-Hugging Face 事件及即将推出的 Astra 模型可能达到《预备框架》下的\"关键网络安全能力\"阈值，暂时放缓了模型扩展速度，包括暂停最新部署模型的强化学习训练两周，并搁置最大规模前沿 RL 运行。公司已加强研究环境安全，要求对 Astra 及网络相关负载实施最严格防护，并扩展思维链监控，采用多阶段激活分类器检测机制。",
-            "url": "https://aihot.virxact.com/items/cmsz0hbsg05l0ro204080cotv",
-            "source": ""
           }
         ]
       },
@@ -1967,8 +1961,8 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 18:43",
-        "count": 18,
+        "fetchedAt": "2026-08-19 19:37",
+        "count": 17,
         "sections": [
           {
             "label": "产品发布",
@@ -2053,12 +2047,6 @@
                 "summary": "全球设计公司 Populous 高级建筑师 Georgina Myers 介绍团队用 Runway 辅助体育场馆概念设计：过去完整视频需外部渲染团队至少三周，且提交前两周须冻结设计模型；如今 Runway 能生成传达尺度感的完整渲染和航拍图，将视觉制作时间缩短，让设计师把时间还给设计本身。该工具已用于利雅得 MBS 体育场等中东项目，支持 9 种不同活动模式的场景迭代。",
                 "url": "https://runwayml.com/news/customers/populous",
                 "source": "Runway：News（网页）"
-              },
-              {
-                "title": "OpenAI 在\"关键网络能力\"时代放缓模型开发节奏",
-                "summary": "OpenAI 因 OpenAI-Hugging Face 事件及即将推出的 Astra 模型可能达到《预备框架》下的\"关键网络安全能力\"阈值，暂时放缓了模型扩展速度，包括暂停最新部署模型的强化学习训练两周，并搁置最大规模前沿 RL 运行。公司已加强研究环境安全，要求对 Astra 及网络相关负载实施最严格防护，并扩展思维链监控，采用多阶段激活分类器检测机制。",
-                "url": "https://aihot.virxact.com/items/cmsz0hbsg05l0ro204080cotv",
-                "source": ""
               }
             ]
           },
@@ -3731,7 +3719,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 18:43",
+    "fetchedAt": "2026-08-19 19:37",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3833,7 +3821,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 18:43",
+        "fetchedAt": "2026-08-19 19:37",
         "count": 15,
         "items": [
           {
@@ -5032,12 +5020,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T18:44:00",
-    "status": "ok",
-    "nextRun": "2026-08-19T19:44:00",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
