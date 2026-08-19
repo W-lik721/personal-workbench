@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19 12:49",
+  "generatedAt": "2026-08-19 13:43",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -722,19 +722,27 @@
   "sessions": {
     "recent": [
       {
+        "title": "排查大量部署失败的原因",
+        "customTitle": "工作台",
+        "display": "工作台",
+        "status": "working",
+        "updated": "08-19 13:43",
+        "group": "今天"
+      },
+      {
         "title": "整理知识库并做系统体检",
         "customTitle": "",
         "display": "整理知识库并做系统体检",
         "status": "completed",
-        "updated": "08-19 12:48",
+        "updated": "08-19 13:16",
         "group": "今天"
       },
       {
-        "title": "排查大量部署失败的原因",
-        "customTitle": "工作台",
-        "display": "工作台",
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
         "status": "completed",
-        "updated": "08-19 12:48",
+        "updated": "08-19 13:15",
         "group": "今天"
       },
       {
@@ -744,14 +752,6 @@
         "status": "completed",
         "updated": "08-19 12:18",
         "group": "今天"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-17 15:00",
-        "group": "更早"
       },
       {
         "title": "复盘今天所有项目和改动",
@@ -1385,10 +1385,8 @@
       },
       {
         "date": "2026-08-17",
-        "count": 1,
-        "titles": [
-          "skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-18",
@@ -1397,10 +1395,11 @@
       },
       {
         "date": "2026-08-19",
-        "count": 3,
+        "count": 4,
         "titles": [
-          "整理知识库并做系统体检",
           "工作台",
+          "整理知识库并做系统体检",
+          "skill",
           "学习"
         ]
       }
@@ -1416,23 +1415,23 @@
     "files": [
       {
         "name": "📑 索引.md",
-        "mtime": "08-18 19:16"
+        "mtime": "08-19 13:12"
       },
       {
         "name": "00-导航总览.md",
-        "mtime": "08-18 19:16"
+        "mtime": "08-19 13:12"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-18 19:16"
+        "mtime": "08-19 13:12"
+      },
+      {
+        "name": "AGENTS.md",
+        "mtime": "08-19 12:59"
       },
       {
         "name": "00-路由表.md",
         "mtime": "08-18 19:13"
-      },
-      {
-        "name": "AGENTS.md",
-        "mtime": "08-18 19:12"
       },
       {
         "name": ".gitignore",
@@ -1452,39 +1451,45 @@
     {
       "kind": "kb",
       "name": "kb-index.json",
-      "when": 1787051794.5386684
+      "when": 1787116376.1729896
     },
     {
       "kind": "kb",
       "name": "00-导航总览.md",
-      "when": 1787051794.0244927
+      "when": 1787116376.009221
     },
     {
       "kind": "kb",
       "name": "📑 索引.md",
-      "when": 1787051793.0491455
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1787051587.6502998
+      "when": 1787116375.5719209
     },
     {
       "kind": "kb",
       "name": "AGENTS.md",
-      "when": 1787051577.420082
+      "when": 1787115550.9584312
+    },
+    {
+      "kind": "skill",
+      "name": "wb-skill-ops",
+      "when": 1787115427.9659824,
+      "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "kb-preflight",
-      "when": 1787051525.5996559,
+      "when": 1787115349.7105615,
       "scope": "本机"
     },
     {
       "kind": "skill",
       "name": "kb-ingest",
-      "when": 1787051516.7195687,
+      "when": 1787115349.6909914,
       "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "00-路由表.md",
+      "when": 1787051587.6502998
     },
     {
       "kind": "kb",
@@ -1744,12 +1749,6 @@
     },
     {
       "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1786780649.3348434,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
       "name": "agent-reach",
       "when": 1786779953.3073583,
       "scope": "本机"
@@ -1829,7 +1828,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 12:49",
+    "fetchedAt": "2026-08-19 13:43",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
     "count": 18,
@@ -1972,7 +1971,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 12:49",
+        "fetchedAt": "2026-08-19 13:43",
         "count": 18,
         "sections": [
           {
@@ -3736,7 +3735,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 12:49",
+    "fetchedAt": "2026-08-19 13:43",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3838,7 +3837,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 12:49",
+        "fetchedAt": "2026-08-19 13:43",
         "count": 15,
         "items": [
           {
@@ -5037,12 +5036,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T12:49:29",
-    "status": "ok",
-    "nextRun": "2026-08-19T13:49:29",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
