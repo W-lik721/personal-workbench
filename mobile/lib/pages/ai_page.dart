@@ -524,7 +524,7 @@ class _AiPageState extends State<AiPage> {
                     : const Color(0xFFB45309)),
             const SizedBox(width: 8),
             Expanded(
-              child: Text('还没设置 API Key，AI 暂时无法回答。点右侧去设置，填好就能用了。',
+              child: Text('还没设置 API Key，AI 暂时无法回答。去对应官网（Agnes / 智谱）注册领取免费额度，把 sk- 开头的 Key 粘贴进来就能用。',
                   style: TextStyle(fontSize: 13, color: c.onSurface)),
             ),
             TextButton(onPressed: _saveKey, child: const Text('去设置')),

@@ -741,7 +741,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   // 折叠状态：foldKey 存在即可点标题收起（长页面可收次要卡片）
-  final Set<String> _folded = {};
+  // P2-9：首屏默认只展开「待办」「今日概览」，其余(速记/倒计时/收藏)折叠，更快到重点
+  final Set<String> _folded = {'note', 'countdown', 'fav'};
 
   Widget _card({required String title, required Widget child, String? foldKey, IconData? icon}) {
     final folded = foldKey != null && _folded.contains(foldKey);

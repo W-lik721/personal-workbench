@@ -28,10 +28,9 @@
     <button class="refresh-btn" id="todayBtn" onclick="copyToday()" title="把今天的 KPI / 头条 / 引导整理成一段文字复制，发给 AI 要今日建议">📋 今日概览</button>
     <div class="snap" id="snap">📸 快照 · 加载中…</div>
     <div class="sync-status" id="syncStatus">🔄 同步状态 · 加载中…</div>
-    <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">🔄 立即刷新</button>
-    <button class="refresh-btn" id="selfCheckBtn" onclick="selfCheck()">🔍 功能自检</button>
+    <button class="refresh-btn" id="refreshBtn" onclick="refreshData()" title="触发云端同步：让 GitHub Actions 拉取本机最新数据并重新部署网页。需先在网页设置里填好 Token；只同步数据，不清除本地内容">🔄 同步数据</button>
     <button class="refresh-btn" id="installBtn" onclick="promptInstall()" style="display:none" title="把工作台安装成 App（可离线、像原生应用一样打开）">📲 安装 App</button>
-    <button class="refresh-btn" id="themeBtn" onclick="toggleTheme()" title="切换深色 / 浅色">🌙</button>
+    <button class="refresh-btn" id="themeBtn" onclick="toggleTheme()" title="切换主题（深色 / 浅色 / 跟随系统）">🌙</button>
   </div>
 </header>
 <div class="selfcheck" id="selfCheckResult"></div>
@@ -149,7 +148,7 @@
     <div class="wrap"><div class="col" id="col-schedule"></div></div>
   </section>
 </main>
-<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成 · <span id="freshness"></span><button class="btn-sm" onclick="exportAll()" title="把速记/待办/收藏/入口导出为 Markdown">📤 导出数据</button><button class="btn-sm" onclick="backupExport()" title="导出 JSON 备份（可完整恢复）">💾 备份</button><button class="btn-sm" onclick="backupImport()" title="从 JSON 备份恢复数据">📥 恢复</button></div>
+<div class="foot">本机数据每小时自动同步 · AI 日报与每日新闻自动抓取 · 全部用真实数据动态生成 · <span id="freshness"></span><button class="btn-sm" id="selfCheckBtn" onclick="selfCheck()" title="跑一遍功能自检，列出各模块是否正常">🔍 功能自检</button><button class="btn-sm" onclick="exportAll()" title="把速记/待办/收藏/入口导出为 Markdown">📤 导出数据</button><button class="btn-sm" onclick="backupExport()" title="导出 JSON 备份（可完整恢复）">💾 备份</button><button class="btn-sm" onclick="backupImport()" title="从 JSON 备份恢复数据">📥 恢复</button></div>
 <div class="heat-modal" id="heat-detail" onclick="if(event.target===this)closeHeat()">
   <div class="heat-card">
     <div class="heat-card-h"><span id="heat-detail-date"></span><button class="heat-x" onclick="closeHeat()">✕</button></div>
@@ -157,6 +156,6 @@
   </div>
 </div>
 <script src="schedule.js?v=2"></script>
-<script src="app.js?v=64"></script>
+<script src="app.js?v=65"></script>
 </body>
 </html>

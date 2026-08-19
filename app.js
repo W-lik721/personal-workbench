@@ -320,25 +320,45 @@
     var h = document.getElementById("favsHint"); if (h) h.textContent = "✓ 已清空";
   }
 
-  // ---------- 主题切换 ----------
+  // ---------- 主题切换（三态：深色 / 浅色 / 跟随系统，与 App 端一致） ----------
   function syncThemeColor(light) {
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.setAttribute("content", light ? "#f2f4f8" : "#0e0f13");
   }
+  // 读取主题模式：light / dark / system（旧版本只有 dark/light，缺省按 dark）
+  function _themeMode() {
+    var v = localStorage.getItem("wb_theme");
+    return (v === "light" || v === "dark" || v === "system") ? v : "dark";
+  }
+  // 算出当前是否浅色：system 模式跟随系统配色偏好
+  function _themeLight(mode) {
+    if (mode === "light") return true;
+    if (mode === "dark") return false;
+    return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  }
   function applyTheme() {
-    var light = localStorage.getItem("wb_theme") === "light";
+    var mode = _themeMode();
+    var light = _themeLight(mode);
     document.body.classList.toggle("light", light);
     var b = document.getElementById("themeBtn");
-    if (b) b.textContent = light ? "☀️" : "🌙";
+    if (b) {
+      b.textContent = mode === "system" ? "🌗" : (light ? "☀️" : "🌙");
+      b.title = "主题：" + (mode === "system" ? "跟随系统" : (light ? "浅色" : "深色")) + "（点此切换）";
+    }
     syncThemeColor(light);
   }
   function toggleTheme() {
-    var light = !document.body.classList.contains("light");
-    document.body.classList.toggle("light", light);
-    localStorage.setItem("wb_theme", light ? "light" : "dark");
-    var b = document.getElementById("themeBtn");
-    if (b) b.textContent = light ? "☀️" : "🌙";
-    syncThemeColor(light);
+    // 循环：深色 → 浅色 → 跟随系统 → 深色
+    var cur = _themeMode();
+    var next = cur === "dark" ? "light" : (cur === "light" ? "system" : "dark");
+    localStorage.setItem("wb_theme", next);
+    applyTheme();
+  }
+  // 跟随系统模式下，系统主题变化实时响应
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      if (_themeMode() === "system") applyTheme();
+    });
   }
 
   function toggleNS(h) {

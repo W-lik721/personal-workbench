@@ -175,6 +175,10 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: Text('底部导航固定 7 个位置，可拖动排序、替换成内置板块，或放你自建的板块。', style: TextStyle(fontSize: 12)),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Text('改动即时生效，底部导航栏会同步更新；新建板块后记得在上方槽位下拉里选它，才会出现在导航。', style: TextStyle(fontSize: 12, color: c.outline)),
+          ),
           ...List.generate(7, (i) => _navSlot(i)),
           const Divider(height: 1),
           Padding(
@@ -220,6 +224,10 @@ class _SettingsPageState extends State<SettingsPage> {
       _sectionTitle('云同步', icon: Icons.cloud_sync_rounded),
       Card(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+            child: Text('云同步是可选的：不填也能正常使用，换手机时「导出备份」即可把数据搬过去。想多设备实时同步再填下面两项。', style: TextStyle(fontSize: 12, color: c.outline, height: 1.5)),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
             child: TextField(
