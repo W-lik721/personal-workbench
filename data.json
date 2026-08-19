@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19 11:55",
+  "generatedAt": "2026-08-19 12:49",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -722,28 +722,28 @@
   "sessions": {
     "recent": [
       {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "08-19 11:48",
-        "group": "今天"
-      },
-      {
         "title": "整理知识库并做系统体检",
         "customTitle": "",
         "display": "整理知识库并做系统体检",
         "status": "completed",
-        "updated": "08-18 20:21",
-        "group": "昨天"
+        "updated": "08-19 12:48",
+        "group": "今天"
       },
       {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
         "status": "completed",
-        "updated": "08-18 00:12",
-        "group": "昨天"
+        "updated": "08-19 12:48",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-19 12:18",
+        "group": "今天"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -1392,16 +1392,15 @@
       },
       {
         "date": "2026-08-18",
-        "count": 2,
-        "titles": [
-          "整理知识库并做系统体检",
-          "工作台"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-19",
-        "count": 1,
+        "count": 3,
         "titles": [
+          "整理知识库并做系统体检",
+          "工作台",
           "学习"
         ]
       }
@@ -1830,7 +1829,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 11:55",
+    "fetchedAt": "2026-08-19 12:49",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
     "count": 18,
@@ -1973,7 +1972,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 11:55",
+        "fetchedAt": "2026-08-19 12:49",
         "count": 18,
         "sections": [
           {
@@ -3737,7 +3736,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 11:55",
+    "fetchedAt": "2026-08-19 12:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3839,7 +3838,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 11:55",
+        "fetchedAt": "2026-08-19 12:49",
         "count": 15,
         "items": [
           {
@@ -5038,12 +5037,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T11:56:05",
-    "status": "ok",
-    "nextRun": "2026-08-19T12:56:05",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
