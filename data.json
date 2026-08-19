@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-19 13:43",
+  "generatedAt": "2026-08-19 15:02",
   "kpi": {
     "skills": 65,
     "automations": 3,
-    "models": 5,
+    "models": 4,
     "memory": 41,
     "knowledge": 9,
     "sessions": 9
@@ -611,10 +611,6 @@
         "type": "云端"
       },
       {
-        "name": "Kimi-K2.6",
-        "type": "云端"
-      },
-      {
         "name": "qwen2.5-vl-local",
         "type": "本机"
       },
@@ -714,7 +710,7 @@
       },
       "D": {
         "total": 544,
-        "free": 372
+        "free": 298
       }
     },
     "runtime": "3.13 / 22.22"
@@ -725,8 +721,8 @@
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
         "display": "工作台",
-        "status": "working",
-        "updated": "08-19 13:43",
+        "status": "completed",
+        "updated": "08-19 15:02",
         "group": "今天"
       },
       {
@@ -1828,7 +1824,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 13:43",
+    "fetchedAt": "2026-08-19 15:02",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
     "count": 18,
@@ -1971,7 +1967,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 13:43",
+        "fetchedAt": "2026-08-19 15:02",
         "count": 18,
         "sections": [
           {
@@ -3735,7 +3731,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 13:43",
+    "fetchedAt": "2026-08-19 15:02",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3837,7 +3833,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 13:43",
+        "fetchedAt": "2026-08-19 15:02",
         "count": 15,
         "items": [
           {
@@ -5036,12 +5032,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T13:43:59",
-    "status": "ok",
-    "nextRun": "2026-08-19T14:43:59",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
