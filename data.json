@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19 22:50",
+  "generatedAt": "2026-08-20 00:24",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -580,7 +580,7 @@
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-19",
+    "skillsLastUpdate": "2026-08-20",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -702,11 +702,11 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-19",
+    "memoryLastUpdate": "2026-08-20",
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 239
       },
       "D": {
         "total": 544,
@@ -723,7 +723,7 @@
         "display": "工作台",
         "status": "completed",
         "updated": "08-19 18:39",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -731,7 +731,7 @@
         "display": "整理知识库并做系统体检",
         "status": "completed",
         "updated": "08-19 13:16",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -739,7 +739,7 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-19 13:15",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -747,7 +747,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-19 12:18",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "复盘今天所有项目和改动",
@@ -791,11 +791,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-23",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-24",
         "count": 0,
@@ -1398,6 +1393,11 @@
           "skill",
           "学习"
         ]
+      },
+      {
+        "date": "2026-08-20",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1814,17 +1814,11 @@
       "name": "tts-reader",
       "when": 1786597826.9338126,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "deeptutor-tutor",
-      "when": 1786548229.0079756,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 22:50",
+    "fetchedAt": "2026-08-20 00:24",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-19",
     "count": 18,
@@ -1972,7 +1966,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 22:50",
+        "fetchedAt": "2026-08-20 00:24",
         "count": 18,
         "sections": [
           {
@@ -3741,7 +3735,7 @@
   },
   "dailyNews": {
     "date": "2026-08-19",
-    "fetchedAt": "2026-08-19 22:50",
+    "fetchedAt": "2026-08-20 00:24",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3843,7 +3837,7 @@
     "history": [
       {
         "date": "2026-08-19",
-        "fetchedAt": "2026-08-19 22:50",
+        "fetchedAt": "2026-08-20 00:24",
         "count": 15,
         "items": [
           {
@@ -5042,12 +5036,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-19T22:50:45",
-    "status": "ok",
-    "nextRun": "2026-08-19T23:50:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
