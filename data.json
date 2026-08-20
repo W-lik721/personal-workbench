@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20 23:47",
+  "generatedAt": "2026-08-21 00:48",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,14 +573,14 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（17 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
+    "🗞️ 今日 AI 日报已更新（19 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-20",
+    "skillsLastUpdate": "2026-08-21",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -702,7 +702,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-20",
+    "memoryLastUpdate": "2026-08-21",
     "disk": {
       "C": {
         "total": 380,
@@ -718,11 +718,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "了解IDM下载器的下载方法",
+        "title": "设计斗罗大陆双生武魂角色",
         "customTitle": "",
-        "display": "了解IDM下载器的下载方法",
+        "display": "设计斗罗大陆双生武魂角色",
         "status": "completed",
-        "updated": "08-20 23:20",
+        "updated": "08-21 00:47",
         "group": "今天"
       },
       {
@@ -731,7 +731,7 @@
         "display": "工作台",
         "status": "completed",
         "updated": "08-20 14:50",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -739,7 +739,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-20 13:34",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -747,7 +747,7 @@
         "display": "整理知识库并做系统体检",
         "status": "completed",
         "updated": "08-19 13:16",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -755,7 +755,7 @@
         "display": "skill",
         "status": "completed",
         "updated": "08-19 13:15",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "复盘今天所有项目和改动",
@@ -799,11 +799,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-24",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-25",
         "count": 0,
@@ -1402,11 +1397,17 @@
       },
       {
         "date": "2026-08-20",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "了解IDM下载器的下载方法",
           "工作台",
           "学习"
+        ]
+      },
+      {
+        "date": "2026-08-21",
+        "count": 1,
+        "titles": [
+          "设计斗罗大陆双生武魂角色"
         ]
       }
     ]
@@ -1822,10 +1823,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 23:47",
+    "fetchedAt": "2026-08-21 00:48",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-20",
-    "count": 17,
+    "count": 19,
     "sections": [
       {
         "label": "模型发布",
@@ -1834,6 +1835,23 @@
             "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
             "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
             "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "Mistral 推出 Agentic Search：多步检索提升 AI 系统复杂文档查询准确率",
+            "summary": "Mistral 发布 Agentic Search，通过 search、open、navigate、read、grep 五工具的多步检索循环，让模型在长文档与多来源中查找、定位并验证信息。",
+            "url": "https://aihot.virxact.com/items/cmt1pkwbj04bxroovzkfca5c7",
+            "source": ""
+          },
+          {
+            "title": "AlloyDB ScaNN 如何将向量搜索扩展到 100 亿向量",
+            "summary": "AlloyDB 的 ScaNN 索引现已支持超过 100 亿向量的规模，通过全新的四层树架构（预览版）实现，将查询复杂度从 O（N^1/2） 降至 O（N^1/4）。内部测试中，该架构在 100 亿向量规模下可实现 p95 延迟不超过 51 毫秒、召回率达 95%。该功能可通过快速入门指南部署，新用户可享受 30 天免费试用。",
+            "url": "https://aihot.virxact.com/items/cmt1r7jjh05lgroovc4zwypj6",
             "source": ""
           }
         ]
@@ -1964,8 +1982,8 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 23:47",
-        "count": 17,
+        "fetchedAt": "2026-08-21 00:48",
+        "count": 19,
         "sections": [
           {
             "label": "模型发布",
@@ -1974,6 +1992,23 @@
                 "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
                 "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
                 "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "Mistral 推出 Agentic Search：多步检索提升 AI 系统复杂文档查询准确率",
+                "summary": "Mistral 发布 Agentic Search，通过 search、open、navigate、read、grep 五工具的多步检索循环，让模型在长文档与多来源中查找、定位并验证信息。",
+                "url": "https://aihot.virxact.com/items/cmt1pkwbj04bxroovzkfca5c7",
+                "source": ""
+              },
+              {
+                "title": "AlloyDB ScaNN 如何将向量搜索扩展到 100 亿向量",
+                "summary": "AlloyDB 的 ScaNN 索引现已支持超过 100 亿向量的规模，通过全新的四层树架构（预览版）实现，将查询复杂度从 O（N^1/2） 降至 O（N^1/4）。内部测试中，该架构在 100 亿向量规模下可实现 p95 延迟不超过 51 毫秒、召回率达 95%。该功能可通过快速入门指南部署，新用户可享受 30 天免费试用。",
+                "url": "https://aihot.virxact.com/items/cmt1r7jjh05lgroovc4zwypj6",
                 "source": ""
               }
             ]
@@ -3873,7 +3908,7 @@
   },
   "dailyNews": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 23:47",
+    "fetchedAt": "2026-08-21 00:48",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3975,7 +4010,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 23:47",
+        "fetchedAt": "2026-08-21 00:48",
         "count": 15,
         "items": [
           {
@@ -5274,12 +5309,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-20T23:47:47",
-    "status": "ok",
-    "nextRun": "2026-08-21T00:47:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
