@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20 21:09",
+  "generatedAt": "2026-08-20 21:56",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（16 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
+    "🗞️ 今日 AI 日报已更新（17 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -646,7 +646,7 @@
         {
           "id": "7a43084a93c1",
           "size": "6.0 GB",
-          "modified": "2 weeks ago",
+          "modified": "3 weeks ago",
           "tags": [
             "qwen2.5-vl-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
@@ -1813,10 +1813,10 @@
   ],
   "aiDaily": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 21:09",
+    "fetchedAt": "2026-08-20 21:56",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-20",
-    "count": 16,
+    "count": 17,
     "sections": [
       {
         "label": "模型发布",
@@ -1895,6 +1895,12 @@
             "summary": "Databricks 发布指南，探讨如何从单一提示词设计高效的 Genie Agents。文章指出，通用智能体在处理收入等查询时，往往只会抓取第一个相关数据表，而 Genie Agents 通过更精准的提示词设计，能更准确地定位和回答用户问题。该指南旨在帮助开发者优化智能体行为，提升查询结果的准确性和相关性。",
             "url": "https://www.databricks.com/blog/designing-effective-genie-agents-single-prompt",
             "source": "Databricks：Blog（RSS）"
+          },
+          {
+            "title": "Claude Code 初创公司指南：五大规则与创始人洞见",
+            "summary": "Anthropic 发布面向初创公司的 Claude Code 使用指南，基于对十余家高增长公司的调研，总结出\"人人皆可交付、自动化繁琐工作、信任但验证、为重构而构建、原型-自用-产品化\"五大规则。",
+            "url": "https://aihot.virxact.com/items/cmt1k19bn06qgrokx1p75h1gv",
+            "source": ""
           }
         ]
       },
@@ -1949,8 +1955,8 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 21:09",
-        "count": 16,
+        "fetchedAt": "2026-08-20 21:56",
+        "count": 17,
         "sections": [
           {
             "label": "模型发布",
@@ -2029,6 +2035,12 @@
                 "summary": "Databricks 发布指南，探讨如何从单一提示词设计高效的 Genie Agents。文章指出，通用智能体在处理收入等查询时，往往只会抓取第一个相关数据表，而 Genie Agents 通过更精准的提示词设计，能更准确地定位和回答用户问题。该指南旨在帮助开发者优化智能体行为，提升查询结果的准确性和相关性。",
                 "url": "https://www.databricks.com/blog/designing-effective-genie-agents-single-prompt",
                 "source": "Databricks：Blog（RSS）"
+              },
+              {
+                "title": "Claude Code 初创公司指南：五大规则与创始人洞见",
+                "summary": "Anthropic 发布面向初创公司的 Claude Code 使用指南，基于对十余家高增长公司的调研，总结出\"人人皆可交付、自动化繁琐工作、信任但验证、为重构而构建、原型-自用-产品化\"五大规则。",
+                "url": "https://aihot.virxact.com/items/cmt1k19bn06qgrokx1p75h1gv",
+                "source": ""
               }
             ]
           },
@@ -3852,7 +3864,7 @@
   },
   "dailyNews": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 21:09",
+    "fetchedAt": "2026-08-20 21:56",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3954,7 +3966,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 21:09",
+        "fetchedAt": "2026-08-20 21:56",
         "count": 15,
         "items": [
           {
@@ -5253,12 +5265,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-20T21:09:34",
-    "status": "ok",
-    "nextRun": "2026-08-20T22:09:34",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
