@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-20 21:56",
+  "generatedAt": "2026-08-20 22:51",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
     "memory": 42,
     "knowledge": 9,
-    "sessions": 9
+    "sessions": 10
   },
   "skills": [
     {
@@ -710,13 +710,21 @@
       },
       "D": {
         "total": 544,
-        "free": 300
+        "free": 368
       }
     },
     "runtime": "3.13 / 22.22"
   },
   "sessions": {
     "recent": [
+      {
+        "title": "了解IDM下载器的下载方法",
+        "customTitle": "",
+        "display": "了解IDM下载器的下载方法",
+        "status": "working",
+        "updated": "08-20 22:50",
+        "group": "今天"
+      },
       {
         "title": "排查大量部署失败的原因",
         "customTitle": "工作台",
@@ -1394,8 +1402,9 @@
       },
       {
         "date": "2026-08-20",
-        "count": 2,
+        "count": 3,
         "titles": [
+          "了解IDM下载器的下载方法",
           "工作台",
           "学习"
         ]
@@ -1813,7 +1822,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 21:56",
+    "fetchedAt": "2026-08-20 22:51",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-20",
     "count": 17,
@@ -1955,7 +1964,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 21:56",
+        "fetchedAt": "2026-08-20 22:51",
         "count": 17,
         "sections": [
           {
@@ -3864,7 +3873,7 @@
   },
   "dailyNews": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 21:56",
+    "fetchedAt": "2026-08-20 22:51",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3966,7 +3975,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 21:56",
+        "fetchedAt": "2026-08-20 22:51",
         "count": 15,
         "items": [
           {
@@ -5265,12 +5274,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-20T21:57:08",
-    "status": "ok",
-    "nextRun": "2026-08-20T22:57:08",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
