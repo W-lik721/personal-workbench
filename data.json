@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20 13:08",
+  "generatedAt": "2026-08-20 13:10",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -1819,7 +1819,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 13:08",
+    "fetchedAt": "2026-08-20 13:10",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-20",
     "count": 15,
@@ -1944,7 +1944,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 13:08",
+        "fetchedAt": "2026-08-20 13:10",
         "count": 15,
         "sections": [
           {
@@ -3836,7 +3836,7 @@
   },
   "dailyNews": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 13:08",
+    "fetchedAt": "2026-08-20 13:10",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3938,7 +3938,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 13:08",
+        "fetchedAt": "2026-08-20 13:10",
         "count": 15,
         "items": [
           {
@@ -5237,12 +5237,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-20T13:09:13",
-    "status": "ok",
-    "nextRun": "2026-08-20T14:09:13",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
