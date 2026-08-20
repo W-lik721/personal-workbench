@@ -546,7 +546,7 @@ class _HomePageState extends State<HomePage> {
     b.writeln('待办（还没做的）：${pending.isEmpty ? '暂无' : pending.join('、')}');
     b.writeln('随手记：${notes.isEmpty ? '暂无' : notes.join('、')}');
     b.writeln('请基于上面这些，给我 1-2 个今天可以马上动手做的具体小建议，用大白话、别太啰嗦。');
-    aiAskGlobal!(b.toString());
+    aiAskGlobal!(b.toString(), send: true);
   }
 
   // 删除后通用的"撤销"SnackBar（待办/速记/收藏复用，避免误删找不回）

@@ -1,6 +1,8 @@
 // 学习中心：考试/假期倒计时 + GPA 计算 + 论文进度 + 闪卡复习
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
+import 'package:file_picker/file_picker.dart';
 import '../services/core.dart';
 
 class StudyPage extends StatefulWidget {
@@ -298,6 +300,47 @@ class _GpaTabState extends State<_GpaTab> {
     ));
   }
 
+  // 导出成绩为 CSV（方便打印 / 转 Excel）
+  Future<void> _exportCsv() async {
+    if (_grades.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('还没有成绩可导出')));
+      return;
+    }
+    final buf = StringBuffer();
+    buf.writeln('课程名,学分,分数,绩点');
+    for (final g in _grades) {
+      buf.writeln([
+        '"${g.name.replaceAll('"', '""')}"',
+        g.credit.toString(),
+        g.score.toString(),
+        Store.scoreToGpaAlgo(_algo, g.score).toStringAsFixed(1),
+      ].join(','));
+    }
+    String? path;
+    try {
+      path = await FilePicker.saveFile(
+        dialogTitle: '导出成绩',
+        fileName: '成绩.csv',
+        type: FileType.custom,
+        allowedExtensions: ['csv'],
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('无法打开文件选择器')));
+      return;
+    }
+    if (path == null) return;
+    try {
+      final f = path.endsWith('.csv') ? path : '$path.csv';
+      await File(f).writeAsString(buf.toString());
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已导出成绩：$f')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('保存失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = Theme.of(context).colorScheme;
@@ -318,6 +361,11 @@ class _GpaTabState extends State<_GpaTab> {
                 setState(() { _algo = v; Store.gpaAlgo = v; });
               },
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.download, size: 18),
+            tooltip: '导出成绩 CSV',
+            onPressed: _exportCsv,
           ),
         ]),
         const SizedBox(height: 8),
@@ -409,7 +457,7 @@ class _ThesisTabState extends State<_ThesisTab> {
     final c = Theme.of(context).colorScheme;
     final done = _stages.where((s) => s.done).length;
     final prog = _stages.isEmpty ? 0.0 : done / _stages.length;
-    final labels = ['开题', '初稿', '查重', '答辩'];
+    final labels = _stages.map((s) => s.name).toList();
     return ListView(padding: const EdgeInsets.all(12), children: [
       Card(
         child: Padding(

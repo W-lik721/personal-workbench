@@ -1,5 +1,6 @@
 // 课程表页：手动加 / 按星期分组展示 / 删除 / 一键导入（粘贴或文件）
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -274,6 +275,49 @@ class _SchedulePageState extends State<SchedulePage> {
     ));
   }
 
+  // 导出课程表为 CSV（方便打印 / 转 Excel）
+  Future<void> _exportCsv() async {
+    if (_courses.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('还没有课程可导出')));
+      return;
+    }
+    final buf = StringBuffer();
+    buf.writeln('星期,时间,课程名,地点,老师,备注');
+    for (final cr in _courses) {
+      buf.writeln([
+        cr.dow,
+        cr.time,
+        cr.name,
+        cr.location,
+        cr.teacher,
+        cr.note,
+      ].map((s) => '"${s.replaceAll('"', '""')}"').join(','));
+    }
+    String? path;
+    try {
+      path = await FilePicker.saveFile(
+        dialogTitle: '导出课程表',
+        fileName: '课程表.csv',
+        type: FileType.custom,
+        allowedExtensions: ['csv'],
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('无法打开文件选择器')));
+      return;
+    }
+    if (path == null) return;
+    try {
+      final f = path.endsWith('.csv') ? path : '$path.csv';
+      await File(f).writeAsString(buf.toString());
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已导出课程表：$f')));
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('保存失败：${e.toString().replaceFirst('Exception: ', '')}')));
+    }
+  }
+
   // 判断两门课是否重复（同一天 + 同一时间 + 同名）
   bool _same(Course a, Course b) => a.dow == b.dow && a.time == b.time && a.name == b.name;
 
@@ -454,6 +498,13 @@ class _SchedulePageState extends State<SchedulePage> {
                     icon: const Icon(Icons.delete_sweep_outlined, size: 16),
                     label: const Text('清空', style: TextStyle(fontSize: 13)),
                   ),
+                if (_courses.isNotEmpty)
+                  OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
+                    onPressed: _exportCsv,
+                    icon: const Icon(Icons.download, size: 16),
+                    label: const Text('导出', style: TextStyle(fontSize: 13)),
+                  ),
               ],
             ),
           ],
@@ -477,7 +528,9 @@ class _SchedulePageState extends State<SchedulePage> {
                   ),
                 ),
               )
-            : ListView(
+            : RefreshIndicator(
+                onRefresh: () async => _reload(),
+                child: ListView(
                 padding: const EdgeInsets.all(12),
                 children: [
                   if (_nextCourseCard(c, todayKey, byDay) case final nextCard?) nextCard,
@@ -526,6 +579,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 }),
                 ],
               ),
+            ),
       ),
     ]);
   }

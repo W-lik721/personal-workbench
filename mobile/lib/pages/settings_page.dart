@@ -739,6 +739,13 @@ class _SettingsPageState extends State<SettingsPage> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('正在下载…')));
     try {
       final m = await Sync.download(token, repo);
+      // 云端下载校验：防止误下网页版 data.json（结构不同）静默错乱本地数据
+      if (m['app'] != 'lite_workbench') {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('云端文件不是本应用备份（可能是网页版 data.json），已中止恢复')));
+        return;
+      }
       Store.importAll(m);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('已从云端恢复（$repo）')));

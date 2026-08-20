@@ -216,6 +216,9 @@ class _MainShellState extends State<MainShell> {
     aiAskGlobal = _askAi;
     switchTabGlobal = (i) => setState(() => _index = i.clamp(0, _boards.length - 1));
     navConfigNotifier.addListener(_rebuildBoards); // 设置页改了导航/删了板块→刷新
+    if (!Store.onboarded) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showOnboarding());
+    }
     _autoBackup();
   }
 
@@ -237,6 +240,50 @@ class _MainShellState extends State<MainShell> {
     try {
       await Sync.upload(token, Store.syncRepo);
     } catch (_) {}
+  }
+
+  // 主题模式中文标签（用于切换按钮 tooltip / 长按提示）
+  String _themeModeLabel() {
+    final m = themeModeNotifier.value;
+    if (m == 'system') return '跟随系统';
+    return m == 'dark' ? '深色' : '浅色';
+  }
+
+  String _themeModeLabelFull() {
+    final eff = darkModeNotifier.value ? '当前显示深色' : '当前显示浅色';
+    return '${_themeModeLabel()} · $eff';
+  }
+
+  // 首次启动轻引导：介绍各 Tab 用途，看完标记已引导（只弹一次）
+  Future<void> _showOnboarding() async {
+    if (!mounted) return;
+    await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (c) => AlertDialog(
+        title: const Text('欢迎使用个人工作台'),
+        content: const SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text('一个把日常事务收拢到一处的工具：'),
+            const SizedBox(height: 10),
+            Text('· 首页：待办 / 番茄钟 / 速记 / 收藏'),
+            Text('· 学习：倒计时 / GPA / 论文进度 / 闪卡'),
+            Text('· AI：问问题、自动记住你的偏好'),
+            Text('· 资讯：看新闻、收藏稍后读'),
+            Text('· 工具：常用入口与自定义板块'),
+            Text('· 课程表：导入你的课表'),
+            Text('· 设置：主题、云备份、API Key'),
+            const SizedBox(height: 10),
+            Text('数据默认只存在本机，记得在「设置 → 云同步」开备份防丢。'),
+          ]),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('跳过')),
+          FilledButton(onPressed: () => Navigator.pop(c, true), child: const Text('开始使用')),
+        ],
+      ),
+    );
+    if (mounted) Store.onboarded = true; // 看过即标记，不再弹（无论点开始还是跳过）
   }
 
   @override
@@ -262,9 +309,12 @@ class _MainShellState extends State<MainShell> {
         actions: [
           IconButton(
             icon: Icon(Theme.of(context).brightness == Brightness.dark ? Icons.light_mode : Icons.dark_mode),
-            tooltip: '切换主题',
+            tooltip: '切换主题（当前：${_themeModeLabel()}）',
             // 深/浅间翻转并固定模式（跟随系统时按当前亮度翻转；同时退出 system 模式）
             onPressed: () => themeModeNotifier.value = darkModeNotifier.value ? 'light' : 'dark',
+            onLongPress: () => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('当前主题模式：${_themeModeLabelFull()}')),
+            ),
           ),
         ],
       ),

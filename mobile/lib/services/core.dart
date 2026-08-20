@@ -598,6 +598,10 @@ class Store {
     if (data['wb_ai_memory_max'] != null) aiMemoryMax = data['wb_ai_memory_max'] as int;
   }
 
+  // 首次启动引导标记：看过引导后置 true，不再弹
+  static bool get onboarded => _p?.getBool('wb_onboarded') ?? false;
+  static set onboarded(bool v) => _p?.setBool('wb_onboarded', v);
+
   // 清空所有内容数据（待办/速记/收藏/入口/课程表/AI 历史/长期记忆）。
   // 保留：API Key（加密存储）、主题、AI 提供商与记忆开关等设置。
   // 调用方负责二次确认与通知 AI 页清空内存（aiClearGlobal）。

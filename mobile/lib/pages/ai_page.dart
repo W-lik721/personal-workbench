@@ -303,10 +303,12 @@ class _AiPageState extends State<AiPage> {
       final lines = extracted.split('\n').map((l) => l.trim()).where((l) => l.isNotEmpty && l != '无').toList();
       if (lines.isEmpty) return;
       final mem = Store.aiMemory();
+      // 比对前也对存量做同样的前缀清洗，避免「·」等前缀导致重复存储
+      final memStripped = mem.map((e) => e.replaceAll(RegExp(r'^[-\d.、)\s]+'), '').trim()).toList();
       var added = 0;
       for (final l in lines) {
         final clean = l.replaceAll(RegExp(r'^[-\d.、)\s]+'), '').trim();
-        if (clean.isNotEmpty && !mem.contains(clean) && mem.length + added < 200) {
+        if (clean.isNotEmpty && !memStripped.contains(clean) && mem.length + added < 200) {
           mem.add(clean);
           added++;
         }
@@ -424,20 +426,37 @@ class _AiPageState extends State<AiPage> {
               }
             },
           ),
-          IconButton(
-            icon: Icon(_memOn ? Icons.auto_awesome : Icons.auto_awesome_outlined, size: 20),
-            tooltip: _memOn ? 'AI 记忆已开（点此关闭）' : 'AI 记忆已关（点此开启）',
-            onPressed: _toggleMem,
-          ),
-          IconButton(
-            icon: Icon(_ctxOn ? Icons.today : Icons.today_outlined, size: 20),
-            tooltip: _ctxOn ? '情境感知已开：AI 会结合你今天的课程/待办/倒计时（点此关闭）' : '情境感知已关（点此开启）',
-            onPressed: () {
-              setState(() {
-                _ctxOn = !_ctxOn;
-                Store.aiContextOn = _ctxOn;
-              });
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.tune, size: 20),
+            tooltip: '记忆 / 情境感知',
+            onSelected: (v) {
+              if (v == 'mem') {
+                _toggleMem();
+              } else {
+                setState(() {
+                  _ctxOn = !_ctxOn;
+                  Store.aiContextOn = _ctxOn;
+                });
+              }
             },
+            itemBuilder: (c) => [
+              PopupMenuItem(
+                value: 'mem',
+                child: Row(children: [
+                  Icon(_memOn ? Icons.auto_awesome : Icons.auto_awesome_outlined, size: 18),
+                  const SizedBox(width: 8),
+                  Text(_memOn ? 'AI 记忆：开' : 'AI 记忆：关'),
+                ]),
+              ),
+              PopupMenuItem(
+                value: 'ctx',
+                child: Row(children: [
+                  Icon(_ctxOn ? Icons.today : Icons.today_outlined, size: 18),
+                  const SizedBox(width: 8),
+                  Text(_ctxOn ? '情境感知：开' : '情境感知：关'),
+                ]),
+              ),
+            ],
           ),
           const Spacer(),
           IconButton(
