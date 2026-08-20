@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20 17:47",
+  "generatedAt": "2026-08-20 18:45",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（15 条）：Anthropic 在网络关键能力时代放缓模型开发：暂停 RL 训练并强化安全防护",
+    "🗞️ 今日 AI 日报已更新（16 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -710,7 +710,7 @@
       },
       "D": {
         "total": 544,
-        "free": 259
+        "free": 300
       }
     },
     "runtime": "3.13 / 22.22"
@@ -1813,11 +1813,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 17:47",
+    "fetchedAt": "2026-08-20 18:45",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-20",
-    "count": 15,
+    "count": 16,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
+            "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
+            "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
@@ -1938,9 +1949,20 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 17:47",
-        "count": 15,
+        "fetchedAt": "2026-08-20 18:45",
+        "count": 16,
         "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
+                "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
+                "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "行业动态",
             "items": [
@@ -3830,7 +3852,7 @@
   },
   "dailyNews": {
     "date": "2026-08-20",
-    "fetchedAt": "2026-08-20 17:47",
+    "fetchedAt": "2026-08-20 18:45",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3932,7 +3954,7 @@
     "history": [
       {
         "date": "2026-08-20",
-        "fetchedAt": "2026-08-20 17:47",
+        "fetchedAt": "2026-08-20 18:45",
         "count": 15,
         "items": [
           {
@@ -5231,12 +5253,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-20T17:48:01",
-    "status": "ok",
-    "nextRun": "2026-08-20T18:48:01",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
