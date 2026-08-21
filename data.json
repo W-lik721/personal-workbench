@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21 16:55",
+  "generatedAt": "2026-08-21 17:50",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
+    "🗞️ 今日 AI 日报已更新（18 条）：DeepSeek-V4-Flash-Vision-Exp 发布",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1814,7 +1814,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 16:54",
+    "fetchedAt": "2026-08-21 17:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
     "count": 18,
@@ -1823,9 +1823,9 @@
         "label": "模型发布",
         "items": [
           {
-            "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
-            "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
-            "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+            "title": "DeepSeek-V4-Flash-Vision-Exp 发布",
+            "summary": "DeepSeek 上线实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp，可通过设置 model='deepseek-v4-flash-vision-exp' 在 API 平台访问。",
+            "url": "https://aihot.virxact.com/items/cmt2qvfnj03zxro6tehwcikx4",
             "source": ""
           }
         ]
@@ -1962,16 +1962,16 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 16:54",
+        "fetchedAt": "2026-08-21 17:50",
         "count": 18,
         "sections": [
           {
             "label": "模型发布",
             "items": [
               {
-                "title": "阿里发布 Qwen-UI-Agent，主打让模型真正\"会用\"每一块屏幕",
-                "summary": "阿里巴巴正式推出 Qwen-UI-Agent，一个以真实世界为中心的 GUI 智能体基座模型，覆盖移动端、电脑端、网页端及深度搜索（DeepSearch）环境。",
-                "url": "https://aihot.virxact.com/items/cmt1di48c04vuro1q95i06dby",
+                "title": "DeepSeek-V4-Flash-Vision-Exp 发布",
+                "summary": "DeepSeek 上线实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp，可通过设置 model='deepseek-v4-flash-vision-exp' 在 API 平台访问。",
+                "url": "https://aihot.virxact.com/items/cmt2qvfnj03zxro6tehwcikx4",
                 "source": ""
               }
             ]
@@ -3851,7 +3851,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 16:55",
+    "fetchedAt": "2026-08-21 17:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3953,7 +3953,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 16:55",
+        "fetchedAt": "2026-08-21 17:50",
         "count": 15,
         "items": [
           {
@@ -5352,12 +5352,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T16:55:10",
-    "status": "ok",
-    "nextRun": "2026-08-21T17:55:10",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
