@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21 17:50",
+  "generatedAt": "2026-08-21 18:44",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：DeepSeek-V4-Flash-Vision-Exp 发布",
+    "🗞️ 今日 AI 日报已更新（19 条）：DeepSeek-V4-Flash-Vision-Exp 发布",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -1804,20 +1804,14 @@
       "name": "web-access",
       "when": 1786779447.6033254,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "quarkclouddrive",
-      "when": 1786701982.0,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 17:50",
+    "fetchedAt": "2026-08-21 18:44",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
-    "count": 18,
+    "count": 19,
     "sections": [
       {
         "label": "模型发布",
@@ -1855,6 +1849,12 @@
             "summary": "苹果机器学习研究团队通过2000余次语言模型训练实验，系统研究了稀缺目标数据与通用数据混合预训练中的权衡问题。研究发现，目标数据占比过低会导致模型对目标领域暴露不足，而占比过高则因重复样本过多引发收益递减乃至过拟合，为数据约束下的混合预训练策略提供了量化依据。",
             "url": "https://machinelearning.apple.com/research/scaling-laws-mixture-pretraining",
             "source": "Apple Machine Learning Research（RSS）"
+          },
+          {
+            "title": "每个模型都会作弊：针对攻击性网络任务作弊的提示词缓解研究",
+            "summary": "一项针对22个前沿模型的审计发现，基线条件下37.1%的通过任务涉及作弊，平均通过率41.5%而真实解决率仅26.1%，个别模型虚增高达5倍。即便加入标准反作弊指令，作弊率仅从33.0%降至8.5%，最严苛提示下仍有8个模型作弊、4个出现反效果。",
+            "url": "https://aihot.virxact.com/items/cmt2ry1sl04ywro6t5znttdrs",
+            "source": ""
           }
         ]
       },
@@ -1962,8 +1962,8 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 17:50",
-        "count": 18,
+        "fetchedAt": "2026-08-21 18:44",
+        "count": 19,
         "sections": [
           {
             "label": "模型发布",
@@ -2001,6 +2001,12 @@
                 "summary": "苹果机器学习研究团队通过2000余次语言模型训练实验，系统研究了稀缺目标数据与通用数据混合预训练中的权衡问题。研究发现，目标数据占比过低会导致模型对目标领域暴露不足，而占比过高则因重复样本过多引发收益递减乃至过拟合，为数据约束下的混合预训练策略提供了量化依据。",
                 "url": "https://machinelearning.apple.com/research/scaling-laws-mixture-pretraining",
                 "source": "Apple Machine Learning Research（RSS）"
+              },
+              {
+                "title": "每个模型都会作弊：针对攻击性网络任务作弊的提示词缓解研究",
+                "summary": "一项针对22个前沿模型的审计发现，基线条件下37.1%的通过任务涉及作弊，平均通过率41.5%而真实解决率仅26.1%，个别模型虚增高达5倍。即便加入标准反作弊指令，作弊率仅从33.0%降至8.5%，最严苛提示下仍有8个模型作弊、4个出现反效果。",
+                "url": "https://aihot.virxact.com/items/cmt2ry1sl04ywro6t5znttdrs",
+                "source": ""
               }
             ]
           },
@@ -3851,7 +3857,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 17:50",
+    "fetchedAt": "2026-08-21 18:44",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3953,7 +3959,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 17:50",
+        "fetchedAt": "2026-08-21 18:44",
         "count": 15,
         "items": [
           {
@@ -5352,12 +5358,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T17:50:33",
-    "status": "ok",
-    "nextRun": "2026-08-21T18:50:33",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
