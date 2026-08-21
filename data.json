@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21 19:37",
+  "generatedAt": "2026-08-21 21:56",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（19 条）：DeepSeek-V4-Flash-Vision-Exp 发布",
+    "🗞️ 今日 AI 日报已更新（20 条）：面壁智能 OpenBMB 推出 MathForm，面向 Lean 4 数学自动形式化的开源框架、数据集与模型",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -637,7 +637,7 @@
         {
           "id": "15a6f16bdde8",
           "size": "4.7 GB",
-          "modified": "2 weeks ago",
+          "modified": "3 weeks ago",
           "tags": [
             "qwen2.5-text-local:latest",
             "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
@@ -710,7 +710,7 @@
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 369
       }
     },
     "runtime": "3.13 / 22.22"
@@ -1808,14 +1808,20 @@
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 19:37",
+    "fetchedAt": "2026-08-21 21:56",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
-    "count": 19,
+    "count": 20,
     "sections": [
       {
         "label": "模型发布",
         "items": [
+          {
+            "title": "面壁智能 OpenBMB 推出 MathForm，面向 Lean 4 数学自动形式化的开源框架、数据集与模型",
+            "summary": "面壁智能 OpenBMB 推出 MathForm，一个面向 Lean 4 数学自动形式化的开源框架、数据集与模型。其 FormalVerse 数据集含 367K+ 已验证示例；在匹配 100K 预算下，基于其训练的模型 Consistency Check 达 60.32%，优于 FineLeanCorpus（46.53%）与 NuminaMath-LEAN（41.49%）。",
+            "url": "https://aihot.virxact.com/items/cmt2yscvm0ca8ro6t0u6vtfnt",
+            "source": ""
+          },
           {
             "title": "DeepSeek-V4-Flash-Vision-Exp 发布",
             "summary": "DeepSeek 上线实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp，可通过设置 model='deepseek-v4-flash-vision-exp' 在 API 平台访问。",
@@ -1962,12 +1968,18 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 19:37",
-        "count": 19,
+        "fetchedAt": "2026-08-21 21:56",
+        "count": 20,
         "sections": [
           {
             "label": "模型发布",
             "items": [
+              {
+                "title": "面壁智能 OpenBMB 推出 MathForm，面向 Lean 4 数学自动形式化的开源框架、数据集与模型",
+                "summary": "面壁智能 OpenBMB 推出 MathForm，一个面向 Lean 4 数学自动形式化的开源框架、数据集与模型。其 FormalVerse 数据集含 367K+ 已验证示例；在匹配 100K 预算下，基于其训练的模型 Consistency Check 达 60.32%，优于 FineLeanCorpus（46.53%）与 NuminaMath-LEAN（41.49%）。",
+                "url": "https://aihot.virxact.com/items/cmt2yscvm0ca8ro6t0u6vtfnt",
+                "source": ""
+              },
               {
                 "title": "DeepSeek-V4-Flash-Vision-Exp 发布",
                 "summary": "DeepSeek 上线实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp，可通过设置 model='deepseek-v4-flash-vision-exp' 在 API 平台访问。",
@@ -3857,7 +3869,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 19:37",
+    "fetchedAt": "2026-08-21 21:56",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3959,7 +3971,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 19:37",
+        "fetchedAt": "2026-08-21 21:56",
         "count": 15,
         "items": [
           {
@@ -5358,12 +5370,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T19:38:06",
-    "status": "ok",
-    "nextRun": "2026-08-21T20:38:06",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
