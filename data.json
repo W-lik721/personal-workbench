@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-21 23:46",
+  "generatedAt": "2026-08-22 00:49",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
-    "memory": 43,
+    "memory": 44,
     "knowledge": 9,
     "sessions": 9
   },
@@ -580,7 +580,7 @@
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-21",
+    "skillsLastUpdate": "2026-08-22",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -702,7 +702,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-21",
+    "memoryLastUpdate": "2026-08-22",
     "disk": {
       "C": {
         "total": 380,
@@ -721,8 +721,8 @@
         "title": "整理工作区",
         "customTitle": "",
         "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-21 23:19",
+        "status": "pending",
+        "updated": "08-22 00:11",
         "group": "今天"
       },
       {
@@ -731,7 +731,7 @@
         "display": "整理知识库并做系统体检",
         "status": "completed",
         "updated": "08-21 11:20",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -739,7 +739,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-21 11:14",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "排查大量部署失败的原因",
@@ -747,7 +747,7 @@
         "display": "工作台",
         "status": "completed",
         "updated": "08-20 14:50",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -791,11 +791,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-25",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-26",
         "count": 0,
@@ -1394,11 +1389,17 @@
       },
       {
         "date": "2026-08-21",
-        "count": 3,
+        "count": 2,
         "titles": [
-          "整理工作区",
           "整理知识库并做系统体检",
           "学习"
+        ]
+      },
+      {
+        "date": "2026-08-22",
+        "count": 1,
+        "titles": [
+          "整理工作区"
         ]
       }
     ]
@@ -1808,7 +1809,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 23:46",
+    "fetchedAt": "2026-08-22 00:49",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
     "count": 20,
@@ -1968,7 +1969,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 23:46",
+        "fetchedAt": "2026-08-22 00:49",
         "count": 20,
         "sections": [
           {
@@ -3869,7 +3870,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 23:46",
+    "fetchedAt": "2026-08-22 00:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3971,7 +3972,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 23:46",
+        "fetchedAt": "2026-08-22 00:49",
         "count": 15,
         "items": [
           {
@@ -5370,12 +5371,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T23:46:42",
-    "status": "ok",
-    "nextRun": "2026-08-22T00:46:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
