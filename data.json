@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-21 12:50",
+  "generatedAt": "2026-08-21 13:46",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
     "memory": 43,
     "knowledge": 9,
-    "sessions": 11
+    "sessions": 9
   },
   "skills": [
     {
@@ -706,7 +706,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 235
       },
       "D": {
         "total": 544,
@@ -717,22 +717,6 @@
   },
   "sessions": {
     "recent": [
-      {
-        "title": "列出所有已安装技能",
-        "customTitle": "",
-        "display": "列出所有已安装技能",
-        "status": "completed",
-        "updated": "08-21 12:45",
-        "group": "今天"
-      },
-      {
-        "title": "设计斗罗大陆双生武魂角色",
-        "customTitle": "",
-        "display": "设计斗罗大陆双生武魂角色",
-        "status": "completed",
-        "updated": "08-21 12:33",
-        "group": "今天"
-      },
       {
         "title": "整理知识库并做系统体检",
         "customTitle": "",
@@ -1411,10 +1395,8 @@
       },
       {
         "date": "2026-08-21",
-        "count": 4,
+        "count": 2,
         "titles": [
-          "列出所有已安装技能",
-          "设计斗罗大陆双生武魂角色",
           "整理知识库并做系统体检",
           "学习"
         ]
@@ -1832,7 +1814,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 12:50",
+    "fetchedAt": "2026-08-21 13:46",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
     "count": 18,
@@ -1980,7 +1962,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 12:50",
+        "fetchedAt": "2026-08-21 13:46",
         "count": 18,
         "sections": [
           {
@@ -3869,7 +3851,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 12:50",
+    "fetchedAt": "2026-08-21 13:46",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3971,7 +3953,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 12:50",
+        "fetchedAt": "2026-08-21 13:46",
         "count": 15,
         "items": [
           {
@@ -5370,12 +5352,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T12:51:05",
-    "status": "ok",
-    "nextRun": "2026-08-21T13:51:05",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
