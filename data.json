@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-21 11:13",
+  "generatedAt": "2026-08-21 12:50",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
     "memory": 43,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 11
   },
   "skills": [
     {
@@ -718,11 +718,11 @@
   "sessions": {
     "recent": [
       {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
+        "title": "列出所有已安装技能",
+        "customTitle": "",
+        "display": "列出所有已安装技能",
         "status": "completed",
-        "updated": "08-21 11:12",
+        "updated": "08-21 12:45",
         "group": "今天"
       },
       {
@@ -730,7 +730,23 @@
         "customTitle": "",
         "display": "设计斗罗大陆双生武魂角色",
         "status": "completed",
-        "updated": "08-21 00:47",
+        "updated": "08-21 12:33",
+        "group": "今天"
+      },
+      {
+        "title": "整理知识库并做系统体检",
+        "customTitle": "",
+        "display": "整理知识库并做系统体检",
+        "status": "completed",
+        "updated": "08-21 11:20",
+        "group": "今天"
+      },
+      {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "completed",
+        "updated": "08-21 11:14",
         "group": "今天"
       },
       {
@@ -740,14 +756,6 @@
         "status": "completed",
         "updated": "08-20 14:50",
         "group": "昨天"
-      },
-      {
-        "title": "整理知识库并做系统体检",
-        "customTitle": "",
-        "display": "整理知识库并做系统体检",
-        "status": "completed",
-        "updated": "08-19 13:16",
-        "group": "更早"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -1389,9 +1397,8 @@
       },
       {
         "date": "2026-08-19",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "整理知识库并做系统体检",
           "skill"
         ]
       },
@@ -1404,10 +1411,12 @@
       },
       {
         "date": "2026-08-21",
-        "count": 2,
+        "count": 4,
         "titles": [
-          "学习",
-          "设计斗罗大陆双生武魂角色"
+          "列出所有已安装技能",
+          "设计斗罗大陆双生武魂角色",
+          "整理知识库并做系统体检",
+          "学习"
         ]
       }
     ]
@@ -1823,7 +1832,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 11:13",
+    "fetchedAt": "2026-08-21 12:50",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-21",
     "count": 18,
@@ -1971,7 +1980,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 11:13",
+        "fetchedAt": "2026-08-21 12:50",
         "count": 18,
         "sections": [
           {
@@ -3860,7 +3869,7 @@
   },
   "dailyNews": {
     "date": "2026-08-21",
-    "fetchedAt": "2026-08-21 11:13",
+    "fetchedAt": "2026-08-21 12:50",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3962,7 +3971,7 @@
     "history": [
       {
         "date": "2026-08-21",
-        "fetchedAt": "2026-08-21 11:13",
+        "fetchedAt": "2026-08-21 12:50",
         "count": 15,
         "items": [
           {
@@ -5361,12 +5370,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-21T11:13:46",
-    "status": "ok",
-    "nextRun": "2026-08-21T12:13:46",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
