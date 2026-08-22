@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22 16:29",
+  "generatedAt": "2026-08-22 16:30",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -721,8 +721,8 @@
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
-        "status": "working",
-        "updated": "08-22 16:28",
+        "status": "completed",
+        "updated": "08-22 16:29",
         "group": "今天"
       },
       {
@@ -1715,17 +1715,11 @@
       "name": "file-hygiene",
       "when": 1786860749.4316323,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "job-hunting-hub__skillhub",
-      "when": 1786782548.1068697,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-22",
-    "fetchedAt": "2026-08-22 16:29",
+    "fetchedAt": "2026-08-22 16:30",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-22",
     "count": 16,
@@ -1856,7 +1850,7 @@
     "history": [
       {
         "date": "2026-08-22",
-        "fetchedAt": "2026-08-22 16:29",
+        "fetchedAt": "2026-08-22 16:30",
         "count": 16,
         "sections": [
           {
@@ -3727,7 +3721,7 @@
   },
   "dailyNews": {
     "date": "2026-08-22",
-    "fetchedAt": "2026-08-22 16:29",
+    "fetchedAt": "2026-08-22 16:30",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3829,7 +3823,7 @@
     "history": [
       {
         "date": "2026-08-22",
-        "fetchedAt": "2026-08-22 16:29",
+        "fetchedAt": "2026-08-22 16:30",
         "count": 15,
         "items": [
           {
@@ -5228,12 +5222,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-22T16:29:14",
-    "status": "ok",
-    "nextRun": "2026-08-22T17:29:14",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
