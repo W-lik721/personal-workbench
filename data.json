@@ -5222,5 +5222,12 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
+  },
+  "sync": {
+    "lastRun": "2026-08-22T16:40:00",
+    "status": "ok",
+    "nextRun": "2026-08-22T17:40:00",
+    "intervalHours": 1,
+    "staleHours": 2
   }
 }
