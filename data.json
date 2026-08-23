@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23 14:58",
+  "generatedAt": "2026-08-23 15:45",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -1530,191 +1530,11 @@
       "name": "grill-me__skillhub",
       "when": 1786877700.869698,
       "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "skill-trigger-audit",
-      "when": 1786865833.182793,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "workbuddy-bluebook",
-      "when": 1786864144.939459,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-legal-policy",
-      "when": 1786864144.930918,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-doc-kit",
-      "when": 1786864144.9238777,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-design-kit",
-      "when": 1786864144.9178605,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "wb-ai-radar",
-      "when": 1786864144.911805,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "tencent-video-capture",
-      "when": 1786864144.9021952,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "superpowers",
-      "when": 1786864144.895134,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "ponytail",
-      "when": 1786864144.8734927,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "planning-with-files",
-      "when": 1786864144.8689725,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "paper-pipeline",
-      "when": 1786864144.861435,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "paper-checker__skillhub",
-      "when": 1786864144.854413,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "literature-review",
-      "when": 1786864144.8483322,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "latex-thesis-zh",
-      "when": 1786864144.8421867,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "latex-paper-en",
-      "when": 1786864144.8370047,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "last30days",
-      "when": 1786864144.830498,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "impeccable",
-      "when": 1786864144.8199615,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "idea-landing-3prompt",
-      "when": 1786864144.8134463,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "hallmark",
-      "when": 1786864144.8074098,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "github-pages-auto-deploy",
-      "when": 1786864144.7942364,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "github",
-      "when": 1786864144.789201,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "full-output-enforcement",
-      "when": 1786864144.7826865,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "en-to-zh-translator",
-      "when": 1786864144.776177,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "design-taste-frontend",
-      "when": 1786864144.7696636,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "daily-insight",
-      "when": 1786864144.7605948,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "citation-management",
-      "when": 1786864144.7530253,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "ascetic-breaker",
-      "when": 1786864144.747505,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "andrej-karpathy-skills__github",
-      "when": 1786864144.7404835,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-design-kit",
-      "when": 1786864144.7349677,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "agent-chat",
-      "when": 1786864144.729455,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 14:58",
+    "fetchedAt": "2026-08-23 15:45",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-23",
     "count": 3,
@@ -1747,7 +1567,7 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 14:58",
+        "fetchedAt": "2026-08-23 15:45",
         "count": 3,
         "sections": [
           {
@@ -3577,7 +3397,7 @@
   },
   "dailyNews": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 14:58",
+    "fetchedAt": "2026-08-23 15:45",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3679,7 +3499,7 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 14:58",
+        "fetchedAt": "2026-08-23 15:45",
         "count": 15,
         "items": [
           {
@@ -5078,12 +4898,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-23T14:58:52",
-    "status": "ok",
-    "nextRun": "2026-08-23T15:58:52",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
