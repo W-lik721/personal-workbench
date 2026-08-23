@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-23 12:10",
+  "generatedAt": "2026-08-23 12:11",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
-    "memory": 44,
+    "memory": 45,
     "knowledge": 9,
     "sessions": 9
   },
@@ -722,8 +722,8 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-22 16:53",
-        "group": "昨天"
+        "updated": "08-23 12:11",
+        "group": "今天"
       },
       {
         "title": "整理工作区",
@@ -1391,16 +1391,17 @@
       },
       {
         "date": "2026-08-22",
-        "count": 2,
+        "count": 1,
         "titles": [
-          "学习",
           "整理工作区"
         ]
       },
       {
         "date": "2026-08-23",
-        "count": 0,
-        "titles": []
+        "count": 1,
+        "titles": [
+          "学习"
+        ]
       }
     ]
   },
@@ -1719,7 +1720,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 12:10",
+    "fetchedAt": "2026-08-23 12:11",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-23",
     "count": 4,
@@ -1763,7 +1764,7 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 12:10",
+        "fetchedAt": "2026-08-23 12:11",
         "count": 4,
         "sections": [
           {
@@ -3604,7 +3605,7 @@
   },
   "dailyNews": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 12:10",
+    "fetchedAt": "2026-08-23 12:11",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3706,7 +3707,7 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 12:10",
+        "fetchedAt": "2026-08-23 12:11",
         "count": 15,
         "items": [
           {
@@ -5105,12 +5106,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-23T12:10:37",
-    "status": "ok",
-    "nextRun": "2026-08-23T13:10:37",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
