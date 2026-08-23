@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23 12:19",
+  "generatedAt": "2026-08-23 12:49",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（4 条）：蚂蚁百灵为SGLang推出权重缓存守护进程",
+    "🗞️ 今日 AI 日报已更新（3 条）：第二届世界人形机器人运动会开幕：2056 台机器人齐聚“冰丝带”，666 支队伍竞技 51 赛项",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -706,7 +706,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 238
+        "free": 237
       },
       "D": {
         "total": 544,
@@ -722,7 +722,7 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-23 12:11",
+        "updated": "08-23 12:47",
         "group": "今天"
       },
       {
@@ -1720,22 +1720,11 @@
   ],
   "aiDaily": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 12:19",
+    "fetchedAt": "2026-08-23 12:49",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-23",
-    "count": 4,
+    "count": 3,
     "sections": [
-      {
-        "label": "产品发布",
-        "items": [
-          {
-            "title": "蚂蚁百灵为SGLang推出权重缓存守护进程",
-            "summary": "今天，我们为 SGLang 推出 Weight Cache Daemon。🚀 在 Ling-2.6-1T FP8 上，它将权重加载时间缩短至约 0.63 秒，比磁盘加载快约 780 倍，并将引擎总启动时间从 8.8 分钟缩短至约 0.53 分钟。其工作原理如下。",
-            "url": "https://aihot.virxact.com/items/cmt3wt4qm13utro6t0hb6ga3y",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "行业动态",
         "items": [
@@ -1764,20 +1753,9 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 12:19",
-        "count": 4,
+        "fetchedAt": "2026-08-23 12:49",
+        "count": 3,
         "sections": [
-          {
-            "label": "产品发布",
-            "items": [
-              {
-                "title": "蚂蚁百灵为SGLang推出权重缓存守护进程",
-                "summary": "今天，我们为 SGLang 推出 Weight Cache Daemon。🚀 在 Ling-2.6-1T FP8 上，它将权重加载时间缩短至约 0.63 秒，比磁盘加载快约 780 倍，并将引擎总启动时间从 8.8 分钟缩短至约 0.53 分钟。其工作原理如下。",
-                "url": "https://aihot.virxact.com/items/cmt3wt4qm13utro6t0hb6ga3y",
-                "source": ""
-              }
-            ]
-          },
           {
             "label": "行业动态",
             "items": [
@@ -3605,7 +3583,7 @@
   },
   "dailyNews": {
     "date": "2026-08-23",
-    "fetchedAt": "2026-08-23 12:19",
+    "fetchedAt": "2026-08-23 12:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3707,7 +3685,7 @@
     "history": [
       {
         "date": "2026-08-23",
-        "fetchedAt": "2026-08-23 12:19",
+        "fetchedAt": "2026-08-23 12:49",
         "count": 15,
         "items": [
           {
@@ -5106,12 +5084,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-23T12:19:45",
-    "status": "ok",
-    "nextRun": "2026-08-23T13:19:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
