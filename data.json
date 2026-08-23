@@ -706,7 +706,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 238
       },
       "D": {
         "total": 544,
@@ -5106,12 +5106,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-23T12:18:06",
-    "status": "ok",
-    "nextRun": "2026-08-23T13:18:06",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
