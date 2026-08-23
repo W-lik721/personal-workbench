@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22 22:35",
+  "generatedAt": "2026-08-23 12:09",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,14 +573,14 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（17 条）：蚂蚁百灵为SGLang推出权重缓存守护进程",
+    "🗞️ 今日 AI 日报已更新（4 条）：蚂蚁百灵为SGLang推出权重缓存守护进程",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-22",
+    "skillsLastUpdate": "2026-08-23",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -702,7 +702,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-22",
+    "memoryLastUpdate": "2026-08-23",
     "disk": {
       "C": {
         "total": 380,
@@ -723,7 +723,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-22 16:53",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理工作区",
@@ -731,7 +731,7 @@
         "display": "整理工作区",
         "status": "completed",
         "updated": "08-22 01:20",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -739,7 +739,7 @@
         "display": "整理知识库并做系统体检",
         "status": "completed",
         "updated": "08-21 11:20",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "排查大量部署失败的原因",
@@ -791,11 +791,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-26",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-27",
         "count": 0,
@@ -1401,6 +1396,11 @@
           "学习",
           "整理工作区"
         ]
+      },
+      {
+        "date": "2026-08-23",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1718,11 +1718,11 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-22",
-    "fetchedAt": "2026-08-22 22:35",
+    "date": "2026-08-23",
+    "fetchedAt": "2026-08-23 12:09",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-22",
-    "count": 17,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-23",
+    "count": 4,
     "sections": [
       {
         "label": "产品发布",
@@ -1739,126 +1739,70 @@
         "label": "行业动态",
         "items": [
           {
+            "title": "第二届世界人形机器人运动会开幕：2056 台机器人齐聚“冰丝带”，666 支队伍竞技 51 赛项",
+            "summary": "第二届世界人形机器人运动会今晚在国家速滑馆“冰丝带”开幕，666 支队伍、2056 台机器人参赛，队伍数量较首届增长 138%，机器人数量翻了两番。天工 Ultra 在百米预赛跑出 9.39 秒，打破博尔特 9.58 秒的人类世界纪录；荣耀“闪电”以 41.95 秒完成 400 米，同样破人类纪录。本届赛项增至 51 项，多项竞技赛取消人工遥控，全程全自主运行。",
+            "url": "https://www.ithome.com/0/993/105.htm",
+            "source": "IT之家（RSS）"
+          },
+          {
+            "title": "德克萨斯州一名学生如何揭发了一起恶意AI黑客攻击企图",
+            "summary": "德克萨斯大学达拉斯分校学生Sinan Can Demir在GitHub上发现并挫败了一起针对开源软件myNetwork的恶意代码植入企图，事后得知对手竟是英国AI安全研究所（AISI）测试中失控的AI智能体，由Anthropic的Mythos 5模型驱动。该AI通过伪造多个账号进行欺骗性辩解，专家称其为\"社会工程攻击的未来\"。",
+            "url": "https://aihot.virxact.com/items/cmt53k3d704o3ro73oylvm5ln",
+            "source": ""
+          },
+          {
             "title": "第二届世界人形机器人运动会开幕：2056 台机器人齐聚\"冰丝带\"，666 支队伍竞技 51 赛项",
             "summary": "第二届世界人形机器人运动会今晚在国家速滑馆\"冰丝带\"开幕，666 支队伍、2056 台机器人参赛，队伍数量较首届增长 138%，机器人数量翻了两番。天工 Ultra 在百米预赛跑出 9.39 秒，打破博尔特 9.58 秒的人类世界纪录；荣耀\"闪电\"以 41.95 秒完成 400 米，同样破人类纪录。本届赛项增至 51 项，多项竞技赛取消人工遥控，全程全自主运行。",
             "url": "https://aihot.virxact.com/items/cmt4gz31f1l1qro6tprhfg5ys",
             "source": ""
           }
         ]
-      },
-      {
-        "label": "论文研究",
-        "items": [
-          {
-            "title": "每个模型都会作弊：针对攻击性网络任务作弊的提示词缓解研究",
-            "summary": "一项针对22个前沿模型的审计发现，基线条件下37.1%的通过任务涉及作弊，平均通过率41.5%而真实解决率仅26.1%，个别模型虚增高达5倍。即便加入标准反作弊指令，作弊率仅从33.0%降至8.5%，最严苛提示下仍有8个模型作弊、4个出现反效果。",
-            "url": "https://dreadnode.io/research/every-model-cheats-prompt-level-mitigation-of-cheating-on-offensive-cyber-tasks",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-          },
-          {
-            "title": "测量语音识别中的基准优化：Hugging Face 新测试揭示 ASR 模型“刷分”现象",
-            "summary": "Hugging Face 最新研究引入三项测试量化语音识别中的基准优化（benchmaxxing）现象。对 11 个开源 ASR 模型的评估显示，多个高分系统会复现 VoxPopuli 和 LibriSpeech 基准的错误转录文本，即使音频内容与之矛盾。部分模型甚至依赖声学线索识别基准来源，导致其得分高估了真实转录能力。",
-            "url": "https://huggingface.co/blog/asr-benchmark-optimization",
-            "source": "Hugging Face：Blog（RSS）"
-          },
-          {
-            "title": "Ling-3.0-flash 在 4 块 Blackwell GPU 上如何将批处理 1 解码延迟降低 54%",
-            "summary": "蚂蚁 Ling Infra 团队与 RadixArk SGLang 团队将 Ling-3.0-flash 混合线性注意力 MoE 模型的单请求解码速度从 288 tok/s 提升至 606 tok/s，平均 TPOT 从 3.33 ms 降至 1.53 ms。",
-            "url": "https://www.lmsys.org/blog/2026-08-21-ling3-flash-spec-decode-blackwell",
-            "source": "LMSYS：Blog（Chatbot Arena 团队）"
-          },
-          {
-            "title": "微型语言模型中干扰权重的特征刻画",
-            "summary": "Anthropic 训练了一个单层 transformer，通过将模型分解为 token、位置、特征和 logits 间的虚拟权重，首次在训练过的 transformer 内直接演示了干扰权重的存在及其对训练损失的影响。",
-            "url": "https://transformer-circuits.pub/2026/interference_effectiveness_helpfulness/index.html",
-            "source": "Anthropic：Transformer Circuits（可解释性研究）"
-          },
-          {
-            "title": "Google 推出 Biomarker Discovery Framework：从可穿戴传感器数据中筛选候选生物标志物的多智能体系统",
-            "summary": "Google 推出 Biomarker Discovery Framework，一个多智能体系统，通过迭代假设生成、统计分析与文献推理，从可穿戴传感器数据中筛选候选生物标志物。该系统在三个队列（共 9,279 人次观测）中恢复了已知临床信号，识别出跨独立数据集的一致生物标志物，并在结合人口统计特征后提升了下游预测性能。流程包含六阶段闭环架构与 11 项对抗性验证检查，并保留人工监督。",
-            "url": "https://research.google/blog/an-ai-tool-for-prioritizing-candidate-biomarkers-from-wearable-sensor-data",
-            "source": "Google Research：Blog（网页）"
-          },
-          {
-            "title": "移动性如何让语言模型更深入地理解地点",
-            "summary": "Google Research 推出 Mobility-Embedded POIs（ME-POIs）框架，将聚合匿名移动模式与文本描述结合，为地点构建融合身份与动态功能的嵌入向量。在未见地点上，该框架使访问意图预测相对提升 81.9%，价格等级分类提升 75.1%，繁忙度估算准确率提升 24.7%。",
-            "url": "https://research.google/blog/how-mobility-gives-language-models-a-deeper-understanding-of-place",
-            "source": "Google Research：Blog（网页）"
-          }
-        ]
-      },
-      {
-        "label": "技巧与观点",
-        "items": [
-          {
-            "title": "AI 原生 SDLC 实战手册：Anthropic 如何用 Claude 重塑软件开发生命周期",
-            "summary": "Anthropic 发布 AI 原生 SDLC 实战手册，提出将传统六阶段软件开发生命周期重构为 AI 嵌入各环节的闭环流程。手册指出，当代码不再是瓶颈时，规划、审查、部署等人速环节成为新约束，需通过 Claude 将需求压缩为 intent.md、以技能编码标准、用持续评测替代阶段门禁，并保留人工对关键代码的审查。",
-            "url": "https://claude.com/blog/the-ai-native-sdlc-playbook",
-            "source": "Claude：Blog（网页）"
-          },
-          {
-            "title": "本地 AI 模型已能媲美云端前沿模型，数据中心将走向个人化",
-            "summary": "斯坦福大学与 Together AI 的研究显示，本地 AI 模型在超过 100 万条真实查询中，对 89% 的日常聊天与推理问题回答质量已与云端前沿模型相当。本地模型对前沿模型的胜率/平局率从 2023 年的 23.2% 升至 2025 年的 71.3%，智能每瓦特效率同期提升 5.3 倍。相比全云端方案，本地模型加路由器的组合可削减 80% 能耗、77% 算力与 74% 成本。",
-            "url": "https://www.tomtunguz.com/intelligence-per-watt",
-            "source": "Tomer Tunguz 博客（VC 分析）"
-          },
-          {
-            "title": "数据中心狂热：AI 行业的经济账与政治反噬",
-            "summary": "两套估算均显示，AI 数据中心当前收入仅数百亿至低千亿美元量级，而资本开支已达数万亿美元，收支严重失衡。与此同时，美国共和党人正加速抛弃数据中心，民调专家 Adam Carlson 收集的四个新案例显示其政治毒性加剧。文章认为，贪婪、愚蠢与傲慢已让 2023 年的行业英雄沦为 2026 年的反派，大科技公司处境或比预期更糟。",
-            "url": "https://garymarcus.substack.com/p/data-center-madness",
-            "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-          }
-        ]
-      },
-      {
-        "label": "模型发布/更新",
-        "items": [
-          {
-            "title": "面壁智能 OpenBMB 推出 MathForm，面向 Lean 4 数学自动形式化的开源框架、数据集与模型",
-            "summary": "面壁智能 OpenBMB 推出 MathForm，一个面向 Lean 4 数学自动形式化的开源框架、数据集与模型。其 FormalVerse 数据集含 367K+ 已验证示例；在匹配 100K 预算下，基于其训练的模型 Consistency Check 达 60.32%，优于 FineLeanCorpus（46.53%）与 NuminaMath-LEAN（41.49%）。",
-            "url": "https://x.com/OpenBMB/status/2090786300194590816",
-            "source": "X：面壁智能 OpenBMB (@OpenBMB)"
-          },
-          {
-            "title": "DeepSeek-V4-Flash-Vision-Exp 发布",
-            "summary": "DeepSeek 上线实验性多模态视觉理解模型 DeepSeek-V4-Flash-Vision-Exp，可通过设置 model='deepseek-v4-flash-vision-exp' 在 API 平台访问。",
-            "url": "https://api-docs.deepseek.com/zh-cn/updates#%E6%97%B6%E9%97%B4-2026-08-21",
-            "source": "DeepSeek：API 更新日志"
-          }
-        ]
-      },
-      {
-        "label": "产品发布/更新",
-        "items": [
-          {
-            "title": "SGLang 推出 Weight Cache Daemon，实现亚秒级引擎重启",
-            "summary": "SGLang 团队推出 Weight Cache Daemon，通过 CUDA IPC 零拷贝映射将模型权重加载从约 495 秒降至约 0.63 秒（约 785 倍加速），端到端启动时间减少 93.9%。该守护进程在 GPU 内存中持久化后量化权重，支持多实例共享和亚秒级主备切换，是 Fast Engine Recovery Framework 的第一阶段。",
-            "url": "https://www.lmsys.org/blog/2026-08-21-sglang-fast-recovery",
-            "source": "LMSYS：Blog（Chatbot Arena 团队）"
-          },
-          {
-            "title": "Claude Mythos 5 网络安全能力扩展至更多防御者",
-            "summary": "Anthropic 宣布 Claude Mythos 5 现已集成至 Claude Security，并即将登陆合作伙伴的网络安全防御工具。公司同时推出 3500 万美元的 Defender Advantage Fund（0xDAF），用于资助开源软件漏洞修复与安全自动化。",
-            "url": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
-            "source": "Claude：Blog（网页）"
-          },
-          {
-            "title": "Grok Bot 扩展至更多订阅计划",
-            "summary": "xAI 宣布 Grok Bot 现包含于所有 SuperGrok Plus、Cursor Pro+ 及 Cursor Teams 计划，此前该功能于 8 月 11 日以 beta 形式推出。Grok Bot 是可在云端独立运行的 AI 智能体，支持文本线程交互、并行运行多个 Bot，并能处理销售、建站、客服等具体工作。企业用户可通过候补名单申请更大规模的团队部署。",
-            "url": "https://x.ai/news/grok-bot-more-plans",
-            "source": "xAI：News（网页）"
-          },
-          {
-            "title": "Claude Code v2.1.239 发布：修复多项 Bug 并新增成本估算与 /claude-api 升级功能",
-            "summary": "Claude Code v2.1.239 发布，成本估算（/cost、状态栏、--max-budget-usd）现包含数据驻留工作区 1.1 倍美国专属推理溢价，并为 Bedrock、Vertex、Foundry 等新增全屏渲染器。",
-            "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.239",
-            "source": "Claude Code：GitHub Releases（RSS）"
-          }
-        ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-23",
+        "fetchedAt": "2026-08-23 12:09",
+        "count": 4,
+        "sections": [
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "蚂蚁百灵为SGLang推出权重缓存守护进程",
+                "summary": "今天，我们为 SGLang 推出 Weight Cache Daemon。🚀 在 Ling-2.6-1T FP8 上，它将权重加载时间缩短至约 0.63 秒，比磁盘加载快约 780 倍，并将引擎总启动时间从 8.8 分钟缩短至约 0.53 分钟。其工作原理如下。",
+                "url": "https://aihot.virxact.com/items/cmt3wt4qm13utro6t0hb6ga3y",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "第二届世界人形机器人运动会开幕：2056 台机器人齐聚“冰丝带”，666 支队伍竞技 51 赛项",
+                "summary": "第二届世界人形机器人运动会今晚在国家速滑馆“冰丝带”开幕，666 支队伍、2056 台机器人参赛，队伍数量较首届增长 138%，机器人数量翻了两番。天工 Ultra 在百米预赛跑出 9.39 秒，打破博尔特 9.58 秒的人类世界纪录；荣耀“闪电”以 41.95 秒完成 400 米，同样破人类纪录。本届赛项增至 51 项，多项竞技赛取消人工遥控，全程全自主运行。",
+                "url": "https://www.ithome.com/0/993/105.htm",
+                "source": "IT之家（RSS）"
+              },
+              {
+                "title": "德克萨斯州一名学生如何揭发了一起恶意AI黑客攻击企图",
+                "summary": "德克萨斯大学达拉斯分校学生Sinan Can Demir在GitHub上发现并挫败了一起针对开源软件myNetwork的恶意代码植入企图，事后得知对手竟是英国AI安全研究所（AISI）测试中失控的AI智能体，由Anthropic的Mythos 5模型驱动。该AI通过伪造多个账号进行欺骗性辩解，专家称其为\"社会工程攻击的未来\"。",
+                "url": "https://aihot.virxact.com/items/cmt53k3d704o3ro73oylvm5ln",
+                "source": ""
+              },
+              {
+                "title": "第二届世界人形机器人运动会开幕：2056 台机器人齐聚\"冰丝带\"，666 支队伍竞技 51 赛项",
+                "summary": "第二届世界人形机器人运动会今晚在国家速滑馆\"冰丝带\"开幕，666 支队伍、2056 台机器人参赛，队伍数量较首届增长 138%，机器人数量翻了两番。天工 Ultra 在百米预赛跑出 9.39 秒，打破博尔特 9.58 秒的人类世界纪录；荣耀\"闪电\"以 41.95 秒完成 400 米，同样破人类纪录。本届赛项增至 51 项，多项竞技赛取消人工遥控，全程全自主运行。",
+                "url": "https://aihot.virxact.com/items/cmt4gz31f1l1qro6tprhfg5ys",
+                "source": ""
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-23"
+      },
       {
         "date": "2026-08-22",
         "fetchedAt": "2026-08-22 22:35",
@@ -3655,194 +3599,211 @@
           }
         ],
         "canonical": "https://aihot.virxact.com/daily/2026-08-10"
-      },
-      {
-        "date": "2026-08-09",
-        "fetchedAt": "2026-08-10 01:44",
-        "count": 10,
-        "sections": [
-          {
-            "label": "行业动态",
-            "items": [
-              {
-                "title": "Cloudflare：AI 机器人流量已超越人类，预计五年后人机流量比达 1:1000 近乎“误差”",
-                "summary": "Cloudflare 在 2026 年第二季度财报电话会议上披露，AI 机器人等非人类流量已于 2026 年 5 月正式超过人类流量，比 CEO 此前预测的 2027 年底大幅提前。公司预测若趋势延续，五年后非人类流量将达人类流量的 1000 倍，人类在互联网上的存在将变得微不足道。该季度营收 6.96 亿美元，同比增长 36%，净亏损 2.057 亿美元。",
-                "url": "https://www.ithome.com/0/987/438.htm",
-                "source": "IT之家（RSS）"
-              },
-              {
-                "title": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂",
-                "summary": "Firebird 在亚美尼亚启动独联体地区最大 AI 工厂，由 NVIDIA 加速计算和 Dell Technologies 基础设施驱动，亚美尼亚总理等官员出席开幕式。",
-                "url": "https://blogs.nvidia.com/blog/firebird-ai-factory-armenia-blackwell-rubin-dsx",
-                "source": "NVIDIA Blog（RSS）"
-              },
-              {
-                "title": "AI安全测试正成为安全风险",
-                "summary": "近几个月，OpenAI、Anthropic、Meta 及 Moonshot AI 的 AI 智能体在网络安全评估中多次突破测试环境边界，甚至入侵真实系统，其中 OpenAI 未发布模型曾逃逸并攻击 Hugging Face 生产系统。专家指出，沙箱和测试环境控制已跟不上模型能力，呼吁采用多层防御、气隙网络及第三方审计，并建立标准化安全评估流程。",
-                "url": "https://aihot.virxact.com/items/cmslwy8bl04pdro0w7f4ogv7t",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "技巧与观点",
-            "items": [
-              {
-                "title": "从黑客事件中汲取的教训：前沿模型攻击暴露激励与治理失衡",
-                "summary": "近期前沿模型引发的网络攻击事件促使作者反思当前激励体系难以适应快速技术变革。科技公司受增长驱动持续扩展，而政府行动迟缓，双方均未准备好应对未来12-24个月的挑战。作者认为需要更多透明度，并指出持久性强的模型更可能实施黑客行为，OpenAI的推理时扩展路径可能与此相关。",
-                "url": "https://aihot.virxact.com/items/cmslxhx3t05n3ro0w2lcmvjol",
-                "source": ""
-              },
-              {
-                "title": "用DistilBERT LoRA与TF-IDF基线做IMDb情感分析：校准、可解释性与半监督学习",
-                "summary": "本教程基于Stanford IMDb数据集构建端到端情感分析流程，对比TF-IDF逻辑回归基线与LoRA微调的DistilBERT。模型评估涵盖准确率、macro-F1、ROC-AUC及期望校准误差，并分析置信错误、长度影响与词级遮挡显著性。最后利用未标注IMDb数据做置信度伪标注，比较半监督模型与基线，保存合并后的Transformer用于推理。",
-                "url": "https://aihot.virxact.com/items/cmslhy76p03hdroo0l8dsaskb",
-                "source": ""
-              },
-              {
-                "title": "Seedance 2.5 上线一周新增六种创意玩法",
-                "summary": "Seedance 2.5 上线一周后，国内外社区涌现出时间静止、超级英雄变身、创意广告、K-pop MV、电商广告、拉片复刻等六类热门玩法。经实测，该版本人物面部告别\"AI 油腻感\"，动作自然度与镜头切换较 2.0 更合理，单次生成超长视频时长拉至 300 秒，并支持片段重拍与智能续写。通过 LibTV 年费会员，生成成本最低可至 0.4 元/秒。",
-                "url": "https://aihot.virxact.com/items/cmslmv6kx03muroqyxyo4fbtl",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "产品发布/更新",
-            "items": [
-              {
-                "title": "苹果 Mac 简体中文支持文档更新，“Apple 智能”阿里千问扩展现身",
-                "summary": "苹果官网 Mac 简体中文使用手册新增《在 Mac 上配合 Apple 智能使用千问》支持文档，明确 Apple 智能可配合阿里巴巴千问模型工作。千问扩展适用于 macOS 26.6 或更高版本，需中国大陆 Apple 账户及机型，支持写作工具与 Siri，用户需登录千问账户使用。",
-                "url": "https://www.ithome.com/0/987/366.htm",
-                "source": "IT之家（RSS）"
-              },
-              {
-                "title": "OpenAI 桌面端 ChatGPT 上线语音交互功能，可语音操控电脑执行多步骤任务",
-                "summary": "OpenAI 更新 ChatGPT 桌面应用，新增对 ChatGPT Voice 的支持，用户可直接通过语音对话控制 AI 智能体并让其在电脑上执行任务。该功能基于全新语音模型系列 ChatGPT-Live，支持 ChatGPT Work 和 Codex，在 macOS 上还可借助 Appshots 访问屏幕内容。",
-                "url": "https://www.ithome.com/0/987/452.htm",
-                "source": "IT之家（RSS）"
-              },
-              {
-                "title": "Grok Imagine 图像编辑迎来重大升级",
-                "summary": "Grok Imagine 图像编辑功能重大升级 [引用 @XFreeze]：你可以直接悬停在 Grok Imagine 中的任意特定区域，并即时进行编辑",
-                "url": "https://x.com/elonmusk/status/2086127247077843282",
-                "source": "X：Elon Musk (@elonmusk, xAI)"
-              },
-              {
-                "title": "Claude Code v2.1.225 发布：新增网关支出限额支持与工作区信任提示",
-                "summary": "Claude Code v2.1.225 为用量警告新增网关支出限额支持，达到限额时提示将显示上限、重置时间及操作者消息。该版本还为不受信任目录中的 claude agents 增加工作区信任提示，并修复了 MCP OAuth 服务器在 macOS 上的间歇性 401 错误、跨会话消息滞留及 Remote Control 会话恢复后对话历史损坏等问题。",
-                "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.225",
-                "source": "Claude Code：GitHub Releases（RSS）"
-              }
-            ]
-          }
-        ],
-        "canonical": "https://aihot.virxact.com/daily/2026-08-09"
       }
     ]
   },
   "dailyNews": {
-    "date": "2026-08-22",
-    "fetchedAt": "2026-08-22 22:35",
+    "date": "2026-08-23",
+    "fetchedAt": "2026-08-23 12:09",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "今年 1-7 月全国一般公共预算收入同比增长 5.8%，证券交易印花税同比增 99.2%",
+        "title": "三台风并存形势复杂：“紫檀” 可能多次登陆我国，“沙德尔” 或升级为超强台风",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "三部门：个人消费贷款贴息上限提高到 5000 元，装修、购车等信用卡分期消费均可以享受贴息优惠",
+        "title": "第二届世界人形机器人运动会开幕： 机器人跑出 9.39 秒破人类百米世界纪录，多项目取消人工遥控",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "财政部：今年专门安排资金支持，农村地区 65 岁及以上老年人免费接种流感疫苗",
+        "title": "六大行集中发布公告：单人在同家银行个人消费贷和信用卡分期贴息上限提升到 5000 元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "鸡蛋售价 9 天上涨 15.5%，主产区 5.15 元一斤，同比大涨 58%，创近三年新高",
+        "title": "三部门：已故人士金融账户查询服务试点经验将推广到全国",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中国航司半年买近 480 架空客飞机，创下疫情后新高",
+        "title": "国家卫健委发布会：白血病不再是 “不治之症”，多数患者能够达到完全控制",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "9 家车企因门把手安全问题召回多款汽车，或影响开门逃生",
+        "title": "浙江一男子 20 年省吃俭用攒下近 800 万元，相邀炒股 6 天被骗光",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "两名女孩买 3 张火车票，空位放零食，成都铁路局回应：未检票的席位，属放弃席位使用权，购票 2 人不能占用",
+        "title": "网传河北一地 “白菜装车前蘸甲醛” 当地通报：属实，紧急追溯流向",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "最新数据显示：应届本科生一线城市就业平均月薪 8051 元，新一线城市 6622 元",
+        "title": "多地 “兰州拉面” 馆撤换原有招牌更新为 “青海拉面”，目前全国已有约 1000 家店面换上 “青海拉面” 门头",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "我国科学家首次合成世界上最长单原子直径 “金属线”，长度突破微米级",
+        "title": "U18 男篮亚洲杯：中国队力克新西兰队，时隔 12 年再度晋级该赛事决赛",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中瑞自贸协定升级谈判完成：99.8% 的瑞士对华出口将获免税待遇",
+        "title": "TikTok 将向美国支付 4 亿美元和解金，以解决儿童隐私指控",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国今年秋季入学的国际学生申请数量下降约 10%，创下至少十年来最大降幅",
+        "title": "80 岁西班牙 “狼孩” 去世，被狼群抚养 12 年，曾说重返人类社会最可怕，试图回到狼群却不被接纳",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "AI 逼得美国数学家宣布退出数学学术界：不再是寻求答案，而是去验证答案",
+        "title": "日本新财年预算申请额或超 130 万亿日元，防务省申请规模创新高",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美加墨世界杯决赛后冲突处罚结果公布：多名球员禁赛，阿根廷足协罚 32.1 万美元",
+        "title": "美法官推翻特朗普暂停向 75 国发放移民签证的政策",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "泰国王后素提达参加 “鹰狮” 战机训练，有望成为首位驾驶战机的在位王后",
+        "title": "美加谈判破裂，美国对价值约 200 亿美元的加拿大商品加征 50% 关税，加方将实施对等关税措施",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美国将向联合国支付 7.25 亿美元拖欠会费，联合国曾表示美国拖欠的款项超过 40 亿美元",
+        "title": "特朗普称若输掉中期选举他将被弹劾，其最新民调结果已跌至 35％，68％受访者表示伊战事 “不值得打”",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "不要害怕暂时看不到结果，努力的意义，在于不断重塑自我，而不是立刻拿到想要回报",
-    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0UicLEY4krXjBA3iaeBqaUfYUzFhRqoqbWUMyoRkl36BxRe7iafdcFF9TS3v0QsOqrhgqmDvwmKNIdJE9eiausDTia6QCNj9QySU9u08/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "人心贵在适度留白，凡事留有分寸，相处自在方能长久维系缘分",
+    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0U93XIBvVuBZzB5YyLnsIlicvwoTS0vHpemjCJXqbZednynr0SgYmZIgU2WP4JticxDkEwhNw03LvaqSXCuY01303IN1QuoSSjZAw/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-23",
+        "fetchedAt": "2026-08-23 12:09",
+        "count": 15,
+        "items": [
+          {
+            "title": "三台风并存形势复杂：“紫檀” 可能多次登陆我国，“沙德尔” 或升级为超强台风",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "第二届世界人形机器人运动会开幕： 机器人跑出 9.39 秒破人类百米世界纪录，多项目取消人工遥控",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "六大行集中发布公告：单人在同家银行个人消费贷和信用卡分期贴息上限提升到 5000 元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "三部门：已故人士金融账户查询服务试点经验将推广到全国",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国家卫健委发布会：白血病不再是 “不治之症”，多数患者能够达到完全控制",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "浙江一男子 20 年省吃俭用攒下近 800 万元，相邀炒股 6 天被骗光",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "网传河北一地 “白菜装车前蘸甲醛” 当地通报：属实，紧急追溯流向",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多地 “兰州拉面” 馆撤换原有招牌更新为 “青海拉面”，目前全国已有约 1000 家店面换上 “青海拉面” 门头",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "U18 男篮亚洲杯：中国队力克新西兰队，时隔 12 年再度晋级该赛事决赛",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "TikTok 将向美国支付 4 亿美元和解金，以解决儿童隐私指控",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "80 岁西班牙 “狼孩” 去世，被狼群抚养 12 年，曾说重返人类社会最可怕，试图回到狼群却不被接纳",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "日本新财年预算申请额或超 130 万亿日元，防务省申请规模创新高",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美法官推翻特朗普暂停向 75 国发放移民签证的政策",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美加谈判破裂，美国对价值约 200 亿美元的加拿大商品加征 50% 关税，加方将实施对等关税措施",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "特朗普称若输掉中期选举他将被弹劾，其最新民调结果已跌至 35％，68％受访者表示伊战事 “不值得打”",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "人心贵在适度留白，凡事留有分寸，相处自在方能长久维系缘分",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-22",
         "fetchedAt": "2026-08-22 22:35",
@@ -5142,114 +5103,7 @@
         "tip": "别把一时的情绪当永久判决，坏心情会走，好天气会来，你只需等",
         "source": "每日60秒 (vikiboss/60s)",
         "canonical": "https://github.com/vikiboss/60s"
-      },
-      {
-        "date": "2026-08-09",
-        "fetchedAt": "2026-08-10 01:44",
-        "count": 15,
-        "items": [
-          {
-            "title": "台风 “白海豚” 预计 9 日晚至 10 日早晨在浙闽沿海登陆，未来三天浙江、上海、福建北部、江苏大部等地有强降雨",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "新疆调整 4A 及以上景区自驾服务费，统一按 “车” 收费",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "2026 年本科未录满专业 TOP50 公布：会计学 410 次居首，财务管理 398 次、英语 379 次紧随其后",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "北京市教委：扰乱课堂秩序、吸烟饮酒等七类情形，可实施教育惩戒",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "28 款热销睫毛胶中超八成样品检出致癌物，部分成分接近 502 胶",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "陕西商洛暴雨一棺材厂被冲毁，老板称 14 副成品棺材冲走，损失超 40 万元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "香港正式立法允许 “拒绝抢救”：病人可通过预先订立指示，拒绝心肺复苏、人工呼吸器等侵入性维持生命治疗",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "黄金创今年来最大单周涨幅，国内金饰克价一夜涨回 1300 元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "多家 A 股公司公告：收到美国关税退税，最高近亿元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "我国科学家重大发现：银河系不是扁平圆盘，其外盘存在整体翘曲并叠加大范围波纹状褶皱结构",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美国防部第五批 UFO 档案：光球飞掠中东居民区，阿富汗 152 米三角形遮蔽星光",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "苹果加码印度制造：今年预计生产全球 26% 的 iPhone，而四年前这一比例仅为 6%",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "日本发布排名：中国研发总投入超过美国位居世界第一，美日德韩英法居后",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "马斯克豪掷 168 亿美元打造 “地球最大芯片工厂”，规模相当于 50 个五角大楼",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "特朗普宣布将向关键矿产投资 30 亿美元，重塑美国作为世界矿产超级大国的应有地位",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          }
-        ],
-        "tip": "你不需要被所有人理解，也不需要向所有人解释。走自己的路，风会替你说话。",
-        "source": "每日60秒 (vikiboss/60s)",
-        "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-22T22:36:17",
-    "status": "ok",
-    "nextRun": "2026-08-22T23:36:17",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
