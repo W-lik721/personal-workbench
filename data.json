@@ -4754,9 +4754,9 @@
     ]
   },
   "sync": {
-    "lastRun": "2026-08-24T17:01:37",
+    "lastRun": "2026-08-24T18:00:17",
     "status": "fail",
-    "nextRun": "2026-08-24T18:01:37",
+    "nextRun": "2026-08-24T19:00:17",
     "intervalHours": 1,
     "staleHours": 2
   }
