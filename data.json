@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-25 17:49",
+  "generatedAt": "2026-08-25 18:46",
   "kpi": {
     "skills": 65,
     "automations": 3,
-    "models": 4,
+    "models": 3,
     "memory": 47,
     "knowledge": 9,
     "sessions": 9
@@ -611,17 +611,12 @@
         "type": "云端"
       },
       {
-        "name": "qwen2.5-vl-local",
-        "type": "本机"
-      },
-      {
-        "name": "qwen2.5-text-local",
+        "name": "qwen3.5:9b",
         "type": "本机"
       }
     ],
     "localModels": [
-      "qwen2.5-vl-local",
-      "qwen2.5-text-local"
+      "qwen3.5:9b"
     ],
     "ollama": {
       "available": true,
@@ -635,21 +630,12 @@
           ]
         },
         {
-          "id": "15a6f16bdde8",
-          "size": "4.7 GB",
-          "modified": "3 weeks ago",
+          "id": "6dd66787ddbd",
+          "size": "6.5 GB",
+          "modified": "48 minutes ago",
           "tags": [
-            "qwen2.5-text-local:latest",
-            "modelscope.cn/lmstudio-community/Qwen2.5-7B-Instruct-GGUF:Q4_K_M"
-          ]
-        },
-        {
-          "id": "7a43084a93c1",
-          "size": "6.0 GB",
-          "modified": "3 weeks ago",
-          "tags": [
-            "qwen2.5-vl-local:latest",
-            "modelscope.cn/lmstudio-community/Qwen2.5-VL-7B-Instruct-GGUF:Q4_K_M"
+            "qwen3.5:9b",
+            "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
           ]
         }
       ],
@@ -706,11 +692,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 229
+        "free": 230
       },
       "D": {
         "total": 544,
-        "free": 351
+        "free": 356
       }
     },
     "runtime": "3.13 / 22.22"
@@ -722,7 +708,7 @@
         "customTitle": "",
         "display": "查询电脑可运行的优于qwen的模型",
         "status": "completed",
-        "updated": "08-25 17:47",
+        "updated": "08-25 18:04",
         "group": "今天"
       },
       {
@@ -1493,7 +1479,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 17:49",
+    "fetchedAt": "2026-08-25 18:46",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-25",
     "count": 14,
@@ -1612,7 +1598,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 17:49",
+        "fetchedAt": "2026-08-25 18:46",
         "count": 14,
         "sections": [
           {
@@ -3278,7 +3264,7 @@
   },
   "dailyNews": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 17:49",
+    "fetchedAt": "2026-08-25 18:46",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3380,7 +3366,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 17:49",
+        "fetchedAt": "2026-08-25 18:46",
         "count": 15,
         "items": [
           {
@@ -4779,12 +4765,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T17:50:19",
-    "status": "ok",
-    "nextRun": "2026-08-25T18:50:19",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
