@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25 18:46",
+  "generatedAt": "2026-08-25 19:39",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -611,12 +611,12 @@
         "type": "云端"
       },
       {
-        "name": "qwen3.5:9b",
+        "name": "qwen3.5",
         "type": "本机"
       }
     ],
     "localModels": [
-      "qwen3.5:9b"
+      "qwen3.5"
     ],
     "ollama": {
       "available": true,
@@ -630,9 +630,17 @@
           ]
         },
         {
+          "id": "2a945656b3a4",
+          "size": "6.5 GB",
+          "modified": "11 seconds ago",
+          "tags": [
+            "qwen3.5-fast:latest"
+          ]
+        },
+        {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "48 minutes ago",
+          "modified": "2 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -707,8 +715,8 @@
         "title": "查询电脑可运行的优于qwen的模型",
         "customTitle": "",
         "display": "查询电脑可运行的优于qwen的模型",
-        "status": "completed",
-        "updated": "08-25 18:04",
+        "status": "working",
+        "updated": "08-25 19:39",
         "group": "今天"
       },
       {
@@ -1470,16 +1478,11 @@
       "name": "kb-ingest",
       "when": 1787115349.6909914,
       "scope": "本机"
-    },
-    {
-      "kind": "kb",
-      "name": "00-路由表.md",
-      "when": 1787051587.6502998
     }
   ],
   "aiDaily": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 18:46",
+    "fetchedAt": "2026-08-25 19:39",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-25",
     "count": 14,
@@ -1598,7 +1601,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 18:46",
+        "fetchedAt": "2026-08-25 19:39",
         "count": 14,
         "sections": [
           {
@@ -3264,7 +3267,7 @@
   },
   "dailyNews": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 18:46",
+    "fetchedAt": "2026-08-25 19:39",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3366,7 +3369,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 18:46",
+        "fetchedAt": "2026-08-25 19:39",
         "count": 15,
         "items": [
           {
@@ -4765,12 +4768,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T18:47:01",
-    "status": "ok",
-    "nextRun": "2026-08-25T19:47:01",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
