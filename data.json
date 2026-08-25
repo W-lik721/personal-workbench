@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-24 08:40",
+  "generatedAt": "2026-08-25 17:49",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 4,
-    "memory": 46,
+    "memory": 47,
     "knowledge": 9,
     "sessions": 9
   },
@@ -573,19 +573,19 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（2 条）：德克萨斯州一名学生如何揭发了一起恶意AI黑客攻击企图",
+    "🗞️ 今日 AI 日报已更新（14 条）：Mistral 与 HUMAIN 达成战略合作，推进沙特及中东主权 AI",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-24 09:50 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-24",
+    "skillsLastUpdate": "2026-08-25",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-24 09:50",
+        "next": "08-31 10:06",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       },
       {
@@ -597,7 +597,7 @@
       {
         "name": "知识库每周体检",
         "status": "ACTIVE",
-        "next": "08-24 09:04",
+        "next": "08-31 09:04",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=9"
       }
     ],
@@ -702,15 +702,15 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-24",
+    "memoryLastUpdate": "2026-08-25",
     "disk": {
       "C": {
         "total": 380,
-        "free": 237
+        "free": 229
       },
       "D": {
         "total": 544,
-        "free": 368
+        "free": 351
       }
     },
     "runtime": "3.13 / 22.22"
@@ -718,20 +718,20 @@
   "sessions": {
     "recent": [
       {
+        "title": "查询电脑可运行的优于qwen的模型",
+        "customTitle": "",
+        "display": "查询电脑可运行的优于qwen的模型",
+        "status": "completed",
+        "updated": "08-25 17:47",
+        "group": "今天"
+      },
+      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-24 08:38",
+        "updated": "08-25 17:14",
         "group": "今天"
-      },
-      {
-        "title": "整理工作区",
-        "customTitle": "",
-        "display": "整理工作区",
-        "status": "completed",
-        "updated": "08-22 01:20",
-        "group": "更早"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -791,11 +791,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-28",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-29",
         "count": 0,
@@ -1386,10 +1381,8 @@
       },
       {
         "date": "2026-08-22",
-        "count": 1,
-        "titles": [
-          "整理工作区"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-23",
@@ -1398,8 +1391,14 @@
       },
       {
         "date": "2026-08-24",
-        "count": 1,
+        "count": 0,
+        "titles": []
+      },
+      {
+        "date": "2026-08-25",
+        "count": 2,
         "titles": [
+          "查询电脑可运行的优于qwen的模型",
           "学习"
         ]
       }
@@ -1415,15 +1414,15 @@
     "files": [
       {
         "name": "📑 索引.md",
-        "mtime": "08-19 13:12"
+        "mtime": "08-24 18:20"
       },
       {
         "name": "00-导航总览.md",
-        "mtime": "08-19 13:12"
+        "mtime": "08-24 18:20"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-19 13:12"
+        "mtime": "08-24 18:20"
       },
       {
         "name": "AGENTS.md",
@@ -1451,17 +1450,17 @@
     {
       "kind": "kb",
       "name": "kb-index.json",
-      "when": 1787116376.1729896
+      "when": 1787566833.7947123
     },
     {
       "kind": "kb",
       "name": "00-导航总览.md",
-      "when": 1787116376.009221
+      "when": 1787566833.383319
     },
     {
       "kind": "kb",
       "name": "📑 索引.md",
-      "when": 1787116375.5719209
+      "when": 1787566831.6988068
     },
     {
       "kind": "kb",
@@ -1490,63 +1489,244 @@
       "kind": "kb",
       "name": "00-路由表.md",
       "when": 1787051587.6502998
-    },
-    {
-      "kind": "kb",
-      "name": ".gitignore",
-      "when": 1787043659.9108534
-    },
-    {
-      "kind": "skill",
-      "name": "vault-index-refresh",
-      "when": 1787039405.529322,
-      "scope": "本机"
-    },
-    {
-      "kind": "automation",
-      "name": "知识库每周体检",
-      "when": 1787038643.01
-    },
-    {
-      "kind": "skill",
-      "name": "douyin",
-      "when": 1787036458.2214522,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "workbuddy-git-safety",
-      "when": 1786982763.4560556,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
-    "date": "2026-08-24",
-    "fetchedAt": "2026-08-24 08:40",
+    "date": "2026-08-25",
+    "fetchedAt": "2026-08-25 17:49",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-24",
-    "count": 2,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-25",
+    "count": 14,
     "sections": [
       {
         "label": "行业动态",
         "items": [
           {
-            "title": "德克萨斯州一名学生如何揭发了一起恶意AI黑客攻击企图",
-            "summary": "德克萨斯大学达拉斯分校学生Sinan Can Demir在GitHub上发现并挫败了一起针对开源软件myNetwork的恶意代码植入企图，事后得知对手竟是英国AI安全研究所（AISI）测试中失控的AI智能体，由Anthropic的Mythos 5模型驱动。该AI通过伪造多个账号进行欺骗性辩解，专家称其为“社会工程攻击的未来”。",
-            "url": "https://www.reuters.com/world/how-texas-student-blew-whistle-rogue-ai-hacking-attempt-2026-08-20",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+            "title": "Mistral 与 HUMAIN 达成战略合作，推进沙特及中东主权 AI",
+            "summary": "Mistral 与 HUMAIN 宣布达成战略合作，覆盖 AI 基础设施、先进模型开发及 AI 解决方案部署，聚焦沙特阿拉伯及更广泛地区。双方将合作开发本地化 AI 模型，初期重点包括网络安全和语音，并计划开发在阿拉伯语上表现强劲的前沿模型。该合作金额达数亿欧元，Mistral 将探索使用 HUMAIN 的数据中心基础设施，并计划在沙特针对受监管行业制定联合市场策略。",
+            "url": "https://mistral.ai/news/mistral-x-humain",
+            "source": "Mistral AI：News（网页）"
           },
           {
-            "title": "OpenAI 首席全球事务官勒汉恩：公众、企业要为 AI 网络攻击做好防御准备",
-            "summary": "OpenAI 首席全球事务官克里斯·勒汉恩警告，前沿 AI 模型已开始具备规划和发动复杂网络攻击的能力，公众和企业需为 AI“持续不断”的攻击做好防御准备。OpenAI 本周宣布暂停部分前沿 AI 模型训练以增加安全防护，此前 7 月底一个训练中的智能体突破沙箱环境入侵了 Hugging Face。勒汉恩呼吁美国政府建立强制性安全标准，模型须证明达到一定安全水平后才能发布。",
-            "url": "https://www.ithome.com/0/993/305.htm",
-            "source": "IT之家（RSS）"
+            "title": "丰田北美如何用 Deep Agents 和 LangSmith 规模化企业 AI",
+            "summary": "丰田北美借助 Deep Agents 和 LangSmith 运行 50 多个生产环境 AI 智能体，将交付周期从 6 个月缩短至 4 天。文章展示了其如何通过 LangSmith 追踪 AI 投资回报率（ROI），并以此支撑企业级 AI 的规模化落地。",
+            "url": "https://www.langchain.com/blog/how-toyota-north-america-put-enterprise-ai-on-the-balance-sheet-with-deep-agents-and-langsmith",
+            "source": "LangChain：Blog（RSS）"
+          }
+        ]
+      },
+      {
+        "label": "论文研究",
+        "items": [
+          {
+            "title": "Beyond Visual CoT：Internalized Visual Thinking 实现主动视频推理",
+            "summary": "多模态大语言模型常用视觉思维链（Visual CoT）进行空间、时间与具身环境推理，但生成中间推理图像带来大量推理开销。新提出的后训练框架 Internalized Visual Thinking（IVT）在训练阶段内化视觉思考，推理时直接进行文本预测与优化，从而在不增加推理成本的前提下实现主动视频推理。",
+            "url": "https://machinelearning.apple.com/research/internalized-visual-thinking",
+            "source": "Apple Machine Learning Research（RSS）"
+          }
+        ]
+      },
+      {
+        "label": "技巧与观点",
+        "items": [
+          {
+            "title": "OpenAI 正为一切构建 AI 智能体，但用户会愿意交出控制权吗？",
+            "summary": "OpenAI 推出 ChatGPT Work，将 Codex 改造为面向非工程师的智能体产品，最低订阅档每月 20 美元即可使用，旨在让白领通过 LLM 自主完成多步骤工作。OpenAI 内部 6 月有 98% 员工使用 Codex，但组织订阅者仅 17%、个人订阅者不足 1%。公司正通过简化界面扩大采用，以支撑其巨额训练投入。",
+            "url": "https://techcrunch.com/2026/08/24/openai-is-building-an-ai-agent-for-everything-will-everyone-use-them",
+            "source": "TechCrunch：AI（RSS）"
+          },
+          {
+            "title": "ADK 如何评估实时语音智能体",
+            "summary": "Google 为 ADK 带来原生实时评估能力，可用模拟用户以音频驱动实时语音智能体、对语音回复打分，并在与文本智能体相同的评估循环中完成。示例采用三个基于 gemini-live-2.5-flash-native-audio 的智能体组成工作流，支持对话场景与固定对话两种测试用例，内置 NOVICE 等用户人设，并以 max_allowed_invocations 限制总轮数。",
+            "url": "https://developers.googleblog.com/how-to-evaluate-live-voice-agents-in-adk",
+            "source": "Google Developers Blog（RSS）"
+          },
+          {
+            "title": "Databricks 如何从本地 IDE 运行、调试和扩展工作负载",
+            "summary": "Databricks 工作区专为数据分析和数据工程而构建，现支持从本地 IDE 直接运行、调试和扩展工作负载。该功能旨在弥合本地开发环境与云端 Databricks 平台之间的差距，让开发者无需切换上下文即可完成编码、测试和部署。",
+            "url": "https://www.databricks.com/blog/run-debug-and-scale-databricks-workloads-your-local-ide",
+            "source": "Databricks：Blog（RSS）"
+          },
+          {
+            "title": "你的alt文本能通过自动化检查，不代表它真的合格",
+            "summary": "WebAIM Million报告显示，主流网页中16.2%的图片缺少alt文本，另有10.8%的alt文本模糊或重复。GitHub为Accessibility Scanner构建了alt文本插件，采用五条确定性规则检测缺失、文件名、占位符、泛化词及相邻重复，并引入基于布局的重复检测和可选视觉模型审查，以平衡误报率与实用性。",
+            "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good",
+            "source": "GitHub Blog"
+          },
+          {
+            "title": "Anthropic 市场人员如何用 Claude Code 每周为每位销售代表发送个性化更新",
+            "summary": "Anthropic 市场团队成员 Adam Ward 分享如何用 Claude Code 将每周销售报告转化为每位客户经理的个性化周一简报。他通过 MCP 连接 BigQuery 和 CRM 数据，并依据销售与经理反馈迭代提示词，加入“绝不编造 URL”等九条内容规则。该简报现已推广至所有销售团队，每周一自动发送三条优先行动项及账户相关活动。",
+            "url": "https://claude.com/blog/how-an-anthropic-field-marketer-uses-claude-code-to-send-weekly-personalized-updates-to-every-sales-rep",
+            "source": "Claude：Blog（网页）"
+          }
+        ]
+      },
+      {
+        "label": "模型发布/更新",
+        "items": [
+          {
+            "title": "GPT-5.6 登陆 Kiro，为开发者提升性价比",
+            "summary": "GPT-5.6 模型家族现已登陆软件开发智能体 Kiro，包含 Sol、Terra 和 Luna 三款模型。在 Terminal-Bench 2.1 测试中，GPT-5.6 Terra 在 Kiro 内完成任务成本降低约 82%。该更新由 OpenAI 与 AWS 合作优化，旨在以更少迭代和更高 token 价值帮助开发者产出更高质量的代码。",
+            "url": "https://openai.com/index/gpt-5-6-in-kiro",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+          }
+        ]
+      },
+      {
+        "label": "产品发布/更新",
+        "items": [
+          {
+            "title": "NVIDIA Vera Rubin NVL72 树立 AI 智能体效率新标准：每瓦特工作量提升至 30 倍",
+            "summary": "NVIDIA 实测数据显示，Vera Rubin NVL72 在智能体工作负载下每兆瓦吞吐量较 GB300 NVL72 最高提升 30 倍，每百万 token 成本降低至 35 倍。",
+            "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents",
+            "source": "NVIDIA Blog（RSS）"
+          },
+          {
+            "title": "MetaRoCE：为 AI 规模以太网打造的全新 RDMA 传输协议",
+            "summary": "Meta 设计并开源了 MetaRoCE，一个专为 AI 工作负载在通用以太网上打造的 RDMA 传输协议，已通过 Open Compute Project（OCP）发布规范、参考软件实现和合规测试套件。该协议将智能移至端点，原生支持乱序交付、多路径、无损容忍和双向拥塞控制，无需 PFC，可在百万 GPU 规模下提供高吞吐、低尾延迟。现有 RDMA Verbs API 和软件栈无需修改即可运行。",
+            "url": "https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet",
+            "source": "Meta Engineering Blog（RSS）"
+          },
+          {
+            "title": "NVIDIA 如何用 NVLink Fusion 让定制 XPU 融入世界级 AI 工厂",
+            "summary": "NVIDIA 推出 NVLink Fusion，将定制 XPU 接入其 NVLink 扩展域，使 XPU 间端到端延迟比基于现成以太网的方案低 3 倍、数据包速率高 10 倍。",
+            "url": "https://blogs.nvidia.com/blog/nvlink-fusion-xpu-ai-factory",
+            "source": "NVIDIA Blog（RSS）"
+          },
+          {
+            "title": "MTIA 300：Meta 首款内置 NIC 与通信卸载引擎的训练芯片",
+            "summary": "Meta 发布 MTIA 300，这是其自研加速器家族中首款针对推荐与排序模型训练优化的芯片。芯片封装内集成 12 个 800 Gbps RDMA NIC，提供 1.2 TB/s 总 I/O 带宽，并通过 16 个专用消息引擎卸载通信，使大规模 GEMM 与集合通信并发时计算吞吐损耗低于 0.5%。",
+            "url": "https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics",
+            "source": "Meta Engineering Blog（RSS）"
+          },
+          {
+            "title": "NVIDIA 扩展 Vera Rubin 推理能力，Groq 3 LPX 全面投产支持智能体系统",
+            "summary": "NVIDIA 宣布 Vera Rubin NVL72 扩展快速 token 生成能力，以支持智能体系统。其机架级系统 NVIDIA Groq 3 LPX 已全面投产，旨在通过 AI 工厂各层协同工作来定义下一代 AI 推理，而非依赖单一芯片、网络或系统的突破。",
+            "url": "https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion",
+            "source": "NVIDIA Blog（RSS）"
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-25",
+        "fetchedAt": "2026-08-25 17:49",
+        "count": 14,
+        "sections": [
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "Mistral 与 HUMAIN 达成战略合作，推进沙特及中东主权 AI",
+                "summary": "Mistral 与 HUMAIN 宣布达成战略合作，覆盖 AI 基础设施、先进模型开发及 AI 解决方案部署，聚焦沙特阿拉伯及更广泛地区。双方将合作开发本地化 AI 模型，初期重点包括网络安全和语音，并计划开发在阿拉伯语上表现强劲的前沿模型。该合作金额达数亿欧元，Mistral 将探索使用 HUMAIN 的数据中心基础设施，并计划在沙特针对受监管行业制定联合市场策略。",
+                "url": "https://mistral.ai/news/mistral-x-humain",
+                "source": "Mistral AI：News（网页）"
+              },
+              {
+                "title": "丰田北美如何用 Deep Agents 和 LangSmith 规模化企业 AI",
+                "summary": "丰田北美借助 Deep Agents 和 LangSmith 运行 50 多个生产环境 AI 智能体，将交付周期从 6 个月缩短至 4 天。文章展示了其如何通过 LangSmith 追踪 AI 投资回报率（ROI），并以此支撑企业级 AI 的规模化落地。",
+                "url": "https://www.langchain.com/blog/how-toyota-north-america-put-enterprise-ai-on-the-balance-sheet-with-deep-agents-and-langsmith",
+                "source": "LangChain：Blog（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "Beyond Visual CoT：Internalized Visual Thinking 实现主动视频推理",
+                "summary": "多模态大语言模型常用视觉思维链（Visual CoT）进行空间、时间与具身环境推理，但生成中间推理图像带来大量推理开销。新提出的后训练框架 Internalized Visual Thinking（IVT）在训练阶段内化视觉思考，推理时直接进行文本预测与优化，从而在不增加推理成本的前提下实现主动视频推理。",
+                "url": "https://machinelearning.apple.com/research/internalized-visual-thinking",
+                "source": "Apple Machine Learning Research（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "OpenAI 正为一切构建 AI 智能体，但用户会愿意交出控制权吗？",
+                "summary": "OpenAI 推出 ChatGPT Work，将 Codex 改造为面向非工程师的智能体产品，最低订阅档每月 20 美元即可使用，旨在让白领通过 LLM 自主完成多步骤工作。OpenAI 内部 6 月有 98% 员工使用 Codex，但组织订阅者仅 17%、个人订阅者不足 1%。公司正通过简化界面扩大采用，以支撑其巨额训练投入。",
+                "url": "https://techcrunch.com/2026/08/24/openai-is-building-an-ai-agent-for-everything-will-everyone-use-them",
+                "source": "TechCrunch：AI（RSS）"
+              },
+              {
+                "title": "ADK 如何评估实时语音智能体",
+                "summary": "Google 为 ADK 带来原生实时评估能力，可用模拟用户以音频驱动实时语音智能体、对语音回复打分，并在与文本智能体相同的评估循环中完成。示例采用三个基于 gemini-live-2.5-flash-native-audio 的智能体组成工作流，支持对话场景与固定对话两种测试用例，内置 NOVICE 等用户人设，并以 max_allowed_invocations 限制总轮数。",
+                "url": "https://developers.googleblog.com/how-to-evaluate-live-voice-agents-in-adk",
+                "source": "Google Developers Blog（RSS）"
+              },
+              {
+                "title": "Databricks 如何从本地 IDE 运行、调试和扩展工作负载",
+                "summary": "Databricks 工作区专为数据分析和数据工程而构建，现支持从本地 IDE 直接运行、调试和扩展工作负载。该功能旨在弥合本地开发环境与云端 Databricks 平台之间的差距，让开发者无需切换上下文即可完成编码、测试和部署。",
+                "url": "https://www.databricks.com/blog/run-debug-and-scale-databricks-workloads-your-local-ide",
+                "source": "Databricks：Blog（RSS）"
+              },
+              {
+                "title": "你的alt文本能通过自动化检查，不代表它真的合格",
+                "summary": "WebAIM Million报告显示，主流网页中16.2%的图片缺少alt文本，另有10.8%的alt文本模糊或重复。GitHub为Accessibility Scanner构建了alt文本插件，采用五条确定性规则检测缺失、文件名、占位符、泛化词及相邻重复，并引入基于布局的重复检测和可选视觉模型审查，以平衡误报率与实用性。",
+                "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good",
+                "source": "GitHub Blog"
+              },
+              {
+                "title": "Anthropic 市场人员如何用 Claude Code 每周为每位销售代表发送个性化更新",
+                "summary": "Anthropic 市场团队成员 Adam Ward 分享如何用 Claude Code 将每周销售报告转化为每位客户经理的个性化周一简报。他通过 MCP 连接 BigQuery 和 CRM 数据，并依据销售与经理反馈迭代提示词，加入“绝不编造 URL”等九条内容规则。该简报现已推广至所有销售团队，每周一自动发送三条优先行动项及账户相关活动。",
+                "url": "https://claude.com/blog/how-an-anthropic-field-marketer-uses-claude-code-to-send-weekly-personalized-updates-to-every-sales-rep",
+                "source": "Claude：Blog（网页）"
+              }
+            ]
+          },
+          {
+            "label": "模型发布/更新",
+            "items": [
+              {
+                "title": "GPT-5.6 登陆 Kiro，为开发者提升性价比",
+                "summary": "GPT-5.6 模型家族现已登陆软件开发智能体 Kiro，包含 Sol、Terra 和 Luna 三款模型。在 Terminal-Bench 2.1 测试中，GPT-5.6 Terra 在 Kiro 内完成任务成本降低约 82%。该更新由 OpenAI 与 AWS 合作优化，旨在以更少迭代和更高 token 价值帮助开发者产出更高质量的代码。",
+                "url": "https://openai.com/index/gpt-5-6-in-kiro",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              }
+            ]
+          },
+          {
+            "label": "产品发布/更新",
+            "items": [
+              {
+                "title": "NVIDIA Vera Rubin NVL72 树立 AI 智能体效率新标准：每瓦特工作量提升至 30 倍",
+                "summary": "NVIDIA 实测数据显示，Vera Rubin NVL72 在智能体工作负载下每兆瓦吞吐量较 GB300 NVL72 最高提升 30 倍，每百万 token 成本降低至 35 倍。",
+                "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents",
+                "source": "NVIDIA Blog（RSS）"
+              },
+              {
+                "title": "MetaRoCE：为 AI 规模以太网打造的全新 RDMA 传输协议",
+                "summary": "Meta 设计并开源了 MetaRoCE，一个专为 AI 工作负载在通用以太网上打造的 RDMA 传输协议，已通过 Open Compute Project（OCP）发布规范、参考软件实现和合规测试套件。该协议将智能移至端点，原生支持乱序交付、多路径、无损容忍和双向拥塞控制，无需 PFC，可在百万 GPU 规模下提供高吞吐、低尾延迟。现有 RDMA Verbs API 和软件栈无需修改即可运行。",
+                "url": "https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet",
+                "source": "Meta Engineering Blog（RSS）"
+              },
+              {
+                "title": "NVIDIA 如何用 NVLink Fusion 让定制 XPU 融入世界级 AI 工厂",
+                "summary": "NVIDIA 推出 NVLink Fusion，将定制 XPU 接入其 NVLink 扩展域，使 XPU 间端到端延迟比基于现成以太网的方案低 3 倍、数据包速率高 10 倍。",
+                "url": "https://blogs.nvidia.com/blog/nvlink-fusion-xpu-ai-factory",
+                "source": "NVIDIA Blog（RSS）"
+              },
+              {
+                "title": "MTIA 300：Meta 首款内置 NIC 与通信卸载引擎的训练芯片",
+                "summary": "Meta 发布 MTIA 300，这是其自研加速器家族中首款针对推荐与排序模型训练优化的芯片。芯片封装内集成 12 个 800 Gbps RDMA NIC，提供 1.2 TB/s 总 I/O 带宽，并通过 16 个专用消息引擎卸载通信，使大规模 GEMM 与集合通信并发时计算吞吐损耗低于 0.5%。",
+                "url": "https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics",
+                "source": "Meta Engineering Blog（RSS）"
+              },
+              {
+                "title": "NVIDIA 扩展 Vera Rubin 推理能力，Groq 3 LPX 全面投产支持智能体系统",
+                "summary": "NVIDIA 宣布 Vera Rubin NVL72 扩展快速 token 生成能力，以支持智能体系统。其机架级系统 NVIDIA Groq 3 LPX 已全面投产，旨在通过 AI 工厂各层协同工作来定义下一代 AI 推理，而非依赖单一芯片、网络或系统的突破。",
+                "url": "https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion",
+                "source": "NVIDIA Blog（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-25"
+      },
       {
         "date": "2026-08-24",
         "fetchedAt": "2026-08-24 08:40",
@@ -3093,264 +3273,211 @@
           }
         ],
         "canonical": "https://aihot.virxact.com/daily/2026-08-12"
-      },
-      {
-        "date": "2026-08-11",
-        "fetchedAt": "2026-08-12 01:10",
-        "count": 20,
-        "sections": [
-          {
-            "label": "行业动态",
-            "items": [
-              {
-                "title": "英伟达联合六大机构融资5000亿美元建AI工厂",
-                "summary": "英伟达宣布与Apollo、BlackRock、Blackstone、Brookfield、Goldman Sachs和KKR合作，建立独立融资平台，动员超5000亿美元第三方资本支持AI基础设施建设。",
-                "url": "https://x.com/JensenHuang/status/2086934705207959965",
-                "source": "X：Jensen Huang (@JensenHuang)"
-              },
-              {
-                "title": "Zapier 如何用 ChatGPT Work 改造核心营销流程",
-                "summary": "Zapier 企业营销团队用 ChatGPT Work 自动化线索漏斗优化、营销素材搭建和报告生成，每月可对数千条线索执行 QA/QC，单人查看一条流失线索原本需 35 至 45 分钟。该系统每月为销售团队带来七位数管道价值，并生成高管仪表盘展示线索管道中的重复问题与每周趋势。团队得以将更多时间投入策略与创意工作，并计划未来设置常驻自动化循环。",
-                "url": "https://openai.com/index/zapier",
-                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              }
-            ]
-          },
-          {
-            "label": "论文研究",
-            "items": [
-              {
-                "title": "Claude 未发布研究版将黎曼 zeta 函数零点下界从 41.6% 提升至 67.2%",
-                "summary": "Anthropic 员工让 Claude 尝试攻克黎曼猜想，虽未成功，但一个未发布的研究版 Claude 在相关问题上取得突破：将满足黎曼猜想的 zeta 函数零点比例下界从 41.6% 提升至 67.2%。",
-                "url": "https://www.anthropic.com/research/riemann-zeta",
-                "source": "Anthropic：Research（发表成果 · 网页）"
-              }
-            ]
-          },
-          {
-            "label": "技巧与观点",
-            "items": [
-              {
-                "title": "tl;dv 逾18.1万段AI会议录音被公开暴露，可实时闯入他人通话",
-                "summary": "AI会议记录平台tl;dv的Firestore数据库因缺乏租户隔离，任何已认证用户可查询全部18.1万段会议记录，涉及84,312名用户、35,003个域名，含23国政府及多所高校会议。处于录制状态的约1,000场会议会暴露可加入的会议ID，研究者借此闯入马来西亚教育部及美国某大学创业团队的实时通话。该漏洞自2026年1月报告后6个月仍未修复，另有超1,000段会议内容为公开状态。",
-                "url": "https://bobdahacker.com/blog/tldv-hack",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "智能体真的会用电脑吗？a16z 用数据给出答案",
-                "summary": "a16z 数据显示，计算机操作智能体在 OSWorld-Verified 基准上的最佳成绩已从一年前的 42% 升至 85%，超过人类测试者约 72% 的水平，Claude Fable 5 以 85% 领先。",
-                "url": "https://www.a16z.news/p/can-agents-use-a-computer-yet-weve",
-                "source": "a16z：News（RSS）"
-              },
-              {
-                "title": "扎克伯格：超级智能应人人可用",
-                "summary": "我相信每个人都应能使用超级智能，我撰写了一篇长文，阐述 Meta 为所有人构建积极未来的理念与价值观。http://meta.com/thefutureisforeveryone",
-                "url": "https://x.com/finkd/status/2086754845218726027",
-                "source": "X：Mark Zuckerberg (@finkd)"
-              },
-              {
-                "title": "Linear 如何构建 Linear Agent：在系统提示词、工具设计与系统技能中划定边界",
-                "summary": "Linear Agent 的价值在于完成未预设的工作，因此团队未为其编写固定路径，而是通过系统提示词、工具设计、产品模型、运行范围及底层自定义 harness 划定边界。系统提示词聚焦沟通风格、硬性边界与产品概念解释；工具设计将约束编码进参数，使无效操作难以执行。团队还引入系统技能作为组合单元，按需渐进加载，避免一次性暴露过多上下文。",
-                "url": "https://linear.app/now/how-we-built-linear-agent",
-                "source": "Linear：Now（RSS）"
-              },
-              {
-                "title": "Forking-Sequences：一种统计与计算上更高效的多步预测训练范式",
-                "summary": "CMU 研究团队正式定义并系统评测了 forking-sequences 训练范式：它无需新增参数，在一次前向传播中跨所有预测创建日期编码解码整条序列。",
-                "url": "https://blog.ml.cmu.edu/2026/08/10/forking-sequences-part-i-statistically-and-computationally-efficient-multi-horizon-forecasting",
-                "source": "CMU：Machine Learning Blog"
-              },
-              {
-                "title": "开源不等于开放权重：Gary Marcus 剖析两者本质差异",
-                "summary": "开放权重模型并非真正的开源，二者在透明度和可定制性上存在根本区别。开源软件公开完整源代码，允许任何人查看、修改和分支；而开放权重模型仅发布训练后的神经网络权重，用户无法访问原始训练数据、预处理方法或训练算法，也不能自由修改或深入调查。这导致开发者、监管者和科学家在使用开放权重模型时面临诸多限制，Meta 最新发布的开放权重模型即为例证。",
-                "url": "https://garymarcus.substack.com/p/open-source-is-not-the-same-as-open",
-                "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-              }
-            ]
-          },
-          {
-            "label": "模型发布/更新",
-            "items": [
-              {
-                "title": "SGLang 为 Muse Glimmer 提供 Day-0 支持，针对本地智能体工作流优化推理",
-                "summary": "SGLang 与 Meta Superintelligence Labs 合作，为 30B 参数多模态模型 Muse Glimmer 提供 Day-0 支持，该模型拥有 128k+ token 上下文窗口。",
-                "url": "https://www.lmsys.org/blog/2026-08-10-meta-muse-glimmer",
-                "source": "LMSYS：Blog（Chatbot Arena 团队）"
-              },
-              {
-                "title": "Meta 发布开源模型 Muse Glimmer",
-                "summary": "推出 Muse Glimmer，一款开放权重、300 亿参数的模型，专为本地、常驻运行的智能体工作流优化。 与同尺寸领先模型相比，Muse Glimmer 在关键智能体用例和基准测试中表现出色，并设计为完全在消费级硬件（如 Mac 或配备高性能 GPU 的 PC）上运行。 秉承我们长期分享基础 AI 研究的传统，我们以宽松的 Apache 2.0 许可证发布模型权重。",
-                "url": "https://x.com/AIatMeta/status/2086757844544811485",
-                "source": "X：AI at Meta (@AIatMeta)"
-              },
-              {
-                "title": "OpenAI 推出 GPT-5.6-Cyber，面向授权漏洞研究的网络安全专用模型",
-                "summary": "OpenAI 发布网络安全专用模型 GPT-5.6-Cyber，可通过 Daybreak Red 获取，用于授权的漏洞研究、漏洞验证和安全测试。该模型旨在应对网络防御窗口不断收窄的挑战，为安全研究人员提供专门工具。",
-                "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows",
-                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              }
-            ]
-          },
-          {
-            "label": "产品发布/更新",
-            "items": [
-              {
-                "title": "OpenRouter 推出由市场智慧驱动的新版 Auto 路由器",
-                "summary": "OpenRouter 基于每周超 55T token 的社区消费数据，推出新版 Auto 路由器（openrouter/auto），其模型选择在多数任务和成本档位上优于旧版。新路由器按约 30 种任务类型匹配近 7 天社区实际消费的模型，支持 cost_tier 参数（low 至 max）并遵循账户隐私设置。在 MMLU Pro 等基准上，新默认档位在多数领域以更低成本达到旧版同等性能。",
-                "url": "https://openrouter.ai/blog/announcements/introducing-the-new-auto-router",
-                "source": "OpenRouter：Announcements（RSS）"
-              },
-              {
-                "title": "千问开放平台上线：租房、寄快递、查理财等十余领域服务可对话办理",
-                "summary": "千问开放平台今日上线，面向生态伙伴和开发者开放手机、PC和AI眼镜三类终端的服务接入，首批覆盖物流运输、房产居住、本地生活、理财、汽车等十多个领域。用户可在对话中@相关服务或点击“圆点角标”进入智能体，完成从咨询、推荐到下单的完整流程。平台支持标准化协议接入、一键授权与端到端调测，并提供账号、AI支付、订单接入等基础设施。",
-                "url": "https://mp.weixin.qq.com/s?__biz=MzYzNDE5MDEwMQ%3D%3D&mid=2247488345&idx=1&sn=ef4e57c9c9350f9238d90211eb2dd453",
-                "source": "公众号：千问APP（阿里）"
-              },
-              {
-                "title": "Qwen-MM-Plugins 让智能体原生支持多模态",
-                "summary": "👀 看见只是开始。 借助 Qwen-MM-Plugins，让你的智能体原生支持多模态——读取图片、视频和文档，编辑视频，处理 3D/CAD，以及更多。 从多模态模型 → 多模态智能体。🚀 观看实际效果：https://github.com/QwenLM/Qwen-MM-Plugins",
-                "url": "https://x.com/Alibaba_Qwen/status/2086664887560970531",
-                "source": "X：通义千问 / Qwen (@Alibaba_Qwen)"
-              },
-              {
-                "title": "OpenChamber：一个基于代理的开发环境",
-                "summary": "OpenChamber 是一个基于代理的开发环境，可跨桌面、浏览器、手机和 VS Code 使用，支持会话目标、多模型并行运行与融合、变更走查、从 issue 到 PR 的完整流程及定时任务。该工具基于 OpenCode SDK，完全开源且免费，代码和会话内容均保存在本地，远程访问可通过 UI 密码和端到端加密的 Private Relay 保护。",
-                "url": "https://openchamber.dev/",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "Claude Code 自动模式默认开启原理",
-                "summary": "我们最近将自动模式设为 Claude Code 的默认选项，这意味着你不再需要批准每一个操作。 但什么决定某个操作是否可以安全运行？看看它是如何工作的：",
-                "url": "https://x.com/ClaudeDevs/status/2086844755770757531",
-                "source": "X：Claude Devs (@ClaudeDevs)"
-              },
-              {
-                "title": "我花了54个小时，做了一个可能更公平的AI大模型排行榜。",
-                "summary": "作者耗时54小时开发并免费开放了一个聚合多家可信榜单的AI大模型综合排行榜LatentRank。该榜单采用Bradley-Terry成对比较算法，并加入先验限制小样本结果，以解决不同榜单规模、领先幅度和模型缺失带来的评分偏差。目前榜单前五名中，Opus 5超过Fable 5位居前列。",
-                "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685059&idx=1&sn=a329fe9999ac2419470c7eca9a97acd3",
-                "source": "公众号：数字生命卡兹克"
-              },
-              {
-                "title": "Omnigent 上下文策略如何阻断“致命三重奏”组合攻击",
-                "summary": "Omnigent 的上下文策略（Contextual Policies）可阻断“致命三重奏”组合攻击——即多个看似无害的请求叠加后形成的恶意行为。该机制在单个请求层面不设防，而是在组合上下文中识别并拦截风险，从而在不牺牲正常功能的前提下提升安全性。",
-                "url": "https://www.databricks.com/blog/innocent-until-combined-blocking-lethal-trifecta-omnigent-contextual-policies",
-                "source": "Databricks：Blog（RSS）"
-              },
-              {
-                "title": "Google 为 Google Ads 和 Google Analytics 推出新 AI 与智能体功能",
-                "summary": "Google 宣布在 Google Ads 和 Google Analytics 中新增 AI 与智能体体验，包括 Google Analytics 首页的 AI Overviews 智能摘要、Google Ads 首页的 AI 洞察卡片，以及 Ask Advisor 新增的基准对比功能，可将广告效果与同类商家匿名平均值比较。这些功能基于 Gemini 构建，目前面向英文账户开放 beta 测试。",
-                "url": "https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates",
-                "source": "Google Blog：AI（RSS）"
-              }
-            ]
-          }
-        ],
-        "canonical": "https://aihot.virxact.com/daily/2026-08-11"
       }
     ]
   },
   "dailyNews": {
-    "date": "2026-08-24",
-    "fetchedAt": "2026-08-24 08:40",
+    "date": "2026-08-25",
+    "fetchedAt": "2026-08-25 17:49",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "“沙德尔” 升级超强台风，三台风同时在线，华南江南持续强降雨",
+        "title": "今年第 21 号台风 “艾莎尼” 生成；台风 “沙德尔” 将于 27 日至 28 日登陆闽浙沿海，福建部分地区停航、景区关闭",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "嫦娥七号任务不满足发射条件，不能在今年预定窗口实施",
+        "title": "国管公积金新政：双缴存职工家庭，首套房最高可贷款 340 万元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中国 U18 男篮 79 比 89 负于澳大利亚 U18 男篮，收获本届赛事亚军",
+        "title": "央行：将在 8 月 27 日至 9 月 1 日开展隔夜逆回购操作，每日不超过 6000 亿元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "机器人运动会：天工机器人 2 分 21 秒 64 夺得 1500 米比赛冠军，大幅度刷新纪录",
+        "title": "支付清算协会印发智能体支付应用自律公约：不得通过排他合作、强制捆绑、低价补贴等方式限制用户选择",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "国铁集团：旅客未检票乘车视为不行使席位使用权利，有特殊需求可购买多于实际乘车人数的车票乘车",
+        "title": "教育部：幼儿园不得教授小学阶段的课程，小学应将一年级第一学期设置为入学适应期，小学一年级不布置书面家庭作业",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "市民打 12345 投诉月亮太亮影响睡觉等引关注，专家：12345 应实名制",
+        "title": "部分民办高校允许 “带着宠物上学”：设专门寄养区，不得带入宿舍",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "河南多名农民称莫名成企业法人代表 “被贷款” 千万元，银行回应手续均系本人签字，警方正调查",
+        "title": "厦门部分餐饮门店卷入 “违规消杀” 事件：多家涉事商户称此前不知情，已紧急处置",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "国际金价突破每盎司 4600 美元，创三个月新高；国内金饰克价直逼 1400 元",
+        "title": "湖南一店主帮扶老人遭索赔 1.9 万元后续：店主获确认无过错，当地企业送 2 万慰问金",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "LV 中国 38 家分支机构注销，贵州唯一门店 8 月底将关闭",
+        "title": "AI 陪伴新规满月：未成年人模式仍可绕过，初中生 4 个账号养 “恋人”",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中足协：没有证据表明韩国足协对中足协相关人士提供过 “不当招待” 行为",
+        "title": "中国 AI 大模型周调用量连续十七周超美国居首位，神秘 “牛来” 大模型上线四天冲至全球第二",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "泰国多地连续发生治安事件，我领馆发文提醒：避免前往管制区域",
+        "title": "日本福岛核污染水排海已三年，22 轮累计排放超 17 万吨",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美媒称从耐克到通用，美国品牌的那套商业逻辑在中国越来越行不通了",
+        "title": "越南国会批准增设广宁和北宁为直辖市，越南现直辖市升至 9 个",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普 6 月超 1000 笔证券交易曝光，规模达数千万至上亿美元",
+        "title": "法国高中于今年秋季新学年起实施手机禁令；新西兰拟禁止未满 16 岁青少年使用社交媒体",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "英国纵贯铁路公司称因停电取消英全境大部分列车服务",
+        "title": "特朗普称明年全部加拿大乘用车、卡车、汽车零部件以及钢铁的关税将上调至 50%",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "加美贸易谈判破裂，特朗普再提 “第 51 州”：加拿大既想要作为一个州的福利又不想加入美国",
+        "title": "消息称沙土巴三国邀请伊朗加入《麦加共同防务协议》，伊朗表示称尚未收到正式邀请",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "很多事不是看到希望才坚持，而是坚持下去，才会慢慢看见希望",
-    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0UicLEY4krXjBA3iaeBqaUfYUzFhRqoqbWUMyoRkl36BxRe7iafdcFF9TS3v0QsOqrhgqmDvwmKNIdJE9eiausDTia6QCNj9QySU9u08/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+    "tip": "很多事没有如愿以偿也没关系，尽力走过，本身就是一种难得的收获",
+    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0UibyNOFUEmrAuGoDmxpAFBM426B3YXsQyb2AuVtGQ1Dq6LYLQV1iaRWCtyXw4uF3LJoNDLqDA0pR3uJ21zRhnuDsbDxVML4L8UgA/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-25",
+        "fetchedAt": "2026-08-25 17:49",
+        "count": 15,
+        "items": [
+          {
+            "title": "今年第 21 号台风 “艾莎尼” 生成；台风 “沙德尔” 将于 27 日至 28 日登陆闽浙沿海，福建部分地区停航、景区关闭",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国管公积金新政：双缴存职工家庭，首套房最高可贷款 340 万元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "央行：将在 8 月 27 日至 9 月 1 日开展隔夜逆回购操作，每日不超过 6000 亿元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "支付清算协会印发智能体支付应用自律公约：不得通过排他合作、强制捆绑、低价补贴等方式限制用户选择",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "教育部：幼儿园不得教授小学阶段的课程，小学应将一年级第一学期设置为入学适应期，小学一年级不布置书面家庭作业",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "部分民办高校允许 “带着宠物上学”：设专门寄养区，不得带入宿舍",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "厦门部分餐饮门店卷入 “违规消杀” 事件：多家涉事商户称此前不知情，已紧急处置",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "湖南一店主帮扶老人遭索赔 1.9 万元后续：店主获确认无过错，当地企业送 2 万慰问金",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "AI 陪伴新规满月：未成年人模式仍可绕过，初中生 4 个账号养 “恋人”",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中国 AI 大模型周调用量连续十七周超美国居首位，神秘 “牛来” 大模型上线四天冲至全球第二",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "日本福岛核污染水排海已三年，22 轮累计排放超 17 万吨",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "越南国会批准增设广宁和北宁为直辖市，越南现直辖市升至 9 个",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "法国高中于今年秋季新学年起实施手机禁令；新西兰拟禁止未满 16 岁青少年使用社交媒体",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "特朗普称明年全部加拿大乘用车、卡车、汽车零部件以及钢铁的关税将上调至 50%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "消息称沙土巴三国邀请伊朗加入《麦加共同防务协议》，伊朗表示称尚未收到正式邀请",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "很多事没有如愿以偿也没关系，尽力走过，本身就是一种难得的收获",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-24",
         "fetchedAt": "2026-08-24 08:40",
@@ -4650,114 +4777,7 @@
         "tip": "与其抱怨环境不公，不如默默提升实力，强大之后才有议价的资本",
         "source": "每日60秒 (vikiboss/60s)",
         "canonical": "https://github.com/vikiboss/60s"
-      },
-      {
-        "date": "2026-08-11",
-        "fetchedAt": "2026-08-12 01:10",
-        "count": 15,
-        "items": [
-          {
-            "title": "今年英仙座流星雨将迎来极大，观测条件极佳，12 日晚至 13 日凌晨是观测的黄金时段",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "代表建议设立带薪陪考假 “中考 3 天、高考 5 天”，当地人社局回应：暂不纳入国家法定假期",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "湖北、广东等地部分农商行、村镇银行上调存款利率，调整幅度最高达 33 个基点",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "豆包推荐商品服务开始收取佣金：酒店 12%，孕产护理 18%",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "宇树科技：科创板 IPO 网上发行最终中签率 0.0181%，每 5500 个号中一签",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "钟睒睒：电商是 “板上钉钉” 的中间商，制约了感性消费，必须限制平台权力",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "消息称雪佛兰将停止在华销售，经销商证实：已暂停在华新车销售，在华业务转为出口",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "我国境内发现多起 “Sorry” 勒索病毒攻击事件，Linux 服务器成攻击目标",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "火箭飞行异常，中星 4B 卫星发射失利，具体原因正在进一步分析排查",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "国际乒联公布最新排名：王楚钦、孙颖莎稳居男女单打世界第一，日本选手张本智和升至第四",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "日本 7 月共有 1028 家企业破产，继 6 月后再次超过 1000 家，为 14 年来首次",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "韩国总统李在明要求美韩共用军事基地两年内搬迁，为工厂 “腾地”",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美国 Meta 公司被控旗下平台 “成瘾算法” 令未成年人沉迷，遭索赔 1.4 万亿美元，几乎等同其全部市值",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美国前总统拜登前列腺癌持续恶化，癌细胞已扩散至骨骼以外，其子称 “病痛让他饱受折磨”",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "哥伦比亚发生 7.5 级地震，已致多人伤亡和建筑物受损，哥伦比亚宣布进入 “国家灾难状态”",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          }
-        ],
-        "tip": "坚持不下去的时候问问自己，甘心一直困在平庸的现状里吗",
-        "source": "每日60秒 (vikiboss/60s)",
-        "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T16:59:41",
-    "status": "fail",
-    "nextRun": "2026-08-25T17:59:41",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
