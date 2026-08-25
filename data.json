@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25 21:09",
+  "generatedAt": "2026-08-25 22:00",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（14 条）：Mistral 与 HUMAIN 达成战略合作，推进沙特及中东主权 AI",
+    "🗞️ 今日 AI 日报已更新（16 条）：苹果推出 M6 和 M5 Ultra，性能和 AI 算力大幅跃升",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "3 hours ago",
+          "modified": "4 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -696,7 +696,7 @@
       },
       "D": {
         "total": 544,
-        "free": 350
+        "free": 353
       }
     },
     "runtime": "3.13 / 22.22"
@@ -1474,11 +1474,28 @@
   ],
   "aiDaily": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 21:09",
+    "fetchedAt": "2026-08-25 22:00",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-25",
-    "count": 14,
+    "count": 16,
     "sections": [
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "苹果推出 M6 和 M5 Ultra，性能和 AI 算力大幅跃升",
+            "summary": "苹果发布首款 2nm 芯片 M6 和迄今最强芯片 M5 Ultra，分别搭载于新款 Mac mini 与 Mac Studio。",
+            "url": "https://aihot.virxact.com/items/cmt8qc6e03kpcro735s9f94ra",
+            "source": ""
+          },
+          {
+            "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
+            "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最高 3 倍分布式 AI 推理速度提升。新品今日起接受预购，9 月 22 日开售。",
+            "url": "https://aihot.virxact.com/items/cmt8qee503kvnro73qp7543yv",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
@@ -1593,9 +1610,26 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 21:09",
-        "count": 14,
+        "fetchedAt": "2026-08-25 22:00",
+        "count": 16,
         "sections": [
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "苹果推出 M6 和 M5 Ultra，性能和 AI 算力大幅跃升",
+                "summary": "苹果发布首款 2nm 芯片 M6 和迄今最强芯片 M5 Ultra，分别搭载于新款 Mac mini 与 Mac Studio。",
+                "url": "https://aihot.virxact.com/items/cmt8qc6e03kpcro735s9f94ra",
+                "source": ""
+              },
+              {
+                "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
+                "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最高 3 倍分布式 AI 推理速度提升。新品今日起接受预购，9 月 22 日开售。",
+                "url": "https://aihot.virxact.com/items/cmt8qee503kvnro73qp7543yv",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "行业动态",
             "items": [
@@ -3259,7 +3293,7 @@
   },
   "dailyNews": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 21:09",
+    "fetchedAt": "2026-08-25 22:00",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3361,7 +3395,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 21:09",
+        "fetchedAt": "2026-08-25 22:00",
         "count": 15,
         "items": [
           {
@@ -4760,12 +4794,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T21:09:23",
-    "status": "ok",
-    "nextRun": "2026-08-25T22:09:23",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
