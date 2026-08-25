@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25 19:39",
+  "generatedAt": "2026-08-25 21:09",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -630,17 +630,9 @@
           ]
         },
         {
-          "id": "2a945656b3a4",
-          "size": "6.5 GB",
-          "modified": "11 seconds ago",
-          "tags": [
-            "qwen3.5-fast:latest"
-          ]
-        },
-        {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "2 hours ago",
+          "modified": "3 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -700,11 +692,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 230
+        "free": 232
       },
       "D": {
         "total": 544,
-        "free": 356
+        "free": 350
       }
     },
     "runtime": "3.13 / 22.22"
@@ -715,8 +707,8 @@
         "title": "查询电脑可运行的优于qwen的模型",
         "customTitle": "",
         "display": "查询电脑可运行的优于qwen的模型",
-        "status": "working",
-        "updated": "08-25 19:39",
+        "status": "completed",
+        "updated": "08-25 20:31",
         "group": "今天"
       },
       {
@@ -1482,7 +1474,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 19:39",
+    "fetchedAt": "2026-08-25 21:09",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-25",
     "count": 14,
@@ -1601,7 +1593,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 19:39",
+        "fetchedAt": "2026-08-25 21:09",
         "count": 14,
         "sections": [
           {
@@ -3267,7 +3259,7 @@
   },
   "dailyNews": {
     "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 19:39",
+    "fetchedAt": "2026-08-25 21:09",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3369,7 +3361,7 @@
     "history": [
       {
         "date": "2026-08-25",
-        "fetchedAt": "2026-08-25 19:39",
+        "fetchedAt": "2026-08-25 21:09",
         "count": 15,
         "items": [
           {
@@ -4768,12 +4760,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T19:39:35",
-    "status": "ok",
-    "nextRun": "2026-08-25T20:39:35",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
