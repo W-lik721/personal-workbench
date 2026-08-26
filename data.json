@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 11:19",
+  "generatedAt": "2026-08-26 12:53",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "17 hours ago",
+          "modified": "19 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -708,7 +708,7 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-26 11:10",
+        "updated": "08-26 11:45",
         "group": "今天"
       },
       {
@@ -1475,7 +1475,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 11:19",
+    "fetchedAt": "2026-08-26 12:52",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-26",
     "count": 19,
@@ -1624,7 +1624,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 11:19",
+        "fetchedAt": "2026-08-26 12:52",
         "count": 19,
         "sections": [
           {
@@ -3265,7 +3265,7 @@
   },
   "dailyNews": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 11:19",
+    "fetchedAt": "2026-08-26 12:53",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3367,7 +3367,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 11:19",
+        "fetchedAt": "2026-08-26 12:53",
         "count": 15,
         "items": [
           {
@@ -4766,12 +4766,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-26T11:19:57",
-    "status": "ok",
-    "nextRun": "2026-08-26T12:19:57",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
