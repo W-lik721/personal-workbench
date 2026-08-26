@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 22:03",
+  "generatedAt": "2026-08-26 22:59",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（20 条）：Qwen 开源 Qwen3.8-Flash-Next，SGLang 提供 Day-0 支持",
+    "🗞️ 今日 AI 日报已更新（20 条）：GLM-5.3-Flash 开源：320B 总参数、AA 指数 57 分，定价为 Opus 4.8 的 1/40",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "6 hours ago",
+          "modified": "7 hours ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -1461,7 +1461,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 22:03",
+    "fetchedAt": "2026-08-26 22:59",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-26",
     "count": 20,
@@ -1470,9 +1470,9 @@
         "label": "模型发布",
         "items": [
           {
-            "title": "Qwen 开源 Qwen3.8-Flash-Next，SGLang 提供 Day-0 支持",
-            "summary": "Qwen 团队开源多模态 MoE 模型 Qwen3.8-Flash-Next，作为 Qwen4 架构的早期预览版。该模型采用 125B 参数主模型加 51B N-gram Embedding，每 token 激活 6B 参数，共 48 层，MoE 层使用 512 个专家和 top-10 路由。",
-            "url": "https://aihot.virxact.com/items/cmta5r0om0317roj2n0z971vb",
+            "title": "GLM-5.3-Flash 开源：320B 总参数、AA 指数 57 分，定价为 Opus 4.8 的 1/40",
+            "summary": "智谱上线并开源 GLM-5.3-Flash（320B-A18B），这是 GLM-5 系列首个原生多模态模型，AA 综合智能指数 57 分，与 Claude Opus 4.8 持平。其定价为 GLM-5.3 的 1/10，限时折扣内为 Opus 4.8 的 1/40，并已接入 ZCode 等平台开放 API 调用。该模型采用稀疏注意力与线性注意力混合架构，推理服务已跑在国产芯片集群上。",
+            "url": "https://aihot.virxact.com/items/cmta7bh1k04u6roj2e4pt7bob",
             "source": ""
           }
         ]
@@ -1621,16 +1621,16 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 22:03",
+        "fetchedAt": "2026-08-26 22:59",
         "count": 20,
         "sections": [
           {
             "label": "模型发布",
             "items": [
               {
-                "title": "Qwen 开源 Qwen3.8-Flash-Next，SGLang 提供 Day-0 支持",
-                "summary": "Qwen 团队开源多模态 MoE 模型 Qwen3.8-Flash-Next，作为 Qwen4 架构的早期预览版。该模型采用 125B 参数主模型加 51B N-gram Embedding，每 token 激活 6B 参数，共 48 层，MoE 层使用 512 个专家和 top-10 路由。",
-                "url": "https://aihot.virxact.com/items/cmta5r0om0317roj2n0z971vb",
+                "title": "GLM-5.3-Flash 开源：320B 总参数、AA 指数 57 分，定价为 Opus 4.8 的 1/40",
+                "summary": "智谱上线并开源 GLM-5.3-Flash（320B-A18B），这是 GLM-5 系列首个原生多模态模型，AA 综合智能指数 57 分，与 Claude Opus 4.8 持平。其定价为 GLM-5.3 的 1/10，限时折扣内为 Opus 4.8 的 1/40，并已接入 ZCode 等平台开放 API 调用。该模型采用稀疏注意力与线性注意力混合架构，推理服务已跑在国产芯片集群上。",
+                "url": "https://aihot.virxact.com/items/cmta7bh1k04u6roj2e4pt7bob",
                 "source": ""
               }
             ]
@@ -3273,7 +3273,7 @@
   },
   "dailyNews": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 22:03",
+    "fetchedAt": "2026-08-26 22:59",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3375,7 +3375,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 22:03",
+        "fetchedAt": "2026-08-26 22:59",
         "count": 15,
         "items": [
           {
@@ -4774,12 +4774,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-26T22:03:57",
-    "status": "ok",
-    "nextRun": "2026-08-26T23:03:57",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
