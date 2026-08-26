@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 12:53",
+  "generatedAt": "2026-08-26 13:47",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "19 hours ago",
+          "modified": "20 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -1448,34 +1448,11 @@
       "kind": "kb",
       "name": "📑 索引.md",
       "when": 1787566831.6988068
-    },
-    {
-      "kind": "kb",
-      "name": "AGENTS.md",
-      "when": 1787115550.9584312
-    },
-    {
-      "kind": "skill",
-      "name": "wb-skill-ops",
-      "when": 1787115427.9659824,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "kb-preflight",
-      "when": 1787115349.7105615,
-      "scope": "本机"
-    },
-    {
-      "kind": "skill",
-      "name": "kb-ingest",
-      "when": 1787115349.6909914,
-      "scope": "本机"
     }
   ],
   "aiDaily": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 12:52",
+    "fetchedAt": "2026-08-26 13:47",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-26",
     "count": 19,
@@ -1624,7 +1601,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 12:52",
+        "fetchedAt": "2026-08-26 13:47",
         "count": 19,
         "sections": [
           {
@@ -3265,7 +3242,7 @@
   },
   "dailyNews": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 12:53",
+    "fetchedAt": "2026-08-26 13:47",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3367,7 +3344,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 12:53",
+        "fetchedAt": "2026-08-26 13:47",
         "count": 15,
         "items": [
           {
@@ -4766,12 +4743,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-26T12:53:21",
-    "status": "ok",
-    "nextRun": "2026-08-26T13:53:21",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
