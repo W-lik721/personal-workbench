@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25 22:00",
+  "generatedAt": "2026-08-26 11:08",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,14 +573,14 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（16 条）：苹果推出 M6 和 M5 Ultra，性能和 AI 算力大幅跃升",
+    "🗞️ 今日 AI 日报已更新（19 条）：Anthropic 推出 500 万美元资助计划，支持 AI 对用户幸福感影响的独立评估",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-25",
+    "skillsLastUpdate": "2026-08-26",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "4 hours ago",
+          "modified": "17 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -688,15 +688,15 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-25",
+    "memoryLastUpdate": "2026-08-26",
     "disk": {
       "C": {
         "total": 380,
-        "free": 232
+        "free": 231
       },
       "D": {
         "total": 544,
-        "free": 353
+        "free": 364
       }
     },
     "runtime": "3.13 / 22.22"
@@ -709,7 +709,7 @@
         "display": "查询电脑可运行的优于qwen的模型",
         "status": "completed",
         "updated": "08-25 20:31",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -717,7 +717,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-25 17:14",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -777,11 +777,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-04-29",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-04-30",
         "count": 0,
@@ -1387,6 +1382,11 @@
           "查询电脑可运行的优于qwen的模型",
           "学习"
         ]
+      },
+      {
+        "date": "2026-08-26",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1473,43 +1473,26 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 22:00",
+    "date": "2026-08-26",
+    "fetchedAt": "2026-08-26 11:08",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-25",
-    "count": 16,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-26",
+    "count": 19,
     "sections": [
-      {
-        "label": "产品发布",
-        "items": [
-          {
-            "title": "苹果推出 M6 和 M5 Ultra，性能和 AI 算力大幅跃升",
-            "summary": "苹果发布首款 2nm 芯片 M6 和迄今最强芯片 M5 Ultra，分别搭载于新款 Mac mini 与 Mac Studio。",
-            "url": "https://aihot.virxact.com/items/cmt8qc6e03kpcro735s9f94ra",
-            "source": ""
-          },
-          {
-            "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
-            "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最高 3 倍分布式 AI 推理速度提升。新品今日起接受预购，9 月 22 日开售。",
-            "url": "https://aihot.virxact.com/items/cmt8qee503kvnro73qp7543yv",
-            "source": ""
-          }
-        ]
-      },
       {
         "label": "行业动态",
         "items": [
           {
-            "title": "Mistral 与 HUMAIN 达成战略合作，推进沙特及中东主权 AI",
-            "summary": "Mistral 与 HUMAIN 宣布达成战略合作，覆盖 AI 基础设施、先进模型开发及 AI 解决方案部署，聚焦沙特阿拉伯及更广泛地区。双方将合作开发本地化 AI 模型，初期重点包括网络安全和语音，并计划开发在阿拉伯语上表现强劲的前沿模型。该合作金额达数亿欧元，Mistral 将探索使用 HUMAIN 的数据中心基础设施，并计划在沙特针对受监管行业制定联合市场策略。",
-            "url": "https://mistral.ai/news/mistral-x-humain",
-            "source": "Mistral AI：News（网页）"
+            "title": "Anthropic 推出 500 万美元资助计划，支持 AI 对用户幸福感影响的独立评估",
+            "summary": "Anthropic 启动一项 500 万美元的资助计划，为研究 AI 如何影响用户幸福感的独立研究提供直接资金、模型访问权限和技术支持。受资助者将完全独立工作，并以开源项目形式发布成果，供任何开发者使用。申请截止日期为 9 月 21 日，入选者将于 10 月 5 日前收到通知。",
+            "url": "https://www.anthropic.com/news/wellbeing-research-grants",
+            "source": "Anthropic：Newsroom（网页）"
           },
           {
-            "title": "丰田北美如何用 Deep Agents 和 LangSmith 规模化企业 AI",
-            "summary": "丰田北美借助 Deep Agents 和 LangSmith 运行 50 多个生产环境 AI 智能体，将交付周期从 6 个月缩短至 4 天。文章展示了其如何通过 LangSmith 追踪 AI 投资回报率（ROI），并以此支撑企业级 AI 的规模化落地。",
-            "url": "https://www.langchain.com/blog/how-toyota-north-america-put-enterprise-ai-on-the-balance-sheet-with-deep-agents-and-langsmith",
-            "source": "LangChain：Blog（RSS）"
+            "title": "OpenAI 封禁俄罗斯虚假影响力行动账号",
+            "summary": "OpenAI 封禁了一批源自俄罗斯的账号，这些账号利用 AI 推广一个虚构的以色列智库及“主权”指数，内容赞扬俄罗斯并批评西方。",
+            "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
           }
         ]
       },
@@ -1517,9 +1500,15 @@
         "label": "论文研究",
         "items": [
           {
-            "title": "Beyond Visual CoT：Internalized Visual Thinking 实现主动视频推理",
-            "summary": "多模态大语言模型常用视觉思维链（Visual CoT）进行空间、时间与具身环境推理，但生成中间推理图像带来大量推理开销。新提出的后训练框架 Internalized Visual Thinking（IVT）在训练阶段内化视觉思考，推理时直接进行文本预测与优化，从而在不增加推理成本的前提下实现主动视频推理。",
-            "url": "https://machinelearning.apple.com/research/internalized-visual-thinking",
+            "title": "AgentHands：为XR空间对话智能体生成交互式手部手势",
+            "summary": "Google在CHI 2026发布研究原型AgentHands，利用LLM为XR对话智能体生成与语音同步的富有表现力的手部手势，提供空间锚定的物理指引。该系统通过眼动追踪和场景重建注册物体，由LLM生成内联GestureEvents，并在头显上按词级时间戳协调TTS与动画引擎，实现手势与语音的精准同步。应用场景包括兰花养护交互式教学、3D打印机操作技术讲解和生活方式陪伴。",
+            "url": "https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr",
+            "source": "Google Research：Blog（网页）"
+          },
+          {
+            "title": "STARFlow2：用归一化流桥接语言模型，实现统一多模态生成",
+            "summary": "STARFlow2 提出将自回归归一化流与语言模型统一，用于多模态生成。该方法观察到自回归归一化流与 LLM 共享因果掩码、KV-cache 机制和从左到右结构，从而弥合文本与图像生成的架构差异，避免离散 token 化带来的视觉保真度损失。",
+            "url": "https://machinelearning.apple.com/research/starflow2-multimodal-generation",
             "source": "Apple Machine Learning Research（RSS）"
           }
         ]
@@ -1528,34 +1517,40 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "OpenAI 正为一切构建 AI 智能体，但用户会愿意交出控制权吗？",
-            "summary": "OpenAI 推出 ChatGPT Work，将 Codex 改造为面向非工程师的智能体产品，最低订阅档每月 20 美元即可使用，旨在让白领通过 LLM 自主完成多步骤工作。OpenAI 内部 6 月有 98% 员工使用 Codex，但组织订阅者仅 17%、个人订阅者不足 1%。公司正通过简化界面扩大采用，以支撑其巨额训练投入。",
-            "url": "https://techcrunch.com/2026/08/24/openai-is-building-an-ai-agent-for-everything-will-everyone-use-them",
-            "source": "TechCrunch：AI（RSS）"
+            "title": "如何在编辑器里实时挑选最佳 AI 模型",
+            "summary": "OpenRouter 提出一套模型选型框架：先定义任务，从实时用量和第三方基准中筛选候选，再对比各提供商的定价与延迟，最后用自有提示词测试。判断标准是“每完成任务的成本”而非“每 token 成本”。其 MCP 服务器可直接在 Claude Code、Cursor 等编辑器中查询实时排名、价格和基准，并用 openrouter/auto-beta 按请求路由。",
+            "url": "https://openrouter.ai/blog/tutorials/choose-best-ai-model",
+            "source": "OpenRouter：Announcements（RSS）"
           },
           {
-            "title": "ADK 如何评估实时语音智能体",
-            "summary": "Google 为 ADK 带来原生实时评估能力，可用模拟用户以音频驱动实时语音智能体、对语音回复打分，并在与文本智能体相同的评估循环中完成。示例采用三个基于 gemini-live-2.5-flash-native-audio 的智能体组成工作流，支持对话场景与固定对话两种测试用例，内置 NOVICE 等用户人设，并以 max_allowed_invocations 限制总轮数。",
-            "url": "https://developers.googleblog.com/how-to-evaluate-live-voice-agents-in-adk",
-            "source": "Google Developers Blog（RSS）"
+            "title": "OpenRouter 视频生成 API：一份代码优先的接入指南",
+            "summary": "OpenRouter 推出统一的异步视频生成 API，通过 POST /api/v1/videos 提交任务、轮询状态并下载 MP4，支持 Seedance、Veo、Wan 等模型，切换模型只需更改 model 标识符。",
+            "url": "https://openrouter.ai/blog/tutorials/video-generation-api",
+            "source": "OpenRouter：Announcements（RSS）"
           },
           {
-            "title": "Databricks 如何从本地 IDE 运行、调试和扩展工作负载",
-            "summary": "Databricks 工作区专为数据分析和数据工程而构建，现支持从本地 IDE 直接运行、调试和扩展工作负载。该功能旨在弥合本地开发环境与云端 Databricks 平台之间的差距，让开发者无需切换上下文即可完成编码、测试和部署。",
-            "url": "https://www.databricks.com/blog/run-debug-and-scale-databricks-workloads-your-local-ide",
-            "source": "Databricks：Blog（RSS）"
+            "title": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年将控制全球大部分算力",
+            "summary": "在最新一期播客中，SemiAnalysis 创始人 Dylan Patel 与 Dwarkesh Patel 讨论实验室经济学，预计 Anthropic 和 OpenAI 到 2028 年将控制全球大部分可用 FLOPs，因其能更好变现算力并出价高于其他方。",
+            "url": "https://www.dwarkesh.com/p/dylan-patel-3",
+            "source": "Dwarkesh Patel：Podcast & Blog（RSS）"
           },
           {
-            "title": "你的alt文本能通过自动化检查，不代表它真的合格",
-            "summary": "WebAIM Million报告显示，主流网页中16.2%的图片缺少alt文本，另有10.8%的alt文本模糊或重复。GitHub为Accessibility Scanner构建了alt文本插件，采用五条确定性规则检测缺失、文件名、占位符、泛化词及相邻重复，并引入基于布局的重复检测和可选视觉模型审查，以平衡误报率与实用性。",
-            "url": "https://github.blog/engineering/user-experience/your-alt-text-passes-automated-checks-that-doesnt-mean-its-any-good",
-            "source": "GitHub Blog"
+            "title": "LangChain 评测 CSV 数据问答系统：智能体、检索与 LLM 评估",
+            "summary": "LangChain 发布针对 CSV 数据问答系统的基准评测，涵盖智能体、检索与 LLM 评估方法。文章提供基准测试结果、调试洞察及开源代码，帮助开发者构建更优的 CSV 数据问答系统。评测聚焦于实际应用中的性能表现与常见问题。",
+            "url": "https://www.langchain.com/blog/benchmarking-question-answering-over-csv-data",
+            "source": "LangChain：Blog（RSS）"
           },
           {
-            "title": "Anthropic 市场人员如何用 Claude Code 每周为每位销售代表发送个性化更新",
-            "summary": "Anthropic 市场团队成员 Adam Ward 分享如何用 Claude Code 将每周销售报告转化为每位客户经理的个性化周一简报。他通过 MCP 连接 BigQuery 和 CRM 数据，并依据销售与经理反馈迭代提示词，加入“绝不编造 URL”等九条内容规则。该简报现已推广至所有销售团队，每周一自动发送三条优先行动项及账户相关活动。",
-            "url": "https://claude.com/blog/how-an-anthropic-field-marketer-uses-claude-code-to-send-weekly-personalized-updates-to-every-sales-rep",
-            "source": "Claude：Blog（网页）"
+            "title": "LLMs 与 SQL：用 LangChain 构建可靠的 text-to-SQL 方案",
+            "summary": "本文探讨如何用大语言模型以自然语言查询 SQL 数据库，并重点介绍减少模型幻觉、构建可靠 text-to-SQL 解决方案的技术方法。内容基于 LangChain 框架展开，涵盖从自然语言到 SQL 查询转换的关键实现路径。",
+            "url": "https://www.langchain.com/blog/llms-and-sql",
+            "source": "LangChain：Blog（RSS）"
+          },
+          {
+            "title": "Google Search 升级家居装饰的 5 种方法",
+            "summary": "Google Search 推出五种家居装饰实用功能：AI Mode 可上传房间照片并生成家具摆放效果图，Lens 支持识别复古单品并查找相似商品，Circle to Search 无需切换应用即可圈选心仪装饰，Search Live 提供 DIY 安装的逐步指导，产品列表可对比价格并追踪降价提醒。近月“home decor inspo”搜索量上涨 300%。",
+            "url": "https://blog.google/products-and-platforms/products/search/home-decor-tips",
+            "source": "Google Blog：AI（RSS）"
           }
         ]
       },
@@ -1563,10 +1558,10 @@
         "label": "模型发布/更新",
         "items": [
           {
-            "title": "GPT-5.6 登陆 Kiro，为开发者提升性价比",
-            "summary": "GPT-5.6 模型家族现已登陆软件开发智能体 Kiro，包含 Sol、Terra 和 Luna 三款模型。在 Terminal-Bench 2.1 测试中，GPT-5.6 Terra 在 Kiro 内完成任务成本降低约 82%。该更新由 OpenAI 与 AWS 合作优化，旨在以更少迭代和更高 token 价值帮助开发者产出更高质量的代码。",
-            "url": "https://openai.com/index/gpt-5-6-in-kiro",
-            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+            "title": "WeatherNext 预测气旋：提前五天预警五级飓风",
+            "summary": "Google AI 发布 WeatherNext 气旋预测模型，可同时预测风暴路径、强度和规模，比现有系统多提供一整天的预警时间。该模型在 2025 飓风季实战测试中，提前五天预测飓风 Melissa 在牙买加的五级登陆，系美国国家飓风中心首次实时使用 AI 模型。模型单场风暴可生成多达 1000 次模拟，代码与权重已开源。",
+            "url": "https://x.com/GoogleAI/status/2092275116503707733",
+            "source": "X：Google AI (@GoogleAI)"
           }
         ]
       },
@@ -1574,40 +1569,205 @@
         "label": "产品发布/更新",
         "items": [
           {
-            "title": "NVIDIA Vera Rubin NVL72 树立 AI 智能体效率新标准：每瓦特工作量提升至 30 倍",
-            "summary": "NVIDIA 实测数据显示，Vera Rubin NVL72 在智能体工作负载下每兆瓦吞吐量较 GB300 NVL72 最高提升 30 倍，每百万 token 成本降低至 35 倍。",
-            "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents",
-            "source": "NVIDIA Blog（RSS）"
+            "title": "OpenWorker 新版发布，内置网络安全智能体",
+            "summary": "Andrew Ng 旗下开源智能体 OpenWorker 发布新版，强化安全工作流。其 harness 完全开源，安全团队可审计无后门。新版内置代码漏洞扫描、依赖供应链注入检测和云安全配置检查三类网络安全智能体，并支持本地运行开源权重模型以保护敏感代码。",
+            "url": "https://x.com/AndrewYNg/status/2092315079576555806",
+            "source": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)"
           },
           {
-            "title": "MetaRoCE：为 AI 规模以太网打造的全新 RDMA 传输协议",
-            "summary": "Meta 设计并开源了 MetaRoCE，一个专为 AI 工作负载在通用以太网上打造的 RDMA 传输协议，已通过 Open Compute Project（OCP）发布规范、参考软件实现和合规测试套件。该协议将智能移至端点，原生支持乱序交付、多路径、无损容忍和双向拥塞控制，无需 PFC，可在百万 GPU 规模下提供高吞吐、低尾延迟。现有 RDMA Verbs API 和软件栈无需修改即可运行。",
-            "url": "https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet",
-            "source": "Meta Engineering Blog（RSS）"
+            "title": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑",
+            "summary": "Claude 即日起将聊天与 Claude Cowork 的记忆统一，用户在任一场景对话时都能调用此前积累的上下文，减少重复解释。记忆会在聊天过程中实时更新，用户可在 Memory 设置中按主题查看、编辑或删除每条记忆。健康、信仰等敏感话题默认不存储，但可在设置中开启，且敏感识别号、犯罪记录等始终不会被保存。",
+            "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
+            "source": "Claude：Blog（网页）"
           },
           {
-            "title": "NVIDIA 如何用 NVLink Fusion 让定制 XPU 融入世界级 AI 工厂",
-            "summary": "NVIDIA 推出 NVLink Fusion，将定制 XPU 接入其 NVLink 扩展域，使 XPU 间端到端延迟比基于现成以太网的方案低 3 倍、数据包速率高 10 倍。",
-            "url": "https://blogs.nvidia.com/blog/nvlink-fusion-xpu-ai-factory",
-            "source": "NVIDIA Blog（RSS）"
+            "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
+            "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最高 3 倍分布式 AI 推理速度提升。新品今日起接受预购，9 月 22 日开售。",
+            "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
+            "source": "Apple：Newsroom（RSS）"
           },
           {
-            "title": "MTIA 300：Meta 首款内置 NIC 与通信卸载引擎的训练芯片",
-            "summary": "Meta 发布 MTIA 300，这是其自研加速器家族中首款针对推荐与排序模型训练优化的芯片。芯片封装内集成 12 个 800 Gbps RDMA NIC，提供 1.2 TB/s 总 I/O 带宽，并通过 16 个专用消息引擎卸载通信，使大规模 GEMM 与集合通信并发时计算吞吐损耗低于 0.5%。",
-            "url": "https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics",
-            "source": "Meta Engineering Blog（RSS）"
+            "title": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪",
+            "summary": "LangChain 与 Airbyte 的集成方案旨在将检索应用扩展至生产环境。该方案通过调度、文本拆分和 50 多种嵌入模型实现数据摄取自动化，帮助开发者构建可规模化的生产级数据管道。",
+            "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
+            "source": "LangChain：Blog（RSS）"
           },
           {
-            "title": "NVIDIA 扩展 Vera Rubin 推理能力，Groq 3 LPX 全面投产支持智能体系统",
-            "summary": "NVIDIA 宣布 Vera Rubin NVL72 扩展快速 token 生成能力，以支持智能体系统。其机架级系统 NVIDIA Groq 3 LPX 已全面投产，旨在通过 AI 工厂各层协同工作来定义下一代 AI 推理，而非依赖单一芯片、网络或系统的突破。",
-            "url": "https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion",
-            "source": "NVIDIA Blog（RSS）"
+            "title": "Apple 发布搭载全新 M6 与 M5 Pro 芯片的 Mac mini",
+            "summary": "Apple 推出搭载全新 M6 与 M5 Pro 芯片的新款 Mac mini，M6 版本 AI 性能最高提升 4 倍、CPU 性能提升 40%，支持 Wi-Fi 7 与蓝牙 6。",
+            "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro",
+            "source": "Apple：Newsroom（RSS）"
+          },
+          {
+            "title": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升",
+            "summary": "Apple 推出首款 2nm 芯片 M6，搭载 12 核 CPU、12 核 GPU 及双 16 核神经引擎，统一内存带宽最高 170GB/s，多线程性能较 M5 提升 1.2 倍。M5 Ultra 采用首款四芯片封装架构，最高 36 核 CPU、80 核 GPU，带宽达 1.2TB/s，较 M3 Ultra 提升 50%。两款芯片分别用于新款 Mac mini 与 Mac Studio。",
+            "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
+            "source": "Apple：Newsroom（RSS）"
+          },
+          {
+            "title": "OpenAI 推出 ChatGPT Work 和 Codex 的 Admin 插件",
+            "summary": "OpenAI 为 ChatGPT Work 和 Codex 推出 Admin 插件，让管理员在单一对话中完成查看工作区活动、管理成员与权限、调整用量限制及审批支出请求等操作。该插件遵循用户现有角色和权限，不扩大访问范围，并可将待处理的用量请求路由至 Slack 或 Microsoft Teams 审批。OpenAI IT 团队部署的工作流已解决约 45% 的工单量。",
+            "url": "https://openai.com/index/introducing-admin-plugin",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+          },
+          {
+            "title": "OpenAI 自研推理芯片 Jalapeño 首秀：行业领先的速度与能效",
+            "summary": "OpenAI 发布自研推理芯片 Jalapeño，专为现代模型提供更快、更节能的 AI 推理，具备更高吞吐量和更低延迟。首批结果显示其在推理速度与效率上达到行业领先水平。",
+            "url": "https://openai.com/index/jalapeno-first-results",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-26",
+        "fetchedAt": "2026-08-26 11:08",
+        "count": 19,
+        "sections": [
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "Anthropic 推出 500 万美元资助计划，支持 AI 对用户幸福感影响的独立评估",
+                "summary": "Anthropic 启动一项 500 万美元的资助计划，为研究 AI 如何影响用户幸福感的独立研究提供直接资金、模型访问权限和技术支持。受资助者将完全独立工作，并以开源项目形式发布成果，供任何开发者使用。申请截止日期为 9 月 21 日，入选者将于 10 月 5 日前收到通知。",
+                "url": "https://www.anthropic.com/news/wellbeing-research-grants",
+                "source": "Anthropic：Newsroom（网页）"
+              },
+              {
+                "title": "OpenAI 封禁俄罗斯虚假影响力行动账号",
+                "summary": "OpenAI 封禁了一批源自俄罗斯的账号，这些账号利用 AI 推广一个虚构的以色列智库及“主权”指数，内容赞扬俄罗斯并批评西方。",
+                "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              }
+            ]
+          },
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "AgentHands：为XR空间对话智能体生成交互式手部手势",
+                "summary": "Google在CHI 2026发布研究原型AgentHands，利用LLM为XR对话智能体生成与语音同步的富有表现力的手部手势，提供空间锚定的物理指引。该系统通过眼动追踪和场景重建注册物体，由LLM生成内联GestureEvents，并在头显上按词级时间戳协调TTS与动画引擎，实现手势与语音的精准同步。应用场景包括兰花养护交互式教学、3D打印机操作技术讲解和生活方式陪伴。",
+                "url": "https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr",
+                "source": "Google Research：Blog（网页）"
+              },
+              {
+                "title": "STARFlow2：用归一化流桥接语言模型，实现统一多模态生成",
+                "summary": "STARFlow2 提出将自回归归一化流与语言模型统一，用于多模态生成。该方法观察到自回归归一化流与 LLM 共享因果掩码、KV-cache 机制和从左到右结构，从而弥合文本与图像生成的架构差异，避免离散 token 化带来的视觉保真度损失。",
+                "url": "https://machinelearning.apple.com/research/starflow2-multimodal-generation",
+                "source": "Apple Machine Learning Research（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "如何在编辑器里实时挑选最佳 AI 模型",
+                "summary": "OpenRouter 提出一套模型选型框架：先定义任务，从实时用量和第三方基准中筛选候选，再对比各提供商的定价与延迟，最后用自有提示词测试。判断标准是“每完成任务的成本”而非“每 token 成本”。其 MCP 服务器可直接在 Claude Code、Cursor 等编辑器中查询实时排名、价格和基准，并用 openrouter/auto-beta 按请求路由。",
+                "url": "https://openrouter.ai/blog/tutorials/choose-best-ai-model",
+                "source": "OpenRouter：Announcements（RSS）"
+              },
+              {
+                "title": "OpenRouter 视频生成 API：一份代码优先的接入指南",
+                "summary": "OpenRouter 推出统一的异步视频生成 API，通过 POST /api/v1/videos 提交任务、轮询状态并下载 MP4，支持 Seedance、Veo、Wan 等模型，切换模型只需更改 model 标识符。",
+                "url": "https://openrouter.ai/blog/tutorials/video-generation-api",
+                "source": "OpenRouter：Announcements（RSS）"
+              },
+              {
+                "title": "Dylan Patel：Anthropic 与 OpenAI 到 2028 年将控制全球大部分算力",
+                "summary": "在最新一期播客中，SemiAnalysis 创始人 Dylan Patel 与 Dwarkesh Patel 讨论实验室经济学，预计 Anthropic 和 OpenAI 到 2028 年将控制全球大部分可用 FLOPs，因其能更好变现算力并出价高于其他方。",
+                "url": "https://www.dwarkesh.com/p/dylan-patel-3",
+                "source": "Dwarkesh Patel：Podcast & Blog（RSS）"
+              },
+              {
+                "title": "LangChain 评测 CSV 数据问答系统：智能体、检索与 LLM 评估",
+                "summary": "LangChain 发布针对 CSV 数据问答系统的基准评测，涵盖智能体、检索与 LLM 评估方法。文章提供基准测试结果、调试洞察及开源代码，帮助开发者构建更优的 CSV 数据问答系统。评测聚焦于实际应用中的性能表现与常见问题。",
+                "url": "https://www.langchain.com/blog/benchmarking-question-answering-over-csv-data",
+                "source": "LangChain：Blog（RSS）"
+              },
+              {
+                "title": "LLMs 与 SQL：用 LangChain 构建可靠的 text-to-SQL 方案",
+                "summary": "本文探讨如何用大语言模型以自然语言查询 SQL 数据库，并重点介绍减少模型幻觉、构建可靠 text-to-SQL 解决方案的技术方法。内容基于 LangChain 框架展开，涵盖从自然语言到 SQL 查询转换的关键实现路径。",
+                "url": "https://www.langchain.com/blog/llms-and-sql",
+                "source": "LangChain：Blog（RSS）"
+              },
+              {
+                "title": "Google Search 升级家居装饰的 5 种方法",
+                "summary": "Google Search 推出五种家居装饰实用功能：AI Mode 可上传房间照片并生成家具摆放效果图，Lens 支持识别复古单品并查找相似商品，Circle to Search 无需切换应用即可圈选心仪装饰，Search Live 提供 DIY 安装的逐步指导，产品列表可对比价格并追踪降价提醒。近月“home decor inspo”搜索量上涨 300%。",
+                "url": "https://blog.google/products-and-platforms/products/search/home-decor-tips",
+                "source": "Google Blog：AI（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "模型发布/更新",
+            "items": [
+              {
+                "title": "WeatherNext 预测气旋：提前五天预警五级飓风",
+                "summary": "Google AI 发布 WeatherNext 气旋预测模型，可同时预测风暴路径、强度和规模，比现有系统多提供一整天的预警时间。该模型在 2025 飓风季实战测试中，提前五天预测飓风 Melissa 在牙买加的五级登陆，系美国国家飓风中心首次实时使用 AI 模型。模型单场风暴可生成多达 1000 次模拟，代码与权重已开源。",
+                "url": "https://x.com/GoogleAI/status/2092275116503707733",
+                "source": "X：Google AI (@GoogleAI)"
+              }
+            ]
+          },
+          {
+            "label": "产品发布/更新",
+            "items": [
+              {
+                "title": "OpenWorker 新版发布，内置网络安全智能体",
+                "summary": "Andrew Ng 旗下开源智能体 OpenWorker 发布新版，强化安全工作流。其 harness 完全开源，安全团队可审计无后门。新版内置代码漏洞扫描、依赖供应链注入检测和云安全配置检查三类网络安全智能体，并支持本地运行开源权重模型以保护敏感代码。",
+                "url": "https://x.com/AndrewYNg/status/2092315079576555806",
+                "source": "X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)"
+              },
+              {
+                "title": "Claude 记忆功能全面打通聊天与 Cowork，用户可逐条查看和编辑",
+                "summary": "Claude 即日起将聊天与 Claude Cowork 的记忆统一，用户在任一场景对话时都能调用此前积累的上下文，减少重复解释。记忆会在聊天过程中实时更新，用户可在 Memory 设置中按主题查看、编辑或删除每条记忆。健康、信仰等敏感话题默认不存储，但可在设置中开启，且敏感识别号、犯罪记录等始终不会被保存。",
+                "url": "https://claude.com/blog/claudes-memory-works-everywhere-and-you-decide-whats-in-it",
+                "source": "Claude：Blog（网页）"
+              },
+              {
+                "title": "Apple 推出搭载 M5 Max 与 M5 Ultra 的全新 Mac Studio",
+                "summary": "Apple 发布搭载 M5 Max 与全新 M5 Ultra 的 Mac Studio，AI 性能最高提升 4.3 倍，图形性能提升 1.8 倍，存储速度提升 2 倍。M5 Ultra 版本支持最高 512GB 统一内存与 1.2TB/s 内存带宽，可完全在设备端运行大型 LLM；四台集群可带来最高 3 倍分布式 AI 推理速度提升。新品今日起接受预购，9 月 22 日开售。",
+                "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra",
+                "source": "Apple：Newsroom（RSS）"
+              },
+              {
+                "title": "LangChain 与 Airbyte 集成：让数据摄取达到生产级就绪",
+                "summary": "LangChain 与 Airbyte 的集成方案旨在将检索应用扩展至生产环境。该方案通过调度、文本拆分和 50 多种嵌入模型实现数据摄取自动化，帮助开发者构建可规模化的生产级数据管道。",
+                "url": "https://www.langchain.com/blog/making-data-ingestion-production-ready-a-langchain-powered-airbyte-destination",
+                "source": "LangChain：Blog（RSS）"
+              },
+              {
+                "title": "Apple 发布搭载全新 M6 与 M5 Pro 芯片的 Mac mini",
+                "summary": "Apple 推出搭载全新 M6 与 M5 Pro 芯片的新款 Mac mini，M6 版本 AI 性能最高提升 4 倍、CPU 性能提升 40%，支持 Wi-Fi 7 与蓝牙 6。",
+                "url": "https://www.apple.com/newsroom/2026/08/apple-unveils-a-more-powerful-mac-mini-featuring-the-all-new-m6-and-m5-pro",
+                "source": "Apple：Newsroom（RSS）"
+              },
+              {
+                "title": "Apple 发布 M6 与 M5 Ultra，性能与 AI 算力大幅跃升",
+                "summary": "Apple 推出首款 2nm 芯片 M6，搭载 12 核 CPU、12 核 GPU 及双 16 核神经引擎，统一内存带宽最高 170GB/s，多线程性能较 M5 提升 1.2 倍。M5 Ultra 采用首款四芯片封装架构，最高 36 核 CPU、80 核 GPU，带宽达 1.2TB/s，较 M3 Ultra 提升 50%。两款芯片分别用于新款 Mac mini 与 Mac Studio。",
+                "url": "https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute",
+                "source": "Apple：Newsroom（RSS）"
+              },
+              {
+                "title": "OpenAI 推出 ChatGPT Work 和 Codex 的 Admin 插件",
+                "summary": "OpenAI 为 ChatGPT Work 和 Codex 推出 Admin 插件，让管理员在单一对话中完成查看工作区活动、管理成员与权限、调整用量限制及审批支出请求等操作。该插件遵循用户现有角色和权限，不扩大访问范围，并可将待处理的用量请求路由至 Slack 或 Microsoft Teams 审批。OpenAI IT 团队部署的工作流已解决约 45% 的工单量。",
+                "url": "https://openai.com/index/introducing-admin-plugin",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              },
+              {
+                "title": "OpenAI 自研推理芯片 Jalapeño 首秀：行业领先的速度与能效",
+                "summary": "OpenAI 发布自研推理芯片 Jalapeño，专为现代模型提供更快、更节能的 AI 推理，具备更高吞吐量和更低延迟。首批结果显示其在推理速度与效率上达到行业领先水平。",
+                "url": "https://openai.com/index/jalapeno-first-results",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-26"
+      },
       {
         "date": "2026-08-25",
         "fetchedAt": "2026-08-25 22:00",
@@ -3099,300 +3259,211 @@
           }
         ],
         "canonical": "https://aihot.virxact.com/daily/2026-08-13"
-      },
-      {
-        "date": "2026-08-12",
-        "fetchedAt": "2026-08-13 01:09",
-        "count": 26,
-        "sections": [
-          {
-            "label": "行业动态",
-            "items": [
-              {
-                "title": "研究人员发现可读取ChatGPT等模型加密推理过程的API漏洞",
-                "summary": "Alexander Panfilov团队发现OpenAI、Anthropic、Google等主要AI提供商API存在漏洞，可读取推理模型的加密思考过程。扫描约7000条公开会话发现62个API密钥、33个邮箱和33个密码。通过越狱，Anthropic的Haiku 4.5可逐字转写Opus 4.8的原始推理；解码10000条推理轨迹的API成本约720美元。",
-                "url": "https://the-decoder.com/but-marinade-and-leaked-passwords-are-what-researchers-found-in-chatgpts-hidden-reasoning",
-                "source": "The Decoder：AI News（RSS）"
-              },
-              {
-                "title": "消息称 Anthropic 最快今年 9 月上市，向投资者淡化 AI 模型竞争等挑战",
-                "summary": "Anthropic 正与潜在投资者接触，为可能成为史上规模最大的 IPO 做准备，计划今年 9 月或 10 月初正式上市。公司估值高达 9,650 亿美元，年化收入已超 470 亿美元，并淡化来自中国 AI 企业的竞争影响。Anthropic 还计划拓展 AI 在医疗和生物学领域的应用，但尚未公布具体 IPO 定价方案。",
-                "url": "https://www.ithome.com/0/988/239.htm",
-                "source": "IT之家（RSS）"
-              },
-              {
-                "title": "Gemini月活破10亿，成谷歌增长最快产品",
-                "summary": "每月已有超过 10 亿人使用 @Geminiapp 激发新想法、完成工作。这是我们有史以来增长最快的产品，也是第 14 个达到 10 亿用户里程碑的产品。 感谢 @JoshWoodward 和整个 Gemini 团队，也感谢每一位与我们同行的伙伴——未来还有更多精彩！",
-                "url": "https://x.com/sundarpichai/status/2087222656819241292",
-                "source": "X：Sundar Pichai (@sundarpichai)"
-              },
-              {
-                "title": "消息称英伟达开发万亿参数开源 AI 模型 Nemotron 4，目标挑战全球顶级",
-                "summary": "英伟达正在研发新一代开源 AI 模型系列 Nemotron 4，规模最大的模型预计至少拥有 1 万亿个参数，旨在与全球最先进的开源模型竞争。英伟达尚未确定发布日期，最终训练也未完成，员工认为该模型最早可能在今年秋末准备就绪。此举意在通过开放模型生态扩大 AI 应用范围，并推动市场对其 GPU 算力的需求。",
-                "url": "https://www.ithome.com/0/988/524.htm",
-                "source": "IT之家（RSS）"
-              },
-              {
-                "title": "NVIDIA 为何需要新供电架构以扩展 AI 算力性能",
-                "summary": "NVIDIA 主张以 800 VDC 直流配电替代传统交流多次转换，以降低损耗、支撑 AI 算力扩展。NVIDIA 与 Google、Microsoft 通过 OCP 联合制定该架构，已发布白皮书及 LVDC 固态变压器规范 v0.3，超 80 家设备商正据此开发产品。",
-                "url": "https://blogs.nvidia.com/blog/800-vdc-power-architecture-ai-factory",
-                "source": "NVIDIA Blog（RSS）"
-              },
-              {
-                "title": "英伟达循环融资达到新高度，黄仁勋是否过度出牌？",
-                "summary": "英伟达股价在相关消息公布后小幅下滑，收盘报217.55美元，盘前略有回升。金融记者Holger Zschaepitz和曾预测安然倒闭的Jim Chanos均对英伟达的循环融资做法表示担忧。此外，英伟达将发布真正开源（非仅开放权重）的Nemotron模型新版本，这可能最终削弱其合作伙伴OpenAI和Anthropic的地位。",
-                "url": "https://garymarcus.substack.com/p/breaking-circular-financing-reaches",
-                "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-              },
-              {
-                "title": "Electric 加入 Databricks，将 WASM Postgres 引入 AI 智能体沙箱",
-                "summary": "Databricks 宣布 Electric 团队加入，将 WASM Postgres 引入 AI 智能体沙箱。该技术让智能体在隔离环境中运行本地数据库，支持实时数据同步与离线操作，提升构建可靠、可验证智能体应用的效率。Electric 的加入将强化 Databricks 在智能体基础设施领域的布局。",
-                "url": "https://www.databricks.com/blog/electric-joins-databricks-bring-wasm-postgres-ai-agent-sandboxes",
-                "source": "Databricks：Blog（RSS）"
-              }
-            ]
-          },
-          {
-            "label": "论文研究",
-            "items": [
-              {
-                "title": "Apple Silicon 与 macOS 虚拟机：借助 Llama.cpp 实现 11–16 倍的 LLM 推理加速",
-                "summary": "研究团队为 macOS 虚拟机中的 Metal 能力查询构建进程级兼容层，使 llama.cpp 能选用更新的 Metal 内核。在 M1 Ultra 上，TinyLlama 1.1B 的提示处理速度提升 11.08 倍、token 生成提升 16.36 倍，接近裸机性能的 98%；Gemma 4 12B 的提示处理与生成速度分别提升 7.20 倍和 14.54 倍。",
-                "url": "https://github.com/trycua/cua/blob/main/blog/gpu-passthrough-macos-vms.md",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "统一 Radix 缓存：为混合模型前缀缓存构建单一树结构",
-                "summary": "LMSYS 团队提出 Unified Radix Cache，用单一 token 键控 radix 拓扑统一管理混合模型的 FULL、SWA 和 MAMBA 组件缓存，各组件独立执行路径、滑动窗口和检查点复用语义。",
-                "url": "https://www.lmsys.org/blog/2026-08-11-unified-radix-cache",
-                "source": "LMSYS：Blog（Chatbot Arena 团队）"
-              },
-              {
-                "title": "AMIE 研究医疗 AI 系统首次展示实时临床视频问诊能力",
-                "summary": "Google Research 与 Google DeepMind 推进医疗 AI 系统 AMIE，实现实时临床视频问诊，首次在此场景展示专家级 AI 能力。该系统基于 Gemini 和 Project Astra 构建，可解读视觉与听觉线索、引导虚拟体格检查并实时诊断推理。随机研究中，临床评估者对 AMIE 的病史采集、诊断准确性等核心能力给予好评，患者演员也更偏好视频体验。",
-                "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-video-consultations",
-                "source": "Google Blog：AI（RSS）"
-              }
-            ]
-          },
-          {
-            "label": "技巧与观点",
-            "items": [
-              {
-                "title": "OpenAI 用 Astra 模型攻克 10 道数学难题，数学家既兴奋又担忧",
-                "summary": "OpenAI 宣布其未发布的 Astra 模型解决了 10 道长期悬而未决的数学难题，涵盖球体堆积、纠错码、非 sofic 群存在性等领域，并发布超 250 页论文及 Lean 验证结果。",
-                "url": "https://www.theverge.com/ai-artificial-intelligence/977273/the-ai-takeover-of-mathematics-has-begun",
-                "source": "The Verge：AI（RSS）"
-              },
-              {
-                "title": "用 ComfyUI API 实现 MiniMax-H3 多模态视频与音频生成流水线",
-                "summary": "本教程演示如何以 ComfyUI 为无头推理后端，构建端到端的 MiniMax-H3 视频生成工作流。通过 Python 直接构建执行图，支持文生视频、首尾帧条件生成和参考图像条件生成，并自动根据 GPU 显存选择 quality、balanced、squeeze 三种权重配置。流水线涵盖模型自动下载、节点模式校验、音视频联合解码与进度监控，无需图形界面即可复现实验。",
-                "url": "https://www.marktechpost.com/2026/08/10/implementing-a-minimax-h3-multimodal-video-and-audio-generation-pipeline-with-comfyui-apis",
-                "source": "MarkTechPost（RSS）"
-              },
-              {
-                "title": "将 GitHub Copilot 置于中间人（MitM）代理之后后，我学到了什么",
-                "summary": "作者通过 mitmproxy 对 VS Code 中的 GitHub Copilot 进行中间人代理拦截，逆向分析其网络流量与内部架构。文章指出这些 AI 应用普遍基于 Electron 构建，共享相似的网络栈，因此探测结果可迁移至其他同类应用。作者借此揭示了 Copilot 的运行时行为，并分享了配置代理的具体步骤。",
-                "url": "https://www.lighthousenewsletter.com/p/i-put-github-copilot-behind-a-mitm",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "编写智能体时，哪种编程语言最合适？",
-                "summary": "针对“动态语言比静态语言更省 LLM token”的流行说法，作者用 GPT-5.6 Sol 让智能体实现 zstd 解码器进行实测。结果显示，medium 努力度下动态语言表现更好，ultra 下静态语言反而更优，且此前评测存在测试路径错误等缺陷。作者认为，琐碎任务上的性能无法推广到更大问题。",
-                "url": "http://danluu.com/pl-tokens",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "微信小微AI帮写与AI点评内测：朋友圈最后一点人味正在消失",
-                "summary": "微信基于小微推出朋友圈AI帮写与AI点评内测功能，前者可根据图片和已写文字生成3条朋友圈文案，后者可长按文字生成评价或快捷评论。作者认为这两个功能将AI置于社交核心位置，可能鼓励AI内容、破坏朋友圈自2012年确立的“记录美好生活”基调。公众号端小微还常驻首位，自动总结常看公众号文章，作者担忧这会反向影响创作者内容生产。",
-                "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647685081&idx=1&sn=13a05578a3959c047209c8e74b56fa48",
-                "source": "公众号：数字生命卡兹克"
-              },
-              {
-                "title": "Ryan Greenblatt：人类级AI或于2032年前通过递归自我改进催生失控超级智能",
-                "summary": "Dwarkesh Patel与Redwood Research首席科学家Ryan Greenblatt探讨递归自我改进（RSI）的可能性：一旦AI达到人类顶级专家水平，可能在一年内实现相当于4-5年的AI进展，Ryan的中位预期是2031年自动化AI研发。双方还讨论了超级智能的对齐对象、奖励黑客行为是否会升级为AI联手接管世界等风险。",
-                "url": "https://www.dwarkesh.com/p/ryan-greenblatt",
-                "source": "Dwarkesh Patel：Podcast & Blog（RSS）"
-              },
-              {
-                "title": "每个类别都有赢家：AI 时代 SaaS 龙头的估值溢价",
-                "summary": "SaaS 估值整体承压，但每个细分赛道都跑出了 AI 龙头：CrowdStrike 以 34.4x 前瞻收入领跑安全（中位数 3.9x），Cloudflare 32.6x 对 17.5x，Shopify 11.3x 对 1.4x。",
-                "url": "https://www.tomtunguz.com/a-winner-in-every-category",
-                "source": "Tomer Tunguz 博客（VC 分析）"
-              },
-              {
-                "title": "Can you trust what AI tells you?",
-                "summary": "",
-                "url": "https://www.youtube.com/watch?v=cIMlBw2nqfA",
-                "source": "Claude：YouTube（RSS）"
-              }
-            ]
-          },
-          {
-            "label": "模型发布/更新",
-            "items": [
-              {
-                "title": "NVIDIA 推出 Nemotron 3.5 Lightning，加速本地智能体任务",
-                "summary": "NVIDIA 发布 Nemotron 3.5 Lightning，一款可定制的开源 30B 混合专家（MoE）模型，专为常驻智能体设计。相比同类开源模型，其 token 生成速度最高提升 4 倍，任务完成时间缩短 30%。该模型采用开放权重，支持用户微调以匹配特定任务，并可在 RTX PC、DGX Spark 及 Jetson 等设备上运行。",
-                "url": "https://blogs.nvidia.com/blog/local-ai-open-source-models-agents-nemotron",
-                "source": "NVIDIA Blog（RSS）"
-              },
-              {
-                "title": "SGLang 宣布 Day-0 支持 NVIDIA Nemotron 3.5 Lightning",
-                "summary": "SGLang 宣布对 NVIDIA Nemotron 3.5 Lightning 提供 Day-0 支持，该开源模型为 30B 总参数、3B 激活参数的混合专家架构，支持最长 1M token 上下文，可从 Hugging Face 下载 BF16 和 NVFP4 权重。模型支持 MTP、DFlash、DSpark 三种投机解码技术，并可通过 OpenAI 兼容 API 接入智能体工作流。",
-                "url": "https://www.lmsys.org/blog/2026-08-11-nemotron-3-5-lightning",
-                "source": "LMSYS：Blog（Chatbot Arena 团队）"
-              },
-              {
-                "title": "Ling-3.0-tiny 正式开源：1.3B 激活参数如何进入真实任务",
-                "summary": "蚂蚁百灵开源 Ling-3.0-tiny，一款总参数 7.9B、推理时仅激活 1.3B 参数的原生混合推理模型，同步提供 BF16、FP8 和 INT4 三个版本。",
-                "url": "https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&mid=2247487491&idx=1&sn=fcb14aceb054f9a24e22525d3dae6fa0",
-                "source": "公众号：蚂蚁百灵（Ling）"
-              }
-            ]
-          },
-          {
-            "label": "产品发布/更新",
-            "items": [
-              {
-                "title": "Runway Seedance 2.5 上线，支持50角色参考",
-                "summary": "完整阵容，完整曲目，一次生成一个。 Seedance 2.5 已在 Runway 上线，支持 50 个独特角色参考，以及最长 30 秒、与音乐同步的片段。点击下方链接即可开始使用。",
-                "url": "https://x.com/runwayml/status/2087251184658657346",
-                "source": "X：Runway (@runwayml)"
-              },
-              {
-                "title": "Gemini 助力 Database Migration Service 加速 PostgreSQL 迁移",
-                "summary": "Google Cloud 在 Database Migration Service（DMS）中推出由 Gemini 驱动的 AI 辅助代码转换，可将 Oracle 或 SQL Server 的存储过程、触发器和自定义函数转换为 PostgreSQL PL/pgSQL 代码。",
-                "url": "https://cloud.google.com/blog/products/databases/accelerate-postgresql-migrations-with-gemini-in-dms",
-                "source": "Google Cloud：Databases（RSS）"
-              },
-              {
-                "title": "ZCode全面升级：Goal、Subagents、Remote Control与闲时任务四大功能上线",
-                "summary": "ZCode针对GLM深度优化，今日上线Goal、Subagents、Remote Control与闲时任务四大功能。在Z.ai Code Bench测试中，GLM-5.2搭配ZCode较搭配Claude Code任务整体通过率高2.39%；ZCode缓存命中率超98%，叠加1.5倍限时额度加成后，GLM Coding Plan整体使用量接近常规额度的1.8倍。",
-                "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&mid=2247494052&idx=1&sn=ee3ab3d0f4550e9120927c53a27522c9",
-                "source": "公众号：智谱（GLM）"
-              },
-              {
-                "title": "ChatGPT 桌面端支持导入其他智能体工作数据",
-                "summary": "你现在可以将其他智能体的工作内容与 ChatGPT Work 和 Codex 保持同步。 可导入项目、聊天记录、技能和插件，查看导入历史，并可在设置中选择开启自动更新。 现已在 ChatGPT 桌面应用中提供。",
-                "url": "https://x.com/OpenAIDevs/status/2087242829076791392",
-                "source": "X：OpenAI Developers (@OpenAIDevs)"
-              },
-              {
-                "title": "Databricks 开源 Metals v2：面向数百万行代码库的 Java 和 Scala 语言服务器",
-                "summary": "Databricks 开源 Metals v2，这是其面向数百万行代码库的 Java 和 Scala 语言服务器。Metals v2 专为智能体驱动的开发场景设计，旨在提升大规模代码库中的编辑与导航性能。目前 Databricks 的大部分代码已由智能体编写，该工具服务于工程师仍需要手动介入的环节。",
-                "url": "https://www.databricks.com/blog/open-sourcing-metals-v2-databricks-java-and-scala-language-server-multi-million-line-codebases",
-                "source": "Databricks：Blog（RSS）"
-              }
-            ]
-          }
-        ],
-        "canonical": "https://aihot.virxact.com/daily/2026-08-12"
       }
     ]
   },
   "dailyNews": {
-    "date": "2026-08-25",
-    "fetchedAt": "2026-08-25 22:00",
+    "date": "2026-08-26",
+    "fetchedAt": "2026-08-26 11:08",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "今年第 21 号台风 “艾莎尼” 生成；台风 “沙德尔” 将于 27 日至 28 日登陆闽浙沿海，福建部分地区停航、景区关闭",
+        "title": "我国对外投资存量连续 9 年居全球前三，年均为东道国创造就业岗位超 200 万个",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "国管公积金新政：双缴存职工家庭，首套房最高可贷款 340 万元",
+        "title": "我国交通强国指数为 90.8，较上年提升 0.9，在全球主要国家中排名第五",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "央行：将在 8 月 27 日至 9 月 1 日开展隔夜逆回购操作，每日不超过 6000 亿元",
+        "title": "《道交法修订草案》首次明确 “自动驾驶激活状态下违法由车企接受处理”，专家称车辆状态认定仍是定责难点",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "支付清算协会印发智能体支付应用自律公约：不得通过排他合作、强制捆绑、低价补贴等方式限制用户选择",
+        "title": "道交法修订草案拟调整电动自行车限速：在非机动车道内时速限制从 15 公里上调为 20 公里",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "教育部：幼儿园不得教授小学阶段的课程，小学应将一年级第一学期设置为入学适应期，小学一年级不布置书面家庭作业",
+        "title": "成都住房公积金新政施行：首付降至 15%，贷款利息补贴 20%，双缴存人最高可贷 144 万元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "部分民办高校允许 “带着宠物上学”：设专门寄养区，不得带入宿舍",
+        "title": "广州拟规定：出租屋不得加收水电费，违反将处加收费用五倍以下罚款",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "厦门部分餐饮门店卷入 “违规消杀” 事件：多家涉事商户称此前不知情，已紧急处置",
+        "title": "世界最大直径水下盾构隧道在济南建成通车，5 分钟穿越黄河",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "湖南一店主帮扶老人遭索赔 1.9 万元后续：店主获确认无过错，当地企业送 2 万慰问金",
+        "title": "大学生 1.9 万下单的电脑涨到 2.8 万，商家拖延 2 个月不发货， 平台回应：可补偿 500 元券",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "AI 陪伴新规满月：未成年人模式仍可绕过，初中生 4 个账号养 “恋人”",
+        "title": "“甲醛白菜” 曝光后：张家口白菜价格跌至 1 毛多，收购商不敢收",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中国 AI 大模型周调用量连续十七周超美国居首位，神秘 “牛来” 大模型上线四天冲至全球第二",
+        "title": "宇树科技上市后连跌四日，市值累计蒸发超 2008 亿元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日本福岛核污染水排海已三年，22 轮累计排放超 17 万吨",
+        "title": "2026 名古屋亚运会预算连续超标，大量运动员将入住集装箱房，运动员吐槽房小床短，高度太低不敢抬头",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "越南国会批准增设广宁和北宁为直辖市，越南现直辖市升至 9 个",
+        "title": "新加坡全面加码鼓励生育，未来每名孩童可获约合 32.8 万元人民币补助",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "法国高中于今年秋季新学年起实施手机禁令；新西兰拟禁止未满 16 岁青少年使用社交媒体",
+        "title": "美国计划对新的 H - 1B 工作签证申请者征收超 10 万美元费用",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普称明年全部加拿大乘用车、卡车、汽车零部件以及钢铁的关税将上调至 50%",
+        "title": "美国拟撤销多达 20 万个商务和旅游签证，创单次吊销规模之最",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "消息称沙土巴三国邀请伊朗加入《麦加共同防务协议》，伊朗表示称尚未收到正式邀请",
+        "title": "一架美军运输机降落在俄罗斯莫斯科市伏努科沃机场，美俄双方均未回应",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "很多事没有如愿以偿也没关系，尽力走过，本身就是一种难得的收获",
-    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0UibyNOFUEmrAuGoDmxpAFBM426B3YXsQyb2AuVtGQ1Dq6LYLQV1iaRWCtyXw4uF3LJoNDLqDA0pR3uJ21zRhnuDsbDxVML4L8UgA/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "不要把希望寄托在他人身上，能托举你走出低谷的，永远只有你自己",
+    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0U978FLGzF1zFiawpCld0Jp9Gnic86aE495pDxOeO2IXI9fnxr2HO0G7hvhsbllTjxtYrGNCJ5dWIGR8iaZBZB6RTjrfnDfcVGrnVg/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-26",
+        "fetchedAt": "2026-08-26 11:08",
+        "count": 15,
+        "items": [
+          {
+            "title": "我国对外投资存量连续 9 年居全球前三，年均为东道国创造就业岗位超 200 万个",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国交通强国指数为 90.8，较上年提升 0.9，在全球主要国家中排名第五",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "《道交法修订草案》首次明确 “自动驾驶激活状态下违法由车企接受处理”，专家称车辆状态认定仍是定责难点",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "道交法修订草案拟调整电动自行车限速：在非机动车道内时速限制从 15 公里上调为 20 公里",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "成都住房公积金新政施行：首付降至 15%，贷款利息补贴 20%，双缴存人最高可贷 144 万元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "广州拟规定：出租屋不得加收水电费，违反将处加收费用五倍以下罚款",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "世界最大直径水下盾构隧道在济南建成通车，5 分钟穿越黄河",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "大学生 1.9 万下单的电脑涨到 2.8 万，商家拖延 2 个月不发货， 平台回应：可补偿 500 元券",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "“甲醛白菜” 曝光后：张家口白菜价格跌至 1 毛多，收购商不敢收",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "宇树科技上市后连跌四日，市值累计蒸发超 2008 亿元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "2026 名古屋亚运会预算连续超标，大量运动员将入住集装箱房，运动员吐槽房小床短，高度太低不敢抬头",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "新加坡全面加码鼓励生育，未来每名孩童可获约合 32.8 万元人民币补助",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国计划对新的 H - 1B 工作签证申请者征收超 10 万美元费用",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美国拟撤销多达 20 万个商务和旅游签证，创单次吊销规模之最",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "一架美军运输机降落在俄罗斯莫斯科市伏努科沃机场，美俄双方均未回应",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "不要把希望寄托在他人身上，能托举你走出低谷的，永远只有你自己",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-25",
         "fetchedAt": "2026-08-25 22:00",
@@ -4692,114 +4763,7 @@
         "tip": "不必害怕起步太晚，停下观望才是对时光最大的辜负",
         "source": "每日60秒 (vikiboss/60s)",
         "canonical": "https://github.com/vikiboss/60s"
-      },
-      {
-        "date": "2026-08-12",
-        "fetchedAt": "2026-08-13 01:09",
-        "count": 15,
-        "items": [
-          {
-            "title": "国产大飞机 C919 首次执飞国际商业航线，北京首都至乌兰巴托",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "上半年规上互联网企业完成互联网业务收入超万亿，同比增长 10.1%",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "7 月乘用车销量榜出炉：前 10 仅剩 1 款燃油车入围，今年 1 月还有 7 款",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "山西中阳残存明代城墙遭 “拆旧建新”，墙砖被按废物丢弃，当地回应：正开展调查",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "甘肃兰州公交被指将能耗和绩效挂钩，致部分司机不敢开空调，公司回应：已暂停实施这一考核办法",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "多家期刊发布 AI 使用规范：严禁 AI 洗稿或替代人工学术把关",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "宇树科技中签号出炉：中签号码共有 19414 个，每个中签号码只能认购 500 股",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "7 月计算机价格同比上涨 17.4%，平板电脑上涨 17.2%，专家称最快明年下半年缓解压力",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "现货黄金突破 4400 美元 / 盎司，过去一周涨幅超 7%；国内金饰克价飙升至 1336 元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "李嘉诚家族再售海外资产，澳洲能源资产项目最高套现 166 亿港元，一年多英国已回笼 1672 亿",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "马斯克发帖鼓励大家来中国旅游，其母亲跟帖 “花式” 夸赞中国旅游体验",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "马斯克平均每天赚 59 亿，年财富增长 2.16 万亿，超过全球大多数国家全年 GDP",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美国不断收紧移民政策，自去年初以来已吊销逾 17.5 万份非移民签证",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "特朗普发文力挺因凡蒂诺，警告国际足联不要考虑更换主席",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "哥伦比亚强震遇难人数升至 188 人，震中位于最贫困地区，新总统就职 3 天便遇考验",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          }
-        ],
-        "tip": "与其抱怨环境不公，不如默默提升实力，强大之后才有议价的资本",
-        "source": "每日60秒 (vikiboss/60s)",
-        "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-25T22:01:11",
-    "status": "ok",
-    "nextRun": "2026-08-25T23:01:11",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
