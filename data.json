@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 13:47",
+  "generatedAt": "2026-08-26 15:06",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "20 hours ago",
+          "modified": "21 hours ago",
           "tags": [
             "qwen3.5:9b",
             "modelscope.cn/lmstudio-community/Qwen3.5-9B-GGUF:Q4_K_M"
@@ -1452,7 +1452,7 @@
   ],
   "aiDaily": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 13:47",
+    "fetchedAt": "2026-08-26 15:05",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-26",
     "count": 19,
@@ -1601,7 +1601,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 13:47",
+        "fetchedAt": "2026-08-26 15:05",
         "count": 19,
         "sections": [
           {
@@ -3242,7 +3242,7 @@
   },
   "dailyNews": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 13:47",
+    "fetchedAt": "2026-08-26 15:06",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3344,7 +3344,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 13:47",
+        "fetchedAt": "2026-08-26 15:06",
         "count": 15,
         "items": [
           {
@@ -4743,12 +4743,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-26T13:47:45",
-    "status": "ok",
-    "nextRun": "2026-08-26T14:47:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
