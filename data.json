@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26 19:41",
+  "generatedAt": "2026-08-26 21:13",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（19 条）：Anthropic 推出 500 万美元资助计划，支持 AI 对用户幸福感影响的独立评估",
+    "🗞️ 今日 AI 日报已更新（20 条）：通义千问发布 Qwen3.8-Flash，多模态 MoE 模型，Qwen4 架构早期预览",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "4 hours ago",
+          "modified": "5 hours ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -1461,11 +1461,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 19:41",
+    "fetchedAt": "2026-08-26 21:13",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-26",
-    "count": 19,
+    "count": 20,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "通义千问发布 Qwen3.8-Flash，多模态 MoE 模型，Qwen4 架构早期预览",
+            "summary": "通义千问发布 Qwen3.8-Flash，一款多模态 MoE 模型，也是 Qwen4 架构的早期预览，现已开放权重。该模型总参数量 125B，每 token 仅激活 6B，原生上下文 262K，可扩展至 1M；训练成本仅为 Qwen3.7-Plus 的 1/9，并在编码和办公任务上表现更优。",
+            "url": "https://aihot.virxact.com/items/cmta2x13k03t3rolwmr6pzc67",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
@@ -1610,9 +1621,20 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 19:41",
-        "count": 19,
+        "fetchedAt": "2026-08-26 21:13",
+        "count": 20,
         "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "通义千问发布 Qwen3.8-Flash，多模态 MoE 模型，Qwen4 架构早期预览",
+                "summary": "通义千问发布 Qwen3.8-Flash，一款多模态 MoE 模型，也是 Qwen4 架构的早期预览，现已开放权重。该模型总参数量 125B，每 token 仅激活 6B，原生上下文 262K，可扩展至 1M；训练成本仅为 Qwen3.7-Plus 的 1/9，并在编码和办公任务上表现更优。",
+                "url": "https://aihot.virxact.com/items/cmta2x13k03t3rolwmr6pzc67",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "行业动态",
             "items": [
@@ -3251,7 +3273,7 @@
   },
   "dailyNews": {
     "date": "2026-08-26",
-    "fetchedAt": "2026-08-26 19:41",
+    "fetchedAt": "2026-08-26 21:13",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3353,7 +3375,7 @@
     "history": [
       {
         "date": "2026-08-26",
-        "fetchedAt": "2026-08-26 19:41",
+        "fetchedAt": "2026-08-26 21:13",
         "count": 15,
         "items": [
           {
@@ -4752,12 +4774,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-26T19:41:54",
-    "status": "ok",
-    "nextRun": "2026-08-26T20:41:54",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
