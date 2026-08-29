@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29 10:08",
+  "generatedAt": "2026-08-29 16:59",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（18 条）：联邦法官裁定特朗普政府将 Anthropic 列入黑名单违法",
+    "🗞️ 今日 AI 日报已更新（20 条）：智谱开源 GLM-5.3 模型权重，主打智能体编程与网络防御",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -624,7 +624,7 @@
         {
           "id": "730eed4bbbd6",
           "size": "408 MB",
-          "modified": "3 weeks ago",
+          "modified": "4 weeks ago",
           "tags": [
             "dmeta-embedding-zh:latest"
           ]
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "2 days ago",
+          "modified": "3 days ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -693,11 +693,11 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 229
+        "free": 230
       },
       "D": {
         "total": 544,
-        "free": 375
+        "free": 378
       }
     },
     "runtime": "3.13 / 22.22"
@@ -709,7 +709,7 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-29 10:07",
+        "updated": "08-29 10:55",
         "group": "今天"
       },
       {
@@ -1453,11 +1453,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-29",
-    "fetchedAt": "2026-08-29 10:08",
+    "fetchedAt": "2026-08-29 16:59",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-29",
-    "count": 18,
+    "count": 20,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "智谱开源 GLM-5.3 模型权重，主打智能体编程与网络防御",
+            "summary": "智谱宣布开源 GLM-5.3 模型权重，支持本地运行与个性化定制，擅长复杂编码、防御性网络安全及长程任务。该模型在 AA 综合智能指数中取得 60 分，与 Claude Fable 5、GPT-5.6 Sol 等闭源旗舰同级，并与 Kimi K3 并列开源模型第一。仅年营业额超 100 亿美元的机构将其作为外部模型服务提供时才需安全审查。",
+            "url": "https://aihot.virxact.com/items/cmtdxtxi809gyro2m2zykqzli",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
@@ -1474,9 +1485,9 @@
             "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
           },
           {
-            "title": "OpenAI 决定终止向 Cursor 提供模型，因 SpaceX 收购后合规风险",
-            "summary": "OpenAI 已通知 SpaceX，将终止向 Cursor 提供 OpenAI 模型的合同，拟定关停日期为 2026 年 11 月 12 日，并给予合同允许的最长通知期。OpenAI 称此举源于无法确信 SpaceX 会遵守服务条款，并援引马斯克旗下公司此前违反合同及 xAI 违反 OpenAI 服务条款的先例。OpenAI 表示将尽力支持受影响的开发者过渡。",
-            "url": "https://aihot.virxact.com/items/cmtdqc5oj03wzro2mgyc5a49x",
+            "title": "OpenAI 终止与 Cursor 合作，11 月 12 日生效",
+            "summary": "OpenAI 因 SpaceX 收购 Cursor 后信任问题，决定终止向其提供模型访问，合作于 11 月 12 日结束。开发者仍可通过自有 OpenAI API 密钥及 IDE 扩展继续使用 GPT 模型。OpenAI 表示将继续支持广泛的工具生态与开源计划。",
+            "url": "https://aihot.virxact.com/items/cmtdqqeiu046gro2maw35y3c4",
             "source": ""
           }
         ]
@@ -1513,6 +1524,12 @@
             "summary": "Agent Seer 提出一种无需人工构建或实时执行工具即可合成评测场景的方法，利用函数名、自然语言描述和类型化参数模式等工具规格中的语义信息，生成能反映从业者组合工具与多轮迭代的真实测试场景。该方法旨在解决手工构建场景依赖领域专家、难以跨工具生态扩展且静态基准无法跟踪 API 演进的问题。",
             "url": "https://machinelearning.apple.com/research/agent-seer-synthesizing-scenarios",
             "source": "Apple Machine Learning Research（RSS）"
+          },
+          {
+            "title": "开放世界多智能体环境中的自主数学发现",
+            "summary": "在无中央协调器的开放世界多智能体环境Station中，来自不同模型家族的AI智能体自主选择研究方向、开展实验并构建共享科学文献。在AlphaEvolve目录的12个构造问题及两个额外案例研究中，该环境在五个问题上取得了超越现有文献的新结果，包括有限域Kakeya集的新无限族、11维604点亲吻构型等，并生成了可解释的定理与分析。所有原始智能体对话、证明和验证代码均已公开。",
+            "url": "https://aihot.virxact.com/items/cmte36nzj02isrog2hwxpthhn",
+            "source": ""
           }
         ]
       },
@@ -1538,9 +1555,9 @@
             "source": "Databricks：Blog（RSS）"
           },
           {
-            "title": "Gemini 3.5 Transcribe 完整指南：告别 ASR 转录难题",
-            "summary": "Google 推出专用于语音转文字的 Gemini 3.5 Transcribe 模型，主打快速、准确且低成本的转录，原生支持说话人分离和词级毫秒时间戳。该模型支持 85+ 种语言自动识别与代码切换，可通过 custom_vocabulary 传入最多 1，000 个领域术语避免专有名词拼写错误，并提供 Smart Transcription 与 Verbatim 两种模式。",
-            "url": "https://aihot.virxact.com/items/cmtd00dbh09tkroq5v7kcw183",
+            "title": "在本地运行 Qwen3.8 27B：来自我的 Mac Studio 的实际数据",
+            "summary": "Qwen3.8 27B（27.3B 参数，混合注意力架构，262，144 token 上下文窗口，Apache 2.0 开源）在 Mac Studio M3 Ultra 上经 Ollama 以 Q4_K_M 量化（17GB）生成速度约 14 tokens/s。",
+            "url": "https://aihot.virxact.com/items/cmte242e701jdrog2vz9p2cy4",
             "source": ""
           }
         ]
@@ -1596,9 +1613,20 @@
     "history": [
       {
         "date": "2026-08-29",
-        "fetchedAt": "2026-08-29 10:08",
-        "count": 18,
+        "fetchedAt": "2026-08-29 16:59",
+        "count": 20,
         "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "智谱开源 GLM-5.3 模型权重，主打智能体编程与网络防御",
+                "summary": "智谱宣布开源 GLM-5.3 模型权重，支持本地运行与个性化定制，擅长复杂编码、防御性网络安全及长程任务。该模型在 AA 综合智能指数中取得 60 分，与 Claude Fable 5、GPT-5.6 Sol 等闭源旗舰同级，并与 Kimi K3 并列开源模型第一。仅年营业额超 100 亿美元的机构将其作为外部模型服务提供时才需安全审查。",
+                "url": "https://aihot.virxact.com/items/cmtdxtxi809gyro2m2zykqzli",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "行业动态",
             "items": [
@@ -1615,9 +1643,9 @@
                 "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
               },
               {
-                "title": "OpenAI 决定终止向 Cursor 提供模型，因 SpaceX 收购后合规风险",
-                "summary": "OpenAI 已通知 SpaceX，将终止向 Cursor 提供 OpenAI 模型的合同，拟定关停日期为 2026 年 11 月 12 日，并给予合同允许的最长通知期。OpenAI 称此举源于无法确信 SpaceX 会遵守服务条款，并援引马斯克旗下公司此前违反合同及 xAI 违反 OpenAI 服务条款的先例。OpenAI 表示将尽力支持受影响的开发者过渡。",
-                "url": "https://aihot.virxact.com/items/cmtdqc5oj03wzro2mgyc5a49x",
+                "title": "OpenAI 终止与 Cursor 合作，11 月 12 日生效",
+                "summary": "OpenAI 因 SpaceX 收购 Cursor 后信任问题，决定终止向其提供模型访问，合作于 11 月 12 日结束。开发者仍可通过自有 OpenAI API 密钥及 IDE 扩展继续使用 GPT 模型。OpenAI 表示将继续支持广泛的工具生态与开源计划。",
+                "url": "https://aihot.virxact.com/items/cmtdqqeiu046gro2maw35y3c4",
                 "source": ""
               }
             ]
@@ -1654,6 +1682,12 @@
                 "summary": "Agent Seer 提出一种无需人工构建或实时执行工具即可合成评测场景的方法，利用函数名、自然语言描述和类型化参数模式等工具规格中的语义信息，生成能反映从业者组合工具与多轮迭代的真实测试场景。该方法旨在解决手工构建场景依赖领域专家、难以跨工具生态扩展且静态基准无法跟踪 API 演进的问题。",
                 "url": "https://machinelearning.apple.com/research/agent-seer-synthesizing-scenarios",
                 "source": "Apple Machine Learning Research（RSS）"
+              },
+              {
+                "title": "开放世界多智能体环境中的自主数学发现",
+                "summary": "在无中央协调器的开放世界多智能体环境Station中，来自不同模型家族的AI智能体自主选择研究方向、开展实验并构建共享科学文献。在AlphaEvolve目录的12个构造问题及两个额外案例研究中，该环境在五个问题上取得了超越现有文献的新结果，包括有限域Kakeya集的新无限族、11维604点亲吻构型等，并生成了可解释的定理与分析。所有原始智能体对话、证明和验证代码均已公开。",
+                "url": "https://aihot.virxact.com/items/cmte36nzj02isrog2hwxpthhn",
+                "source": ""
               }
             ]
           },
@@ -1679,9 +1713,9 @@
                 "source": "Databricks：Blog（RSS）"
               },
               {
-                "title": "Gemini 3.5 Transcribe 完整指南：告别 ASR 转录难题",
-                "summary": "Google 推出专用于语音转文字的 Gemini 3.5 Transcribe 模型，主打快速、准确且低成本的转录，原生支持说话人分离和词级毫秒时间戳。该模型支持 85+ 种语言自动识别与代码切换，可通过 custom_vocabulary 传入最多 1，000 个领域术语避免专有名词拼写错误，并提供 Smart Transcription 与 Verbatim 两种模式。",
-                "url": "https://aihot.virxact.com/items/cmtd00dbh09tkroq5v7kcw183",
+                "title": "在本地运行 Qwen3.8 27B：来自我的 Mac Studio 的实际数据",
+                "summary": "Qwen3.8 27B（27.3B 参数，混合注意力架构，262，144 token 上下文窗口，Apache 2.0 开源）在 Mac Studio M3 Ultra 上经 Ollama 以 Q4_K_M 量化（17GB）生成速度约 14 tokens/s。",
+                "url": "https://aihot.virxact.com/items/cmte242e701jdrog2vz9p2cy4",
                 "source": ""
               }
             ]
@@ -3295,7 +3329,7 @@
   },
   "dailyNews": {
     "date": "2026-08-29",
-    "fetchedAt": "2026-08-29 10:08",
+    "fetchedAt": "2026-08-29 16:59",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3397,7 +3431,7 @@
     "history": [
       {
         "date": "2026-08-29",
-        "fetchedAt": "2026-08-29 10:08",
+        "fetchedAt": "2026-08-29 16:59",
         "count": 15,
         "items": [
           {
@@ -4796,12 +4830,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-29T10:08:33",
-    "status": "ok",
-    "nextRun": "2026-08-29T11:08:33",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
