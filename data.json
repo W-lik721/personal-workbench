@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31 13:26",
+  "generatedAt": "2026-08-31 21:38",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,7 +573,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（5 条）：基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
+    "🗞️ 今日 AI 日报已更新（6 条）：DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 09-07 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "4 days ago",
+          "modified": "5 days ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -693,7 +693,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 228
+        "free": 227
       },
       "D": {
         "total": 544,
@@ -1462,11 +1462,22 @@
   ],
   "aiDaily": {
     "date": "2026-08-31",
-    "fetchedAt": "2026-08-31 13:26",
+    "fetchedAt": "2026-08-31 21:38",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-31",
-    "count": 5,
+    "count": 6,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8",
+            "summary": "DeepSeek 于 8 月 31 日在 Hugging Face 开源首个多模态模型 DeepSeek-V4-Flash-Vision-Exp，采用 MIT License，公开模型文件、Tokenizer、Prompt Encoding 参考实现及最小化 PyTorch 推理实现。",
+            "url": "https://aihot.virxact.com/items/cmth7tmq2067orodmh6g0sxie",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "产品发布",
         "items": [
@@ -1517,9 +1528,20 @@
     "history": [
       {
         "date": "2026-08-31",
-        "fetchedAt": "2026-08-31 13:26",
-        "count": 5,
+        "fetchedAt": "2026-08-31 21:38",
+        "count": 6,
         "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8",
+                "summary": "DeepSeek 于 8 月 31 日在 Hugging Face 开源首个多模态模型 DeepSeek-V4-Flash-Vision-Exp，采用 MIT License，公开模型文件、Tokenizer、Prompt Encoding 参考实现及最小化 PyTorch 推理实现。",
+                "url": "https://aihot.virxact.com/items/cmth7tmq2067orodmh6g0sxie",
+                "source": ""
+              }
+            ]
+          },
           {
             "label": "产品发布",
             "items": [
@@ -3261,7 +3283,7 @@
   },
   "dailyNews": {
     "date": "2026-08-31",
-    "fetchedAt": "2026-08-31 13:26",
+    "fetchedAt": "2026-08-31 21:38",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3363,7 +3385,7 @@
     "history": [
       {
         "date": "2026-08-31",
-        "fetchedAt": "2026-08-31 13:26",
+        "fetchedAt": "2026-08-31 21:38",
         "count": 15,
         "items": [
           {
@@ -4762,12 +4784,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-31T13:26:42",
-    "status": "ok",
-    "nextRun": "2026-08-31T14:26:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
