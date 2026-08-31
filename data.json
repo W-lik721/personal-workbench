@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-31 10:41",
+  "generatedAt": "2026-08-31 13:26",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 3,
-    "memory": 50,
+    "memory": 51,
     "knowledge": 9,
     "sessions": 10
   },
@@ -575,7 +575,7 @@
   "guide": [
     "🗞️ 今日 AI 日报已更新（5 条）：基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
-    "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
+    "⏰ 定时任务「工作空间每周安全清理巡检」将于 09-07 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
@@ -585,7 +585,7 @@
       {
         "name": "工作空间每周安全清理巡检",
         "status": "ACTIVE",
-        "next": "08-31 10:06",
+        "next": "09-07 10:06",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=10;BYMINUTE=0"
       },
       {
@@ -597,7 +597,7 @@
       {
         "name": "知识库每周体检",
         "status": "ACTIVE",
-        "next": "08-31 09:04",
+        "next": "09-07 09:04",
         "cron": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=9"
       }
     ],
@@ -697,7 +697,7 @@
       },
       "D": {
         "total": 544,
-        "free": 378
+        "free": 377
       }
     },
     "runtime": "3.13 / 22.22"
@@ -705,20 +705,20 @@
   "sessions": {
     "recent": [
       {
-        "title": "排查网站无法访问原因",
-        "customTitle": "",
-        "display": "排查网站无法访问原因",
-        "status": "completed",
-        "updated": "08-29 21:10",
-        "group": "更早"
-      },
-      {
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-29 10:55",
-        "group": "更早"
+        "updated": "08-31 13:05",
+        "group": "今天"
+      },
+      {
+        "title": "排查网站无法访问原因",
+        "customTitle": "",
+        "display": "排查网站无法访问原因",
+        "status": "completed",
+        "updated": "08-31 11:17",
+        "group": "今天"
       },
       {
         "title": "查询电脑可运行的优于qwen的模型",
@@ -1383,11 +1383,8 @@
       },
       {
         "date": "2026-08-29",
-        "count": 2,
-        "titles": [
-          "排查网站无法访问原因",
-          "学习"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-30",
@@ -1396,8 +1393,11 @@
       },
       {
         "date": "2026-08-31",
-        "count": 0,
-        "titles": []
+        "count": 2,
+        "titles": [
+          "学习",
+          "排查网站无法访问原因"
+        ]
       }
     ]
   },
@@ -1411,15 +1411,15 @@
     "files": [
       {
         "name": "📑 索引.md",
-        "mtime": "08-24 18:20"
+        "mtime": "08-31 11:21"
       },
       {
         "name": "00-导航总览.md",
-        "mtime": "08-24 18:20"
+        "mtime": "08-31 11:21"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-24 18:20"
+        "mtime": "08-31 11:21"
       },
       {
         "name": "AGENTS.md",
@@ -1447,22 +1447,22 @@
     {
       "kind": "kb",
       "name": "kb-index.json",
-      "when": 1787566833.7947123
+      "when": 1788146510.0050192
     },
     {
       "kind": "kb",
       "name": "00-导航总览.md",
-      "when": 1787566833.383319
+      "when": 1788146509.6663296
     },
     {
       "kind": "kb",
       "name": "📑 索引.md",
-      "when": 1787566831.6988068
+      "when": 1788146508.8993585
     }
   ],
   "aiDaily": {
     "date": "2026-08-31",
-    "fetchedAt": "2026-08-31 10:41",
+    "fetchedAt": "2026-08-31 13:26",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-08-31",
     "count": 5,
@@ -1517,7 +1517,7 @@
     "history": [
       {
         "date": "2026-08-31",
-        "fetchedAt": "2026-08-31 10:41",
+        "fetchedAt": "2026-08-31 13:26",
         "count": 5,
         "sections": [
           {
@@ -3261,7 +3261,7 @@
   },
   "dailyNews": {
     "date": "2026-08-31",
-    "fetchedAt": "2026-08-31 10:41",
+    "fetchedAt": "2026-08-31 13:26",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3363,7 +3363,7 @@
     "history": [
       {
         "date": "2026-08-31",
-        "fetchedAt": "2026-08-31 10:41",
+        "fetchedAt": "2026-08-31 13:26",
         "count": 15,
         "items": [
           {
@@ -4762,12 +4762,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-31T10:41:42",
-    "status": "ok",
-    "nextRun": "2026-08-31T11:41:42",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
