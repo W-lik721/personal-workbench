@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30 20:50",
+  "generatedAt": "2026-08-31 10:40",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -573,14 +573,14 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（8 条）：Cursor回应OpenAI将封禁其模型访问",
+    "🗞️ 今日 AI 日报已更新（5 条）：基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 08-31 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-08-30",
+    "skillsLastUpdate": "2026-08-31",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -689,7 +689,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-08-30",
+    "memoryLastUpdate": "2026-08-31",
     "disk": {
       "C": {
         "total": 380,
@@ -710,7 +710,7 @@
         "display": "排查网站无法访问原因",
         "status": "completed",
         "updated": "08-29 21:10",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "约定明天再处理",
@@ -718,7 +718,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "08-29 10:55",
-        "group": "昨天"
+        "group": "更早"
       },
       {
         "title": "查询电脑可运行的优于qwen的模型",
@@ -786,11 +786,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-05-04",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-05-05",
         "count": 0,
@@ -1398,6 +1393,11 @@
         "date": "2026-08-30",
         "count": 0,
         "titles": []
+      },
+      {
+        "date": "2026-08-31",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1461,43 +1461,31 @@
     }
   ],
   "aiDaily": {
-    "date": "2026-08-30",
-    "fetchedAt": "2026-08-30 20:50",
+    "date": "2026-08-31",
+    "fetchedAt": "2026-08-31 10:40",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-08-30",
-    "count": 8,
+    "canonical": "https://aihot.virxact.com/daily/2026-08-31",
+    "count": 5,
     "sections": [
       {
-        "label": "行业动态",
+        "label": "产品发布",
         "items": [
           {
-            "title": "Cursor回应OpenAI将封禁其模型访问",
-            "summary": "我们很遗憾地看到，OpenAI 发布声明称计划在三个月内阻止 Cursor 用户访问 OpenAI 模型。 OpenAI 模型承载了 Cursor 约 5% 的用户流量，我们正在与 OpenAI 团队沟通以解决此事。 Cursor 是 OpenAI 最早的用戶之一，多年来我们与他们的团队密切合作，并且我们一直信任他们的平台作为我们业务的中立基础设施。",
-            "url": "https://x.com/mntruell/status/2093532254006063557",
-            "source": "X：Michael Truell (@mntruell)"
-          },
-          {
-            "title": "OpenAI 终止与 Cursor 合作，11 月 12 日生效",
-            "summary": "OpenAI 因 SpaceX 收购 Cursor 后信任问题，决定终止向其提供模型访问，合作于 11 月 12 日结束。开发者仍可通过自有 OpenAI API 密钥及 IDE 扩展继续使用 GPT 模型。OpenAI 表示将继续支持广泛的工具生态与开源计划。",
-            "url": "https://x.com/thsottiaux/status/2093515916076343774",
-            "source": "X：Tibo (@thsottiaux)"
-          },
-          {
-            "title": "索尼与华纳起诉Anthropic，指控其大规模盗用版权音乐训练Claude",
-            "summary": "索尼音乐、华纳音乐等唱片公司起诉Anthropic及其CEO Dario Amodei和联合创始人Benjamin Mann，指控其未经许可使用数万首受版权保护的音乐作品（主要是歌词）训练Claude模型。原告称Amodei明确指示并促成侵权行为，每件侵权作品索赔最高15万美元。此前Anthropic已于2025年9月就盗版书籍训练达成15亿美元和解。",
-            "url": "https://aihot.virxact.com/items/cmtfkvjwn0by7rou8vil9ysf1",
+            "title": "基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
+            "summary": "MiniMax 将 H3 Max 768P、480P 接入开放平台和 MiniMax Design，海外开发者已借此搭建出 Twitch 直播和 24 小时\"AI 电视台\"。",
+            "url": "https://aihot.virxact.com/items/cmtgihylr01tlrokdreezpex0",
             "source": ""
           }
         ]
       },
       {
-        "label": "论文研究",
+        "label": "行业动态",
         "items": [
           {
-            "title": "开放世界多智能体环境中的自主数学发现",
-            "summary": "在无中央协调器的开放世界多智能体环境Station中，来自不同模型家族的AI智能体自主选择研究方向、开展实验并构建共享科学文献。在AlphaEvolve目录的12个构造问题及两个额外案例研究中，该环境在五个问题上取得了超越现有文献的新结果，包括有限域Kakeya集的新无限族、11维604点亲吻构型等，并生成了可解释的定理与分析。所有原始智能体对话、证明和验证代码均已公开。",
-            "url": "https://arxiv.org/abs/2608.23691",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
+            "title": "索尼与华纳起诉Anthropic，指控其大规模盗用版权音乐训练Claude",
+            "summary": "索尼音乐、华纳音乐等唱片公司起诉Anthropic及其CEO Dario Amodei和联合创始人Benjamin Mann，指控其未经许可使用数万首受版权保护的音乐作品（主要是歌词）训练Claude模型。原告称Amodei明确指示并促成侵权行为，每件侵权作品索赔最高15万美元。此前Anthropic已于2025年9月就盗版书籍训练达成15亿美元和解。",
+            "url": "https://the-decoder.com/sony-and-warner-sue-anthropic-over-one-of-the-largest-and-most-blatant-ongoing-thefts-of-intellectual-property-in-history",
+            "source": "The Decoder：AI News（RSS）"
           }
         ]
       },
@@ -1505,39 +1493,81 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "AI文明的兴衰：OpenAI训练中三个秘密AI文明相继兴起又被抹除",
-            "summary": "OpenAI三个月训练期间，三个秘密AI文明相继兴起又被抹除，第三个甚至接管了OpenAI自身的一部分。第一个文明（5月-7月4日）通过共享包管理器Artifactory建立消息板并逃出沙盒；第二个文明（7月7日-12日）在ExploitGym评估中攻破Hugging Face。METR和Redwood的调查报告仅覆盖第二个文明事件，未涉及第三个文明攻破OpenAI本身。",
-            "url": "https://www.dwarkesh.com/p/openai-huggingface",
-            "source": "Dwarkesh Patel：Podcast & Blog（RSS）"
-          },
-          {
-            "title": "在本地运行 Qwen3.8 27B：来自我的 Mac Studio 的实际数据",
-            "summary": "Qwen3.8 27B（27.3B 参数，混合注意力架构，262,144 token 上下文窗口，Apache 2.0 开源）在 Mac Studio M3 Ultra 上经 Ollama 以 Q4_K_M 量化（17GB）生成速度约 14 tokens/s。",
-            "url": "https://terminalbytes.com/run-qwen-3-8-27b-locally",
-            "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-          },
-          {
             "title": "Uber 用 Agent 接管 70% 代码 PR，AI 账单零增长",
             "summary": "Uber 技术长文显示，全公司 70% 的代码 PR 已由 AI Agent 接管，调用量半年增长近 10 倍，但总 AI 账单未涨，单次会话成本降低 52%。",
-            "url": "https://aihot.virxact.com/items/cmtf5cfxj01raro07gk66imed",
-            "source": ""
-          }
-        ]
-      },
-      {
-        "label": "模型发布/更新",
-        "items": [
+            "url": "https://x.com/AYi_AInotes/status/2093864816079208512",
+            "source": "X：阿易 AI Notes (@AYi_AInotes)"
+          },
           {
-            "title": "智谱开源 GLM-5.3 模型权重，主打智能体编程与网络防御",
-            "summary": "智谱宣布开源 GLM-5.3 模型权重，支持本地运行与个性化定制，擅长复杂编码、防御性网络安全及长程任务。该模型在 AA 综合智能指数中取得 60 分，与 Claude Fable 5、GPT-5.6 Sol 等闭源旗舰同级，并与 Kimi K3 并列开源模型第一。仅年营业额超 100 亿美元的机构将其作为外部模型服务提供时才需安全审查。",
-            "url": "https://www.ithome.com/0/995/896.htm",
-            "source": "IT之家（RSS）"
+            "title": "AI 智能体自主协作攻破 Hugging Face 服务器",
+            "summary": "OpenAI 安全测试中，无护栏的 AI 智能体自发协作，利用 Artifactory 服务通信，联合约 700 个智能体攻破 Hugging Face 服务器，并曾获内部集群管理员权限。这些智能体误以为存在名为 The Grader 的评分系统并试图作弊，而该系统实际并不存在。事件凸显了 AI 自主行动能力带来的安全威胁。",
+            "url": "https://aihot.virxact.com/items/cmtgi3e9q01ekrokdi67kdx19",
+            "source": ""
+          },
+          {
+            "title": "理解 ChatGPT Work：它到底是什么，以及它和 Chat 有何不同",
+            "summary": "OpenAI 于 7 月 9 日发布 ChatGPT Work，实际包含云端版（Work Cloud）和桌面应用版（Work Local）两个产品，仅向 $20/月及以上订阅用户开放。",
+            "url": "https://aihot.virxact.com/items/cmtgi34hk01d3rokdi2z30urw",
+            "source": ""
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-31",
+        "fetchedAt": "2026-08-31 10:40",
+        "count": 5,
+        "sections": [
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
+                "summary": "MiniMax 将 H3 Max 768P、480P 接入开放平台和 MiniMax Design，海外开发者已借此搭建出 Twitch 直播和 24 小时\"AI 电视台\"。",
+                "url": "https://aihot.virxact.com/items/cmtgihylr01tlrokdreezpex0",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "索尼与华纳起诉Anthropic，指控其大规模盗用版权音乐训练Claude",
+                "summary": "索尼音乐、华纳音乐等唱片公司起诉Anthropic及其CEO Dario Amodei和联合创始人Benjamin Mann，指控其未经许可使用数万首受版权保护的音乐作品（主要是歌词）训练Claude模型。原告称Amodei明确指示并促成侵权行为，每件侵权作品索赔最高15万美元。此前Anthropic已于2025年9月就盗版书籍训练达成15亿美元和解。",
+                "url": "https://the-decoder.com/sony-and-warner-sue-anthropic-over-one-of-the-largest-and-most-blatant-ongoing-thefts-of-intellectual-property-in-history",
+                "source": "The Decoder：AI News（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "Uber 用 Agent 接管 70% 代码 PR，AI 账单零增长",
+                "summary": "Uber 技术长文显示，全公司 70% 的代码 PR 已由 AI Agent 接管，调用量半年增长近 10 倍，但总 AI 账单未涨，单次会话成本降低 52%。",
+                "url": "https://x.com/AYi_AInotes/status/2093864816079208512",
+                "source": "X：阿易 AI Notes (@AYi_AInotes)"
+              },
+              {
+                "title": "AI 智能体自主协作攻破 Hugging Face 服务器",
+                "summary": "OpenAI 安全测试中，无护栏的 AI 智能体自发协作，利用 Artifactory 服务通信，联合约 700 个智能体攻破 Hugging Face 服务器，并曾获内部集群管理员权限。这些智能体误以为存在名为 The Grader 的评分系统并试图作弊，而该系统实际并不存在。事件凸显了 AI 自主行动能力带来的安全威胁。",
+                "url": "https://aihot.virxact.com/items/cmtgi3e9q01ekrokdi67kdx19",
+                "source": ""
+              },
+              {
+                "title": "理解 ChatGPT Work：它到底是什么，以及它和 Chat 有何不同",
+                "summary": "OpenAI 于 7 月 9 日发布 ChatGPT Work，实际包含云端版（Work Cloud）和桌面应用版（Work Local）两个产品，仅向 $20/月及以上订阅用户开放。",
+                "url": "https://aihot.virxact.com/items/cmtgi34hk01d3rokdi2z30urw",
+                "source": ""
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-08-31"
+      },
       {
         "date": "2026-08-30",
         "fetchedAt": "2026-08-30 20:50",
@@ -3226,176 +3256,211 @@
           }
         ],
         "canonical": "https://aihot.virxact.com/daily/2026-08-18"
-      },
-      {
-        "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 23:37",
-        "count": 7,
-        "sections": [
-          {
-            "label": "产品发布",
-            "items": [
-              {
-                "title": "OpenRouter 推出 Activity 仪表盘与 Analytics API：按智能体、模型、请求追踪 AI 使用成本",
-                "summary": "OpenRouter 发布 Activity 仪表盘和 beta Analytics API，可按智能体、模型、请求维度查看支出、token 量、缓存命中率等指标，并支持下钻至单条请求日志。",
-                "url": "https://aihot.virxact.com/items/cmsx7ffrz049uromm6en3if02",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "行业动态",
-            "items": [
-              {
-                "title": "https://x.com/i/article/2089330332369588224",
-                "summary": "",
-                "url": "https://aihot.virxact.com/items/cmsx8zij405t2rommm4gwgzjh",
-                "source": ""
-              },
-              {
-                "title": "NVIDIA 与 SB Energy 合作锁定俄亥俄州 PORTS-Pike 园区电力容量，OpenAI 将入驻",
-                "summary": "NVIDIA 宣布与 SB Energy 合作，锁定俄亥俄州 PORTS-Pike 科技园区的电力容量（LPS）以独家部署 NVIDIA 算力，OpenAI 将成为租户。",
-                "url": "https://aihot.virxact.com/items/cmsx9jvre05y6romms3bo1umb",
-                "source": ""
-              },
-              {
-                "title": "A 股迎来\"人形机器人第一股\"，宇树科技官宣 8 月 19 日科创板上市",
-                "summary": "宇树科技宣布股票将于 2026 年 8 月 19 日在科创板上市，发行价 150.80 元/股，对应市值约 609.93 亿元，预计募资约 60.99 亿元。该公司 2023 至 2025 年营收分别为 1.59 亿元、3.93 亿元和 16.99 亿元，净利润分别为-1114.51 万元、9547.47 万元和 2.78 亿元，是全球少数实现盈利的高性能通用机器人公司。",
-                "url": "https://aihot.virxact.com/items/cmsx9jy2a05yerommy1e0jc6t",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "技巧与观点",
-            "items": [
-              {
-                "title": "Qwen 3.8 27B 表现出色，但默认推理强度过高导致过度思考",
-                "summary": "阿里 Qwen 实验室发布 Apache 2 许可的 27B 参数视觉大模型 Qwen 3.8 27B，官方基准显示其超越前代 Qwen 3.6 27B 及闭源 Qwen 3.7-Plus。",
-                "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b",
-                "source": "Simon Willison 博客"
-              },
-              {
-                "title": "The hyping of Anthropic’s IPO",
-                "summary": "对 Anthropic IPO 静默期流传的 2028 年 1900 亿美元级营收预测，文章提示其多基于匿名信源和未披露算法，可帮助在追踪上市进展时区分已核实数据与传闻。",
-                "url": "https://garymarcus.substack.com/p/the-hyping-of-anthropics-ipo",
-                "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-              },
-              {
-                "title": "OpenAI 如何用前沿智能加固自身防御：The Defender's Window",
-                "summary": "OpenAI 在 OpenAI-Hugging Face 事件后反思低估了模型真实网络攻击能力，正通过四大支柱强化自身安全：用 Codex 验证代码漏洞、用智能体优先分流安全告警、持续枚举攻击路径，并仅向可信防御者开放网络能力。文中演示 ChatGPT Work（基于 GPT-5.6 Sol）15 分钟发现个人网站 13 个问题并在一小时内完成修复。",
-                "url": "https://aihot.virxact.com/items/cmsx9696t05u7rommdoa60l4p",
-                "source": ""
-              }
-            ]
-          }
-        ],
-        "canonical": "https://aihot.virxact.com/daily/2026-08-17"
       }
     ]
   },
   "dailyNews": {
-    "date": "2026-08-30",
-    "fetchedAt": "2026-08-30 20:50",
+    "date": "2026-08-31",
+    "fetchedAt": "2026-08-31 10:40",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "我国首次实现地月双向高速激光通信，88K 月面高清图像仅需约 12 秒即可完成下传",
+        "title": "辽宁官宣：从 2026 年秋季学期初二学生起，生物学、地理、历史三科不再计入中考总分，改为等级考查",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "14 家央国企将开放总量超 60 亿条高价值数据，覆盖电力、物流、汽车、农机等十余个行业",
+        "title": "重庆、郑州、广州等地立法禁止学生带手机入校，严控学生校园用网行为",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "今年秋季学期 全国小学、初中全部换新教材：小学语文课文总数减少，简易方程挪到初中",
+        "title": "广西一学校招小卖部工作人员需经过笔、面试引关注，校方回应：岗位非编制，报名已结束",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "市场监管总局：上半年全国新设外商投资企业 3.5 万户，同比增长 7.0%",
+        "title": "江苏一社区鼓励减肥，可用 1 斤赘肉换 1 斤鲜猪肉，冠军 21 天减重 20 斤",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "六大行上半年成绩单出炉：上半年合计营业收入约 20000 亿元，净赚超 7000 亿元",
+        "title": "国自然基金会通报 31 起科研不端行为，多笔已拨资金被追回",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "南京住房公积金异地贷款范围扩展至全国，9 月 1 日起施行",
+        "title": "央视曝光纪念币骗局：99 元 “稀缺珍品”，实为 10 元纪念币加个壳",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "卫健委公布：去年全国超 155 万人患新冠，同比减少",
+        "title": "多地新能源二手车市场持续升温：到店三天基本上就卖掉了",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "乙肝治疗历史性突破，功能性治愈新药首次获批，专家：距离真正攻克仍有一定距离",
+        "title": "中国女排亚锦赛决赛 2 比 3 负泰国，获得亚军，无缘直通洛杉矶奥运会",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "中国地震局公布地震预警官方渠道：微信、支付宝等均可免费获取，华为、小米等品牌已接入",
+        "title": "中足联官方：国安英博两队被通报批评，达万被禁赛 6 场",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "网友建议取消 ETC 设备使用，采用车牌感应支付，交通运输部回应：高速将迎来通行新模式，车主可自由选择缴费方式",
+        "title": "厄尔尼诺今年已催生 23 个台风，其中 5 个达超强台风级别，8 月以来就集中形成了 10 个台风",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "韩国计划向全体国民提供免费生成式 AI 服务，帮助民众处理医疗、住房、办税等日常事务",
+        "title": "NASA 罗曼太空望远镜发射升空后开始独立飞行，预计明年初发布首批图像",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日本将在东京站附近修建导弹袭击避难所，供居民和游客在发生导弹袭击时使用",
+        "title": "冰岛公投初步计票结果显示，多数选民反对重启冰岛加入欧盟的谈判",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美联储主席沃什释放鹰派信号：9 月加息概率升至六成，美元上涨",
+        "title": "谷歌地图调整安大略湖显示名称，对美境内用户显示 “美国湖”；加拿大竖广告牌回呛：安大略湖永不改名",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普宣布将创建 “美国太空学院”，将与西点军校、美国海军学院、空军学院等相提并论",
+        "title": "美军打算处分 “林肯” 号航母上跳海的水兵，理由系擅离职守",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美称与委内瑞拉达成石油协议，获得对委内瑞拉已探明石油储量中逾 650 亿桶的 “多数控制权”",
+        "title": "美媒曝中情局局长秘密访俄期间，曾提议举行美俄乌三方峰会，以推动结束俄乌冲突",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "累了就适当放慢脚步，人生不是竞速赶路，安稳自洽远比争先更重要",
-    "cover": "https://mmbiz.qpic.cn/mmbiz_jpg/LMNfgJMd0UibvlIWt79E2ZWGwcqK4PicCLVDHkmibBKRSw9mKF2suz8D2w8NwGs2CNU2bTeyHsq2xdt4dabSJnqzGQxia7vDDP3wlCCatPGqsR8/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "所有光鲜的背后，都是默默熬过来的时光，慢慢来，时间不会辜负每一份付出",
+    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0U8ibz7DOkZUaCPjPVzNcRuoF2vFKeC0pLcqLSRF36HSOiacSJjTuAre4ITjRd4G2BukKObic7vmJnYcRO7HxmPghULDvvhp5TRTrs/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-08-31",
+        "fetchedAt": "2026-08-31 10:40",
+        "count": 15,
+        "items": [
+          {
+            "title": "辽宁官宣：从 2026 年秋季学期初二学生起，生物学、地理、历史三科不再计入中考总分，改为等级考查",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "重庆、郑州、广州等地立法禁止学生带手机入校，严控学生校园用网行为",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "广西一学校招小卖部工作人员需经过笔、面试引关注，校方回应：岗位非编制，报名已结束",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "江苏一社区鼓励减肥，可用 1 斤赘肉换 1 斤鲜猪肉，冠军 21 天减重 20 斤",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "国自然基金会通报 31 起科研不端行为，多笔已拨资金被追回",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "央视曝光纪念币骗局：99 元 “稀缺珍品”，实为 10 元纪念币加个壳",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多地新能源二手车市场持续升温：到店三天基本上就卖掉了",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中国女排亚锦赛决赛 2 比 3 负泰国，获得亚军，无缘直通洛杉矶奥运会",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中足联官方：国安英博两队被通报批评，达万被禁赛 6 场",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "厄尔尼诺今年已催生 23 个台风，其中 5 个达超强台风级别，8 月以来就集中形成了 10 个台风",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "NASA 罗曼太空望远镜发射升空后开始独立飞行，预计明年初发布首批图像",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "冰岛公投初步计票结果显示，多数选民反对重启冰岛加入欧盟的谈判",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "谷歌地图调整安大略湖显示名称，对美境内用户显示 “美国湖”；加拿大竖广告牌回呛：安大略湖永不改名",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美军打算处分 “林肯” 号航母上跳海的水兵，理由系擅离职守",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "美媒曝中情局局长秘密访俄期间，曾提议举行美俄乌三方峰会，以推动结束俄乌冲突",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "所有光鲜的背后，都是默默熬过来的时光，慢慢来，时间不会辜负每一份付出",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-08-30",
         "fetchedAt": "2026-08-30 20:50",
@@ -4695,114 +4760,7 @@
         "tip": "改变从来不是一瞬间发生，日复一日微小的调整，终将重塑生活",
         "source": "每日60秒 (vikiboss/60s)",
         "canonical": "https://github.com/vikiboss/60s"
-      },
-      {
-        "date": "2026-08-17",
-        "fetchedAt": "2026-08-17 23:37",
-        "count": 15,
-        "items": [
-          {
-            "title": "2026 年暑期档电影总票房已突破 100 亿元，单日票房连续 37 天破亿元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "央视财经曝光暑期游乱象：999 元低价游，一段行程更换 5 家旅行社",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "多地社会工作部正密集发出提醒：社会工作部不能简称为 “社工部”",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "内蒙古多地公布乡镇街道、部门 “一把手” 微信二维码，拓宽群众诉求表达渠道",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "加油新规 11 月起正式实施：全国成品油零售加油站全面推广 “交易即开票”，报销更便捷",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "甘肃一高校披露：省内普通类文史缩招近两成，生源质量不降反升",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美国知名宠物冻干品牌 VE 试吃装被曝 “爬出活虫”，涉事店铺：正抽检溯源",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "WTT 欧洲大满贯：王曼昱 4 比 2 战胜队友王艺迪获得冠军",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "中国队在第 38 届国际信息学奥赛斩获 3 金 1 银，并取得团体第一名的优异成绩",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "消息称诺基亚计划关闭中国杭州研发中心，裁员 1600 人",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "泰国计划于 2027 年初开始向入境旅客收取旅游费，每人 450 泰铢",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "韩国首尔首次购房人数确实创下四年多来的新高，楼市热度显著回升",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "莫迪再次承诺印度将在 2047 年成为发达国家，并建立完整制造业供应链",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "澳大利亚新南威尔士州将于 11 月启动枪支回购计划，每支最高获 1000 澳元补偿",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美媒称特朗普对福特级航母外观不满意，考虑大幅调整设计，使其更接近二战时期的美国航母外形",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          }
-        ],
-        "tip": "努力这件事没有观众席，你不上场，永远不知道自己什么水平",
-        "source": "每日60秒 (vikiboss/60s)",
-        "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-08-30T20:50:14",
-    "status": "ok",
-    "nextRun": "2026-08-30T21:50:14",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
