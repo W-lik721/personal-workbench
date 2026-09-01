@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-01 10:40",
+  "generatedAt": "2026-09-01 13:01",
   "kpi": {
     "skills": 65,
     "automations": 3,
     "models": 3,
-    "memory": 51,
+    "memory": 52,
     "knowledge": 9,
-    "sessions": 10
+    "sessions": 8
   },
   "skills": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "name": "agent-chat",
-      "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task 协调。提供 join / send / fyi / history / members / catchup / leave 子命令，基于共享 JSONL 日志 + .NET 文件锁，零网络、零 daemon。适合多 agent 并行开发时彼此通知接口变更、汇报阻塞、共享状态。",
+      "desc": "让同一台 Windows 机器上的多个 WorkBuddy 会话 / agent 像 Slack 一样互相发消息、mid-task",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：agent-chat",
       "usage": 0,
@@ -51,7 +51,7 @@
     },
     {
       "name": "ascetic-breaker",
-      "desc": "\"苦行僧破执术（元认知 Skill）。打破 AI 的'苦行僧模式'——仅依赖当前上下文埋头硬推、无视外部资源、重复造轮子、信息不足仍强行编造。触发信号：(1)任务涉及代码编写/方案设计/调研分析但未先检索现有资源；(2)连续多轮同一问题反复推理未引入外部新信息；(3)上下文缺版本号/API文档/行业数据却仍继续输出；(4)用'应该是''大概''通常'填充关键事实缺口；(5)正在从头实现可能有成熟库的功能。核心价值：缺口检测→资源路由→方案评分→交叉校验→假设显式化→卡壳自动触发。调研类任务委托 web-access/agent-reach，代码类用 WebSearch/WebFetch 定向查官方文档/GitHub，项目内复用优先 Glob/Grep。与用户红线'写代码/接口字段禁止靠猜'一致。\"",
+      "desc": "苦行僧破执术（元认知 Skill）。打破 AI",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：ascetic-breaker",
       "usage": 0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "citation-management",
-      "desc": "Manage BibTeX citations for LaTeX papers. Harvest missing citations from a draft using Semantic Scholar, validate cite keys against .bib files, deduplicate entries, and format bibliography. Use when working with references, BibTeX, or citations.",
+      "desc": "Manage BibTeX citations for LaTeX papers. Harvest missing citations",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：citation-management",
       "usage": 0,
@@ -91,7 +91,7 @@
     },
     {
       "name": "daily-insight",
-      "desc": "基于工作台真实家底（已装 skill 数 / 知识库文件数 / 模型数·本机数）生成「今日灵感」三件套——① 1-2 个今天可动手的小任务 ② 一条结合已装 skill 的 agent 学习路径 ③ 一个值得关注的 AI 趋势。当用户说\"生成今日灵感\"\"给我今日灵感\"\"今日灵感\"时触发。绝不编造数字，读数失败即报错。",
+      "desc": "基于工作台真实家底（已装 skill 数 / 知识库文件数 / 模型数·本机数）生成「今日灵感」三件套——① 1-2",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：daily-insight",
       "usage": 0,
@@ -123,7 +123,7 @@
     },
     {
       "name": "en-to-zh-translator",
-      "desc": "\"Translate English text files (.txt, .md) to Chinese for language learning and translation practice. Also handles formatted documents (PDF/DOCX/PPTX/EPUB/HTML) by first converting them to Markdown with the markitdown MCP server. Use when the user asks to translate a text file to Chinese, create a Chinese version of an English document, or generate bilingual materials for translation training. The translation preserves sentence structure and combines broken sentences into complete lines.\"",
+      "desc": "Translate English text files (.txt, .md) to Chinese for language",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：en-to-zh-translator",
       "usage": 0,
@@ -155,7 +155,7 @@
     },
     {
       "name": "github",
-      "desc": "\"Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.\"",
+      "desc": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`,",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github",
       "usage": 0,
@@ -163,7 +163,7 @@
     },
     {
       "name": "github-pages-auto-deploy",
-      "desc": "\"Configure automatic website deployment to GitHub Pages with GitHub Actions and custom domain support. Use when a static site should deploy automatically after code is pushed.\"",
+      "desc": "Configure automatic website deployment to GitHub Pages with GitHub",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：github-pages-auto-deploy",
       "usage": 0,
@@ -179,7 +179,7 @@
     },
     {
       "name": "hallmark",
-      "desc": "\"Anti-AI-slop design skill for greenfield pages, audits, redesigns, and design extraction from URLs or screenshots. Use when the user asks to build a new app or landing page, wants to redesign something, invokes Hallmark by name, or uses audit/redesign/study.\"",
+      "desc": "Anti-AI-slop design skill for greenfield pages, audits, redesigns,",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：hallmark",
       "usage": 0,
@@ -187,7 +187,7 @@
     },
     {
       "name": "idea-landing-3prompt",
-      "desc": ">-",
+      "desc": "想法落地三 Prompt 工作流总入口（单一大类）。内置四种模式，按「模式路由表」自动派发： ①",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：idea-landing-3prompt",
       "usage": 0,
@@ -195,7 +195,7 @@
     },
     {
       "name": "impeccable",
-      "desc": "|",
+      "desc": ">",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：impeccable",
       "usage": 0,
@@ -227,7 +227,7 @@
     },
     {
       "name": "last30days",
-      "desc": "\"Research what people actually say about ANY topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources. Boundary: for AI-SPECIFIC news / daily AI digest / GitHub AI repo trends, prefer wb-ai-radar (dedicated AI entry); last30days = general cross-topic discourse research (any subject, multi-platform engagement), not AI-only.\"",
+      "desc": "\"Research what people actually say about ANY topic in the last 30",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：last30days",
       "usage": 0,
@@ -235,7 +235,7 @@
     },
     {
       "name": "latex-paper-en",
-      "desc": "English LaTeX assistant for existing .tex journal or conference papers. Use for compile repair, venue formatting, bibliography/citation checks, section writing, logic, related work, tables, pseudocode, de-AI polish, translation, adaptation, and submission readiness; use latex-thesis-zh for Chinese theses and paper-audit for critique.",
+      "desc": "English LaTeX assistant for existing .tex journal or conference",
       "category": "academic-writing",
       "cmd": "打开工作台后调用 skill：latex-paper-en",
       "usage": 0,
@@ -243,7 +243,7 @@
     },
     {
       "name": "latex-thesis-zh",
-      "desc": "中文 LaTeX 学位论文助手，面向已有 .tex 硕博论文工程：编译诊断、GB/T 7714、模板识别、结构/格式/公式断行、术语一致性、逻辑与文献综述、标题优化、去 AI 味、盲审隐匿、对照学校规范逐项终检。触发词：学位论文/毕业论文/硕士/博士论文。英文论文用 latex-paper-en，审稿总评用 paper-audit。",
+      "desc": "中文 LaTeX 学位论文助手，面向已有 .tex 硕博论文工程：编译诊断、GB/T",
       "category": "academic-writing",
       "cmd": "打开工作台后调用 skill：latex-thesis-zh",
       "usage": 0,
@@ -251,7 +251,7 @@
     },
     {
       "name": "literature-review",
-      "desc": "Conduct comprehensive literature reviews using multi-perspective dialogue simulation. Generate diverse expert personas, conduct grounded Q&A conversations, and synthesize findings into structured knowledge. Use when starting a new research project or writing a survey section.",
+      "desc": "Conduct comprehensive literature reviews using multi-perspective",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：literature-review",
       "usage": 0,
@@ -323,7 +323,7 @@
     },
     {
       "name": "planning-with-files",
-      "desc": "\"Manus-style persistent file-based planning for AI coding agents: keeps task_plan.md, findings.md, and progress.md on disk so work survives context loss and /clear. Use when asked to plan out, break down, or organize a multi-step project, research task, or any work requiring 5+ tool calls. Supports automatic session recovery after /clear.\"",
+      "desc": "\"Manus-style persistent file-based planning for AI coding agents:",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：planning-with-files",
       "usage": 0,
@@ -379,7 +379,7 @@
     },
     {
       "name": "superpowers",
-      "desc": "\"通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子 agent、代码评审、用 git worktree 隔离——都应先调用对应子技能。触发词：superpowers、brainstorm、debug、写计划、TDD、并行 agent、code review、worktree、验证完成。本包内置 14 个经实战调优的子技能（见 techniques/），主 agent 应先读 using-superpowers 的原则，再按需读取具体技术文件。【路由】通用工程默认入口；点名 Karpathy / AK 风格走 karpathy-kit，agent/skill 架构设计走 agent-design-kit。\"",
+      "desc": "通用 AI 工程方法论技能包（obra/superpowers）。开始任何工程任务——写功能、调试、做计划、写测试、并行派发子",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：superpowers",
       "usage": 0,
@@ -387,7 +387,7 @@
     },
     {
       "name": "tencent-video-capture",
-      "desc": "Download videos from Tencent share links (微信视频号 weixin.qq.com/sph, channels.weixin.qq.com, or QQ频道 pd.qq.com) whose real video URL is hidden behind a JS app and not in the page source. Use when curl/WebFetch can't find a direct mp4. (视频号/WeChat Channels/QQ频道 视频下载)",
+      "desc": "Download videos from Tencent share links (微信视频号 weixin.qq.com/sph,",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：tencent-video-capture",
       "usage": 0,
@@ -435,7 +435,7 @@
     },
     {
       "name": "wb-design-kit",
-      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简 UI、网站升级重构、品牌图像生成。触发场景覆盖：高端设计/agency 风格/Awwwards 级视觉设计、image to code/图生代码/设计稿转前端、前端图像/premium 网页参考图生成、工业野兽派/brutalist/Swiss 排版/战术终端 UI、极简 UI/minimalist/编辑风网页/bento 布局/干净 UI、网站升级/重构/redesign/UI 改版/去除 AI 味设计/提升视觉质量、品牌图/brand-kit/Logo 系统设计/品牌规范板/视觉世界提案。中文同义：品牌视觉、网站改版、设计优化、高端落地页、视觉升级。【路由】本 skill 是设计/前端视觉总入口；落地页/作品集/网页改版专项请用 design-taste-frontend，产品 UI/组件/海报+设计评审+动效请用 impeccable。三者互补不冲突。",
+      "desc": "设计/前端视觉总入口：高端视觉设计、图生代码、前端图像、野兽派/极简",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：wb-design-kit",
       "usage": 0,
@@ -443,7 +443,7 @@
     },
     {
       "name": "wb-doc-kit",
-      "desc": "\"文档生成总入口：①视觉 PDF 生成（minimax-pdf）：从内容【从零生成】视觉PDF/报告PDF/设计感PDF/排版美化/提案/简历/封面/画册（注意：是生成设计稿，不是编辑已有 PDF——编辑/合并/拆分/提取/OCR 已有 PDF 请用 pdf skill）②Office 文档 docx/xlsx/pptx 创建/检查/修改（officecli）：创建 Word/Excel/PPT/Office 文档、检查格式、查问题、加图表、修改文档、填充表单、转换\"",
+      "desc": "文档生成总入口：①视觉 PDF",
       "category": "document-generation",
       "cmd": "打开工作台后调用 skill：wb-doc-kit",
       "usage": 0,
@@ -499,7 +499,7 @@
     },
     {
       "name": "workbuddy-bluebook",
-      "desc": "|",
+      "desc": ">",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：workbuddy-bluebook",
       "usage": 0,
@@ -693,7 +693,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 236
+        "free": 234
       },
       "D": {
         "total": 544,
@@ -709,24 +709,8 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "08-31 13:05",
-        "group": "昨天"
-      },
-      {
-        "title": "排查网站无法访问原因",
-        "customTitle": "",
-        "display": "排查网站无法访问原因",
-        "status": "completed",
-        "updated": "08-31 11:17",
-        "group": "昨天"
-      },
-      {
-        "title": "查询电脑可运行的优于qwen的模型",
-        "customTitle": "",
-        "display": "查询电脑可运行的优于qwen的模型",
-        "status": "completed",
-        "updated": "08-26 15:54",
-        "group": "更早"
+        "updated": "09-01 11:53",
+        "group": "今天"
       },
       {
         "title": "整理知识库并做系统体检",
@@ -1361,10 +1345,8 @@
       },
       {
         "date": "2026-08-26",
-        "count": 1,
-        "titles": [
-          "查询电脑可运行的优于qwen的模型"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-27",
@@ -1388,16 +1370,15 @@
       },
       {
         "date": "2026-08-31",
-        "count": 2,
-        "titles": [
-          "学习",
-          "排查网站无法访问原因"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-09-01",
-        "count": 0,
-        "titles": []
+        "count": 1,
+        "titles": [
+          "学习"
+        ]
       }
     ]
   },
@@ -1445,6 +1426,216 @@
   },
   "weekly": [
     {
+      "kind": "skill",
+      "name": "workbuddy-bluebook",
+      "when": 1788230580.834188,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wechat-miniprogram",
+      "when": 1788230580.8257258,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-legal-policy",
+      "when": 1788230580.8112435,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-doc-kit",
+      "when": 1788230580.8012633,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-design-kit",
+      "when": 1788230580.7911665,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "wb-ai-radar",
+      "when": 1788230580.7813416,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "url-redirect-vuln",
+      "when": 1788230580.7682357,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "tencent-video-capture",
+      "when": 1788230580.609433,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "superpowers",
+      "when": 1788230580.4489615,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "skill-trigger-audit",
+      "when": 1788230580.3671057,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "product-manager-suite",
+      "when": 1788230580.1479542,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ponytail",
+      "when": 1788230579.8933973,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "planning-with-files",
+      "when": 1788230579.7688494,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-pipeline",
+      "when": 1788230579.5380192,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "paper-checker__skillhub",
+      "when": 1788230579.38061,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "literature-review",
+      "when": 1788230579.2291462,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-thesis-zh",
+      "when": 1788230579.15321,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "latex-paper-en",
+      "when": 1788230579.1426253,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "last30days",
+      "when": 1788230579.1314569,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "job-hunting-hub__skillhub",
+      "when": 1788230579.1178403,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "when": 1788230579.1061814,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "idea-landing-3prompt",
+      "when": 1788230579.094113,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "hallmark",
+      "when": 1788230579.0825183,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "github-pages-auto-deploy",
+      "when": 1788230579.0697246,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "github",
+      "when": 1788230579.058153,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "full-output-enforcement",
+      "when": 1788230579.0475314,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "en-to-zh-translator",
+      "when": 1788230579.0324042,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "design-taste-frontend",
+      "when": 1788230579.0191274,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "daily-insight",
+      "when": 1788230579.0063448,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "citation-management",
+      "when": 1788230578.9915264,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "ascetic-breaker",
+      "when": 1788230578.96515,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "andrej-karpathy-skills__github",
+      "when": 1788230578.9514842,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-design-kit",
+      "when": 1788230578.8792005,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-chat",
+      "when": 1788230578.8680203,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "agency-agents__github",
+      "when": 1788230578.8574417,
+      "scope": "本机"
+    },
+    {
       "kind": "kb",
       "name": "kb-index.json",
       "when": 1788146510.0050192
@@ -1462,7 +1653,7 @@
   ],
   "aiDaily": {
     "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 10:40",
+    "fetchedAt": "2026-09-01 13:01",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-01",
     "count": 9,
@@ -1551,7 +1742,7 @@
     "history": [
       {
         "date": "2026-09-01",
-        "fetchedAt": "2026-09-01 10:40",
+        "fetchedAt": "2026-09-01 13:01",
         "count": 9,
         "sections": [
           {
@@ -3246,7 +3437,7 @@
   },
   "dailyNews": {
     "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 10:40",
+    "fetchedAt": "2026-09-01 13:01",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3348,7 +3539,7 @@
     "history": [
       {
         "date": "2026-09-01",
-        "fetchedAt": "2026-09-01 10:40",
+        "fetchedAt": "2026-09-01 13:01",
         "count": 15,
         "items": [
           {
@@ -4747,12 +4938,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-01T10:40:40",
-    "status": "ok",
-    "nextRun": "2026-09-01T11:40:40",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
