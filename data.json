@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01 13:01",
+  "generatedAt": "2026-09-01 17:59",
   "kpi": {
     "skills": 65,
     "automations": 3,
@@ -632,7 +632,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "5 days ago",
+          "modified": "6 days ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -1653,7 +1653,7 @@
   ],
   "aiDaily": {
     "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 13:01",
+    "fetchedAt": "2026-09-01 17:59",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-01",
     "count": 9,
@@ -1742,7 +1742,7 @@
     "history": [
       {
         "date": "2026-09-01",
-        "fetchedAt": "2026-09-01 13:01",
+        "fetchedAt": "2026-09-01 17:59",
         "count": 9,
         "sections": [
           {
@@ -3437,7 +3437,7 @@
   },
   "dailyNews": {
     "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 13:01",
+    "fetchedAt": "2026-09-01 17:59",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3539,7 +3539,7 @@
     "history": [
       {
         "date": "2026-09-01",
-        "fetchedAt": "2026-09-01 13:01",
+        "fetchedAt": "2026-09-01 17:59",
         "count": 15,
         "items": [
           {
@@ -4938,12 +4938,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-01T13:01:45",
-    "status": "ok",
-    "nextRun": "2026-09-01T14:01:45",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
