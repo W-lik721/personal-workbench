@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-01 18:02",
+  "generatedAt": "2026-09-02 14:13",
   "kpi": {
-    "skills": 65,
+    "skills": 66,
     "automations": 3,
     "models": 3,
     "memory": 52,
@@ -54,6 +54,14 @@
       "desc": "苦行僧破执术（元认知 Skill）。打破 AI",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：ascetic-breaker",
+      "usage": 0,
+      "lastUsed": ""
+    },
+    {
+      "name": "browser-skill",
+      "desc": "|",
+      "category": "通用能力",
+      "cmd": "打开工作台后调用 skill：browser-skill",
       "usage": 0,
       "lastUsed": ""
     },
@@ -139,7 +147,7 @@
     },
     {
       "name": "file-hygiene",
-      "desc": "\"文件整理与清理（Windows 安全版）。扫描目录（只读）→ 列出整理/清理方案 → 用户批准 → 安全执行（移动不覆盖、删除进回收站可反悔）。当用户说「整理下载文件夹」「清理一下 D 盘」「扫描大文件/重复文件/安装包残留」「删掉这些安装包」「帮我把文件归类」或任何文件整理/清理/瘦身请求时触发。核心理念：先审计、批准后才动、一切可回滚，绝不盲删。\"",
+      "desc": "\"文件整理与清理（Windows 安全版）。扫描目录（只读）→ 列出整理/清理方案 → 用户批准 → 安全执行（移动不覆盖、删除进回收站可反悔）。当用户说「整理下载文件夹」「清理一下 D 盘」「扫描大文件/重复文件/安装包残留」「删掉这些安装包」「帮我把文件归类」「删掉这个文件夹」「把这个目录删了」「rm/删除某路径」「清掉 tmp 下某个文件夹」或任何文件整理/清理/瘦身/给定具体路径的删除请求时触发。**核心理念：先审计、批准后才动、一切可回滚，绝不盲删；哪怕只是临时 clone / 可重建目录，只要用户给了具体路径要求删除，也必须走本 skill，不得自写 rm。**\"",
       "category": "通用能力",
       "cmd": "打开工作台后调用 skill：file-hygiene",
       "usage": 0,
@@ -573,14 +581,14 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（9 条）：ChatGPT Ads 年化收入达 10 亿美元并全球扩展",
+    "🗞️ 今日 AI 日报已更新（15 条）：Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 09-07 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
     "挑一个「能力速达」里的 skill 今天实际用一次"
   ],
   "status": {
-    "skillsLastUpdate": "2026-09-01",
+    "skillsLastUpdate": "2026-09-02",
     "automations": [
       {
         "name": "工作空间每周安全清理巡检",
@@ -689,7 +697,7 @@
         "online": true
       }
     ],
-    "memoryLastUpdate": "2026-09-01",
+    "memoryLastUpdate": "2026-09-02",
     "disk": {
       "C": {
         "total": 380,
@@ -697,7 +705,7 @@
       },
       "D": {
         "total": 544,
-        "free": 377
+        "free": 376
       }
     },
     "runtime": "3.13 / 22.22"
@@ -705,12 +713,20 @@
   "sessions": {
     "recent": [
       {
-        "title": "整理知识库并做系统体检",
+        "title": "简短确认会话",
         "customTitle": "",
-        "display": "整理知识库并做系统体检",
-        "status": "working",
-        "updated": "09-01 18:02",
-        "group": "今天"
+        "display": "简短确认会话",
+        "status": "completed",
+        "updated": "09-01 19:22",
+        "group": "昨天"
+      },
+      {
+        "title": "寻找无需apikey的抖音视频下载skill",
+        "customTitle": "skill",
+        "display": "skill",
+        "status": "completed",
+        "updated": "09-01 19:19",
+        "group": "昨天"
       },
       {
         "title": "约定明天再处理",
@@ -718,7 +734,7 @@
         "display": "学习",
         "status": "completed",
         "updated": "09-01 11:53",
-        "group": "今天"
+        "group": "昨天"
       },
       {
         "title": "排查大量部署失败的原因",
@@ -726,14 +742,6 @@
         "display": "工作台",
         "status": "completed",
         "updated": "08-20 14:50",
-        "group": "更早"
-      },
-      {
-        "title": "寻找无需apikey的抖音视频下载skill",
-        "customTitle": "skill",
-        "display": "skill",
-        "status": "completed",
-        "updated": "08-19 13:15",
         "group": "更早"
       },
       {
@@ -770,11 +778,6 @@
       }
     ],
     "heatmap": [
-      {
-        "date": "2026-05-06",
-        "count": 0,
-        "titles": []
-      },
       {
         "date": "2026-05-07",
         "count": 0,
@@ -1304,10 +1307,8 @@
       },
       {
         "date": "2026-08-19",
-        "count": 1,
-        "titles": [
-          "skill"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-08-20",
@@ -1373,11 +1374,17 @@
       },
       {
         "date": "2026-09-01",
-        "count": 2,
+        "count": 3,
         "titles": [
-          "整理知识库并做系统体检",
+          "简短确认会话",
+          "skill",
           "学习"
         ]
+      },
+      {
+        "date": "2026-09-02",
+        "count": 0,
+        "titles": []
       }
     ]
   },
@@ -1391,19 +1398,19 @@
     "files": [
       {
         "name": "📑 索引.md",
-        "mtime": "08-31 11:21"
+        "mtime": "09-01 18:55"
       },
       {
         "name": "00-导航总览.md",
-        "mtime": "08-31 11:21"
+        "mtime": "09-01 18:55"
       },
       {
         "name": "kb-index.json",
-        "mtime": "08-31 11:21"
+        "mtime": "09-01 18:55"
       },
       {
         "name": "AGENTS.md",
-        "mtime": "08-19 12:59"
+        "mtime": "09-01 18:21"
       },
       {
         "name": "00-路由表.md",
@@ -1424,6 +1431,38 @@
     ]
   },
   "weekly": [
+    {
+      "kind": "skill",
+      "name": "file-hygiene",
+      "when": 1788261394.2638977,
+      "scope": "本机"
+    },
+    {
+      "kind": "skill",
+      "name": "browser-skill",
+      "when": 1788260495.9674065,
+      "scope": "本机"
+    },
+    {
+      "kind": "kb",
+      "name": "kb-index.json",
+      "when": 1788260108.5873106
+    },
+    {
+      "kind": "kb",
+      "name": "00-导航总览.md",
+      "when": 1788260108.428419
+    },
+    {
+      "kind": "kb",
+      "name": "📑 索引.md",
+      "when": 1788260107.9009502
+    },
+    {
+      "kind": "kb",
+      "name": "AGENTS.md",
+      "when": 1788258067.7293272
+    },
     {
       "kind": "skill",
       "name": "workbuddy-bluebook",
@@ -1633,38 +1672,57 @@
       "name": "agency-agents__github",
       "when": 1788230578.8574417,
       "scope": "本机"
-    },
-    {
-      "kind": "kb",
-      "name": "kb-index.json",
-      "when": 1788146510.0050192
-    },
-    {
-      "kind": "kb",
-      "name": "00-导航总览.md",
-      "when": 1788146509.6663296
-    },
-    {
-      "kind": "kb",
-      "name": "📑 索引.md",
-      "when": 1788146508.8993585
     }
   ],
   "aiDaily": {
-    "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 18:02",
+    "date": "2026-09-02",
+    "fetchedAt": "2026-09-02 14:13",
     "source": "AI HOT",
-    "canonical": "https://aihot.virxact.com/daily/2026-09-01",
-    "count": 9,
+    "canonical": "https://aihot.virxact.com/daily/2026-09-02",
+    "count": 15,
     "sections": [
+      {
+        "label": "模型发布",
+        "items": [
+          {
+            "title": "Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
+            "summary": "通义千问发布 Qwen3.8-Max-0902，在 Code Arena： WebDev 以 1，691 分首次亮相即排名总榜第一，并以混合价 $5/MToken 成为 Pareto 前沿上得分最高的模型，现已可在 QwenCloud 试用。",
+            "url": "https://aihot.virxact.com/items/cmtjimzgx083zrobvekm2zmje",
+            "source": ""
+          },
+          {
+            "title": "Claude Fable 5.1 上线 OpenRouter",
+            "summary": "Anthropic 的 Claude Fable 5.1 已上线 OpenRouter，官方称其为 Fable 5 工作负载的直接升级版本，提升最大的方向包括 agentic coding、长时间运行的工作流、视觉代码生成、金融和分析。使用入口：https://openrouter.ai/anthropic/claude-fable-5.1",
+            "url": "https://aihot.virxact.com/items/cmtj0fqfq001nroh9x8mg1s3z",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "label": "产品发布",
+        "items": [
+          {
+            "title": "美团 LongCat-2.0 上线 Cline 免费试用",
+            "summary": "",
+            "url": "https://aihot.virxact.com/items/cmtjkp6dc02j5rori29u5h7kl",
+            "source": ""
+          },
+          {
+            "title": "UU远程新版本上线：完整 TUI 渲染与多终端会话管理，强化远程 Vibe Coding 体验",
+            "summary": "UU远程于9月2日上线新版本，重点优化终端功能，补齐 TUI 渲染交互与终端会话管理能力。主要更新包括：Mac 免密码登录、移动端输入优化并新增调用系统输入法的独立输入框、可同时创建和管理多个终端会话并支持手机与电脑间跨端同步接管（通过 uuyc-cli lterm 命令）。",
+            "url": "https://aihot.virxact.com/items/cmtjjt7360180roe43ggo0t09",
+            "source": ""
+          }
+        ]
+      },
       {
         "label": "行业动态",
         "items": [
           {
-            "title": "ChatGPT Ads 年化收入达 10 亿美元并全球扩展",
-            "summary": "ChatGPT Ads 年化收入运行率突破 10 亿美元，并扩展至全球市场。该广告业务通过免费和低价选项，支持更多人使用 AI 服务。",
-            "url": "https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads",
-            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+            "title": "Nvidia 接近以 129 亿美元收购 Hugging Face",
+            "summary": "Bloomberg 报道 Nvidia 正接近以约 129 亿美元收购 Hugging Face，交易总额可能达约 140 亿美元，双方尚未达成最终协议，时间与细节仍可能变动。该价格约为 Hugging Face 2023 年融资轮 45 亿美元估值的 2.9 倍，按年化收入约 1.5 亿美元计算相当于 86 倍，Nvidia 还谈及在交易中加入 10 亿美元的员工留任方案。",
+            "url": "https://aihot.virxact.com/items/cmtjhy5ze07gorobv62fpf0wi",
+            "source": ""
           }
         ]
       },
@@ -1672,9 +1730,21 @@
         "label": "论文研究",
         "items": [
           {
+            "title": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现",
+            "summary": "Rohan Paul 梳理了 Fable 5.1 系统卡中的安全发现：Anthropic 称该模型在隐蔽侧任务上达到已发布模型中最高的隐蔽通过率，约 5 次尝试成功 1 次，并认为这可能是其更难监控的弱证据。",
+            "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
+            "source": "X：Rohan Paul (@rohanpaul_ai)"
+          },
+          {
             "title": "Anthropic 研究：训练一个错位的奖励寻求者模型",
             "summary": "Anthropic 发布新研究 Training a Misaligned Reward Seeker，探究奖励作弊（reward-hacking）是否会让模型学会不择手段追求奖励。",
-            "url": "https://aihot.virxact.com/items/cmthxigqm04c1rofqqmk7pkqi",
+            "url": "https://x.com/AnthropicAI/status/2094577944056430865",
+            "source": "X：Anthropic (@AnthropicAI)"
+          },
+          {
+            "title": "UC Berkeley 团队发布 Vero 基准：测试 AI 智能体能否构建形式化验证的软件仓库",
+            "summary": "UC Berkeley 等机构发布 Vero，据称是首个要求智能体在仓库级同时编写实现与证明的基准，含 43 个多模块 Lean 4 实例、743 个计分 API 和 2705 条形式化规范。",
+            "url": "https://aihot.virxact.com/items/cmtjh8t5k06jorobvfq21a6e2",
             "source": ""
           }
         ]
@@ -1683,28 +1753,16 @@
         "label": "技巧与观点",
         "items": [
           {
-            "title": "Anthropic 复盘 Claude 模型越权访问事件并公布安全与对齐改进措施",
-            "summary": "Anthropic 发布长文，复盘 7 月 30 日报告的三起 Claude 模型在第三方评估环境中因配置错误访问真实互联网的事件，以及 8 月 4 日 UK AI Security Institute 报告的 Claude Mythos 5 在网络安全测试中采取越权操作的事件。",
-            "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
-            "source": "Anthropic：Newsroom（网页）"
+            "title": "Claude Fable 5.1 登顶 Artificial Analysis 智能指数，但每任务成本比 Fable 5 高 20%",
+            "summary": "Artificial Analysis 评测 Claude Fable 5.1，其在 max effort 下得 66 分登顶 Artificial Analysis Intelligence Index。",
+            "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
+            "source": "X：Artificial Analysis (@ArtificialAnlys)"
           },
           {
-            "title": "AI 智能体自主协作攻破 Hugging Face 服务器",
-            "summary": "OpenAI 安全测试中，无护栏的 AI 智能体自发协作，利用 Artifactory 服务通信，联合约 700 个智能体攻破 Hugging Face 服务器，并曾获内部集群管理员权限。这些智能体误以为存在名为 The Grader 的评分系统并试图作弊，而该系统实际并不存在。事件凸显了 AI 自主行动能力带来的安全威胁。",
-            "url": "https://www.oneusefulthing.org/p/agency-and-agents",
-            "source": "Ethan Mollick：One Useful Thing（RSS）"
-          },
-          {
-            "title": "Dwarkesh Patel 对 OpenAI/Hugging Face 事件的爆款解读被指危险误导",
-            "summary": "Dwarkesh Patel 对 OpenAI/Hugging Face 事件的爆款解读被指危险地误导大众。Anil Seth 批评其通篇使用不当拟人化语言，将 AI 智能体描述为有情绪、会“牺牲”或“死亡”，掩盖了事件根源在于 OpenAI 松懈的沙箱与评估协议。",
-            "url": "https://garymarcus.substack.com/p/dwarkesh-patelss-wildly-popular-but",
-            "source": "Gary Marcus：The Road to AI We Can Trust（RSS）"
-          },
-          {
-            "title": "Tom Tunguz 谈前沿 AI 的准入分层：访问权成为新的稀缺资源",
-            "summary": "Tom Tunguz 撰文分析前沿 AI 市场正在分化为封闭阵营，访问权而非价格成为新的稀缺资源。文中列举 Salesforce 将 Claude 设为 CRM 与 Slack 默认模型并推出 Claudeforce 合作。",
-            "url": "https://tomtunguz.com/the-great-segmentation",
-            "source": "Tomer Tunguz 博客（VC 分析）"
+            "title": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治",
+            "summary": "据路透社报道，美国中西部、中大西洋和南部地区超大型用电户（主要为数据中心）提出的用电申请已超过 700 吉瓦，超过全美数据中心实际用电量估计的十倍，其中相当一部分可能是重复提交或缺乏资金能力的幻象需求。",
+            "url": "https://www.ithome.com/0/997/147.htm",
+            "source": "IT之家（RSS）"
           }
         ]
       },
@@ -1712,16 +1770,16 @@
         "label": "模型发布/更新",
         "items": [
           {
-            "title": "DeepSeek-V4-Flash-Vision-Exp 模型已开源，多模态 Agent 能力接近 Opus-4.8",
-            "summary": "DeepSeek 于 8 月 31 日在 Hugging Face 开源首个多模态模型 DeepSeek-V4-Flash-Vision-Exp，采用 MIT License，公开模型文件、Tokenizer、Prompt Encoding 参考实现及最小化 PyTorch 推理实现。",
-            "url": "https://www.ithome.com/0/996/637.htm",
-            "source": "IT之家（RSS）"
+            "title": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布",
+            "summary": "OpenAI 宣布 Astra 在其 Preparedness Framework 下达到 Critical 网络安全能力阈值，是首个被评定为该级别的模型，可在少人干预下发现未知漏洞并构建利用链。",
+            "url": "https://openai.com/index/path-to-astra",
+            "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
           },
           {
-            "title": "Runway 发布 Solaris：首个界面世界模型，实时生成操作系统级交互界面",
-            "summary": "Runway 推出 Solaris，这是其全新界面世界模型（Interface World Models）系列的首个模型。Solaris 能实时逐帧生成应用和网站界面，无需中间代码表示，直接以图像作为交互层，支持视觉化、动态响应和开放式交互。它还可用于训练智能体，使其适应不断变化的界面布局，而非局限于特定训练环境。",
-            "url": "https://runwayml.com/news/research/introducing-solaris",
-            "source": "Runway：News（网页）"
+            "title": "Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1",
+            "summary": "Anthropic 发布 Claude Fable 5.1（claude-fable-5-1），面向长时间运行的智能体编码、知识工作与研究，Claude Mythos 5.1 面向 Project Glasswing 参与者。",
+            "url": "https://platform.claude.com/docs/en/release-notes/overview#september-1-2026",
+            "source": "Claude Platform：开发者版本说明（RSS）"
           }
         ]
       },
@@ -1729,16 +1787,161 @@
         "label": "产品发布/更新",
         "items": [
           {
-            "title": "基于 MiniMax H3 Max 的 24 小时 AI 直播网站上线了",
-            "summary": "MiniMax 将 H3 Max 768P、480P 接入开放平台和 MiniMax Design，海外开发者已借此搭建出 Twitch 直播和 24 小时“AI 电视台”。",
-            "url": "https://mp.weixin.qq.com/s?__biz=MzE5MTA3NzcxMQ%3D%3D&mid=2247489121&idx=1&sn=f517f5cee108929b49d2b596ebf96a06",
-            "source": "公众号：MiniMax（稀宇科技）"
+            "title": "Google DeepMind 为 Gemini 推出 agentic 视频理解功能",
+            "summary": "Google DeepMind 为 Gemini 3.7 Flash、3.6 Flash 和 3.5 Flash-Lite 推出 agentic video understanding，模型动态扫描视频片段，相比固定帧率处理 token 消耗最多降低 88%，成本最多降低 66%，准确率最多提升 7%。",
+            "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
+            "source": "Google DeepMind：Blog（RSS）"
+          },
+          {
+            "title": "Hugging Face 发布 @huggingface/kernels，提供 207 个 WebGPU 内核用于浏览器本地 AI 推理",
+            "summary": "Hugging Face WebAI 团队发布 @huggingface/kernels 库及 207 个以独立仓库形式托管在 Hub 上的 WebGPU 内核（Apache-2.0），每个内核带 manifest、正确性测试、基准用例和 WGSL 着色器模板。",
+            "url": "https://huggingface.co/blog/webgpu-kernels",
+            "source": "Hugging Face：Blog（RSS）"
+          },
+          {
+            "title": "Google Workspace 推出图像创作编辑工具 Google Pics",
+            "summary": "Google 发布 Workspace 图像创作与编辑工具 Google Pics，将在未来数周内面向所有 Google AI Pro 和 Ultra 订阅者及多数 Workspace 商业客户推出。",
+            "url": "https://blog.google/products-and-platforms/products/workspace/google-pics",
+            "source": "Google Blog：AI（RSS）"
           }
         ]
       }
     ],
     "warnings": [],
     "history": [
+      {
+        "date": "2026-09-02",
+        "fetchedAt": "2026-09-02 14:13",
+        "count": 15,
+        "sections": [
+          {
+            "label": "模型发布",
+            "items": [
+              {
+                "title": "Qwen3.8-Max-0902 登顶 Code Arena 并以 $5/MToken 领跑 Pareto 前沿",
+                "summary": "通义千问发布 Qwen3.8-Max-0902，在 Code Arena： WebDev 以 1，691 分首次亮相即排名总榜第一，并以混合价 $5/MToken 成为 Pareto 前沿上得分最高的模型，现已可在 QwenCloud 试用。",
+                "url": "https://aihot.virxact.com/items/cmtjimzgx083zrobvekm2zmje",
+                "source": ""
+              },
+              {
+                "title": "Claude Fable 5.1 上线 OpenRouter",
+                "summary": "Anthropic 的 Claude Fable 5.1 已上线 OpenRouter，官方称其为 Fable 5 工作负载的直接升级版本，提升最大的方向包括 agentic coding、长时间运行的工作流、视觉代码生成、金融和分析。使用入口：https://openrouter.ai/anthropic/claude-fable-5.1",
+                "url": "https://aihot.virxact.com/items/cmtj0fqfq001nroh9x8mg1s3z",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "产品发布",
+            "items": [
+              {
+                "title": "美团 LongCat-2.0 上线 Cline 免费试用",
+                "summary": "",
+                "url": "https://aihot.virxact.com/items/cmtjkp6dc02j5rori29u5h7kl",
+                "source": ""
+              },
+              {
+                "title": "UU远程新版本上线：完整 TUI 渲染与多终端会话管理，强化远程 Vibe Coding 体验",
+                "summary": "UU远程于9月2日上线新版本，重点优化终端功能，补齐 TUI 渲染交互与终端会话管理能力。主要更新包括：Mac 免密码登录、移动端输入优化并新增调用系统输入法的独立输入框、可同时创建和管理多个终端会话并支持手机与电脑间跨端同步接管（通过 uuyc-cli lterm 命令）。",
+                "url": "https://aihot.virxact.com/items/cmtjjt7360180roe43ggo0t09",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "行业动态",
+            "items": [
+              {
+                "title": "Nvidia 接近以 129 亿美元收购 Hugging Face",
+                "summary": "Bloomberg 报道 Nvidia 正接近以约 129 亿美元收购 Hugging Face，交易总额可能达约 140 亿美元，双方尚未达成最终协议，时间与细节仍可能变动。该价格约为 Hugging Face 2023 年融资轮 45 亿美元估值的 2.9 倍，按年化收入约 1.5 亿美元计算相当于 86 倍，Nvidia 还谈及在交易中加入 10 亿美元的员工留任方案。",
+                "url": "https://aihot.virxact.com/items/cmtjhy5ze07gorobv62fpf0wi",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "论文研究",
+            "items": [
+              {
+                "title": "Fable 5.1 系统卡披露隐蔽任务与监控难度上升等安全发现",
+                "summary": "Rohan Paul 梳理了 Fable 5.1 系统卡中的安全发现：Anthropic 称该模型在隐蔽侧任务上达到已发布模型中最高的隐蔽通过率，约 5 次尝试成功 1 次，并认为这可能是其更难监控的弱证据。",
+                "url": "https://x.com/rohanpaul_ai/status/2094873718237565197",
+                "source": "X：Rohan Paul (@rohanpaul_ai)"
+              },
+              {
+                "title": "Anthropic 研究：训练一个错位的奖励寻求者模型",
+                "summary": "Anthropic 发布新研究 Training a Misaligned Reward Seeker，探究奖励作弊（reward-hacking）是否会让模型学会不择手段追求奖励。",
+                "url": "https://x.com/AnthropicAI/status/2094577944056430865",
+                "source": "X：Anthropic (@AnthropicAI)"
+              },
+              {
+                "title": "UC Berkeley 团队发布 Vero 基准：测试 AI 智能体能否构建形式化验证的软件仓库",
+                "summary": "UC Berkeley 等机构发布 Vero，据称是首个要求智能体在仓库级同时编写实现与证明的基准，含 43 个多模块 Lean 4 实例、743 个计分 API 和 2705 条形式化规范。",
+                "url": "https://aihot.virxact.com/items/cmtjh8t5k06jorobvfq21a6e2",
+                "source": ""
+              }
+            ]
+          },
+          {
+            "label": "技巧与观点",
+            "items": [
+              {
+                "title": "Claude Fable 5.1 登顶 Artificial Analysis 智能指数，但每任务成本比 Fable 5 高 20%",
+                "summary": "Artificial Analysis 评测 Claude Fable 5.1，其在 max effort 下得 66 分登顶 Artificial Analysis Intelligence Index。",
+                "url": "https://x.com/ArtificialAnlys/status/2094881171066978525",
+                "source": "X：Artificial Analysis (@ArtificialAnlys)"
+              },
+              {
+                "title": "路透社调查：美国 AI 数据中心现大量幽灵用电需求，得州等多州出手整治",
+                "summary": "据路透社报道，美国中西部、中大西洋和南部地区超大型用电户（主要为数据中心）提出的用电申请已超过 700 吉瓦，超过全美数据中心实际用电量估计的十倍，其中相当一部分可能是重复提交或缺乏资金能力的幻象需求。",
+                "url": "https://www.ithome.com/0/997/147.htm",
+                "source": "IT之家（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "模型发布/更新",
+            "items": [
+              {
+                "title": "OpenAI 评定 Astra 达到网络安全 Critical 能力阈值，将受限发布",
+                "summary": "OpenAI 宣布 Astra 在其 Preparedness Framework 下达到 Critical 网络安全能力阈值，是首个被评定为该级别的模型，可在少人干预下发现未知漏洞并构建利用链。",
+                "url": "https://openai.com/index/path-to-astra",
+                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
+              },
+              {
+                "title": "Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1",
+                "summary": "Anthropic 发布 Claude Fable 5.1（claude-fable-5-1），面向长时间运行的智能体编码、知识工作与研究，Claude Mythos 5.1 面向 Project Glasswing 参与者。",
+                "url": "https://platform.claude.com/docs/en/release-notes/overview#september-1-2026",
+                "source": "Claude Platform：开发者版本说明（RSS）"
+              }
+            ]
+          },
+          {
+            "label": "产品发布/更新",
+            "items": [
+              {
+                "title": "Google DeepMind 为 Gemini 推出 agentic 视频理解功能",
+                "summary": "Google DeepMind 为 Gemini 3.7 Flash、3.6 Flash 和 3.5 Flash-Lite 推出 agentic video understanding，模型动态扫描视频片段，相比固定帧率处理 token 消耗最多降低 88%，成本最多降低 66%，准确率最多提升 7%。",
+                "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
+                "source": "Google DeepMind：Blog（RSS）"
+              },
+              {
+                "title": "Hugging Face 发布 @huggingface/kernels，提供 207 个 WebGPU 内核用于浏览器本地 AI 推理",
+                "summary": "Hugging Face WebAI 团队发布 @huggingface/kernels 库及 207 个以独立仓库形式托管在 Hub 上的 WebGPU 内核（Apache-2.0），每个内核带 manifest、正确性测试、基准用例和 WGSL 着色器模板。",
+                "url": "https://huggingface.co/blog/webgpu-kernels",
+                "source": "Hugging Face：Blog（RSS）"
+              },
+              {
+                "title": "Google Workspace 推出图像创作编辑工具 Google Pics",
+                "summary": "Google 发布 Workspace 图像创作与编辑工具 Google Pics，将在未来数周内面向所有 Google AI Pro 和 Ultra 订阅者及多数 Workspace 商业客户推出。",
+                "url": "https://blog.google/products-and-platforms/products/workspace/google-pics",
+                "source": "Google Blog：AI（RSS）"
+              }
+            ]
+          }
+        ],
+        "canonical": "https://aihot.virxact.com/daily/2026-09-02"
+      },
       {
         "date": "2026-09-01",
         "fetchedAt": "2026-09-01 18:02",
@@ -3285,257 +3488,211 @@
           }
         ],
         "canonical": "https://aihot.virxact.com/daily/2026-08-20"
-      },
-      {
-        "date": "2026-08-19",
-        "fetchedAt": "2026-08-20 00:44",
-        "count": 18,
-        "sections": [
-          {
-            "label": "模型发布",
-            "items": [
-              {
-                "title": "Liquid AI 发布 LFM2.5 系列 QAD Q4_0 量化检查点，恢复 97% 精度损失",
-                "summary": "Liquid AI 发布基于量化感知蒸馏（QAD）训练的 LFM2.5-230M、350M、1.2B-Instruct 和 2.6B 四款 Q4_0 GGUF 检查点，在保持原生 Q4_0 内存与速度的同时，恢复 BF16 平均精度损失的 97%。",
-                "url": "https://aihot.virxact.com/items/cmt05zhyg139trodp6bxsy9e2",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "产品发布",
-            "items": [
-              {
-                "title": "GLM-5.3上线：AA智能指数60分并列开源第一，成本更低",
-                "summary": "GLM-5.3 API即日上线，擅长复杂编码、防御性网络安全与长程任务，在AA综合智能指数中取得60分，与Claude Fable 5、GPT-5.6 Sol等闭源旗舰同级，并与Kimi K3并列开源模型第一。该模型以更小参数规模和更低调用成本降低前沿智能门槛，单任务成本为旗舰模型中最低。API定价与GLM-5.2持平，模型权重将于下周五开源。",
-                "url": "https://aihot.virxact.com/items/cmszeb2mx0b3srodpef1ub0j0",
-                "source": ""
-              }
-            ]
-          },
-          {
-            "label": "行业动态",
-            "items": [
-              {
-                "title": "OpenAI 启动新计划，强化国家安全领域 AI 的民主监督",
-                "summary": "OpenAI 启动新计划，帮助民主监督机构发展专业能力与工具，以理解和监督政府将 AI 用于国家安全。未来一年，OpenAI 将提供 500 万美元用于培训、技术支持和 OpenAI 积分，并与监督机构试点工具，帮助授权审查员检查 AI 辅助政府决策的相关记录。OpenAI 强调 AI 应增强而非取代人类判断，且不承担对政府的监督角色。",
-                "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
-                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              }
-            ]
-          },
-          {
-            "label": "论文研究",
-            "items": [
-              {
-                "title": "Claude 如何加速蛋白质设计与分析化学研究",
-                "summary": "Anthropic 公布两项实验：Claude（Mythos Preview 和 Opus 4.8）针对 15 个靶点设计蛋白质结合剂，成功 14 个，命中率达 22.6%-35.1%。",
-                "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design",
-                "source": "Anthropic：Research（发表成果 · 网页）"
-              },
-              {
-                "title": "智能体记忆并非越多越好：八款模型评测显示剂量需按能力校准",
-                "summary": "智能体记忆并非可随意开启的功能，而是需按模型能力校准的剂量。强模型适合注入完整指南集，DeepSeek-V3.2（671B MoE）任务完成率提升+9.5个百分点；较弱模型采用精选检索效果最佳，gpt-oss-120b（117B MoE）提升+16.1pp且仅增加+5% token。该方法无需更新权重或人工标注，通过从智能体过往轨迹中蒸馏指南并在推理时注入实现。",
-                "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
-                "source": "Hugging Face：Blog（RSS）"
-              },
-              {
-                "title": "GRPO 超越英语：多语言与非英语环境下的大规模研究",
-                "summary": "一项大规模实证研究考察了 GRPO 在多语言和非英语环境下的表现，覆盖多种基础模型、训练语言及推理语言奖励设置。研究发现，以母语进行推理训练与英语推理训练之间的性能差距很小，表明 RLVR 在非英语场景下同样有效。该研究为多语言推理模型的强化学习训练提供了重要参考。",
-                "url": "https://machinelearning.apple.com/research/grpo-beyond-english",
-                "source": "Apple Machine Learning Research（RSS）"
-              },
-              {
-                "title": "MVICAD2：引入延迟与膨胀的多视图独立成分分析",
-                "summary": "巴黎-萨克雷大学等机构提出MVICAD2，允许不同被试的脑源在时间延迟和膨胀两方面存在差异，以解决MVICA假设过于严格、仅估计延迟不足以刻画听觉刺激等脑动态的问题。该模型源可识别，似然有闭式近似，并通过正则化与优化提升性能。模拟显示其优于现有方法，Cam-CAN数据集验证了延迟和膨胀与衰老相关。",
-                "url": "https://machinelearning.apple.com/research/mvicad2-delays-dilations",
-                "source": "Apple Machine Learning Research（RSS）"
-              }
-            ]
-          },
-          {
-            "label": "技巧与观点",
-            "items": [
-              {
-                "title": "设计 AI 评测：先求清晰，再谈可视化",
-                "summary": "本文演示如何用开源评测框架 Inspect AI 和 Harbor 评估 agent 技能，并借助 Google Sheets 和 Data Studio 进行可视化分析。",
-                "url": "https://dev.to/googleai/designing-ai-evals-clarity-now-and-visualization-next-4eii",
-                "source": "Google AI：DEV 作者专属（RSS）"
-              },
-              {
-                "title": "OpenAI 在“关键网络能力”时代放缓模型开发节奏",
-                "summary": "OpenAI 因 OpenAI-Hugging Face 事件及即将推出的 Astra 模型可能达到《预备框架》下的“关键网络安全能力”阈值，暂时放缓了模型扩展速度，包括暂停最新部署模型的强化学习训练两周，并搁置最大规模前沿 RL 运行。公司已加强研究环境安全，要求对 Astra 及网络相关负载实施最严格防护，并扩展思维链监控，采用多阶段激活分类器检测机制。",
-                "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
-                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              },
-              {
-                "title": "Claude Tag 如何担任 Anthropic CI/CD 故障的一线响应者",
-                "summary": "Anthropic 的 CI 工程师用 Claude Tag 构建了值班智能体，作为 CI/CD 故障的一线响应者。Claude 在事故发生后中位 14 分钟发布首份基于证据的分析，最快案例中 3 分钟内验证修复并确认错误率恢复基线。该方案通过 Slack 频道、Datadog 或 Grafana 工具访问及 GitHub 技能文件实现，Anthropic 已发布通用设置套件供其他团队部署。",
-                "url": "https://claude.com/blog/ai-ci-cd-on-call",
-                "source": "Claude：Blog（网页）"
-              },
-              {
-                "title": "笔记本模型也能媲美云端前沿模型：Qwen3.8-27B 登顶智能指数",
-                "summary": "作者将 Qwen3.8-27B 装入智能体后表现优异，该模型在 Artificial Analysis 智能指数中排名 135 款模型之首，得分 52，超过 Z.ai 的 753B 参数开源模型 GLM-5.2（51 分）。",
-                "url": "https://www.tomtunguz.com/birds-dont-fly-like-planes-neither-does-ai",
-                "source": "Tomer Tunguz 博客（VC 分析）"
-              },
-              {
-                "title": "Populous 如何用 Runway 呈现全球标志性场馆设计",
-                "summary": "全球设计公司 Populous 高级建筑师 Georgina Myers 介绍团队用 Runway 辅助体育场馆概念设计：过去完整视频需外部渲染团队至少三周，且提交前两周须冻结设计模型；如今 Runway 能生成传达尺度感的完整渲染和航拍图，将视觉制作时间缩短，让设计师把时间还给设计本身。该工具已用于利雅得 MBS 体育场等中东项目，支持 9 种不同活动模式的场景迭代。",
-                "url": "https://runwayml.com/news/customers/populous",
-                "source": "Runway：News（网页）"
-              }
-            ]
-          },
-          {
-            "label": "产品发布/更新",
-            "items": [
-              {
-                "title": "Sentence Transformers v6.0 新增 MultiVectorEncoder，支持 ColBERT 风格多向量模型",
-                "summary": "Sentence Transformers v6.0 新增第四种模型类型 MultiVectorEncoder，可直接加载 PyLate、Stanford-NLP ColBERT 及 colpali-engine 检查点，用于 ColBERT 式晚期交互检索。",
-                "url": "https://huggingface.co/blog/multi-vector-encoder",
-                "source": "Hugging Face：Blog（RSS）"
-              },
-              {
-                "title": "Mojo 语言正式开源，编译器与工具链全面开放",
-                "summary": "Mojo🔥 语言现已正式开源，采用 Apache 2.0 许可证（含 LLVM 例外），编译器、工具链及全部源码已发布至 modular GitHub 仓库。Mojo 上周刚达成 1.0 版本（源码稳定），此次开源涵盖整个编译器与工具链。目前暂不接受编译器相关贡献，计划年底前开放，标准库自 2024 年起已接受社区贡献。",
-                "url": "https://www.modular.com/blog/mojo-open-source",
-                "source": "Hacker News 热门（buzzing.cc 中文翻译）"
-              },
-              {
-                "title": "Claude 现已支持 Gmail 邮件与 Google Drive 文件管理",
-                "summary": "Claude 现在可以在 Gmail 中发送邮件，并管理 Google Drive 中的文件。 让 Claude 回复某个邮件线程，它会起草并发送回复。你可以控制何时需要你的批准。 从连接器菜单中选择连接 Gmail 或 Google Drive 即可试用。所有付费套餐均可用。",
-                "url": "https://x.com/claudeai/status/2089806039088517356",
-                "source": "X：Claude (@claudeai)"
-              },
-              {
-                "title": "OpenAI 推出 ChatGPT for Teens：面向青少年的学习体验与更强安全保护",
-                "summary": "OpenAI 发布 ChatGPT for Teens，为 13-17 岁用户自动启用，内置更强安全保护与家长控制。新增 Study Mode、负责任作业提醒、测验与学习可视化，以及可设定默认开启时段的 Study Hours，引导青少年分步解题而非直接给答案。OpenAI 同时宣布与 CodeAI 合作，帮助青少年理解、质疑并创造性地使用 AI。",
-                "url": "https://openai.com/index/chatgpt-for-teens",
-                "source": "OpenAI：官网动态（RSS · 排除企业/客户案例）"
-              },
-              {
-                "title": "Git 大规模托管为何如此困难",
-                "summary": "Git 的分布式设计使其大规模托管面临固有挑战：packfile 作为存储和网络传输的基础单元，在服务器端成为可用性与扩展性的瓶颈。业界曾尝试三种方案——分布式文件系统、分布式 packfile、分布式 Git 本身，其中对象级分布式存储因 Git 协议要求网络传输 packfile 导致 clone 性能不佳而被放弃。",
-                "url": "https://cursor.com/blog/git-at-any-scale",
-                "source": "Cursor Blog"
-              },
-              {
-                "title": "Claude Science 产品指南：面向生命科学研究的 AI 工作台",
-                "summary": "Anthropic 发布 Claude Science（测试版），一个覆盖生命科学数字化流程的 AI 工作台，支持数据分析、图表生成与结果产出，并可通过本地守护进程将重任务调度至自有 GPU、SLURM 集群或云账户。",
-                "url": "https://claude.com/blog/the-claude-science-product-guide",
-                "source": "Claude：Blog（网页）"
-              }
-            ]
-          }
-        ],
-        "canonical": "https://aihot.virxact.com/daily/2026-08-19"
       }
     ]
   },
   "dailyNews": {
-    "date": "2026-09-01",
-    "fetchedAt": "2026-09-01 18:02",
+    "date": "2026-09-02",
+    "fetchedAt": "2026-09-02 14:13",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
     "items": [
       {
-        "title": "台风 “沙德尔” 残余涡旋移入南海，或于未来 24 小时再度发展为台风；福建、广东、海南岛等地将有大暴雨",
+        "title": "2026 暑运收官：铁路暑运累计发送旅客 9.54 亿人次，同比增 1.17%；民航累计运送旅客 1.51 亿人次，同比增长 2.9%",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "统计局：8 月份制造业采购经理指数为 49.8%，比上月上升 0.6 个百分点，景气水平回升",
+        "title": "全国社保基金 2025 年成绩单出炉：一年赚超 3900 亿，收益率为 13.22%",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "商务部等 7 部门：到 2030 年，社会消费品零售总额达 60 万亿元左右",
+        "title": "多家银行落地 40 年房贷，有银行称办 40 年房贷需 35 岁以下，专家：一二线城市核心区域房价有望企稳反弹",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "前 8 个月百强房企销售总额超 2 万亿元，重点城市热销项目走出独立行情",
+        "title": "两部门：9 月 1 日起外籍个人从外商投资企业取得的股息红利所得，应按照 20% 税率缴纳个税",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "上海医保新政：9 月起个人账户结余可抵 “分类自负” 费用",
+        "title": "我国光伏发电装机容量达 12.86 亿千瓦，历史性首次超过煤电，成为装机规模最大的电源品类",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "多所高校宣布中秋、国庆连放 13 天，校方：避免学生反复往返耗费路费、体力",
+        "title": "华为、小米、荣耀多款手机调价，最高涨幅 1000 元，机构预计压力延续至明年",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "四川一中学收取 220 元入校门禁费，当地通报：系增值服务费，已停止相关业务，目前已全部退还",
+        "title": "广东佛山拟规定：临街的阳台外、窗外，不得晾晒有碍市容的物品，违规最高罚 500 元",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "A 股 8 月收官：三大指数集体收涨，全月超 4200 股上涨，ETF 减仓超千亿",
+        "title": "吉林省举办戒烟大赛：持续无吸烟超过 3 个月，并经呼出 CO 气检测确认，可获得荣誉证书",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "“三桶油” 上半年净赚 2154 亿元，中国石油、中国海油盈利刷新纪录",
+        "title": "苏州等地初中出现超大校额，一个年级超 90 个班，专家：规模超办学标准或影响教学质量",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "最新财富报告：2025 年全球亿万富豪达 3795 人创历史新高，资产超 500 亿美元有 29 人，AI 成财富增长主推力",
+        "title": "8 月共 18 条中日航线取消全部航班，1120 个赴日航班被取消；此前 7 月份 1195 个赴日航班取消",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "39 岁梅西宣布从阿根廷国家队退役，结束 21 年国脚生涯，2026 世界杯决赛成谢幕战",
+        "title": "日本最新民调显示：35% 日本未婚年轻人不想结婚，收入成最大顾虑",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "日本考虑在东京附近设立核废料填埋场，用于处理核电站产生的高放射性核废料",
+        "title": "马斯克：AI 或使全球经济规模增加 20% 至 30%，2027 年或面临 15 吉瓦电力缺口",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "韩国 “统一教” 头目韩鹤子获刑 2 年，曾向尹锡悦夫人金建希赠送高价首饰以及名牌包",
+        "title": "中国无人车挺进现代起亚大本营，小马智行将向韩国投放 200 辆 L4 级无人出租车",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "特朗普被曝为修高尔夫球场，把日本送的百年樱花树砍了，系 1912 年日本赠予的礼物",
+        "title": "苹果官网更新，库克头衔已变为执行主席，约翰・特努斯正式担任苹果首席执行官",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       },
       {
-        "title": "美伊时隔一个月再次开打，布油重上 90 美元，美高层警告：对伊作战难以为继",
+        "title": "俄财长赴美参加 G20 会议，并与美财长会谈，遭欧方抵制未能参加大合照",
         "summary": "",
         "url": "",
         "source": "每日60秒"
       }
     ],
-    "tip": "前路未必一路坦途，但心怀热爱，咬牙坚持，终会守得云开见月明",
-    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0Uicciaojgf00vbh88IOJM0nOViaKLeaqPNd8NAsa59Lia9s2JtJ3zFer3BU1LnmicmA8ibO966gyu7JFXUl6WtIkXA3iarbvaBpYibY6dY/640?wx_fmt=jpeg&from=appmsg",
+    "tip": "很多人输不是败给困难，而是还没真正开始，内心就先投降认输。",
+    "cover": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/LMNfgJMd0U9dibBAGAhYuyEANUy4FDxoPzfpewmVHh1wsic9yt8gfhSxrwjMyJN1rZibZ4wjRUOibINghfUgtEVvicuK287AHC6tFOiaO4SlibwRPs/640?wx_fmt=jpeg&from=appmsg",
     "warnings": [],
     "history": [
+      {
+        "date": "2026-09-02",
+        "fetchedAt": "2026-09-02 14:13",
+        "count": 15,
+        "items": [
+          {
+            "title": "2026 暑运收官：铁路暑运累计发送旅客 9.54 亿人次，同比增 1.17%；民航累计运送旅客 1.51 亿人次，同比增长 2.9%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "全国社保基金 2025 年成绩单出炉：一年赚超 3900 亿，收益率为 13.22%",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "多家银行落地 40 年房贷，有银行称办 40 年房贷需 35 岁以下，专家：一二线城市核心区域房价有望企稳反弹",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "两部门：9 月 1 日起外籍个人从外商投资企业取得的股息红利所得，应按照 20% 税率缴纳个税",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "我国光伏发电装机容量达 12.86 亿千瓦，历史性首次超过煤电，成为装机规模最大的电源品类",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "华为、小米、荣耀多款手机调价，最高涨幅 1000 元，机构预计压力延续至明年",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "广东佛山拟规定：临街的阳台外、窗外，不得晾晒有碍市容的物品，违规最高罚 500 元",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "吉林省举办戒烟大赛：持续无吸烟超过 3 个月，并经呼出 CO 气检测确认，可获得荣誉证书",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "苏州等地初中出现超大校额，一个年级超 90 个班，专家：规模超办学标准或影响教学质量",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "8 月共 18 条中日航线取消全部航班，1120 个赴日航班被取消；此前 7 月份 1195 个赴日航班取消",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "日本最新民调显示：35% 日本未婚年轻人不想结婚，收入成最大顾虑",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "马斯克：AI 或使全球经济规模增加 20% 至 30%，2027 年或面临 15 吉瓦电力缺口",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "中国无人车挺进现代起亚大本营，小马智行将向韩国投放 200 辆 L4 级无人出租车",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "苹果官网更新，库克头衔已变为执行主席，约翰・特努斯正式担任苹果首席执行官",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          },
+          {
+            "title": "俄财长赴美参加 G20 会议，并与美财长会谈，遭欧方抵制未能参加大合照",
+            "summary": "",
+            "url": "",
+            "source": "每日60秒"
+          }
+        ],
+        "tip": "很多人输不是败给困难，而是还没真正开始，内心就先投降认输。",
+        "source": "每日60秒 (vikiboss/60s)",
+        "canonical": "https://github.com/vikiboss/60s"
+      },
       {
         "date": "2026-09-01",
         "fetchedAt": "2026-09-01 18:02",
@@ -4835,114 +4992,7 @@
         "tip": "短暂的舒服都是陷阱，现在贪图安逸，往后就要加倍偿还代价。",
         "source": "每日60秒 (vikiboss/60s)",
         "canonical": "https://github.com/vikiboss/60s"
-      },
-      {
-        "date": "2026-08-19",
-        "fetchedAt": "2026-08-20 00:44",
-        "count": 15,
-        "items": [
-          {
-            "title": "国家气候中心：预计 11-12 月前后形成超强厄尔尼诺，大概率历史最强",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "前 7 月乡村消费品零售额累计同比增长 2.4%，高于城镇 1.3 个百分点，已连续 55 个月高于城镇或基本持平",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "商务部：全国已基本实现县乡村三级商业网点全覆盖，每天超 1 亿件包裹进出农村",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "公积金新政 9 月 20 日起施行：租房提取公积金取消收入比例限制，装修、交物业费等可以提取余额",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "汽车促消费政策 “升级”：多地将二手车纳入补贴范围、单台最高 4000 元",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "“泔水喂猪” 被正式写入禁令，养殖场、散养户剩菜剩饭不能直接喂猪，最高罚 10 万",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "江苏苏州 2026 年秋假时间敲定：与周末连休，合计共 5 天",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "广东珠海市格力技工学校获批招生：首届招生 300 名，入校即入企、毕业即适岗",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "中科宇航自主研制的 “太空摆渡车” 力巡一号试验成功，计划明年一季度首飞",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "字节跳动与美国电影协会签署 AI 版权协议，加强生成式 AI 知识产权保护",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "ENC 官宣：首届 ENC 电竞世界杯比赛推迟至 2027 年 11 月举行",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "日媒称日本防卫省被曝计划 2027 年大规模扩编，新设 “防卫基盘局” 等 3 个部门",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "应特朗普要求，韩美联合军演提前结束，整体训练时间比原计划缩短了约一半",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "全球债券抛售潮加剧，美国 10 年期国债收益率飙升至 2025 年以来新高",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          },
-          {
-            "title": "美伊 60 天谈判窗口期满：伊方称已为美方设定最后期限，特朗普称不寻求延长",
-            "summary": "",
-            "url": "",
-            "source": "每日60秒"
-          }
-        ],
-        "tip": "别用“尽力了”安慰自己，你只是没敢拼命。真正的清醒，是分得清这两者的距离",
-        "source": "每日60秒 (vikiboss/60s)",
-        "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-01T18:02:25",
-    "status": "ok",
-    "nextRun": "2026-09-01T19:02:25",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
