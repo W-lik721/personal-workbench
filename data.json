@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-02 14:17",
+  "generatedAt": "2026-09-02 17:33",
   "kpi": {
     "skills": 66,
     "automations": 3,
     "models": 3,
-    "memory": 52,
+    "memory": 53,
     "knowledge": 9,
     "sessions": 8
   },
@@ -640,7 +640,7 @@
         {
           "id": "6dd66787ddbd",
           "size": "6.5 GB",
-          "modified": "6 days ago",
+          "modified": "7 days ago",
           "tags": [
             "qwen3.5:latest",
             "qwen3.5:9b",
@@ -705,7 +705,7 @@
       },
       "D": {
         "total": 544,
-        "free": 376
+        "free": 378
       }
     },
     "runtime": "3.13 / 22.22"
@@ -716,8 +716,8 @@
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
-        "status": "working",
-        "updated": "09-02 14:17",
+        "status": "completed",
+        "updated": "09-02 15:43",
         "group": "今天"
       },
       {
@@ -1677,7 +1677,7 @@
   ],
   "aiDaily": {
     "date": "2026-09-02",
-    "fetchedAt": "2026-09-02 14:17",
+    "fetchedAt": "2026-09-02 17:33",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-02",
     "count": 15,
@@ -1692,9 +1692,9 @@
             "source": ""
           },
           {
-            "title": "Claude Fable 5.1 上线 OpenRouter",
-            "summary": "Anthropic 的 Claude Fable 5.1 已上线 OpenRouter，官方称其为 Fable 5 工作负载的直接升级版本，提升最大的方向包括 agentic coding、长时间运行的工作流、视觉代码生成、金融和分析。使用入口：https://openrouter.ai/anthropic/claude-fable-5.1",
-            "url": "https://aihot.virxact.com/items/cmtj0fqfq001nroh9x8mg1s3z",
+            "title": "Claude Fable 5.1 上线 Claude Code 与 Claude Platform，缓存读取降价 75%",
+            "summary": "Claude Fable 5.1 现已上线 Claude Code 和 Claude Platform，定价与 Fable 5 相同，API 缓存读取便宜 75%。模型在长任务中能更久自主推进、更善于提示用户它已卡住，写作风格也更自然。Anthropic 同时发布了 Claude Fable 5.1 和 Claude Mythos 5.1，称其为编码与知识工作领域最先进的模型。",
+            "url": "https://aihot.virxact.com/items/cmtj0fqet001lroh9hyk6rqu0",
             "source": ""
           }
         ]
@@ -1812,7 +1812,7 @@
     "history": [
       {
         "date": "2026-09-02",
-        "fetchedAt": "2026-09-02 14:17",
+        "fetchedAt": "2026-09-02 17:33",
         "count": 15,
         "sections": [
           {
@@ -1825,9 +1825,9 @@
                 "source": ""
               },
               {
-                "title": "Claude Fable 5.1 上线 OpenRouter",
-                "summary": "Anthropic 的 Claude Fable 5.1 已上线 OpenRouter，官方称其为 Fable 5 工作负载的直接升级版本，提升最大的方向包括 agentic coding、长时间运行的工作流、视觉代码生成、金融和分析。使用入口：https://openrouter.ai/anthropic/claude-fable-5.1",
-                "url": "https://aihot.virxact.com/items/cmtj0fqfq001nroh9x8mg1s3z",
+                "title": "Claude Fable 5.1 上线 Claude Code 与 Claude Platform，缓存读取降价 75%",
+                "summary": "Claude Fable 5.1 现已上线 Claude Code 和 Claude Platform，定价与 Fable 5 相同，API 缓存读取便宜 75%。模型在长任务中能更久自主推进、更善于提示用户它已卡住，写作风格也更自然。Anthropic 同时发布了 Claude Fable 5.1 和 Claude Mythos 5.1，称其为编码与知识工作领域最先进的模型。",
+                "url": "https://aihot.virxact.com/items/cmtj0fqet001lroh9hyk6rqu0",
                 "source": ""
               }
             ]
@@ -3494,7 +3494,7 @@
   },
   "dailyNews": {
     "date": "2026-09-02",
-    "fetchedAt": "2026-09-02 14:17",
+    "fetchedAt": "2026-09-02 17:33",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3596,7 +3596,7 @@
     "history": [
       {
         "date": "2026-09-02",
-        "fetchedAt": "2026-09-02 14:17",
+        "fetchedAt": "2026-09-02 17:33",
         "count": 15,
         "items": [
           {
@@ -4995,12 +4995,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-02T14:17:53",
-    "status": "ok",
-    "nextRun": "2026-09-02T15:17:53",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
