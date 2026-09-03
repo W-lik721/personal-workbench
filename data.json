@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03 17:42",
+  "generatedAt": "2026-09-03 22:30",
   "kpi": {
     "skills": 66,
     "automations": 3,
@@ -581,7 +581,7 @@
     }
   ],
   "guide": [
-    "🗞️ 今日 AI 日报已更新（20 条）：Meta 发布 Muse Spark 1.3，Intelligence Index 得 61-62 分逼近 Claude 与 GPT-5.6",
+    "🗞️ 今日 AI 日报已更新（20 条）：Hugging Face 发布开源工具 funes，为编码智能体提供可本地持有的记忆层",
     "📰 今日国内新闻已更新（15 条），点「每日新闻」标签看看",
     "⏰ 定时任务「工作空间每周安全清理巡检」将于 09-07 10:06 运行",
     "用 prompt-forge 把今天的一个想法固化成可复用提示词",
@@ -717,7 +717,7 @@
         "customTitle": "学习",
         "display": "学习",
         "status": "completed",
-        "updated": "09-03 17:36",
+        "updated": "09-03 20:37",
         "group": "今天"
       },
       {
@@ -1678,18 +1678,18 @@
   ],
   "aiDaily": {
     "date": "2026-09-03",
-    "fetchedAt": "2026-09-03 17:42",
+    "fetchedAt": "2026-09-03 22:30",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-03",
     "count": 20,
     "sections": [
       {
-        "label": "模型发布",
+        "label": "产品发布",
         "items": [
           {
-            "title": "Meta 发布 Muse Spark 1.3，Intelligence Index 得 61-62 分逼近 Claude 与 GPT-5.6",
-            "summary": "Meta 发布 Muse Spark 1.3，为五个月内第四个 Muse Spark 版本。max 变体（合作伙伴限时预览）在 Artificial Analysis Intelligence Index 得 62 分。",
-            "url": "https://aihot.virxact.com/items/cmtkme19o02plro5q94jsf94x",
+            "title": "Hugging Face 发布开源工具 funes，为编码智能体提供可本地持有的记忆层",
+            "summary": "Hugging Face 发布开源工具 funes，为 Claude Code、Codex、pi、Hermes 等编码智能体提供本地记忆层，把已有会话记录索引成 Lance 数据集，一条 funes add 命令即可让 Agent 自主召回原始出处（Agent、时间戳、会话、轮次）。",
+            "url": "https://aihot.virxact.com/items/cmtlg0ht406hlrow5clznd0ld",
             "source": ""
           }
         ]
@@ -1710,9 +1710,9 @@
             "source": "The Verge：AI（RSS）"
           },
           {
-            "title": "美国司法部介入纽约时报诉 OpenAI 案，主张 AI 训练属合理使用",
-            "summary": "美国司法部 9 月 1 日向曼哈顿联邦法院提交利益声明，介入《纽约时报》诉 OpenAI 版权案，支持 OpenAI 主张大语言模型训练属合理使用。DOJ 以国家安全和 AI 产业竞争力为主要论据，称训练使用具有转换性；《纽约时报》发言人批评政府站在 AI 公司一边牺牲创作者权益。法官要求双方最迟 9 月 4 日提交简易判决动议，该案结果可能为 AI 训练版权合法性确立先例。",
-            "url": "https://aihot.virxact.com/items/cmtksft9f0450roali4sl0z86",
+            "title": "NVIDIA 宣布以 129.303 亿美元收购 Hugging Face",
+            "summary": "NVIDIA 宣布已同意以 12，930，300，000 美元收购 Hugging Face，黄仁勋在官方博客公布了这一消息。Hugging Face 目前有超过 1800 万开发者，托管超过 300 万个模型、50 万个数据集和 100 万个应用，服务超过 20 万家企业。",
+            "url": "https://aihot.virxact.com/items/cmtli5yd109u4row52i1xg9j4",
             "source": ""
           }
         ]
@@ -1838,16 +1838,16 @@
     "history": [
       {
         "date": "2026-09-03",
-        "fetchedAt": "2026-09-03 17:42",
+        "fetchedAt": "2026-09-03 22:30",
         "count": 20,
         "sections": [
           {
-            "label": "模型发布",
+            "label": "产品发布",
             "items": [
               {
-                "title": "Meta 发布 Muse Spark 1.3，Intelligence Index 得 61-62 分逼近 Claude 与 GPT-5.6",
-                "summary": "Meta 发布 Muse Spark 1.3，为五个月内第四个 Muse Spark 版本。max 变体（合作伙伴限时预览）在 Artificial Analysis Intelligence Index 得 62 分。",
-                "url": "https://aihot.virxact.com/items/cmtkme19o02plro5q94jsf94x",
+                "title": "Hugging Face 发布开源工具 funes，为编码智能体提供可本地持有的记忆层",
+                "summary": "Hugging Face 发布开源工具 funes，为 Claude Code、Codex、pi、Hermes 等编码智能体提供本地记忆层，把已有会话记录索引成 Lance 数据集，一条 funes add 命令即可让 Agent 自主召回原始出处（Agent、时间戳、会话、轮次）。",
+                "url": "https://aihot.virxact.com/items/cmtlg0ht406hlrow5clznd0ld",
                 "source": ""
               }
             ]
@@ -1868,9 +1868,9 @@
                 "source": "The Verge：AI（RSS）"
               },
               {
-                "title": "美国司法部介入纽约时报诉 OpenAI 案，主张 AI 训练属合理使用",
-                "summary": "美国司法部 9 月 1 日向曼哈顿联邦法院提交利益声明，介入《纽约时报》诉 OpenAI 版权案，支持 OpenAI 主张大语言模型训练属合理使用。DOJ 以国家安全和 AI 产业竞争力为主要论据，称训练使用具有转换性；《纽约时报》发言人批评政府站在 AI 公司一边牺牲创作者权益。法官要求双方最迟 9 月 4 日提交简易判决动议，该案结果可能为 AI 训练版权合法性确立先例。",
-                "url": "https://aihot.virxact.com/items/cmtksft9f0450roali4sl0z86",
+                "title": "NVIDIA 宣布以 129.303 亿美元收购 Hugging Face",
+                "summary": "NVIDIA 宣布已同意以 12，930，300，000 美元收购 Hugging Face，黄仁勋在官方博客公布了这一消息。Hugging Face 目前有超过 1800 万开发者，托管超过 300 万个模型、50 万个数据集和 100 万个应用，服务超过 20 万家企业。",
+                "url": "https://aihot.virxact.com/items/cmtli5yd109u4row52i1xg9j4",
                 "source": ""
               }
             ]
@@ -3521,7 +3521,7 @@
   },
   "dailyNews": {
     "date": "2026-09-03",
-    "fetchedAt": "2026-09-03 17:42",
+    "fetchedAt": "2026-09-03 22:30",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3623,7 +3623,7 @@
     "history": [
       {
         "date": "2026-09-03",
-        "fetchedAt": "2026-09-03 17:42",
+        "fetchedAt": "2026-09-03 22:30",
         "count": 15,
         "items": [
           {
@@ -5022,12 +5022,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-03T17:42:55",
-    "status": "ok",
-    "nextRun": "2026-09-03T18:42:55",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
