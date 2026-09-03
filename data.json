@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03 17:30",
+  "generatedAt": "2026-09-03 17:42",
   "kpi": {
     "skills": 66,
     "automations": 3,
@@ -716,8 +716,8 @@
         "title": "约定明天再处理",
         "customTitle": "学习",
         "display": "学习",
-        "status": "working",
-        "updated": "09-03 17:30",
+        "status": "completed",
+        "updated": "09-03 17:36",
         "group": "今天"
       },
       {
@@ -1678,7 +1678,7 @@
   ],
   "aiDaily": {
     "date": "2026-09-03",
-    "fetchedAt": "2026-09-03 17:30",
+    "fetchedAt": "2026-09-03 17:42",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-03",
     "count": 20,
@@ -1838,7 +1838,7 @@
     "history": [
       {
         "date": "2026-09-03",
-        "fetchedAt": "2026-09-03 17:30",
+        "fetchedAt": "2026-09-03 17:42",
         "count": 20,
         "sections": [
           {
@@ -3521,7 +3521,7 @@
   },
   "dailyNews": {
     "date": "2026-09-03",
-    "fetchedAt": "2026-09-03 17:30",
+    "fetchedAt": "2026-09-03 17:42",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3623,7 +3623,7 @@
     "history": [
       {
         "date": "2026-09-03",
-        "fetchedAt": "2026-09-03 17:30",
+        "fetchedAt": "2026-09-03 17:42",
         "count": 15,
         "items": [
           {
@@ -5022,12 +5022,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-03T17:30:47",
-    "status": "ok",
-    "nextRun": "2026-09-03T18:30:47",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
