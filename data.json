@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04 16:40",
+  "generatedAt": "2026-09-04 16:42",
   "kpi": {
     "skills": 67,
     "automations": 3,
@@ -709,7 +709,7 @@
     "disk": {
       "C": {
         "total": 380,
-        "free": 229
+        "free": 233
       },
       "D": {
         "total": 544,
@@ -721,20 +721,20 @@
   "sessions": {
     "recent": [
       {
+        "title": "约定明天再处理",
+        "customTitle": "学习",
+        "display": "学习",
+        "status": "working",
+        "updated": "09-04 16:42",
+        "group": "今天"
+      },
+      {
         "title": "下载六场封神辩论视频",
         "customTitle": "",
         "display": "下载六场封神辩论视频",
         "status": "completed",
         "updated": "09-04 00:54",
         "group": "今天"
-      },
-      {
-        "title": "约定明天再处理",
-        "customTitle": "学习",
-        "display": "学习",
-        "status": "completed",
-        "updated": "09-03 20:37",
-        "group": "昨天"
       },
       {
         "title": "寻找无需apikey的抖音视频下载skill",
@@ -1394,15 +1394,14 @@
       },
       {
         "date": "2026-09-03",
-        "count": 1,
-        "titles": [
-          "学习"
-        ]
+        "count": 0,
+        "titles": []
       },
       {
         "date": "2026-09-04",
-        "count": 1,
+        "count": 2,
         "titles": [
+          "学习",
           "下载六场封神辩论视频"
         ]
       }
@@ -1708,7 +1707,7 @@
   ],
   "aiDaily": {
     "date": "2026-09-04",
-    "fetchedAt": "2026-09-04 16:40",
+    "fetchedAt": "2026-09-04 16:42",
     "source": "AI HOT",
     "canonical": "https://aihot.virxact.com/daily/2026-09-04",
     "count": 21,
@@ -1864,7 +1863,7 @@
     "history": [
       {
         "date": "2026-09-04",
-        "fetchedAt": "2026-09-04 16:40",
+        "fetchedAt": "2026-09-04 16:42",
         "count": 21,
         "sections": [
           {
@@ -3543,7 +3542,7 @@
   },
   "dailyNews": {
     "date": "2026-09-04",
-    "fetchedAt": "2026-09-04 16:40",
+    "fetchedAt": "2026-09-04 16:42",
     "source": "每日60秒 (vikiboss/60s)",
     "canonical": "https://github.com/vikiboss/60s",
     "count": 15,
@@ -3645,7 +3644,7 @@
     "history": [
       {
         "date": "2026-09-04",
-        "fetchedAt": "2026-09-04 16:40",
+        "fetchedAt": "2026-09-04 16:42",
         "count": 15,
         "items": [
           {
@@ -5044,12 +5043,5 @@
         "canonical": "https://github.com/vikiboss/60s"
       }
     ]
-  },
-  "sync": {
-    "lastRun": "2026-09-04T16:40:50",
-    "status": "ok",
-    "nextRun": "2026-09-04T17:40:50",
-    "intervalHours": 1,
-    "staleHours": 2
   }
 }
